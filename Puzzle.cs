@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Collections.Immutable;
 using System.Text;
-using System.Linq;
 
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     /// <summary>Manages underlying puzzle data.</summary>
     public class Puzzle

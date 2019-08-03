@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     public abstract class BasicRestrict : IRestrict
     {

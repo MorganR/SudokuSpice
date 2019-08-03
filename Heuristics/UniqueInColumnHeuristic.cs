@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     public class UniqueInColumnHeuristic : IHeuristic
     {

@@ -1,4 +1,4 @@
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     public readonly struct Coordinate
     {

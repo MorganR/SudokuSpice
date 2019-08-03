@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     /// <summary>
     /// Enforces a restriction for a puzzle, such as "all values must be unique within a row."

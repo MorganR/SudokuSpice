@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     /// <summary>
     /// Tracks and sets Sudoku squares and their possible values.

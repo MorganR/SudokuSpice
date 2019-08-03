@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Intrinsics.X86;
 
-namespace Sudoku
+namespace MorganRoff.Sudoku
 {
     public static class BitVectorUtils
     {
