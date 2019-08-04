@@ -7,7 +7,7 @@ namespace MorganRoff.Sudoku
     /// an <c>IRestrict</c>, this depends on the current possible values in the puzzle, not just
     /// the currently set values.
     /// </summary>
-    interface IHeuristic
+    public interface IHeuristic
     {
         /// <summary>
         /// Updates all the current possible values. This should be called when the underlying

@@ -16,6 +16,7 @@ namespace MorganRoff.Sudoku
         public int NumEmptySquares { get; private set; }
         private readonly int?[,] _squares;
         private readonly int[,] _possibleSquareValues;
+        private readonly CoordinateTracker _unsetCoordsTracker;
 
         public Puzzle(int?[,] puzzleMatrix)
         {
@@ -38,6 +39,7 @@ namespace MorganRoff.Sudoku
 
             _possibleSquareValues = new int[Size, Size];
             _squares = (int?[,])puzzleMatrix.Clone();
+            _unsetCoordsTracker = new CoordinateTracker(Size);
             for (var row = 0; row < Size; row++)
             {
                 for (var col = 0; col < Size; col++)
@@ -46,6 +48,7 @@ namespace MorganRoff.Sudoku
                     {
                         NumEmptySquares++;
                         _possibleSquareValues[row, col] = BitVectorUtils.CreateWithSize(Size);
+                        _unsetCoordsTracker.Add(new Coordinate(row, col));
                     } else
                     {
                         BitVectorUtils.SetBit(_squares[row, col].Value - 1, ref _possibleSquareValues[row, col]);
@@ -70,13 +73,16 @@ namespace MorganRoff.Sudoku
             {
                 throw new InvalidOperationException($"Can't set square ({row}, {col}) to value {val}.");
             }
+
             _squares[row, col] = val;
+            _unsetCoordsTracker.Untrack(new Coordinate(row, col));
             NumEmptySquares--;
         }
 
         /// <summary>Unsets the specified square.</summary>
         public void Unset(int row, int col)
         {
+            _unsetCoordsTracker.Track(new Coordinate(row, col));
             _squares[row, col] = null;
             NumEmptySquares++;
         }
@@ -113,20 +119,10 @@ namespace MorganRoff.Sudoku
             return new Coordinate((box / BoxSize) * BoxSize, (box % BoxSize) * BoxSize);
         }
 
-        /// <summary>Yields an enumerable of <c>Coordinate</c>s for all the unset squares.</summary>
-        public IEnumerable<Coordinate> YieldUnsetCoords()
+        /// <summary>Gets a span of <c>Coordinate</c>s for all the unset squares.</summary>
+        public ReadOnlySpan<Coordinate> GetUnsetCoords()
         {
-            for (var row = 0; row < Size; row++)
-            {
-                for (var col = 0; col < Size; col++)
-                {
-                    if (_squares[row, col].HasValue)
-                    {
-                        continue;
-                    }
-                    yield return new Coordinate(row, col);
-                }
-            }
+            return _unsetCoordsTracker.GetTrackedCoords();
         }
 
         /// <summary>Yields an enumerable of <c>Coordinate</c>s for all the unset squares in the given row.</summary>

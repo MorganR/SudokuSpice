@@ -25,16 +25,16 @@ namespace MorganRoff.Sudoku
             {
                 return true;
             }
-            var idx = _tracker.GetBestIndexToGuess();
-            foreach (var possibleValue in _tracker.GetPossibleValues(idx))
+            var c = _tracker.GetBestCoordinateToGuess();
+            foreach (var possibleValue in _tracker.GetPossibleValues(in c))
             {
-                if (_tracker.TrySet(idx, possibleValue))
+                if (_tracker.TrySet(in c, possibleValue))
                 {
                     if (_TrySolve())
                     {
                         return true;
                     }
-                    _tracker.Unset(idx);
+                    _tracker.Unset(in c);
                 }
             }
             return false;
