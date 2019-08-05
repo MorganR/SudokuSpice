@@ -10,17 +10,8 @@ namespace MorganRoff.Sudoku
     public interface IHeuristic
     {
         /// <summary>
-        /// Updates all the current possible values. This should be called when the underlying
-        /// puzzle's possible values have been updated based on new restricts.
+        /// Updates all the current possible values.
         /// </summary>
         void UpdateAll();
-        /// <summary>
-        /// Updates restricts based on the given list of coordinates that were recently modified.
-        /// </summary>
-        /// <param name="setCoordinate">A single coordinate for the value that is being set or
-        /// unset by the related operations.</param>
-        /// <param name="modifiedCoords">A list of coordinates where the possible values were
-        /// recently modified.</param>
-        void Update(in Coordinate setCoordinate, IList<Coordinate> modifiedCoords);
     }
 }
