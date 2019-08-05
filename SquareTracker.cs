@@ -8,16 +8,21 @@ namespace MorganRoff.Sudoku
     {
         private readonly Puzzle _puzzle;
         private readonly IReadOnlyList<IRestrict> _restricts;
+        private readonly IReadOnlyList<IHeuristic> _heuristics;
         private readonly IList<Coordinate> _modifiedCoords;
 
-        public SquareTracker(Puzzle puzzle, IReadOnlyList<IRestrict> restricts = null)
+        public SquareTracker(
+            Puzzle puzzle,
+            IReadOnlyList<IRestrict> restricts = null,
+            IReadOnlyList<IHeuristic> heuristics = null)
         {
             _puzzle = puzzle;
             _restricts = (restricts == null || restricts.Count == 0)
                 ? RestrictUtils.CreateStandardRestricts(_puzzle)
                 : restricts;
+            _heuristics = heuristics == null ? new List<IHeuristic>() : heuristics;
             _modifiedCoords = new List<Coordinate>(_puzzle.Size * _restricts.Count);
-            RestrictUtils.RestrictAllPossibleValues(_puzzle, _restricts);
+            RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);
         }
 
         public Coordinate GetBestCoordinateToGuess()
@@ -26,23 +31,18 @@ namespace MorganRoff.Sudoku
             {
                 throw new InvalidOperationException("No unset squares left to guess!");
             }
-            int minNumPossibles = _puzzle.Size + 1;
-            Coordinate bestCoord = new Coordinate(0, 0);
-            foreach (var c in _puzzle.GetUnsetCoords())
+            Coordinate bestCoord;
+            int numPossibles;
+            (bestCoord, numPossibles) = _GetCoordinateWithFewestPossibleValues();
+            if (numPossibles == 1 || _heuristics.Count == 0)
             {
-                int numPossibles =
-                    _puzzle.GetPossibleValues(c.Row, c.Column)
-                    .CountSetBits();
-                if (numPossibles == 1)
-                {
-                    return c;
-                }
-                if (numPossibles < minNumPossibles)
-                {
-                    bestCoord = c;
-                    minNumPossibles = numPossibles;
-                }
+                return bestCoord;
             }
+            foreach (var heuristic in _heuristics)
+            {
+                heuristic.UpdateAll();
+            }
+            (bestCoord, _) = _GetCoordinateWithFewestPossibleValues();
             return bestCoord;
         }
 
@@ -83,8 +83,34 @@ namespace MorganRoff.Sudoku
         public void Unset(in Coordinate coord)
         {
             var val = _puzzle.Get(coord.Row, coord.Column).Value;
-            _RevertRestricts(in coord, val, _restricts.Count);
+            for (var restrictIdx = _restricts.Count - 1; restrictIdx >= 0; restrictIdx--)
+            {
+                _restricts[restrictIdx].Revert(in coord, val, _modifiedCoords);
+            }
+            RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);
             _puzzle.Unset(coord.Row, coord.Column);
+        }
+
+        private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()
+        {
+            int minNumPossibles = _puzzle.Size + 1;
+            Coordinate bestCoord = new Coordinate(0, 0);
+            foreach (var c in _puzzle.GetUnsetCoords())
+            {
+                int numPossibles =
+                    _puzzle.GetPossibleValues(c.Row, c.Column)
+                    .CountSetBits();
+                if (numPossibles == 1)
+                {
+                    return (c, 1);
+                }
+                if (numPossibles < minNumPossibles)
+                {
+                    bestCoord = c;
+                    minNumPossibles = numPossibles;
+                }
+            }
+            return (bestCoord, minNumPossibles);
         }
 
         private void _RevertRestricts(in Coordinate coord, int possibleValue, int numRestrictsToUndo)

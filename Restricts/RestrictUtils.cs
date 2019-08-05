@@ -15,7 +15,7 @@ namespace MorganRoff.Sudoku
             };
         }
 
-        public static void RestrictAllPossibleValues(Puzzle puzzle, IReadOnlyList<IRestrict> restricts)
+        public static void RestrictAllUnsetPossibleValues(Puzzle puzzle, IReadOnlyList<IRestrict> restricts)
         {
             foreach (var c in puzzle.GetUnsetCoords())
             {
