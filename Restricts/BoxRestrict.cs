@@ -9,6 +9,8 @@ namespace MorganRoff.Sudoku
     {
         public BoxRestrict(Puzzle puzzle) : base(puzzle) { }
 
+        public int GetPossibleBoxValues(int box) => unsetValues[box];
+
         protected override int GetIndex(in Coordinate c)
         {
             return puzzle.GetBoxIndex(c.Row, c.Column);
