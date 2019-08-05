@@ -10,6 +10,7 @@ namespace MorganRoff.Sudoku
         private readonly IReadOnlyList<IRestrict> _restricts;
         private readonly IReadOnlyList<IHeuristic> _heuristics;
         private readonly IList<Coordinate> _modifiedCoords;
+        private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
 
         public SquareTracker(
             Puzzle puzzle,
@@ -22,6 +23,7 @@ namespace MorganRoff.Sudoku
                 : restricts;
             _heuristics = heuristics == null ? new List<IHeuristic>() : heuristics;
             _modifiedCoords = new List<Coordinate>(_puzzle.Size * _restricts.Count);
+            _coordsThatUsedHeuristics = new Stack<Coordinate>(_puzzle.NumEmptySquares);
             RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);
         }
 
@@ -43,6 +45,7 @@ namespace MorganRoff.Sudoku
                 heuristic.UpdateAll();
             }
             (bestCoord, _) = _GetCoordinateWithFewestPossibleValues();
+            _coordsThatUsedHeuristics.Push(bestCoord);
             return bestCoord;
         }
 
@@ -83,11 +86,19 @@ namespace MorganRoff.Sudoku
         public void Unset(in Coordinate coord)
         {
             var val = _puzzle.Get(coord.Row, coord.Column).Value;
-            for (var restrictIdx = _restricts.Count - 1; restrictIdx >= 0; restrictIdx--)
+            if (_coordsThatUsedHeuristics.Count > 0
+                && _coordsThatUsedHeuristics.Peek().Equals(coord))
             {
-                _restricts[restrictIdx].Revert(in coord, val, _modifiedCoords);
+                _coordsThatUsedHeuristics.Pop();
+                for (var restrictIdx = _restricts.Count - 1; restrictIdx >= 0; restrictIdx--)
+                {
+                    _restricts[restrictIdx].Revert(in coord, val, _modifiedCoords);
+                }
+                RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);
+            } else
+            {
+                _RevertRestricts(in coord, val, _restricts.Count);
             }
-            RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);
             _puzzle.Unset(coord.Row, coord.Column);
         }
 
