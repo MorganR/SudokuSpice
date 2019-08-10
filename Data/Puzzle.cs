@@ -21,7 +21,7 @@ namespace MorganRoff.Sudoku
         public Puzzle(int?[,] puzzleMatrix)
         {
             Size = puzzleMatrix.GetLength(0);
-            // Limit to up to 32 possible values (what fits in an int), including that puzzles must
+            // Limit to up to 32 possible values (what fits in an int), and ensure that puzzles must
             // be square.
             if (Size > 25)
             {
@@ -170,7 +170,8 @@ namespace MorganRoff.Sudoku
             }
         }
 
-        /// <summary>Returns the puzzle in a pretty string format, with boxes and rows separated by '#'.</summary>
+        /// <summary>Returns the puzzle in a pretty string format, with boxes and rows separated by
+        /// pipes and dashes.</summary>
         public override string ToString()
         {
             int maxDigitLength = Size.ToString().Length;
