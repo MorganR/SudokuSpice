@@ -57,36 +57,32 @@ namespace MorganRoff.Sudoku
             }
         }
 
-        /// <summary>Gets the current value of a given square.</summary>
-        public int? Get(int row, int col) => _squares[row, col];
-
-        /// <summary>Sets the value of a square.</summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the specified square
-        /// already has a value.</exception>
-        public void Set(int row, int col, int val)
+        /// <summary>Gets or sets the current value of a given square. A square can be 'unset' by 
+        /// setting its value to <c>null</c></summary>
+        /// <exception cref="System.InvalidOperationException">Thrown when setting to a non-null 
+        /// value, but the specified square already has a value.</exception>
+        public int? this[int row, int col]
         {
-            if (_squares[row, col].HasValue)
+            get => _squares[row, col];
+            set
             {
-                throw new InvalidOperationException($"Square ({row}, {col}) already has a value.");
+                if (value.HasValue)
+                {
+                    Set_(row, col, value.Value);
+                } else
+                {
+                    Unset_(row, col);
+                }
             }
-            if (!_possibleSquareValues[row, col].IsBitSet(val - 1))
-            {
-                throw new InvalidOperationException($"Can't set square ({row}, {col}) to value {val}.");
-            }
-
-            _squares[row, col] = val;
-            _unsetCoordsTracker.Untrack(new Coordinate(row, col));
-            NumEmptySquares--;
         }
 
-        /// <summary>Unsets the specified square.</summary>
-        public void Unset(int row, int col)
+        public int? this[in Coordinate c]
         {
-            _unsetCoordsTracker.Track(new Coordinate(row, col));
-            _squares[row, col] = null;
-            NumEmptySquares++;
+            get => _squares[c.Row, c.Column];
+            set => this[c.Row, c.Column] = value;
         }
 
+        
         /// <summary>
         /// Gets the possible values for a given square as a bit vector.
         /// </summary>
@@ -206,7 +202,37 @@ namespace MorganRoff.Sudoku
             return strBuild.ToString();
         }
 
-        #region ToString
+        /// <summary>Sets the value of a square.</summary>
+        /// <exception cref="System.InvalidOperationException">Thrown when the specified square
+        /// already has a value.</exception>
+        private void Set_(int row, int col, int val)
+        {
+            if (_squares[row, col].HasValue)
+            {
+                throw new InvalidOperationException($"Square ({row}, {col}) already has a value.");
+            }
+            if (!_possibleSquareValues[row, col].IsBitSet(val - 1))
+            {
+                throw new InvalidOperationException($"Can't set square ({row}, {col}) to value {val}.");
+            }
+
+            _squares[row, col] = val;
+            _unsetCoordsTracker.Untrack(new Coordinate(row, col));
+            NumEmptySquares--;
+        }
+
+        /// <summary>Unsets the specified square.</summary>
+        private void Unset_(int row, int col)
+        {
+            if (!_squares[row, col].HasValue)
+            {
+                throw new InvalidOperationException(
+                    $"Square ({row}, {col}) doesn't have a value, so can't be unset.");
+            }
+            _unsetCoordsTracker.Track(new Coordinate(row, col));
+            _squares[row, col] = null;
+            NumEmptySquares++;
+        }
 
         private void _AppendBoxDividerRow(StringBuilder strBuild)
         {
@@ -228,7 +254,5 @@ namespace MorganRoff.Sudoku
             }
             strBuild.Append("+\n");
         }
-
-        #endregion
     }
 }

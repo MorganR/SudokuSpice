@@ -22,7 +22,7 @@ namespace MorganRoff.Sudoku
             // Iterate through the backward diagonal (like a backslash '\')
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
             {
-                var val = puzzle.Get(row, col);
+                var val = puzzle[row, col];
                 if (val.HasValue)
                 {
                     if (!_unsetBackwardDiag.IsBitSet(val.Value - 1))
@@ -35,7 +35,7 @@ namespace MorganRoff.Sudoku
             // Iterate through the forward diagonal (like a forward slash '/')
             for (int row = 0, col = puzzle.Size - 1; row < puzzle.Size; row++, col--)
             {
-                var val = puzzle.Get(row, col);
+                var val = puzzle[row, col];
                 if (val.HasValue)
                 {
                     if (!_unsetForwardDiag.IsBitSet(val.Value - 1))
@@ -63,7 +63,7 @@ namespace MorganRoff.Sudoku
 
         public void Update(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
         {
-            if (!_puzzle.Get(c.Row, c.Column).HasValue)
+            if (!_puzzle[in c].HasValue)
             {
                 throw new ArgumentException("Cannot update a restrict for an unset puzzle coordinate");
             }
@@ -82,7 +82,7 @@ namespace MorganRoff.Sudoku
 
         public void Revert(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
         {
-            if (!_puzzle.Get(c.Row, c.Column).HasValue)
+            if (!_puzzle[in c].HasValue)
             {
                 throw new ArgumentException("Cannot revert a restrict for an unset puzzle coordinate");
             }
@@ -113,7 +113,7 @@ namespace MorganRoff.Sudoku
         {
             for (int row = 0, col = 0; row < _puzzle.Size; row++, col++)
             {
-                if (!_puzzle.Get(row, col).HasValue)
+                if (!_puzzle[row, col].HasValue)
                 {
                     unsets.Add(new Coordinate(row, col));
                 }
@@ -124,7 +124,7 @@ namespace MorganRoff.Sudoku
         {
             for (int row = 0, col = _puzzle.Size - 1; row < _puzzle.Size; row++, col--)
             {
-                if (!_puzzle.Get(row, col).HasValue)
+                if (!_puzzle[row, col].HasValue)
                 {
                     unsets.Add(new Coordinate(row, col));
                 }

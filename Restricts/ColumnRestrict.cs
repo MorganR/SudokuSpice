@@ -20,7 +20,7 @@ namespace MorganRoff.Sudoku
         {
             for (int row = 0; row < puzzle.Size; row++)
             {
-                if (!puzzle.Get(row, col).HasValue)
+                if (!puzzle[row, col].HasValue)
                 {
                     unsetCoords.Add(new Coordinate(row, col));
                 }

@@ -29,7 +29,7 @@ namespace MorganRoff.Sudoku
             _possiblesToCheckInColumn[col] = _restrict.GetPossibleColumnValues(col);
             for (int row = 0; row < _puzzle.Size; row++)
             {
-                if (_puzzle.Get(row, col).HasValue)
+                if (_puzzle[row, col].HasValue)
                 {
                     continue;
                 }
@@ -49,7 +49,7 @@ namespace MorganRoff.Sudoku
                 int uniqueRow = -1;
                 for (int row = 0; row < _puzzle.Size; row++)
                 {
-                    if (_puzzle.Get(row, col).HasValue)
+                    if (_puzzle[row, col].HasValue)
                     {
                         continue;
                     }

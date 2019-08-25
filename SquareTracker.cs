@@ -62,7 +62,7 @@ namespace MorganRoff.Sudoku
 
         public bool TrySet(in Coordinate coord, int possibleValue)
         {
-            _puzzle.Set(coord.Row, coord.Column, possibleValue);
+            _puzzle[in coord] = possibleValue;
             for (var restrictIdx = 0; restrictIdx < _restricts.Count; restrictIdx++)
             {
                 _modifiedCoords.Clear();
@@ -75,7 +75,7 @@ namespace MorganRoff.Sudoku
                     if (_puzzle.GetPossibleValues(c.Row, c.Column) == 0)
                     {
                         _RevertRestricts(in coord, possibleValue, restrictIdx + 1);
-                        _puzzle.Unset(coord.Row, coord.Column);
+                        _puzzle[in coord] = null;
                         return false;
                     }
                 }
@@ -85,7 +85,7 @@ namespace MorganRoff.Sudoku
 
         public void Unset(in Coordinate coord)
         {
-            var val = _puzzle.Get(coord.Row, coord.Column).Value;
+            var val = _puzzle[in coord].Value;
             if (_coordsThatUsedHeuristics.Count > 0
                 && _coordsThatUsedHeuristics.Peek().Equals(coord))
             {
@@ -99,7 +99,7 @@ namespace MorganRoff.Sudoku
             {
                 _RevertRestricts(in coord, val, _restricts.Count);
             }
-            _puzzle.Unset(coord.Row, coord.Column);
+            _puzzle[in coord] = null;
         }
 
         private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()

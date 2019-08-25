@@ -24,7 +24,7 @@ namespace MorganRoff.Sudoku
             {
                 for (int col = 0; col < puzzle.Size; col++)
                 {
-                    var val = puzzle.Get(row, col);
+                    var val = puzzle[row, col];
                     if (!val.HasValue)
                     {
                         continue;
@@ -47,7 +47,7 @@ namespace MorganRoff.Sudoku
 
         public void Update(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
         {
-            if (!puzzle.Get(c.Row, c.Column).HasValue)
+            if (!puzzle[in c].HasValue)
             {
                 throw new ArgumentException("Cannot update a restrict for an unset puzzle coordinate");
             }
@@ -58,7 +58,7 @@ namespace MorganRoff.Sudoku
 
         public void Revert(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
         {
-            if (!puzzle.Get(c.Row, c.Column).HasValue)
+            if (!puzzle[in c].HasValue)
             {
                 throw new ArgumentException("Cannot revert a restrict for an unset puzzle coordinate");
             }
