@@ -56,7 +56,19 @@ namespace MorganRoff.Sudoku
         /// <returns>The number of bits that are set.</returns>
         public static int CountSetBits(this int vector)
         {
-            return (int)Popcnt.PopCount((uint)vector);
+            if (Popcnt.IsSupported)
+            {
+                return (int)Popcnt.PopCount((uint)vector);
+            }
+            int count = 0;
+            for (int i = 0; i < 32; i++)
+            {
+                if (vector.IsBitSet(i))
+                {
+                    count++;
+                }
+            }
+            return count;
         }
 
         /// <summary>
