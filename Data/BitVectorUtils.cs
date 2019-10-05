@@ -25,7 +25,7 @@ namespace MorganRoff.Sudoku
         /// <param name="vector">The vector in which to unset the bit.</param>
         public static void UnsetBit(int bit, ref int vector)
         {
-            vector = vector & (~_masks[bit]);
+            vector &= ~_masks[bit];
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace MorganRoff.Sudoku
         /// <param name="vector">The vector in which to set the bit.</param>
         public static void SetBit(int bit, ref int vector)
         {
-            vector = vector | _masks[bit];
+            vector |= _masks[bit];
         }
 
         /// <summary>
