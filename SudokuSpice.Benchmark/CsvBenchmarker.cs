@@ -6,7 +6,7 @@ using BenchmarkDotNet.Engines;
 
 namespace SudokuSpice.Benchmark {
 [SimpleJob(RunStrategy.Throughput, targetCount: 100, invocationCount: 10000)]
-public class SudokuSpiceBenchmarker
+public class CsvBenchmarker
 {
     private int _idx = 0;
     private IReadOnlyList<MatrixSudokuSample> _samples;
@@ -25,7 +25,7 @@ public class SudokuSpiceBenchmarker
     }
 
     [Benchmark]
-    public bool SolveMillionSudokus()
+    public bool SudokuSpice()
     {
         var sample = _GetSample();
         var puzzle = new Puzzle(sample.Puzzle);
@@ -46,6 +46,14 @@ public class SudokuSpiceBenchmarker
             throw new ApplicationException($"Failed to solve the puzzle! Idx: {_idx}");
         }
         return isSolved;
+    }
+
+    [Benchmark]
+    public bool SudokuSolverLite()
+    {
+        var sample = _GetSample();
+        var nonNullableMatrix = MatrixSudokuSample.ToNonNullableMatrix(sample.Puzzle);
+        return SudokuSolver.SudokuSolver.Solve(nonNullableMatrix);
     }
 }
 }

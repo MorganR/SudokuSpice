@@ -28,6 +28,19 @@ class MatrixSudokuSample
         return true;
     }
 
+    public static int[,] ToNonNullableMatrix(int?[,] nullable)
+    {
+        var matrix = new int[9,9];
+        for (var row = 0; row < 9; row++)
+        {
+            for (var col = 0; col < 9; col++)
+            {
+                matrix[row, col] = nullable[row, col] ?? 0;
+            }
+        }
+        return matrix;
+    }
+
     private static int?[,] NumberStringToMatrix(string nums)
     {
         var matrix = new int?[9,9];
