@@ -55,5 +55,23 @@ public class CsvBenchmarker
         var nonNullableMatrix = MatrixSudokuSample.ToNonNullableMatrix(sample.Puzzle);
         return SudokuSolver.SudokuSolver.Solve(nonNullableMatrix);
     }
+
+    [Benchmark]
+    public bool SudokuSharp()
+    {
+        var sample = _GetSample();
+        var board = new SudokuSharp.Board();
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (sample.Puzzle[row, col].HasValue) {
+                    board.PutCell(new SudokuSharp.Location(col, row), sample.Puzzle[row, col].Value);
+                }
+            }
+        }
+
+        board = board.Fill.Sequential();
+
+        return board.IsSolved;
+    }
 }
 }

@@ -27,9 +27,11 @@ puzzles ([source](https://www.kaggle.com/bryanpark/sudoku)).
 
 Compared libraries:
 
+* [SudokuSharp](https://github.com/BenjaminChambers/SudokuSharp)
 * [SudokuSolverLite](https://github.com/zhiliangxu/SudokuSolver)
 
 |          Library |      Mean |    Error |   StdDev |
 |----------------- |----------:|---------:|---------:|
 |      SudokuSpice |  37.14 us | 0.051 us | 0.147 us |
+|      SudokuSharp |  15.58 us | 0.216 us | 0.637 us |
 | SudokuSolverLite | 312.61 us | 0.869 us | 2.392 us |
