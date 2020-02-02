@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     // Efficiently tracks a group of coordinates.
     public class CoordinateTracker

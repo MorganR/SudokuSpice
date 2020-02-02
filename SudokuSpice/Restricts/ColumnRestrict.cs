@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     /// <summary>
     /// Restricts that each column contains all unique values.

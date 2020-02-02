@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class CoordinateTest
     {

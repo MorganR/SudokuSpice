@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class UniqueInRowHeuristicTest
     {

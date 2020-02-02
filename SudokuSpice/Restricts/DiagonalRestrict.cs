@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class DiagonalRestrict : IRestrict
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     /// <summary>
     /// Tracks and sets Sudoku squares and their possible values.

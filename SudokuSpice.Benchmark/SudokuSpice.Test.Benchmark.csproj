@@ -1,11 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\MorganRoff.Sudoku\MorganRoff.Sudoku.csproj" />
+    <ProjectReference Include="..\SudokuSpice\SudokuSpice.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.0" />
     <PackageReference Include="TinyCsvParser" Version="2.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SudokuCsvFiles Include="data\**/*.*"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="@(SudokuCsvFiles)">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     /// <summary>Manages underlying puzzle data.</summary>
     public class Puzzle

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     /// <summary>
     /// Performs some logical trickery to reduce the number of possible values for a square. Unlike

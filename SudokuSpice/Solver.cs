@@ -1,6 +1,6 @@
 using System;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class Solver
     {

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class UniqueInBoxHeuristic : IHeuristic
     {

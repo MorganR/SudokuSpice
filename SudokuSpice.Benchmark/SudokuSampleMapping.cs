@@ -1,6 +1,6 @@
 using TinyCsvParser.Mapping;
 
-namespace MorganRoff.Sudoku.Benchmark
+namespace SudokuSpice.Benchmark
 {
 class SudokuSampleMapping : CsvMapping<SudokuSample> {
     public SudokuSampleMapping() : base()

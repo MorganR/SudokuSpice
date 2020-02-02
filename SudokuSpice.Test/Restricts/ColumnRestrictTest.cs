@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class ColumnRestrictTest
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MorganRoff.Sudoku
+namespace SudokuSpice
 {
     public class SquareTracker : ISquareTracker
     {
