@@ -10,20 +10,8 @@ However that's not to say it performs poorly! See [the numbers](#Performance).
 
 All benchmarks were run using [BenchmarkDotNet](https://benchmarkdotnet.org/articles/overview.html).
 
-Current performance benchmarks on my machine:
-
-|               Method |         Mean |      Error |     StdDev |
-|--------------------- |-------------:|-----------:|-----------:|
-|     EasySudoku (9x9) |    15.250 us |  0.1700 us |  0.1590 us |
-|   MediumSudoku (9x9) |    86.694 us |  0.2438 us |  0.2036 us |
-|    HardSudokuA (9x9) |   912.694 us | 13.5620 us | 12.6859 us |
-|    HardSudokuB (9x9) | 2,335.479 us | 37.0555 us | 34.6618 us |
-|  MegaSudokuA (16x16) | 1,291.604 us | 15.5212 us | 14.5185 us |
-|  MegaSudokuB (16x16) |   322.208 us |  1.8862 us |  1.7644 us |
-
 ### Comparisons
 The performance of this library has been compared to other .NET sudoku libraries.
-
 
 **Compared libraries:**
 
@@ -45,7 +33,7 @@ advanced techniques. These demonstrate clearly that the slight overhead needed b
 which dominates when solving easy puzzles, leads to effective performance enhancements for
 more complicated examples.
 
-|           Method | puzzle |           Mean |         Error |        StdDev |
+|           Method | Puzzle |           Mean |         Error |        StdDev |
 |----------------- |------- |---------------:|--------------:|--------------:|
 |      SudokuSpice |   Easy |      16.931 us |     0.0726 us |     0.0644 us |
 | SudokuSolverLite |   Easy |     169.072 us |     1.4528 us |     1.3590 us |
