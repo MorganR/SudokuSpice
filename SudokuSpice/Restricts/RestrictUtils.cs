@@ -22,9 +22,9 @@ namespace SudokuSpice
                 puzzle.SetPossibleValues(
                     c.Row, c.Column,
                     restricts.Aggregate(
-                        -1,
-                        (agg, r) => agg &= r.GetPossibleValues(in c)));
-                if (puzzle.GetPossibleValues(c.Row, c.Column) == 0)
+                        new BitVector(-1),
+                        (agg, r) => BitVector.FindIntersect(agg, r.GetPossibleValues(in c))));
+                if (puzzle.GetPossibleValues(c.Row, c.Column).IsEmpty())
                 {
                     throw new ArgumentException(
                         "Puzzle could not be solved with the given preset values.");

@@ -9,7 +9,7 @@ namespace SudokuSpice
     {
         public BoxRestrict(Puzzle puzzle) : base(puzzle) { }
 
-        public int GetPossibleBoxValues(int box) => unsetValues[box];
+        public BitVector GetPossibleBoxValues(int box) => unsetValues[box];
 
         protected override int GetIndex(in Coordinate c)
         {

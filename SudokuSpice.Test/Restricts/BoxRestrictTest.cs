@@ -16,10 +16,10 @@ namespace SudokuSpice
                 {null /* 3 */, null /* 2 */,            4, 1}
             });
             var restrict = new BoxRestrict(puzzle);
-            Assert.Equal(0b1010, restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(0b1101, restrict.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(0b1111, restrict.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(0b0000, restrict.GetPossibleValues(new Coordinate(2, 2)));
+            Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b1101), restrict.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(2, 2)));
         }
 
         [Theory]
@@ -67,10 +67,10 @@ namespace SudokuSpice
             puzzle[coord] = val;
             restrict.Update(coord, val, list);
             Assert.Equal(new List<Coordinate> {new Coordinate(0, 2), new Coordinate(1, 3)}, list);
-            Assert.Equal(0b1010, restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(0b1100, restrict.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(0b1111, restrict.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(0b0000, restrict.GetPossibleValues(new Coordinate(2, 2)));
+            Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b1100), restrict.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(2, 2)));
         }
 
         [Fact]
@@ -122,10 +122,10 @@ namespace SudokuSpice
             var val = 1;
             restrict.Revert(coord, val, list);
             Assert.Equal(new List<Coordinate> { new Coordinate(0, 1), new Coordinate(1, 0) }, list);
-            Assert.Equal(0b1011, restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(0b1101, restrict.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(0b1111, restrict.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(0b0000, restrict.GetPossibleValues(new Coordinate(2, 2)));
+            Assert.Equal(new BitVector(0b1011), restrict.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b1101), restrict.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(2, 2)));
         }
     }
 }

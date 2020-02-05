@@ -29,6 +29,6 @@ namespace SudokuSpice
         /// Gets the possible values for the given coordinate based on this restriction.
         /// </summary>
         /// <returns>The possible values represented as a bit-vector.</returns>
-        int GetPossibleValues(in Coordinate c);
+        BitVector GetPossibleValues(in Coordinate c);
     }
 }

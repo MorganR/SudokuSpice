@@ -161,7 +161,7 @@ namespace SudokuSpice
                 {null, 1, null, null},
                 {3, null, 4, null}
             });
-            Assert.Equal(possibles, puzzle.GetPossibleValues(row, col));
+            Assert.Equal(new BitVector(possibles), puzzle.GetPossibleValues(row, col));
         }
 
         [Fact]
@@ -173,8 +173,8 @@ namespace SudokuSpice
                 {null, 1, null, null},
                 {3, null, 4, null}
             });
-            puzzle.SetPossibleValues(0, 1, 0b1100);
-            Assert.Equal(0b1100, puzzle.GetPossibleValues(0, 1));
+            puzzle.SetPossibleValues(0, 1, new BitVector(0b1100));
+            Assert.Equal(0b1100, (int) puzzle.GetPossibleValues(0, 1));
         }
 
         [Fact]
@@ -189,7 +189,7 @@ namespace SudokuSpice
             var ex = Assert.Throws<ArgumentException>(
                 () =>
                 {
-                    puzzle.SetPossibleValues(0, 0, 0b1100);
+                    puzzle.SetPossibleValues(0, 0, new BitVector(0b1100));
                 });
             Assert.Contains(
                 ex.Message,

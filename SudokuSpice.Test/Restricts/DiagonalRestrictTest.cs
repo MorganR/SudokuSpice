@@ -16,9 +16,9 @@ namespace SudokuSpice
                 {null, null, null, null}
             });
             var restrict = new DiagonalRestrict(puzzle);
-            var expectedBackwardPossibles = 0b1110;
-            var expectedForwardPossibles = 0b0011;
-            var expectedOtherPossibles = 0b1111;
+            var expectedBackwardPossibles = new BitVector(0b1110);
+            var expectedForwardPossibles = new BitVector(0b0011);
+            var expectedOtherPossibles = new BitVector(0b1111);
             Assert.Equal(expectedBackwardPossibles,
                 restrict.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(expectedBackwardPossibles,
@@ -85,9 +85,9 @@ namespace SudokuSpice
             puzzle[coord] = val;
             restrict.Update(coord, val, list);
             Assert.Equal(new List<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) }, list);
-            Assert.Equal(0b0110, restrict.GetPossibleValues(new Coordinate(1, 1)));
-            Assert.Equal(0b0011, restrict.GetPossibleValues(new Coordinate(1, 2)));
-            Assert.Equal(0b1111, restrict.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b0110), restrict.GetPossibleValues(new Coordinate(1, 1)));
+            Assert.Equal(new BitVector(0b0011), restrict.GetPossibleValues(new Coordinate(1, 2)));
+            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 2)));
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace SudokuSpice
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            int[,] previousPossibles = new int[puzzle.Size, puzzle.Size];
+            BitVector[,] previousPossibles = new BitVector[puzzle.Size, puzzle.Size];
             var restrict = new DiagonalRestrict(puzzle);
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -177,9 +177,9 @@ namespace SudokuSpice
             var val = 1;
             restrict.Revert(coord, val, list);
             Assert.Equal(new List<Coordinate> { new Coordinate(1, 1), new Coordinate(2, 2), new Coordinate(3, 3) }, list);
-            Assert.Equal(0b1111, restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(0b0011, restrict.GetPossibleValues(new Coordinate(2, 1)));
-            Assert.Equal(0b1111, restrict.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b0011), restrict.GetPossibleValues(new Coordinate(2, 1)));
+            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 2)));
         }
 
         [Fact]
@@ -191,7 +191,7 @@ namespace SudokuSpice
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            int[,] previousPossibles = new int[puzzle.Size, puzzle.Size];
+            BitVector[,] previousPossibles = new BitVector[puzzle.Size, puzzle.Size];
             var restrict = new DiagonalRestrict(puzzle);
             for (int row = 0; row < puzzle.Size; row++)
             {

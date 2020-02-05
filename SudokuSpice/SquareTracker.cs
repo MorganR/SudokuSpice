@@ -70,9 +70,10 @@ namespace SudokuSpice
                 foreach (var c in _modifiedCoords)
                 {
                     _puzzle.SetPossibleValues(c.Row, c.Column,
-                        _restricts[restrictIdx].GetPossibleValues(in c)
-                        & _puzzle.GetPossibleValues(c.Row, c.Column));
-                    if (_puzzle.GetPossibleValues(c.Row, c.Column) == 0)
+                        BitVector.FindIntersect(
+                            _restricts[restrictIdx].GetPossibleValues(in c),
+                            _puzzle.GetPossibleValues(c.Row, c.Column)));
+                    if (_puzzle.GetPossibleValues(c.Row, c.Column).IsEmpty())
                     {
                         _RevertRestricts(in coord, possibleValue, restrictIdx + 1);
                         _puzzle[in coord] = null;
@@ -135,8 +136,8 @@ namespace SudokuSpice
             {
                 _puzzle.SetPossibleValues(modifiedCoord.Row, modifiedCoord.Column,
                     _restricts.Aggregate(
-                        -1,
-                        (agg, r) => agg &= r.GetPossibleValues(in modifiedCoord)));
+                        new BitVector(-1),
+                        (agg, r) => BitVector.FindIntersect(agg, r.GetPossibleValues(in modifiedCoord))));
             }
         }
     }

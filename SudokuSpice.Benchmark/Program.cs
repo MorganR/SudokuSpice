@@ -6,8 +6,7 @@ namespace SudokuSpice.Benchmark
     {
         static void Main(string[] args)
         {
-            var puzzleSummary = BenchmarkRunner.Run<PuzzleBenchmarker>();
-            var csvSummary = BenchmarkRunner.Run<CsvBenchmarker>();
+            BenchmarkSwitcher.FromTypes(new[] {typeof(PuzzleBenchmarker), typeof(CsvBenchmarker)}).Run(args);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SudokuSpice
         /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
         public int NumEmptySquares { get; private set; }
         private readonly int?[,] _squares;
-        private readonly int[,] _possibleSquareValues;
+        private readonly BitVector[,] _possibleSquareValues;
         private readonly CoordinateTracker _unsetCoordsTracker;
 
         public Puzzle(int?[,] puzzleMatrix)
@@ -37,7 +37,7 @@ namespace SudokuSpice
                 throw new ArgumentException("Puzzle dimensions must be the square of a whole number.");
             }
 
-            _possibleSquareValues = new int[Size, Size];
+            _possibleSquareValues = new BitVector[Size, Size];
             _squares = (int?[,])puzzleMatrix.Clone();
             _unsetCoordsTracker = new CoordinateTracker(Size);
             for (var row = 0; row < Size; row++)
@@ -47,11 +47,11 @@ namespace SudokuSpice
                     if (!_squares[row, col].HasValue)
                     {
                         NumEmptySquares++;
-                        _possibleSquareValues[row, col] = BitVectorUtils.CreateWithSize(Size);
+                        _possibleSquareValues[row, col] = BitVector.CreateWithSize(Size);
                         _unsetCoordsTracker.Add(new Coordinate(row, col));
                     } else
                     {
-                        BitVectorUtils.SetBit(_squares[row, col].Value - 1, ref _possibleSquareValues[row, col]);
+                        _possibleSquareValues[row, col].SetBit(_squares[row, col].Value - 1);
                     }
                 }
             }
@@ -87,7 +87,7 @@ namespace SudokuSpice
         /// Gets the possible values for a given square as a bit vector.
         /// </summary>
         /// <returns>The possible values for this coordinate, represented as a bit vector.</returns>
-        public int GetPossibleValues(int row, int col) => _possibleSquareValues[row, col];
+        public BitVector GetPossibleValues(int row, int col) => _possibleSquareValues[row, col];
 
         /// <summary>
         /// Sets the possible values for a given square as a bit vector.
@@ -95,7 +95,7 @@ namespace SudokuSpice
         /// <param name="row"></param>
         /// <param name="col"></param>
         /// <param name="vector"></param>
-        public void SetPossibleValues(int row, int col, int vector)
+        public void SetPossibleValues(int row, int col, BitVector vector)
         {
             if (_squares[row, col].HasValue
                 && !vector.IsBitSet(_squares[row, col].Value - 1))

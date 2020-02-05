@@ -6,9 +6,9 @@ namespace SudokuSpice
     public class DiagonalRestrict : IRestrict
     {
         private readonly Puzzle _puzzle;
-        private int _unsetBackwardDiag;
-        private int _unsetForwardDiag;
-        private readonly int _allUnset;
+        private BitVector _unsetBackwardDiag;
+        private BitVector _unsetForwardDiag;
+        private readonly BitVector _allUnset;
 
         public DiagonalRestrict(Puzzle puzzle)
         {
@@ -17,7 +17,7 @@ namespace SudokuSpice
                 throw new ArgumentException("Max puzzle size is 32.");
             }
             _puzzle = puzzle;
-            _allUnset = BitVectorUtils.CreateWithSize(puzzle.Size);
+            _allUnset = BitVector.CreateWithSize(puzzle.Size);
             _unsetForwardDiag = _unsetBackwardDiag = _allUnset;
             // Iterate through the backward diagonal (like a backslash '\')
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
@@ -29,7 +29,7 @@ namespace SudokuSpice
                     {
                         throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
                     }
-                    BitVectorUtils.UnsetBit(val.Value - 1, ref _unsetBackwardDiag);
+                    _unsetBackwardDiag.UnsetBit(val.Value - 1);
                 }
             }
             // Iterate through the forward diagonal (like a forward slash '/')
@@ -42,12 +42,12 @@ namespace SudokuSpice
                     {
                         throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
                     }
-                    BitVectorUtils.UnsetBit(val.Value - 1, ref _unsetForwardDiag);
+                    _unsetForwardDiag.UnsetBit(val.Value - 1);
                 }
             }
         }
 
-        public int GetPossibleValues(in Coordinate c)
+        public BitVector GetPossibleValues(in Coordinate c)
         {
             if (_IsOnBackwardDiag(in c))
             {
@@ -69,15 +69,14 @@ namespace SudokuSpice
             }
             if (_IsOnBackwardDiag(in c))
             {
-                BitVectorUtils.UnsetBit(val - 1, ref _unsetBackwardDiag);
+                _unsetBackwardDiag.UnsetBit(val - 1);
                 _AddUnsetFromBackwardDiag(modifiedCoords);
             }
-            else if (_IsOnForwardDiag(in c))
+            if (_IsOnForwardDiag(in c))
             {
-                BitVectorUtils.UnsetBit(val - 1, ref _unsetForwardDiag);
+                _unsetForwardDiag.UnsetBit(val - 1);
                 _AddUnsetFromForwardDiag(modifiedCoords);
             }
-            // Else leave everything unchanged.
         }
 
         public void Revert(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
@@ -88,15 +87,14 @@ namespace SudokuSpice
             }
             if (_IsOnBackwardDiag(in c))
             {
-                BitVectorUtils.SetBit(val - 1, ref _unsetBackwardDiag);
+                _unsetBackwardDiag.SetBit(val - 1);
                 _AddUnsetFromBackwardDiag(modifiedCoords);
             }
-            else if (_IsOnForwardDiag(in c))
+            if (_IsOnForwardDiag(in c))
             {
-                BitVectorUtils.SetBit(val - 1, ref _unsetForwardDiag);
+                _unsetForwardDiag.SetBit(val - 1);
                 _AddUnsetFromForwardDiag(modifiedCoords);
             }
-            // Else leave everything unchanged.
         }
 
         private static bool _IsOnBackwardDiag(in Coordinate c)

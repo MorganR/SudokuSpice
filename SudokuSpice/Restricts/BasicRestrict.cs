@@ -6,7 +6,7 @@ namespace SudokuSpice
     public abstract class BasicRestrict : IRestrict
     {
         protected readonly Puzzle puzzle;
-        protected readonly int[] unsetValues;
+        protected readonly BitVector[] unsetValues;
 
         public BasicRestrict(Puzzle puzzle)
         {
@@ -15,10 +15,10 @@ namespace SudokuSpice
                 throw new ArgumentException("Max puzzle size is 32.");
             }
             this.puzzle = puzzle;
-            unsetValues = new int[puzzle.Size];
+            unsetValues = new BitVector[puzzle.Size];
             for (int i = 0; i < puzzle.Size; i++)
             {
-                unsetValues[i] = BitVectorUtils.CreateWithSize(puzzle.Size);
+                unsetValues[i] = BitVector.CreateWithSize(puzzle.Size);
             }
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -35,12 +35,12 @@ namespace SudokuSpice
                     {
                         throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
                     }
-                    BitVectorUtils.UnsetBit(bit, ref unsetValues[idx]);
+                    unsetValues[idx].UnsetBit(bit);
                 }
             }
         }
 
-        public int GetPossibleValues(in Coordinate c)
+        public BitVector GetPossibleValues(in Coordinate c)
         {
             return unsetValues[GetIndex(in c)];
         }
@@ -52,7 +52,7 @@ namespace SudokuSpice
                 throw new ArgumentException("Cannot update a restrict for an unset puzzle coordinate");
             }
             int idx = GetIndex(in c);
-            BitVectorUtils.UnsetBit(val - 1, ref unsetValues[idx]);
+            unsetValues[idx].UnsetBit(val - 1);
             AddUnsetFromIndex(idx, modifiedCoords);
         }
 
@@ -63,7 +63,7 @@ namespace SudokuSpice
                 throw new ArgumentException("Cannot revert a restrict for an unset puzzle coordinate");
             }
             int idx = GetIndex(in c);
-            BitVectorUtils.SetBit(val - 1, ref unsetValues[idx]);
+            unsetValues[idx].SetBit(val - 1);
             AddUnsetFromIndex(idx, modifiedCoords);
         }
 

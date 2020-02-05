@@ -6,13 +6,13 @@ namespace SudokuSpice
     {
         private readonly Puzzle _puzzle;
         private readonly BoxRestrict _restrict;
-        private readonly int[] _possiblesToCheckInBox;
+        private readonly BitVector[] _possiblesToCheckInBox;
 
         public UniqueInBoxHeuristic(Puzzle puzzle, BoxRestrict restrict)
         {
             _puzzle = puzzle;
             _restrict = restrict;
-            _possiblesToCheckInBox = new int[puzzle.Size];
+            _possiblesToCheckInBox = new BitVector[puzzle.Size];
         }
 
         public void UpdateAll()
@@ -30,9 +30,11 @@ namespace SudokuSpice
             foreach (var c in _puzzle.YieldUnsetCoordsForBox(box))
             {
                 var modifiedPossibles = _puzzle.GetPossibleValues(c.Row, c.Column);
+                // Skip heuristic checks for values that must be true (i.e. for squares with only
+                // one possible value).
                 if (modifiedPossibles.CountSetBits() == 1)
                 {
-                    BitVectorUtils.UnsetBit(modifiedPossibles.GetSetBits().First(), ref _possiblesToCheckInBox[box]);
+                    _possiblesToCheckInBox[box].UnsetBit(modifiedPossibles.GetSetBits().First());
                 }
             }
         }
@@ -58,8 +60,8 @@ namespace SudokuSpice
                 {
                     continue;
                 }
-                var possibles = 0;
-                BitVectorUtils.SetBit(possible, ref possibles);
+                var possibles = new BitVector();
+                possibles.SetBit(possible);
                 _puzzle.SetPossibleValues(uniqueCoord.Value.Row, uniqueCoord.Value.Column, possibles);
             }
         }

@@ -2,7 +2,7 @@
 
 namespace SudokuSpice
 {
-    public class BitVectorUtilsTest
+    public class BitVectorTest
     {
         [Theory]
         [InlineData(0, 0)]
@@ -11,34 +11,34 @@ namespace SudokuSpice
         [InlineData(8, 0b1111_1111)]
         public void CreateWithSize_Succeeds(int size, int data)
         {
-            var vector = BitVectorUtils.CreateWithSize(size);
-            Assert.Equal(data, vector);
+            var vector = BitVector.CreateWithSize(size);
+            Assert.Equal(data, (int) vector);
         }
 
         [Fact]
         public void SetBit_Succeeds()
         {
-            var vector = 0b1001;
-            BitVectorUtils.SetBit(0, ref vector);
-            Assert.Equal(0b1001, vector);
-            BitVectorUtils.SetBit(1, ref vector);
-            Assert.Equal(0b1011, vector);
+            var vector = new BitVector(0b1001);
+            vector.SetBit(0);
+            Assert.Equal(0b1001, (int) vector);
+            vector.SetBit(1);
+            Assert.Equal(0b1011, (int) vector);
         }
 
         [Fact]
         public void UnsetBit_Succeeds()
         {
-            var vector = 0b1001;
-            BitVectorUtils.UnsetBit(1, ref vector);
-            Assert.Equal(0b1001, vector);
-            BitVectorUtils.UnsetBit(3, ref vector);
-            Assert.Equal(0b0001, vector);
+            var vector = new BitVector(0b1001);
+            vector.UnsetBit(1);
+            Assert.Equal(0b1001, (int) vector);
+            vector.UnsetBit(3);
+            Assert.Equal(0b0001, (int) vector);
         }
 
         [Fact]
         public void IsBitSet_Succeeds()
         {
-            var vector = 0b1001_1100;
+            var vector = new BitVector(0b1001_1100);
             Assert.False(vector.IsBitSet(0));
             Assert.False(vector.IsBitSet(1));
             Assert.False(vector.IsBitSet(5));
@@ -56,7 +56,8 @@ namespace SudokuSpice
         [InlineData(-1, 32)]
         public void CountSetBits_Succeeds(int data, int numBits)
         {
-            Assert.Equal(numBits, data.CountSetBits());
+            var vector = new BitVector(data); 
+            Assert.Equal(numBits, vector.CountSetBits());
         }
 
         [Theory]
@@ -65,7 +66,8 @@ namespace SudokuSpice
         [InlineData(0b0011_1101, new int[] { 0, 2, 3, 4, 5 })]
         public void GetSetBits_Succeeds(int data, int[] setBits)
         {
-            Assert.Equal(setBits, data.GetSetBits());
+            var vector = new BitVector(data); 
+            Assert.Equal(setBits, vector.GetSetBits());
         }
 
         [Theory]
@@ -75,7 +77,8 @@ namespace SudokuSpice
         [InlineData(0b1111, 0, new int[] { })]
         public void GetSetBits_WithMaxBitCount_LimitsToFirstBits(int data, int maxBitCount, int[] setBits)
         {
-            Assert.Equal(setBits, data.GetSetBits(maxBitCount));
+            var vector = new BitVector(data); 
+            Assert.Equal(setBits, vector.GetSetBits(maxBitCount));
         }
     }
 }

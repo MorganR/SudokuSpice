@@ -9,7 +9,7 @@ namespace SudokuSpice
     {
         public ColumnRestrict(Puzzle puzzle) : base(puzzle) { }
 
-        public int GetPossibleColumnValues(int col) => unsetValues[col];
+        public BitVector GetPossibleColumnValues(int col) => unsetValues[col];
 
         protected override int GetIndex(in Coordinate c)
         {

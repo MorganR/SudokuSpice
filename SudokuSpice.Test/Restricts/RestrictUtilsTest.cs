@@ -33,15 +33,15 @@ namespace SudokuSpice
 
             RestrictUtils.RestrictAllUnsetPossibleValues(puzzle, restricts);
 
-            Assert.Equal(0b1100, puzzle.GetPossibleValues(0, 1));
-            Assert.Equal(0b0100, puzzle.GetPossibleValues(0, 2));
-            Assert.Equal(0b1010, puzzle.GetPossibleValues(1, 0));
-            Assert.Equal(0b1100, puzzle.GetPossibleValues(1, 1));
-            Assert.Equal(0b1100, puzzle.GetPossibleValues(1, 3));
-            Assert.Equal(0b1000, puzzle.GetPossibleValues(2, 0));
-            Assert.Equal(0b1001, puzzle.GetPossibleValues(2, 1));
-            Assert.Equal(0b0110, puzzle.GetPossibleValues(2, 2));
-            Assert.Equal(0b0100, puzzle.GetPossibleValues(2, 3));
+            Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(0, 1));
+            Assert.Equal(new BitVector(0b0100), puzzle.GetPossibleValues(0, 2));
+            Assert.Equal(new BitVector(0b1010), puzzle.GetPossibleValues(1, 0));
+            Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(1, 1));
+            Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(1, 3));
+            Assert.Equal(new BitVector(0b1000), puzzle.GetPossibleValues(2, 0));
+            Assert.Equal(new BitVector(0b1001), puzzle.GetPossibleValues(2, 1));
+            Assert.Equal(new BitVector(0b0110), puzzle.GetPossibleValues(2, 2));
+            Assert.Equal(new BitVector(0b0100), puzzle.GetPossibleValues(2, 3));
         }
     }
 }
