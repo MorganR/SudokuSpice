@@ -24,11 +24,11 @@ public class CsvBenchmarker
         _samples = SudokuCsvParser.ParseCsv().Select(sample => new MatrixSudokuSample(sample)).ToList();
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public bool SudokuSpice()
     {
         var sample = _GetSample();
-        var puzzle = new Puzzle(sample.Puzzle);
+        var puzzle = new Puzzle(sample.Puzzle.NullableMatrix);
         var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
         var sudoku = new Solver(
             new SquareTracker(
@@ -41,19 +41,14 @@ public class CsvBenchmarker
                     new UniqueInBoxHeuristic(puzzle, (BoxRestrict) restricts[2])
                 }));
         sudoku.Solve();
-        bool isSolved = sample.MatchesSolution(puzzle);
-        if (!isSolved) {
-            throw new ApplicationException($"Failed to solve the puzzle! Idx: {_idx}");
-        }
-        return isSolved;
+        return puzzle.NumEmptySquares == 0;
     }
 
     [Benchmark]
     public bool SudokuSolverLite()
     {
         var sample = _GetSample();
-        var nonNullableMatrix = MatrixSudokuSample.ToNonNullableMatrix(sample.Puzzle);
-        return SudokuSolver.SudokuSolver.Solve(nonNullableMatrix);
+        return SudokuSolver.SudokuSolver.Solve(sample.Puzzle.Matrix);
     }
 
     [Benchmark]
@@ -63,8 +58,8 @@ public class CsvBenchmarker
         var board = new SudokuSharp.Board();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                if (sample.Puzzle[row, col].HasValue) {
-                    board.PutCell(new SudokuSharp.Location(col, row), sample.Puzzle[row, col].Value);
+                if (sample.Puzzle.NullableMatrix[row, col].HasValue) {
+                    board.PutCell(new SudokuSharp.Location(col, row), sample.Puzzle.NullableMatrix[row, col].Value);
                 }
             }
         }

@@ -10,7 +10,7 @@ public class PuzzleBenchmarker
 
     public IEnumerable<object> MegaPuzzles => Puzzles.MegaPuzzles();
     
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     [ArgumentsSource(nameof(NineByNinePuzzles))]
     public bool SudokuSpice(PuzzleSample puzzle)
     {

@@ -4,41 +4,13 @@ namespace SudokuSpice.Benchmark
 {
 class MatrixSudokuSample
 {
-    internal int?[,] Puzzle { get; set;}
-    internal int?[,] Solution { get; set;}
+    internal PuzzleSample Puzzle { get; set;}
+    internal PuzzleSample Solution { get; set;}
 
     internal MatrixSudokuSample(SudokuSample sample)
     {
-        Puzzle = NumberStringToMatrix(sample.Puzzle); 
-        Solution = NumberStringToMatrix(sample.Solution); 
-    }
-
-    public bool MatchesSolution(Puzzle puzzle)
-    {
-        for (var row = 0; row < 9; row++)
-        {
-            for (var col = 0; col < 9; col++)
-            {
-                if (puzzle[row, col] != Solution[row, col])
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    public static int[,] ToNonNullableMatrix(int?[,] nullable)
-    {
-        var matrix = new int[9,9];
-        for (var row = 0; row < 9; row++)
-        {
-            for (var col = 0; col < 9; col++)
-            {
-                matrix[row, col] = nullable[row, col] ?? 0;
-            }
-        }
-        return matrix;
+        Puzzle = new PuzzleSample("puzzle", NumberStringToMatrix(sample.Puzzle)); 
+        Solution = new PuzzleSample("solution", NumberStringToMatrix(sample.Solution)); 
     }
 
     private static int?[,] NumberStringToMatrix(string nums)
