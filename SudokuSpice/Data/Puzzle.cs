@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace SudokuSpice
 {
-    /// <summary>Manages underlying puzzle data.</summary>
+
+    /// <summary>Manages underlying puzzle data.</summary>.
+    [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Puzzle
     {
         /// <summary>The length of one side of the puzzle.</summary>

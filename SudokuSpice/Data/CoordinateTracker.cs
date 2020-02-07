@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice
 {
-    // Efficiently tracks a group of coordinates.
+    /// <summary>Efficiently tracks a group of coordinates.</summary>
+    [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
+
     public class CoordinateTracker
     {
         private readonly int[,] _coordToIdx;
