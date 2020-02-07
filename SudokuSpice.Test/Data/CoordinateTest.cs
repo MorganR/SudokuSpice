@@ -37,8 +37,11 @@ namespace SudokuSpice
         [Fact]
         public void EqualsIsTrueForMatchingCoordinate()
         {
-            var obj = new Coordinate(1, 2);
-            Assert.True(obj.Equals(new Coordinate(1, 2)));
+            var c = new Coordinate(1, 2);
+            var other = new Coordinate(1, 2);
+            Assert.True(c.Equals(other));
+            Assert.True(c == other);
+            Assert.False(c != other);
         }
 
         [Theory]
@@ -47,8 +50,11 @@ namespace SudokuSpice
         [InlineData(5, -100)]
         public void EqualsIsFalseForDifferentCoordinates(int otherRow, int otherCol)
         {
-            var obj = new Coordinate(1, 2);
-            Assert.False(obj.Equals(new Coordinate(otherRow, otherCol)));
+            var c = new Coordinate(1, 2);
+            var other = new Coordinate(otherRow, otherCol);
+            Assert.False(c.Equals(other));
+            Assert.False(c == other);
+            Assert.True(c != other);
         }
 
         [Fact]
