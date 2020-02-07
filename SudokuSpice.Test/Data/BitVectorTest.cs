@@ -157,5 +157,15 @@ namespace SudokuSpice
             var vector = new BitVector(5);
             Assert.False(vector.Equals(new List<int>()));
         }
+
+        [Theory]
+        [InlineData(0, "0")]
+        [InlineData(0b1011, "1011")]
+        [InlineData(0b1011_0001, "10110001")]
+        public void ToString_ReturnsExpected(int data, string result)
+        {
+            var vector = new BitVector(data);
+            Assert.Equal(result, vector.ToString());
+        }
     }
 }
