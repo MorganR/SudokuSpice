@@ -31,10 +31,10 @@ public class CsvBenchmarker
         var puzzle = new Puzzle(sample.Puzzle.NullableMatrix);
         var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
         var sudoku = new Solver(
-            new SquareTracker(
+            new FlexibleSquareTracker(
                 puzzle,
                 restricts,
-                new List<IHeuristic>
+                new List<ISudokuHeuristic>
                 {
                     new UniqueInRowHeuristic(puzzle, (RowRestrict) restricts[0]),
                     new UniqueInColumnHeuristic(puzzle, (ColumnRestrict) restricts[1]),

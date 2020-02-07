@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace SudokuSpice
 {
-    public class RestrictUtils
+    public static class RestrictUtils
     {
-        public static IReadOnlyList<IRestrict> CreateStandardRestricts(Puzzle puzzle)
+        public static IReadOnlyList<ISudokuRestrict> CreateStandardRestricts(Puzzle puzzle)
         {
-            return new List<IRestrict> {
+            return new List<ISudokuRestrict> {
                 new RowRestrict(puzzle),
                 new ColumnRestrict(puzzle),
                 new BoxRestrict(puzzle)
             };
         }
 
-        public static void RestrictAllUnsetPossibleValues(Puzzle puzzle, IReadOnlyList<IRestrict> restricts)
+        public static void RestrictAllUnsetPossibleValues(Puzzle puzzle, IReadOnlyList<ISudokuRestrict> restricts)
         {
             foreach (var c in puzzle.GetUnsetCoords())
             {

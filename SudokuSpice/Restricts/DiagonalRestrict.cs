@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SudokuSpice
 {
-    public class DiagonalRestrict : IRestrict
+    public class DiagonalRestrict : ISudokuRestrict
     {
         private readonly Puzzle _puzzle;
         private BitVector _unsetBackwardDiag;

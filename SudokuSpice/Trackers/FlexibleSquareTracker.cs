@@ -4,24 +4,24 @@ using System.Linq;
 
 namespace SudokuSpice
 {
-    public class SquareTracker : ISquareTracker
+    public class FlexibleSquareTracker : ISquareTracker
     {
         private readonly Puzzle _puzzle;
-        private readonly IReadOnlyList<IRestrict> _restricts;
-        private readonly IReadOnlyList<IHeuristic> _heuristics;
+        private readonly IReadOnlyList<ISudokuRestrict> _restricts;
+        private readonly IReadOnlyList<ISudokuHeuristic> _heuristics;
         private readonly IList<Coordinate> _modifiedCoords;
         private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
 
-        public SquareTracker(
+        public FlexibleSquareTracker(
             Puzzle puzzle,
-            IReadOnlyList<IRestrict> restricts = null,
-            IReadOnlyList<IHeuristic> heuristics = null)
+            IReadOnlyList<ISudokuRestrict> restricts = null,
+            IReadOnlyList<ISudokuHeuristic> heuristics = null)
         {
             _puzzle = puzzle;
             _restricts = (restricts == null || restricts.Count == 0)
                 ? RestrictUtils.CreateStandardRestricts(_puzzle)
                 : restricts;
-            _heuristics = heuristics == null ? new List<IHeuristic>() : heuristics;
+            _heuristics = heuristics == null ? new List<ISudokuHeuristic>() : heuristics;
             _modifiedCoords = new List<Coordinate>(_puzzle.Size * _restricts.Count);
             _coordsThatUsedHeuristics = new Stack<Coordinate>(_puzzle.NumEmptySquares);
             RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);
@@ -109,8 +109,7 @@ namespace SudokuSpice
             Coordinate bestCoord = new Coordinate(0, 0);
             foreach (var c in _puzzle.GetUnsetCoords())
             {
-                int numPossibles =
-                    _puzzle.GetPossibleValues(c.Row, c.Column).Count;
+                int numPossibles = _puzzle.GetPossibleValues(c.Row, c.Column).Count;
                 if (numPossibles == 1)
                 {
                     return (c, 1);
@@ -124,7 +123,8 @@ namespace SudokuSpice
             return (bestCoord, minNumPossibles);
         }
 
-        private void _RevertRestricts(in Coordinate coord, int possibleValue, int numRestrictsToUndo)
+        private void _RevertRestricts(
+            in Coordinate coord, int possibleValue, int numRestrictsToUndo)
         {
             _modifiedCoords.Clear();
             for (var restrictIdx = numRestrictsToUndo - 1; restrictIdx >= 0; restrictIdx--)
@@ -136,7 +136,8 @@ namespace SudokuSpice
                 _puzzle.SetPossibleValues(modifiedCoord.Row, modifiedCoord.Column,
                     _restricts.Aggregate(
                         new BitVector(-1),
-                        (agg, r) => BitVector.FindIntersect(agg, r.GetPossibleValues(in modifiedCoord))));
+                        (agg, r) => BitVector.FindIntersect(
+                            agg, r.GetPossibleValues(in modifiedCoord))));
             }
         }
     }

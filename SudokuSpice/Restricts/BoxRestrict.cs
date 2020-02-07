@@ -7,6 +7,8 @@ namespace SudokuSpice
     /// </summary>
     public class BoxRestrict : BasicRestrict
     {
+
+
         public BoxRestrict(Puzzle puzzle) : base(puzzle) { }
 
         public BitVector GetPossibleBoxValues(int box) => unsetValues[box];

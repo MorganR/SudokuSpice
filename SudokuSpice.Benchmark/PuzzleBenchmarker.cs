@@ -17,10 +17,10 @@ public class PuzzleBenchmarker
        var p = new Puzzle(puzzle.NullableMatrix);
         var restricts = RestrictUtils.CreateStandardRestricts(p);
         var sudoku = new Solver(
-            new SquareTracker(
+            new FlexibleSquareTracker(
                 p,
                 restricts,
-                new List<IHeuristic>
+                new List<ISudokuHeuristic>
                 {
                     new UniqueInRowHeuristic(p, (RowRestrict) restricts[0]),
                     new UniqueInColumnHeuristic(p, (ColumnRestrict) restricts[1]),

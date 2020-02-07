@@ -71,10 +71,10 @@ namespace SudokuSpice
             {
                 if (value.HasValue)
                 {
-                    Set_(row, col, value.Value);
+                    _Set(row, col, value.Value);
                 } else
                 {
-                    Unset_(row, col);
+                    _Unset(row, col);
                 }
             }
         }
@@ -208,7 +208,7 @@ namespace SudokuSpice
         /// <summary>Sets the value of a square.</summary>
         /// <exception cref="System.InvalidOperationException">Thrown when the specified square
         /// already has a value.</exception>
-        private void Set_(int row, int col, int val)
+        private void _Set(int row, int col, int val)
         {
             if (_squares[row, col].HasValue)
             {
@@ -225,7 +225,7 @@ namespace SudokuSpice
         }
 
         /// <summary>Unsets the specified square.</summary>
-        private void Unset_(int row, int col)
+        private void _Unset(int row, int col)
         {
             if (!_squares[row, col].HasValue)
             {

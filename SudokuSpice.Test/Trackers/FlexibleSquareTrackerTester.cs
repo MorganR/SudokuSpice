@@ -4,7 +4,7 @@ using Xunit;
 
 namespace SudokuSpice
 {
-    public class SquareTrackerTest
+    public class FlexibleSquareTrackerTest
     {
         [Fact]
         public void Constructor_FiltersCorrectly()
@@ -16,7 +16,7 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -41,7 +41,7 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -62,7 +62,7 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -79,7 +79,7 @@ namespace SudokuSpice
                 {3, 2, 4, 1}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -96,7 +96,7 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -116,7 +116,7 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -138,7 +138,7 @@ namespace SudokuSpice
                 {           3, null /* 2 */,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -181,7 +181,7 @@ namespace SudokuSpice
             });
             var expectedUnsetCoords = puzzle.GetUnsetCoords().ToArray();
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -216,7 +216,7 @@ namespace SudokuSpice
             });
             var expectedUnsetCoords = puzzle.GetUnsetCoords().ToArray();
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -251,7 +251,7 @@ namespace SudokuSpice
             });
             var expectedUnsetCoords = puzzle.GetUnsetCoords().ToArray();
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -285,7 +285,7 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -304,7 +304,7 @@ namespace SudokuSpice
                 {           3, null /* 2 */, null /* 4 */,            1}
             });
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                 puzzle,
                 restricts,
                 _CreateStandardHeuristics(puzzle, restricts));
@@ -337,10 +337,10 @@ namespace SudokuSpice
             Assert.Equal(new Coordinate(1, 2), bestCoord);
         }
 
-        private IReadOnlyList<IHeuristic> _CreateStandardHeuristics(
-            Puzzle puzzle, IReadOnlyList<IRestrict> standardRestricts)
+        private IReadOnlyList<ISudokuHeuristic> _CreateStandardHeuristics(
+            Puzzle puzzle, IReadOnlyList<ISudokuRestrict> standardRestricts)
         {
-            return new List<IHeuristic>
+            return new List<ISudokuHeuristic>
                 {
                     new UniqueInRowHeuristic(puzzle, (RowRestrict) standardRestricts[0]),
                     new UniqueInColumnHeuristic(puzzle, (ColumnRestrict) standardRestricts[1]),

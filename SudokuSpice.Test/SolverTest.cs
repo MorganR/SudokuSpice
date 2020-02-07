@@ -11,7 +11,7 @@ namespace SudokuSpice
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
             var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var squareTracker = new SquareTracker(
+            var squareTracker = new FlexibleSquareTracker(
                puzzle,
                restricts,
                _CreateStandardHeuristics(puzzle, restricts));
@@ -42,9 +42,9 @@ namespace SudokuSpice
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
             var solver = new Solver(
-                new SquareTracker(
+                new FlexibleSquareTracker(
                     puzzle,
-                    new List<IRestrict>
+                    new List<ISudokuRestrict>
                     {
                         new RowRestrict(puzzle),
                         new ColumnRestrict(puzzle),
@@ -178,10 +178,10 @@ namespace SudokuSpice
             }
         }
 
-        private IReadOnlyList<IHeuristic> _CreateStandardHeuristics(
-            Puzzle puzzle, IReadOnlyList<IRestrict> standardRestricts)
+        private IReadOnlyList<ISudokuHeuristic> _CreateStandardHeuristics(
+            Puzzle puzzle, IReadOnlyList<ISudokuRestrict> standardRestricts)
         {
-            return new List<IHeuristic>
+            return new List<ISudokuHeuristic>
                 {
                     new UniqueInRowHeuristic(puzzle, (RowRestrict) standardRestricts[0]),
                     new UniqueInColumnHeuristic(puzzle, (ColumnRestrict) standardRestricts[1]),

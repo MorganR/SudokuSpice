@@ -5,7 +5,7 @@ namespace SudokuSpice
     /// <summary>
     /// Enforces a restriction for a puzzle, such as "all values must be unique within a row."
     /// </summary>
-    public interface IRestrict
+    public interface ISudokuRestrict
     {
         /// <summary>
         /// Updates restricts based on setting the given coordinate to the given value. Appends

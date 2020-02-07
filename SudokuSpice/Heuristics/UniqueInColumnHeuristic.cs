@@ -2,7 +2,7 @@
 
 namespace SudokuSpice
 {
-    public class UniqueInColumnHeuristic : IHeuristic
+    public class UniqueInColumnHeuristic : ISudokuHeuristic
     {
         private readonly Puzzle _puzzle;
         private readonly ColumnRestrict _restrict;
