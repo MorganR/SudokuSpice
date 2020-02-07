@@ -8,7 +8,8 @@ namespace SudokuSpice.Benchmark
 {
     static class SudokuCsvParser
     {
-        private static readonly string _csvPath = Directory.GetCurrentDirectory() + "/data/sudoku.csv";
+        private static readonly string _csvPath = 
+            Path.Combine(Directory.GetCurrentDirectory(), "data", "sudoku.csv");
         internal static IReadOnlyList<SudokuSample> ParseCsv()
         {
             var options = new CsvParserOptions(
