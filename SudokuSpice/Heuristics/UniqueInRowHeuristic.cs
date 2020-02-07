@@ -34,7 +34,7 @@ namespace SudokuSpice
                     continue;
                 }
                 var modifiedPossibles = _puzzle.GetPossibleValues(row, col);
-                if (modifiedPossibles.CountSetBits() == 1)
+                if (modifiedPossibles.Count == 1)
                 {
                     _possiblesToCheckInRow[row].UnsetBit(modifiedPossibles.GetSetBits().First());
                 }

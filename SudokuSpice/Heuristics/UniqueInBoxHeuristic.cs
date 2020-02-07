@@ -32,7 +32,7 @@ namespace SudokuSpice
                 var modifiedPossibles = _puzzle.GetPossibleValues(c.Row, c.Column);
                 // Skip heuristic checks for values that must be true (i.e. for squares with only
                 // one possible value).
-                if (modifiedPossibles.CountSetBits() == 1)
+                if (modifiedPossibles.Count == 1)
                 {
                     _possiblesToCheckInBox[box].UnsetBit(modifiedPossibles.GetSetBits().First());
                 }

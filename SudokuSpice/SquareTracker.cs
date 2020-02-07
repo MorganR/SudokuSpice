@@ -110,8 +110,7 @@ namespace SudokuSpice
             foreach (var c in _puzzle.GetUnsetCoords())
             {
                 int numPossibles =
-                    _puzzle.GetPossibleValues(c.Row, c.Column)
-                    .CountSetBits();
+                    _puzzle.GetPossibleValues(c.Row, c.Column).Count;
                 if (numPossibles == 1)
                 {
                     return (c, 1);

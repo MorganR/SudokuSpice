@@ -14,17 +14,38 @@ namespace SudokuSpice
             masks[0] = 1;
             for (int i = 1; i < 32; i++)
             {
-                masks[i] = masks[i-1] << 1;
+                masks[i] = masks[i - 1] << 1;
             }
             return masks;
         }
 
-        private int _data;
-
         /// <summary>
         /// Gets the data stored in this bit vector, as an int.
         /// </summary>
-        public int Data { get => _data; }
+        public int Data { get; private set; }
+
+        /// <summary>
+        /// Gets the count of bits that are set.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                if (Popcnt.IsSupported)
+                {
+                    return (int)Popcnt.PopCount((uint)Data);
+                }
+                int count = 0;
+                for (int i = 0; i < 32; i++)
+                {
+                    if (IsBitSet(i))
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+        }
 
         /// <summary>
         /// Constructs a bit vector with the given data.
@@ -32,7 +53,7 @@ namespace SudokuSpice
         /// <param name="data">The data to use for this bit vector.</param>
         public BitVector(int data)
         {
-            _data = data;
+            Data = data;
         }
 
         /// <summary>
@@ -52,7 +73,7 @@ namespace SudokuSpice
         /// <returns> A new <c>BitVector</c> that is the intersect of the given vectors.</returns>
         public static BitVector FindIntersect(BitVector a, BitVector b)
         {
-            return new BitVector(a._data & b._data);
+            return new BitVector(a.Data & b.Data);
         }
 
         /// <summary>
@@ -63,7 +84,7 @@ namespace SudokuSpice
         /// <returns> A new <c>BitVector</c> that is the union of the given vectors.</returns>
         public static BitVector FindUnion(BitVector a, BitVector b)
         {
-            return new BitVector(a._data | b._data);
+            return new BitVector(a.Data | b.Data);
         }
 
         /// <summary>
@@ -72,7 +93,7 @@ namespace SudokuSpice
         /// <param name="bit">The zero-based index of the bit to unset.</param>
         public void UnsetBit(int bit)
         {
-            _data &= ~_masks[bit];
+            Data &= ~_masks[bit];
         }
 
         /// <summary>
@@ -81,7 +102,7 @@ namespace SudokuSpice
         /// <param name="bit">The zero-based index of the bit to set.</param>
         public void SetBit(int bit)
         {
-            _data |= _masks[bit];
+            Data |= _masks[bit];
         }
 
         /// <summary>
@@ -90,7 +111,7 @@ namespace SudokuSpice
         /// <returns>True if empty.</returns>
         public readonly bool IsEmpty()
         {
-            return _data == 0;
+            return Data == 0;
         }
 
         /// <summary>
@@ -100,28 +121,7 @@ namespace SudokuSpice
         /// <returns>True if set.</returns>
         public readonly bool IsBitSet(int bit)
         {
-            return Convert.ToBoolean(_data & _masks[bit]);
-        }
-
-        /// <summary>
-        /// Counts the number of bits that are set.
-        /// </summary>
-        /// <returns>The number of bits that are set.</returns>
-        public readonly int CountSetBits()
-        {
-            if (Popcnt.IsSupported)
-            {
-                return (int)Popcnt.PopCount((uint)_data);
-            }
-            int count = 0;
-            for (int i = 0; i < 32; i++)
-            {
-                if (IsBitSet(i))
-                {
-                    count++;
-                }
-            }
-            return count;
+            return Convert.ToBoolean(Data & _masks[bit]);
         }
 
         /// <summary>
@@ -134,14 +134,14 @@ namespace SudokuSpice
         {
             for (int i = 0; i < maxBitCount; i++)
             {
-                if ((_data & _masks[i]) != 0)
+                if ((Data & _masks[i]) != 0)
                 {
                     yield return i;
                 }
             }
         }
 
-        public bool Equals(BitVector other) => _data == other._data;
+        public bool Equals(BitVector other) => Data == other.Data;
 
         public override bool Equals(Object obj)
         {
@@ -152,11 +152,11 @@ namespace SudokuSpice
             return false;
         }
 
-        public override int GetHashCode() => _data;
+        public override int GetHashCode() => Data;
 
-        public override string ToString() => Convert.ToString(_data, 2);
+        public override string ToString() => Convert.ToString(Data, 2);
 
-        public static bool operator ==(BitVector a, BitVector b) => a._data == b._data;
-        public static bool operator !=(BitVector a, BitVector b) => a._data != b._data;
+        public static bool operator ==(BitVector a, BitVector b) => a.Data == b.Data;
+        public static bool operator !=(BitVector a, BitVector b) => a.Data != b.Data;
     }
 }

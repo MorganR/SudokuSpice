@@ -87,10 +87,33 @@ namespace SudokuSpice
         [InlineData(0b100, 1)]
         [InlineData(0b0011_1101, 5)]
         [InlineData(-1, 32)]
-        public void CountSetBits_Succeeds(int data, int numBits)
+        public void Count_OnConstruction_IsCorrect(int data, int numBits)
         {
             var vector = new BitVector(data);
-            Assert.Equal(numBits, vector.CountSetBits());
+            Assert.Equal(numBits, vector.Count);
+        }
+
+        [Fact]
+        public void Count_AfterMutations_IsCorrect()
+        {
+            var vector = new BitVector(0b1011);
+
+            // Mutate (set)
+            vector.SetBit(6);
+            vector.SetBit(8);
+            Assert.Equal(5, vector.Count);
+
+            // No-op (set)
+            vector.SetBit(8);
+            Assert.Equal(5, vector.Count);
+           
+            // Mutate (unset)
+            vector.UnsetBit(0);
+            Assert.Equal(4, vector.Count);
+
+            // No-op (unset)
+            vector.UnsetBit(0);
+            Assert.Equal(4, vector.Count);
         }
 
         [Theory]
@@ -141,7 +164,7 @@ namespace SudokuSpice
         }
 
         [Theory]
-        [InlineData(0, 0, true)]
+        [InlineData(0, 0, false)]
         [InlineData(0, 1, false)]
         [InlineData(5, 5.0, false)]
         [InlineData(0, null, false)]
