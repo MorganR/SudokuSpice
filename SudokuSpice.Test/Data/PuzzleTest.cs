@@ -174,7 +174,7 @@ namespace SudokuSpice
                 {3, null, 4, null}
             });
             puzzle.SetPossibleValues(0, 1, new BitVector(0b1100));
-            Assert.Equal(0b1100, (int) puzzle.GetPossibleValues(0, 1));
+            Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(0, 1));
         }
 
         [Fact]

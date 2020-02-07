@@ -4,7 +4,7 @@ using System.Runtime.Intrinsics.X86;
 
 namespace SudokuSpice
 {
-    public struct BitVector : IEquatable<BitVector>, IEquatable<int>
+    public struct BitVector : IEquatable<BitVector>
     {
         private static readonly int[] _masks = _CreateMasks();
 
@@ -22,7 +22,12 @@ namespace SudokuSpice
         private int _data;
 
         /// <summary>
-        /// Creates a bit vector with the given data.false
+        /// Gets the data stored in this bit vector, as an int.
+        /// </summary>
+        public int Data { get => _data; }
+
+        /// <summary>
+        /// Constructs a bit vector with the given data.
         /// </summary>
         /// <param name="data">The data to use for this bit vector.</param>
         public BitVector(int data)
@@ -138,22 +143,11 @@ namespace SudokuSpice
 
         public bool Equals(BitVector other) => _data == other._data;
 
-        public bool Equals(int other) =>_data == other;
-
         public override bool Equals(Object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
             if (obj is BitVector bv)
             {
-                return this.Equals(bv);
-            }
-            if (obj is int i)
-            {
-                return this.Equals(i);
+                return Equals(bv);
             }
             return false;
         }
@@ -163,12 +157,6 @@ namespace SudokuSpice
         public override string ToString() => Convert.ToString(_data, 2);
 
         public static bool operator ==(BitVector a, BitVector b) => a._data == b._data;
-        public static bool operator ==(BitVector a, int b) => a._data == b;
-        public static bool operator ==(int a, BitVector b) => a == b._data;
         public static bool operator !=(BitVector a, BitVector b) => a._data != b._data;
-        public static bool operator !=(BitVector a, int b) => a._data != b;
-        public static bool operator !=(int a, BitVector b) => a != b._data;
-
-        public static explicit operator int(BitVector v) => v._data;
     }
 }
