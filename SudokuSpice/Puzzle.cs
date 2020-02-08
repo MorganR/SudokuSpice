@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text;
 
 namespace SudokuSpice
@@ -11,10 +12,10 @@ namespace SudokuSpice
     public class Puzzle
     {
         /// <summary>The length of one side of the puzzle.</summary>
-        public readonly int Size;
+        public int Size { get; }
         /// <summary>The length of one side of a mini box within the puzzle.</summary>
         /// <para>A mini box is a square region that must contain each possible value exactly once.</para>
-        public readonly int BoxSize;
+        public int BoxSize { get; }
         /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
         public int NumEmptySquares { get; private set; }
         private readonly int?[,] _squares;
@@ -52,7 +53,8 @@ namespace SudokuSpice
                         NumEmptySquares++;
                         _possibleSquareValues[row, col] = BitVector.CreateWithSize(Size);
                         _unsetCoordsTracker.Add(new Coordinate(row, col));
-                    } else
+                    }
+                    else
                     {
                         _possibleSquareValues[row, col].SetBit(_squares[row, col].Value - 1);
                     }
@@ -72,20 +74,22 @@ namespace SudokuSpice
                 if (value.HasValue)
                 {
                     _Set(row, col, value.Value);
-                } else
+                }
+                else
                 {
                     _Unset(row, col);
                 }
             }
         }
 
+        [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {
             get => _squares[c.Row, c.Column];
             set => this[c.Row, c.Column] = value;
         }
 
-        
+
         /// <summary>
         /// Gets the possible values for a given square as a bit vector.
         /// </summary>
@@ -173,7 +177,7 @@ namespace SudokuSpice
         /// pipes and dashes.</summary>
         public override string ToString()
         {
-            int maxDigitLength = Size.ToString().Length;
+            int maxDigitLength = Size.ToString(NumberFormatInfo.InvariantInfo).Length;
             StringBuilder strBuild = new StringBuilder();
             for (int row = 0; row < Size; row++)
             {
@@ -184,7 +188,9 @@ namespace SudokuSpice
                 strBuild.Append('|');
                 for (int col = 0; col < Size; col++)
                 {
-                    var numberString = _squares[row, col].HasValue ? _squares[row, col].Value.ToString() : " ";
+                    var numberString =
+                        _squares[row, col].HasValue ?
+                        _squares[row, col].Value.ToString(NumberFormatInfo.InvariantInfo) : " ";
                     int remainingDigits = maxDigitLength - numberString.Length;
                     for (; remainingDigits > 0; remainingDigits--)
                     {
@@ -194,7 +200,8 @@ namespace SudokuSpice
                     if (col % BoxSize == BoxSize - 1)
                     {
                         strBuild.Append('|');
-                    } else
+                    }
+                    else
                     {
                         strBuild.Append(',');
                     }
@@ -239,7 +246,7 @@ namespace SudokuSpice
 
         private void _AppendBoxDividerRow(StringBuilder strBuild)
         {
-            int maxDigitLength = Size.ToString().Length;
+            int maxDigitLength = Size.ToString(NumberFormatInfo.InvariantInfo).Length;
             for (int col = 0; col < Size; col++)
             {
                 if (col % BoxSize == 0)
