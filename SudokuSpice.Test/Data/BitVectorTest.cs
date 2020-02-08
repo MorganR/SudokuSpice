@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace SudokuSpice
@@ -20,10 +21,18 @@ namespace SudokuSpice
         [InlineData(1, 1)]
         [InlineData(2, 0b11)]
         [InlineData(8, 0b1111_1111)]
-        public void CreateWithSize_Succeeds(int size, int data)
+        public void CreateWithSize_ValidValues_Succeeds(int size, int data)
         {
             var vector = BitVector.CreateWithSize(size);
             Assert.Equal(data, vector.Data);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(33)]
+        public void CreateWithSize_InvalidValues_ThrowsOutOfRange(int size)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>("size", () => BitVector.CreateWithSize(size));
         }
 
         [Theory]

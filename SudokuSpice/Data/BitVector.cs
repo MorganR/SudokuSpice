@@ -62,6 +62,10 @@ namespace SudokuSpice
         /// <param name="size">The number of bits to set.</param>
         public static BitVector CreateWithSize(int size)
         {
+            if (size < 0 || size > 32)
+            {
+                throw new ArgumentOutOfRangeException(nameof(size), size, "Must be between 0 and 32 inclusive.");
+            }
             return new BitVector((1 << size) - 1);
         }
 
