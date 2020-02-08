@@ -27,18 +27,6 @@ namespace SudokuSpice
         private void _PreparePossiblesToCheckInColumn(int col)
         {
             _possiblesToCheckInColumn[col] = _restrict.GetPossibleColumnValues(col);
-            for (int row = 0; row < _puzzle.Size; row++)
-            {
-                if (_puzzle[row, col].HasValue)
-                {
-                    continue;
-                }
-                var modifiedPossibles = _puzzle.GetPossibleValues(row, col);
-                if (modifiedPossibles.Count == 1)
-                {
-                    _possiblesToCheckInColumn[col].UnsetBit(modifiedPossibles.GetSetBits().First());
-                }
-            }
         }
 
         private void _CheckColumn(int col)
