@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace SudokuSpice
+﻿namespace SudokuSpice
 {
     public class UniqueInColumnHeuristic : ISudokuHeuristic
     {

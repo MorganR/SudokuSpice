@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SudokuSpice
+﻿namespace SudokuSpice
 {
     /// <summary>
     /// Performs some logical trickery to reduce the number of possible values for a square. Unlike
