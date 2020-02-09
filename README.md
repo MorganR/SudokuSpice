@@ -39,13 +39,9 @@ more complicated examples.
 | SudokuSolverLite |   Easy |     153.269 us |     1.2303 us |     1.1508 us |  12.26 |    0.07 |
 |      SudokuSharp |   Easy |       3.262 us |     0.0124 us |     0.0116 us |   0.26 |    0.00 |
 |                  |        |                |               |               |        |         |
-|      SudokuSpice |  EvilA |     776.907 us |     4.7306 us |     4.4250 us |   1.00 |    0.00 |
-| SudokuSolverLite |  EvilA | 388,311.027 us | 1,680.5714 us | 1,572.0076 us | 499.83 |    3.28 |
-|      SudokuSharp |  EvilA |  63,717.150 us |   312.5381 us |   260.9835 us |  82.02 |    0.51 |
-|                  |        |                |               |               |        |         |
-|      SudokuSpice |  EvilB |   1,967.079 us |    13.0652 us |    12.2212 us |   1.00 |    0.00 |
-| SudokuSolverLite |  EvilB |  49,377.684 us |   114.2272 us |   101.2594 us |  25.10 |    0.18 |
-|      SudokuSharp |  EvilB |   5,155.765 us |    32.9996 us |    27.5562 us |   2.62 |    0.02 |
+|      SudokuSpice | Medium |      80.703 us |     0.2063 us |     0.1723 us |   1.00 |    0.00 |
+| SudokuSolverLite | Medium |   2,299.988 us |     7.8900 us |     7.3803 us |  28.49 |    0.11 |
+|      SudokuSharp | Medium |     149.317 us |     0.5409 us |     0.5059 us |   1.85 |    0.01 |
 |                  |        |                |               |               |        |         |
 |      SudokuSpice |  HardA |     227.919 us |     0.8015 us |     0.7498 us |   1.00 |    0.00 |
 | SudokuSolverLite |  HardA |   4,703.643 us |    28.9588 us |    25.6712 us |  20.64 |    0.12 |
@@ -55,6 +51,10 @@ more complicated examples.
 | SudokuSolverLite |  HardB |  24,620.609 us |    72.9550 us |    64.6727 us | 207.39 |    0.98 |
 |      SudokuSharp |  HardB |   5,119.287 us |    25.9460 us |    20.2569 us |  43.11 |    0.19 |
 |                  |        |                |               |               |        |         |
-|      SudokuSpice | Medium |      80.703 us |     0.2063 us |     0.1723 us |   1.00 |    0.00 |
-| SudokuSolverLite | Medium |   2,299.988 us |     7.8900 us |     7.3803 us |  28.49 |    0.11 |
-|      SudokuSharp | Medium |     149.317 us |     0.5409 us |     0.5059 us |   1.85 |    0.01 |
+|      SudokuSpice |  EvilA |     776.907 us |     4.7306 us |     4.4250 us |   1.00 |    0.00 |
+| SudokuSolverLite |  EvilA | 388,311.027 us | 1,680.5714 us | 1,572.0076 us | 499.83 |    3.28 |
+|      SudokuSharp |  EvilA |  63,717.150 us |   312.5381 us |   260.9835 us |  82.02 |    0.51 |
+|                  |        |                |               |               |        |         |
+|      SudokuSpice |  EvilB |   1,967.079 us |    13.0652 us |    12.2212 us |   1.00 |    0.00 |
+| SudokuSolverLite |  EvilB |  49,377.684 us |   114.2272 us |   101.2594 us |  25.10 |    0.18 |
+|      SudokuSharp |  EvilB |   5,155.765 us |    32.9996 us |    27.5562 us |   2.62 |    0.02 |
