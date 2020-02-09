@@ -1,25 +1,10 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 
 namespace SudokuSpice
 {
     public class RestrictUtilsTest
     {
-        [Fact]
-        public void CreateStandardRestricts_CreatesExpectedRestricts()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
-            });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-
-            Assert.IsType<RowRestrict>(restricts[0]);
-            Assert.IsType<ColumnRestrict>(restricts[1]);
-            Assert.IsType<BoxRestrict>(restricts[2]);
-        }
-
         [Fact]
         public void RestrictAllPossibleValues_Succeeds()
         {
@@ -29,7 +14,12 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restricts = new List<ISudokuRestrict>
+            {
+                new RowRestrict(puzzle),
+                new ColumnRestrict(puzzle),
+                new BoxRestrict(puzzle, true)
+            };
 
             RestrictUtils.RestrictAllUnsetPossibleValues(puzzle, restricts);
 

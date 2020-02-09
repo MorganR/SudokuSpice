@@ -3,10 +3,10 @@
     public class UniqueInColumnHeuristic : ISudokuHeuristic
     {
         private readonly Puzzle _puzzle;
-        private readonly ColumnRestrict _restrict;
+        private readonly IColumnRestrict _restrict;
         private readonly BitVector[] _possiblesToCheckInColumn;
 
-        public UniqueInColumnHeuristic(Puzzle puzzle, ColumnRestrict restrict)
+        public UniqueInColumnHeuristic(Puzzle puzzle, IColumnRestrict restrict)
         {
             _puzzle = puzzle;
             _restrict = restrict;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SudokuSpice.Benchmark
 {
@@ -91,7 +90,6 @@ public static class Puzzles
                 {   5, null, null, null, null,    9, null, null, null},
                 {null, null, null, null, null, null, null,    4, null}
             }),
-       
     };
 
     public static IEnumerable<PuzzleSample> MegaPuzzles() => new[]

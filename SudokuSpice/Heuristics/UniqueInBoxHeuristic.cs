@@ -3,10 +3,10 @@
     public class UniqueInBoxHeuristic : ISudokuHeuristic
     {
         private readonly Puzzle _puzzle;
-        private readonly BoxRestrict _restrict;
+        private readonly IBoxRestrict _restrict;
         private readonly BitVector[] _possiblesToCheckInBox;
 
-        public UniqueInBoxHeuristic(Puzzle puzzle, BoxRestrict restrict)
+        public UniqueInBoxHeuristic(Puzzle puzzle, IBoxRestrict restrict)
         {
             _puzzle = puzzle;
             _restrict = restrict;

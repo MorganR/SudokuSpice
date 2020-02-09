@@ -60,6 +60,24 @@ namespace SudokuSpice
                 return _allUnset;
             }
         }
+        
+        public void Revert(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
+        {
+            if (!_puzzle[in c].HasValue)
+            {
+                throw new ArgumentException("Cannot revert a restrict for an unset puzzle coordinate");
+            }
+            if (_IsOnBackwardDiag(in c))
+            {
+                _unsetBackwardDiag.SetBit(val - 1);
+                _AddUnsetFromBackwardDiag(modifiedCoords);
+            }
+            if (_IsOnForwardDiag(in c))
+            {
+                _unsetForwardDiag.SetBit(val - 1);
+                _AddUnsetFromForwardDiag(modifiedCoords);
+            }
+        }
 
         public void Update(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
         {
@@ -75,24 +93,6 @@ namespace SudokuSpice
             if (_IsOnForwardDiag(in c))
             {
                 _unsetForwardDiag.UnsetBit(val - 1);
-                _AddUnsetFromForwardDiag(modifiedCoords);
-            }
-        }
-
-        public void Revert(in Coordinate c, int val, IList<Coordinate> modifiedCoords)
-        {
-            if (!_puzzle[in c].HasValue)
-            {
-                throw new ArgumentException("Cannot revert a restrict for an unset puzzle coordinate");
-            }
-            if (_IsOnBackwardDiag(in c))
-            {
-                _unsetBackwardDiag.SetBit(val - 1);
-                _AddUnsetFromBackwardDiag(modifiedCoords);
-            }
-            if (_IsOnForwardDiag(in c))
-            {
-                _unsetForwardDiag.SetBit(val - 1);
                 _AddUnsetFromForwardDiag(modifiedCoords);
             }
         }

@@ -29,16 +29,16 @@ public class CsvBenchmarker
     {
         var sample = _GetSample();
         var puzzle = new Puzzle(sample.Puzzle.NullableMatrix);
-        var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
         var sudoku = new Solver(
             new FlexibleSquareTracker(
                 puzzle,
-                restricts,
+                new List<ISudokuRestrict> { restrict },
                 new List<ISudokuHeuristic>
                 {
-                    new UniqueInRowHeuristic(puzzle, (RowRestrict) restricts[0]),
-                    new UniqueInColumnHeuristic(puzzle, (ColumnRestrict) restricts[1]),
-                    new UniqueInBoxHeuristic(puzzle, (BoxRestrict) restricts[2])
+                    new UniqueInRowHeuristic(puzzle, restrict),
+                    new UniqueInColumnHeuristic(puzzle, restrict),
+                    new UniqueInBoxHeuristic(puzzle, restrict)
                 }));
         sudoku.Solve();
         return puzzle.NumEmptySquares == 0;

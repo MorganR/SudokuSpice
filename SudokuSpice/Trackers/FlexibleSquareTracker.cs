@@ -19,9 +19,9 @@ namespace SudokuSpice
         {
             _puzzle = puzzle;
             _restricts = (restricts == null || restricts.Count == 0)
-                ? RestrictUtils.CreateStandardRestricts(_puzzle)
+                ? new List<ISudokuRestrict> { new StandardRestrict(puzzle) }
                 : restricts;
-            _heuristics = heuristics == null ? new List<ISudokuHeuristic>() : heuristics;
+            _heuristics = heuristics ?? new List<ISudokuHeuristic>();
             _modifiedCoords = new List<Coordinate>(_puzzle.Size * _restricts.Count);
             _coordsThatUsedHeuristics = new Stack<Coordinate>(_puzzle.NumEmptySquares);
             RestrictUtils.RestrictAllUnsetPossibleValues(_puzzle, _restricts);

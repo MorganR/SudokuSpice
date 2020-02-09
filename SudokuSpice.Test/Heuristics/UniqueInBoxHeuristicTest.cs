@@ -14,9 +14,9 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
-            var heuristic = new UniqueInBoxHeuristic(puzzle, (BoxRestrict)restricts[2]);
-            RestrictUtils.RestrictAllUnsetPossibleValues(puzzle, restricts);
+            var restrict = new StandardRestrict(puzzle);
+            var heuristic = new UniqueInBoxHeuristic(puzzle, restrict);
+            RestrictUtils.RestrictAllUnsetPossibleValues(puzzle, new List<ISudokuRestrict> { restrict });
 
             Assert.Equal(new BitVector(0b0111), puzzle.GetPossibleValues(1, 1)); // Pre-modified
 

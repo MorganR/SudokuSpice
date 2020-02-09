@@ -74,40 +74,6 @@ namespace SudokuSpice
         }
 
         [Fact]
-        public void Update_OnUnsetCoord_Throws()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1,            null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, null /* 1 */, 4},
-                {null /* 4 */, 1,            null /* 2 */, 3},
-                {3,            null /* 2 */, null /* 4 */, 1}
-            });
-            var restrict = new ColumnRestrict(puzzle);
-            var ex = Assert.Throws<ArgumentException>(() =>
-            {
-                restrict.Update(new Coordinate(1, 1), 3, new List<Coordinate>());
-            });
-            Assert.Contains("Cannot update a restrict for an unset puzzle coordinate", ex.Message);
-        }
-
-        [Fact]
-        public void Revert_OnUnsetCoord_Throws()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1,            null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, null /* 1 */, 4},
-                {null /* 4 */, 1,            null /* 2 */, 3},
-                {3,            null /* 2 */, null /* 4 */, 1}
-            });
-            var restrict = new ColumnRestrict(puzzle);
-            var ex = Assert.Throws<ArgumentException>(() =>
-            {
-                restrict.Revert(new Coordinate(1, 1), 3, new List<Coordinate>());
-            });
-            Assert.Contains("Cannot revert a restrict for an unset puzzle coordinate", ex.Message);
-        }
-
-        [Fact]
         public void Revert_RevertsSpecifiedColumn()
         {
             var puzzle = new Puzzle(new int?[,] {

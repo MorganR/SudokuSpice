@@ -8,27 +8,27 @@ namespace SudokuSpice
     public interface ISudokuRestrict
     {
         /// <summary>
-        /// Updates restricts based on setting the given coordinate to the given value. Appends
-        /// modified coordinates to the given list.
+        /// Gets the possible values for the given coordinate based on this restriction.
         /// </summary>
-        /// <param name="c">The coordinate to update.</param>
-        /// <param name="val">The value to set <c>c</c> to.</param>
-        /// <param name="modifiedCoords">A list to append coordinates to where the possible values
-        ///     were modified.</param>
-        void Update(in Coordinate c, int val, IList<Coordinate> modifiedCoords);
+        /// <returns>The possible values represented as a bit-vector.</returns>
+        BitVector GetPossibleValues(in Coordinate c);
         /// <summary>
         /// Undoes an update for the given value at the specified coordinate. Appends modified
         /// coordinates to the given list.
         /// </summary>
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
-        /// <param name="modifiedCoords">A list to append coordinates to where the possible values
+        /// <param name="affectedCoords">A list to append coordinates to where the possible values
         ///     were modified.</param>
-        void Revert(in Coordinate c, int val, IList<Coordinate> modifiedCoords);
+        void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords);
         /// <summary>
-        /// Gets the possible values for the given coordinate based on this restriction.
+        /// Updates restricts based on setting the given coordinate to the given value. Appends
+        /// modified coordinates to the given list.
         /// </summary>
-        /// <returns>The possible values represented as a bit-vector.</returns>
-        BitVector GetPossibleValues(in Coordinate c);
+        /// <param name="c">The coordinate to update.</param>
+        /// <param name="val">The value to set <c>c</c> to.</param>
+        /// <param name="affectedCoords">A list to append coordinates to where the possible values
+        ///     were modified.</param>
+        void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords);
     }
 }

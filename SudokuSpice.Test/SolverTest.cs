@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace SudokuSpice
@@ -10,11 +9,11 @@ namespace SudokuSpice
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                puzzle,
-               restricts,
-               _CreateStandardHeuristics(puzzle, restricts));
+               new List<ISudokuRestrict> { restrict },
+               _CreateStandardHeuristics(puzzle, restrict));
             var solver = new Solver(squareTracker);
             solver.Solve();
             _AssertPuzzleSolved(puzzle);
@@ -46,9 +45,7 @@ namespace SudokuSpice
                     puzzle,
                     new List<ISudokuRestrict>
                     {
-                        new RowRestrict(puzzle),
-                        new ColumnRestrict(puzzle),
-                        new BoxRestrict(puzzle),
+                        new StandardRestrict(puzzle),
                         new DiagonalRestrict(puzzle),
                     }));
             solver.Solve();
@@ -179,13 +176,13 @@ namespace SudokuSpice
         }
 
         private IReadOnlyList<ISudokuHeuristic> _CreateStandardHeuristics(
-            Puzzle puzzle, IReadOnlyList<ISudokuRestrict> standardRestricts)
+            Puzzle puzzle, StandardRestrict standardRestrict)
         {
             return new List<ISudokuHeuristic>
                 {
-                    new UniqueInRowHeuristic(puzzle, (RowRestrict) standardRestricts[0]),
-                    new UniqueInColumnHeuristic(puzzle, (ColumnRestrict) standardRestricts[1]),
-                    new UniqueInBoxHeuristic(puzzle, (BoxRestrict) standardRestricts[2]),
+                    new UniqueInRowHeuristic(puzzle, standardRestrict),
+                    new UniqueInColumnHeuristic(puzzle, standardRestrict),
+                    new UniqueInBoxHeuristic(puzzle, standardRestrict),
                 };
         }
     }

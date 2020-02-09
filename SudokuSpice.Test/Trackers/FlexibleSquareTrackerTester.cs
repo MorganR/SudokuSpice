@@ -15,11 +15,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3,            2,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             Assert.True(new HashSet<int> { 3, 4 }.SetEquals(squareTracker.GetPossibleValues(new Coordinate(0, 1))));
             Assert.True(new HashSet<int> { 3 }.SetEquals(squareTracker.GetPossibleValues(new Coordinate(0, 2))));
             Assert.True(new HashSet<int> { 2, 4 }.SetEquals(squareTracker.GetPossibleValues(new Coordinate(1, 0))));
@@ -40,11 +40,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3,            2,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var best = squareTracker.GetBestCoordinateToGuess();
             Assert.True(best.Equals(new Coordinate(0, 2))
                         || best.Equals(new Coordinate(2, 0))
@@ -61,11 +61,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3,            2,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             Assert.Equal(9, squareTracker.GetNumEmptySquares());
         }
 
@@ -78,11 +78,11 @@ namespace SudokuSpice
                 {4, 1, 2, 3},
                 {3, 2, 4, 1}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             Assert.Equal(0, squareTracker.GetNumEmptySquares());
         }
 
@@ -95,11 +95,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3,            2,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             int numEmptyToStart = squareTracker.GetNumEmptySquares();
 
             squareTracker.TrySet(new Coordinate(0, 1), 4);
@@ -115,11 +115,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3,            2,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var c = new Coordinate(0, 1);
             squareTracker.TrySet(in c, 4);
             int numEmptyToStart = squareTracker.GetNumEmptySquares();
@@ -137,11 +137,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3, null /* 2 */,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var coord = new Coordinate(2, 0);
             var value = 4;
 
@@ -180,11 +180,11 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var expectedUnsetCoords = puzzle.GetUnsetCoords().ToArray();
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var coord = new Coordinate(0, 1);
             var wrongValue = 3;
 
@@ -215,11 +215,11 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var expectedUnsetCoords = puzzle.GetUnsetCoords().ToArray();
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var coord = new Coordinate(1, 0);
             var wrongValue = 4;
 
@@ -250,11 +250,11 @@ namespace SudokuSpice
                 {           3,            2,            4, null /* 1 */}
             });
             var expectedUnsetCoords = puzzle.GetUnsetCoords().ToArray();
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var coord = new Coordinate(0, 2);
             Assert.True(squareTracker.TrySet(in coord, 3));
 
@@ -284,11 +284,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3,            2,            4, null /* 1 */}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
             var coord = new Coordinate(0, 1);
 
             Assert.Throws<InvalidOperationException>(() => squareTracker.Unset(in coord));
@@ -303,11 +303,11 @@ namespace SudokuSpice
                 {null /* 4 */,            1, null /* 2 */, null /* 3 */},
                 {           3, null /* 2 */, null /* 4 */,            1}
             });
-            var restricts = RestrictUtils.CreateStandardRestricts(puzzle);
+            var restrict = new StandardRestrict(puzzle);
             var squareTracker = new FlexibleSquareTracker(
                 puzzle,
-                restricts,
-                _CreateStandardHeuristics(puzzle, restricts));
+                new List<ISudokuRestrict> { restrict },
+                _CreateStandardHeuristics(puzzle, restrict));
 
             Assert.Equal(new int[] { 3, 4 }, squareTracker.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new int[] { 3, 4 }, squareTracker.GetPossibleValues(new Coordinate(0, 2)));
@@ -338,13 +338,13 @@ namespace SudokuSpice
         }
 
         private IReadOnlyList<ISudokuHeuristic> _CreateStandardHeuristics(
-            Puzzle puzzle, IReadOnlyList<ISudokuRestrict> standardRestricts)
+            Puzzle puzzle, StandardRestrict restrict)
         {
             return new List<ISudokuHeuristic>
                 {
-                    new UniqueInRowHeuristic(puzzle, (RowRestrict) standardRestricts[0]),
-                    new UniqueInColumnHeuristic(puzzle, (ColumnRestrict) standardRestricts[1]),
-                    new UniqueInBoxHeuristic(puzzle, (BoxRestrict) standardRestricts[2]),
+                    new UniqueInRowHeuristic(puzzle, restrict),
+                    new UniqueInColumnHeuristic(puzzle, restrict),
+                    new UniqueInBoxHeuristic(puzzle, restrict),
                 };
         }
     }

@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SudokuSpice
 {
     /// <summary>
     /// Restricts that each 'box' contains all unique values.
     /// </summary>
-    public class BoxRestrict : BasicRestrict
+    public class BoxRestrict : ISudokuRestrict, IBoxRestrict
     {
-        public BoxRestrict(Puzzle puzzle) : base(puzzle)
+        private readonly Puzzle _puzzle;
+        private readonly BitVector[] _unsetBoxValues;
+        private readonly bool _skipMatchingRowAndCol;
+
+        public BoxRestrict(Puzzle puzzle, bool skipMatchingRowAndCol)
         {
+            _puzzle = puzzle;
+            _unsetBoxValues = new BitVector[puzzle.Size];
+            _skipMatchingRowAndCol = skipMatchingRowAndCol;
+            for (int i = 0; i < puzzle.Size; i++)
+            {
+                _unsetBoxValues[i] = BitVector.CreateWithSize(puzzle.Size);
+            }
             int boxIdx = -1;
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -28,27 +40,45 @@ namespace SudokuSpice
                         continue;
                     }
                     int bit = val.Value - 1;
-                    if (!UnsetValues[boxIdx].IsBitSet(bit))
+                    if (!_unsetBoxValues[boxIdx].IsBitSet(bit))
                     {
                         throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
                     }
-                    UnsetValues[boxIdx].UnsetBit(bit);
+                    _unsetBoxValues[boxIdx].UnsetBit(bit);
                 }
             }
         }
 
-        public BitVector GetPossibleBoxValues(int box) => UnsetValues[box];
+        public BitVector GetPossibleValues(in Coordinate c) => _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)];
 
-        protected internal override int GetIndex(in Coordinate c)
+        public BitVector GetPossibleBoxValues(int box) => _unsetBoxValues[box];
+
+        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            return Puzzle.GetBoxIndex(c.Row, c.Column);
+            Debug.Assert(_puzzle[in c].HasValue, "Cannot revert a restrict for an unset puzzle coordinate");
+            int idx = _puzzle.GetBoxIndex(c.Row, c.Column);
+            _unsetBoxValues[idx].SetBit(val - 1);
+            _AddUnsetFromBox(in c, idx, affectedCoords);
         }
 
-        protected internal override void AddUnsetFromIndex(int box, IList<Coordinate> unsetCoords)
+        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            foreach (var c in Puzzle.YieldUnsetCoordsForBox(box))
+            Debug.Assert(_puzzle[in c].HasValue, "Cannot update a restrict for an unset puzzle coordinate");
+            int idx = _puzzle.GetBoxIndex(c.Row, c.Column);
+            _unsetBoxValues[idx].UnsetBit(val - 1);
+            _AddUnsetFromBox(in c, idx, affectedCoords);
+        }
+
+        private void _AddUnsetFromBox(in Coordinate c, int box, IList<Coordinate> unsetCoords)
+        {
+            foreach (var unsetCoord in _puzzle.YieldUnsetCoordsForBox(box))
             {
-                unsetCoords.Add(c);
+                if (_skipMatchingRowAndCol &&
+                    (c.Column == unsetCoord.Column || c.Row == unsetCoord.Row))
+                {
+                    continue;
+                }
+                unsetCoords.Add(unsetCoord);
             }
         }
     }
