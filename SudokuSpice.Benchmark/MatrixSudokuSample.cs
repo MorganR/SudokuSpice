@@ -9,11 +9,11 @@ class MatrixSudokuSample
 
     internal MatrixSudokuSample(SudokuSample sample)
     {
-        Puzzle = new PuzzleSample("puzzle", NumberStringToMatrix(sample.Puzzle)); 
-        Solution = new PuzzleSample("solution", NumberStringToMatrix(sample.Solution)); 
+        Puzzle = new PuzzleSample("puzzle", _NumberStringToMatrix(sample.Puzzle)); 
+        Solution = new PuzzleSample("solution", _NumberStringToMatrix(sample.Solution)); 
     }
 
-    private static int?[,] NumberStringToMatrix(string nums)
+    private static int?[,] _NumberStringToMatrix(string nums)
     {
         var matrix = new int?[9,9];
         int idx = -1;
