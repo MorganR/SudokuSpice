@@ -84,35 +84,6 @@ namespace SudokuSpice
         }
 
         [Fact]
-        public void Set_PresetValue_Throws()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            Assert.Throws<InvalidOperationException>(
-                () => puzzle[0, 0] = 2
-            );
-        }
-
-        [Fact]
-        public void Set_PreviouslySetValue_Throws()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            puzzle[0, 1] = 3;
-            Assert.Throws<InvalidOperationException>(
-                () => puzzle[0, 1] = 4
-            );
-        }
-
-        [Fact]
         public void Unset_PreviouslySetValue_Succeeds()
         {
             var puzzle = new Puzzle(new int?[,] {
@@ -175,25 +146,6 @@ namespace SudokuSpice
             });
             puzzle.SetPossibleValues(0, 1, new BitVector(0b1100));
             Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(0, 1));
-        }
-
-        [Fact]
-        public void SetPossibleValues_InvalidValue_Throws()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            var ex = Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    puzzle.SetPossibleValues(0, 0, new BitVector(0b1100));
-                });
-            Assert.Contains(
-                ex.Message,
-                "Must include the currently set value (1) in the possible values for square (0, 0).");
         }
 
         [Theory]

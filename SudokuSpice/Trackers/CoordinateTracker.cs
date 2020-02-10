@@ -10,7 +10,7 @@ namespace SudokuSpice
     {
         private readonly int[,] _coordToIdx;
         private readonly Coordinate[] _coords;
-        private int _numTracked = 0;
+        public int NumTracked { get; private set; }
         private int _numAdded = 0;
 
         public CoordinateTracker(int sideLength)
@@ -36,45 +36,45 @@ namespace SudokuSpice
 
         public void Track(in Coordinate c)
         {
-            if (_numTracked == _numAdded)
+            if (NumTracked == _numAdded)
             {
                 throw new InvalidOperationException("The tracker is full.");
             }
             int idx = _coordToIdx[c.Row, c.Column];
-            if (idx < _numTracked)
+            if (idx < NumTracked)
             {
                 throw new InvalidOperationException($"Coordinate {c} is already tracked.");
             }
-            var otherUntrackedCoord = _coords[_numTracked];
+            var otherUntrackedCoord = _coords[NumTracked];
             _coords[idx] = otherUntrackedCoord;
             _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = idx;
-            _coords[_numTracked] = c;
-            _coordToIdx[c.Row, c.Column] = _numTracked;
-            _numTracked++;
+            _coords[NumTracked] = c;
+            _coordToIdx[c.Row, c.Column] = NumTracked;
+            NumTracked++;
         }
 
         public void Untrack(in Coordinate c)
         {
-            if (_numTracked == 0)
+            if (NumTracked == 0)
             {
                 throw new InvalidOperationException("The tracker is empty.");
             }
             var idx = _coordToIdx[c.Row, c.Column];
-            if (idx >= _numTracked)
+            if (idx >= NumTracked)
             {
                 throw new InvalidOperationException($"Coordinate {c} is already untracked.");
             }
-            _numTracked--;
-            var lastTrackedCoord = _coords[_numTracked];
+            NumTracked--;
+            var lastTrackedCoord = _coords[NumTracked];
             _coords[idx] = lastTrackedCoord;
             _coordToIdx[lastTrackedCoord.Row, lastTrackedCoord.Column] = idx;
-            _coords[_numTracked] = c;
-            _coordToIdx[c.Row, c.Column] = _numTracked;
+            _coords[NumTracked] = c;
+            _coordToIdx[c.Row, c.Column] = NumTracked;
         }
 
         public ReadOnlySpan<Coordinate> GetTrackedCoords()
         {
-            return new ReadOnlySpan<Coordinate>(_coords, 0, _numTracked);
+            return new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
@@ -17,7 +18,7 @@ namespace SudokuSpice
         /// <para>A mini box is a square region that must contain each possible value exactly once.</para>
         public int BoxSize { get; }
         /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
-        public int NumEmptySquares { get; private set; }
+        public int NumEmptySquares { get { return _unsetCoordsTracker.NumTracked; } }
         private readonly int?[,] _squares;
         private readonly BitVector[,] _possibleSquareValues;
         private readonly CoordinateTracker _unsetCoordsTracker;
@@ -50,7 +51,6 @@ namespace SudokuSpice
                 {
                     if (!_squares[row, col].HasValue)
                     {
-                        NumEmptySquares++;
                         _possibleSquareValues[row, col] = BitVector.CreateWithSize(Size);
                         _unsetCoordsTracker.Add(new Coordinate(row, col));
                     }
@@ -104,12 +104,9 @@ namespace SudokuSpice
         /// <param name="vector"></param>
         public void SetPossibleValues(int row, int col, BitVector vector)
         {
-            if (_squares[row, col].HasValue
-                && !vector.IsBitSet(_squares[row, col].Value - 1))
-            {
-                throw new ArgumentException(
-                    $"Must include the currently set value ({_squares[row, col].Value}) in the possible values for square ({row}, {col}).");
-            }
+            Debug.Assert(!_squares[row, col].HasValue
+                || vector.IsBitSet(_squares[row, col].Value - 1),
+                $"Must include the currently set value in the possible values for square ({row}, {col}).");
             _possibleSquareValues[row, col] = vector;
         }
 
@@ -217,31 +214,20 @@ namespace SudokuSpice
         /// already has a value.</exception>
         private void _Set(int row, int col, int val)
         {
-            if (_squares[row, col].HasValue)
-            {
-                throw new InvalidOperationException($"Square ({row}, {col}) already has a value.");
-            }
-            if (!_possibleSquareValues[row, col].IsBitSet(val - 1))
-            {
-                throw new InvalidOperationException($"Can't set square ({row}, {col}) to value {val}.");
-            }
-
+            Debug.Assert(!_squares[row, col].HasValue, $"Square ({row}, {col}) already has a value.");
+            Debug.Assert(_possibleSquareValues[row, col].IsBitSet(val - 1),
+                $"Can't set square ({row}, {col}) to value {val}.");
             _squares[row, col] = val;
             _unsetCoordsTracker.Untrack(new Coordinate(row, col));
-            NumEmptySquares--;
         }
 
         /// <summary>Unsets the specified square.</summary>
         private void _Unset(int row, int col)
         {
-            if (!_squares[row, col].HasValue)
-            {
-                throw new InvalidOperationException(
-                    $"Square ({row}, {col}) doesn't have a value, so can't be unset.");
-            }
+            Debug.Assert(_squares[row, col].HasValue,
+                $"Square ({row}, {col}) doesn't have a value, so can't be unset.");
             _unsetCoordsTracker.Track(new Coordinate(row, col));
             _squares[row, col] = null;
-            NumEmptySquares++;
         }
 
         private void _AppendBoxDividerRow(StringBuilder strBuild)
