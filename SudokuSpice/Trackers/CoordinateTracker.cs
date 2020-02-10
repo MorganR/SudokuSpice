@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice
 {
     /// <summary>Efficiently tracks a group of coordinates.</summary>
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-
     public class CoordinateTracker
     {
         private readonly int[,] _coordToIdx;
@@ -36,39 +36,29 @@ namespace SudokuSpice
 
         public void Track(in Coordinate c)
         {
-            if (NumTracked == _numAdded)
-            {
-                throw new InvalidOperationException("The tracker is full.");
-            }
+            Debug.Assert(NumTracked != _numAdded, "The tracker is full.");
             int idx = _coordToIdx[c.Row, c.Column];
-            if (idx < NumTracked)
-            {
-                throw new InvalidOperationException($"Coordinate {c} is already tracked.");
-            }
+            Debug.Assert(idx >= 0, $"Coordinate {c} was never added.");
+            Debug.Assert(idx >= NumTracked, $"Coordinate {c} is already tracked.");
             var otherUntrackedCoord = _coords[NumTracked];
             _coords[idx] = otherUntrackedCoord;
-            _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = idx;
             _coords[NumTracked] = c;
+            _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = idx;
             _coordToIdx[c.Row, c.Column] = NumTracked;
             NumTracked++;
         }
 
         public void Untrack(in Coordinate c)
         {
-            if (NumTracked == 0)
-            {
-                throw new InvalidOperationException("The tracker is empty.");
-            }
+            Debug.Assert(NumTracked > 0, "The tracker is empty");
             var idx = _coordToIdx[c.Row, c.Column];
-            if (idx >= NumTracked)
-            {
-                throw new InvalidOperationException($"Coordinate {c} is already untracked.");
-            }
+            Debug.Assert(idx >= 0, $"Coordinate {c} was never added.");
+            Debug.Assert(idx < NumTracked, $"Coordinate {c} is already untracked.");
             NumTracked--;
             var lastTrackedCoord = _coords[NumTracked];
             _coords[idx] = lastTrackedCoord;
-            _coordToIdx[lastTrackedCoord.Row, lastTrackedCoord.Column] = idx;
             _coords[NumTracked] = c;
+            _coordToIdx[lastTrackedCoord.Row, lastTrackedCoord.Column] = idx;
             _coordToIdx[c.Row, c.Column] = NumTracked;
         }
 
