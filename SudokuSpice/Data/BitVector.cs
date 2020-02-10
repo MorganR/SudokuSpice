@@ -4,13 +4,16 @@ using System.Runtime.Intrinsics.X86;
 
 namespace SudokuSpice
 {
+    /// <summary>
+    /// Tracks a vector of bits in a uint.
+    /// </summary>
     public struct BitVector : IEquatable<BitVector>
     {
-        private static readonly int[] _masks = _CreateMasks();
+        private static readonly uint[] _masks = _CreateMasks();
 
-        private static int[] _CreateMasks()
+        private static uint[] _CreateMasks()
         {
-            var masks = new int[32];
+            var masks = new uint[32];
             masks[0] = 1;
             for (int i = 1; i < 32; i++)
             {
@@ -22,7 +25,7 @@ namespace SudokuSpice
         /// <summary>
         /// Gets the data stored in this bit vector, as an int.
         /// </summary>
-        public int Data { get; private set; }
+        public uint Data { get; private set; }
 
         /// <summary>
         /// Gets the count of bits that are set.
@@ -33,7 +36,7 @@ namespace SudokuSpice
             {
                 if (Popcnt.IsSupported)
                 {
-                    return (int)Popcnt.PopCount((uint)Data);
+                    return (int)Popcnt.PopCount(Data);
                 }
                 int count = 0;
                 for (int i = 0; i < 32; i++)
@@ -51,7 +54,7 @@ namespace SudokuSpice
         /// Constructs a bit vector with the given data.
         /// </summary>
         /// <param name="data">The data to use for this bit vector.</param>
-        public BitVector(int data)
+        public BitVector(uint data)
         {
             Data = data;
         }
@@ -66,7 +69,11 @@ namespace SudokuSpice
             {
                 throw new ArgumentOutOfRangeException(nameof(size), size, "Must be between 0 and 32 inclusive.");
             }
-            return new BitVector((1 << size) - 1);
+            if (Bmi2.IsSupported)
+            {
+                return new BitVector(Bmi2.ZeroHighBits(uint.MaxValue, (uint)size));
+            }
+            return new BitVector((uint)((1 << size) - 1));
         }
 
         /// <summary>
@@ -156,7 +163,7 @@ namespace SudokuSpice
             return false;
         }
 
-        public override int GetHashCode() => Data;
+        public override int GetHashCode() => (int)Data;
 
         public override string ToString() => Convert.ToString(Data, 2);
 

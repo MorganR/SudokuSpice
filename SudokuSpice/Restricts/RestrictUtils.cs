@@ -13,7 +13,7 @@ namespace SudokuSpice
                 puzzle.SetPossibleValues(
                     c.Row, c.Column,
                     restricts.Aggregate(
-                        new BitVector(-1),
+                        new BitVector(uint.MaxValue),
                         (agg, r) => BitVector.FindIntersect(agg, r.GetPossibleValues(in c))));
                 if (puzzle.GetPossibleValues(c.Row, c.Column).IsEmpty())
                 {

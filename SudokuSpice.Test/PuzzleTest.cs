@@ -124,7 +124,7 @@ namespace SudokuSpice
         [InlineData(0, 1, 0b1111)]
         [InlineData(0, 3, 0b0010)]
         [InlineData(1, 0, 0b1111)]
-        public void GetPossibleValues_Succeeds(int row, int col, int possibles)
+        public void GetPossibleValues_Succeeds(int row, int col, uint possibles)
         {
             var puzzle = new Puzzle(new int?[,] {
                 {1, null, null, 2},

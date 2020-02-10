@@ -31,7 +31,7 @@ namespace SudokuSpice
 
         public override int GetHashCode()
         {
-            return Row + (Column << 10);
+            return Row + (Column << 16);
         }
 
         public bool Equals(Coordinate other)

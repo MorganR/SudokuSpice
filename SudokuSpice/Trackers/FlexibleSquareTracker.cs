@@ -135,7 +135,7 @@ namespace SudokuSpice
             {
                 _puzzle.SetPossibleValues(modifiedCoord.Row, modifiedCoord.Column,
                     _restricts.Aggregate(
-                        new BitVector(-1),
+                        new BitVector(uint.MaxValue),
                         (agg, r) => BitVector.FindIntersect(
                             agg, r.GetPossibleValues(in modifiedCoord))));
             }

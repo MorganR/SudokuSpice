@@ -8,9 +8,9 @@ namespace SudokuSpice
     {
         [Theory]
         [InlineData(0)]
-        [InlineData(-1)]
+        [InlineData(uint.MaxValue)]
         [InlineData(0b10101)]
-        public void Constructor_Succeeds(int data)
+        public void Constructor_Succeeds(uint data)
         {
             var vector = new BitVector(data);
             Assert.Equal(data, vector.Data);
@@ -21,7 +21,7 @@ namespace SudokuSpice
         [InlineData(1, 1)]
         [InlineData(2, 0b11)]
         [InlineData(8, 0b1111_1111)]
-        public void CreateWithSize_ValidValues_Succeeds(int size, int data)
+        public void CreateWithSize_ValidValues_Succeeds(int size, uint data)
         {
             var vector = BitVector.CreateWithSize(size);
             Assert.Equal(data, vector.Data);
@@ -37,9 +37,9 @@ namespace SudokuSpice
 
         [Theory]
         [InlineData(0, 0, 0)]
-        [InlineData(0, -1, 0)]
+        [InlineData(0, uint.MaxValue, 0)]
         [InlineData(0b1101_1001, 0b0100_0111, 0b0100_0001)]
-        public void FindIntersect_IsCorrect(int dataA, int dataB, int intersectData)
+        public void FindIntersect_IsCorrect(uint dataA, uint dataB, uint intersectData)
         {
             var vectorA = new BitVector(dataA);
             var vectorB = new BitVector(dataB);
@@ -48,9 +48,9 @@ namespace SudokuSpice
 
         [Theory]
         [InlineData(0, 0, 0)]
-        [InlineData(0, -1, -1)]
+        [InlineData(0, uint.MaxValue, uint.MaxValue)]
         [InlineData(0b1101_1001, 0b0100_0111, 0b1101_1111)]
-        public void FindUnion_IsCorrect(int dataA, int dataB, int unionData)
+        public void FindUnion_IsCorrect(uint dataA, uint dataB, uint unionData)
         {
             var vectorA = new BitVector(dataA);
             var vectorB = new BitVector(dataB);
@@ -62,9 +62,9 @@ namespace SudokuSpice
         {
             var vector = new BitVector(0b1001);
             vector.SetBit(0);
-            Assert.Equal(0b1001, vector.Data);
+            Assert.Equal<uint>(0b1001, vector.Data);
             vector.SetBit(1);
-            Assert.Equal(0b1011, vector.Data);
+            Assert.Equal<uint>(0b1011, vector.Data);
         }
 
         [Fact]
@@ -72,9 +72,9 @@ namespace SudokuSpice
         {
             var vector = new BitVector(0b1001);
             vector.UnsetBit(1);
-            Assert.Equal(0b1001, vector.Data);
+            Assert.Equal<uint>(0b1001, vector.Data);
             vector.UnsetBit(3);
-            Assert.Equal(0b0001, vector.Data);
+            Assert.Equal<uint>(0b0001, vector.Data);
         }
 
         [Fact]
@@ -95,8 +95,8 @@ namespace SudokuSpice
         [InlineData(0, 0)]
         [InlineData(0b100, 1)]
         [InlineData(0b0011_1101, 5)]
-        [InlineData(-1, 32)]
-        public void Count_OnConstruction_IsCorrect(int data, int numBits)
+        [InlineData(uint.MaxValue, 32)]
+        public void Count_OnConstruction_IsCorrect(uint data, int numBits)
         {
             var vector = new BitVector(data);
             Assert.Equal(numBits, vector.Count);
@@ -129,8 +129,8 @@ namespace SudokuSpice
         [InlineData(0, true)]
         [InlineData(0b100, false)]
         [InlineData(0b0011_1101, false)]
-        [InlineData(-1, false)]
-        public void IsEmpty_Succeeds(int data, bool isEmpty)
+        [InlineData(uint.MaxValue, false)]
+        public void IsEmpty_Succeeds(uint data, bool isEmpty)
         {
             var vector = new BitVector(data);
             Assert.Equal(isEmpty, vector.IsEmpty());
@@ -140,7 +140,7 @@ namespace SudokuSpice
         [InlineData(0, new int[] { })]
         [InlineData(0b100, new int[] { 2 })]
         [InlineData(0b0011_1101, new int[] { 0, 2, 3, 4, 5 })]
-        public void GetSetBits_Succeeds(int data, int[] setBits)
+        public void GetSetBits_Succeeds(uint data, int[] setBits)
         {
             var vector = new BitVector(data);
             Assert.Equal(setBits, vector.GetSetBits());
@@ -151,7 +151,7 @@ namespace SudokuSpice
         [InlineData(0b0100, 4, new int[] { 2 })]
         [InlineData(0b0011_1101, 4, new int[] { 0, 2, 3 })]
         [InlineData(0b1111, 0, new int[] { })]
-        public void GetSetBits_WithMaxBitCount_LimitsToFirstBits(int data, int maxBitCount, int[] setBits)
+        public void GetSetBits_WithMaxBitCount_LimitsToFirstBits(uint data, int maxBitCount, int[] setBits)
         {
             var vector = new BitVector(data);
             Assert.Equal(setBits, vector.GetSetBits(maxBitCount));
@@ -163,7 +163,7 @@ namespace SudokuSpice
         [InlineData(0b0011_1101, 0b1111_1111, false)]
         [InlineData(0b1111, 0, false)]
         [InlineData(0, 0b1111, false)]
-        public void Equals_WithBitVector_IsCorrect(int dataA, int dataB, bool isEqual)
+        public void Equals_WithBitVector_IsCorrect(uint dataA, uint dataB, bool isEqual)
         {
             var vectorA = new BitVector(dataA);
             var vectorB = new BitVector(dataB);
@@ -177,7 +177,7 @@ namespace SudokuSpice
         [InlineData(0, 1, false)]
         [InlineData(5, 5.0, false)]
         [InlineData(0, null, false)]
-        public void Equals_WithObject_IsCorrect(int data, object other, bool isEqual)
+        public void Equals_WithObject_IsCorrect(uint data, object other, bool isEqual)
         {
             var vector = new BitVector(data);
             Assert.Equal(isEqual, vector.Equals(other));
@@ -194,7 +194,7 @@ namespace SudokuSpice
         [InlineData(0, "0")]
         [InlineData(0b1011, "1011")]
         [InlineData(0b1011_0001, "10110001")]
-        public void ToString_ReturnsExpected(int data, string result)
+        public void ToString_ReturnsExpected(uint data, string result)
         {
             var vector = new BitVector(data);
             Assert.Equal(result, vector.ToString());
