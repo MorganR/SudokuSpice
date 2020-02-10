@@ -15,18 +15,8 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpice(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var restrict = new StandardRestrict(p);
-            var sudoku = new Solver(
-                new FlexibleSquareTracker(
-                    p,
-                    new List<ISudokuRestrict> { restrict },
-                    new List<ISudokuHeuristic>
-                    {
-                    new UniqueInRowHeuristic(p, restrict),
-                    new UniqueInColumnHeuristic(p, restrict),
-                    new UniqueInBoxHeuristic(p, restrict)
-                    }));
-            sudoku.Solve();
+            var solver = new Solver(p);
+            solver.Solve();
             return p.NumEmptySquares == 0;
         }
 

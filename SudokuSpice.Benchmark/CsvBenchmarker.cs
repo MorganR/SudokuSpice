@@ -29,18 +29,8 @@ public class CsvBenchmarker
     {
         var sample = _GetSample();
         var puzzle = new Puzzle(sample.Puzzle.NullableMatrix);
-            var restrict = new StandardRestrict(puzzle);
-        var sudoku = new Solver(
-            new FlexibleSquareTracker(
-                puzzle,
-                new List<ISudokuRestrict> { restrict },
-                new List<ISudokuHeuristic>
-                {
-                    new UniqueInRowHeuristic(puzzle, restrict),
-                    new UniqueInColumnHeuristic(puzzle, restrict),
-                    new UniqueInBoxHeuristic(puzzle, restrict)
-                }));
-        sudoku.Solve();
+        var solver = new Solver(puzzle);
+        solver.Solve();
         return puzzle.NumEmptySquares == 0;
     }
 

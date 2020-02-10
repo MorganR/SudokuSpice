@@ -1,10 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace SudokuSpice
 {
     public class SolverTest
     {
+        [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void Solve_WithPuzzleConstructor_SolvesPuzzle(Puzzle puzzle)
+        {
+            var solver = new Solver(puzzle);
+            solver.Solve();
+            _AssertPuzzleSolved(puzzle);
+        }
+
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
@@ -92,6 +102,35 @@ namespace SudokuSpice
                     {null, null, null, null, 2, null, null, null, null},
                     {null, null, 9, 8, null, null, null, 3, 6},
                     {null, null, null, 3, null, 6, null, 9, null},
+                })
+            };
+            yield return new object[] {
+                new Puzzle(new int?[,]
+                {
+                    {   1, null, null, null,    2,    6, null, null, null},
+                    {   7, null,    6, null, null,    5, null, null, null},
+                    {null, null,    5,    8,    1, null, null, null, null},
+                    {null,    5, null, null,    8, null,    1, null, null},
+                    {null,    2, null, null, null, null, null,    8, null},
+                    {null, null,    1, null,    6, null, null,    3, null},
+                    {null, null, null, null,    5,    8,    4, null, null},
+                    {null, null, null,    6, null, null,    3, null,    9},
+                    {null, null, null,    2,    4, null, null, null,    5}
+                })
+            };
+            yield return new object[]
+            {
+                new Puzzle(new int?[,]
+                {
+                    {null, null,    6, null,    1, null,    9, null, null},
+                    {   7, null, null,    3, null, null, null,    6,    5},
+                    {null, null, null, null,    7, null,    4, null,    8},
+                    {   6, null, null, null, null,    1, null, null, null},
+                    {null, null,    2, null, null, null,    5, null, null},
+                    {null, null, null,    2, null, null, null, null,    9},
+                    {   2, null,    8, null,    4, null, null, null, null},
+                    {   1,    3, null, null, null,    7, null, null,    6},
+                    {null, null,    4, null,    8, null,    1, null, null}
                 })
             };
             yield return new object[]
