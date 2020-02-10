@@ -29,9 +29,9 @@ namespace SudokuSpice
         /// values.
         /// </summary>
         /// <param name="c">The coordinate of the square to set.</param>
-        /// <param name="possibleValue">The value to set the square to.</param>
+        /// <param name="value">The value to set the square to.</param>
         /// <returns>True if the set succeeded.</returns>
-        bool TrySet(in Coordinate c, int possibleValue);
+        bool TrySet(in Coordinate c, int value);
         /// <summary>
         /// Unsets a recently set square.
         /// </summary>

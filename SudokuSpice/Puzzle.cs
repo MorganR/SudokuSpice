@@ -107,6 +107,7 @@ namespace SudokuSpice
             Debug.Assert(!_squares[row, col].HasValue
                 || vector.IsBitSet(_squares[row, col].Value - 1),
                 $"Must include the currently set value in the possible values for square ({row}, {col}).");
+            Debug.Assert(!vector.IsEmpty(), "Must set at least one possible value.");
             _possibleSquareValues[row, col] = vector;
         }
 
