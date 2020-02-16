@@ -152,9 +152,9 @@ namespace SudokuSpice
             }
         }
 
-        public bool Equals(BitVector other) => Data == other.Data;
+        public readonly bool Equals(BitVector other) => Data == other.Data;
 
-        public override bool Equals(object? obj)
+        public override readonly bool Equals(object? obj)
         {
             if (obj is BitVector bv)
             {
@@ -163,9 +163,9 @@ namespace SudokuSpice
             return false;
         }
 
-        public override int GetHashCode() => (int)Data;
+        public override readonly int GetHashCode() => (int)Data;
 
-        public override string ToString() => Convert.ToString(Data, 2);
+        public override readonly string ToString() => Convert.ToString(Data, 2);
 
         public static bool operator ==(BitVector a, BitVector b) => a.Data == b.Data;
         public static bool operator !=(BitVector a, BitVector b) => a.Data != b.Data;
