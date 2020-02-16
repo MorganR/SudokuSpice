@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace SudokuSpice
 {
@@ -7,17 +6,7 @@ namespace SudokuSpice
     {
         private readonly ISquareTracker _tracker;
 
-        public Solver(Puzzle puzzle)
-        {
-            var restrict = new StandardRestrict(puzzle);
-            _tracker = new StandardSquareTracker(puzzle, restrict,
-                new List<ISudokuHeuristic>
-                {
-                    new UniqueInRowHeuristic(puzzle, restrict),
-                    new UniqueInColumnHeuristic(puzzle, restrict),
-                    new UniqueInBoxHeuristic(puzzle, restrict)
-                });
-        }
+        public Solver(Puzzle puzzle) : this(new SquareTracker(puzzle)) {}
 
         public Solver(ISquareTracker tracker)
         {
@@ -47,7 +36,7 @@ namespace SudokuSpice
                     {
                         return true;
                     }
-                    _tracker.Unset(in c);
+                    _tracker.UnsetLast();
                 }
             }
             return false;

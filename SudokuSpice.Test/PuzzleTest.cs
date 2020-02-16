@@ -119,34 +119,6 @@ namespace SudokuSpice
             Assert.Equal(box, puzzle.GetBoxIndex(row, col));
         }
 
-        [Theory]
-        [InlineData(0, 0, 0b0001)]
-        [InlineData(0, 1, 0b1111)]
-        [InlineData(0, 3, 0b0010)]
-        [InlineData(1, 0, 0b1111)]
-        public void GetPossibleValues_Succeeds(int row, int col, uint possibles)
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            Assert.Equal(new BitVector(possibles), puzzle.GetPossibleValues(row, col));
-        }
-
-        [Fact]
-        public void SetPossibleValues_ValidValue_Succeeds()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            puzzle.SetPossibleValues(0, 1, new BitVector(0b1100));
-            Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(0, 1));
-        }
 
         [Theory]
         [InlineData(0, 0, 0)]

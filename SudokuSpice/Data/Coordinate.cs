@@ -20,7 +20,7 @@ namespace SudokuSpice
             return $"({Row}, {Column})";
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is Coordinate other)
             {

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using SudokuSpice.Rules;
 using Xunit;
 
 namespace SudokuSpice
@@ -14,26 +14,26 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */,            3},
                 {           3,            2, null /* 4 */,            1}
             });
-            var restrict = new StandardRestrict(puzzle);
-            var heuristic = new UniqueInColumnHeuristic(puzzle, restrict);
-            RestrictUtils.RestrictAllUnsetPossibleValues(puzzle, new List<ISudokuRestrict> { restrict });
+            var possibleValues = new PossibleValues(puzzle);
+            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var heuristic = new UniqueInColumnHeuristic(puzzle, possibleValues, ruleKeeper);
 
-            Assert.Equal(new BitVector(0b1100), puzzle.GetPossibleValues(0, 1)); // Pre-modified
-            Assert.Equal(new BitVector(0b1001), puzzle.GetPossibleValues(2, 1)); // Pre-modified
-            Assert.Equal(new BitVector(0b0101), puzzle.GetPossibleValues(1, 2)); // Pre-modified
-            Assert.Equal(new BitVector(0b1010), puzzle.GetPossibleValues(2, 2)); // Pre-modified
+            Assert.Equal(new BitVector(0b1100), possibleValues[new Coordinate(0, 1)]); // Pre-modified
+            Assert.Equal(new BitVector(0b1001), possibleValues[new Coordinate(2, 1)]); // Pre-modified
+            Assert.Equal(new BitVector(0b0101), possibleValues[new Coordinate(1, 2)]); // Pre-modified
+            Assert.Equal(new BitVector(0b1010), possibleValues[new Coordinate(2, 2)]); // Pre-modified
             
             heuristic.UpdateAll();
             
-            Assert.Equal(new BitVector(0b0010), puzzle.GetPossibleValues(1, 0));
-            Assert.Equal(new BitVector(0b1000), puzzle.GetPossibleValues(2, 0));
-            Assert.Equal(new BitVector(0b1000), puzzle.GetPossibleValues(0, 1)); // Modified
-            Assert.Equal(new BitVector(0b0100), puzzle.GetPossibleValues(1, 1));
-            Assert.Equal(new BitVector(0b0001), puzzle.GetPossibleValues(2, 1)); // Modified
-            Assert.Equal(new BitVector(0b0100), puzzle.GetPossibleValues(0, 2));
-            Assert.Equal(new BitVector(0b0001), puzzle.GetPossibleValues(1, 2)); // Modified
-            Assert.Equal(new BitVector(0b0010), puzzle.GetPossibleValues(2, 2)); // Modified
-            Assert.Equal(new BitVector(0b1000), puzzle.GetPossibleValues(3, 2));
+            Assert.Equal(new BitVector(0b0010), possibleValues[new Coordinate(1, 0)]);
+            Assert.Equal(new BitVector(0b1000), possibleValues[new Coordinate(2, 0)]);
+            Assert.Equal(new BitVector(0b1000), possibleValues[new Coordinate(0, 1)]); // Modified
+            Assert.Equal(new BitVector(0b0100), possibleValues[new Coordinate(1, 1)]);
+            Assert.Equal(new BitVector(0b0001), possibleValues[new Coordinate(2, 1)]); // Modified
+            Assert.Equal(new BitVector(0b0100), possibleValues[new Coordinate(0, 2)]);
+            Assert.Equal(new BitVector(0b0001), possibleValues[new Coordinate(1, 2)]); // Modified
+            Assert.Equal(new BitVector(0b0010), possibleValues[new Coordinate(2, 2)]); // Modified
+            Assert.Equal(new BitVector(0b1000), possibleValues[new Coordinate(3, 2)]);
         }
     }
 }

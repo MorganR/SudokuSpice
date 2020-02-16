@@ -5,7 +5,7 @@ using System.Runtime.Intrinsics.X86;
 namespace SudokuSpice
 {
     /// <summary>
-    /// Tracks a vector of bits in a uint.
+    /// Tracks a vector of 32 bits.
     /// </summary>
     public struct BitVector : IEquatable<BitVector>
     {
@@ -154,7 +154,7 @@ namespace SudokuSpice
 
         public bool Equals(BitVector other) => Data == other.Data;
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is BitVector bv)
             {

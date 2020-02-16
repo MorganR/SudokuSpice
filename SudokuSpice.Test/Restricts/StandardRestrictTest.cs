@@ -90,9 +90,12 @@ namespace SudokuSpice
             var list = new List<Coordinate>();
             var coord = new Coordinate(1, 1);
             var val = 3;
-            puzzle[coord] = val;
             restrict.Update(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(1, 0), new Coordinate(1, 3), new Coordinate(0, 1), new Coordinate(2, 1) }, list);
+            Assert.Equal(
+                new List<Coordinate> {
+                    new Coordinate(1, 0), new Coordinate(1, 3), new Coordinate(0, 1), new Coordinate(2, 1)
+                },
+                list);
             Assert.Equal(new BitVector(0b1000), restrict.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(1, 0)));
             Assert.Equal(new BitVector(0b1000), restrict.GetPossibleValues(new Coordinate(1, 3)));
@@ -109,17 +112,38 @@ namespace SudokuSpice
                 {           3,            2,            4,            1}
             });
             var restrict = new StandardRestrict(puzzle);
-            var list = new List<Coordinate>();
-            var coord = new Coordinate(0, 0);
-            var val = 1;
-            restrict.Revert(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(0, 1), new Coordinate(0, 2), new Coordinate(1, 0), new Coordinate(2, 0), new Coordinate(1, 1) }, list);
-            Assert.Equal(new BitVector(0b1001), restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1101), restrict.GetPossibleValues(new Coordinate(0, 1)));
-            Assert.Equal(new BitVector(0b0100), restrict.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(1, 0)));
-            Assert.Equal(new BitVector(0b1100), restrict.GetPossibleValues(new Coordinate(1, 1)));
-            Assert.Equal(new BitVector(0b1001), restrict.GetPossibleValues(new Coordinate(2, 0)));
+            var initialPossibleValues = _GetPossibleValues(puzzle.Size, restrict);
+            var updatedList = new List<Coordinate>();
+            var coord = new Coordinate(1, 1);
+            var val = 3;
+            restrict.Update(coord, val, updatedList);
+
+            var restrictedList = new List<Coordinate>();
+            restrict.Revert(coord, val, restrictedList);
+
+            Assert.Equal(updatedList, restrictedList);
+            for (int row = 0; row < puzzle.Size; row++)
+            {
+                for (int column = 0; column < puzzle.Size; column++)
+                {
+                    Assert.Equal(
+                        initialPossibleValues[row, column],
+                        restrict.GetPossibleValues(new Coordinate(row, column)));
+                }
+            }
+        }
+
+        private BitVector[,] _GetPossibleValues(int puzzleSize, StandardRestrict restrict)
+        {
+            var possibleValues = new BitVector[puzzleSize, puzzleSize];
+            for (int row = 0; row < puzzleSize; row++)
+            {
+                for (int column = 0; column < puzzleSize; column++)
+                {
+                    possibleValues[row, column] = restrict.GetPossibleValues(new Coordinate(row, column));
+                }
+            }
+            return possibleValues;
         }
     }
 }

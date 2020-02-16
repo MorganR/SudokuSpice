@@ -16,9 +16,10 @@ namespace SudokuSpice
         {
             _puzzle = puzzle;
             _unsetColumnValues = new BitVector[puzzle.Size];
+            BitVector allPossible = BitVector.CreateWithSize(puzzle.Size);
             for (int i = 0; i < puzzle.Size; i++)
             {
-                _unsetColumnValues[i] = BitVector.CreateWithSize(puzzle.Size);
+                _unsetColumnValues[i] = allPossible;
             }
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -32,7 +33,7 @@ namespace SudokuSpice
                     int bit = val.Value - 1;
                     if (!_unsetColumnValues[col].IsBitSet(bit))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException($"Puzzle has duplicate value in column at ({row}, {col}).");
                     }
                     _unsetColumnValues[col].UnsetBit(bit);
                 }
@@ -43,16 +44,21 @@ namespace SudokuSpice
         
         public BitVector GetPossibleColumnValues(int col) => _unsetColumnValues[col];
 
+        public void Revert(in Coordinate c, int val)
+        {
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            _unsetColumnValues[c.Column].SetBit(val - 1);
+        }
+
         public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(_puzzle[in c].HasValue, "Cannot revert a restrict for an unset puzzle coordinate");
-            _unsetColumnValues[c.Column].SetBit(val - 1);
+            this.Revert(in c, val);
             _AddUnsetFromColumn(in c, affectedCoords);
         }
 
         public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(_puzzle[in c].HasValue, "Cannot update a restrict for an unset puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot update a restrict for a set puzzle coordinate");
             _unsetColumnValues[c.Column].UnsetBit(val - 1);
             _AddUnsetFromColumn(in c, affectedCoords);
         }

@@ -1,33 +1,46 @@
-﻿namespace SudokuSpice
+﻿using System.Collections.Generic;
+
+namespace SudokuSpice
 {
     public class UniqueInColumnHeuristic : ISudokuHeuristic
     {
         private readonly Puzzle _puzzle;
+        private readonly PossibleValues _possibleValues;
         private readonly IColumnRestrict _restrict;
         private readonly BitVector[] _possiblesToCheckInColumn;
+        private readonly Stack<IDictionary<Coordinate, BitVector>> _previousPossiblesStack;
 
-        public UniqueInColumnHeuristic(Puzzle puzzle, IColumnRestrict restrict)
+        public UniqueInColumnHeuristic(Puzzle puzzle, PossibleValues possibleValues, IColumnRestrict restrict)
         {
             _puzzle = puzzle;
+            _possibleValues = possibleValues;
             _restrict = restrict;
             _possiblesToCheckInColumn = new BitVector[puzzle.Size];
+            _previousPossiblesStack = new Stack<IDictionary<Coordinate, BitVector>>(puzzle.NumEmptySquares);
         }
 
-        public void UpdateAll()
+        public bool UpdateAll()
         {
+            var previousPossibles = new Dictionary<Coordinate, BitVector>();
             for (int col = 0; col < _puzzle.Size; col++)
             {
-                _PreparePossiblesToCheckInColumn(col);
-                _CheckColumn(col);
+                _possiblesToCheckInColumn[col] = _restrict.GetPossibleColumnValues(col);
+                _UpdateColumn(col, previousPossibles);
+            }
+            _previousPossiblesStack.Push(previousPossibles);
+            return previousPossibles.Count > 0;
+        }
+
+        public void UndoLastUpdate()
+        {
+            var overwrittenPossibles = _previousPossiblesStack.Pop();
+            foreach (var coordPossiblesPair in overwrittenPossibles)
+            {
+                _possibleValues[coordPossiblesPair.Key] = coordPossiblesPair.Value;
             }
         }
 
-        private void _PreparePossiblesToCheckInColumn(int col)
-        {
-            _possiblesToCheckInColumn[col] = _restrict.GetPossibleColumnValues(col);
-        }
-
-        private void _CheckColumn(int col)
+        private void _UpdateColumn(int col, IDictionary<Coordinate, BitVector> previousPossibles)
         {
             foreach (var possible in _possiblesToCheckInColumn[col].GetSetBits())
             {
@@ -39,7 +52,7 @@
                     {
                         continue;
                     }
-                    if (_puzzle.GetPossibleValues(row, col).IsBitSet(possible))
+                    if (_possibleValues[new Coordinate(row, col)].IsBitSet(possible))
                     {
                         if (isUniqueCoordForPossible)
                         {
@@ -56,7 +69,9 @@
                 }
                 var possibles = new BitVector();
                 possibles.SetBit(possible);
-                _puzzle.SetPossibleValues(uniqueRow, col, possibles);
+                var uniqueCoord = new Coordinate(uniqueRow, col);
+                previousPossibles[uniqueCoord] = _possibleValues[in uniqueCoord];
+                _possibleValues[in uniqueCoord] = possibles;
             }
         }
     }

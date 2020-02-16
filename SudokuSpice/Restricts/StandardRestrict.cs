@@ -21,12 +21,12 @@ namespace SudokuSpice
             _unsetRowValues = new BitVector[puzzle.Size];
             _unsetColValues = new BitVector[puzzle.Size];
             _unsetBoxValues = new BitVector[puzzle.Size];
-
+            BitVector allPossibles = BitVector.CreateWithSize(puzzle.Size);
             for (int i = 0; i < puzzle.Size; i++)
             {
-                _unsetRowValues[i] = BitVector.CreateWithSize(puzzle.Size);
-                _unsetColValues[i] = BitVector.CreateWithSize(puzzle.Size);
-                _unsetBoxValues[i] = BitVector.CreateWithSize(puzzle.Size);
+                _unsetRowValues[i] = allPossibles;
+                _unsetColValues[i] = allPossibles;
+                _unsetBoxValues[i] = allPossibles;
             }
 
             int boxIdx = 0;
@@ -82,9 +82,17 @@ namespace SudokuSpice
                     _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)]));
         }
 
+        public void Revert(in Coordinate c, int val)
+        {
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            _unsetRowValues[c.Row].SetBit(val - 1);
+            _unsetColValues[c.Column].SetBit(val - 1);
+            _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val - 1);
+        }
+
         public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(_puzzle[in c].HasValue, "Cannot revert a restrict for an unset puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val - 1);
             _unsetColValues[c.Column].SetBit(val - 1);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);
@@ -94,7 +102,7 @@ namespace SudokuSpice
 
         public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(_puzzle[in c].HasValue, "Cannot update a restrict for an unset puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot update a restrict for a set puzzle coordinate");
             _unsetRowValues[c.Row].UnsetBit(val - 1);
             _unsetColValues[c.Column].UnsetBit(val - 1);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);

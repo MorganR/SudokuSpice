@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using SudokuSpice.Rules;
+using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
@@ -16,6 +17,46 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var solver = new Solver(p);
+            solver.Solve();
+            return p.NumEmptySquares == 0;
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(NineByNinePuzzles))]
+        public bool SudokuSpiceDynamicSingle(PuzzleSample puzzle)
+        {
+            var p = new Puzzle(puzzle.NullableMatrix);
+            var possibleValues = new PossibleValues(p);
+            var standardRestrict = new StandardRestrict(p);
+            var ruleKeeper = new DynamicRuleKeeper(
+                p, possibleValues,
+                new List<ISudokuRestrict> { standardRestrict });
+            var heuristic = new StandardHeuristic(
+                p, possibleValues, standardRestrict, standardRestrict, standardRestrict);
+            var squareTracker = new SquareTracker(
+                p, possibleValues, ruleKeeper, heuristic);
+            var solver = new Solver(squareTracker);
+            solver.Solve();
+            return p.NumEmptySquares == 0;
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(NineByNinePuzzles))]
+        public bool SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
+        {
+            var p = new Puzzle(puzzle.NullableMatrix);
+            var possibleValues = new PossibleValues(p);
+            var rowRestrict = new RowRestrict(p);
+            var columnRestrict = new ColumnRestrict(p);
+            var boxRestrict = new BoxRestrict(p, true);
+            var ruleKeeper = new DynamicRuleKeeper(
+                p, possibleValues,
+                new List<ISudokuRestrict> { rowRestrict, columnRestrict, boxRestrict });
+            var heuristic = new StandardHeuristic(
+                p, possibleValues, rowRestrict, columnRestrict, boxRestrict);
+            var squareTracker = new SquareTracker(
+                p, possibleValues, ruleKeeper, heuristic);
+            var solver = new Solver(squareTracker);
             solver.Solve();
             return p.NumEmptySquares == 0;
         }

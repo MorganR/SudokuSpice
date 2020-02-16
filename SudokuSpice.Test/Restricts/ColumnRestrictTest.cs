@@ -10,10 +10,10 @@ namespace SudokuSpice
         public void Constructor_FiltersCorrectly()
         {
             var puzzle = new Puzzle(new int?[,] {
-                {1,            null /* 4 */, null /* 3 */, 2},
+                {           1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, null /* 1 */, 4},
-                {null /* 4 */, 1,            null /* 2 */, 3},
-                {3,            null /* 2 */, null /* 4 */, 1}
+                {null /* 4 */,            1, null /* 2 */, 3},
+                {           3, null /* 2 */, null /* 4 */, 1}
             });
             var restrict = new ColumnRestrict(puzzle);
             Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(0, 0)));
@@ -42,31 +42,30 @@ namespace SudokuSpice
                 var restrict = new ColumnRestrict(
                     new Puzzle(
                         new int?[,] {
-                            {1,            null /* 4 */, null /* 3 */, 2},
-                            {1, null /* 3 */, null /* 1 */, 4},
-                            {null /* 4 */, 1,            null /* 2 */, 3},
-                            {3,            null /* 2 */, null /* 4 */, 1}
+                            {                1, null /* 4 */, null /* 3 */, 2},
+                            {/* INCORRECT */ 1, null /* 3 */, null /* 1 */, 4},
+                            {     null /* 4 */,            1, null /* 2 */, 3},
+                            {                3, null /* 2 */, null /* 4 */, 1}
                         }));
             });
-            Assert.Contains("Puzzle does not satisfy restrict", ex.Message);
+            Assert.Contains("Puzzle has duplicate value in column", ex.Message);
         }
 
         [Fact]
         public void Update_UpdatesSpecifiedColumn()
         {
             var puzzle = new Puzzle(new int?[,] {
-                {1,            null /* 4 */, null /* 3 */, 2},
+                {           1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, null /* 1 */, 4},
-                {null /* 4 */, 1,            null /* 2 */, 3},
-                {3,            null /* 2 */, null /* 4 */, 1}
+                {null /* 4 */,            1, null /* 2 */, 3},
+                {           3, null /* 2 */, null /* 4 */, 1}
             });
             var restrict = new ColumnRestrict(puzzle);
             var list = new List<Coordinate>();
             var coord = new Coordinate(1, 1);
             var val = 3;
-            puzzle[coord] = val;
             restrict.Update(coord, val, list);
-            Assert.Equal(new List<Coordinate> {new Coordinate(0, 1), new Coordinate(3, 1)}, list);
+            Assert.Equal(new List<Coordinate> { new Coordinate(0, 1), new Coordinate(3, 1) }, list);
             Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 2)));
@@ -74,24 +73,89 @@ namespace SudokuSpice
         }
 
         [Fact]
+        public void Revert_WithoutAffectedCoordsList_RevertsSpecifiedColumn()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */, 2},
+                {null /* 2 */, null /* 3 */, null /* 1 */, 4},
+                {null /* 4 */,            1, null /* 2 */, 3},
+                {           3, null /* 2 */, null /* 4 */, 1}
+            });
+            var restrict = new ColumnRestrict(puzzle);
+            var initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, restrict);
+            var coord = new Coordinate(1, 1);
+            var val = 3;
+            restrict.Update(coord, val, new List<Coordinate>());
+
+            restrict.Revert(coord, val);
+
+            for (int column = 0; column < initialPossibleValuesByColumn.Count; column++)
+            {
+                Assert.Equal(
+                    initialPossibleValuesByColumn[column],
+                    restrict.GetPossibleColumnValues(column));
+            }
+        }
+
+        [Fact]
         public void Revert_RevertsSpecifiedColumn()
         {
             var puzzle = new Puzzle(new int?[,] {
-                {1,            null /* 4 */, null /* 3 */, 2},
+                {           1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, null /* 1 */, 4},
-                {null /* 4 */, 1,            null /* 2 */, 3},
-                {3,            null /* 2 */, null /* 4 */, 1}
+                {null /* 4 */,            1, null /* 2 */, 3},
+                {           3, null /* 2 */, null /* 4 */, 1}
             });
             var restrict = new ColumnRestrict(puzzle);
-            var list = new List<Coordinate>();
-            var coord = new Coordinate(0, 0);
-            var val = 1;
-            restrict.Revert(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(1, 0), new Coordinate(2, 0) }, list);
-            Assert.Equal(new BitVector(0b1011), restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1110), restrict.GetPossibleValues(new Coordinate(0, 1)));
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(0, 3)));
+            var initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, restrict);
+            var updatedList = new List<Coordinate>();
+            var coord = new Coordinate(1, 1);
+            var val = 3;
+            restrict.Update(coord, val, updatedList);
+
+            var revertedList = new List<Coordinate>();
+            restrict.Revert(coord, val, revertedList);
+
+            Assert.Equal(updatedList, revertedList);
+            for (int column = 0; column < initialPossibleValuesByColumn.Count; column++)
+            {
+                Assert.Equal(
+                    initialPossibleValuesByColumn[column],
+                    restrict.GetPossibleColumnValues(column));
+            }
+        }
+
+        [Fact]
+        public void GetPossibleValues_MatchesGetPossibleColumnValues()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */, 2},
+                {null /* 2 */, null /* 3 */, null /* 1 */, 4},
+                {null /* 4 */,            1, null /* 2 */, 3},
+                {           3, null /* 2 */, null /* 4 */, 1}
+            });
+            var restrict = new ColumnRestrict(puzzle);
+            var possibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, restrict);
+
+            for (int column = 0; column < possibleValuesByColumn.Count; column++)
+            {
+                for (int row = 0; row < puzzle.Size; row++)
+                {
+                    Assert.Equal(
+                        possibleValuesByColumn[column],
+                        restrict.GetPossibleValues(new Coordinate(row, column)));
+                }
+            }
+        }
+
+        private IList<BitVector> _GetPossibleValuesByColumn(int numColumns, ColumnRestrict restrict)
+        {
+            var possibleColumnValues = new List<BitVector>();
+            for (int column = 0; column < numColumns; column++)
+            {
+                possibleColumnValues.Add(restrict.GetPossibleColumnValues(column));
+            }
+            return possibleColumnValues;
         }
     }
 }

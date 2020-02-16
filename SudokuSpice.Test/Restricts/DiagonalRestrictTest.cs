@@ -54,7 +54,7 @@ namespace SudokuSpice
         }
 
         [Fact]
-        public void Constructor_WithDuplicateValueInDiag_Throws()
+        public void Constructor_WithDuplicateValueInDiagonal_Throws()
         {
             var ex = Assert.Throws<ArgumentException>(() =>
             {
@@ -70,7 +70,7 @@ namespace SudokuSpice
         }
 
         [Fact]
-        public void Update_OnDiag_UpdatesSpecifiedDiagonal()
+        public void Update_OnDiagonal_UpdatesSpecifiedDiagonal()
         {
             var puzzle = new Puzzle(new int?[,] {
                 {   1, null, null,   4},
@@ -82,16 +82,16 @@ namespace SudokuSpice
             var list = new List<Coordinate>();
             var coord = new Coordinate(2, 2);
             var val = 4;
-            puzzle[coord] = val;
             restrict.Update(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) }, list);
+            Assert.Equal(
+                new List<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) }, list);
             Assert.Equal(new BitVector(0b0110), restrict.GetPossibleValues(new Coordinate(1, 1)));
             Assert.Equal(new BitVector(0b0011), restrict.GetPossibleValues(new Coordinate(1, 2)));
             Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 2)));
         }
 
         [Fact]
-        public void Update_OnNonDiag_DoesNothing()
+        public void Update_OnNonDiagonal_DoesNothing()
         {
             var puzzle = new Puzzle(new int?[,] {
                 {   1, null, null,   4},
@@ -99,21 +99,12 @@ namespace SudokuSpice
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            BitVector[,] previousPossibles = new BitVector[puzzle.Size, puzzle.Size];
             var restrict = new DiagonalRestrict(puzzle);
-            for (int row = 0; row < puzzle.Size; row++)
-            {
-                for (int col = 0; col < puzzle.Size; col++)
-                {
-                    previousPossibles[row, col] =
-                        restrict.GetPossibleValues(new Coordinate(row, col));
-                }
-            }
+            BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, restrict);
 
             var list = new List<Coordinate>();
             var coord = new Coordinate(0, 1);
             var val = 2;
-            puzzle[coord] = val;
             restrict.Update(coord, val, list);
 
             Assert.Empty(list);
@@ -129,7 +120,7 @@ namespace SudokuSpice
         }
 
         [Fact]
-        public void Update_OnUnsetCoord_Throws()
+        public void Revert_WithoutAffectedCoordsList_RevertsSpecifiedDiagonal()
         {
             var puzzle = new Puzzle(new int?[,] {
                 {   1, null, null,   4},
@@ -138,73 +129,72 @@ namespace SudokuSpice
                 {null, null, null, null}
             });
             var restrict = new DiagonalRestrict(puzzle);
-            var ex = Assert.Throws<ArgumentException>(() =>
-            {
-                restrict.Update(new Coordinate(1, 1), 3, new List<Coordinate>());
-            });
-            Assert.Contains("Cannot update a restrict for an unset puzzle coordinate", ex.Message);
-        }
+            BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, restrict);
+            var coord = new Coordinate(2, 2);
+            var val = 4;
+            restrict.Update(in coord, val, new List<Coordinate>());
 
-        [Fact]
-        public void Revert_OnUnsetCoord_Throws()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
-            });
-            var restrict = new DiagonalRestrict(puzzle);
-            var ex = Assert.Throws<ArgumentException>(() =>
-            {
-                restrict.Revert(new Coordinate(1, 1), 3, new List<Coordinate>());
-            });
-            Assert.Contains("Cannot revert a restrict for an unset puzzle coordinate", ex.Message);
-        }
+            restrict.Revert(coord, val);
 
-        [Fact]
-        public void Revert_RevertsSpecifiedDiag()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
-            });
-            var restrict = new DiagonalRestrict(puzzle);
-            var list = new List<Coordinate>();
-            var coord = new Coordinate(0, 0);
-            var val = 1;
-            restrict.Revert(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(1, 1), new Coordinate(2, 2), new Coordinate(3, 3) }, list);
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b0011), restrict.GetPossibleValues(new Coordinate(2, 1)));
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(0, 2)));
-        }
-
-        [Fact]
-        public void Revert_OnNonDiag_DoesNothing()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
-            });
-            BitVector[,] previousPossibles = new BitVector[puzzle.Size, puzzle.Size];
-            var restrict = new DiagonalRestrict(puzzle);
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)
                 {
-                    previousPossibles[row, col] =
-                        restrict.GetPossibleValues(new Coordinate(row, col));
+                    Assert.Equal(
+                        initialPossibles[row, col],
+                        restrict.GetPossibleValues(new Coordinate(row, col)));
                 }
             }
+        }
+
+        [Fact]
+        public void Revert_RevertsSpecifiedDiagonal()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {   1, null, null,   4},
+                {null, null,    3,   2},
+                {   2, null, null, null},
+                {null, null, null, null}
+            });
+            var restrict = new DiagonalRestrict(puzzle);
+            BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, restrict);
+            var updatedList = new List<Coordinate>();
+            var coord = new Coordinate(2, 2);
+            var val = 4;
+            restrict.Update(in coord, val, updatedList);
+
+            var revertedList = new List<Coordinate>();
+            restrict.Revert(coord, val, revertedList);
+
+            Assert.Equal(revertedList, updatedList);
+            for (int row = 0; row < puzzle.Size; row++)
+            {
+                for (int col = 0; col < puzzle.Size; col++)
+                {
+                    Assert.Equal(
+                        initialPossibles[row, col],
+                        restrict.GetPossibleValues(new Coordinate(row, col)));
+                }
+            }
+        }
+
+        [Fact]
+        public void Revert_OnNonDiagonal_DoesNothing()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {   1, null, null,   4},
+                {null, null,    3,   2},
+                {   2, null, null, null},
+                {null, null, null, null}
+            });
+            var restrict = new DiagonalRestrict(puzzle);
+            BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, restrict);
 
             var list = new List<Coordinate>();
-            var coord = new Coordinate(2, 0);
+            var coord = new Coordinate(0, 1);
             var val = 2;
+            restrict.Update(in coord, val, new List<Coordinate>());
+
             restrict.Revert(coord, val, list);
 
             Assert.Empty(list);
@@ -217,6 +207,20 @@ namespace SudokuSpice
                         restrict.GetPossibleValues(new Coordinate(row, col)));
                 }
             }
+        }
+
+        private BitVector[,] _GetPossibleValues(int puzzleSize, DiagonalRestrict restrict)
+        {
+            BitVector[,] possibleValues = new BitVector[puzzleSize, puzzleSize];
+            for (int row = 0; row < puzzleSize; row++)
+            {
+                for (int col = 0; col < puzzleSize; col++)
+                {
+                    possibleValues[row, col] =
+                        restrict.GetPossibleValues(new Coordinate(row, col));
+                }
+            }
+            return possibleValues;
         }
     }
 }

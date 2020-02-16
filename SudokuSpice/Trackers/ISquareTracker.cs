@@ -33,9 +33,8 @@ namespace SudokuSpice
         /// <returns>True if the set succeeded.</returns>
         bool TrySet(in Coordinate c, int value);
         /// <summary>
-        /// Unsets a recently set square.
+        /// Unsets the most recently set square.
         /// </summary>
-        /// <param name="c">The coordinate to be unset.</param>
-        void Unset(in Coordinate c);
+        void UnsetLast();
     }
 }

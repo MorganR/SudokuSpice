@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SudokuSpice.Rules;
 using System.Collections.Generic;
 using Xunit;
 
@@ -19,11 +19,17 @@ namespace SudokuSpice
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var restrict = new StandardRestrict(puzzle);
-            var squareTracker = new FlexibleSquareTracker(
-               puzzle,
-               new List<ISudokuRestrict> { restrict },
-               _CreateStandardHeuristics(puzzle, restrict));
+            var possibleValues = new PossibleValues(puzzle);
+            var rowRestrict = new RowRestrict(puzzle);
+            var columnRestrict = new ColumnRestrict(puzzle);
+            var boxRestrict = new BoxRestrict(puzzle, true);
+            var ruleKeeper = new DynamicRuleKeeper(
+                puzzle, possibleValues,
+                new List<ISudokuRestrict> { rowRestrict, columnRestrict, boxRestrict });
+            var heuristic = new StandardHeuristic(
+                puzzle, possibleValues, rowRestrict, columnRestrict, boxRestrict);
+            var squareTracker = new SquareTracker(
+                puzzle, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);
             solver.Solve();
             _AssertPuzzleSolved(puzzle);
@@ -50,14 +56,19 @@ namespace SudokuSpice
                 {null, null, 16,   null, null, 7,    8,    null, null, 4,    10,   null, null, 14,   null, 5},
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
-            var solver = new Solver(
-                new FlexibleSquareTracker(
-                    puzzle,
-                    new List<ISudokuRestrict>
-                    {
-                        new StandardRestrict(puzzle),
-                        new DiagonalRestrict(puzzle),
-                    }));
+            var possibleValues = new PossibleValues(puzzle);
+            var rowRestrict = new RowRestrict(puzzle);
+            var columnRestrict = new ColumnRestrict(puzzle);
+            var boxRestrict = new BoxRestrict(puzzle, true);
+            var diagonalRestrict = new DiagonalRestrict(puzzle);
+            var ruleKeeper = new DynamicRuleKeeper(
+                puzzle, possibleValues,
+                new List<ISudokuRestrict> { rowRestrict, columnRestrict, boxRestrict, diagonalRestrict });
+            var heuristic = new StandardHeuristic(
+                puzzle, possibleValues, rowRestrict, columnRestrict, boxRestrict);
+            var squareTracker = new SquareTracker(
+                puzzle, possibleValues, ruleKeeper, heuristic);
+            var solver = new Solver(squareTracker);
             solver.Solve();
             _AssertMegaPuzzleSolved(puzzle);
         }
@@ -212,17 +223,6 @@ namespace SudokuSpice
             {
                 Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in the forward diagonal!");
             }
-        }
-
-        private IReadOnlyList<ISudokuHeuristic> _CreateStandardHeuristics(
-            Puzzle puzzle, StandardRestrict standardRestrict)
-        {
-            return new List<ISudokuHeuristic>
-                {
-                    new UniqueInRowHeuristic(puzzle, standardRestrict),
-                    new UniqueInColumnHeuristic(puzzle, standardRestrict),
-                    new UniqueInBoxHeuristic(puzzle, standardRestrict),
-                };
         }
     }
 }

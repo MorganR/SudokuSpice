@@ -16,9 +16,10 @@ namespace SudokuSpice
         {
             _puzzle = puzzle;
             _unsetRowValues = new BitVector[puzzle.Size];
+            BitVector allPossible = BitVector.CreateWithSize(puzzle.Size);
             for (int i = 0; i < puzzle.Size; i++)
             {
-                _unsetRowValues[i] = BitVector.CreateWithSize(puzzle.Size);
+                _unsetRowValues[i] = allPossible;
             }
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -32,7 +33,7 @@ namespace SudokuSpice
                     int bit = val.Value - 1;
                     if (!_unsetRowValues[row].IsBitSet(bit))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException($"Puzzle has duplicate value in row at ({row}, {col}).");
                     }
                     _unsetRowValues[row].UnsetBit(bit);
                 }
@@ -43,16 +44,21 @@ namespace SudokuSpice
 
         public BitVector GetPossibleRowValues(int row) => _unsetRowValues[row];
 
+        public void Revert(in Coordinate c, int val)
+        {
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            _unsetRowValues[c.Row].SetBit(val - 1);
+        }
+
         public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(_puzzle[in c].HasValue, "Cannot revert a restrict for an unset puzzle coordinate");
-            _unsetRowValues[c.Row].SetBit(val - 1);
+            this.Revert(in c, val);
             _AddUnsetFromRow(in c, affectedCoords);
         }
 
         public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(_puzzle[in c].HasValue, "Cannot update a restrict for an unset puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot update a restrict for a set puzzle coordinate");
             _unsetRowValues[c.Row].UnsetBit(val - 1);
             _AddUnsetFromRow(in c, affectedCoords);
         }

@@ -42,13 +42,13 @@ namespace SudokuSpice
                 var restrict = new RowRestrict(
                     new Puzzle(
                         new int?[,] {
-                            {1, 1, null /* 3 */, 2},
-                            {null /* 2 */, null /* 3 */, 1, null /* 4 */},
-                            {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                            {3, 2, 4, 1}
+                            {           1, /* INCORRECT */ 1, null /* 3 */,            2},
+                            {null /* 2 */,      null /* 3 */,            1, null /* 4 */},
+                            {null /* 4 */,      null /* 1 */, null /* 2 */, null /* 3 */},
+                            {           3,                 2,            4,            1}
                         }));
             });
-            Assert.Contains("Puzzle does not satisfy restrict", ex.Message);
+            Assert.Contains("Puzzle has duplicate value in row", ex.Message);
         }
 
         [Fact]
@@ -64,13 +64,37 @@ namespace SudokuSpice
             var list = new List<Coordinate>();
             var coord = new Coordinate(1, 1);
             var val = 3;
-            puzzle[coord] = val;
             restrict.Update(coord, val, list);
-            Assert.Equal(new List<Coordinate> {new Coordinate(1, 0), new Coordinate(1, 3)}, list);
+            Assert.Equal(new List<Coordinate> { new Coordinate(1, 0), new Coordinate(1, 3) }, list);
             Assert.Equal(new BitVector(0b1100), restrict.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(1, 0)));
             Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
             Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(3, 0)));
+        }
+
+        [Fact]
+        public void Revert_WithoutAffectedList_RevertsSpecifiedRow()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {1, null /* 4 */, null /* 3 */, 2},
+                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                {3, 2, 4, 1}
+            });
+            var restrict = new RowRestrict(puzzle);
+            var initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, restrict);
+            var updatedList = new List<Coordinate>();
+            var coord = new Coordinate(1, 1);
+            var val = 3;
+            restrict.Update(coord, val, updatedList);
+
+            restrict.Revert(coord, val);
+
+            for (int row = 0; row < initialPossibleValuesByRow.Count; row++)
+            {
+                Assert.Equal(
+                    initialPossibleValuesByRow[row], restrict.GetPossibleRowValues(row));
+            }
         }
 
         [Fact]
@@ -83,15 +107,22 @@ namespace SudokuSpice
                 {3, 2, 4, 1}
             });
             var restrict = new RowRestrict(puzzle);
-            var list = new List<Coordinate>();
-            var coord = new Coordinate(0, 0);
-            var val = 1;
-            restrict.Revert(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(0, 1), new Coordinate(0, 2) }, list);
-            Assert.Equal(new BitVector(0b1101), restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1110), restrict.GetPossibleValues(new Coordinate(1, 0)));
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(3, 0)));
+            var initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, restrict);
+            var updatedList = new List<Coordinate>();
+            var revertedList = new List<Coordinate>();
+            var coord = new Coordinate(1, 1);
+            var val = 3;
+            restrict.Update(coord, val, updatedList);
+
+            restrict.Revert(coord, val, revertedList);
+            
+            Assert.Equal(updatedList, revertedList);
+            for (int row = 0; row < initialPossibleValuesByRow.Count; row++)
+            {
+                Assert.Equal(
+                    initialPossibleValuesByRow[row],
+                    restrict.GetPossibleRowValues(row));
+            }
         }
 
         [Fact]
@@ -108,6 +139,39 @@ namespace SudokuSpice
             Assert.Equal(new BitVector(0b1110), restrict.GetPossibleRowValues(1));
             Assert.Equal(new BitVector(0b1111), restrict.GetPossibleRowValues(2));
             Assert.Equal(new BitVector(0b0000), restrict.GetPossibleRowValues(3));
+        }
+
+        [Fact]
+        public void GetPossibleValues_MatchesGetPossibleRowValues()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {1, null /* 4 */, null /* 3 */, 2},
+                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                {3, 2, 4, 1}
+            });
+            var restrict = new RowRestrict(puzzle);
+            var possibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, restrict);
+
+            for (int row = 0; row < possibleValuesByRow.Count; row++)
+            {
+                for (int col = 0; col < puzzle.Size; col++)
+                {
+                    Assert.Equal(
+                        possibleValuesByRow[row],
+                        restrict.GetPossibleValues(new Coordinate(row, col)));
+                }
+            }
+        }
+
+        private IList<BitVector> _GetPossibleValuesByRow(int numRows, RowRestrict restrict)
+        {
+            var possibleRowValues = new List<BitVector>();
+            for (int row = 0; row < numRows; row++)
+            {
+                possibleRowValues.Add(restrict.GetPossibleRowValues(row));
+            }
+            return possibleRowValues;
         }
     }
 }

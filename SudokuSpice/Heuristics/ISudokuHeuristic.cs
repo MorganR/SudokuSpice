@@ -8,8 +8,13 @@
     public interface ISudokuHeuristic
     {
         /// <summary>
-        /// Updates all the current possible values.
+        /// Updates all the current possible values and returns them in a dictionary.
         /// </summary>
-        void UpdateAll();
+        bool UpdateAll();
+
+        /// <summary>
+        /// Undoes the last modifications made by this heuristic.
+        /// </summary>
+        void UndoLastUpdate();
     }
 }
