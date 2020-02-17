@@ -24,7 +24,7 @@ namespace SudokuSpice
         {
             if (obj is Coordinate other)
             {
-                return Equals(other);
+                return Equals(in other);
             }
             return false;
         }
@@ -36,15 +36,20 @@ namespace SudokuSpice
 
         public bool Equals(Coordinate other)
         {
+            return this.Equals(in other);
+        }
+
+        public bool Equals(in Coordinate other)
+        {
             return Row == other.Row && Column == other.Column;
         }
 
-        public static bool operator ==(Coordinate left, Coordinate right)
+        public static bool operator ==(in Coordinate left, in Coordinate right)
         {
-            return left.Equals(right);
+            return left.Equals(in right);
         }
 
-        public static bool operator !=(Coordinate left, Coordinate right)
+        public static bool operator !=(in Coordinate left, in Coordinate right)
         {
             return !(left == right);
         }
