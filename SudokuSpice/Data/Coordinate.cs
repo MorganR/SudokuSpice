@@ -36,7 +36,7 @@ namespace SudokuSpice
 
         public bool Equals(Coordinate other)
         {
-            return this.Equals(in other);
+            return Equals(in other);
         }
 
         public bool Equals(in Coordinate other)
