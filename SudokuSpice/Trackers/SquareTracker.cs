@@ -14,6 +14,8 @@ namespace SudokuSpice
         private readonly Stack<Coordinate> _setCoords;
         private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
 
+        public int NumTimesHeuristicsUsed { get; private set; }
+
         public SquareTracker(Puzzle puzzle)
         {
             _puzzle = puzzle;
@@ -56,6 +58,7 @@ namespace SudokuSpice
             {
                 _coordsThatUsedHeuristics.Push(_setCoords.Peek());
             }
+            NumTimesHeuristicsUsed++;
             if (!_heuristic.UpdateAll())
             {
                 return bestCoord;
