@@ -97,5 +97,12 @@ namespace SudokuSpice.Data.Test
                 false,
             };
         }
+
+        [Fact]
+        public void ToString_IsCorrect()
+        {
+            var stats = new SolveStats() { NumSolutionsFound = 1, NumSquaresGuessed = 2, NumTotalGuesses = 3 };
+            Assert.Equal("NumSolutionsFound: 1, NumSquaresGuessed: 2, NumTotalGuesses: 3", stats.ToString());
+        }
     }
 }

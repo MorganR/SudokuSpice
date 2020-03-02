@@ -65,5 +65,10 @@ namespace SudokuSpice.Data
         {
             return !left.Equals(right);
         }
+
+        public override string ToString()
+        {
+            return $"NumSolutionsFound: {NumSolutionsFound}, NumSquaresGuessed: {NumSquaresGuessed}, NumTotalGuesses: {NumTotalGuesses}";
+        }
     }
 }
