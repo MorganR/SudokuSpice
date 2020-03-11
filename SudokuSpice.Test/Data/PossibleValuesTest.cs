@@ -56,6 +56,34 @@ namespace SudokuSpice
         }
 
         [Fact]
+        public void CopyConstructor_PerformsDeepCopy()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */,            2},
+                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                {           3,            2,            4,            1}
+            });
+            var possibleValues = new PossibleValues(puzzle);
+            var coord = new Coordinate(1, 1);
+            possibleValues[coord] = new BitVector(0b0010);
+
+            var possibleValuesCopy = new PossibleValues(possibleValues);
+
+            for (int row = 0; row < puzzle.Size; row++)
+            {
+                for (int col = 0; col < puzzle.Size; col++)
+                {
+                    var c = new Coordinate(row, col);
+                    Assert.Equal(possibleValues[c], possibleValuesCopy[c]);
+                }
+            }
+
+            possibleValuesCopy[coord] = new BitVector();
+            Assert.NotEqual(possibleValues[coord], possibleValuesCopy[coord]);
+        }
+
+        [Fact]
         public void SettingByIndex_SetsValue()
         {
             var puzzle = new Puzzle(new int?[,] {

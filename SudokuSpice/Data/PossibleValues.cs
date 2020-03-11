@@ -7,7 +7,6 @@ namespace SudokuSpice
     /// </summary>
     public class PossibleValues
     {
-        private readonly Puzzle _puzzle;
         [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "This is a square, so no space is wasted")]
         private readonly BitVector[,] _possibleValues;
         private readonly BitVector _allPossible;
@@ -15,13 +14,18 @@ namespace SudokuSpice
         [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "This is a square, so no space is wasted")]
         public PossibleValues(Puzzle puzzle)
         {
-            _puzzle = puzzle;
             _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
             _allPossible = BitVector.CreateWithSize(puzzle.Size);
-            foreach (var c in _puzzle.GetUnsetCoords())
+            foreach (var c in puzzle.GetUnsetCoords())
             {
                 _possibleValues[c.Row, c.Column] = _allPossible;
             }
+        }
+
+        public PossibleValues(PossibleValues existing)
+        {
+            _possibleValues = (BitVector[,])existing._possibleValues.Clone();
+            _allPossible = existing._allPossible;
         }
 
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "It is less error-prone to index this by Coordinate.")]
