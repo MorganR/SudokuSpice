@@ -48,6 +48,19 @@ namespace SudokuSpice
             }
         }
 
+        private DiagonalRestrict(DiagonalRestrict existing, Puzzle puzzle)
+        {
+            _puzzle = puzzle;
+            _unsetBackwardDiag = existing._unsetBackwardDiag;
+            _unsetForwardDiag = existing._unsetForwardDiag;
+            _allUnset = existing._allUnset;
+        }
+
+        public ISudokuRestrict CopyWithNewReference(Puzzle puzzle)
+        {
+            return new DiagonalRestrict(this, puzzle);
+        }
+
         public BitVector GetPossibleValues(in Coordinate c)
         {
             if (_IsOnBackwardDiag(in c))

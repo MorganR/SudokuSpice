@@ -10,10 +10,10 @@ namespace SudokuSpice
         public void Constructor_FiltersCorrectly()
         {
             var puzzle = new Puzzle(new int?[,] {
-                {1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                {           1, null /* 4 */, null /* 3 */,            2},
+                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {3, 2, 4, 1}
+                {           3,            2,            4,            1}
             });
             var restrict = new RowRestrict(puzzle);
             Assert.Equal(new BitVector(0b1100), restrict.GetPossibleValues(new Coordinate(0, 0)));
@@ -49,6 +49,39 @@ namespace SudokuSpice
                         }));
             });
             Assert.Contains("Puzzle has duplicate value in row", ex.Message);
+        }
+
+        [Fact]
+        public void CopyWithNewReference_CreatesDeepCopy()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */,            2},
+                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                {           3,            2,            4,            1}
+            });
+            var restrict = new RowRestrict(puzzle);
+
+            var puzzleCopy = new Puzzle(puzzle);
+            var restrictCopy = restrict.CopyWithNewReference(puzzleCopy);
+            int val = 2;
+            var coord = new Coordinate(2, 2);
+            restrictCopy.Update(coord, val, new List<Coordinate>());
+            Assert.NotEqual(restrict.GetPossibleValues(coord), restrictCopy.GetPossibleValues(coord));
+
+            puzzleCopy[coord] = val;
+            var secondCoord = new Coordinate(2, 3);
+            var secondVal = 3;
+            var list = new List<Coordinate>();
+            restrictCopy.Update(secondCoord, secondVal, list);
+            var originalList = new List<Coordinate>();
+            restrict.Update(secondCoord, secondVal, originalList);
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(2, 0), new Coordinate(2, 1) },
+                new HashSet<Coordinate>(list));
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2) },
+                new HashSet<Coordinate>(originalList));
         }
 
         [Fact]

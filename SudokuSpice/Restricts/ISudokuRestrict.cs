@@ -36,5 +36,11 @@ namespace SudokuSpice
         /// <param name="affectedCoords">A list to append coordinates to where the possible values
         ///     should be modified.</param>
         void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords);
+        /// <summary>
+        /// Creates a deep copy of this ISudokuRestrict, with any internal <c>Puzzle</c> references
+        /// updated to the given puzzle.
+        /// </summary>
+        /// <param name="puzzle">New puzzle reference to use.</param>
+        ISudokuRestrict CopyWithNewReference(Puzzle puzzle);
     }
 }

@@ -67,6 +67,19 @@ namespace SudokuSpice
             }
         }
 
+        private StandardRestrict(StandardRestrict existing, Puzzle puzzle)
+        {
+            _puzzle = puzzle;
+            _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
+            _unsetColValues = (BitVector[])existing._unsetColValues.Clone();
+            _unsetBoxValues = (BitVector[])existing._unsetBoxValues.Clone();
+        }
+
+        public ISudokuRestrict CopyWithNewReference(Puzzle puzzle)
+        {
+            return new StandardRestrict(this, puzzle);
+        }
+
         public BitVector GetPossibleRowValues(int row) => _unsetRowValues[row];
 
         public BitVector GetPossibleColumnValues(int column) => _unsetColValues[column];

@@ -52,6 +52,39 @@ namespace SudokuSpice
         }
 
         [Fact]
+        public void CopyWithNewReference_CreatesDeepCopy()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */,            2},
+                {null /* 2 */,            3, null /* 1 */, null /* 4 */},
+                {null /* 4 */, null /* 1 */,            2,            3},
+                {null /* 3 */, null /* 2 */,            4,            1}
+            });
+            var restrict = new BoxRestrict(puzzle, false);
+
+            var puzzleCopy = new Puzzle(puzzle);
+            var restrictCopy = restrict.CopyWithNewReference(puzzleCopy);
+            int val = 3;
+            var coord = new Coordinate(3, 0);
+            restrictCopy.Update(coord, val, new List<Coordinate>());
+            Assert.NotEqual(restrict.GetPossibleValues(coord), restrictCopy.GetPossibleValues(coord));
+
+            puzzleCopy[coord] = val;
+            var secondCoord = new Coordinate(3, 1);
+            var secondVal = 2;
+            var list = new List<Coordinate>();
+            restrictCopy.Update(secondCoord, secondVal, list);
+            var originalList = new List<Coordinate>();
+            restrict.Update(secondCoord, secondVal, originalList);
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(2, 0), new Coordinate(2, 1) },
+                new HashSet<Coordinate>(list));
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(3, 0) },
+                new HashSet<Coordinate>(originalList));
+        }
+
+        [Fact]
         public void Update_UpdatesSpecifiedBox()
         {
             var puzzle = new Puzzle(new int?[,] {
