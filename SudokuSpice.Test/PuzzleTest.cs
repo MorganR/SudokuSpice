@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -6,6 +5,32 @@ namespace SudokuSpice
 {
     public class PuzzleTest
     {
+        [Fact]
+        public void CopyConstructor_CreatesDeepCopy()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {1, null, null, 2},
+                {null, null, 1, null},
+                {null, 1, null, null},
+                {3, null, 4, null}
+            });
+            var puzzleCopy = new Puzzle(puzzle);
+
+            Assert.Equal(puzzle.Size, puzzleCopy.Size);
+            Assert.Equal(puzzle.NumEmptySquares, puzzleCopy.NumEmptySquares);
+            Assert.Equal(puzzle.BoxSize, puzzleCopy.BoxSize);
+            for (int row = 0; row < puzzle.Size; row++)
+            {
+                for (int col = 0; col < puzzle.Size; col++)
+                {
+                    Assert.Equal(puzzle[row, col], puzzleCopy[row, col]);
+                }
+            }
+            puzzleCopy[1, 1] = 3;
+            Assert.False(puzzle[1, 1].HasValue);
+            Assert.Equal(3, puzzleCopy[1, 1]);
+        }
+
         [Fact]
         public void Size_ReturnsPuzzleSize()
         {

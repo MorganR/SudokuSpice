@@ -55,6 +55,14 @@ namespace SudokuSpice
             }
         }
 
+        public Puzzle(Puzzle existing)
+        {
+            Size = existing.Size;
+            BoxSize = existing.BoxSize;
+            _squares = (int?[,])existing._squares.Clone();
+            _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
+        }
+
         /// <summary>Gets or sets the current value of a given square. A square can be 'unset' by 
         /// setting its value to <c>null</c></summary>
         /// <exception cref="System.InvalidOperationException">Thrown when setting to a non-null 
