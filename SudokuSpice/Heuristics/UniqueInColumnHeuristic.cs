@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SudokuSpice
 {
@@ -8,7 +9,7 @@ namespace SudokuSpice
         private readonly PossibleValues _possibleValues;
         private readonly IColumnRestrict _restrict;
         private readonly BitVector[] _possiblesToCheckInColumn;
-        private readonly Stack<IDictionary<Coordinate, BitVector>> _previousPossiblesStack;
+        private readonly Stack<IReadOnlyDictionary<Coordinate, BitVector>> _previousPossiblesStack;
 
         public UniqueInColumnHeuristic(Puzzle puzzle, PossibleValues possibleValues, IColumnRestrict restrict)
         {
@@ -16,7 +17,31 @@ namespace SudokuSpice
             _possibleValues = possibleValues;
             _restrict = restrict;
             _possiblesToCheckInColumn = new BitVector[puzzle.Size];
-            _previousPossiblesStack = new Stack<IDictionary<Coordinate, BitVector>>(puzzle.NumEmptySquares);
+            _previousPossiblesStack = new Stack<IReadOnlyDictionary<Coordinate, BitVector>>(puzzle.NumEmptySquares);
+        }
+
+        private UniqueInColumnHeuristic(
+            UniqueInColumnHeuristic existing,
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IColumnRestrict restrict)
+        {
+            _puzzle = puzzle;
+            _possibleValues = possibleValues;
+            _restrict = restrict;
+            _possiblesToCheckInColumn = (BitVector[])existing._possiblesToCheckInColumn.Clone();
+            _previousPossiblesStack = new Stack<IReadOnlyDictionary<Coordinate, BitVector>>(
+                existing._previousPossiblesStack);
+        }
+
+        public ISudokuHeuristic CopyWithNewReferences(
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IReadOnlyList<ISudokuRestrict> restricts)
+        {
+            return new UniqueInColumnHeuristic(
+                this, puzzle, possibleValues,
+                (IColumnRestrict)restricts.First(r => r is IColumnRestrict));
         }
 
         public bool UpdateAll()

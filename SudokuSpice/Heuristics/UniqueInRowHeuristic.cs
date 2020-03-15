@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SudokuSpice
 {
@@ -8,7 +9,7 @@ namespace SudokuSpice
         private readonly PossibleValues _possibleValues;
         private readonly IRowRestrict _restrict;
         private readonly BitVector[] _possiblesToCheckInRow;
-        private readonly Stack<IDictionary<Coordinate, BitVector>> _previousPossiblesStack;
+        private readonly Stack<IReadOnlyDictionary<Coordinate, BitVector>> _previousPossiblesStack;
 
         public UniqueInRowHeuristic(Puzzle puzzle, PossibleValues possibleValues, IRowRestrict restrict)
         {
@@ -16,7 +17,31 @@ namespace SudokuSpice
             _possibleValues = possibleValues;
             _restrict = restrict;
             _possiblesToCheckInRow = new BitVector[puzzle.Size];
-            _previousPossiblesStack = new Stack<IDictionary<Coordinate, BitVector>>();
+            _previousPossiblesStack = new Stack<IReadOnlyDictionary<Coordinate, BitVector>>();
+        }
+
+        private UniqueInRowHeuristic(
+            UniqueInRowHeuristic existing,
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IRowRestrict restrict)
+        {
+            _puzzle = puzzle;
+            _possibleValues = possibleValues;
+            _restrict = restrict;
+            _possiblesToCheckInRow = (BitVector[])existing._possiblesToCheckInRow.Clone();
+            _previousPossiblesStack = new Stack<IReadOnlyDictionary<Coordinate, BitVector>>(
+                existing._previousPossiblesStack);
+        }
+
+        public ISudokuHeuristic CopyWithNewReferences(
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IReadOnlyList<ISudokuRestrict> restricts)
+        {
+            return new UniqueInRowHeuristic(
+                this, puzzle, possibleValues,
+                (IRowRestrict)restricts.First(r => r is IRowRestrict));
         }
 
         public bool UpdateAll()

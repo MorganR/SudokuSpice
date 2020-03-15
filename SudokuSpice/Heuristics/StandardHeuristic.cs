@@ -18,6 +18,29 @@ namespace SudokuSpice
             _numHeuristicsRan = new Stack<int>(puzzle.NumEmptySquares);
         }
 
+        private StandardHeuristic(
+            StandardHeuristic existing,
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IReadOnlyList<ISudokuRestrict> restricts)
+        {
+            _rowHeuristic = (UniqueInRowHeuristic)existing._rowHeuristic.CopyWithNewReferences(
+                puzzle, possibleValues, restricts);
+            _columnHeuristic = (UniqueInColumnHeuristic)existing._columnHeuristic
+                .CopyWithNewReferences(puzzle, possibleValues, restricts);
+            _boxHeuristic = (UniqueInBoxHeuristic)existing._boxHeuristic.CopyWithNewReferences(
+                puzzle, possibleValues, restricts);
+            _numHeuristicsRan = new Stack<int>(existing._numHeuristicsRan);
+        }
+
+        public ISudokuHeuristic CopyWithNewReferences(
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IReadOnlyList<ISudokuRestrict> restricts)
+        {
+            return new StandardHeuristic(this, puzzle, possibleValues, restricts);
+        }
+
         public void UndoLastUpdate()
         {
             int numToUndo = _numHeuristicsRan.Pop();

@@ -1,4 +1,6 @@
-﻿namespace SudokuSpice
+﻿using System.Collections.Generic;
+
+namespace SudokuSpice
 {
     /// <summary>
     /// Performs some logical trickery to reduce the number of possible values for a square. Unlike
@@ -16,5 +18,15 @@
         /// Undoes the last modifications made by this heuristic.
         /// </summary>
         void UndoLastUpdate();
+
+        /// <summary>
+        /// Creates a deep copy of this heuristic, replacing internal references with the ones
+        /// provided. These references may or may not be used during the copy, depending on the
+        /// implementation of the heuristic.
+        /// </summary>
+        ISudokuHeuristic CopyWithNewReferences(
+            Puzzle puzzle,
+            PossibleValues possibleValues,
+            IReadOnlyList<ISudokuRestrict> restricts);
     }
 }

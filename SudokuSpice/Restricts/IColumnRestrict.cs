@@ -1,6 +1,6 @@
 ﻿namespace SudokuSpice
 {
-    public interface IColumnRestrict
+    public interface IColumnRestrict : ISudokuRestrict
     {
         public BitVector GetPossibleColumnValues(int column);
     }
