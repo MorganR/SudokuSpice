@@ -60,6 +60,44 @@ namespace SudokuSpice.Rules.Test
         }
 
         [Fact]
+        public void CopyWithNewReferences_CreatesDeepCopy()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */,            2},
+                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                {           3,            2,            4,            1}
+            });
+            var possibleValues = new PossibleValues(puzzle);
+            var restricts = new List<ISudokuRestrict>
+            {
+                new RowRestrict(puzzle),
+                new ColumnRestrict(puzzle),
+                new BoxRestrict(puzzle, true)
+            };
+            var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, restricts);
+
+            var puzzleCopy = new Puzzle(puzzle);
+            var possibleValuesCopy = new PossibleValues(possibleValues);
+            var ruleKeeperCopy = ruleKeeper.CopyWithNewReferences(puzzleCopy, possibleValuesCopy);
+
+            var restrictsCopy = ruleKeeperCopy.GetRestricts();
+            Assert.Equal(restricts.Count, restrictsCopy.Count);
+            for (int i = 0; i < restricts.Count; i++)
+            {
+                Assert.NotSame(restricts[i], restrictsCopy[i]);
+                var originalType = restricts[i].GetType();
+                var copiedType = restrictsCopy[i].GetType();
+                Assert.Equal(originalType, copiedType);
+            }
+            var coord = new Coordinate(0, 1);
+            var val = 4;
+            Assert.True(ruleKeeperCopy.TrySet(coord, val));
+            Assert.Equal(new BitVector(0b1100), possibleValues[new Coordinate(1, 1)]);
+            Assert.Equal(new BitVector(0b0100), possibleValuesCopy[new Coordinate(1, 1)]);
+        }
+
+        [Fact]
         public void TrySet_WithValidValue_Succeeds()
         {
             var puzzle = new Puzzle(new int?[,] {

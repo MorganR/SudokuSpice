@@ -1,4 +1,6 @@
-﻿namespace SudokuSpice.Rules
+﻿using System.Collections.Generic;
+
+namespace SudokuSpice.Rules
 {
    public interface ISudokuRuleKeeper
     {
@@ -20,5 +22,16 @@
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="value">The value being unset.</param>
         void Unset(in Coordinate c, int value);
+
+        /// <summary>
+        /// Gets the <c>ISudokuRestrict</c>s enforced by this rule-keeper.
+        /// </summary>
+        IReadOnlyList<ISudokuRestrict> GetRestricts();
+
+        /// <summary>
+        /// Creates a deep copy of this ISudokuRuleKeeper with updated internal <c>Puzzle</c> and
+        /// <c>PossibleValues</c> references.
+        /// </summary>
+        ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues);
     }
 }

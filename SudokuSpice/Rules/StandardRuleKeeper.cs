@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SudokuSpice.Rules
@@ -70,6 +71,20 @@ namespace SudokuSpice.Rules
             {
                 _possibleValues.Intersect(in c, _GetPossibleValues(in c));
             }
+        }
+
+        private StandardRuleKeeper(StandardRuleKeeper existing, Puzzle puzzle, PossibleValues possibleValues)
+        {
+            _puzzle = puzzle;
+            _possibleValues = possibleValues;
+            _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
+            _unsetColumnValues = (BitVector[])existing._unsetColumnValues.Clone();
+            _unsetBoxValues = (BitVector[])existing._unsetBoxValues.Clone();
+        }
+
+        public ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues)
+        {
+            return new StandardRuleKeeper(this, puzzle, possibleValues);
         }
 
         public bool TrySet(in Coordinate c, int value)
@@ -146,6 +161,11 @@ namespace SudokuSpice.Rules
             return true;
         }
 
+        public IReadOnlyList<ISudokuRestrict> GetRestricts()
+        {
+            return new List<ISudokuRestrict>() { this };
+        }
+
         public BitVector GetPossibleRowValues(int row) => _unsetRowValues[row];
 
         public BitVector GetPossibleColumnValues(int column) => _unsetColumnValues[column];
@@ -211,6 +231,31 @@ namespace SudokuSpice.Rules
                 }
                 _possibleValues[in workingCoord] = _GetPossibleValues(in workingCoord);
             }
+        }
+
+        public BitVector GetPossibleValues(in Coordinate c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Revert(in Coordinate c, int val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISudokuRestrict CopyWithNewReference(Puzzle puzzle)
+        {
+            throw new NotImplementedException();
         }
     }
 }

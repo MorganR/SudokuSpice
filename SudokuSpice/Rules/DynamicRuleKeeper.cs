@@ -33,6 +33,29 @@ namespace SudokuSpice.Rules
             }
         }
 
+        private DynamicRuleKeeper(DynamicRuleKeeper existing, Puzzle puzzle, PossibleValues possibleValues)
+        {
+            _puzzle = puzzle;
+            _possibleValues = possibleValues;
+            _affectedCoords = new List<Coordinate>(puzzle.Size * existing._restricts.Count);
+            var restricts = new List<ISudokuRestrict>(existing._restricts.Count);
+            foreach (var restrict in existing._restricts)
+            {
+                restricts.Add(restrict.CopyWithNewReference(puzzle));
+            }
+            _restricts = restricts;
+        }
+
+        public ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues)
+        {
+            return new DynamicRuleKeeper(this, puzzle, possibleValues);
+        }
+
+        public IReadOnlyList<ISudokuRestrict> GetRestricts()
+        {
+            return _restricts;
+        }
+
         public bool TrySet(in Coordinate c, int value)
         {
             _affectedCoords.Clear();
