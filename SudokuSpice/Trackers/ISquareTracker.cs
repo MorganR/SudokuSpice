@@ -36,5 +36,9 @@ namespace SudokuSpice
         /// Unsets the most recently set square.
         /// </summary>
         void UnsetLast();
+        /// <summary>
+        /// Creates a deep copy of this ISquareTracker in its current state.
+        /// </summary>
+        ISquareTracker DeepCopy();
     }
 }

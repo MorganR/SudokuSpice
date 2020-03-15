@@ -42,6 +42,22 @@ namespace SudokuSpice
             _coordsThatUsedHeuristics = new Stack<Coordinate>(puzzle.NumEmptySquares);
         }
 
+        private SquareTracker(SquareTracker existing)
+        {
+            _puzzle = new Puzzle(existing._puzzle);
+            _possibleValues = new PossibleValues(existing._possibleValues);
+            _ruleKeeper = existing._ruleKeeper.CopyWithNewReferences(_puzzle, _possibleValues);
+            _heuristic = existing._heuristic?.CopyWithNewReferences(
+                _puzzle, _possibleValues, _ruleKeeper.GetRestricts());
+            _setCoords = new Stack<Coordinate>(existing._setCoords);
+            _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
+        }
+
+        public ISquareTracker DeepCopy()
+        {
+            return new SquareTracker(this);
+        }
+
         public Coordinate GetBestCoordinateToGuess()
         {
             Debug.Assert(_puzzle.NumEmptySquares > 0, "No unset squares left to guess!");
