@@ -26,6 +26,14 @@ namespace SudokuSpice
             _coords = new Coordinate[sideLength * sideLength];
         }
 
+        public CoordinateTracker(CoordinateTracker existing)
+        {
+            _coordToIdx = (int[,])existing._coordToIdx.Clone();
+            _coords = (Coordinate[])existing._coords.Clone();
+            NumTracked = existing.NumTracked;
+            _numAdded = existing._numAdded;
+        }
+
         public void Add(in Coordinate c)
         {
             _coords[_numAdded] = c;

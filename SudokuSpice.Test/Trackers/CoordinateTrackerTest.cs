@@ -7,6 +7,23 @@ namespace SudokuSpice
     public class CoordinateTrackerTest
     {
         [Fact]
+        public void CopyConstructor_CreatesDeepCopy()
+        {
+            var sideLength = 3;
+            var tracker = new CoordinateTracker(sideLength);
+            tracker.Add(new Coordinate(0, 0));
+
+            var trackerCopy = new CoordinateTracker(tracker);
+            trackerCopy.Add(new Coordinate(1, 1));
+
+            Assert.Equal(1, tracker.NumTracked);
+            Assert.Equal(2, trackerCopy.NumTracked);
+            Assert.Equal(new Coordinate[] { new Coordinate(0, 0) }, tracker.GetTrackedCoords().ToArray());
+            Assert.Equal(new HashSet<Coordinate> { new Coordinate(0, 0), new Coordinate(1, 1) },
+                new HashSet<Coordinate>(trackerCopy.GetTrackedCoords().ToArray()));
+        }
+
+        [Fact]
         public void Add_UpToSize_Succeeds()
         {
             var sideLength = 3;
