@@ -95,8 +95,7 @@ namespace SudokuSpice
             }
             var c = tracker.GetBestCoordinateToGuess();
             var possibleValues = tracker.GetPossibleValues(in c);
-            int numPossibleValues = possibleValues.Count();
-            if (numPossibleValues == 1)
+            if (possibleValues.Count == 1)
             {
                 if (tracker.TrySet(in c, possibleValues.Single()))
                 {
@@ -104,16 +103,15 @@ namespace SudokuSpice
                 }
                 return Task.FromResult(new SolveStats());
             }
-            return _TryAllSolutionsWithGuessAsync(tracker, c, possibleValues, numPossibleValues);
+            return _TryAllSolutionsWithGuessAsync(tracker, c, possibleValues);
         }
 
         private static async Task<SolveStats> _TryAllSolutionsWithGuessAsync(
             ISquareTracker tracker,
             Coordinate c,
-            IEnumerable<int> valuesToGuess,
-            int numValuesToGuess)
+            List<int> valuesToGuess)
         {
-            var guessingTasks = new Task<SolveStats>[numValuesToGuess];
+            var guessingTasks = new Task<SolveStats>[valuesToGuess.Count];
             int idx = 0;
             foreach (var possibleValue in valuesToGuess)
             {
@@ -137,7 +135,7 @@ namespace SudokuSpice
                 return agg;
             });
             aggregatedStats.NumSquaresGuessed++;
-            aggregatedStats.NumTotalGuesses += numValuesToGuess;
+            aggregatedStats.NumTotalGuesses += valuesToGuess.Count;
             return aggregatedStats;
         }
     }
