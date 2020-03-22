@@ -136,20 +136,22 @@ namespace SudokuSpice
         }
 
         /// <summary>
-        /// Gets an enumerable of the bits set in this bit vector.
+        /// Gets a list of the bits set in this bit vector.
         /// </summary>
         /// <param name="maxBitCount">The max number of bits that could be set. Bits are only
         ///     checked in the range <c>[0, maxBitCount)</c>. Defaults to 32.</param>
-        /// <returns>An enumerable of the bits that are set.</returns>
-        public readonly IEnumerable<int> GetSetBits(int maxBitCount = 32)
+        /// <returns>A list of the bits that are set.</returns>
+        public readonly List<int> GetSetBits(int maxBitCount = 32)
         {
+            var bits = new List<int>(maxBitCount);
             for (int i = 0; i < maxBitCount; i++)
             {
                 if ((Data & _masks[i]) != 0)
                 {
-                    yield return i;
+                    bits.Add(i);
                 }
             }
+            return bits;
         }
 
         public readonly bool Equals(BitVector other) => Data == other.Data;

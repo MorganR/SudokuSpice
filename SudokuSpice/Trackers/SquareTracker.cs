@@ -83,10 +83,10 @@ namespace SudokuSpice
             return bestCoord;
         }
 
-        public IEnumerable<int> GetPossibleValues(in Coordinate c)
+        public List<int> GetPossibleValues(in Coordinate c)
         {
             return _possibleValues[in c]
-                .GetSetBits().Select(b => b + 1);
+                .GetSetBits().Select(b => b + 1).ToList();
         }
 
         public int GetNumEmptySquares() => _puzzle.NumEmptySquares;

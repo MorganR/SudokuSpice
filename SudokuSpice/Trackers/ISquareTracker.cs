@@ -20,8 +20,8 @@ namespace SudokuSpice
         /// Gets the possible values at the given internal index.
         /// </summary>
         /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
-        /// <returns>An enumerable of those possible values.</returns>
-        IEnumerable<int> GetPossibleValues(in Coordinate c);
+        /// <returns>A list of those possible values.</returns>
+        List<int> GetPossibleValues(in Coordinate c);
         /// <summary>
         /// Tries to set the square at the given coordinate to the given possible value. This also 
         /// modifies its internal data as needed to maintain track of the square's values. If the
