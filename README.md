@@ -76,8 +76,8 @@ more complicated examples.
 
 #### Puzzle generation performance
 
-|             Method |        Mean |     Error |      StdDev | Ratio | RatioSD |
-|------------------- |------------:|----------:|------------:|------:|--------:|
-|        SudokuSpice |    679.6 us |   9.27 us |     8.67 us |  1.00 |    0.00 |
-| SudokuSharpSingles | 13,664.5 us | 561.03 us | 1,645.39 us | 19.88 |    2.60 |
-|   SudokuSharpMixed |  6,913.9 us | 215.41 us |   628.35 us | 10.07 |    1.21 |
+|             Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
+|------------------- |----------:|----------:|----------:|------:|--------:|
+|        SudokuSpice |  2.023 ms | 0.0385 ms | 0.0378 ms |  1.00 |    0.00 |
+| SudokuSharpSingles | 13.241 ms | 0.5405 ms | 1.5681 ms |  6.58 |    0.40 |
+|   SudokuSharpMixed |  6.991 ms | 0.2217 ms | 0.6432 ms |  3.60 |    0.34 |

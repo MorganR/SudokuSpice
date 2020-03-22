@@ -6,7 +6,7 @@ namespace SudokuSpice
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Generator
     {
-        private const int MAX_ATTEMPTS = 100;
+        private const int MAX_ATTEMPTS = 5;
         private readonly Random _random = new Random();
         private readonly int _size;
         private readonly int _boxSize;
@@ -32,7 +32,7 @@ namespace SudokuSpice
                 _FillPuzzle(puzzle);
                 var setCoordinates = new CoordinateTracker(_size);
                 _TrackAllCoordinates(setCoordinates);
-                if (_TryUnsetSquaresWhileSolvable(numSquaresToSet, 0, setCoordinates, puzzle))
+                if (_TryUnsetSquaresWhileSolvable(numSquaresToSet, _size * _size, setCoordinates, puzzle))
                 {
                     break;
                 }
@@ -55,8 +55,8 @@ namespace SudokuSpice
                 case 1:
                     break;
                 case 2:
-                    lowerBound = 1;
-                    upperBound = 4;
+                    lowerBound = 4;
+                    upperBound = 16;
                     break;
                 case 3:
                     lowerBound = 17;
@@ -82,9 +82,9 @@ namespace SudokuSpice
             }
         }
 
-        private bool _TryUnsetSquaresWhileSolvable(int totalNumSquaresToUnset, int currentNumUnset, CoordinateTracker setCoordinatesToTry, Puzzle puzzle)
+        private bool _TryUnsetSquaresWhileSolvable(int totalNumSquaresToSet, int currentNumSet, CoordinateTracker setCoordinatesToTry, Puzzle puzzle)
         {
-            if (currentNumUnset == totalNumSquaresToUnset)
+            if (currentNumSet == totalNumSquaresToSet)
             {
                 return true;
             }
@@ -97,7 +97,7 @@ namespace SudokuSpice
                 {
                     continue;
                 }
-                if (_TryUnsetSquaresWhileSolvable(totalNumSquaresToUnset, currentNumUnset + 1, new CoordinateTracker(setCoordinatesToTry), puzzle))
+                if (_TryUnsetSquaresWhileSolvable(totalNumSquaresToSet, currentNumSet - 1, new CoordinateTracker(setCoordinatesToTry), puzzle))
                 {
                     return true;
                 }

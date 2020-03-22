@@ -20,8 +20,8 @@ namespace SudokuSpice.Test
         [Theory]
         [InlineData(1, -1)]
         [InlineData(1, 2)]
-        [InlineData(4, 0)]
-        [InlineData(4, 5)]
+        [InlineData(4, 3)]
+        [InlineData(4, 17)]
         [InlineData(9, 16)]
         [InlineData(9, 82)]
         [InlineData(16, 40)]
@@ -37,7 +37,7 @@ namespace SudokuSpice.Test
 
         [Theory]
         [InlineData(1, 1)]
-        [InlineData(4, 2)]
+        [InlineData(4, 10)]
         [InlineData(9, 30)]
         public void Generate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
         {
@@ -45,6 +45,7 @@ namespace SudokuSpice.Test
             
             var puzzle = generator.Generate(numToSet);
 
+            Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
             var solver = new Solver(puzzle);
             var stats = solver.GetStatsForAllSolutions();
             Assert.Equal(1, stats.NumSolutionsFound);
