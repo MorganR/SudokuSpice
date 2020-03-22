@@ -19,6 +19,8 @@ The performance of this library has been compared to other .NET sudoku libraries
 * [SudokuSolverLite](https://github.com/zhiliangxu/SudokuSolver)
 * [SudokuSharp](https://github.com/BenjaminChambers/SudokuSharp)
 
+#### Puzzle solving performance
+
 These were compared using a set of 1 million sudoku puzzles
 ([source](https://www.kaggle.com/bryanpark/sudoku)). These are fairly easy
 puzzles without much (if any) need to guess or use advanced heuristics.
@@ -71,3 +73,11 @@ more complicated examples.
 | SudokuSpiceDynamicMultiple |  EvilB |   1,800.304 us |     3.7162 us |     3.4761 us |     1.67 |    0.01 |
 |           SudokuSolverLite |  EvilB |  50,251.081 us |   116.2257 us |   103.0310 us |    46.70 |    0.11 |
 |                SudokuSharp |  EvilB |   5,226.226 us |    30.1161 us |    28.1706 us |     4.86 |    0.03 |
+
+#### Puzzle generation performance
+
+|             Method |        Mean |     Error |      StdDev | Ratio | RatioSD |
+|------------------- |------------:|----------:|------------:|------:|--------:|
+|        SudokuSpice |    679.6 us |   9.27 us |     8.67 us |  1.00 |    0.00 |
+| SudokuSharpSingles | 13,664.5 us | 561.03 us | 1,645.39 us | 19.88 |    2.60 |
+|   SudokuSharpMixed |  6,913.9 us | 215.41 us |   628.35 us | 10.07 |    1.21 |

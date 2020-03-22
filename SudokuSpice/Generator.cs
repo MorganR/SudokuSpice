@@ -82,12 +82,6 @@ namespace SudokuSpice
             }
         }
 
-        private void _FillPuzzle(Puzzle puzzle)
-        {
-            var solver = new Solver(puzzle);
-            solver.SolveRandomly();
-        }
-
         private bool _TryUnsetSquaresWhileSolvable(int totalNumSquaresToUnset, int currentNumUnset, CoordinateTracker setCoordinatesToTry, Puzzle puzzle)
         {
             if (currentNumUnset == totalNumSquaresToUnset)
@@ -113,7 +107,29 @@ namespace SudokuSpice
             return false;
         }
 
-        private bool _TryUnsetSquareAt(in Coordinate c, Puzzle puzzle)
+        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker)
+        {
+            return tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
+        }
+
+        private void _TrackAllCoordinates(CoordinateTracker tracker)
+        {
+            for (int row = 0; row < _size; row++)
+            {
+                for (int col = 0; col < _size; col++)
+                {
+                    tracker.Add(new Coordinate(row, col));
+                }
+            }
+        }
+
+        private static void _FillPuzzle(Puzzle puzzle)
+        {
+            var solver = new Solver(puzzle);
+            solver.SolveRandomly();
+        }
+
+        private static bool _TryUnsetSquareAt(in Coordinate c, Puzzle puzzle)
         {
             // Set without checks when there can't be conflicts.
             if (puzzle.NumEmptySquares < 3)
@@ -131,22 +147,6 @@ namespace SudokuSpice
             }
             puzzle[in c] = previousValue;
             return false;
-        }
-
-        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker)
-        {
-            return tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
-        }
-
-        private void _TrackAllCoordinates(CoordinateTracker tracker)
-        {
-            for (int row = 0; row < _size; row++)
-            {
-                for (int col = 0; col < _size; col++)
-                {
-                    tracker.Add(new Coordinate(row, col));
-                }
-            }
         }
     }
 }
