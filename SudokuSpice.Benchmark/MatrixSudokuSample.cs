@@ -7,7 +7,7 @@ class MatrixSudokuSample
     internal PuzzleSample Puzzle { get; set;}
     internal PuzzleSample Solution { get; set;}
 
-    internal MatrixSudokuSample(SudokuSample sample)
+    internal MatrixSudokuSample(LegacySudokuSample sample)
     {
         Puzzle = new PuzzleSample("puzzle", _NumberStringToMatrix(sample.Puzzle)); 
         Solution = new PuzzleSample("solution", _NumberStringToMatrix(sample.Solution)); 

@@ -6,7 +6,7 @@ using BenchmarkDotNet.Engines;
 
 namespace SudokuSpice.Benchmark {
 [SimpleJob(RunStrategy.Throughput, targetCount: 100, invocationCount: 10000)]
-public class CsvBenchmarker
+public class LegacyCsvBenchmarker
 {
     private int _idx = 0;
     private IReadOnlyList<MatrixSudokuSample> _samples;
@@ -21,7 +21,7 @@ public class CsvBenchmarker
 
     [GlobalSetup]
     public void PrepareCsvSamples() {
-        _samples = SudokuCsvParser.ParseCsv().Select(sample => new MatrixSudokuSample(sample)).ToList();
+        _samples = LegacySudokuCsvParser.ParseCsv().Select(sample => new MatrixSudokuSample(sample)).ToList();
     }
 
     [Benchmark(Baseline = true)]

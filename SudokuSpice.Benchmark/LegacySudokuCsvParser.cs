@@ -6,19 +6,19 @@ using TinyCsvParser;
 
 namespace SudokuSpice.Benchmark
 {
-    static class SudokuCsvParser
+    static class LegacySudokuCsvParser
     {
         private static readonly string _csvPath = 
-            Path.Combine(Directory.GetCurrentDirectory(), "data", "sudoku.csv");
-        internal static IReadOnlyList<SudokuSample> ParseCsv()
+            Path.Combine(Directory.GetCurrentDirectory(), "data", "legacy-sudoku.csv");
+        internal static IReadOnlyList<LegacySudokuSample> ParseCsv()
         {
             var options = new CsvParserOptions(
                 /* skipHeader = */true,
                 ',',
                 /* degreeOfParallelism = */12,
                 /* keepOrder = */true);
-            var mapping = new SudokuSampleMapping();
-            var parser = new CsvParser<SudokuSample>(options, mapping);
+            var mapping = new LegacySudokuSampleMapping();
+            var parser = new CsvParser<LegacySudokuSample>(options, mapping);
 
             var results = parser.ReadFromFile(_csvPath, Encoding.ASCII);
 
