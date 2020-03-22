@@ -83,6 +83,15 @@ namespace SudokuSpice
         }
 
         [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
+        {
+            var solver = new Solver(puzzle);
+            solver.SolveRandomly();
+            _AssertPuzzleSolved(puzzle);
+        }
+
+        [Theory]
         [MemberData(nameof(PuzzlesWithStats))]
         public void GetStatsForAllSolutions_WithoutHeuristics_ReturnsExpectedResults(Puzzle puzzle, SolveStats expectedStats)
         {

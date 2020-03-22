@@ -21,7 +21,16 @@ namespace SudokuSpice
         {
             if (!_TrySolve())
             {
-                throw new ApplicationException($"Failed to solve the puzzle with {_tracker.GetNumEmptySquares()} empty squares remaining.");
+                throw new ArgumentException($"Failed to solve the given puzzle.");
+            }
+        }
+
+        public void SolveRandomly()
+        {
+            var random = new Random();
+            if (!_TrySolveRandomly(random))
+            {
+                throw new ArgumentException($"Failed to solve the given puzzle.");
             }
         }
 
@@ -42,6 +51,30 @@ namespace SudokuSpice
                     }
                     _tracker.UnsetLast();
                 }
+            }
+            return false;
+        }
+
+        private bool _TrySolveRandomly(Random random)
+        {
+            if (_tracker.GetNumEmptySquares() == 0)
+            {
+                return true;
+            }
+            var c = _tracker.GetBestCoordinateToGuess();
+            var possibleValues = _tracker.GetPossibleValues(in c);
+            while (possibleValues.Count > 0)
+            {
+                int possibleValue = possibleValues[random.Next(0, possibleValues.Count)];
+                if (_tracker.TrySet(in c, possibleValue))
+                {
+                    if (_TrySolveRandomly(random))
+                    {
+                        return true;
+                    }
+                    _tracker.UnsetLast();
+                }
+                possibleValues.Remove(possibleValue);
             }
             return false;
         }
