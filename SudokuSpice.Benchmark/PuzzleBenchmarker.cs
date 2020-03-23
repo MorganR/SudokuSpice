@@ -17,7 +17,7 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var solver = new Solver(p);
-            solver.Solve();
+            solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
 
@@ -36,7 +36,7 @@ namespace SudokuSpice.Benchmark
             var squareTracker = new SquareTracker(
                 p, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);
-            solver.Solve();
+            solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
 
@@ -57,16 +57,8 @@ namespace SudokuSpice.Benchmark
             var squareTracker = new SquareTracker(
                 p, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);
-            solver.Solve();
+            solver.SolveRandomly();
             return p.NumEmptySquares == 0;
-        }
-
-        [Benchmark]
-        [ArgumentsSource(nameof(NineByNinePuzzles))]
-        public bool SudokuSolverLite(PuzzleSample puzzle)
-        {
-            // Must clone the input, since this method solves the puzzle in-place.
-            return SudokuSolver.SudokuSolver.Solve((int[,])puzzle.Matrix.Clone());
         }
 
         [Benchmark]
@@ -85,9 +77,18 @@ namespace SudokuSpice.Benchmark
                 }
             }
 
-            board = board.Fill.Sequential();
+            board = board.Fill.Randomized();
 
             return board.IsSolved;
         }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(NineByNinePuzzles))]
+        public bool SudokuSolverLite(PuzzleSample puzzle)
+        {
+            // Must clone the input, since this method solves the puzzle in-place.
+            return SudokuSolver.SudokuSolver.Solve((int[,])puzzle.Matrix.Clone());
+        }
+
     }
 }

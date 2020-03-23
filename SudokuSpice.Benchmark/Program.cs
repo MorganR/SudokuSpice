@@ -8,6 +8,7 @@ namespace SudokuSpice.Benchmark
         {
             BenchmarkSwitcher.FromTypes(new[] {
                 typeof(PuzzleBenchmarker),
+                typeof(CsvBenchmarker),
                 typeof(LegacyCsvBenchmarker),
                 typeof(GeneratorBenchmarker)
             }).Run(args);

@@ -17,13 +17,18 @@ namespace SudokuSpice
         /// <summary>The length of one side of a mini box within the puzzle.</summary>
         /// <para>A mini box is a square region that must contain each possible value exactly once.</para>
         public int BoxSize { get; }
+        /// <summary>The total number of squares in the puzzle.</summary>
+        public int NumSquares { get; }
         /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
         public int NumEmptySquares { get { return _unsetCoordsTracker.NumTracked; } }
+        /// <summary>The number of set/known squares in the puzzle.</summary>
+        public int NumSetSquares { get { return NumSquares - NumEmptySquares; } }
         private readonly int?[,] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
 
         public Puzzle(int?[,] puzzleMatrix)
         {
+            NumSquares = puzzleMatrix.Length;
             Size = puzzleMatrix.GetLength(0);
             // Limit to up to 32 possible values (what fits in an int), and ensure that puzzles must
             // be square.
