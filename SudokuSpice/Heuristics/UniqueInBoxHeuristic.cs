@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SudokuSpice
+namespace SudokuSpice.Heuristics
 {
     public class UniqueInBoxHeuristic : ISudokuHeuristic
     {

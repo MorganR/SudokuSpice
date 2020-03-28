@@ -1,7 +1,7 @@
 ﻿using SudokuSpice.Data;
 using System.Collections.Generic;
 
-namespace SudokuSpice
+namespace SudokuSpice.Heuristics
 {
     /// <summary>
     /// Performs some logical trickery to reduce the number of possible values for a square. Unlike

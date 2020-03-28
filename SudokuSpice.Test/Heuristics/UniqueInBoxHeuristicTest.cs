@@ -3,7 +3,7 @@ using SudokuSpice.Rules;
 using System.Collections.Generic;
 using Xunit;
 
-namespace SudokuSpice
+namespace SudokuSpice.Heuristics.Test
 {
     public class UniqueInBoxHeuristicTest
     {

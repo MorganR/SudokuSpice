@@ -1,5 +1,6 @@
 using BenchmarkDotNet.Attributes;
 using SudokuSpice.Data;
+using SudokuSpice.Heuristics;
 using SudokuSpice.Rules;
 using System.Collections.Generic;
 
