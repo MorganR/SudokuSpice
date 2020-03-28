@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace SudokuSpice
+namespace SudokuSpice.Data
 {
     /// <summary>
     /// Tracks possible values for a puzzle.

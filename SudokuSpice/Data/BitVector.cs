@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Intrinsics.X86;
 
-namespace SudokuSpice
+namespace SudokuSpice.Data
 {
     /// <summary>
     /// Tracks a vector of 32 bits.

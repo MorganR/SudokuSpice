@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SudokuSpice.Data;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SudokuSpice

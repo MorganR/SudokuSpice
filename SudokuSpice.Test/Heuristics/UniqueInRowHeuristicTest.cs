@@ -1,4 +1,5 @@
-﻿using SudokuSpice.Rules;
+﻿using SudokuSpice.Data;
+using SudokuSpice.Rules;
 using System.Collections.Generic;
 using Xunit;
 

@@ -1,4 +1,6 @@
-﻿namespace SudokuSpice
+﻿using SudokuSpice.Data;
+
+namespace SudokuSpice
 {
     public interface IColumnRestrict : ISudokuRestrict
     {

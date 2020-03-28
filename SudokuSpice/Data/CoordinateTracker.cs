@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace SudokuSpice
+namespace SudokuSpice.Data
 {
     /// <summary>Efficiently tracks a group of coordinates.</summary>
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]

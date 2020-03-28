@@ -1,3 +1,4 @@
+using SudokuSpice.Data;
 using System.Collections.Generic;
 using Xunit;
 

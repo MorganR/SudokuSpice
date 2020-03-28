@@ -1,6 +1,6 @@
 using System;
 
-namespace SudokuSpice
+namespace SudokuSpice.Data
 {
     public readonly struct Coordinate : IEquatable<Coordinate>
     {

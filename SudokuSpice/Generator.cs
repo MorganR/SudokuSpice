@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuSpice.Data;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice
