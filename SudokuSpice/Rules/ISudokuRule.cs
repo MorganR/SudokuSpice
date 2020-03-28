@@ -1,15 +1,15 @@
 using SudokuSpice.Data;
 using System.Collections.Generic;
 
-namespace SudokuSpice
+namespace SudokuSpice.Rules
 {
     /// <summary>
-    /// Enforces a restriction for a puzzle, such as "all values must be unique within a row."
+    /// Enforces a rule for a puzzle, such as "all values must be unique within a row."
     /// </summary>
-    public interface ISudokuRestrict
+    public interface ISudokuRule
     {
         /// <summary>
-        /// Gets the possible values for the given coordinate based on this restriction.
+        /// Gets the possible values for the given coordinate based on this rule.
         /// </summary>
         /// <returns>The possible values represented as a bit-vector.</returns>
         BitVector GetPossibleValues(in Coordinate c);
@@ -29,8 +29,8 @@ namespace SudokuSpice
         ///     should be modified.</param>
         void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords);
         /// <summary>
-        /// Updates restricts based on setting the given coordinate to the given value. Appends
-        /// affected coordinates to the given list.
+        /// Updates possible values based on setting the given coordinate to the given value.
+        /// Appends affected coordinates to the given list.
         /// </summary>
         /// <param name="c">The coordinate to update.</param>
         /// <param name="val">The value to set <c>c</c> to.</param>
@@ -38,10 +38,10 @@ namespace SudokuSpice
         ///     should be modified.</param>
         void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords);
         /// <summary>
-        /// Creates a deep copy of this ISudokuRestrict, with any internal <c>Puzzle</c> references
+        /// Creates a deep copy of this ISudokuRule, with any internal <c>Puzzle</c> references
         /// updated to the given puzzle.
         /// </summary>
         /// <param name="puzzle">New puzzle reference to use.</param>
-        ISudokuRestrict CopyWithNewReference(Puzzle puzzle);
+        ISudokuRule CopyWithNewReference(Puzzle puzzle);
     }
 }

@@ -29,12 +29,12 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var possibleValues = new PossibleValues(p);
-            var standardRestrict = new StandardRestrict(p);
+            var standardRules = new StandardRules(p);
             var ruleKeeper = new DynamicRuleKeeper(
                 p, possibleValues,
-                new List<ISudokuRestrict> { standardRestrict });
+                new List<ISudokuRule> { standardRules });
             var heuristic = new StandardHeuristic(
-                p, possibleValues, standardRestrict, standardRestrict, standardRestrict);
+                p, possibleValues, standardRules, standardRules, standardRules);
             var squareTracker = new SquareTracker(
                 p, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);
@@ -48,14 +48,14 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var possibleValues = new PossibleValues(p);
-            var rowRestrict = new RowRestrict(p);
-            var columnRestrict = new ColumnRestrict(p);
-            var boxRestrict = new BoxRestrict(p, true);
+            var rowRule = new RowUniquenessRule(p);
+            var columnRule = new ColumnUniquenessRule(p);
+            var boxRule = new BoxUniquenessRule(p, true);
             var ruleKeeper = new DynamicRuleKeeper(
                 p, possibleValues,
-                new List<ISudokuRestrict> { rowRestrict, columnRestrict, boxRestrict });
+                new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
-                p, possibleValues, rowRestrict, columnRestrict, boxRestrict);
+                p, possibleValues, rowRule, columnRule, boxRule);
             var squareTracker = new SquareTracker(
                 p, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);

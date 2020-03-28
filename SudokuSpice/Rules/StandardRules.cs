@@ -3,20 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace SudokuSpice
+namespace SudokuSpice.Rules
 {
     /// <summary>
-    /// Combines the standard restricts (Row, Column, and Box) for efficiency and
+    /// Combines the standard rules (row, column, and box uniqueness) for efficiency and
     /// convenience.
     /// </summary>
-    public class StandardRestrict : ISudokuRestrict, IRowRestrict, IColumnRestrict, IBoxRestrict
+    public class StandardRules : ISudokuRule, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
         private readonly Puzzle _puzzle;
         private readonly BitVector[] _unsetRowValues;
         private readonly BitVector[] _unsetColValues;
         private readonly BitVector[] _unsetBoxValues;
 
-        public StandardRestrict(Puzzle puzzle)
+        public StandardRules(Puzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetRowValues = new BitVector[puzzle.Size];
@@ -51,15 +51,15 @@ namespace SudokuSpice
                     int bit = val.Value - 1;
                     if (!_unsetRowValues[row].IsBitSet(bit))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException($"Puzzle does not satisfy rule at ({row}, {col}).");
                     }
                     if (!_unsetColValues[col].IsBitSet(bit))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException($"Puzzle does not satisfy rule at ({row}, {col}).");
                     }
                     if (!_unsetBoxValues[boxIdx].IsBitSet(bit))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException($"Puzzle does not satisfy rule at ({row}, {col}).");
                     }
                     _unsetRowValues[row].UnsetBit(bit);
                     _unsetColValues[col].UnsetBit(bit);
@@ -68,7 +68,7 @@ namespace SudokuSpice
             }
         }
 
-        private StandardRestrict(StandardRestrict existing, Puzzle puzzle)
+        private StandardRules(StandardRules existing, Puzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
@@ -76,16 +76,16 @@ namespace SudokuSpice
             _unsetBoxValues = (BitVector[])existing._unsetBoxValues.Clone();
         }
 
-        public ISudokuRestrict CopyWithNewReference(Puzzle puzzle)
+        public ISudokuRule CopyWithNewReference(Puzzle puzzle)
         {
-            return new StandardRestrict(this, puzzle);
+            return new StandardRules(this, puzzle);
         }
 
-        public BitVector GetPossibleRowValues(int row) => _unsetRowValues[row];
+        public BitVector GetMissingValuesForRow(int row) => _unsetRowValues[row];
 
-        public BitVector GetPossibleColumnValues(int column) => _unsetColValues[column];
+        public BitVector GetMissingValuesForColumn(int column) => _unsetColValues[column];
 
-        public BitVector GetPossibleBoxValues(int box) => _unsetBoxValues[box];
+        public BitVector GetMissingValuesForBox(int box) => _unsetBoxValues[box];
 
         public BitVector GetPossibleValues(in Coordinate c)
         {
@@ -98,7 +98,7 @@ namespace SudokuSpice
 
         public void Revert(in Coordinate c, int val)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val - 1);
             _unsetColValues[c.Column].SetBit(val - 1);
             _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val - 1);
@@ -106,7 +106,7 @@ namespace SudokuSpice
 
         public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val - 1);
             _unsetColValues[c.Column].SetBit(val - 1);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);
@@ -116,7 +116,7 @@ namespace SudokuSpice
 
         public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot update a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             _unsetRowValues[c.Row].UnsetBit(val - 1);
             _unsetColValues[c.Column].UnsetBit(val - 1);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);

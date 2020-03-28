@@ -25,9 +25,9 @@ namespace SudokuSpice.Rules
         void Unset(in Coordinate c, int value);
 
         /// <summary>
-        /// Gets the <c>ISudokuRestrict</c>s enforced by this rule-keeper.
+        /// Gets the <c>ISudokuRule</c>s enforced by this rule-keeper.
         /// </summary>
-        IReadOnlyList<ISudokuRestrict> GetRestricts();
+        IReadOnlyList<ISudokuRule> GetRules();
 
         /// <summary>
         /// Creates a deep copy of this ISudokuRuleKeeper with updated internal <c>Puzzle</c> and

@@ -54,7 +54,7 @@ namespace SudokuSpice.Heuristics.Test
             var ruleKeeperCopy = (StandardRuleKeeper) ruleKeeper.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy);
             var heuristicCopy = heuristic.CopyWithNewReferences(
-                puzzleCopy, possibleValuesCopy, new List<ISudokuRestrict> { ruleKeeperCopy });
+                puzzleCopy, possibleValuesCopy, new List<ISudokuRule> { ruleKeeperCopy });
 
             var coord = new Coordinate(1, 1);
             var originalPossibleValues = possibleValues[coord];

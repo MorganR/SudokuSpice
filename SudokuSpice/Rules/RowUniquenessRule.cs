@@ -3,17 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace SudokuSpice
+namespace SudokuSpice.Rules
 {
     /// <summary>
-    /// Restricts that each row contains all unique values.
+    /// Rules that each row contains all unique values.
     /// </summary>
-    public class RowRestrict : ISudokuRestrict, IRowRestrict
+    public class RowUniquenessRule : ISudokuRule, IMissingRowValuesTracker
     {
         private readonly Puzzle _puzzle;
         private readonly BitVector[] _unsetRowValues;
 
-        public RowRestrict(Puzzle puzzle)
+        public RowUniquenessRule(Puzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetRowValues = new BitVector[puzzle.Size];
@@ -41,24 +41,24 @@ namespace SudokuSpice
             }
         }
 
-        private RowRestrict(RowRestrict existing, Puzzle puzzle)
+        private RowUniquenessRule(RowUniquenessRule existing, Puzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
         }
 
-        public ISudokuRestrict CopyWithNewReference(Puzzle puzzle)
+        public ISudokuRule CopyWithNewReference(Puzzle puzzle)
         {
-            return new RowRestrict(this, puzzle);
+            return new RowUniquenessRule(this, puzzle);
         }
 
         public BitVector GetPossibleValues(in Coordinate c) => _unsetRowValues[c.Row];
 
-        public BitVector GetPossibleRowValues(int row) => _unsetRowValues[row];
+        public BitVector GetMissingValuesForRow(int row) => _unsetRowValues[row];
 
         public void Revert(in Coordinate c, int val)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val - 1);
         }
 
@@ -70,7 +70,7 @@ namespace SudokuSpice
 
         public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot update a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             _unsetRowValues[c.Row].UnsetBit(val - 1);
             _AddUnsetFromRow(in c, affectedCoords);
         }

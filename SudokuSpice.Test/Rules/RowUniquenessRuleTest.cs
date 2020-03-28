@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace SudokuSpice
+namespace SudokuSpice.Rules.Test
 {
-    public class RowRestrictTest
+    public class RowUniquenessRuleTest
     {
         [Fact]
         public void Constructor_FiltersCorrectly()
@@ -16,11 +16,11 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var restrict = new RowRestrict(puzzle);
-            Assert.Equal(new BitVector(0b1100), restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1110), restrict.GetPossibleValues(new Coordinate(1, 0)));
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(3, 0)));
+            var rule = new RowUniquenessRule(puzzle);
+            Assert.Equal(new BitVector(0b1100), rule.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b1110), rule.GetPossibleValues(new Coordinate(1, 0)));
+            Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b0000), rule.GetPossibleValues(new Coordinate(3, 0)));
         }
 
         [Theory]
@@ -31,8 +31,8 @@ namespace SudokuSpice
         {
             var matrix = new int?[size, size];
             var puzzle = new Puzzle(matrix);
-            var restrict = new RowRestrict(puzzle);
-            Assert.NotNull(restrict);
+            var rule = new RowUniquenessRule(puzzle);
+            Assert.NotNull(rule);
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace SudokuSpice
         {
             var ex = Assert.Throws<ArgumentException>(() =>
             {
-                var restrict = new RowRestrict(
+                var rule = new RowUniquenessRule(
                     new Puzzle(
                         new int?[,] {
                             {           1, /* INCORRECT */ 1, null /* 3 */,            2},
@@ -61,22 +61,22 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var restrict = new RowRestrict(puzzle);
+            var rule = new RowUniquenessRule(puzzle);
 
             var puzzleCopy = new Puzzle(puzzle);
-            var restrictCopy = restrict.CopyWithNewReference(puzzleCopy);
+            var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 2;
             var coord = new Coordinate(2, 2);
-            restrictCopy.Update(coord, val, new List<Coordinate>());
-            Assert.NotEqual(restrict.GetPossibleValues(coord), restrictCopy.GetPossibleValues(coord));
+            ruleCopy.Update(coord, val, new List<Coordinate>());
+            Assert.NotEqual(rule.GetPossibleValues(coord), ruleCopy.GetPossibleValues(coord));
 
             puzzleCopy[coord] = val;
             var secondCoord = new Coordinate(2, 3);
             var secondVal = 3;
             var list = new List<Coordinate>();
-            restrictCopy.Update(secondCoord, secondVal, list);
+            ruleCopy.Update(secondCoord, secondVal, list);
             var originalList = new List<Coordinate>();
-            restrict.Update(secondCoord, secondVal, originalList);
+            rule.Update(secondCoord, secondVal, originalList);
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(2, 0), new Coordinate(2, 1) },
                 new HashSet<Coordinate>(list));
@@ -94,16 +94,16 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
-            var restrict = new RowRestrict(puzzle);
+            var rule = new RowUniquenessRule(puzzle);
             var list = new List<Coordinate>();
             var coord = new Coordinate(1, 1);
             var val = 3;
-            restrict.Update(coord, val, list);
+            rule.Update(coord, val, list);
             Assert.Equal(new List<Coordinate> { new Coordinate(1, 0), new Coordinate(1, 3) }, list);
-            Assert.Equal(new BitVector(0b1100), restrict.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1010), restrict.GetPossibleValues(new Coordinate(1, 0)));
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleValues(new Coordinate(3, 0)));
+            Assert.Equal(new BitVector(0b1100), rule.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(1, 0)));
+            Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b0000), rule.GetPossibleValues(new Coordinate(3, 0)));
         }
 
         [Fact]
@@ -115,19 +115,19 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
-            var restrict = new RowRestrict(puzzle);
-            var initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, restrict);
+            var rule = new RowUniquenessRule(puzzle);
+            var initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, rule);
             var updatedList = new List<Coordinate>();
             var coord = new Coordinate(1, 1);
             var val = 3;
-            restrict.Update(coord, val, updatedList);
+            rule.Update(coord, val, updatedList);
 
-            restrict.Revert(coord, val);
+            rule.Revert(coord, val);
 
             for (int row = 0; row < initialPossibleValuesByRow.Count; row++)
             {
                 Assert.Equal(
-                    initialPossibleValuesByRow[row], restrict.GetPossibleRowValues(row));
+                    initialPossibleValuesByRow[row], rule.GetMissingValuesForRow(row));
             }
         }
 
@@ -140,22 +140,22 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
-            var restrict = new RowRestrict(puzzle);
-            var initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, restrict);
+            var rule = new RowUniquenessRule(puzzle);
+            var initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, rule);
             var updatedList = new List<Coordinate>();
             var revertedList = new List<Coordinate>();
             var coord = new Coordinate(1, 1);
             var val = 3;
-            restrict.Update(coord, val, updatedList);
+            rule.Update(coord, val, updatedList);
 
-            restrict.Revert(coord, val, revertedList);
+            rule.Revert(coord, val, revertedList);
             
             Assert.Equal(updatedList, revertedList);
             for (int row = 0; row < initialPossibleValuesByRow.Count; row++)
             {
                 Assert.Equal(
                     initialPossibleValuesByRow[row],
-                    restrict.GetPossibleRowValues(row));
+                    rule.GetMissingValuesForRow(row));
             }
         }
 
@@ -168,11 +168,11 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
-            var restrict = new RowRestrict(puzzle);
-            Assert.Equal(new BitVector(0b1100), restrict.GetPossibleRowValues(0));
-            Assert.Equal(new BitVector(0b1110), restrict.GetPossibleRowValues(1));
-            Assert.Equal(new BitVector(0b1111), restrict.GetPossibleRowValues(2));
-            Assert.Equal(new BitVector(0b0000), restrict.GetPossibleRowValues(3));
+            var rule = new RowUniquenessRule(puzzle);
+            Assert.Equal(new BitVector(0b1100), rule.GetMissingValuesForRow(0));
+            Assert.Equal(new BitVector(0b1110), rule.GetMissingValuesForRow(1));
+            Assert.Equal(new BitVector(0b1111), rule.GetMissingValuesForRow(2));
+            Assert.Equal(new BitVector(0b0000), rule.GetMissingValuesForRow(3));
         }
 
         [Fact]
@@ -184,8 +184,8 @@ namespace SudokuSpice
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
-            var restrict = new RowRestrict(puzzle);
-            var possibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, restrict);
+            var rule = new RowUniquenessRule(puzzle);
+            var possibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, rule);
 
             for (int row = 0; row < possibleValuesByRow.Count; row++)
             {
@@ -193,17 +193,17 @@ namespace SudokuSpice
                 {
                     Assert.Equal(
                         possibleValuesByRow[row],
-                        restrict.GetPossibleValues(new Coordinate(row, col)));
+                        rule.GetPossibleValues(new Coordinate(row, col)));
                 }
             }
         }
 
-        private IList<BitVector> _GetPossibleValuesByRow(int numRows, RowRestrict restrict)
+        private IList<BitVector> _GetPossibleValuesByRow(int numRows, RowUniquenessRule rule)
         {
             var possibleRowValues = new List<BitVector>();
             for (int row = 0; row < numRows; row++)
             {
-                possibleRowValues.Add(restrict.GetPossibleRowValues(row));
+                possibleRowValues.Add(rule.GetMissingValuesForRow(row));
             }
             return possibleRowValues;
         }

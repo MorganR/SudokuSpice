@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.Data;
+using SudokuSpice.Rules;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,15 +9,15 @@ namespace SudokuSpice.Heuristics
     {
         private readonly Puzzle _puzzle;
         private readonly PossibleValues _possibleValues;
-        private readonly IColumnRestrict _restrict;
+        private readonly IMissingColumnValuesTracker _columnTracker;
         private readonly BitVector[] _possiblesToCheckInColumn;
         private readonly Stack<IReadOnlyDictionary<Coordinate, BitVector>> _previousPossiblesStack;
 
-        public UniqueInColumnHeuristic(Puzzle puzzle, PossibleValues possibleValues, IColumnRestrict restrict)
+        public UniqueInColumnHeuristic(Puzzle puzzle, PossibleValues possibleValues, IMissingColumnValuesTracker rule)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
-            _restrict = restrict;
+            _columnTracker = rule;
             _possiblesToCheckInColumn = new BitVector[puzzle.Size];
             _previousPossiblesStack = new Stack<IReadOnlyDictionary<Coordinate, BitVector>>(puzzle.NumEmptySquares);
         }
@@ -25,11 +26,11 @@ namespace SudokuSpice.Heuristics
             UniqueInColumnHeuristic existing,
             Puzzle puzzle,
             PossibleValues possibleValues,
-            IColumnRestrict restrict)
+            IMissingColumnValuesTracker rule)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
-            _restrict = restrict;
+            _columnTracker = rule;
             _possiblesToCheckInColumn = (BitVector[])existing._possiblesToCheckInColumn.Clone();
             _previousPossiblesStack = new Stack<IReadOnlyDictionary<Coordinate, BitVector>>(
                 existing._previousPossiblesStack);
@@ -38,11 +39,11 @@ namespace SudokuSpice.Heuristics
         public ISudokuHeuristic CopyWithNewReferences(
             Puzzle puzzle,
             PossibleValues possibleValues,
-            IReadOnlyList<ISudokuRestrict> restricts)
+            IReadOnlyList<ISudokuRule> rules)
         {
             return new UniqueInColumnHeuristic(
                 this, puzzle, possibleValues,
-                (IColumnRestrict)restricts.First(r => r is IColumnRestrict));
+                (IMissingColumnValuesTracker)rules.First(r => r is IMissingColumnValuesTracker));
         }
 
         public bool UpdateAll()
@@ -50,7 +51,7 @@ namespace SudokuSpice.Heuristics
             var previousPossibles = new Dictionary<Coordinate, BitVector>();
             for (int col = 0; col < _puzzle.Size; col++)
             {
-                _possiblesToCheckInColumn[col] = _restrict.GetPossibleColumnValues(col);
+                _possiblesToCheckInColumn[col] = _columnTracker.GetMissingValuesForColumn(col);
                 _UpdateColumn(col, previousPossibles);
             }
             _previousPossiblesStack.Push(previousPossibles);

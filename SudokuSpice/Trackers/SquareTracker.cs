@@ -50,7 +50,7 @@ namespace SudokuSpice
             _possibleValues = new PossibleValues(existing._possibleValues);
             _ruleKeeper = existing._ruleKeeper.CopyWithNewReferences(_puzzle, _possibleValues);
             _heuristic = existing._heuristic?.CopyWithNewReferences(
-                _puzzle, _possibleValues, _ruleKeeper.GetRestricts());
+                _puzzle, _possibleValues, _ruleKeeper.GetRules());
             _setCoords = new Stack<Coordinate>(existing._setCoords);
             _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
         }

@@ -3,21 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace SudokuSpice
+namespace SudokuSpice.Rules
 {
-    public class DiagonalRestrict : ISudokuRestrict
+    /// <summary>
+    /// Restricts that the forward and backward diagonals each contain all unique values.
+    /// </summary>
+    public class DiagonalUniquenessRule : ISudokuRule
     {
         private readonly Puzzle _puzzle;
         private BitVector _unsetBackwardDiag;
         private BitVector _unsetForwardDiag;
         private readonly BitVector _allUnset;
 
-        public DiagonalRestrict(Puzzle puzzle)
+        public DiagonalUniquenessRule(Puzzle puzzle)
         {
-            if (puzzle.Size > 32)
-            {
-                throw new ArgumentException("Max puzzle size is 32.");
-            }
             _puzzle = puzzle;
             _allUnset = BitVector.CreateWithSize(puzzle.Size);
             _unsetForwardDiag = _unsetBackwardDiag = _allUnset;
@@ -29,7 +28,8 @@ namespace SudokuSpice
                 {
                     if (!_unsetBackwardDiag.IsBitSet(val.Value - 1))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException(
+                            $"Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).");
                     }
                     _unsetBackwardDiag.UnsetBit(val.Value - 1);
                 }
@@ -42,14 +42,15 @@ namespace SudokuSpice
                 {
                     if (!_unsetForwardDiag.IsBitSet(val.Value - 1))
                     {
-                        throw new ArgumentException($"Puzzle does not satisfy restrict at ({row}, {col}).");
+                        throw new ArgumentException(
+                            $"Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).");
                     }
                     _unsetForwardDiag.UnsetBit(val.Value - 1);
                 }
             }
         }
 
-        private DiagonalRestrict(DiagonalRestrict existing, Puzzle puzzle)
+        private DiagonalUniquenessRule(DiagonalUniquenessRule existing, Puzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetBackwardDiag = existing._unsetBackwardDiag;
@@ -57,9 +58,9 @@ namespace SudokuSpice
             _allUnset = existing._allUnset;
         }
 
-        public ISudokuRestrict CopyWithNewReference(Puzzle puzzle)
+        public ISudokuRule CopyWithNewReference(Puzzle puzzle)
         {
-            return new DiagonalRestrict(this, puzzle);
+            return new DiagonalUniquenessRule(this, puzzle);
         }
 
         public BitVector GetPossibleValues(in Coordinate c)
@@ -78,7 +79,7 @@ namespace SudokuSpice
 
         public void Revert(in Coordinate c, int val)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.SetBit(val - 1);
@@ -91,7 +92,7 @@ namespace SudokuSpice
 
         public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot revert a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.SetBit(val - 1);
@@ -106,7 +107,7 @@ namespace SudokuSpice
 
         public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
         {
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot update a restrict for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.UnsetBit(val - 1);

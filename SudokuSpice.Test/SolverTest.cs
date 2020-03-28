@@ -30,14 +30,14 @@ namespace SudokuSpice
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
             var possibleValues = new PossibleValues(puzzle);
-            var rowRestrict = new RowRestrict(puzzle);
-            var columnRestrict = new ColumnRestrict(puzzle);
-            var boxRestrict = new BoxRestrict(puzzle, true);
+            var rowRule = new RowUniquenessRule(puzzle);
+            var columnRule = new ColumnUniquenessRule(puzzle);
+            var boxRule = new BoxUniquenessRule(puzzle, true);
             var ruleKeeper = new DynamicRuleKeeper(
                 puzzle, possibleValues,
-                new List<ISudokuRestrict> { rowRestrict, columnRestrict, boxRestrict });
+                new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
-                puzzle, possibleValues, rowRestrict, columnRestrict, boxRestrict);
+                puzzle, possibleValues, rowRule, columnRule, boxRule);
             var squareTracker = new SquareTracker(
                 puzzle, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);
@@ -67,15 +67,15 @@ namespace SudokuSpice
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
             var possibleValues = new PossibleValues(puzzle);
-            var rowRestrict = new RowRestrict(puzzle);
-            var columnRestrict = new ColumnRestrict(puzzle);
-            var boxRestrict = new BoxRestrict(puzzle, true);
-            var diagonalRestrict = new DiagonalRestrict(puzzle);
+            var rowRule = new RowUniquenessRule(puzzle);
+            var columnRule = new ColumnUniquenessRule(puzzle);
+            var boxRule = new BoxUniquenessRule(puzzle, true);
+            var diagonalRule = new DiagonalUniquenessRule(puzzle);
             var ruleKeeper = new DynamicRuleKeeper(
                 puzzle, possibleValues,
-                new List<ISudokuRestrict> { rowRestrict, columnRestrict, boxRestrict, diagonalRestrict });
+                new List<ISudokuRule> { rowRule, columnRule, boxRule, diagonalRule });
             var heuristic = new StandardHeuristic(
-                puzzle, possibleValues, rowRestrict, columnRestrict, boxRestrict);
+                puzzle, possibleValues, rowRule, columnRule, boxRule);
             var squareTracker = new SquareTracker(
                 puzzle, possibleValues, ruleKeeper, heuristic);
             var solver = new Solver(squareTracker);

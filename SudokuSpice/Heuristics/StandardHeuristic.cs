@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.Data;
+using SudokuSpice.Rules;
 using System.Collections.Generic;
 
 namespace SudokuSpice.Heuristics
@@ -11,11 +12,11 @@ namespace SudokuSpice.Heuristics
         private readonly Stack<int> _numHeuristicsRan; 
 
         public StandardHeuristic(Puzzle puzzle, PossibleValues possibleValues,
-            IRowRestrict rowRestrict, IColumnRestrict columnRestrict, IBoxRestrict boxRestrict)
+            IMissingRowValuesTracker rowRule, IMissingColumnValuesTracker columnRule, IMissingBoxValuesTracker boxRule)
         {
-            _rowHeuristic = new UniqueInRowHeuristic(puzzle, possibleValues, rowRestrict);
-            _columnHeuristic = new UniqueInColumnHeuristic(puzzle, possibleValues, columnRestrict);
-            _boxHeuristic = new UniqueInBoxHeuristic(puzzle, possibleValues, boxRestrict);
+            _rowHeuristic = new UniqueInRowHeuristic(puzzle, possibleValues, rowRule);
+            _columnHeuristic = new UniqueInColumnHeuristic(puzzle, possibleValues, columnRule);
+            _boxHeuristic = new UniqueInBoxHeuristic(puzzle, possibleValues, boxRule);
             _numHeuristicsRan = new Stack<int>(puzzle.NumEmptySquares);
         }
 
@@ -23,23 +24,23 @@ namespace SudokuSpice.Heuristics
             StandardHeuristic existing,
             Puzzle puzzle,
             PossibleValues possibleValues,
-            IReadOnlyList<ISudokuRestrict> restricts)
+            IReadOnlyList<ISudokuRule> rules)
         {
             _rowHeuristic = (UniqueInRowHeuristic)existing._rowHeuristic.CopyWithNewReferences(
-                puzzle, possibleValues, restricts);
+                puzzle, possibleValues, rules);
             _columnHeuristic = (UniqueInColumnHeuristic)existing._columnHeuristic
-                .CopyWithNewReferences(puzzle, possibleValues, restricts);
+                .CopyWithNewReferences(puzzle, possibleValues, rules);
             _boxHeuristic = (UniqueInBoxHeuristic)existing._boxHeuristic.CopyWithNewReferences(
-                puzzle, possibleValues, restricts);
+                puzzle, possibleValues, rules);
             _numHeuristicsRan = new Stack<int>(existing._numHeuristicsRan);
         }
 
         public ISudokuHeuristic CopyWithNewReferences(
             Puzzle puzzle,
             PossibleValues possibleValues,
-            IReadOnlyList<ISudokuRestrict> restricts)
+            IReadOnlyList<ISudokuRule> rules)
         {
-            return new StandardHeuristic(this, puzzle, possibleValues, restricts);
+            return new StandardHeuristic(this, puzzle, possibleValues, rules);
         }
 
         public void UndoLastUpdate()

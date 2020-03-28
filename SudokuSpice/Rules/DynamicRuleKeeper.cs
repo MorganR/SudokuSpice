@@ -5,24 +5,24 @@ using System.Collections.Generic;
 namespace SudokuSpice.Rules
 {
     /// <summary>
-    /// Supports an arbitrary injected set of rules.
+    /// Enforces an arbitrary injected set of rules.
     /// </summary>
     public class DynamicRuleKeeper : ISudokuRuleKeeper
     {
         private readonly Puzzle _puzzle;
         private readonly PossibleValues _possibleValues;
-        private readonly IReadOnlyList<ISudokuRestrict> _restricts;
+        private readonly IReadOnlyList<ISudokuRule> _rules;
         private readonly IList<Coordinate> _affectedCoords;
 
-        public DynamicRuleKeeper(Puzzle puzzle, PossibleValues possibleValues, IReadOnlyList<ISudokuRestrict> restricts)
+        public DynamicRuleKeeper(Puzzle puzzle, PossibleValues possibleValues, IReadOnlyList<ISudokuRule> rules)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
-            _restricts = restricts;
-            _affectedCoords = new List<Coordinate>(puzzle.Size * restricts.Count);
+            _rules = rules;
+            _affectedCoords = new List<Coordinate>(puzzle.Size * rules.Count);
             foreach (var c in _puzzle.GetUnsetCoords())
             {
-                foreach (var r in _restricts)
+                foreach (var r in _rules)
                 {
                     _possibleValues.Intersect(in c, r.GetPossibleValues(in c));
                 }
@@ -38,13 +38,13 @@ namespace SudokuSpice.Rules
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
-            _affectedCoords = new List<Coordinate>(puzzle.Size * existing._restricts.Count);
-            var restricts = new List<ISudokuRestrict>(existing._restricts.Count);
-            foreach (var restrict in existing._restricts)
+            _affectedCoords = new List<Coordinate>(puzzle.Size * existing._rules.Count);
+            var rules = new List<ISudokuRule>(existing._rules.Count);
+            foreach (var rule in existing._rules)
             {
-                restricts.Add(restrict.CopyWithNewReference(puzzle));
+                rules.Add(rule.CopyWithNewReference(puzzle));
             }
-            _restricts = restricts;
+            _rules = rules;
         }
 
         public ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues)
@@ -52,28 +52,28 @@ namespace SudokuSpice.Rules
             return new DynamicRuleKeeper(this, puzzle, possibleValues);
         }
 
-        public IReadOnlyList<ISudokuRestrict> GetRestricts()
+        public IReadOnlyList<ISudokuRule> GetRules()
         {
-            return _restricts;
+            return _rules;
         }
 
         public bool TrySet(in Coordinate c, int value)
         {
             _affectedCoords.Clear();
-            foreach (var r in _restricts)
+            foreach (var r in _rules)
             {
                 r.Update(in c, value, _affectedCoords);
             }
             for (int i = 0; i < _affectedCoords.Count; i++)
             {
                 Coordinate affectedCoord = _affectedCoords[i];
-                foreach (var r in _restricts)
+                foreach (var r in _rules)
                 {
                     _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }
                 if (_possibleValues[in affectedCoord].IsEmpty())
                 {
-                    foreach (var r in _restricts)
+                    foreach (var r in _rules)
                     {
                         r.Revert(in c, value);
                     }
@@ -81,7 +81,7 @@ namespace SudokuSpice.Rules
                     {
                         affectedCoord = _affectedCoords[i];
                         _possibleValues.Reset(in affectedCoord);
-                        foreach (var r in _restricts)
+                        foreach (var r in _rules)
                         {
                             _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                         }
@@ -95,14 +95,14 @@ namespace SudokuSpice.Rules
         public void Unset(in Coordinate c, int value)
         {
             _affectedCoords.Clear();
-            foreach (var r in _restricts)
+            foreach (var r in _rules)
             {
                 r.Revert(in c, value, _affectedCoords);
             }
             foreach (var affectedCoord in _affectedCoords)
             {
                 _possibleValues.Reset(in affectedCoord);
-                foreach (var r in _restricts)
+                foreach (var r in _rules)
                 {
                     _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }
