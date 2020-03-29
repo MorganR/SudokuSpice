@@ -1,6 +1,5 @@
 ﻿using SudokuSpice.Data;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SudokuSpice.Rules
@@ -10,10 +9,10 @@ namespace SudokuSpice.Rules
     /// </summary>
     public class RowUniquenessRule : ISudokuRule, IMissingRowValuesTracker
     {
-        private readonly Puzzle _puzzle;
+        private readonly IReadOnlyPuzzle _puzzle;
         private readonly BitVector[] _unsetRowValues;
 
-        public RowUniquenessRule(Puzzle puzzle)
+        public RowUniquenessRule(IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetRowValues = new BitVector[puzzle.Size];
@@ -41,13 +40,13 @@ namespace SudokuSpice.Rules
             }
         }
 
-        private RowUniquenessRule(RowUniquenessRule existing, Puzzle puzzle)
+        private RowUniquenessRule(RowUniquenessRule existing, IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
         }
 
-        public ISudokuRule CopyWithNewReference(Puzzle puzzle)
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             return new RowUniquenessRule(this, puzzle);
         }

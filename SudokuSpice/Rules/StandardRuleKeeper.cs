@@ -10,13 +10,13 @@ namespace SudokuSpice.Rules
     /// </summary>
     public class StandardRuleKeeper : ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
-        private readonly Puzzle _puzzle;
+        private readonly IReadOnlyPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly BitVector[] _unsetRowValues;
         private readonly BitVector[] _unsetColumnValues;
         private readonly BitVector[] _unsetBoxValues;
 
-        public StandardRuleKeeper(Puzzle puzzle, PossibleValues possibleValues)
+        public StandardRuleKeeper(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -74,7 +74,8 @@ namespace SudokuSpice.Rules
             }
         }
 
-        private StandardRuleKeeper(StandardRuleKeeper existing, Puzzle puzzle, PossibleValues possibleValues)
+        private StandardRuleKeeper(
+            StandardRuleKeeper existing, IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -83,7 +84,8 @@ namespace SudokuSpice.Rules
             _unsetBoxValues = (BitVector[])existing._unsetBoxValues.Clone();
         }
 
-        public ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues)
+        public ISudokuRuleKeeper CopyWithNewReferences(
+            IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             return new StandardRuleKeeper(this, puzzle, possibleValues);
         }
@@ -254,7 +256,7 @@ namespace SudokuSpice.Rules
             throw new NotImplementedException();
         }
 
-        public ISudokuRule CopyWithNewReference(Puzzle puzzle)
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             throw new NotImplementedException();
         }

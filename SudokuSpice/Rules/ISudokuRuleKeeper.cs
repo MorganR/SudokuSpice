@@ -30,9 +30,10 @@ namespace SudokuSpice.Rules
         IReadOnlyList<ISudokuRule> GetRules();
 
         /// <summary>
-        /// Creates a deep copy of this ISudokuRuleKeeper with updated internal <c>Puzzle</c> and
-        /// <c>PossibleValues</c> references.
+        /// Creates a deep copy of this ISudokuRuleKeeper with updated internal
+        /// <c>IReadOnlyPuzzle</c> and <c>PossibleValues</c> references.
         /// </summary>
-        ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues);
+        ISudokuRuleKeeper CopyWithNewReferences(
+            IReadOnlyPuzzle puzzle, PossibleValues possibleValues);
     }
 }

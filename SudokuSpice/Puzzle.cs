@@ -11,7 +11,7 @@ namespace SudokuSpice
 
     /// <summary>Manages underlying puzzle data.</summary>.
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class Puzzle
+    public class Puzzle : IReadOnlyPuzzle
     {
         /// <summary>The length of one side of the puzzle.</summary>
         public int Size { get; }
@@ -71,8 +71,6 @@ namespace SudokuSpice
 
         /// <summary>Gets or sets the current value of a given square. A square can be 'unset' by 
         /// setting its value to <c>null</c></summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when setting to a non-null 
-        /// value, but the specified square already has a value.</exception>
         public int? this[int row, int col]
         {
             get => _squares[row, col];
@@ -199,8 +197,6 @@ namespace SudokuSpice
         }
 
         /// <summary>Sets the value of a square.</summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the specified square
-        /// already has a value.</exception>
         private void _Set(int row, int col, int val)
         {
             Debug.Assert(!_squares[row, col].HasValue, $"Square ({row}, {col}) already has a value.");

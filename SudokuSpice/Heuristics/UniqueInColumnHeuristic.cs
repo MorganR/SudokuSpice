@@ -7,13 +7,13 @@ namespace SudokuSpice.Heuristics
 {
     public class UniqueInColumnHeuristic : ISudokuHeuristic
     {
-        private readonly Puzzle _puzzle;
+        private readonly IReadOnlyPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly IMissingColumnValuesTracker _columnTracker;
         private readonly BitVector[] _possiblesToCheckInColumn;
         private readonly Stack<IReadOnlyDictionary<Coordinate, BitVector>> _previousPossiblesStack;
 
-        public UniqueInColumnHeuristic(Puzzle puzzle, PossibleValues possibleValues, IMissingColumnValuesTracker rule)
+        public UniqueInColumnHeuristic(IReadOnlyPuzzle puzzle, PossibleValues possibleValues, IMissingColumnValuesTracker rule)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -24,7 +24,7 @@ namespace SudokuSpice.Heuristics
 
         private UniqueInColumnHeuristic(
             UniqueInColumnHeuristic existing,
-            Puzzle puzzle,
+            IReadOnlyPuzzle puzzle,
             PossibleValues possibleValues,
             IMissingColumnValuesTracker rule)
         {
@@ -37,7 +37,7 @@ namespace SudokuSpice.Heuristics
         }
 
         public ISudokuHeuristic CopyWithNewReferences(
-            Puzzle puzzle,
+            IReadOnlyPuzzle puzzle,
             PossibleValues possibleValues,
             IReadOnlyList<ISudokuRule> rules)
         {

@@ -1,5 +1,4 @@
 using SudokuSpice.Data;
-using System.Collections.Generic;
 
 namespace SudokuSpice.Rules
 {
@@ -38,10 +37,10 @@ namespace SudokuSpice.Rules
         ///     should be modified.</param>
         void Update(in Coordinate c, int val, CoordinateTracker coordTrackers);
         /// <summary>
-        /// Creates a deep copy of this ISudokuRule, with any internal <c>Puzzle</c> references
-        /// updated to the given puzzle.
+        /// Creates a deep copy of this ISudokuRule, with any internal <c>IReadOnlyPuzzle</c>
+        /// references updated to the given puzzle.
         /// </summary>
         /// <param name="puzzle">New puzzle reference to use.</param>
-        ISudokuRule CopyWithNewReference(Puzzle puzzle);
+        ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using SudokuSpice.Data;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SudokuSpice.Rules
@@ -10,12 +9,12 @@ namespace SudokuSpice.Rules
     /// </summary>
     public class DiagonalUniquenessRule : ISudokuRule
     {
-        private readonly Puzzle _puzzle;
+        private readonly IReadOnlyPuzzle _puzzle;
         private BitVector _unsetBackwardDiag;
         private BitVector _unsetForwardDiag;
         private readonly BitVector _allUnset;
 
-        public DiagonalUniquenessRule(Puzzle puzzle)
+        public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
             _allUnset = BitVector.CreateWithSize(puzzle.Size);
@@ -50,7 +49,7 @@ namespace SudokuSpice.Rules
             }
         }
 
-        private DiagonalUniquenessRule(DiagonalUniquenessRule existing, Puzzle puzzle)
+        private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetBackwardDiag = existing._unsetBackwardDiag;
@@ -58,7 +57,7 @@ namespace SudokuSpice.Rules
             _allUnset = existing._allUnset;
         }
 
-        public ISudokuRule CopyWithNewReference(Puzzle puzzle)
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             return new DiagonalUniquenessRule(this, puzzle);
         }

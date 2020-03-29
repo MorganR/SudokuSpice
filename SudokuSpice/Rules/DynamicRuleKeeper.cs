@@ -9,7 +9,7 @@ namespace SudokuSpice.Rules
     /// </summary>
     public class DynamicRuleKeeper : ISudokuRuleKeeper
     {
-        private readonly Puzzle _puzzle;
+        private readonly IReadOnlyPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly CoordinateTracker _coordTracker;
         private readonly IReadOnlyList<ISudokuRule> _rules;
@@ -34,7 +34,7 @@ namespace SudokuSpice.Rules
             }
         }
 
-        private DynamicRuleKeeper(DynamicRuleKeeper existing, Puzzle puzzle, PossibleValues possibleValues)
+        private DynamicRuleKeeper(DynamicRuleKeeper existing, IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -47,7 +47,7 @@ namespace SudokuSpice.Rules
             _rules = rules;
         }
 
-        public ISudokuRuleKeeper CopyWithNewReferences(Puzzle puzzle, PossibleValues possibleValues)
+        public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             return new DynamicRuleKeeper(this, puzzle, possibleValues);
         }

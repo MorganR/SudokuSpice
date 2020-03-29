@@ -28,7 +28,7 @@ namespace SudokuSpice.Heuristics
         /// implementation of the heuristic.
         /// </summary>
         ISudokuHeuristic CopyWithNewReferences(
-            Puzzle puzzle,
+            IReadOnlyPuzzle puzzle,
             PossibleValues possibleValues,
             IReadOnlyList<ISudokuRule> rules);
     }
