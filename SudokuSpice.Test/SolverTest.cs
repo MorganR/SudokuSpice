@@ -110,7 +110,10 @@ namespace SudokuSpice
         {
             var possibleValues = new PossibleValues(puzzle);
             var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
-            var heuristics = new StandardHeuristic(puzzle, possibleValues, ruleKeeper, ruleKeeper, ruleKeeper);
+            var rule = ruleKeeper.GetRules()[0];
+            var heuristics = new StandardHeuristic(
+                puzzle, possibleValues, (IMissingRowValuesTracker)rule,
+                (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);
             var squareTracker = new SquareTracker(puzzle, possibleValues, ruleKeeper, heuristics);
             var solver = new Solver(squareTracker);
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions().NumSolutionsFound);

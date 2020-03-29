@@ -24,8 +24,8 @@ namespace SudokuSpice
             _possibleValues = new PossibleValues(puzzle);
             _ruleKeeper = new StandardRuleKeeper(puzzle, _possibleValues);
             _heuristic = new StandardHeuristic(
-                puzzle, _possibleValues, (StandardRuleKeeper)_ruleKeeper,
-                (StandardRuleKeeper)_ruleKeeper, (StandardRuleKeeper)_ruleKeeper);
+                puzzle, _possibleValues, (IMissingRowValuesTracker)_ruleKeeper,
+                (IMissingColumnValuesTracker)_ruleKeeper, (IMissingBoxValuesTracker)_ruleKeeper);
             _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
             _coordsThatUsedHeuristics = new Stack<Coordinate>(puzzle.NumEmptySquares);
         }

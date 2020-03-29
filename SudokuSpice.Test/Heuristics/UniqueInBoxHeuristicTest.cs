@@ -18,7 +18,8 @@ namespace SudokuSpice.Heuristics.Test
             });
             var possibleValues = new PossibleValues(puzzle);
             var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
-            var heuristic = new UniqueInBoxHeuristic(puzzle, possibleValues, ruleKeeper);
+            var heuristic = new UniqueInBoxHeuristic(
+                puzzle, possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
 
             Assert.Equal(new BitVector(0b0111), possibleValues[new Coordinate(1, 1)]); // Pre-modified
 
@@ -47,14 +48,15 @@ namespace SudokuSpice.Heuristics.Test
             });
             var possibleValues = new PossibleValues(puzzle);
             var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
-            var heuristic = new UniqueInBoxHeuristic(puzzle, possibleValues, ruleKeeper);
+            var heuristic = new UniqueInBoxHeuristic(
+                puzzle, possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
 
             var puzzleCopy = new Puzzle(puzzle);
             var possibleValuesCopy = new PossibleValues(possibleValues);
             var ruleKeeperCopy = (StandardRuleKeeper) ruleKeeper.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy);
             var heuristicCopy = heuristic.CopyWithNewReferences(
-                puzzleCopy, possibleValuesCopy, new List<ISudokuRule> { ruleKeeperCopy });
+                puzzleCopy, possibleValuesCopy, ruleKeeperCopy.GetRules());
 
             var coord = new Coordinate(1, 1);
             var originalPossibleValues = possibleValues[coord];
