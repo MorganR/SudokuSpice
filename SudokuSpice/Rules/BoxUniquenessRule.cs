@@ -73,23 +73,23 @@ namespace SudokuSpice.Rules
             _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val - 1);
         }
 
-        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             int idx = _puzzle.GetBoxIndex(c.Row, c.Column);
             _unsetBoxValues[idx].SetBit(val - 1);
-            _AddUnsetFromBox(in c, idx, affectedCoords);
+            _AddUnsetFromBox(in c, idx, coordTracker);
         }
 
-        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             int idx = _puzzle.GetBoxIndex(c.Row, c.Column);
             _unsetBoxValues[idx].UnsetBit(val - 1);
-            _AddUnsetFromBox(in c, idx, affectedCoords);
+            _AddUnsetFromBox(in c, idx, coordTracker);
         }
 
-        private void _AddUnsetFromBox(in Coordinate c, int box, IList<Coordinate> unsetCoords)
+        private void _AddUnsetFromBox(in Coordinate c, int box, CoordinateTracker coordTracker)
         {
             foreach (var unsetCoord in _puzzle.YieldUnsetCoordsForBox(box))
             {
@@ -99,7 +99,7 @@ namespace SudokuSpice.Rules
                 {
                     continue;
                 }
-                unsetCoords.Add(unsetCoord);
+                coordTracker.AddOrTrackIfUntracked(unsetCoord);
             }
         }
     }

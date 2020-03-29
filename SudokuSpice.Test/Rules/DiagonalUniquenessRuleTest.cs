@@ -85,22 +85,22 @@ namespace SudokuSpice.Rules.Test
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 4;
             var coord = new Coordinate(1, 1);
-            ruleCopy.Update(coord, val, new List<Coordinate>());
+            ruleCopy.Update(coord, val, new CoordinateTracker(puzzle.Size));
             Assert.NotEqual(rule.GetPossibleValues(coord), ruleCopy.GetPossibleValues(coord));
 
             puzzleCopy[coord] = val;
             var secondCoord = new Coordinate(2, 2);
             var secondVal = 2;
-            var list = new List<Coordinate>();
-            ruleCopy.Update(secondCoord, secondVal, list);
-            var originalList = new List<Coordinate>();
-            rule.Update(secondCoord, secondVal, originalList);
+            var coordTracker = new CoordinateTracker(puzzle.Size);
+            ruleCopy.Update(secondCoord, secondVal, coordTracker);
+            var originalCoordTracker = new CoordinateTracker(puzzle.Size);
+            rule.Update(secondCoord, secondVal, originalCoordTracker);
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(3, 3) },
-                new HashSet<Coordinate>(list));
+                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) },
-                new HashSet<Coordinate>(originalList));
+                new HashSet<Coordinate>(originalCoordTracker.GetTrackedCoords().ToArray()));
         }
 
         [Fact]
@@ -113,12 +113,13 @@ namespace SudokuSpice.Rules.Test
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule(puzzle);
-            var list = new List<Coordinate>();
+            var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
             var val = 4;
-            rule.Update(coord, val, list);
+            rule.Update(coord, val, coordTracker);
             Assert.Equal(
-                new List<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) }, list);
+                new HashSet<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) },
+                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
             Assert.Equal(new BitVector(0b0110), rule.GetPossibleValues(new Coordinate(1, 1)));
             Assert.Equal(new BitVector(0b0011), rule.GetPossibleValues(new Coordinate(1, 2)));
             Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(0, 2)));
@@ -136,12 +137,12 @@ namespace SudokuSpice.Rules.Test
             var rule = new DiagonalUniquenessRule(puzzle);
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
 
-            var list = new List<Coordinate>();
+            var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(0, 1);
             var val = 2;
-            rule.Update(coord, val, list);
+            rule.Update(coord, val, coordTracker);
 
-            Assert.Empty(list);
+            Assert.Equal(0, coordTracker.NumTracked);
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)
@@ -166,7 +167,7 @@ namespace SudokuSpice.Rules.Test
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var coord = new Coordinate(2, 2);
             var val = 4;
-            rule.Update(in coord, val, new List<Coordinate>());
+            rule.Update(in coord, val, new CoordinateTracker(puzzle.Size));
 
             rule.Revert(coord, val);
 
@@ -192,15 +193,17 @@ namespace SudokuSpice.Rules.Test
             });
             var rule = new DiagonalUniquenessRule(puzzle);
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
-            var updatedList = new List<Coordinate>();
+            var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
             var val = 4;
-            rule.Update(in coord, val, updatedList);
+            rule.Update(in coord, val, updatedCoordTracker);
 
-            var revertedList = new List<Coordinate>();
-            rule.Revert(coord, val, revertedList);
+            var revertedCoordTracker = new CoordinateTracker(puzzle.Size);
+            rule.Revert(coord, val, revertedCoordTracker);
 
-            Assert.Equal(revertedList, updatedList);
+            Assert.Equal(
+                revertedCoordTracker.GetTrackedCoords().ToArray(),
+                updatedCoordTracker.GetTrackedCoords().ToArray());
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)
@@ -224,14 +227,14 @@ namespace SudokuSpice.Rules.Test
             var rule = new DiagonalUniquenessRule(puzzle);
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
 
-            var list = new List<Coordinate>();
+            var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(0, 1);
             var val = 2;
-            rule.Update(in coord, val, new List<Coordinate>());
+            rule.Update(in coord, val, new CoordinateTracker(puzzle.Size));
 
-            rule.Revert(coord, val, list);
+            rule.Revert(coord, val, coordTracker);
 
-            Assert.Empty(list);
+            Assert.Equal(0, coordTracker.NumTracked);
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)

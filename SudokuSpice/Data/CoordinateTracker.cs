@@ -13,6 +13,13 @@ namespace SudokuSpice.Data
         public int NumTracked { get; private set; }
         private int _numAdded = 0;
 
+        public enum AddOrTrackResult
+        {
+            AddedAndTracked = 0,
+            Tracked = 1,
+            Unchanged = 2
+        }
+
         public CoordinateTracker(int sideLength)
         {
             _coordToIdx = new int[sideLength, sideLength];
@@ -46,14 +53,23 @@ namespace SudokuSpice.Data
         {
             Debug.Assert(NumTracked != _numAdded, "The tracker is full.");
             int idx = _coordToIdx[c.Row, c.Column];
-            Debug.Assert(idx >= 0, $"Coordinate {c} was never added.");
-            Debug.Assert(idx >= NumTracked, $"Coordinate {c} is already tracked.");
-            var otherUntrackedCoord = _coords[NumTracked];
-            _coords[idx] = otherUntrackedCoord;
-            _coords[NumTracked] = c;
-            _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = idx;
-            _coordToIdx[c.Row, c.Column] = NumTracked;
-            NumTracked++;
+            _Track(in c, idx);
+        }
+
+        public AddOrTrackResult AddOrTrackIfUntracked(in Coordinate c)
+        {
+            if (_coordToIdx[c.Row, c.Column] == -1)
+            {
+                Add(in c);
+                return AddOrTrackResult.AddedAndTracked;
+            }
+            int idx = _coordToIdx[c.Row, c.Column];
+            if (idx < NumTracked)
+            {
+                return AddOrTrackResult.Unchanged;
+            }
+            _Track(in c, idx);
+            return AddOrTrackResult.Tracked;
         }
 
         public void Untrack(in Coordinate c)
@@ -70,9 +86,26 @@ namespace SudokuSpice.Data
             _coordToIdx[c.Row, c.Column] = NumTracked;
         }
 
+        public void UntrackAll()
+        {
+            NumTracked = 0;
+        }
+
         public ReadOnlySpan<Coordinate> GetTrackedCoords()
         {
             return new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);
+        }
+
+        private void _Track(in Coordinate c, int index)
+        {
+            Debug.Assert(index >= 0, $"Coordinate {c} was never added.");
+            Debug.Assert(index >= NumTracked, $"Coordinate {c} is already tracked.");
+            var otherUntrackedCoord = _coords[NumTracked];
+            _coords[index] = otherUntrackedCoord;
+            _coords[NumTracked] = c;
+            _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = index;
+            _coordToIdx[c.Row, c.Column] = NumTracked;
+            NumTracked++;
         }
     }
 }

@@ -104,40 +104,40 @@ namespace SudokuSpice.Rules
             _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val - 1);
         }
 
-        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val - 1);
             _unsetColValues[c.Column].SetBit(val - 1);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);
             _unsetBoxValues[boxIdx].SetBit(val - 1);
-            _AddUnset(in c, boxIdx, affectedCoords);
+            _AddUnset(in c, boxIdx, coordTracker);
         }
 
-        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             _unsetRowValues[c.Row].UnsetBit(val - 1);
             _unsetColValues[c.Column].UnsetBit(val - 1);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);
             _unsetBoxValues[boxIdx].UnsetBit(val - 1);
-            _AddUnset(in c, boxIdx, affectedCoords);
+            _AddUnset(in c, boxIdx, coordTracker);
         }
 
-        private void _AddUnset(in Coordinate c, int boxIdx, IList<Coordinate> unsetCoords)
+        private void _AddUnset(in Coordinate c, int boxIdx, CoordinateTracker coordTracker)
         {
             for (int col = 0; col < _puzzle.Size; col++)
             {
                 if (col != c.Column && !_puzzle[c.Row, col].HasValue)
                 {
-                    unsetCoords.Add(new Coordinate(c.Row, col));
+                    coordTracker.AddOrTrackIfUntracked(new Coordinate(c.Row, col));
                 }
             }
             for (int row = 0; row < _puzzle.Size; row++)
             {
                 if (row != c.Row && !_puzzle[row, c.Column].HasValue)
                 {
-                    unsetCoords.Add(new Coordinate(row, c.Column));
+                    coordTracker.AddOrTrackIfUntracked(new Coordinate(row, c.Column));
                 }
             }
             foreach (var inBoxCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
@@ -146,7 +146,7 @@ namespace SudokuSpice.Rules
                 {
                     continue;
                 }
-                unsetCoords.Add(inBoxCoord);
+                coordTracker.AddOrTrackIfUntracked(inBoxCoord);
             }
         }
     }

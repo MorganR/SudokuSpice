@@ -90,33 +90,33 @@ namespace SudokuSpice.Rules
             }
         }
 
-        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.SetBit(val - 1);
-                _AddUnsetFromBackwardDiag(in c, affectedCoords);
+                _AddUnsetFromBackwardDiag(in c, coordTracker);
             }
             if (_IsOnForwardDiag(in c))
             {
                 _unsetForwardDiag.SetBit(val - 1);
-                _AddUnsetFromForwardDiag(in c, affectedCoords);
+                _AddUnsetFromForwardDiag(in c, coordTracker);
             }
         }
 
-        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.UnsetBit(val - 1);
-                _AddUnsetFromBackwardDiag(in c, affectedCoords);
+                _AddUnsetFromBackwardDiag(in c, coordTracker);
             }
             if (_IsOnForwardDiag(in c))
             {
                 _unsetForwardDiag.UnsetBit(val - 1);
-                _AddUnsetFromForwardDiag(in c,affectedCoords);
+                _AddUnsetFromForwardDiag(in c, coordTracker);
             }
         }
 
@@ -130,7 +130,7 @@ namespace SudokuSpice.Rules
             return c.Column == _puzzle.Size - c.Row - 1;
         }
 
-        private void _AddUnsetFromBackwardDiag(in Coordinate c, IList<Coordinate> unsets)
+        private void _AddUnsetFromBackwardDiag(in Coordinate c, CoordinateTracker coordTracker)
         {
             for (int row = 0, col = 0; row < _puzzle.Size; row++, col++)
             {
@@ -138,11 +138,11 @@ namespace SudokuSpice.Rules
                 {
                     continue;
                 }
-                unsets.Add(new Coordinate(row, col));
+                coordTracker.AddOrTrackIfUntracked(new Coordinate(row, col));
             }
         }
 
-        private void _AddUnsetFromForwardDiag(in Coordinate c, IList<Coordinate> unsets)
+        private void _AddUnsetFromForwardDiag(in Coordinate c, CoordinateTracker coordTracker)
         {
             for (int row = 0, col = _puzzle.Size - 1; row < _puzzle.Size; row++, col--)
             {
@@ -150,7 +150,7 @@ namespace SudokuSpice.Rules
                 {
                     continue;
                 }
-                unsets.Add(new Coordinate(row, col));
+                coordTracker.AddOrTrackIfUntracked(new Coordinate(row, col));
             }
         }
     }

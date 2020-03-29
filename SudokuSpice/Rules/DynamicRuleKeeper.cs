@@ -11,15 +11,15 @@ namespace SudokuSpice.Rules
     {
         private readonly Puzzle _puzzle;
         private readonly PossibleValues _possibleValues;
+        private readonly CoordinateTracker _coordTracker;
         private readonly IReadOnlyList<ISudokuRule> _rules;
-        private readonly IList<Coordinate> _affectedCoords;
 
         public DynamicRuleKeeper(Puzzle puzzle, PossibleValues possibleValues, IReadOnlyList<ISudokuRule> rules)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
+            _coordTracker = new CoordinateTracker(puzzle.Size);
             _rules = rules;
-            _affectedCoords = new List<Coordinate>(puzzle.Size * rules.Count);
             foreach (var c in _puzzle.GetUnsetCoords())
             {
                 foreach (var r in _rules)
@@ -38,7 +38,7 @@ namespace SudokuSpice.Rules
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
-            _affectedCoords = new List<Coordinate>(puzzle.Size * existing._rules.Count);
+            _coordTracker = new CoordinateTracker(puzzle.Size);
             var rules = new List<ISudokuRule>(existing._rules.Count);
             foreach (var rule in existing._rules)
             {
@@ -59,14 +59,15 @@ namespace SudokuSpice.Rules
 
         public bool TrySet(in Coordinate c, int value)
         {
-            _affectedCoords.Clear();
+            _coordTracker.UntrackAll();
             foreach (var r in _rules)
             {
-                r.Update(in c, value, _affectedCoords);
+                r.Update(in c, value, _coordTracker);
             }
-            for (int i = 0; i < _affectedCoords.Count; i++)
+            var trackedCoords = _coordTracker.GetTrackedCoords();
+            for (int i = 0; i < trackedCoords.Length; i++)
             {
-                Coordinate affectedCoord = _affectedCoords[i];
+                Coordinate affectedCoord = trackedCoords[i];
                 foreach (var r in _rules)
                 {
                     _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
@@ -79,7 +80,7 @@ namespace SudokuSpice.Rules
                     }
                     for (; i >= 0; i--)
                     {
-                        affectedCoord = _affectedCoords[i];
+                        affectedCoord = trackedCoords[i];
                         _possibleValues.Reset(in affectedCoord);
                         foreach (var r in _rules)
                         {
@@ -94,12 +95,12 @@ namespace SudokuSpice.Rules
 
         public void Unset(in Coordinate c, int value)
         {
-            _affectedCoords.Clear();
+            _coordTracker.UntrackAll();
             foreach (var r in _rules)
             {
-                r.Revert(in c, value, _affectedCoords);
+                r.Revert(in c, value, _coordTracker);
             }
-            foreach (var affectedCoord in _affectedCoords)
+            foreach (var affectedCoord in _coordTracker.GetTrackedCoords())
             {
                 _possibleValues.Reset(in affectedCoord);
                 foreach (var r in _rules)

@@ -93,18 +93,22 @@ namespace SudokuSpice.Rules.Test
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 3;
             var coord = new Coordinate(1, 1);
-            ruleCopy.Update(coord, val, new List<Coordinate>());
+            ruleCopy.Update(coord, val, new CoordinateTracker(puzzle.Size));
             Assert.NotEqual(rule.GetPossibleValues(coord), ruleCopy.GetPossibleValues(coord));
 
             puzzleCopy[coord] = val;
             var secondCoord = new Coordinate(0, 1);
             var secondVal = 4;
-            var list = new List<Coordinate>();
-            ruleCopy.Update(secondCoord, secondVal, list);
-            var originalList = new List<Coordinate>();
-            rule.Update(secondCoord, secondVal, originalList);
-            Assert.Equal(new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(2, 1), new Coordinate(1, 0) }, new HashSet<Coordinate>(list));
-            Assert.Equal(new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 1), new Coordinate(2, 1), new Coordinate(1, 0) }, new HashSet<Coordinate>(originalList));
+            var coordTracker = new CoordinateTracker(puzzle.Size);
+            ruleCopy.Update(secondCoord, secondVal, coordTracker);
+            var originalCoordTracker = new CoordinateTracker(puzzle.Size);
+            rule.Update(secondCoord, secondVal, originalCoordTracker);
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(2, 1), new Coordinate(1, 0) },
+                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 1), new Coordinate(2, 1), new Coordinate(1, 0) },
+                new HashSet<Coordinate>(originalCoordTracker.GetTrackedCoords().ToArray()));
         }
 
         [Fact]
@@ -117,15 +121,15 @@ namespace SudokuSpice.Rules.Test
                 {           3,            2,            4,            1}
             });
             var rule = new StandardRules(puzzle);
-            var list = new List<Coordinate>();
+            var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             var val = 3;
-            rule.Update(coord, val, list);
+            rule.Update(coord, val, coordTracker);
             Assert.Equal(
-                new List<Coordinate> {
+                new HashSet<Coordinate> {
                     new Coordinate(1, 0), new Coordinate(1, 3), new Coordinate(0, 1), new Coordinate(2, 1)
                 },
-                list);
+                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
             Assert.Equal(new BitVector(0b1000), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(1, 0)));
             Assert.Equal(new BitVector(0b1000), rule.GetPossibleValues(new Coordinate(1, 3)));
@@ -143,15 +147,17 @@ namespace SudokuSpice.Rules.Test
             });
             var rule = new StandardRules(puzzle);
             var initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
-            var updatedList = new List<Coordinate>();
+            var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             var val = 3;
-            rule.Update(coord, val, updatedList);
+            rule.Update(coord, val, updatedCoordTracker);
 
-            var ruleedList = new List<Coordinate>();
-            rule.Revert(coord, val, ruleedList);
+            var revertedCoordTracker = new CoordinateTracker(puzzle.Size);
+            rule.Revert(coord, val, revertedCoordTracker);
 
-            Assert.Equal(updatedList, ruleedList);
+            Assert.Equal(
+                updatedCoordTracker.GetTrackedCoords().ToArray(),
+                revertedCoordTracker.GetTrackedCoords().ToArray());
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int column = 0; column < puzzle.Size; column++)

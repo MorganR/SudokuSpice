@@ -20,23 +20,23 @@ namespace SudokuSpice.Rules
         /// <param name="val">The value being unset.</param>
         void Revert(in Coordinate c, int val);
         /// <summary>
-        /// Undoes an update for the given value at the specified coordinate. Appends affected
-        /// coordinates to the given list.
+        /// Undoes an update for the given value at the specified coordinate. Tracks affected
+        /// coordinates in the given tracker.
         /// </summary>
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
-        /// <param name="affectedCoords">A list to append coordinates to where the possible values
+        /// <param name="coordTracker">A coordinate tracker to add to where the possible values
         ///     should be modified.</param>
-        void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords);
+        void Revert(in Coordinate c, int val, CoordinateTracker coordTracker);
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value.
-        /// Appends affected coordinates to the given list.
+        /// Tracks affected coordinates in the given tracker.
         /// </summary>
         /// <param name="c">The coordinate to update.</param>
         /// <param name="val">The value to set <c>c</c> to.</param>
-        /// <param name="affectedCoords">A list to append coordinates to where the possible values
+        /// <param name="coordTracker">A coordinate tracker to add to where the possible values
         ///     should be modified.</param>
-        void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords);
+        void Update(in Coordinate c, int val, CoordinateTracker coordTrackers);
         /// <summary>
         /// Creates a deep copy of this ISudokuRule, with any internal <c>Puzzle</c> references
         /// updated to the given puzzle.

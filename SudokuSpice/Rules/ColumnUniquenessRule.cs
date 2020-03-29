@@ -62,26 +62,26 @@ namespace SudokuSpice.Rules
             _unsetColumnValues[c.Column].SetBit(val - 1);
         }
 
-        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             this.Revert(in c, val);
-            _AddUnsetFromColumn(in c, affectedCoords);
+            _AddUnsetFromColumn(in c, coordTracker);
         }
 
-        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             _unsetColumnValues[c.Column].UnsetBit(val - 1);
-            _AddUnsetFromColumn(in c, affectedCoords);
+            _AddUnsetFromColumn(in c, coordTracker);
         }
 
-        private void _AddUnsetFromColumn(in Coordinate c, IList<Coordinate> unsetCoords)
+        private void _AddUnsetFromColumn(in Coordinate c, CoordinateTracker coordTracker)
         {
             for (int row = 0; row < _puzzle.Size; row++)
             {
                 if (row != c.Row && !_puzzle[row, c.Column].HasValue)
                 {
-                    unsetCoords.Add(new Coordinate(row, c.Column));
+                    coordTracker.AddOrTrackIfUntracked(new Coordinate(row, c.Column));
                 }
             }
         }

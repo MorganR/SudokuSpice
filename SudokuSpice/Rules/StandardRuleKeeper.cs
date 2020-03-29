@@ -244,12 +244,12 @@ namespace SudokuSpice.Rules
             throw new NotImplementedException();
         }
 
-        public void Revert(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(in Coordinate c, int val, IList<Coordinate> affectedCoords)
+        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             throw new NotImplementedException();
         }

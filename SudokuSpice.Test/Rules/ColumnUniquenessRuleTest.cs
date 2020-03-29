@@ -67,22 +67,22 @@ namespace SudokuSpice.Rules.Test
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 4;
             var coord = new Coordinate(3, 2);
-            ruleCopy.Update(coord, val, new List<Coordinate>());
+            ruleCopy.Update(coord, val, new CoordinateTracker(puzzle.Size));
             Assert.NotEqual(rule.GetPossibleValues(coord), ruleCopy.GetPossibleValues(coord));
 
             puzzleCopy[coord] = val;
             var secondCoord = new Coordinate(2, 2);
             var secondVal = 2;
-            var list = new List<Coordinate>();
-            ruleCopy.Update(secondCoord, secondVal, list);
-            var originalList = new List<Coordinate>();
-            rule.Update(secondCoord, secondVal, originalList);
+            var coordTracker = new CoordinateTracker(puzzle.Size);
+            ruleCopy.Update(secondCoord, secondVal, coordTracker);
+            var originalCoordTracker = new CoordinateTracker(puzzle.Size);
+            rule.Update(secondCoord, secondVal, originalCoordTracker);
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 2) },
-                new HashSet<Coordinate>(list));
+                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 2), new Coordinate(3, 2) },
-                new HashSet<Coordinate>(originalList));
+                new HashSet<Coordinate>(originalCoordTracker.GetTrackedCoords().ToArray()));
         }
 
         [Fact]
@@ -95,11 +95,13 @@ namespace SudokuSpice.Rules.Test
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
             var rule = new ColumnUniquenessRule(puzzle);
-            var list = new List<Coordinate>();
+            var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             var val = 3;
-            rule.Update(coord, val, list);
-            Assert.Equal(new List<Coordinate> { new Coordinate(0, 1), new Coordinate(3, 1) }, list);
+            rule.Update(coord, val, coordTracker);
+            Assert.Equal(
+                new HashSet<Coordinate> { new Coordinate(0, 1), new Coordinate(3, 1) },
+                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
             Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(0, 2)));
@@ -119,7 +121,7 @@ namespace SudokuSpice.Rules.Test
             var initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
             var coord = new Coordinate(1, 1);
             var val = 3;
-            rule.Update(coord, val, new List<Coordinate>());
+            rule.Update(coord, val, new CoordinateTracker(puzzle.Size));
 
             rule.Revert(coord, val);
 
@@ -142,15 +144,17 @@ namespace SudokuSpice.Rules.Test
             });
             var rule = new ColumnUniquenessRule(puzzle);
             var initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
-            var updatedList = new List<Coordinate>();
+            var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             var val = 3;
-            rule.Update(coord, val, updatedList);
+            rule.Update(coord, val, updatedCoordTracker);
 
-            var revertedList = new List<Coordinate>();
-            rule.Revert(coord, val, revertedList);
+            var revertedCoordTracker = new CoordinateTracker(puzzle.Size);
+            rule.Revert(coord, val, revertedCoordTracker);
 
-            Assert.Equal(updatedList, revertedList);
+            Assert.Equal(
+                updatedCoordTracker.GetTrackedCoords().ToArray(),
+                revertedCoordTracker.GetTrackedCoords().ToArray());
             for (int column = 0; column < initialPossibleValuesByColumn.Count; column++)
             {
                 Assert.Equal(
