@@ -43,22 +43,21 @@ namespace SudokuSpice.Rules
                     {
                         continue;
                     }
-                    int bit = val.Value - 1;
-                    if (!_unsetRowValues[row].IsBitSet(bit))
+                    if (!_unsetRowValues[row].IsBitSet(val.Value))
                     {
                         throw new ArgumentException($"Puzzle violates the unique-in-row rule at ({row}, {col}).");
                     }
-                    if (!_unsetColumnValues[col].IsBitSet(bit))
+                    if (!_unsetColumnValues[col].IsBitSet(val.Value))
                     {
                         throw new ArgumentException($"Puzzle violates the unique-in-column rule at ({row}, {col}).");
                     }
-                    if (!_unsetBoxValues[boxIdx].IsBitSet(bit))
+                    if (!_unsetBoxValues[boxIdx].IsBitSet(val.Value))
                     {
                         throw new ArgumentException($"Puzzle violates the unique-in-box rule at ({row}, {col}).");
                     }
-                    _unsetRowValues[row].UnsetBit(bit);
-                    _unsetColumnValues[col].UnsetBit(bit);
-                    _unsetBoxValues[boxIdx].UnsetBit(bit);
+                    _unsetRowValues[row].UnsetBit(val.Value);
+                    _unsetColumnValues[col].UnsetBit(val.Value);
+                    _unsetBoxValues[boxIdx].UnsetBit(val.Value);
                 }
             }
             foreach (var c in puzzle.GetUnsetCoords())
@@ -86,10 +85,10 @@ namespace SudokuSpice.Rules
         public bool TrySet(in Coordinate c, int value)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot run rule checks for an already set puzzle coordinate");
-            _unsetRowValues[c.Row].UnsetBit(value - 1);
-            _unsetColumnValues[c.Column].UnsetBit(value - 1);
+            _unsetRowValues[c.Row].UnsetBit(value);
+            _unsetColumnValues[c.Column].UnsetBit(value);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);
-            _unsetBoxValues[boxIdx].UnsetBit(value - 1);
+            _unsetBoxValues[boxIdx].UnsetBit(value);
             BitVector updatedPossibles;
             Coordinate workingCoord;
             for (int col = 0; col < _puzzle.Size; col++)
@@ -104,9 +103,9 @@ namespace SudokuSpice.Rules
                     _unsetRowValues[c.Row]);
                 if (updatedPossibles.IsEmpty())
                 {
-                    _unsetRowValues[c.Row].SetBit(value - 1);
-                    _unsetColumnValues[c.Column].SetBit(value - 1);
-                    _unsetBoxValues[boxIdx].SetBit(value - 1);
+                    _unsetRowValues[c.Row].SetBit(value);
+                    _unsetColumnValues[c.Column].SetBit(value);
+                    _unsetBoxValues[boxIdx].SetBit(value);
                     _UnsetRowValues(in c, col);
                     return false;
                 }
@@ -124,9 +123,9 @@ namespace SudokuSpice.Rules
                     _unsetColumnValues[c.Column]);
                 if (updatedPossibles.IsEmpty())
                 {
-                    _unsetRowValues[c.Row].SetBit(value - 1);
-                    _unsetColumnValues[c.Column].SetBit(value - 1);
-                    _unsetBoxValues[boxIdx].SetBit(value - 1);
+                    _unsetRowValues[c.Row].SetBit(value);
+                    _unsetColumnValues[c.Column].SetBit(value);
+                    _unsetBoxValues[boxIdx].SetBit(value);
                     _UnsetColumnValues(in c, row);
                     _UnsetRowValues(in c, _puzzle.Size);
                     return false;
@@ -144,9 +143,9 @@ namespace SudokuSpice.Rules
                         _unsetBoxValues[boxIdx]);
                 if (updatedPossibles.IsEmpty())
                 {
-                    _unsetRowValues[c.Row].SetBit(value - 1);
-                    _unsetColumnValues[c.Column].SetBit(value - 1);
-                    _unsetBoxValues[boxIdx].SetBit(value - 1);
+                    _unsetRowValues[c.Row].SetBit(value);
+                    _unsetColumnValues[c.Column].SetBit(value);
+                    _unsetBoxValues[boxIdx].SetBit(value);
                     _UnsetBoxValues(in c, boxIdx);
                     _UnsetColumnValues(in c, _puzzle.Size);
                     _UnsetRowValues(in c, _puzzle.Size);
@@ -171,10 +170,10 @@ namespace SudokuSpice.Rules
         public void Unset(in Coordinate c, int value)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot undo rule checks for a set puzzle coordinate");
-            _unsetRowValues[c.Row].SetBit(value - 1);
-            _unsetColumnValues[c.Column].SetBit(value - 1);
+            _unsetRowValues[c.Row].SetBit(value);
+            _unsetColumnValues[c.Column].SetBit(value);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);
-            _unsetBoxValues[boxIdx].SetBit(value - 1);
+            _unsetBoxValues[boxIdx].SetBit(value);
             _UnsetBoxValues(in c, boxIdx);
             _UnsetColumnValues(in c, _puzzle.Size);
             _UnsetRowValues(in c, _puzzle.Size);

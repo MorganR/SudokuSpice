@@ -15,7 +15,9 @@ namespace SudokuSpice.Data
         public PossibleValues(Puzzle puzzle)
         {
             _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
-            AllPossible = BitVector.CreateWithSize(puzzle.Size);
+            var allPossible = BitVector.CreateWithSize(puzzle.Size + 1);
+            allPossible.UnsetBit(0);
+            AllPossible = allPossible;
             foreach (var c in puzzle.GetUnsetCoords())
             {
                 _possibleValues[c.Row, c.Column] = AllPossible;

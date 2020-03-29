@@ -87,8 +87,7 @@ namespace SudokuSpice
 
         public List<int> GetPossibleValues(in Coordinate c)
         {
-            return _possibleValues[in c]
-                .GetSetBits().Select(b => b + 1).ToList();
+            return _possibleValues[in c].GetSetBits();
         }
 
         public int GetNumEmptySquares() => _puzzle.NumEmptySquares;

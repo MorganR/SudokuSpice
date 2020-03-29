@@ -15,7 +15,7 @@ namespace SudokuSpice.Data.Test
             });
             var possibleValues = new PossibleValues(puzzle);
 
-            var allPossibleValues = new BitVector(0b1111);
+            var allPossibleValues = new BitVector(0b11110);
             var noPossibleValues = new BitVector(0);
 
             Assert.Equal(noPossibleValues, possibleValues[new Coordinate(0, 0)]);
@@ -115,7 +115,7 @@ namespace SudokuSpice.Data.Test
             possibleValues[coord] = new BitVector(0b1010);
 
             possibleValues.Reset(coord);
-            Assert.Equal(new BitVector(0b1111), possibleValues[coord]);
+            Assert.Equal(new BitVector(0b11110), possibleValues[coord]);
         }
     }
 }

@@ -25,15 +25,15 @@ namespace SudokuSpice.Rules.Test
             };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             Assert.NotNull(ruleKeeper);
-            Assert.Equal(new BitVector(0b1100), possibleValues[new Coordinate(0, 1)]);
-            Assert.Equal(new BitVector(0b0100), possibleValues[new Coordinate(0, 2)]);
-            Assert.Equal(new BitVector(0b1010), possibleValues[new Coordinate(1, 0)]);
-            Assert.Equal(new BitVector(0b1100), possibleValues[new Coordinate(1, 1)]);
-            Assert.Equal(new BitVector(0b1100), possibleValues[new Coordinate(1, 3)]);
-            Assert.Equal(new BitVector(0b1000), possibleValues[new Coordinate(2, 0)]);
-            Assert.Equal(new BitVector(0b1001), possibleValues[new Coordinate(2, 1)]);
-            Assert.Equal(new BitVector(0b0110), possibleValues[new Coordinate(2, 2)]);
-            Assert.Equal(new BitVector(0b0100), possibleValues[new Coordinate(2, 3)]);
+            Assert.Equal(new BitVector(0b11000), possibleValues[new Coordinate(0, 1)]);
+            Assert.Equal(new BitVector(0b01000), possibleValues[new Coordinate(0, 2)]);
+            Assert.Equal(new BitVector(0b10100), possibleValues[new Coordinate(1, 0)]);
+            Assert.Equal(new BitVector(0b11000), possibleValues[new Coordinate(1, 1)]);
+            Assert.Equal(new BitVector(0b11000), possibleValues[new Coordinate(1, 3)]);
+            Assert.Equal(new BitVector(0b10000), possibleValues[new Coordinate(2, 0)]);
+            Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(2, 1)]);
+            Assert.Equal(new BitVector(0b01100), possibleValues[new Coordinate(2, 2)]);
+            Assert.Equal(new BitVector(0b01000), possibleValues[new Coordinate(2, 3)]);
         }
 
         [Fact]
@@ -94,8 +94,8 @@ namespace SudokuSpice.Rules.Test
             var coord = new Coordinate(0, 1);
             var val = 4;
             Assert.True(ruleKeeperCopy.TrySet(coord, val));
-            Assert.Equal(new BitVector(0b1100), possibleValues[new Coordinate(1, 1)]);
-            Assert.Equal(new BitVector(0b0100), possibleValuesCopy[new Coordinate(1, 1)]);
+            Assert.Equal(new BitVector(0b11000), possibleValues[new Coordinate(1, 1)]);
+            Assert.Equal(new BitVector(0b01000), possibleValuesCopy[new Coordinate(1, 1)]);
         }
 
         [Fact]
@@ -119,10 +119,10 @@ namespace SudokuSpice.Rules.Test
             var val = 3;
             Assert.True(ruleKeeper.TrySet(coord, val));
             puzzle[coord] = val;
-            Assert.Equal(new BitVector(0b1000), possibleValues[new Coordinate(0, 1)]);
-            Assert.Equal(new BitVector(0b1010), possibleValues[new Coordinate(1, 0)]);
-            Assert.Equal(new BitVector(0b1000), possibleValues[new Coordinate(1, 3)]);
-            Assert.Equal(new BitVector(0b1001), possibleValues[new Coordinate(2, 1)]);
+            Assert.Equal(new BitVector(0b10000), possibleValues[new Coordinate(0, 1)]);
+            Assert.Equal(new BitVector(0b10100), possibleValues[new Coordinate(1, 0)]);
+            Assert.Equal(new BitVector(0b10000), possibleValues[new Coordinate(1, 3)]);
+            Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(2, 1)]);
         }
 
         [Fact]

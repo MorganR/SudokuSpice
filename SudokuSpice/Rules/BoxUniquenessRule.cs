@@ -38,12 +38,11 @@ namespace SudokuSpice.Rules
                     {
                         continue;
                     }
-                    int bit = val.Value - 1;
-                    if (!_unsetBoxValues[boxIdx].IsBitSet(bit))
+                    if (!_unsetBoxValues[boxIdx].IsBitSet(val.Value))
                     {
                         throw new ArgumentException($"Puzzle has duplicate value in box at ({row}, {col}).");
                     }
-                    _unsetBoxValues[boxIdx].UnsetBit(bit);
+                    _unsetBoxValues[boxIdx].UnsetBit(val.Value);
                 }
             }
         }
@@ -67,14 +66,14 @@ namespace SudokuSpice.Rules
         public void Revert(in Coordinate c, int val)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
-            _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val - 1);
+            _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val);
         }
 
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             int idx = _puzzle.GetBoxIndex(c.Row, c.Column);
-            _unsetBoxValues[idx].SetBit(val - 1);
+            _unsetBoxValues[idx].SetBit(val);
             _AddUnsetFromBox(in c, idx, coordTracker);
         }
 
@@ -82,7 +81,7 @@ namespace SudokuSpice.Rules
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             int idx = _puzzle.GetBoxIndex(c.Row, c.Column);
-            _unsetBoxValues[idx].UnsetBit(val - 1);
+            _unsetBoxValues[idx].UnsetBit(val);
             _AddUnsetFromBox(in c, idx, coordTracker);
         }
 

@@ -26,12 +26,12 @@ namespace SudokuSpice.Rules
                 var val = puzzle[row, col];
                 if (val.HasValue)
                 {
-                    if (!_unsetBackwardDiag.IsBitSet(val.Value - 1))
+                    if (!_unsetBackwardDiag.IsBitSet(val.Value))
                     {
                         throw new ArgumentException(
                             $"Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).");
                     }
-                    _unsetBackwardDiag.UnsetBit(val.Value - 1);
+                    _unsetBackwardDiag.UnsetBit(val.Value);
                 }
             }
             // Iterate through the forward diagonal (like a forward slash '/')
@@ -40,12 +40,12 @@ namespace SudokuSpice.Rules
                 var val = puzzle[row, col];
                 if (val.HasValue)
                 {
-                    if (!_unsetForwardDiag.IsBitSet(val.Value - 1))
+                    if (!_unsetForwardDiag.IsBitSet(val.Value))
                     {
                         throw new ArgumentException(
                             $"Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).");
                     }
-                    _unsetForwardDiag.UnsetBit(val.Value - 1);
+                    _unsetForwardDiag.UnsetBit(val.Value);
                 }
             }
         }
@@ -82,11 +82,11 @@ namespace SudokuSpice.Rules
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
-                _unsetBackwardDiag.SetBit(val - 1);
+                _unsetBackwardDiag.SetBit(val);
             }
             if (_IsOnForwardDiag(in c))
             {
-                _unsetForwardDiag.SetBit(val - 1);
+                _unsetForwardDiag.SetBit(val);
             }
         }
 
@@ -95,12 +95,12 @@ namespace SudokuSpice.Rules
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
-                _unsetBackwardDiag.SetBit(val - 1);
+                _unsetBackwardDiag.SetBit(val);
                 _AddUnsetFromBackwardDiag(in c, coordTracker);
             }
             if (_IsOnForwardDiag(in c))
             {
-                _unsetForwardDiag.SetBit(val - 1);
+                _unsetForwardDiag.SetBit(val);
                 _AddUnsetFromForwardDiag(in c, coordTracker);
             }
         }
@@ -110,12 +110,12 @@ namespace SudokuSpice.Rules
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
-                _unsetBackwardDiag.UnsetBit(val - 1);
+                _unsetBackwardDiag.UnsetBit(val);
                 _AddUnsetFromBackwardDiag(in c, coordTracker);
             }
             if (_IsOnForwardDiag(in c))
             {
-                _unsetForwardDiag.UnsetBit(val - 1);
+                _unsetForwardDiag.UnsetBit(val);
                 _AddUnsetFromForwardDiag(in c, coordTracker);
             }
         }

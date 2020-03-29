@@ -16,10 +16,10 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
-            var expectedBackwardPossibles = new BitVector(0b1110);
-            var expectedForwardPossibles = new BitVector(0b0011);
-            var expectedOtherPossibles = new BitVector(0b1111);
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
+            var expectedBackwardPossibles = new BitVector(0b11100);
+            var expectedForwardPossibles = new BitVector(0b00110);
+            var expectedOtherPossibles = new BitVector(0b11110);
             Assert.Equal(expectedBackwardPossibles,
                 rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(expectedBackwardPossibles,
@@ -50,7 +50,7 @@ namespace SudokuSpice.Rules.Test
         {
             var matrix = new int?[size, size];
             var puzzle = new Puzzle(matrix);
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             Assert.NotNull(rule);
         }
 
@@ -65,7 +65,7 @@ namespace SudokuSpice.Rules.Test
                     {   2, null, null, null},
                     {null, null, null, null}
                 });
-                var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+                var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             });
             Assert.Contains("Puzzle does not satisfy diagonal uniqueness rule", ex.Message);
         }
@@ -79,7 +79,7 @@ namespace SudokuSpice.Rules.Test
                 {   4, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
 
             var puzzleCopy = new Puzzle(puzzle);
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -112,7 +112,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
             var val = 4;
@@ -120,9 +120,9 @@ namespace SudokuSpice.Rules.Test
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(1, 1), new Coordinate(3, 3) },
                 new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
-            Assert.Equal(new BitVector(0b0110), rule.GetPossibleValues(new Coordinate(1, 1)));
-            Assert.Equal(new BitVector(0b0011), rule.GetPossibleValues(new Coordinate(1, 2)));
-            Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b01100), rule.GetPossibleValues(new Coordinate(1, 1)));
+            Assert.Equal(new BitVector(0b00110), rule.GetPossibleValues(new Coordinate(1, 2)));
+            Assert.Equal(new BitVector(0b11110), rule.GetPossibleValues(new Coordinate(0, 2)));
         }
 
         [Fact]
@@ -134,7 +134,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
 
             var coordTracker = new CoordinateTracker(puzzle.Size);
@@ -163,7 +163,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var coord = new Coordinate(2, 2);
             var val = 4;
@@ -191,7 +191,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
@@ -224,7 +224,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
+            var rule = new DiagonalUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
 
             var coordTracker = new CoordinateTracker(puzzle.Size);
@@ -257,6 +257,13 @@ namespace SudokuSpice.Rules.Test
                         rule.GetPossibleValues(new Coordinate(row, col));
                 }
             }
+            return possibleValues;
+        }
+
+        private BitVector _GetAllPossibleValues(int size)
+        {
+            var possibleValues = BitVector.CreateWithSize(size + 1);
+            possibleValues.UnsetBit(0);
             return possibleValues;
         }
     }

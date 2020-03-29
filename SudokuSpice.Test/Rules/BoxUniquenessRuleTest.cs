@@ -16,11 +16,11 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {null /* 3 */, null /* 2 */,            4,            1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), false);
-            Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1101), rule.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(new BitVector(0b0000), rule.GetPossibleValues(new Coordinate(2, 2)));
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), false);
+            Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b11010), rule.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b11110), rule.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b00000), rule.GetPossibleValues(new Coordinate(2, 2)));
         }
 
         [Theory]
@@ -31,7 +31,7 @@ namespace SudokuSpice.Rules.Test
         {
             var matrix = new int?[size, size];
             var puzzle = new Puzzle(matrix);
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), false);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), false);
             Assert.NotNull(rule);
         }
 
@@ -63,7 +63,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {null /* 3 */, null /* 2 */,            4,            1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), false);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), false);
 
             var puzzleCopy = new Puzzle(puzzle);
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -96,7 +96,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */,            2, 3},
                 {null /* 3 */, null /* 2 */,            4, 1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), false);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), false);
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 2);
             var val = 1;
@@ -104,10 +104,10 @@ namespace SudokuSpice.Rules.Test
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 3) },
                 new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
-            Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b1100), rule.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(new BitVector(0b0000), rule.GetPossibleValues(new Coordinate(2, 2)));
+            Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b11000), rule.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b11110), rule.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b00000), rule.GetPossibleValues(new Coordinate(2, 2)));
         }
 
         [Fact]
@@ -119,7 +119,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {null /* 3 */, null /* 2 */,            4,            1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), true);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), true);
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 3);
             var val = 4;
@@ -127,11 +127,11 @@ namespace SudokuSpice.Rules.Test
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 2) },
                 new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
-            Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(0, 0)));
-            Assert.Equal(new BitVector(0b0101), rule.GetPossibleValues(new Coordinate(0, 2)));
-            Assert.Equal(new BitVector(0b0101), rule.GetPossibleValues(new Coordinate(1, 2)));
-            Assert.Equal(new BitVector(0b1111), rule.GetPossibleValues(new Coordinate(2, 0)));
-            Assert.Equal(new BitVector(0b0000), rule.GetPossibleValues(new Coordinate(2, 2)));
+            Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 0)));
+            Assert.Equal(new BitVector(0b01010), rule.GetPossibleValues(new Coordinate(0, 2)));
+            Assert.Equal(new BitVector(0b01010), rule.GetPossibleValues(new Coordinate(1, 2)));
+            Assert.Equal(new BitVector(0b11110), rule.GetPossibleValues(new Coordinate(2, 0)));
+            Assert.Equal(new BitVector(0b00000), rule.GetPossibleValues(new Coordinate(2, 2)));
         }
 
         [Fact]
@@ -143,7 +143,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */,            2, 3},
                 {null /* 3 */, null /* 2 */,            4, 1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), false);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), false);
             var initialPossibleValuesByBox = _GetPossibleValuesByBox(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 2);
@@ -173,7 +173,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */,            2, 3},
                 {null /* 3 */, null /* 2 */,            4, 1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), true);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), true);
             var initialPossibleValuesByBox = _GetPossibleValuesByBox(puzzle.Size, rule);
             var coord = new Coordinate(1, 3);
             var val = 4;
@@ -202,7 +202,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new BoxUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size), false);
+            var rule = new BoxUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size), false);
             var possibleValuesByBox = _GetPossibleValuesByBox(puzzle.Size, rule);
 
             for (int row = 0; row < puzzle.Size; row++)
@@ -225,6 +225,13 @@ namespace SudokuSpice.Rules.Test
                 possibleBoxValues.Add(rule.GetMissingValuesForBox(box));
             }
             return possibleBoxValues;
+        }
+
+        private BitVector _GetAllPossibleValues(int size)
+        {
+            var possibleValues = BitVector.CreateWithSize(size + 1);
+            possibleValues.UnsetBit(0);
+            return possibleValues;
         }
     }
 }
