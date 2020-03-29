@@ -31,7 +31,8 @@ release = '1.0.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-        'autoapi.extension'
+        # TODO: fix this
+        # 'autoapi.extension'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,5 +58,7 @@ html_static_path = ['_static']
 
 # -- Options for AutoAPI ----------------------------------------------------
 
-autoapi_type = 'dotnet'
-autoapi_dirs = ['../
+# TODO: Fix this
+
+# autoapi_type = 'dotnet'
+# autoapi_dirs = ['../
