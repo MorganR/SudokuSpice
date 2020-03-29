@@ -10,15 +10,16 @@ namespace SudokuSpice.Rules
     public class DiagonalUniquenessRule : ISudokuRule
     {
         private readonly IReadOnlyPuzzle _puzzle;
+        private readonly BitVector _allUnset;
         private BitVector _unsetBackwardDiag;
         private BitVector _unsetForwardDiag;
-        private readonly BitVector _allUnset;
 
-        public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle)
+        public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
         {
+            Debug.Assert(puzzle.Size == allUniqueValues.Count,
+                $"Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}");
             _puzzle = puzzle;
-            _allUnset = BitVector.CreateWithSize(puzzle.Size);
-            _unsetForwardDiag = _unsetBackwardDiag = _allUnset;
+            _allUnset = _unsetForwardDiag = _unsetBackwardDiag = allUniqueValues;
             // Iterate through the backward diagonal (like a backslash '\')
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
             {

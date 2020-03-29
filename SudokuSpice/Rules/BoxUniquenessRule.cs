@@ -13,16 +13,14 @@ namespace SudokuSpice.Rules
         private readonly BitVector[] _unsetBoxValues;
         private readonly bool _skipMatchingRowAndCol;
 
-        public BoxUniquenessRule(IReadOnlyPuzzle puzzle, bool skipMatchingRowAndCol)
+        public BoxUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues, bool skipMatchingRowAndCol)
         {
+            Debug.Assert(puzzle.Size == allUniqueValues.Count,
+                $"Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}");
             _puzzle = puzzle;
             _unsetBoxValues = new BitVector[puzzle.Size];
+            _unsetBoxValues.AsSpan().Fill(allUniqueValues);
             _skipMatchingRowAndCol = skipMatchingRowAndCol;
-            BitVector allPossible = BitVector.CreateWithSize(puzzle.Size);
-            for (int i = 0; i < puzzle.Size; i++)
-            {
-                _unsetBoxValues[i] = allPossible;
-            }
             int boxIdx = -1;
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -53,7 +51,7 @@ namespace SudokuSpice.Rules
         private BoxUniquenessRule(BoxUniquenessRule existing, IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
-            _unsetBoxValues = (BitVector[])existing._unsetBoxValues.Clone();
+            _unsetBoxValues = existing._unsetBoxValues.AsSpan().ToArray();
             _skipMatchingRowAndCol = existing._skipMatchingRowAndCol;
         }
 

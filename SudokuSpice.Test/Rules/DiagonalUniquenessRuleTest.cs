@@ -16,7 +16,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             var expectedBackwardPossibles = new BitVector(0b1110);
             var expectedForwardPossibles = new BitVector(0b0011);
             var expectedOtherPossibles = new BitVector(0b1111);
@@ -50,7 +50,7 @@ namespace SudokuSpice.Rules.Test
         {
             var matrix = new int?[size, size];
             var puzzle = new Puzzle(matrix);
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             Assert.NotNull(rule);
         }
 
@@ -65,7 +65,7 @@ namespace SudokuSpice.Rules.Test
                     {   2, null, null, null},
                     {null, null, null, null}
                 });
-                var rule = new DiagonalUniquenessRule(puzzle);
+                var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             });
             Assert.Contains("Puzzle does not satisfy diagonal uniqueness rule", ex.Message);
         }
@@ -79,7 +79,7 @@ namespace SudokuSpice.Rules.Test
                 {   4, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
 
             var puzzleCopy = new Puzzle(puzzle);
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -112,7 +112,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
             var val = 4;
@@ -134,7 +134,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
 
             var coordTracker = new CoordinateTracker(puzzle.Size);
@@ -163,7 +163,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var coord = new Coordinate(2, 2);
             var val = 4;
@@ -191,7 +191,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
@@ -224,7 +224,7 @@ namespace SudokuSpice.Rules.Test
                 {   2, null, null, null},
                 {null, null, null, null}
             });
-            var rule = new DiagonalUniquenessRule(puzzle);
+            var rule = new DiagonalUniquenessRule(puzzle, BitVector.CreateWithSize(puzzle.Size));
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
 
             var coordTracker = new CoordinateTracker(puzzle.Size);

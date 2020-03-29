@@ -12,15 +12,13 @@ namespace SudokuSpice.Rules
         private readonly IReadOnlyPuzzle _puzzle;
         private readonly BitVector[] _unsetRowValues;
 
-        public RowUniquenessRule(IReadOnlyPuzzle puzzle)
+        public RowUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
         {
+            Debug.Assert(puzzle.Size == allUniqueValues.Count,
+                $"Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}");
             _puzzle = puzzle;
             _unsetRowValues = new BitVector[puzzle.Size];
-            BitVector allPossible = BitVector.CreateWithSize(puzzle.Size);
-            for (int i = 0; i < puzzle.Size; i++)
-            {
-                _unsetRowValues[i] = allPossible;
-            }
+            _unsetRowValues.AsSpan().Fill(allUniqueValues);
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)
@@ -43,7 +41,7 @@ namespace SudokuSpice.Rules
         private RowUniquenessRule(RowUniquenessRule existing, IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
-            _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
+            _unsetRowValues = existing._unsetRowValues.AsSpan().ToArray();
         }
 
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)

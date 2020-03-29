@@ -30,9 +30,9 @@ namespace SudokuSpice
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
             var possibleValues = new PossibleValues(puzzle);
-            var rowRule = new RowUniquenessRule(puzzle);
-            var columnRule = new ColumnUniquenessRule(puzzle);
-            var boxRule = new BoxUniquenessRule(puzzle, true);
+            var rowRule = new RowUniquenessRule(puzzle, possibleValues.AllPossible);
+            var columnRule = new ColumnUniquenessRule(puzzle, possibleValues.AllPossible);
+            var boxRule = new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true);
             var ruleKeeper = new DynamicRuleKeeper(
                 puzzle, possibleValues,
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
@@ -67,10 +67,10 @@ namespace SudokuSpice
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
             var possibleValues = new PossibleValues(puzzle);
-            var rowRule = new RowUniquenessRule(puzzle);
-            var columnRule = new ColumnUniquenessRule(puzzle);
-            var boxRule = new BoxUniquenessRule(puzzle, true);
-            var diagonalRule = new DiagonalUniquenessRule(puzzle);
+            var rowRule = new RowUniquenessRule(puzzle, possibleValues.AllPossible);
+            var columnRule = new ColumnUniquenessRule(puzzle, possibleValues.AllPossible);
+            var boxRule = new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true);
+            var diagonalRule = new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible);
             var ruleKeeper = new DynamicRuleKeeper(
                 puzzle, possibleValues,
                 new List<ISudokuRule> { rowRule, columnRule, boxRule, diagonalRule });

@@ -15,19 +15,13 @@ namespace SudokuSpice.Rules
         private readonly BitVector[] _unsetColValues;
         private readonly BitVector[] _unsetBoxValues;
 
-        public StandardRules(IReadOnlyPuzzle puzzle)
+        public StandardRules(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
         {
             _puzzle = puzzle;
             _unsetRowValues = new BitVector[puzzle.Size];
-            _unsetColValues = new BitVector[puzzle.Size];
-            _unsetBoxValues = new BitVector[puzzle.Size];
-            BitVector allPossibles = BitVector.CreateWithSize(puzzle.Size);
-            for (int i = 0; i < puzzle.Size; i++)
-            {
-                _unsetRowValues[i] = allPossibles;
-                _unsetColValues[i] = allPossibles;
-                _unsetBoxValues[i] = allPossibles;
-            }
+            _unsetRowValues.AsSpan().Fill(allUniqueValues);
+            _unsetColValues = _unsetRowValues.AsSpan().ToArray();
+            _unsetBoxValues = _unsetRowValues.AsSpan().ToArray();
 
             int boxIdx = 0;
             for (int row = 0; row < puzzle.Size; row++)
@@ -70,9 +64,9 @@ namespace SudokuSpice.Rules
         private StandardRules(StandardRules existing, IReadOnlyPuzzle puzzle)
         {
             _puzzle = puzzle;
-            _unsetRowValues = (BitVector[])existing._unsetRowValues.Clone();
-            _unsetColValues = (BitVector[])existing._unsetColValues.Clone();
-            _unsetBoxValues = (BitVector[])existing._unsetBoxValues.Clone();
+            _unsetRowValues = existing._unsetRowValues.AsSpan().ToArray();
+            _unsetColValues = existing._unsetColValues.AsSpan().ToArray();
+            _unsetBoxValues = existing._unsetBoxValues.AsSpan().ToArray();
         }
 
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)

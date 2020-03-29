@@ -29,7 +29,7 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var possibleValues = new PossibleValues(p);
-            var standardRules = new StandardRules(p);
+            var standardRules = new StandardRules(p, possibleValues.AllPossible);
             var ruleKeeper = new DynamicRuleKeeper(
                 p, possibleValues,
                 new List<ISudokuRule> { standardRules });
@@ -48,9 +48,9 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var possibleValues = new PossibleValues(p);
-            var rowRule = new RowUniquenessRule(p);
-            var columnRule = new ColumnUniquenessRule(p);
-            var boxRule = new BoxUniquenessRule(p, true);
+            var rowRule = new RowUniquenessRule(p, possibleValues.AllPossible);
+            var columnRule = new ColumnUniquenessRule(p, possibleValues.AllPossible);
+            var boxRule = new BoxUniquenessRule(p, possibleValues.AllPossible, true);
             var ruleKeeper = new DynamicRuleKeeper(
                 p, possibleValues,
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });

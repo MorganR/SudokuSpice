@@ -16,7 +16,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle);
+            var rule = new StandardRules(puzzle, BitVector.CreateWithSize(puzzle.Size));
             Assert.Equal(new BitVector(0b1100), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b0100), rule.GetPossibleValues(new Coordinate(0, 2)));
             Assert.Equal(new BitVector(0b1010), rule.GetPossibleValues(new Coordinate(1, 0)));
@@ -39,7 +39,8 @@ namespace SudokuSpice.Rules.Test
                         {null /* 2 */,            3,            3, null /* 4 */},
                         {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                         {           3,            2,            4,            1}
-                    }));
+                    }),
+                    BitVector.CreateWithSize(4));
             });
             Assert.Contains("Puzzle does not satisfy rule", ex.Message);
         }
@@ -56,7 +57,8 @@ namespace SudokuSpice.Rules.Test
                             {1, null /* 3 */, null /* 1 */, 4},
                             {null /* 4 */, 1,            null /* 2 */, 3},
                             {3,            null /* 2 */, null /* 4 */, 1}
-                        }));
+                        }),
+                    BitVector.CreateWithSize(4));
             });
             Assert.Contains("Puzzle does not satisfy rule", ex.Message);
         }
@@ -73,7 +75,8 @@ namespace SudokuSpice.Rules.Test
                             {null /* 2 */, 1 /* INCORRECT */, null /* 1 */, null /* 4 */},
                             {null /* 4 */,      null /* 1 */,            2, 3},
                             {null /* 3 */,      null /* 2 */,            4, 1}
-                        }));
+                        }),
+                    BitVector.CreateWithSize(4));
             });
             Assert.Contains("Puzzle does not satisfy rule", ex.Message);
         }
@@ -87,7 +90,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle);
+            var rule = new StandardRules(puzzle, BitVector.CreateWithSize(puzzle.Size));
 
             var puzzleCopy = new Puzzle(puzzle);
             var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -120,7 +123,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle);
+            var rule = new StandardRules(puzzle, BitVector.CreateWithSize(puzzle.Size));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             var val = 3;
@@ -145,7 +148,7 @@ namespace SudokuSpice.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle);
+            var rule = new StandardRules(puzzle, BitVector.CreateWithSize(puzzle.Size));
             var initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);

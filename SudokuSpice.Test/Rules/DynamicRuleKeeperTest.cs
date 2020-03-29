@@ -19,9 +19,9 @@ namespace SudokuSpice.Rules.Test
             var possibleValues = new PossibleValues(puzzle);
             var rules = new List<ISudokuRule>
             {
-                new RowUniquenessRule(puzzle),
-                new ColumnUniquenessRule(puzzle),
-                new BoxUniquenessRule(puzzle, true)
+                new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
             };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             Assert.NotNull(ruleKeeper);
@@ -49,9 +49,9 @@ namespace SudokuSpice.Rules.Test
             var possibleValues = new PossibleValues(puzzle);
             var rules = new List<ISudokuRule>
                 {
-                    new RowUniquenessRule(puzzle),
-                    new ColumnUniquenessRule(puzzle),
-                    new BoxUniquenessRule(puzzle, true)
+                    new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ex = Assert.Throws<ArgumentException>(() =>
             {
@@ -72,9 +72,9 @@ namespace SudokuSpice.Rules.Test
             var possibleValues = new PossibleValues(puzzle);
             var rules = new List<ISudokuRule>
             {
-                new RowUniquenessRule(puzzle),
-                new ColumnUniquenessRule(puzzle),
-                new BoxUniquenessRule(puzzle, true)
+                new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
             };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
 
@@ -110,9 +110,9 @@ namespace SudokuSpice.Rules.Test
             var possibleValues = new PossibleValues(puzzle);
             var rules = new List<ISudokuRule>
                 {
-                    new RowUniquenessRule(puzzle),
-                    new ColumnUniquenessRule(puzzle),
-                    new BoxUniquenessRule(puzzle, true)
+                    new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             var coord = new Coordinate(1, 1);
@@ -137,9 +137,9 @@ namespace SudokuSpice.Rules.Test
             var possibleValues = new PossibleValues(puzzle);
             var rules = new List<ISudokuRule>
                 {
-                    new RowUniquenessRule(puzzle),
-                    new ColumnUniquenessRule(puzzle),
-                    new BoxUniquenessRule(puzzle, true)
+                    new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
@@ -165,9 +165,9 @@ namespace SudokuSpice.Rules.Test
             var possibleValues = new PossibleValues(puzzle);
             var rules = new List<ISudokuRule>
                 {
-                    new RowUniquenessRule(puzzle),
-                    new ColumnUniquenessRule(puzzle),
-                    new BoxUniquenessRule(puzzle, true)
+                    new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
