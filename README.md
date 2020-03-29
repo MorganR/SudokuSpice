@@ -1,12 +1,38 @@
 # SudokuSpice
 
-An efficient sudoku-solving library targeting .NET Core.
+An efficient sudoku solving and generating library targeting .NET Core.
 
 This code focuses on optimizing performance without sacrificing readability. Generally speaking,
 when faced with readability and flexibility improvements that have a slight performance cost, the
 version with improved readability has been implemented.
 
 However that's not to say it performs poorly! See [the numbers](#Performance).
+
+This library uses dependency injection and interfaces to enable users to easily extend its
+behavior, such as by adding new heuristics, or by introducing modified rules.
+
+## Quick start
+
+If you need to solve a standard Sudoku puzzle, you can simply create a Puzzle, create a Solver,
+and solve it.
+
+```csharp
+var puzzle = new Puzzle(new int?[,]
+{
+	{null,    2, null,    6, null,    8, null, null, null},
+    {   5,    8, null, null, null,    9,    7, null, null},
+    {null, null, null, null,    4, null, null, null, null},
+    {   3,    7, null, null, null, null,    5, null, null},
+    {   6, null, null, null, null, null, null, null,    4},
+    {null, null,    8, null, null, null, null,    1,    3},
+    {null, null, null, null,    2, null, null, null, null},
+    {null, null,    9,    8, null, null, null,    3,    6},
+    {null, null, null,    3, null,    6, null,    9, null},
+});
+var solver = new Solver(puzzle);
+solver.Solve();
+// Puzzle is now solved!
+```
 
 ## Performance
 
@@ -104,6 +130,6 @@ single, double, and quadruple square clearings.
 
 |             Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
 |------------------- |----------:|----------:|----------:|------:|--------:|
-|        SudokuSpice |  2.023 ms | 0.0385 ms | 0.0378 ms |  1.00 |    0.00 |
-| SudokuSharpSingles | 13.241 ms | 0.5405 ms | 1.5681 ms |  6.58 |    0.40 |
-|   SudokuSharpMixed |  6.991 ms | 0.2217 ms | 0.6432 ms |  3.60 |    0.34 |
+|        SudokuSpice |  1.959 ms | 0.0217 ms | 0.0203 ms |  1.00 |    0.00 |
+| SudokuSharpSingles | 13.421 ms | 0.5775 ms | 1.6936 ms |  6.91 |    1.03 |
+|   SudokuSharpMixed |  6.775 ms | 0.1951 ms | 0.5660 ms |  3.55 |    0.27 |
