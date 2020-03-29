@@ -13,7 +13,7 @@ behavior, such as by adding new heuristics, or by introducing modified rules.
 
 ## Quick start
 
-If you need to solve a standard Sudoku puzzle, you can simply create a Puzzle, create a Solver,
+If you need to solve a standard Sudoku puzzle, you can simply create a `Puzzle`, create a `Solver`,
 and solve it.
 
 ```csharp
@@ -32,6 +32,11 @@ var puzzle = new Puzzle(new int?[,]
 var solver = new Solver(puzzle);
 solver.Solve();
 // Puzzle is now solved!
+
+// Values can be accessed individually like this:
+int row = 0;
+int column = 1;
+var value = puzzle[row, column]; // Returns 2
 ```
 
 ## Performance
