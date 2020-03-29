@@ -147,17 +147,6 @@ namespace SudokuSpice.Data.Test
         }
 
         [Theory]
-        [InlineData(0b0000, 4, new int[] { })]
-        [InlineData(0b0100, 4, new int[] { 2 })]
-        [InlineData(0b0011_1101, 4, new int[] { 0, 2, 3 })]
-        [InlineData(0b1111, 0, new int[] { })]
-        public void GetSetBits_WithMaxBitCount_LimitsToFirstBits(uint data, int maxBitCount, int[] setBits)
-        {
-            var vector = new BitVector(data);
-            Assert.Equal(setBits, vector.GetSetBits(maxBitCount));
-        }
-        
-        [Theory]
         [InlineData(0, 0, true)]
         [InlineData(0b1101, 0b1101, true)]
         [InlineData(0b0011_1101, 0b1111_1111, false)]

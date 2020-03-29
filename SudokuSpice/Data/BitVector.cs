@@ -25,12 +25,12 @@ namespace SudokuSpice.Data
         /// <summary>
         /// Gets the data stored in this bit vector, as an int.
         /// </summary>
-        public uint Data { get; private set; }
+        public uint Data { readonly get; private set; }
 
         /// <summary>
         /// Gets the count of bits that are set.
         /// </summary>
-        public int Count
+        public readonly int Count
         {
             get
             {
@@ -138,20 +138,34 @@ namespace SudokuSpice.Data
         /// <summary>
         /// Gets a list of the bits set in this bit vector.
         /// </summary>
-        /// <param name="maxBitCount">The max number of bits that could be set. Bits are only
-        ///     checked in the range <c>[0, maxBitCount)</c>. Defaults to 32.</param>
         /// <returns>A list of the bits that are set.</returns>
-        public readonly List<int> GetSetBits(int maxBitCount = 32)
+        public readonly List<int> GetSetBits()
         {
-            var bits = new List<int>(maxBitCount);
-            for (int i = 0; i < maxBitCount; i++)
+            if (Popcnt.IsSupported)
             {
-                if ((Data & _masks[i]) != 0)
+                var numSetBits = Count;
+                var bits = new List<int>(numSetBits);
+                for (int i = 0; bits.Count < numSetBits; i++)
                 {
-                    bits.Add(i);
+                    if ((Data & _masks[i]) != 0)
+                    {
+                        bits.Add(i);
+                    }
                 }
+                return bits;
             }
-            return bits;
+            else
+            {
+                var bits = new List<int>(32);
+                for (int i = 0; i < _masks.Length; i++)
+                {
+                    if ((Data & _masks[i]) != 0)
+                    {
+                        bits.Add(i);
+                    }
+                }
+                return bits;
+            }
         }
 
         public readonly bool Equals(BitVector other) => Data == other.Data;
