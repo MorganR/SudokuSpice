@@ -16,10 +16,10 @@ namespace SudokuSpice.Data
         /// The number of squares for which the solver had to guess while finding a solution.
         /// </summary>
         /// <remarks>
-        /// Unlike <c>NumTotalGuesses</c>, if the solver was setting a squar that had three
-        /// possible values, this would only add 1 to <c>NumSquaresGuessed</c>. 
-        /// If NumSolutionsFound is greater than 1, then the precise meaning of this value is 
-        /// undefined.
+        /// Unlike <see cref="SolveStats.NumTotalGuesses">NumTotalGuesses</see>, if the solver was
+        /// setting a square that had three possible values, this would only add 1 to
+        /// <c>NumSquaresGuessed</c>. If NumSolutionsFound is greater than 1, then the precise
+        /// meaning of this value is undefined.
         /// </remarks>
         public int NumSquaresGuessed { get; set; }
         /// <summary>
@@ -29,9 +29,9 @@ namespace SudokuSpice.Data
         /// </summary>
         /// <remarks>
         /// Example Guesses: if the solver tried to set square (0,1) with possible values [2, 3, 5]
-        /// then this would add three guesses to the puzzle solve since there were three possible
-        /// values for this coordinate. This would be true even if only one of the values actually
-        /// led to a solution.
+        /// then this would add three total guesses since there were three possible values for this
+        /// coordinate. This would be true even if only one of the values actually led to a
+        /// solution.
         /// </remarks>
         public int NumTotalGuesses { get; set; }
 

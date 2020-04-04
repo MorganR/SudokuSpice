@@ -4,22 +4,51 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.Data
 {
-    /// <summary>Efficiently tracks a group of coordinates.</summary>
+    /// <summary>Efficiently tracks a set of <see cref="Coordinate"/>s.</summary>
+    /// <remarks>
+    /// This swaps coordinates within an internal array to provide O(1) tracking and untracking
+    /// operations. It also provides immediate, copy-free access to tracked coordinates using a
+    /// <c>ReadOnlySpan</c>.
+    /// </remarks>
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class CoordinateTracker
     {
         private readonly int[,] _coordToIdx;
         private readonly Coordinate[] _coords;
-        public int NumTracked { get; private set; }
         private int _numAdded = 0;
+        /// <summary>
+        /// The number of coordinates currently considered to be 'tracked'.
+        /// </summary>
+        public int NumTracked { get; private set; }
 
+        /// <summary>
+        /// Indicates the action taken during an
+        /// <see cref="AddOrTrackIfUntracked(in Coordinate)">AddOrTrackIfUntracked</see>
+        /// operation.
+        /// </summary>
         public enum AddOrTrackResult
         {
+            /// <summary>
+            /// The given <see cref="Coordinate"/> was previously unknown, and has been added and
+            /// tracked.
+            /// </summary>
             AddedAndTracked = 0,
+            /// <summary>
+            /// The given <see cref="Coordinate"/> was already added but was untracked, and is now
+            /// tracked.
+            /// </summary>
             Tracked = 1,
+            /// <summary>
+            /// the given <see cref="Coordinate"/> was already tracked. No changed were needed.
+            /// </summary>
             Unchanged = 2
         }
 
+        /// <summary>
+        /// Constructs a <c>CoordinateTracker</c> to track coordinates within a
+        /// <c>sideLength</c>-by-<c>sideLength</c> square.
+        /// </summary>
+        /// <param name="sideLength">The side length of a square of valid coordinates.</param>
         public CoordinateTracker(int sideLength)
         {
             _coordToIdx = new int[sideLength, sideLength];
@@ -33,6 +62,10 @@ namespace SudokuSpice.Data
             _coords = new Coordinate[sideLength * sideLength];
         }
 
+        /// <summary>
+        /// Copy-constructor to provide a copy of the given CoordinateTracker.
+        /// </summary>
+        /// <param name="existing"></param>
         public CoordinateTracker(CoordinateTracker existing)
         {
             _coordToIdx = (int[,])existing._coordToIdx.Clone();
@@ -41,6 +74,11 @@ namespace SudokuSpice.Data
             _numAdded = existing._numAdded;
         }
 
+        /// <summary>
+        /// Adds and tracks a previously unknown <see cref="Coordinate"/>. This must only be called
+        /// once for any given Coordinate.
+        /// </summary>
+        /// <param name="c">The <see cref="Coordinate"/> to add.</param>
         public void Add(in Coordinate c)
         {
             _coords[_numAdded] = c;
@@ -49,6 +87,11 @@ namespace SudokuSpice.Data
             Track(in c);
         }
 
+        /// <summary>
+        /// Tracks a currently untracked <see cref="Coordinate"/>. The coordinate must not be
+        /// tracked already.
+        /// </summary>
+        /// <param name="c">The <see cref="Coordinate"/> to track.</param>
         public void Track(in Coordinate c)
         {
             Debug.Assert(NumTracked != _numAdded, "The tracker is full.");
@@ -56,6 +99,12 @@ namespace SudokuSpice.Data
             _Track(in c, idx);
         }
 
+        /// <summary>
+        /// Ensures a given <see cref="Coordinate"/> is both added and tracked. Useful when callers
+        /// are not certain of the status of the given <c>Coordinate</c>.
+        /// </summary>
+        /// <param name="c">The <see cref="Coordinate"/> to track.</param>
+        /// <returns>The action that was taken.</returns>
         public AddOrTrackResult AddOrTrackIfUntracked(in Coordinate c)
         {
             if (_coordToIdx[c.Row, c.Column] == -1)
@@ -72,6 +121,11 @@ namespace SudokuSpice.Data
             return AddOrTrackResult.Tracked;
         }
 
+        /// <summary>
+        /// Untracks a given <see cref="Coordinate"/>. The <c>Coordinate</c> must be currently
+        /// tracked.
+        /// </summary>
+        /// <param name="c">The <see cref="Coordinate"/> to untrack.</param>
         public void Untrack(in Coordinate c)
         {
             Debug.Assert(NumTracked > 0, "The tracker is empty");
@@ -86,11 +140,17 @@ namespace SudokuSpice.Data
             _coordToIdx[c.Row, c.Column] = NumTracked;
         }
 
+        /// <summary>
+        /// Untracks all <see cref="Coordinate"/>s.
+        /// </summary>
         public void UntrackAll()
         {
             NumTracked = 0;
         }
 
+        /// <summary>
+        /// Provides readonly access to the currently tracked <see cref="Coordinate"/>s.
+        /// </summary>
         public ReadOnlySpan<Coordinate> GetTrackedCoords()
         {
             return new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);

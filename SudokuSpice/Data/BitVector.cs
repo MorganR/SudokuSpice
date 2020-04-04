@@ -23,13 +23,18 @@ namespace SudokuSpice.Data
         }
 
         /// <summary>
-        /// Gets the data stored in this bit vector, as an int.
+        /// Gets the data stored in this bit vector as an unsigned int.
         /// </summary>
         public uint Data { readonly get; private set; }
 
         /// <summary>
         /// Gets the count of bits that are set.
         /// </summary>
+        /// <remarks>
+        /// This relies on the <see cref="Popcnt"/> hardware intrinsic to be efficient. If this
+        /// operation is not available on your hardware, then this function falls back to a
+        /// considerably less efficient iterative count over all the bits in the vector.
+        /// </remarks>
         public readonly int Count
         {
             get
@@ -138,6 +143,10 @@ namespace SudokuSpice.Data
         /// <summary>
         /// Gets a list of the bits set in this bit vector.
         /// </summary>
+        /// <remarks>
+        /// This operation is slightly more efficient on average when <see cref="Popcnt"/> is
+        /// supported. Worst case performance is roughly the same.
+        /// </remarks>
         /// <returns>A list of the bits that are set.</returns>
         public readonly List<int> GetSetBits()
         {
@@ -181,6 +190,9 @@ namespace SudokuSpice.Data
 
         public override readonly int GetHashCode() => (int)Data;
 
+        /// <summary>
+        /// Returns this bitvector as a binary-formatted string (eg. 1011).
+        /// </summary>
         public override readonly string ToString() => Convert.ToString(Data, 2);
 
         public static bool operator ==(BitVector a, BitVector b) => a.Data == b.Data;

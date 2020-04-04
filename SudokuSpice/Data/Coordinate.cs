@@ -2,9 +2,22 @@ using System;
 
 namespace SudokuSpice.Data
 {
+    /// <summary>
+    /// Uniquely identifies the location of a square in a Sudoku puzzle.
+    /// </summary>
+    /// <remarks>
+    /// Note that this struct is <see langword="readonly"/>, so can be efficiently referenced using
+    /// <see langword="in"/>. This may provide minor performance enhancement on some architectures.
+    /// </remarks>
     public readonly struct Coordinate : IEquatable<Coordinate>
     {
+        /// <summary>
+        /// The zero-based row in the puzzle, starting at the top.
+        /// </summary>
         public readonly int Row { get; }
+        /// <summary>
+        /// The zero-based column in the puzzle, starting on the left.
+        /// </summary>
         public readonly int Column { get; }
 
         public Coordinate(int row, int col)
