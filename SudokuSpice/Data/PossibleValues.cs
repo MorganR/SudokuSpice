@@ -16,15 +16,36 @@ namespace SudokuSpice.Data
         public BitVector AllPossible { get; }
 
         /// <summary>
-        /// Constructs a <c>PossibleValues</c> object to track possible values for the given puzzle.
+        /// Constructs a <c>PossibleValues</c> object to track possible values for the given
+        /// puzzle. Assumes that the possible values are 1 to <c>puzzle.Size</c>.
         /// </summary>
         /// <param name="puzzle">The puzzle for which we want to track possible values.</param>
+
         [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "This is a square, so no space is wasted")]
         public PossibleValues(IReadOnlyPuzzle puzzle)
         {
             _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
             var allPossible = BitVector.CreateWithSize(puzzle.Size + 1);
             allPossible.UnsetBit(0);
+            AllPossible = allPossible;
+            foreach (var c in puzzle.GetUnsetCoords())
+            {
+                _possibleValues[c.Row, c.Column] = AllPossible;
+            }
+        }
+
+        /// <summary>
+        /// Constructs a <c>PossibleValues</c> object to track possible values for the given puzzle.
+        /// </summary>
+        /// <param name="puzzle">The puzzle for which we want to track possible values.</param>
+        /// <param name="allPossible">
+        /// The full set of possible values for any given square in this puzzle.
+        /// </param>
+
+        [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "This is a square, so no space is wasted")]
+        public PossibleValues(IReadOnlyPuzzle puzzle, BitVector allPossible)
+        {
+            _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
             AllPossible = allPossible;
             foreach (var c in puzzle.GetUnsetCoords())
             {
