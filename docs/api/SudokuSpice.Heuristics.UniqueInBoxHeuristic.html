@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -73,7 +73,9 @@
   
   <h1 id="SudokuSpice_Heuristics_UniqueInBoxHeuristic" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic" class="text-break">Class UniqueInBoxHeuristic
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Checks for any squares that are the unique provider of a given possible value within a box.
+Sets the possible values for those squares to just their unique value.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -114,6 +116,11 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class UniqueInBoxHeuristic : ISudokuHeuristic</code></pre>
   </div>
+  <h5 id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>For example, if a box had three unset squares with possible values: <code>A: [1, 2]</code>,
+<code>B: [1, 2]</code>, and <code>C: [1, 2, 3]</code>, then this would set <code>C</code>'s possible values
+to <code>[3]</code>.</p>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -121,7 +128,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Heuristics_UniqueInBoxHeuristic__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_PossibleValues_SudokuSpice_Rules_IMissingBoxValuesTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Heuristics.UniqueInBoxHeuristic.%23ctor(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.Data.PossibleValues%2CSudokuSpice.Rules.IMissingBoxValuesTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L16">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L25">View Source</a>
   </span>
   <a id="SudokuSpice_Heuristics_UniqueInBoxHeuristic__ctor_" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.#ctor*"></a>
   <h4 id="SudokuSpice_Heuristics_UniqueInBoxHeuristic__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_PossibleValues_SudokuSpice_Rules_IMissingBoxValuesTracker_" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,SudokuSpice.Rules.IMissingBoxValuesTracker)">UniqueInBoxHeuristic(IReadOnlyPuzzle, PossibleValues, IMissingBoxValuesTracker)</h4>
@@ -165,11 +172,13 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Heuristics_UniqueInBoxHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.Data.PossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L39">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L52">View Source</a>
   </span>
   <a id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_Rules_ISudokuRule__" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this heuristic. Requires <code>rules</code> to contain an
+<a class="xref" href="SudokuSpice.Rules.IMissingBoxValuesTracker.html">IMissingBoxValuesTracker</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -222,11 +231,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Heuristics_UniqueInBoxHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L61">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L76">View Source</a>
   </span>
   <a id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate*"></a>
   <h4 id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_UndoLastUpdate" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Undoes the last modifications made by this heuristic.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -237,11 +247,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Heuristics_UniqueInBoxHeuristic_UpdateAll.md&amp;value=---%0Auid%3A%20SudokuSpice.Heuristics.UniqueInBoxHeuristic.UpdateAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L49">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L63">View Source</a>
   </span>
   <a id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_UpdateAll_" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.UpdateAll*"></a>
   <h4 id="SudokuSpice_Heuristics_UniqueInBoxHeuristic_UpdateAll" data-uid="SudokuSpice.Heuristics.UniqueInBoxHeuristic.UpdateAll">UpdateAll()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates all the current possible values.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -258,7 +269,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Returns true if any modifications were made.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -277,7 +289,7 @@
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Heuristics_UniqueInBoxHeuristic.md&amp;value=---%0Auid%3A%20SudokuSpice.Heuristics.UniqueInBoxHeuristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Heuristics/UniqueInBoxHeuristic.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

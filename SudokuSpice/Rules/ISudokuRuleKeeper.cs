@@ -25,14 +25,22 @@ namespace SudokuSpice.Rules
         void Unset(in Coordinate c, int value);
 
         /// <summary>
-        /// Gets the <c>ISudokuRule</c>s enforced by this rule-keeper.
+        /// Gets the <see cref="ISudokuRule"/>s enforced by this rule keeper.
         /// </summary>
         IReadOnlyList<ISudokuRule> GetRules();
 
         /// <summary>
-        /// Creates a deep copy of this ISudokuRuleKeeper with updated internal
-        /// <c>IReadOnlyPuzzle</c> and <c>PossibleValues</c> references.
+        /// Creates a deep copy of this rule keeper, including copies of any
+        /// <see cref="ISudokuRule"/>s it contains, with updated internal
+        /// <see cref="IReadOnlyPuzzle"/> and <see cref="PossibleValues"/> references.
         /// </summary>
+        /// <param name="puzzle">
+        /// The new puzzle reference. Should contain the same data as the current puzzle instance.
+        /// </param>
+        /// <param name="possibleValues">
+        /// The new possible values reference. Should contain the same data as the current possible
+        /// values instance.
+        /// </param>
         ISudokuRuleKeeper CopyWithNewReferences(
             IReadOnlyPuzzle puzzle, PossibleValues possibleValues);
     }

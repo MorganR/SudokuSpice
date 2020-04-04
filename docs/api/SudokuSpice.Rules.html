@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -90,7 +90,7 @@
       <section><p>Enforces an arbitrary injected set of rules.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.Rules.RowUniquenessRule.html">RowUniquenessRule</a></h4>
-      <section><p>Rules that each row contains all unique values.</p>
+      <section><p>Restricts that each row contains all unique values.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.Rules.StandardRuleKeeper.html">StandardRuleKeeper</a></h4>
       <section><p>Enforces the standard rules: uniqueness in each row, column, and box.</p>
@@ -111,7 +111,10 @@ convenience.</p>
       <section><p>Tracks all the required unset values for a given row in the Puzzle.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.Rules.ISudokuRule.html">ISudokuRule</a></h4>
-      <section><p>Enforces a rule for a puzzle, such as &quot;all values must be unique within a row.&quot;</p>
+      <section><p>Enforces a rule for a puzzle, such as &quot;all values must be unique within a row.&quot; This is
+done by tracking possible values for each square specifically as determined by this rule.
+These possible values are then enforced along with any other rules by an
+<a class="xref" href="SudokuSpice.Rules.ISudokuRuleKeeper.html">ISudokuRuleKeeper</a>.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.Rules.ISudokuRuleKeeper.html">ISudokuRuleKeeper</a></h4>
       <section></section>

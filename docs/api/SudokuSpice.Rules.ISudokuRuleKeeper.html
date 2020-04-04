@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -88,12 +88,13 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRuleKeeper_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_PossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.Data.PossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRuleKeeper.cs/#L36">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRuleKeeper.cs/#L44">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_ISudokuRuleKeeper_CopyWithNewReferences_" data-uid="SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRuleKeeper_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_PossibleValues_" data-uid="SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)</h4>
-  <div class="markdown level1 summary"><p>Creates a deep copy of this ISudokuRuleKeeper with updated internal
-<code>IReadOnlyPuzzle</code> and <code>PossibleValues</code> references.</p>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this rule keeper, including copies of any
+<a class="xref" href="SudokuSpice.Rules.ISudokuRule.html">ISudokuRule</a>s it contains, with updated internal
+<a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a> and <a class="xref" href="SudokuSpice.Data.PossibleValues.html">PossibleValues</a> references.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -113,12 +114,15 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The new puzzle reference. Should contain the same data as the current puzzle instance.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.PossibleValues.html">PossibleValues</a></td>
         <td><span class="parametername">possibleValues</span></td>
-        <td></td>
+        <td><p>The new possible values reference. Should contain the same data as the current possible
+values instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -146,7 +150,7 @@
   </span>
   <a id="SudokuSpice_Rules_ISudokuRuleKeeper_GetRules_" data-uid="SudokuSpice.Rules.ISudokuRuleKeeper.GetRules*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRuleKeeper_GetRules" data-uid="SudokuSpice.Rules.ISudokuRuleKeeper.GetRules">GetRules()</h4>
-  <div class="markdown level1 summary"><p>Gets the <code>ISudokuRule</code>s enforced by this rule-keeper.</p>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="SudokuSpice.Rules.ISudokuRule.html">ISudokuRule</a>s enforced by this rule keeper.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

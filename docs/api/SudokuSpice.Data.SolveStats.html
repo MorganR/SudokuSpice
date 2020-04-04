@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -164,10 +164,10 @@ be 1.</p>
     </tbody>
   </table>
   <h5 id="SudokuSpice_Data_SolveStats_NumSquaresGuessed_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Unlike <code>NumTotalGuesses</code>, if the solver was setting a squar that had three
-possible values, this would only add 1 to <code>NumSquaresGuessed</code>.
-If NumSolutionsFound is greater than 1, then the precise meaning of this value is
-undefined.</p>
+  <div class="markdown level1 remarks"><p>Unlike <a class="xref" href="SudokuSpice.Data.SolveStats.html#SudokuSpice_Data_SolveStats_NumTotalGuesses">NumTotalGuesses</a>, if the solver was
+setting a square that had three possible values, this would only add 1 to
+<code>NumSquaresGuessed</code>. If NumSolutionsFound is greater than 1, then the precise
+meaning of this value is undefined.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
@@ -204,9 +204,9 @@ for that square.</p>
   </table>
   <h5 id="SudokuSpice_Data_SolveStats_NumTotalGuesses_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Example Guesses: if the solver tried to set square (0,1) with possible values [2, 3, 5]
-then this would add three guesses to the puzzle solve since there were three possible
-values for this coordinate. This would be true even if only one of the values actually
-led to a solution.</p>
+then this would add three total guesses since there were three possible values for this
+coordinate. This would be true even if only one of the values actually led to a
+solution.</p>
 </div>
   <h3 id="methods">Methods
   </h3>

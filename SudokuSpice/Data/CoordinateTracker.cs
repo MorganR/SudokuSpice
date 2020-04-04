@@ -39,7 +39,7 @@ namespace SudokuSpice.Data
             /// </summary>
             Tracked = 1,
             /// <summary>
-            /// the given <see cref="Coordinate"/> was already tracked. No changed were needed.
+            /// The given <see cref="Coordinate"/> was already tracked. No changes were needed.
             /// </summary>
             Unchanged = 2
         }

@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -73,7 +73,10 @@
   
   <h1 id="SudokuSpice_Rules_ISudokuRule" data-uid="SudokuSpice.Rules.ISudokuRule" class="text-break">Interface ISudokuRule
   </h1>
-  <div class="markdown level0 summary"><p>Enforces a rule for a puzzle, such as &quot;all values must be unique within a row.&quot;</p>
+  <div class="markdown level0 summary"><p>Enforces a rule for a puzzle, such as &quot;all values must be unique within a row.&quot; This is
+done by tracking possible values for each square specifically as determined by this rule.
+These possible values are then enforced along with any other rules by an
+<a class="xref" href="SudokuSpice.Rules.ISudokuRuleKeeper.html">ISudokuRuleKeeper</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.Rules.html">SudokuSpice.Rules</a></h6>
@@ -89,7 +92,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L44">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L60">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_ISudokuRule_CopyWithNewReference_" data-uid="SudokuSpice.Rules.ISudokuRule.CopyWithNewReference*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
@@ -114,7 +117,8 @@ references updated to the given puzzle.</p>
       <tr>
         <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td><p>New puzzle reference to use.</p>
+        <td><p>The new puzzle reference to use. To ensure this rule's internal state is correct, this
+puzzle should contain the same data as the current puzzle referenced by this rule.</p>
 </td>
       </tr>
     </tbody>
@@ -139,7 +143,7 @@ references updated to the given puzzle.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_GetPossibleValues_SudokuSpice_Data_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L14">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L17">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_ISudokuRule_GetPossibleValues_" data-uid="SudokuSpice.Rules.ISudokuRule.GetPossibleValues*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRule_GetPossibleValues_SudokuSpice_Data_Coordinate__" data-uid="SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)">GetPossibleValues(Coordinate)</h4>
@@ -178,7 +182,7 @@ references updated to the given puzzle.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.BitVector.html">BitVector</a></td>
-        <td><p>The possible values represented as a bit-vector.</p>
+        <td><p>The possible values represented as a <a class="xref" href="SudokuSpice.Data.BitVector.html">BitVector</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -188,11 +192,17 @@ references updated to the given puzzle.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L20">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L29">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_ISudokuRule_Revert_" data-uid="SudokuSpice.Rules.ISudokuRule.Revert*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_" data-uid="SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
   <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
+<p>
+This performs the same internal updates as
+<a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_">Revert(Coordinate, Int32, CoordinateTracker)</a>, but without passing
+affected coordinates back to the caller. Therefore this is more efficient in cases
+where the caller already knows all the possible coordinates that could be affected.
+</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -228,7 +238,7 @@ references updated to the given puzzle.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate%40%2CSystem.Int32%2CSudokuSpice.Data.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L29">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L40">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_ISudokuRule_Revert_" data-uid="SudokuSpice.Rules.ISudokuRule.Revert*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_" data-uid="SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
@@ -265,8 +275,8 @@ coordinates in the given tracker.</p>
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.CoordinateTracker.html">CoordinateTracker</a></td>
         <td><span class="parametername">coordTracker</span></td>
-        <td><p>A coordinate tracker to add to where the possible values
-should be modified.</p>
+        <td><p>The coordinates of unset squares impacted by this change will be tracked in this
+tracker.</p>
 </td>
       </tr>
     </tbody>
@@ -276,7 +286,7 @@ should be modified.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate%40%2CSystem.Int32%2CSudokuSpice.Data.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L38">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L51">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_ISudokuRule_Update_" data-uid="SudokuSpice.Rules.ISudokuRule.Update*"></a>
   <h4 id="SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_" data-uid="SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>
@@ -286,7 +296,7 @@ Tracks affected coordinates in the given tracker.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Update(in Coordinate c, int val, CoordinateTracker coordTrackers)</code></pre>
+    <pre><code class="lang-csharp hljs">void Update(in Coordinate c, int val, CoordinateTracker coordTracker)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -312,8 +322,10 @@ Tracks affected coordinates in the given tracker.</p>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.CoordinateTracker.html">CoordinateTracker</a></td>
-        <td><span class="parametername">coordTrackers</span></td>
-        <td></td>
+        <td><span class="parametername">coordTracker</span></td>
+        <td><p>The coordinates of unset squares impacted by this change will be tracked in this
+tracker.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -328,7 +340,7 @@ Tracks affected coordinates in the given tracker.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

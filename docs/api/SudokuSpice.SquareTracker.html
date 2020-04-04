@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -73,7 +73,8 @@
   
   <h1 id="SudokuSpice_SquareTracker" data-uid="SudokuSpice.SquareTracker" class="text-break">Class SquareTracker
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Tracks and sets Sudoku squares and their possible values.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -121,11 +122,13 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker__ctor_SudokuSpice_Puzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.%23ctor(SudokuSpice.Puzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L21">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L26">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker__ctor_" data-uid="SudokuSpice.SquareTracker.#ctor*"></a>
   <h4 id="SudokuSpice_SquareTracker__ctor_SudokuSpice_Puzzle_" data-uid="SudokuSpice.SquareTracker.#ctor(SudokuSpice.Puzzle)">SquareTracker(Puzzle)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Constructs a square tracker with a <a class="xref" href="SudokuSpice.Rules.StandardRuleKeeper.html">StandardRuleKeeper</a> and a
+<a class="xref" href="SudokuSpice.Heuristics.StandardHeuristic.html">StandardHeuristic</a>. Provided as a shortcut for standard Sudoku puzzles.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -144,7 +147,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Puzzle.html">Puzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to track.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -153,11 +157,13 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker__ctor_SudokuSpice_Puzzle_SudokuSpice_Data_PossibleValues_SudokuSpice_Rules_ISudokuRuleKeeper_SudokuSpice_Heuristics_ISudokuHeuristic_.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.%23ctor(SudokuSpice.Puzzle%2CSudokuSpice.Data.PossibleValues%2CSudokuSpice.Rules.ISudokuRuleKeeper%2CSudokuSpice.Heuristics.ISudokuHeuristic)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L33">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L53">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker__ctor_" data-uid="SudokuSpice.SquareTracker.#ctor*"></a>
   <h4 id="SudokuSpice_SquareTracker__ctor_SudokuSpice_Puzzle_SudokuSpice_Data_PossibleValues_SudokuSpice_Rules_ISudokuRuleKeeper_SudokuSpice_Heuristics_ISudokuHeuristic_" data-uid="SudokuSpice.SquareTracker.#ctor(SudokuSpice.Puzzle,SudokuSpice.Data.PossibleValues,SudokuSpice.Rules.ISudokuRuleKeeper,SudokuSpice.Heuristics.ISudokuHeuristic)">SquareTracker(Puzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Constructs a square tracker to track the given puzzle using the given possible values,
+rule keeper, and heuristic.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -176,54 +182,31 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Puzzle.html">Puzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to track.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.PossibleValues.html">PossibleValues</a></td>
         <td><span class="parametername">possibleValues</span></td>
-        <td></td>
+        <td><p>A possible values tracker for the given puzzle.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.Rules.ISudokuRuleKeeper.html">ISudokuRuleKeeper</a></td>
         <td><span class="parametername">ruleKeeper</span></td>
-        <td></td>
+        <td><p>The rule keeper to satisfy when modifying this puzzle.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.Heuristics.ISudokuHeuristic.html">ISudokuHeuristic</a></td>
         <td><span class="parametername">heuristic</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_NumTimesHeuristicsUsed.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.NumTimesHeuristicsUsed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L19">View Source</a>
-  </span>
-  <a id="SudokuSpice_SquareTracker_NumTimesHeuristicsUsed_" data-uid="SudokuSpice.SquareTracker.NumTimesHeuristicsUsed*"></a>
-  <h4 id="SudokuSpice_SquareTracker_NumTimesHeuristicsUsed" data-uid="SudokuSpice.SquareTracker.NumTimesHeuristicsUsed">NumTimesHeuristicsUsed</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int NumTimesHeuristicsUsed { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>A heuristic to use to solve this puzzle efficiently. Can be set to null to skip using
+heuristics.</p>
+<p>
+Note that only one heuristic can be provided. To use multiple heuristics, create a
+wrapper heuristic like <a class="xref" href="SudokuSpice.Heuristics.StandardHeuristic.html">StandardHeuristic</a>.
+</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -234,11 +217,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_DeepCopy.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.DeepCopy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L58">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L79">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker_DeepCopy_" data-uid="SudokuSpice.SquareTracker.DeepCopy*"></a>
   <h4 id="SudokuSpice_SquareTracker_DeepCopy" data-uid="SudokuSpice.SquareTracker.DeepCopy">DeepCopy()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this ISquareTracker in its current state.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -264,11 +248,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_GetBestCoordinateToGuess.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.GetBestCoordinateToGuess%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L63">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L85">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker_GetBestCoordinateToGuess_" data-uid="SudokuSpice.SquareTracker.GetBestCoordinateToGuess*"></a>
   <h4 id="SudokuSpice_SquareTracker_GetBestCoordinateToGuess" data-uid="SudokuSpice.SquareTracker.GetBestCoordinateToGuess">GetBestCoordinateToGuess()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the coordinate for the next square to fill in.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -285,7 +270,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a></td>
-        <td></td>
+        <td><p>The coordinate for the unset square with the least possible values.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -294,11 +280,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_GetNumEmptySquares.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.GetNumEmptySquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L93">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L116">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker_GetNumEmptySquares_" data-uid="SudokuSpice.SquareTracker.GetNumEmptySquares*"></a>
   <h4 id="SudokuSpice_SquareTracker_GetNumEmptySquares" data-uid="SudokuSpice.SquareTracker.GetNumEmptySquares">GetNumEmptySquares()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the number of empty squares remaining.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -324,11 +311,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_GetPossibleValues_SudokuSpice_Data_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.GetPossibleValues(SudokuSpice.Data.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L88">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L110">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker_GetPossibleValues_" data-uid="SudokuSpice.SquareTracker.GetPossibleValues*"></a>
   <h4 id="SudokuSpice_SquareTracker_GetPossibleValues_SudokuSpice_Data_Coordinate__" data-uid="SudokuSpice.SquareTracker.GetPossibleValues(SudokuSpice.Data.Coordinate@)">GetPossibleValues(Coordinate)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the possible values at the given internal index.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -347,7 +335,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate of the square to retrieve possible values for.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -362,7 +351,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td></td>
+        <td><p>A list of those possible values.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -371,11 +361,14 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_TrySet_SudokuSpice_Data_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.TrySet(SudokuSpice.Data.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L95">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L119">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker_TrySet_" data-uid="SudokuSpice.SquareTracker.TrySet*"></a>
   <h4 id="SudokuSpice_SquareTracker_TrySet_SudokuSpice_Data_Coordinate__System_Int32_" data-uid="SudokuSpice.SquareTracker.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)">TrySet(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to set the square at the given coordinate to the given possible value. This also
+modifies its internal data as needed to maintain track of the square's values. If the
+value can't be set, this undoes all internal changes as if this method was not called.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -399,7 +392,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value to set the square to.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -414,7 +408,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>True if the set succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -423,11 +418,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker_UnsetLast.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker.UnsetLast%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L107">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L132">View Source</a>
   </span>
   <a id="SudokuSpice_SquareTracker_UnsetLast_" data-uid="SudokuSpice.SquareTracker.UnsetLast*"></a>
   <h4 id="SudokuSpice_SquareTracker_UnsetLast" data-uid="SudokuSpice.SquareTracker.UnsetLast">UnsetLast()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Unsets the most recently set square.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -448,7 +444,7 @@
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_SquareTracker.md&amp;value=---%0Auid%3A%20SudokuSpice.SquareTracker%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Trackers/SquareTracker.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/SquareTracker.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

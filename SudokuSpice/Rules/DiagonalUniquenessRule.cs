@@ -58,11 +58,13 @@ namespace SudokuSpice.Rules
             _allUnset = existing._allUnset;
         }
 
+        /// <inheritdoc/>
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             return new DiagonalUniquenessRule(this, puzzle);
         }
 
+        /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c)
         {
             if (_IsOnBackwardDiag(in c))
@@ -77,6 +79,7 @@ namespace SudokuSpice.Rules
             }
         }
 
+        /// <inheritdoc/>
         public void Revert(in Coordinate c, int val)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
@@ -90,6 +93,7 @@ namespace SudokuSpice.Rules
             }
         }
 
+        /// <inheritdoc/>
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
@@ -105,6 +109,7 @@ namespace SudokuSpice.Rules
             }
         }
 
+        /// <inheritdoc/>
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");

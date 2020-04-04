@@ -5,6 +5,15 @@ using System.Linq;
 
 namespace SudokuSpice.Heuristics
 {
+    /// <summary>
+    /// Checks for any squares that are the unique provider of a given possible value within a row.
+    /// Sets the possible values for those squares to just their unique value.
+    /// </summary>
+    /// <remarks>
+    /// For example, if a row had three unset squares with possible values: <c>A: [1, 2]</c>,
+    /// <c>B: [1, 2]</c>, and <c>C: [1, 2, 3]</c>, then this would set <c>C</c>'s possible values
+    /// to <c>[3]</c>.
+    /// </remarks>
     public class UniqueInRowHeuristic : ISudokuHeuristic
     {
         private readonly IReadOnlyPuzzle _puzzle;
@@ -36,6 +45,10 @@ namespace SudokuSpice.Heuristics
                 existing._previousPossiblesStack);
         }
 
+        /// <summary>
+        /// Creates a deep copy of this heuristic. Requires <c>rules</c> to contain an
+        /// <see cref="IMissingRowValuesTracker"/>.
+        /// </summary>
         public ISudokuHeuristic CopyWithNewReferences(
             IReadOnlyPuzzle puzzle,
             PossibleValues possibleValues,
@@ -46,6 +59,7 @@ namespace SudokuSpice.Heuristics
                 (IMissingRowValuesTracker)rules.First(r => r is IMissingRowValuesTracker));
         }
 
+        /// <inheritdoc/>
         public bool UpdateAll()
         {
             var previousPossibles = new Dictionary<Coordinate, BitVector>();
@@ -58,6 +72,7 @@ namespace SudokuSpice.Heuristics
             return previousPossibles.Count > 0;
         }
 
+        /// <inheritdoc/>
         public void UndoLastUpdate()
         {
             var overwrittenPossibles = _previousPossiblesStack.Pop();

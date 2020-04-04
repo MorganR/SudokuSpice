@@ -3,17 +3,26 @@ using SudokuSpice.Data;
 namespace SudokuSpice.Rules
 {
     /// <summary>
-    /// Enforces a rule for a puzzle, such as "all values must be unique within a row."
+    /// Enforces a rule for a puzzle, such as "all values must be unique within a row." This is
+    /// done by tracking possible values for each square specifically as determined by this rule.
+    /// These possible values are then enforced along with any other rules by an
+    /// <see cref="ISudokuRuleKeeper"/>.
     /// </summary>
     public interface ISudokuRule
     {
         /// <summary>
         /// Gets the possible values for the given coordinate based on this rule.
         /// </summary>
-        /// <returns>The possible values represented as a bit-vector.</returns>
+        /// <returns>The possible values represented as a <see cref="BitVector"/>.</returns>
         BitVector GetPossibleValues(in Coordinate c);
         /// <summary>
         /// Undoes an update for the given value at the specified coordinate.
+        /// <para>
+        /// This performs the same internal updates as
+        /// <see cref="Revert(in Coordinate, int, CoordinateTracker)"/>, but without passing
+        /// affected coordinates back to the caller. Therefore this is more efficient in cases
+        /// where the caller already knows all the possible coordinates that could be affected.
+        /// </para>
         /// </summary>
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
@@ -24,8 +33,10 @@ namespace SudokuSpice.Rules
         /// </summary>
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
-        /// <param name="coordTracker">A coordinate tracker to add to where the possible values
-        ///     should be modified.</param>
+        /// <param name="coordTracker">
+        /// The coordinates of unset squares impacted by this change will be tracked in this
+        /// tracker.
+        /// </param>
         void Revert(in Coordinate c, int val, CoordinateTracker coordTracker);
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value.
@@ -33,14 +44,19 @@ namespace SudokuSpice.Rules
         /// </summary>
         /// <param name="c">The coordinate to update.</param>
         /// <param name="val">The value to set <c>c</c> to.</param>
-        /// <param name="coordTracker">A coordinate tracker to add to where the possible values
-        ///     should be modified.</param>
-        void Update(in Coordinate c, int val, CoordinateTracker coordTrackers);
+        /// <param name="coordTracker">
+        /// The coordinates of unset squares impacted by this change will be tracked in this
+        /// tracker.
+        /// </param>
+        void Update(in Coordinate c, int val, CoordinateTracker coordTracker);
         /// <summary>
         /// Creates a deep copy of this ISudokuRule, with any internal <c>IReadOnlyPuzzle</c>
         /// references updated to the given puzzle.
         /// </summary>
-        /// <param name="puzzle">New puzzle reference to use.</param>
+        /// <param name="puzzle">
+        /// The new puzzle reference to use. To ensure this rule's internal state is correct, this
+        /// puzzle should contain the same data as the current puzzle referenced by this rule.
+        /// </param>
         ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle);
     }
 }

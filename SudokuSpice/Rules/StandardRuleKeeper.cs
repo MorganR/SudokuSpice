@@ -76,12 +76,14 @@ namespace SudokuSpice.Rules
             _unsetBoxValues = existing._unsetBoxValues.AsSpan().ToArray();
         }
 
+        /// <inheritdoc/>
         public ISudokuRuleKeeper CopyWithNewReferences(
             IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             return new StandardRuleKeeper(this, puzzle, possibleValues);
         }
 
+        /// <inheritdoc/>
         public bool TrySet(in Coordinate c, int value)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot run rule checks for an already set puzzle coordinate");
@@ -156,17 +158,22 @@ namespace SudokuSpice.Rules
             return true;
         }
 
+        /// <inheritdoc/>
         public IReadOnlyList<ISudokuRule> GetRules()
         {
             return new List<ISudokuRule>() { this };
         }
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForRow(int row) => _unsetRowValues[row];
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForColumn(int column) => _unsetColumnValues[column];
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForBox(int box) => _unsetBoxValues[box];
 
+        /// <inheritdoc/>
         public void Unset(in Coordinate c, int value)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot undo rule checks for a set puzzle coordinate");
@@ -228,26 +235,46 @@ namespace SudokuSpice.Rules
             }
         }
 
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
         public BitVector GetPossibleValues(in Coordinate c)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
         public void Revert(in Coordinate c, int val)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             throw new NotImplementedException();

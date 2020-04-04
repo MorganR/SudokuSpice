@@ -47,16 +47,19 @@ namespace SudokuSpice.Rules
             _rules = rules;
         }
 
+        /// <inheritdoc/>
         public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
             return new DynamicRuleKeeper(this, puzzle, possibleValues);
         }
 
+        /// <inheritdoc/>
         public IReadOnlyList<ISudokuRule> GetRules()
         {
             return _rules;
         }
 
+        /// <inheritdoc/>
         public bool TrySet(in Coordinate c, int value)
         {
             _coordTracker.UntrackAll();
@@ -93,6 +96,7 @@ namespace SudokuSpice.Rules
             return true;
         }
 
+        /// <inheritdoc/>
         public void Unset(in Coordinate c, int value)
         {
             _coordTracker.UntrackAll();

@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace SudokuSpice.Rules
 {
     /// <summary>
-    /// Rules that each row contains all unique values.
+    /// Restricts that each row contains all unique values.
     /// </summary>
     public class RowUniquenessRule : ISudokuRule, IMissingRowValuesTracker
     {

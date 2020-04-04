@@ -68,17 +68,22 @@ namespace SudokuSpice.Rules
             _unsetBoxValues = existing._unsetBoxValues.AsSpan().ToArray();
         }
 
+        /// <inheritdoc/>
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             return new StandardRules(this, puzzle);
         }
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForRow(int row) => _unsetRowValues[row];
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForColumn(int column) => _unsetColValues[column];
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForBox(int box) => _unsetBoxValues[box];
 
+        /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c)
         {
             return BitVector.FindIntersect(
@@ -88,6 +93,7 @@ namespace SudokuSpice.Rules
                     _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)]));
         }
 
+        /// <inheritdoc/>
         public void Revert(in Coordinate c, int val)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
@@ -96,6 +102,7 @@ namespace SudokuSpice.Rules
             _unsetBoxValues[_puzzle.GetBoxIndex(c.Row, c.Column)].SetBit(val);
         }
 
+        /// <inheritdoc/>
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
@@ -106,6 +113,7 @@ namespace SudokuSpice.Rules
             _AddUnset(in c, boxIdx, coordTracker);
         }
 
+        /// <inheritdoc/>
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");

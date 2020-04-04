@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Heuristics
 {
+    /// <summary>
+    /// Provides the standard <c>UniqueIn*</c> heuristics.
+    /// </summary>
     public class StandardHeuristic : ISudokuHeuristic
     {
         private readonly UniqueInRowHeuristic _rowHeuristic;
@@ -35,6 +38,11 @@ namespace SudokuSpice.Heuristics
             _numHeuristicsRan = new Stack<int>(existing._numHeuristicsRan);
         }
 
+        /// <summary>
+        /// Creates a deep copy of this heuristic. Requires <c>rules</c> to contain an
+        /// <see cref="IMissingBoxValuesTracker"/>, an <see cref="IMissingColumnValuesTracker"/>,
+        /// and an <see cref="IMissingRowValuesTracker"/>.
+        /// </summary>
         public ISudokuHeuristic CopyWithNewReferences(
             IReadOnlyPuzzle puzzle,
             PossibleValues possibleValues,
@@ -43,6 +51,7 @@ namespace SudokuSpice.Heuristics
             return new StandardHeuristic(this, puzzle, possibleValues, rules);
         }
 
+        /// <inheritdoc/>
         public void UndoLastUpdate()
         {
             int numToUndo = _numHeuristicsRan.Pop();
@@ -57,6 +66,7 @@ namespace SudokuSpice.Heuristics
             _rowHeuristic.UndoLastUpdate();
         }
 
+        /// <inheritdoc/>
         public bool UpdateAll()
         {
             //// Note: we can't simply do _h1.UpdateAll() | _h2.UpdateAll() | _h3.UpdateAll because

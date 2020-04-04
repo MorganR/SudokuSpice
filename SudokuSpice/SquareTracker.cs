@@ -3,10 +3,12 @@ using SudokuSpice.Heuristics;
 using SudokuSpice.Rules;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace SudokuSpice
 {
+    /// <summary>
+    /// Tracks and sets Sudoku squares and their possible values.
+    /// </summary>
     public class SquareTracker : ISquareTracker
     {
         private readonly Puzzle _puzzle;
@@ -16,8 +18,11 @@ namespace SudokuSpice
         private readonly Stack<Coordinate> _setCoords;
         private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
 
-        public int NumTimesHeuristicsUsed { get; private set; }
-
+        /// <summary>
+        /// Constructs a square tracker with a <see cref="StandardRuleKeeper"/> and a
+        /// <see cref="StandardHeuristic"/>. Provided as a shortcut for standard Sudoku puzzles.
+        /// </summary>
+        /// <param name="puzzle">The puzzle to track.</param>
         public SquareTracker(Puzzle puzzle)
         {
             _puzzle = puzzle;
@@ -30,6 +35,21 @@ namespace SudokuSpice
             _coordsThatUsedHeuristics = new Stack<Coordinate>(puzzle.NumEmptySquares);
         }
 
+        /// <summary>
+        /// Constructs a square tracker to track the given puzzle using the given possible values,
+        /// rule keeper, and heuristic.
+        /// </summary>
+        /// <param name="puzzle">The puzzle to track.</param>
+        /// <param name="possibleValues">A possible values tracker for the given puzzle.</param>
+        /// <param name="ruleKeeper">The rule keeper to satisfy when modifying this puzzle.</param>
+        /// <param name="heuristic">
+        /// A heuristic to use to solve this puzzle efficiently. Can be set to null to skip using
+        /// heuristics.
+        /// <para>
+        /// Note that only one heuristic can be provided. To use multiple heuristics, create a
+        /// wrapper heuristic like <see cref="StandardHeuristic"/>.
+        /// </para>
+        /// </param>
         public SquareTracker(
             Puzzle puzzle,
             PossibleValues possibleValues,
@@ -55,11 +75,13 @@ namespace SudokuSpice
             _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
         }
 
+        /// <inheritdoc/>
         public ISquareTracker DeepCopy()
         {
             return new SquareTracker(this);
         }
 
+        /// <inheritdoc/>
         public Coordinate GetBestCoordinateToGuess()
         {
             Debug.Assert(_puzzle.NumEmptySquares > 0, "No unset squares left to guess!");
@@ -76,7 +98,6 @@ namespace SudokuSpice
             {
                 _coordsThatUsedHeuristics.Push(_setCoords.Peek());
             }
-            NumTimesHeuristicsUsed++;
             if (!_heuristic.UpdateAll())
             {
                 return bestCoord;
@@ -85,13 +106,16 @@ namespace SudokuSpice
             return bestCoord;
         }
 
+        /// <inheritdoc/>
         public List<int> GetPossibleValues(in Coordinate c)
         {
             return _possibleValues[in c].GetSetBits();
         }
 
+        /// <inheritdoc/>
         public int GetNumEmptySquares() => _puzzle.NumEmptySquares;
 
+        /// <inheritdoc/>
         public bool TrySet(in Coordinate coord, int value)
         {
             bool isValid = _ruleKeeper.TrySet(in coord, value);
@@ -104,6 +128,7 @@ namespace SudokuSpice
             return true;
         }
 
+        /// <inheritdoc/>
         public void UnsetLast()
         {
             var lastCoord = _setCoords.Pop();

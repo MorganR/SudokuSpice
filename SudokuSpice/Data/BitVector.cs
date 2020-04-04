@@ -5,7 +5,7 @@ using System.Runtime.Intrinsics.X86;
 namespace SudokuSpice.Data
 {
     /// <summary>
-    /// Tracks a vector of 32 bits.
+    /// A 32-bit vector with simple operations for getting and setting bits.
     /// </summary>
     public struct BitVector : IEquatable<BitVector>
     {

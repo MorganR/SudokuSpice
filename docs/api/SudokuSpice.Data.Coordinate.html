@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -73,7 +73,8 @@
   
   <h1 id="SudokuSpice_Data_Coordinate" data-uid="SudokuSpice.Data.Coordinate" class="text-break">Struct Coordinate
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Uniquely identifies the location of a square in a Sudoku puzzle.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -97,6 +98,10 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public struct Coordinate : IEquatable&lt;Coordinate&gt;</code></pre>
   </div>
+  <h5 id="SudokuSpice_Data_Coordinate_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Note that this struct is <span class="xref">langword_csharp_readonly</span>, so can be efficiently referenced using
+<span class="xref">langword_csharp_in</span>. This may provide minor performance enhancement on some architectures.</p>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -104,7 +109,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate__ctor_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.%23ctor(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L10">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L23">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate__ctor_" data-uid="SudokuSpice.Data.Coordinate.#ctor*"></a>
   <h4 id="SudokuSpice_Data_Coordinate__ctor_System_Int32_System_Int32_" data-uid="SudokuSpice.Data.Coordinate.#ctor(System.Int32,System.Int32)">Coordinate(Int32, Int32)</h4>
@@ -143,11 +148,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_Column.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.Column%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L8">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L21">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_Column_" data-uid="SudokuSpice.Data.Coordinate.Column*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_Column" data-uid="SudokuSpice.Data.Coordinate.Column">Column</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The zero-based column in the puzzle, starting on the left.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -173,11 +179,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_Row.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.Row%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L7">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L17">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_Row_" data-uid="SudokuSpice.Data.Coordinate.Row*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_Row" data-uid="SudokuSpice.Data.Coordinate.Row">Row</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The zero-based row in the puzzle, starting at the top.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -205,7 +212,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_Deconstruct_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.Deconstruct(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L16">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L29">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_Deconstruct_" data-uid="SudokuSpice.Data.Coordinate.Deconstruct*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_Deconstruct_System_Int32__System_Int32__" data-uid="SudokuSpice.Data.Coordinate.Deconstruct(System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32)</h4>
@@ -242,7 +249,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_Equals_SudokuSpice_Data_Coordinate_.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L37">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L50">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_Equals_" data-uid="SudokuSpice.Data.Coordinate.Equals*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_Equals_SudokuSpice_Data_Coordinate_" data-uid="SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)">Equals(Coordinate)</h4>
@@ -289,7 +296,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_Equals_SudokuSpice_Data_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L42">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L55">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_Equals_" data-uid="SudokuSpice.Data.Coordinate.Equals*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_Equals_SudokuSpice_Data_Coordinate__" data-uid="SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate@)">Equals(Coordinate)</h4>
@@ -336,7 +343,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L23">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L36">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_Equals_" data-uid="SudokuSpice.Data.Coordinate.Equals*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_Equals_System_Object_" data-uid="SudokuSpice.Data.Coordinate.Equals(System.Object)">Equals(Object)</h4>
@@ -385,7 +392,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_GetHashCode.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L32">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L45">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_GetHashCode_" data-uid="SudokuSpice.Data.Coordinate.GetHashCode*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_GetHashCode" data-uid="SudokuSpice.Data.Coordinate.GetHashCode">GetHashCode()</h4>
@@ -417,7 +424,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_ToString.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L18">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L31">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_ToString_" data-uid="SudokuSpice.Data.Coordinate.ToString*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_ToString" data-uid="SudokuSpice.Data.Coordinate.ToString">ToString()</h4>
@@ -451,7 +458,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_op_Equality_SudokuSpice_Data_Coordinate__SudokuSpice_Data_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.op_Equality(SudokuSpice.Data.Coordinate%40%2CSudokuSpice.Data.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L47">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L60">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_op_Equality_" data-uid="SudokuSpice.Data.Coordinate.op_Equality*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_op_Equality_SudokuSpice_Data_Coordinate__SudokuSpice_Data_Coordinate__" data-uid="SudokuSpice.Data.Coordinate.op_Equality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)">Equality(Coordinate, Coordinate)</h4>
@@ -503,7 +510,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate_op_Inequality_SudokuSpice_Data_Coordinate__SudokuSpice_Data_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate.op_Inequality(SudokuSpice.Data.Coordinate%40%2CSudokuSpice.Data.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L52">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L65">View Source</a>
   </span>
   <a id="SudokuSpice_Data_Coordinate_op_Inequality_" data-uid="SudokuSpice.Data.Coordinate.op_Inequality*"></a>
   <h4 id="SudokuSpice_Data_Coordinate_op_Inequality_SudokuSpice_Data_Coordinate__SudokuSpice_Data_Coordinate__" data-uid="SudokuSpice.Data.Coordinate.op_Inequality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)">Inequality(Coordinate, Coordinate)</h4>
@@ -565,7 +572,7 @@
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Data_Coordinate.md&amp;value=---%0Auid%3A%20SudokuSpice.Data.Coordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L5" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Data/Coordinate.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

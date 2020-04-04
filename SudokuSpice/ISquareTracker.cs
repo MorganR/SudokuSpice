@@ -26,8 +26,7 @@ namespace SudokuSpice
         /// <summary>
         /// Tries to set the square at the given coordinate to the given possible value. This also 
         /// modifies its internal data as needed to maintain track of the square's values. If the
-        /// value can't be set, this undoes any changes made to all squares and their possible
-        /// values.
+        /// value can't be set, this undoes all internal changes as if this method was not called.
         /// </summary>
         /// <param name="c">The coordinate of the square to set.</param>
         /// <param name="value">The value to set the square to.</param>
