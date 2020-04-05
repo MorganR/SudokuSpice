@@ -11,7 +11,7 @@ namespace SudokuSpice.Benchmark
         public int SudokuSpice()
         {
             var generator = new Generator(9);
-            var puzzle = generator.Generate(30);
+            var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }
 

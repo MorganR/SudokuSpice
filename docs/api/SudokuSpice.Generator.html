@@ -73,7 +73,8 @@
   
   <h1 id="SudokuSpice_Generator" data-uid="SudokuSpice.Generator" class="text-break">Class Generator
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Generates Sudoku puzzles.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -117,11 +118,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Generator__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Generator.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Generator.cs/#L15">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Generator.cs/#L29">View Source</a>
   </span>
   <a id="SudokuSpice_Generator__ctor_" data-uid="SudokuSpice.Generator.#ctor*"></a>
   <h4 id="SudokuSpice_Generator__ctor_System_Int32_" data-uid="SudokuSpice.Generator.#ctor(System.Int32)">Generator(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a puzzle generator to create puzzles of the given side-length.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -140,7 +142,24 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">size</span></td>
-        <td></td>
+        <td><p>The side-length for the Sudoku puzzles. This must be a one of: 1, 4, 9, 16, 25.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if <code>size</code> is anything except the values 1, 4, 9, 16, or 25.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -148,18 +167,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Generator_Generate_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Generator.Generate(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Generator_Generate_System_Int32_System_TimeSpan_.md&amp;value=---%0Auid%3A%20SudokuSpice.Generator.Generate(System.Int32%2CSystem.TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Generator.cs/#L25">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Generator.cs/#L72">View Source</a>
   </span>
   <a id="SudokuSpice_Generator_Generate_" data-uid="SudokuSpice.Generator.Generate*"></a>
-  <h4 id="SudokuSpice_Generator_Generate_System_Int32_" data-uid="SudokuSpice.Generator.Generate(System.Int32)">Generate(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="SudokuSpice_Generator_Generate_System_Int32_System_TimeSpan_" data-uid="SudokuSpice.Generator.Generate(System.Int32,System.TimeSpan)">Generate(Int32, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Generates a puzzle that has a unique solution with the given number of squares set.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Puzzle Generate(int numSquaresToSet)</code></pre>
+    <pre><code class="lang-csharp hljs">public Puzzle Generate(int numSquaresToSet, TimeSpan timeout)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -174,7 +194,22 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">numSquaresToSet</span></td>
-        <td></td>
+        <td><p>The number of squares that will be preset in the generated puzzle.</p>
+<p>
+Valid ranges are 0-1 for puzzles of size 1, 4-16 for puzzles of size 4, 17-81 for
+puzzles of size 9, 55-256 for puzzles of size 16, and 185 - 625 for puzzles of size 25.
+Note that the lower bounds for puzzles sized 16 or 25 are estimates from
+this forum: http://forum.enjoysudoku.com/minimum-givens-on-larger-puzzles-t4801.html
+</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeSpan</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>The maximum timeout during which this function can search for a unique puzzle.
+Especially useful when trying to generate puzzles with low
+<code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -189,7 +224,36 @@
     <tbody>
       <tr>
         <td><a class="xref" href="SudokuSpice.Puzzle.html">Puzzle</a></td>
-        <td></td>
+        <td><p>A standard Sudoku puzzle with a unique solution and <code>numSquaresToSet</code> preset
+squares.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SudokuSpice_Generator_Generate_System_Int32_System_TimeSpan__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Be careful calling this with low values, as it can take a very long time to generate
+unique puzzles as numSquaresToSet approaches the minimum number of clues necessary to
+provide a unique puzzle for this generator's size.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>Thrown if <code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code> is impossible for the given puzzle size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>Thrown if no valid unique puzzle is found within the specified
+<code data-dev-comment-type="paramref" class="paramref">timeout</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -204,7 +268,7 @@
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Generator.md&amp;value=---%0Auid%3A%20SudokuSpice.Generator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Generator.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Generator.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

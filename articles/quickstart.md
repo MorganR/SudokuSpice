@@ -31,13 +31,13 @@ var value = puzzle[row, column]; // Returns 2
 ## Generating
 
 If you need to generate Sudoku puzzles, simply create a [`Generator`](xref:SudokuSpice.Generator)
-and call Generate as many times as you like.
+and call `Generate` as many times as you like.
 
 ```csharp
 // Create a 9x9 puzzle generator.
-var generator = new Generator(/*puzzleSize=*/9);
+var generator = new Generator(/*size=*/9);
 // Generate a 9x9 puzzle with 30 preset square values.
-var puzzle = generator.Generate(/*numSetSquares=*/30);
+var puzzle = generator.Generate(/*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
 ```
 
 **Warning:** Requesting a small number of set squares when calling `Generate` can take a very long time,

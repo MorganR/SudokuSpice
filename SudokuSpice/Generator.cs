@@ -1,9 +1,14 @@
 ﻿using SudokuSpice.Data;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
+    /// <summary>
+    /// Generates Sudoku puzzles.
+    /// </summary>
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Generator
     {
@@ -12,6 +17,15 @@ namespace SudokuSpice
         private readonly int _size;
         private readonly int _boxSize;
 
+        /// <summary>
+        /// Creates a puzzle generator to create puzzles of the given side-length.
+        /// </summary>
+        /// <param name="size">
+        /// The side-length for the Sudoku puzzles. This must be a one of: 1, 4, 9, 16, 25.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if <c>size</c> is anything except the values 1, 4, 9, 16, or 25.
+        /// </exception>
         public Generator(int size)
         {
             _size = size;
@@ -22,26 +36,75 @@ namespace SudokuSpice
             }
         }
 
-        public Puzzle Generate(int numSquaresToSet)
+        /// <summary>
+        /// Generates a puzzle that has a unique solution with the given number of squares set.
+        /// </summary>
+        /// <remarks>
+        /// Be careful calling this with low values, as it can take a very long time to generate
+        /// unique puzzles as numSquaresToSet approaches the minimum number of clues necessary to
+        /// provide a unique puzzle for this generator's size.
+        /// </remarks>
+        /// <param name="numSquaresToSet">
+        /// The number of squares that will be preset in the generated puzzle.
+        /// <para>
+        /// Valid ranges are 0-1 for puzzles of size 1, 4-16 for puzzles of size 4, 17-81 for
+        /// puzzles of size 9, 55-256 for puzzles of size 16, and 185 - 625 for puzzles of size 25.
+        /// Note that the lower bounds for puzzles sized 16 or 25 are estimates from
+        /// this forum: http://forum.enjoysudoku.com/minimum-givens-on-larger-puzzles-t4801.html
+        /// </para>
+        /// </param>
+        /// <param name="timeout">
+        /// The maximum timeout during which this function can search for a unique puzzle.
+        /// Especially useful when trying to generate puzzles with low
+        /// <paramref name="numSquaresToSet"/>.
+        /// </param>
+        /// <returns>
+        /// A standard Sudoku puzzle with a unique solution and <c>numSquaresToSet</c> preset
+        /// squares.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if <paramref name="numSquaresToSet"/> is impossible for the given puzzle size.
+        /// </exception>
+        /// <exception cref="TimeoutException">
+        /// Thrown if no valid unique puzzle is found within the specified
+        /// <paramref name="timeout"/>.
+        /// </exception>
+        public Puzzle Generate(int numSquaresToSet, TimeSpan timeout)
         {
             _ValidateNumSquaresToSet(numSquaresToSet);
-            
-            Puzzle? puzzle = null;
-            for (int attempts = 0; puzzle is null && attempts < MAX_ATTEMPTS; attempts++)
+
+            using var timeoutCancellationSource = new CancellationTokenSource(timeout);
+            var puzzleTask = new Task<Puzzle>(() => _Generate(numSquaresToSet, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
+            puzzleTask.RunSynchronously();
+
+            if (puzzleTask.IsCompletedSuccessfully)
             {
+                return puzzleTask.Result;
+            }
+            if (puzzleTask.IsCanceled)
+            {
+                throw new TimeoutException($"Failed to generate a puzzle of size {_size} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
+            }
+#pragma warning disable CS8597 // Thrown value may be null.
+            throw puzzleTask.Exception;
+#pragma warning restore CS8597 // Thrown value may be null.
+        }
+
+        private Puzzle _Generate(int numSquaresToSet, CancellationToken cancellationToken)
+        {
+            Puzzle? puzzle = null;
+            var setCoordinates = new CoordinateTracker(_size);
+            while (puzzle is null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
                 puzzle = new Puzzle(new int?[_size, _size]);
                 _FillPuzzle(puzzle);
-                var setCoordinates = new CoordinateTracker(_size);
                 _TrackAllCoordinates(setCoordinates);
-                if (_TryUnsetSquaresWhileSolvable(numSquaresToSet, _size * _size, setCoordinates, puzzle))
+                if (_TryUnsetSquaresWhileSolvable(numSquaresToSet, _size * _size, setCoordinates, puzzle, cancellationToken))
                 {
                     break;
                 }
                 puzzle = null;
-            }
-            if (puzzle is null)
-            {
-                throw new TimeoutException($"Failed to generate a puzzle of size {_size} and {nameof(numSquaresToSet)} {numSquaresToSet} after {MAX_ATTEMPTS} attempts.");
             }
             return puzzle;
         }
@@ -78,12 +141,14 @@ namespace SudokuSpice
             }
             if (numToSet < lowerBound || numToSet > upperBound)
             {
-                throw new ArgumentException(
-                    $"{nameof(numToSet)} must be in the range [{lowerBound}, {upperBound}] for puzzles of size {_size}.");
+                throw new ArgumentOutOfRangeException(nameof(numToSet),
+                    $"Must be in the range [{lowerBound}, {upperBound}] for puzzles of size {_size}.");
             }
         }
 
-        private bool _TryUnsetSquaresWhileSolvable(int totalNumSquaresToSet, int currentNumSet, CoordinateTracker setCoordinatesToTry, Puzzle puzzle)
+        private bool _TryUnsetSquaresWhileSolvable(
+            int totalNumSquaresToSet, int currentNumSet, CoordinateTracker setCoordinatesToTry,
+            Puzzle puzzle, CancellationToken cancellationToken)
         {
             if (currentNumSet == totalNumSquaresToSet)
             {
@@ -91,6 +156,7 @@ namespace SudokuSpice
             }
             while (setCoordinatesToTry.NumTracked > 0)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 var randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
                 var previousValue = puzzle[in randomCoord];
                 setCoordinatesToTry.Untrack(in randomCoord);
@@ -98,7 +164,9 @@ namespace SudokuSpice
                 {
                     continue;
                 }
-                if (_TryUnsetSquaresWhileSolvable(totalNumSquaresToSet, currentNumSet - 1, new CoordinateTracker(setCoordinatesToTry), puzzle))
+                if (_TryUnsetSquaresWhileSolvable(
+                    totalNumSquaresToSet, currentNumSet - 1,
+                    new CoordinateTracker(setCoordinatesToTry), puzzle, cancellationToken))
                 {
                     return true;
                 }
@@ -119,7 +187,7 @@ namespace SudokuSpice
             {
                 for (int col = 0; col < _size; col++)
                 {
-                    tracker.Add(new Coordinate(row, col));
+                    tracker.AddOrTrackIfUntracked(new Coordinate(row, col));
                 }
             }
         }

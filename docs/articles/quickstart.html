@@ -95,11 +95,11 @@ var value = puzzle[row, column]; // Returns 2
 </code></pre>
 <h2 id="generating">Generating</h2>
 <p>If you need to generate Sudoku puzzles, simply create a <a class="xref" href="../api/SudokuSpice.Generator.html"><code>Generator</code></a>
-and call Generate as many times as you like.</p>
+and call <code>Generate</code> as many times as you like.</p>
 <pre><code class="lang-csharp">// Create a 9x9 puzzle generator.
-var generator = new Generator(/*puzzleSize=*/9);
+var generator = new Generator(/*size=*/9);
 // Generate a 9x9 puzzle with 30 preset square values.
-var puzzle = generator.Generate(/*numSetSquares=*/30);
+var puzzle = generator.Generate(/*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
 </code></pre>
 <p><strong>Warning:</strong> Requesting a small number of set squares when calling <code>Generate</code> can take a very long time,
 and may eventually time out. For quickly generating 9x9 puzzles, it's recommended to use a value of

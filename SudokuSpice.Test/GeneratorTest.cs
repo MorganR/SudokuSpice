@@ -28,11 +28,12 @@ namespace SudokuSpice.Test
         [InlineData(16, 266)]
         [InlineData(25, 100)]
         [InlineData(25, 626)]
-        public void Generate_WithInvalidArgs_Throws(int size, int numToSet)
+        public void Generate_WithInvalidNumToSet_Throws(int size, int numToSet)
         {
             var generator = new Generator(size);
 
-            Assert.Throws<ArgumentException>(() => generator.Generate(numToSet));
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => generator.Generate(numToSet, TimeSpan.FromSeconds(60)));
         }
 
         [Theory]
@@ -43,12 +44,21 @@ namespace SudokuSpice.Test
         {
             var generator = new Generator(size);
             
-            var puzzle = generator.Generate(numToSet);
+            var puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
             var solver = new Solver(puzzle);
             var stats = solver.GetStatsForAllSolutions();
             Assert.Equal(1, stats.NumSolutionsFound);
+        }
+
+        [Fact]
+        public void Generate_WithShortTimeout_ThrowsTimeoutException()
+        {
+            var generator = new Generator(9);
+
+            Assert.Throws<TimeoutException>(
+                () => generator.Generate(17, TimeSpan.FromMilliseconds(1)));
         }
     }
 }
