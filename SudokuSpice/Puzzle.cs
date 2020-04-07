@@ -8,10 +8,9 @@ using System.Text;
 
 namespace SudokuSpice
 {
-
     /// <summary>Manages underlying puzzle data.</summary>.
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class Puzzle : IReadOnlyPuzzle
+    public class Puzzle : IReadOnlyPuzzle, IReadOnlyBoxPuzzle
     {
         /// <summary>The length of one side of the puzzle.</summary>
         public int Size { get; }
@@ -27,6 +26,13 @@ namespace SudokuSpice
         private readonly int?[,] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
 
+        /// <summary>
+        /// Constructs a new puzzle whose data matches the given array.
+        /// </summary>
+        /// <param name="puzzleMatrix">
+        /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
+        /// be null. A copy of this data is stored in this <c>Puzzle</c>.
+        /// </param>
         public Puzzle(int?[,] puzzleMatrix)
         {
             NumSquares = puzzleMatrix.Length;
@@ -61,6 +67,9 @@ namespace SudokuSpice
             }
         }
 
+        /// <summary>
+        /// A copy constructor for an existing <c>Puzzle</c>.
+        /// </summary>
         public Puzzle(Puzzle existing)
         {
             Size = existing.Size;
@@ -69,8 +78,10 @@ namespace SudokuSpice
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
         }
 
-        /// <summary>Gets or sets the current value of a given square. A square can be 'unset' by 
-        /// setting its value to <c>null</c></summary>
+        /// <summary>
+        /// Gets or sets the current value of a given square. A square can be 'unset' by setting
+        /// its value to <c>null</c>.
+        /// </summary>
         public int? this[int row, int col]
         {
             get => _squares[row, col];
@@ -87,6 +98,12 @@ namespace SudokuSpice
             }
         }
 
+        /// <summary>
+        /// Gets or sets the value of the given square, like <see cref="this[int, int]"/>, but
+        /// using a <see cref="Coordinate"/> instead of <see langword="int"/> accessors.
+        /// </summary>
+        /// <param name="c">The location of the square to get/set the value of.</param>
+        /// <returns>The value of the square at <paramref name="c"/></returns>
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {
@@ -103,39 +120,15 @@ namespace SudokuSpice
             return new Coordinate((box / BoxSize) * BoxSize, (box % BoxSize) * BoxSize);
         }
 
-        /// <summary>Gets a span of <c>Coordinate</c>s for all the unset squares.</summary>
+        /// <summary>Gets a span of coordinates for all the unset squares.</summary>
         public ReadOnlySpan<Coordinate> GetUnsetCoords()
         {
             return _unsetCoordsTracker.GetTrackedCoords();
         }
 
-        /// <summary>Yields an enumerable of <c>Coordinate</c>s for all the unset squares in the given row.</summary>
-        public IEnumerable<Coordinate> YieldUnsetCoordsForRow(int row)
-        {
-            for (var col = 0; col < Size; col++)
-            {
-                if (_squares[row, col].HasValue)
-                {
-                    continue;
-                }
-                yield return new Coordinate(row, col);
-            }
-        }
-
-        /// <summary>Yields an enumerable of <c>Coordinate</c>s for all the unset squares in the given column.</summary>
-        public IEnumerable<Coordinate> YieldUnsetCoordsForColumn(int col)
-        {
-            for (var row = 0; row < Size; row++)
-            {
-                if (_squares[row, col].HasValue)
-                {
-                    continue;
-                }
-                yield return new Coordinate(row, col);
-            }
-        }
-
-        /// <summary>Yields an enumerable of <c>Coordinate</c>s for all the unset squares in the given box.</summary>
+        /// <summary>
+        /// Yields an enumerable of coordinates for all the unset squares in the given box.
+        /// </summary>
         public IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box)
         {
             (var startRow, var startCol) = GetStartingBoxCoordinate(box);
@@ -154,8 +147,10 @@ namespace SudokuSpice
             }
         }
 
-        /// <summary>Returns the puzzle in a pretty string format, with boxes and rows separated by
-        /// pipes and dashes.</summary>
+        /// <summary>
+        /// Returns the puzzle in a pretty string format, with boxes and rows separated by pipes
+        /// and dashes.
+        /// </summary>
         public override string ToString()
         {
             int maxDigitLength = Size.ToString(NumberFormatInfo.InvariantInfo).Length;

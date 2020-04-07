@@ -10,13 +10,13 @@ namespace SudokuSpice.Rules
     /// </summary>
     public class StandardRuleKeeper : ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
-        private readonly IReadOnlyPuzzle _puzzle;
+        private readonly IReadOnlyBoxPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly BitVector[] _unsetRowValues;
         private readonly BitVector[] _unsetColumnValues;
         private readonly BitVector[] _unsetBoxValues;
 
-        public StandardRuleKeeper(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
+        public StandardRuleKeeper(IReadOnlyBoxPuzzle puzzle, PossibleValues possibleValues)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -67,7 +67,7 @@ namespace SudokuSpice.Rules
         }
 
         private StandardRuleKeeper(
-            StandardRuleKeeper existing, IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
+            StandardRuleKeeper existing, IReadOnlyBoxPuzzle puzzle, PossibleValues possibleValues)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -80,7 +80,11 @@ namespace SudokuSpice.Rules
         public ISudokuRuleKeeper CopyWithNewReferences(
             IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
         {
-            return new StandardRuleKeeper(this, puzzle, possibleValues);
+            if (puzzle is IReadOnlyBoxPuzzle boxPuzzle)
+            {
+                return new StandardRuleKeeper(this, boxPuzzle, possibleValues);
+            }
+            throw new ArgumentException($"An {nameof(IReadOnlyBoxPuzzle)} is required to copy {nameof(StandardRuleKeeper)}.");
         }
 
         /// <inheritdoc/>

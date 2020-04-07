@@ -9,11 +9,11 @@ namespace SudokuSpice.Rules
     /// </summary>
     public class BoxUniquenessRule : ISudokuRule, IMissingBoxValuesTracker
     {
-        private readonly IReadOnlyPuzzle _puzzle;
+        private readonly IReadOnlyBoxPuzzle _puzzle;
         private readonly BitVector[] _unsetBoxValues;
         private readonly bool _skipMatchingRowAndCol;
 
-        public BoxUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues, bool skipMatchingRowAndCol)
+        public BoxUniquenessRule(IReadOnlyBoxPuzzle puzzle, BitVector allUniqueValues, bool skipMatchingRowAndCol)
         {
             Debug.Assert(puzzle.Size == allUniqueValues.Count,
                 $"Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}");
@@ -47,7 +47,7 @@ namespace SudokuSpice.Rules
             }
         }
 
-        private BoxUniquenessRule(BoxUniquenessRule existing, IReadOnlyPuzzle puzzle)
+        private BoxUniquenessRule(BoxUniquenessRule existing, IReadOnlyBoxPuzzle puzzle)
         {
             _puzzle = puzzle;
             _unsetBoxValues = existing._unsetBoxValues.AsSpan().ToArray();
@@ -57,7 +57,11 @@ namespace SudokuSpice.Rules
         /// <inheritdoc/>
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
-            return new BoxUniquenessRule(this, puzzle);
+            if (puzzle is IReadOnlyBoxPuzzle boxPuzzle)
+            {
+                return new BoxUniquenessRule(this, boxPuzzle);
+            }
+            throw new ArgumentException($"An {nameof(IReadOnlyBoxPuzzle)} is required to copy {nameof(BoxUniquenessRule)}.");
         }
 
         /// <inheritdoc/>

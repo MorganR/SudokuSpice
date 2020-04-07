@@ -1,5 +1,6 @@
 ﻿using SudokuSpice.Data;
 using SudokuSpice.Rules;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -64,6 +65,31 @@ namespace SudokuSpice.Heuristics.Test
             heuristicCopy.UpdateAll();
             Assert.Equal(originalPossibleValues, possibleValues[coord]);
             Assert.NotEqual(originalPossibleValues, possibleValuesCopy[coord]);
+        }
+
+        [Fact]
+        public void CopyWithNewReferences_WithoutIMissingBoxValuesTracker_Throws()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {null /* 1 */, null /* 4 */,            3,            2},
+                {null /* 2 */, null /* 3 */, null /* 1 */,            4},
+                {null /* 4 */, null /* 1 */,            2,            3},
+                {           3, null /* 2 */,            4,            1}
+            });
+            var possibleValues = new PossibleValues(puzzle);
+            var boxRule = new BoxUniquenessRule(puzzle, possibleValues.AllPossible, false);
+            var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, new List<ISudokuRule> { boxRule });
+            var heuristic = new UniqueInBoxHeuristic(
+                puzzle, possibleValues, boxRule);
+
+            var puzzleCopy = new Puzzle(puzzle);
+            var possibleValuesCopy = new PossibleValues(possibleValues);
+            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(puzzleCopy, possibleValuesCopy,
+                new List<ISudokuRule> {
+                    new ColumnUniquenessRule(puzzleCopy, possibleValues.AllPossible),
+                });
+            Assert.Throws<ArgumentException>(() => heuristic.CopyWithNewReferences(
+                puzzleCopy, possibleValuesCopy, ruleKeeperWithoutBoxTracker.GetRules()));
         }
     }
 }

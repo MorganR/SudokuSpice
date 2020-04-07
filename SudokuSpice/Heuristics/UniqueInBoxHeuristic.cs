@@ -1,5 +1,6 @@
 ﻿using SudokuSpice.Data;
 using SudokuSpice.Rules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,13 +17,13 @@ namespace SudokuSpice.Heuristics
     /// </remarks>
     public class UniqueInBoxHeuristic : ISudokuHeuristic
     {
-        private readonly IReadOnlyPuzzle _puzzle;
+        private readonly IReadOnlyBoxPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly IMissingBoxValuesTracker _boxTracker;
         private readonly BitVector[] _possiblesToCheckInBox;
         private readonly Stack<IReadOnlyDictionary<Coordinate, BitVector>> _previousPossiblesStack;
 
-        public UniqueInBoxHeuristic(IReadOnlyPuzzle puzzle, PossibleValues possibleValues, IMissingBoxValuesTracker rule)
+        public UniqueInBoxHeuristic(IReadOnlyBoxPuzzle puzzle, PossibleValues possibleValues, IMissingBoxValuesTracker rule)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;
@@ -33,7 +34,7 @@ namespace SudokuSpice.Heuristics
 
         private UniqueInBoxHeuristic(
             UniqueInBoxHeuristic existing,
-            IReadOnlyPuzzle puzzle,
+            IReadOnlyBoxPuzzle puzzle,
             PossibleValues possibleValues,
             IMissingBoxValuesTracker rule)
         {
@@ -54,9 +55,19 @@ namespace SudokuSpice.Heuristics
             PossibleValues possibleValues,
             IReadOnlyList<ISudokuRule> rules)
         {
-            return new UniqueInBoxHeuristic(
-                this, puzzle, possibleValues,
-                (IMissingBoxValuesTracker)rules.First(r => r is IMissingBoxValuesTracker));
+            if (puzzle is IReadOnlyBoxPuzzle boxPuzzle)
+            {
+                var missingValuesTracker = rules.FirstOrDefault(r => r is IMissingBoxValuesTracker);
+                if (missingValuesTracker is null)
+                {
+                    throw new ArgumentException(
+                        $"{nameof(rules)} must contain an {nameof(IMissingBoxValuesTracker)} to copy a {nameof(BoxUniquenessRule)}.");
+                }
+                return new UniqueInBoxHeuristic(
+                    this, boxPuzzle, possibleValues,(IMissingBoxValuesTracker)missingValuesTracker);
+            }
+            throw new ArgumentException(
+                $"An {nameof(IReadOnlyBoxPuzzle)} is required to copy {nameof(BoxUniquenessRule)}.");
         }
 
         /// <inheritdoc/>

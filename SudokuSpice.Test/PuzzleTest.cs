@@ -2,7 +2,7 @@ using SudokuSpice.Data;
 using System.Collections.Generic;
 using Xunit;
 
-namespace SudokuSpice
+namespace SudokuSpice.Test
 {
     public class PuzzleTest
     {
@@ -177,44 +177,6 @@ namespace SudokuSpice
                 Assert.Null(puzzle[unset]);
             }
             Assert.Equal(10, allUnset.Length);
-        }
-
-        [Fact]
-        public void YieldUnsetCoordsForRow_ReturnsAllUnsetCoordsInRow()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            var row = 1;
-            var allUnset = new List<Coordinate>(puzzle.YieldUnsetCoordsForRow(row));
-            foreach (var unset in allUnset)
-            {
-                Assert.Equal(unset.Row, row);
-                Assert.Null(puzzle[unset]);
-            }
-            Assert.Equal(3, allUnset.Count);
-        }
-
-        [Fact]
-        public void YieldUnsetCoordsForColumn_ReturnsAllUnsetCoordsInColumn()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
-            });
-            var col = 1;
-            var allUnset = new List<Coordinate>(puzzle.YieldUnsetCoordsForColumn(col));
-            foreach (var unset in allUnset)
-            {
-                Assert.Equal(unset.Column, col);
-                Assert.Null(puzzle[unset]);
-            }
-            Assert.Equal(3, allUnset.Count);
         }
 
         [Fact]

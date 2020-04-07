@@ -14,7 +14,7 @@ namespace SudokuSpice.Heuristics
         private readonly UniqueInBoxHeuristic _boxHeuristic;
         private readonly Stack<int> _numHeuristicsRan; 
 
-        public StandardHeuristic(IReadOnlyPuzzle puzzle, PossibleValues possibleValues,
+        public StandardHeuristic(IReadOnlyBoxPuzzle puzzle, PossibleValues possibleValues,
             IMissingRowValuesTracker rowRule, IMissingColumnValuesTracker columnRule, IMissingBoxValuesTracker boxRule)
         {
             _rowHeuristic = new UniqueInRowHeuristic(puzzle, possibleValues, rowRule);
