@@ -12,7 +12,6 @@ namespace SudokuSpice
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Generator
     {
-        private const int MAX_ATTEMPTS = 5;
         private readonly Random _random = new Random();
         private readonly int _size;
         private readonly int _boxSize;
