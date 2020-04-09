@@ -6,17 +6,31 @@ using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
+    /// <summary>
+    /// Solves a single <see cref="IPuzzle"/> using an <see cref="ISquareTracker"/>.
+    /// </summary>
     public class Solver
     {
         private readonly ISquareTracker _tracker;
 
+        /// <summary>
+        /// Constructs a solver for a standard Sudoku puzzle that uses a standard heuristic and
+        /// standard rule keeper. Provided for convenience.
+        /// </summary>
         public Solver(Puzzle puzzle) : this(new SquareTracker(puzzle)) {}
 
+        /// <summary>
+        /// Constructs a solver for the given square tracker.
+        /// </summary>
+        /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
         public Solver(ISquareTracker tracker)
         {
             _tracker = tracker;
         }
 
+        /// <summary>
+        /// Solves the internal puzzle reference.
+        /// </summary>
         public void Solve()
         {
             if (!_TrySolve())
@@ -25,6 +39,10 @@ namespace SudokuSpice
             }
         }
 
+        /// <summary>
+        /// Solves the internal puzzle reference, choosing randomly when it has to guess a square's
+        /// value.
+        /// </summary>
         public void SolveRandomly()
         {
             var random = new Random();
@@ -79,6 +97,9 @@ namespace SudokuSpice
             return false;
         }
 
+        /// <summary>
+        /// Finds stats for all the solutions to the internal puzzle reference.
+        /// </summary>
         public SolveStats GetStatsForAllSolutions()
         {
             return _TryAllSolutionsAsync(_tracker.DeepCopy()).Result;
