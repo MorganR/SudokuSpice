@@ -14,7 +14,7 @@ namespace SudokuSpice.Rules
         private readonly CoordinateTracker _coordTracker;
         private readonly IReadOnlyList<ISudokuRule> _rules;
 
-        public DynamicRuleKeeper(Puzzle puzzle, PossibleValues possibleValues, IReadOnlyList<ISudokuRule> rules)
+        public DynamicRuleKeeper(IReadOnlyPuzzle puzzle, PossibleValues possibleValues, IReadOnlyList<ISudokuRule> rules)
         {
             _puzzle = puzzle;
             _possibleValues = possibleValues;

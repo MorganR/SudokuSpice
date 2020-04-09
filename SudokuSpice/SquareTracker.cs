@@ -11,7 +11,7 @@ namespace SudokuSpice
     /// </summary>
     public class SquareTracker : ISquareTracker
     {
-        private readonly Puzzle _puzzle;
+        private readonly IPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly ISudokuRuleKeeper _ruleKeeper;
         private readonly ISudokuHeuristic? _heuristic;
@@ -51,7 +51,7 @@ namespace SudokuSpice
         /// </para>
         /// </param>
         public SquareTracker(
-            Puzzle puzzle,
+            IPuzzle puzzle,
             PossibleValues possibleValues,
             ISudokuRuleKeeper ruleKeeper,
             ISudokuHeuristic? heuristic = null)
@@ -66,7 +66,7 @@ namespace SudokuSpice
 
         private SquareTracker(SquareTracker existing)
         {
-            _puzzle = new Puzzle(existing._puzzle);
+            _puzzle = existing._puzzle.DeepCopy();
             _possibleValues = new PossibleValues(existing._possibleValues);
             _ruleKeeper = existing._ruleKeeper.CopyWithNewReferences(_puzzle, _possibleValues);
             _heuristic = existing._heuristic?.CopyWithNewReferences(

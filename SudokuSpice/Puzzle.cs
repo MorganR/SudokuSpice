@@ -10,7 +10,7 @@ namespace SudokuSpice
 {
     /// <summary>Manages underlying puzzle data.</summary>.
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class Puzzle : IReadOnlyPuzzle, IReadOnlyBoxPuzzle
+    public class Puzzle : IPuzzle, IReadOnlyBoxPuzzle
     {
         /// <summary>The length of one side of the puzzle.</summary>
         public int Size { get; }
@@ -23,6 +23,7 @@ namespace SudokuSpice
         public int NumEmptySquares { get { return _unsetCoordsTracker.NumTracked; } }
         /// <summary>The number of set/known squares in the puzzle.</summary>
         public int NumSetSquares { get { return NumSquares - NumEmptySquares; } }
+
         private readonly int?[,] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
 
@@ -78,10 +79,7 @@ namespace SudokuSpice
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
         }
 
-        /// <summary>
-        /// Gets or sets the current value of a given square. A square can be 'unset' by setting
-        /// its value to <c>null</c>.
-        /// </summary>
+        /// <inheritdoc cref="IPuzzle"/>
         public int? this[int row, int col]
         {
             get => _squares[row, col];
@@ -98,12 +96,13 @@ namespace SudokuSpice
             }
         }
 
-        /// <summary>
-        /// Gets or sets the value of the given square, like <see cref="this[int, int]"/>, but
-        /// using a <see cref="Coordinate"/> instead of <see langword="int"/> accessors.
-        /// </summary>
-        /// <param name="c">The location of the square to get/set the value of.</param>
-        /// <returns>The value of the square at <paramref name="c"/></returns>
+        /// <inheritdoc cref="IPuzzle"/>
+        public IPuzzle DeepCopy()
+        {
+            return new Puzzle(this);
+        }
+
+        /// <inheritdoc cref="IPuzzle"/>
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {
