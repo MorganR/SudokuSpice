@@ -91,6 +91,10 @@ namespace SudokuSpice.Rules
         public bool TrySet(in Coordinate c, int value)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot run rule checks for an already set puzzle coordinate");
+            if (!_possibleValues[in c].IsBitSet(value))
+            {
+                return false;
+            }
             _unsetRowValues[c.Row].UnsetBit(value);
             _unsetColumnValues[c.Column].UnsetBit(value);
             int boxIdx = _puzzle.GetBoxIndex(c.Row, c.Column);

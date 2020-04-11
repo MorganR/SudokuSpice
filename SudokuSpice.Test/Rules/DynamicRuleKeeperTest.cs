@@ -126,7 +126,7 @@ namespace SudokuSpice.Rules.Test
         }
 
         [Fact]
-        public void TrySet_WithInvalidValue_FailsAndLeavesUnchanged()
+        public void TrySet_WithValueThatCausesNoPossiblesForOtherSquare_FailsAndLeavesUnchanged()
         {
             var puzzle = new Puzzle(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
@@ -145,6 +145,34 @@ namespace SudokuSpice.Rules.Test
             var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
             var coord = new Coordinate(1, 0);
             var val = 4;
+            Assert.False(ruleKeeper.TrySet(coord, val));
+
+            foreach (var c in puzzle.GetUnsetCoords())
+            {
+                Assert.Equal(initialPossibleValues[c], possibleValues[in c]);
+            }
+        }
+
+        [Fact]
+        public void TrySet_WithInvalidValue_FailsAndLeavesUnchanged()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {           1, null /* 4 */, null /* 3 */,            2},
+                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                {           3,            2,            4,            1}
+            });
+            var possibleValues = new PossibleValues(puzzle);
+            var rules = new List<ISudokuRule>
+                {
+                    new RowUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
+                    new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
+                };
+            var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
+            var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
+            var coord = new Coordinate(1, 1);
+            var val = 2;
             Assert.False(ruleKeeper.TrySet(coord, val));
 
             foreach (var c in puzzle.GetUnsetCoords())

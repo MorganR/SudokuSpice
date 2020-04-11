@@ -62,6 +62,10 @@ namespace SudokuSpice.Rules
         /// <inheritdoc/>
         public bool TrySet(in Coordinate c, int value)
         {
+            if (!_possibleValues[in c].IsBitSet(value))
+            {
+                return false;
+            }
             _coordTracker.UntrackAll();
             foreach (var r in _rules)
             {
