@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace SudokuSpice
+namespace SudokuSpice.Test
 {
     public class SolverTest
     {
