@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SudokuSpice.Test
 {
-    public class GeneratorTest
+    public class StandardPuzzleGeneratorTest
     {
         [Theory]
         [InlineData(-1)]
@@ -14,7 +14,7 @@ namespace SudokuSpice.Test
         [InlineData(400)]
         public void Constructor_WithInvalidArgs_Throws(int size)
         {
-            Assert.Throws<ArgumentException>(() => new Generator(size));
+            Assert.Throws<ArgumentException>(() => new StandardPuzzleGenerator(size));
         }
 
         [Theory]
@@ -30,7 +30,7 @@ namespace SudokuSpice.Test
         [InlineData(25, 626)]
         public void Generate_WithInvalidNumToSet_Throws(int size, int numToSet)
         {
-            var generator = new Generator(size);
+            var generator = new StandardPuzzleGenerator(size);
 
             Assert.Throws<ArgumentOutOfRangeException>(
                 () => generator.Generate(numToSet, TimeSpan.FromSeconds(60)));
@@ -42,7 +42,7 @@ namespace SudokuSpice.Test
         [InlineData(9, 30)]
         public void Generate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
         {
-            var generator = new Generator(size);
+            var generator = new StandardPuzzleGenerator(size);
             
             var puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
@@ -55,7 +55,7 @@ namespace SudokuSpice.Test
         [Fact]
         public void Generate_WithShortTimeout_ThrowsTimeoutException()
         {
-            var generator = new Generator(9);
+            var generator = new StandardPuzzleGenerator(9);
 
             Assert.Throws<TimeoutException>(
                 () => generator.Generate(17, TimeSpan.FromMilliseconds(1)));

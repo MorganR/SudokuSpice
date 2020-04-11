@@ -28,6 +28,45 @@ namespace SudokuSpice
         private readonly CoordinateTracker _unsetCoordsTracker;
 
         /// <summary>
+        /// Constructs a new puzzle of the given side length.
+        /// </summary>
+        /// <param name="size">
+        /// The side-length for this Sudoku puzzle. Must be a square of a whole number in the range [1, 25].
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if size is not the square of a whole number, or is outside the range [1, 25].
+        /// </exception>
+        public Puzzle(int size)
+        {
+            Size = size;
+            NumSquares = size * size;
+            // Limit to up to 32 possible values (what fits in an int), and ensure that puzzles must
+            // be square.
+            if (Size > 25 || Size < 1)
+            {
+                throw new ArgumentException("Size must be in the range [1, 25].");
+            }
+            BoxSize = (int)Math.Sqrt(Size);
+            if (BoxSize * BoxSize != Size)
+            {
+                throw new ArgumentException("Puzzle size must be the square of a whole number.");
+            }
+
+            _squares = new int?[size, size];
+            _unsetCoordsTracker = new CoordinateTracker(Size);
+            for (var row = 0; row < Size; row++)
+            {
+                for (var col = 0; col < Size; col++)
+                {
+                    if (!_squares[row, col].HasValue)
+                    {
+                        _unsetCoordsTracker.Add(new Coordinate(row, col));
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Constructs a new puzzle whose data matches the given array.
         /// </summary>
         /// <param name="puzzleMatrix">

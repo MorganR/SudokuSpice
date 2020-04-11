@@ -10,7 +10,17 @@ namespace SudokuSpice.Benchmark
         [Benchmark(Baseline = true)]
         public int SudokuSpice()
         {
-            var generator = new Generator(9);
+            var generator = new StandardPuzzleGenerator(9);
+            var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
+            return puzzle.NumEmptySquares;
+        }
+
+        [Benchmark]
+        public int SudokuSpiceDynamic()
+        {
+            var generator = new PuzzleGenerator<Puzzle>(
+                () => new Puzzle(9),
+                puzzle => new SquareTracker(puzzle));
             var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }

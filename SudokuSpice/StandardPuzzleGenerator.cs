@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace SudokuSpice
 {
     /// <summary>
-    /// Generates Sudoku puzzles.
+    /// Generates standard Sudoku puzzles.
     /// </summary>
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class Generator
+    public class StandardPuzzleGenerator
     {
         private readonly Random _random = new Random();
         private readonly int _size;
@@ -25,7 +25,7 @@ namespace SudokuSpice
         /// <exception cref="ArgumentException">
         /// Thrown if <c>size</c> is anything except the values 1, 4, 9, 16, or 25.
         /// </exception>
-        public Generator(int size)
+        public StandardPuzzleGenerator(int size)
         {
             _size = size;
             _boxSize = (int)Math.Sqrt(size);
