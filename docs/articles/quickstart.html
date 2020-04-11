@@ -69,6 +69,7 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="quick-start">Quick Start</h1>
 
+<p>For more information, see the <a href="framework.md">Framework Overview</a>.</p>
 <h2 id="solving">Solving</h2>
 <p>If you need to solve a standard Sudoku puzzle, you can simply create a
 <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a>, create a <a class="xref" href="../api/SudokuSpice.Solver.html"><code>Solver</code></a>, and solve it.</p>
@@ -97,7 +98,7 @@ var value = puzzle[row, column]; // Returns 2
 <p>If you need to generate Sudoku puzzles, simply create a <a href="xref:SudokuSpice.Generator"><code>Generator</code></a>
 and call <code>Generate</code> as many times as you like.</p>
 <pre><code class="lang-csharp">// Create a 9x9 puzzle generator.
-var generator = new Generator(/*size=*/9);
+var generator = new StandardPuzzleGenerator(/*size=*/9);
 // Generate a 9x9 puzzle with 30 preset square values.
 var puzzle = generator.Generate(/*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
 </code></pre>

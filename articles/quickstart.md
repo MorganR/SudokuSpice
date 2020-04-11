@@ -1,5 +1,7 @@
 # Quick Start
 
+For more information, see the [Framework Overview](framework.md).
+
 ## Solving
 
 If you need to solve a standard Sudoku puzzle, you can simply create a
@@ -35,7 +37,7 @@ and call `Generate` as many times as you like.
 
 ```csharp
 // Create a 9x9 puzzle generator.
-var generator = new Generator(/*size=*/9);
+var generator = new StandardPuzzleGenerator(/*size=*/9);
 // Generate a 9x9 puzzle with 30 preset square values.
 var puzzle = generator.Generate(/*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
 ```

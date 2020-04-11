@@ -9,4 +9,5 @@ version with improved readability has been implemented.
 However that's not to say it performs poorly! See [the numbers](articles/performance.md).
 
 This library uses dependency injection and interfaces to enable users to easily extend its
-behavior, such as by adding new heuristics, or by introducing modified rules.
+behavior, such as by adding new heuristics, or by introducing modified rules. Learn more in the
+[Framework Overview](articles/framework.md).

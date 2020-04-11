@@ -107,7 +107,8 @@ namespace SudokuSpice
         }
 
         /// <summary>
-        /// Finds stats for all the solutions to the internal puzzle reference.
+        /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
+        /// is left unchanged.
         /// </summary>
         public SolveStats GetStatsForAllSolutions()
         {

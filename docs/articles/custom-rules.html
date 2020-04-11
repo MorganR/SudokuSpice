@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Custom Rules | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Custom Rules | SudokuSpice ">
+    <meta name="generator" content="docfx 2.51.0.0">
+    
+    <link rel="shortcut icon" href="../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="custom-rules">Custom Rules</h1>
+
+<p>Let's say we want to solve a puzzle that also enforces that the diagonals contain all unique
+values. In this case, we can use the standard <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> to store the
+data, but we need to add a custom rule. In this example, we'll go through the steps for
+implementing and using the
+<a class="xref" href="../api/SudokuSpice.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
+<h2 id="creating-a-rule">Creating a rule</h2>
+<h3 id="constructor">Constructor</h3>
+<p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.Rules.ISudokuRule.html"><code>ISudokuRule</code></a>, and we'll
+need to have some way of tracking the set of values that are available in each diagonal. For this
+we'll use the <a class="xref" href="../api/SudokuSpice.Data.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
+set-like struct using the bits of a <code>uint</code>.</p>
+<pre><code class="lang-csharp">public class DiagonalUniquenessRule : ISudokuRule
+{
+    private readonly IReadOnlyPuzzle _puzzle;
+    private readonly BitVector _allUnset;
+    private BitVector _unsetBackwardDiag;
+    private BitVector _unsetForwardDiag;
+
+    public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
+    {
+        Debug.Assert(puzzle.Size == allUniqueValues.Count,
+            $&quot;Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}&quot;);
+        _puzzle = puzzle;
+        _allUnset = _unsetForwardDiag = _unsetBackwardDiag = allUniqueValues;
+        // Iterate through the backward diagonal (like a backslash '\')
+        for (int row = 0, col = 0; row &lt; puzzle.Size; row++, col++)
+        {
+            var val = puzzle[row, col];
+            if (val.HasValue)
+            {
+                if (!_unsetBackwardDiag.IsBitSet(val.Value))
+                {
+                    throw new ArgumentException(
+                            $&quot;Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).&quot;);
+                    }
+                    _unsetBackwardDiag.UnsetBit(val.Value);
+                }
+            }
+        }
+        
+        // TODO: Validate the forward diagonal, and update _unsetForwardDiag accordingly.
+    }
+}
+</code></pre>
+<h3 id="getpossiblevalues">GetPossibleValues</h3>
+<p>Now we need to implement the <code>ISudokuRule.GetPossibleValues</code> operation, which provides the possible
+values for any square according to this rule. You might be wondering, what should we return if the
+given coordinate is not on one of the diagonals? In that case, we should return <em>all</em> possible
+values! We definitely don't want to return no possible values, because that would make any puzzle
+with unset squares off the diagonal impossible.</p>
+<pre><code class="lang-csharp">public BitVector GetPossibleValues(in Coordinate c)
+{
+    if (_IsOnBackwardDiag(in c))
+    {
+        return _unsetBackwardDiag;
+    } else if (_IsOnForwardDiag(in c))
+    {
+        return _unsetForwardDiag;
+    } else
+    {
+        return _allUnset;
+    }
+}
+
+private static bool _IsOnBackwardDiag(in Coordinate c)
+{
+    return c.Row == c.Column;
+}
+
+private bool _IsOnForwardDiag(in Coordinate c)
+{
+    return c.Column == _puzzle.Size - c.Row - 1;
+}
+</code></pre>
+<h3 id="update">Update</h3>
+<p>Great, now we need to provide a way for the rule keeper to update this rule. When the rule keeper
+wants to set a square's value, it will call <code>ISudokuRule.Update</code> with the location and new value.
+It will also include a <a class="xref" href="../api/SudokuSpice.Data.CoordinateTracker.html"><code>CoordinateTracker</code></a>, with which
+this rule needs to track any coordinates whose possible values have changed.</p>
+<pre><code class="lang-csharp">public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
+{
+    if (_IsOnBackwardDiag(in c))
+    {
+        // Remove this value from the list of possible values.
+        _unsetBackwardDiag.UnsetBit(val);
+        _AddUnsetFromBackwardDiag(in c, coordTracker);
+    }
+    // TODO: Handle an update that's on the forward diagonal.
+}
+
+private void _AddUnsetFromBackwardDiag(in Coordinate c, CoordinateTracker coordTracker)
+{
+    // Iterate along the backward diagonal, tracking the coordinates of any unset squares.
+    for (int row = 0, col = 0; row &lt; _puzzle.Size; row++, col++)
+    {
+        // Make sure to skip the square that is currently being updated! Its value is still unset.
+        if ((row == c.Row &amp;&amp; col == c.Column) || _puzzle[row, col].HasValue)
+        {
+            continue;
+        }
+        coordTracker.AddOrTrackIfUntracked(new Coordinate(row, col));
+    }
+}
+</code></pre>
+<h3 id="revert">Revert</h3>
+<p>Ok, now what if that update needs to be reverted, for example if the solver made a wrong guess?
+Let's implement the <code>ISudokuRule.Revert</code> methods. These should both perform roughly the same
+changes: reverting the changes made during the <code>Update</code> method. However, in one we can skip
+tracking the affected square's in the <code>CoordinateTracker</code>.</p>
+<pre><code class="lang-csharp">public void Revert(in Coordinate c, int val)
+{
+    if (_IsOnBackwardDiag(in c))
+    {
+        _unsetBackwardDiag.SetBit(val);
+    }
+    // TODO: Handle the case when the square is on the forward diagonal
+}
+
+public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
+{
+    if (_IsOnBackwardDiag(in c))
+    {
+        _unsetBackwardDiag.SetBit(val);
+        _AddUnsetFromBackwardDiag(in c, coordTracker);
+    }
+    // TODO: Handle the case when the square is on the forward diagonal
+}
+</code></pre>
+<h3 id="copywithnewreference">CopyWithNewReference</h3>
+<p>Lastly, we must implement the <code>ISudokuRule.CopyWithNewReference</code> method to provide a deep copy for
+the
+<a class="xref" href="../api/SudokuSpice.Solver.html#SudokuSpice_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
+method and for the <a class="xref" href="../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
+<pre><code class="lang-csharp">public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
+{
+    return new DiagonalUniquenessRule(this, puzzle);
+}
+
+private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle puzzle)
+{
+    _puzzle = puzzle;
+    // BitVectors are structs, so they are copied on assignment.
+    _unsetBackwardDiag = existing._unsetBackwardDiag;
+    _unsetForwardDiag = existing._unsetForwardDiag;
+    _allUnset = existing._allUnset;
+}
+</code></pre>
+<h2 id="using-the-new-rule">Using the new rule</h2>
+<p>Now let's assume we have a <code>puzzle</code> already that we want to solve with this rule. We can solve it
+as follows:</p>
+<pre><code class="lang-csharp">var possibleValues = new PossibleValues(puzzle);
+var solver = new Solver(
+    puzzle,
+    possibleValues,
+    new DynamicRuleKeeper(
+        puzzle,
+        possibleValues,
+        new List&lt;ISudokuRule&gt;()
+        {
+            new StandardRules(puzzle, possibleValues.AllPossible),
+            new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
+		}));
+solver.Solve();
+</code></pre>
+<p>Similarly, we can generate new puzzles that follow this rule as below:</p>
+<pre><code class="lang-csharp">var generator = new PuzzleGenerator&lt;Puzzle&gt;(
+    () =&gt; new Puzzle(/*size=*/16),
+    puzzle =&gt; {
+        var possibleValues = new PossibleValues(puzzle);
+        return new Solver(
+            puzzle,
+            possibleValues,
+            new DynamicRuleKeeper(
+                puzzle,
+                possibleValues,
+                new List&lt;ISudokuRule&gt;()
+                {
+                    new StandardRules(puzzle, possibleValues.AllPossible),
+                    new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
+		        }));
+    }
+)
+</code></pre>
+<p>Remember to include heuristics for the fastest performance!</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/articles/custom-rules.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
