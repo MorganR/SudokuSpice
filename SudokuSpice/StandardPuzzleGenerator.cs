@@ -1,8 +1,5 @@
-﻿using SudokuSpice.Data;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
@@ -10,9 +7,8 @@ namespace SudokuSpice
     /// Generates standard Sudoku puzzles.
     /// </summary>
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class StandardPuzzleGenerator
+    public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>
     {
-        private readonly Random _random = new Random();
         private readonly int _size;
         private readonly int _boxSize;
 
@@ -26,6 +22,7 @@ namespace SudokuSpice
         /// Thrown if <c>size</c> is anything except the values 1, 4, 9, 16, or 25.
         /// </exception>
         public StandardPuzzleGenerator(int size)
+            : base(() => new Puzzle(size), puzzle => new SquareTracker(puzzle))
         {
             _size = size;
             _boxSize = (int)Math.Sqrt(size);
@@ -68,44 +65,10 @@ namespace SudokuSpice
         /// Thrown if no valid unique puzzle is found within the specified
         /// <paramref name="timeout"/>.
         /// </exception>
-        public Puzzle Generate(int numSquaresToSet, TimeSpan timeout)
+        public new Puzzle Generate(int numSquaresToSet, TimeSpan timeout)
         {
             _ValidateNumSquaresToSet(numSquaresToSet);
-
-            using var timeoutCancellationSource = new CancellationTokenSource(timeout);
-            var puzzleTask = new Task<Puzzle>(() => _Generate(numSquaresToSet, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
-            puzzleTask.RunSynchronously();
-
-            if (puzzleTask.IsCompletedSuccessfully)
-            {
-                return puzzleTask.Result;
-            }
-            if (puzzleTask.IsCanceled)
-            {
-                throw new TimeoutException($"Failed to generate a puzzle of size {_size} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
-            }
-#pragma warning disable CS8597 // Thrown value may be null.
-            throw puzzleTask.Exception;
-#pragma warning restore CS8597 // Thrown value may be null.
-        }
-
-        private Puzzle _Generate(int numSquaresToSet, CancellationToken cancellationToken)
-        {
-            Puzzle? puzzle = null;
-            var setCoordinates = new CoordinateTracker(_size);
-            while (puzzle is null)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                puzzle = new Puzzle(new int?[_size, _size]);
-                _FillPuzzle(puzzle);
-                _TrackAllCoordinates(setCoordinates);
-                if (_TryUnsetSquaresWhileSolvable(numSquaresToSet, _size * _size, setCoordinates, puzzle, cancellationToken))
-                {
-                    break;
-                }
-                puzzle = null;
-            }
-            return puzzle;
+            return base.Generate(numSquaresToSet, timeout);
         }
 
         private void _ValidateNumSquaresToSet(int numToSet)
@@ -143,78 +106,6 @@ namespace SudokuSpice
                 throw new ArgumentOutOfRangeException(nameof(numToSet),
                     $"Must be in the range [{lowerBound}, {upperBound}] for puzzles of size {_size}.");
             }
-        }
-
-        private bool _TryUnsetSquaresWhileSolvable(
-            int totalNumSquaresToSet, int currentNumSet, CoordinateTracker setCoordinatesToTry,
-            Puzzle puzzle, CancellationToken cancellationToken)
-        {
-            if (currentNumSet == totalNumSquaresToSet)
-            {
-                return true;
-            }
-            while (setCoordinatesToTry.NumTracked > 0)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                var randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
-                var previousValue = puzzle[in randomCoord];
-                setCoordinatesToTry.Untrack(in randomCoord);
-                if (!_TryUnsetSquareAt(randomCoord, puzzle))
-                {
-                    continue;
-                }
-                if (_TryUnsetSquaresWhileSolvable(
-                    totalNumSquaresToSet, currentNumSet - 1,
-                    new CoordinateTracker(setCoordinatesToTry), puzzle, cancellationToken))
-                {
-                    return true;
-                }
-                // Child update failed :( replace value and try a different coordinate.
-                puzzle[in randomCoord] = previousValue;
-            }
-            return false;
-        }
-
-        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker)
-        {
-            return tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
-        }
-
-        private void _TrackAllCoordinates(CoordinateTracker tracker)
-        {
-            for (int row = 0; row < _size; row++)
-            {
-                for (int col = 0; col < _size; col++)
-                {
-                    tracker.AddOrTrackIfUntracked(new Coordinate(row, col));
-                }
-            }
-        }
-
-        private static void _FillPuzzle(Puzzle puzzle)
-        {
-            var solver = new Solver(puzzle);
-            solver.SolveRandomly();
-        }
-
-        private static bool _TryUnsetSquareAt(in Coordinate c, Puzzle puzzle)
-        {
-            // Set without checks when there can't be conflicts.
-            if (puzzle.NumEmptySquares < 3)
-            {
-                puzzle[in c] = null;
-                return true;
-            }
-            var previousValue = puzzle[in c];
-            puzzle[in c] = null;
-            var solver = new Solver(new Puzzle(puzzle));
-            var solveStats = solver.GetStatsForAllSolutions();
-            if (solveStats.NumSolutionsFound == 1)
-            {
-                return true;
-            }
-            puzzle[in c] = previousValue;
-            return false;
         }
     }
 }
