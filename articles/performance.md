@@ -91,6 +91,6 @@ single, double, and quadruple square clearings.
 
 |             Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
 |------------------- |----------:|----------:|----------:|------:|--------:|
-|        SudokuSpice |  1.676 ms | 0.0147 ms | 0.0137 ms |  1.00 |    0.00 |
-| SudokuSharpSingles | 13.467 ms | 0.5075 ms | 1.4964 ms |  8.59 |    0.97 |
-|   SudokuSharpMixed |  6.702 ms | 0.2146 ms | 0.6327 ms |  4.02 |    0.43 |
+|        SudokuSpice |  2.013 ms | 0.0448 ms | 0.0831 ms |  1.00 |    0.00 |
+| SudokuSharpSingles | 14.070 ms | 0.5364 ms | 1.5477 ms |  6.96 |    0.90 |
+|   SudokuSharpMixed |  7.111 ms | 0.2062 ms | 0.5948 ms |  3.54 |    0.38 |
