@@ -123,18 +123,7 @@ namespace SudokuSpice
             return tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
         }
 
-        private void _TrackAllCoordinates(CoordinateTracker tracker, int puzzleSize)
-        {
-            for (int row = 0; row < puzzleSize; row++)
-            {
-                for (int col = 0; col < puzzleSize; col++)
-                {
-                    tracker.AddOrTrackIfUntracked(new Coordinate(row, col));
-                }
-            }
-        }
-
-        private void _FillPuzzle(TPuzzle puzzle)
+                private void _FillPuzzle(TPuzzle puzzle)
         {
             var solver = _solverFactory.Invoke(puzzle);
             solver.SolveRandomly();
@@ -159,6 +148,17 @@ namespace SudokuSpice
             }
             puzzle[in c] = previousValue;
             return false;
+        }
+
+        private static void _TrackAllCoordinates(CoordinateTracker tracker, int puzzleSize)
+        {
+            for (int row = 0; row < puzzleSize; row++)
+            {
+                for (int col = 0; col < puzzleSize; col++)
+                {
+                    tracker.AddOrTrackIfUntracked(new Coordinate(row, col));
+                }
+            }
         }
     }
 }
