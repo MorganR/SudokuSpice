@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <Description>An efficient sudoku solving and generating library targeting .NET Core.
+
+Docs: https://morganr.github.io/SudokuSpice</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://morganr.github.io/SudokuSpice</PackageProjectUrl>
+    <PackageIcon>sudokuspice-black.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/MorganR/SudokuSpice</RepositoryUrl>
+    <PackageTags>sudoku "sudoku solver" "sudoku generator" solver generator sudokuspice "sudoku spice"</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +19,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\images\sudokuspice-black.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
