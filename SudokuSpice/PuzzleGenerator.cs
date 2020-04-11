@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
-    public class PuzzleGenerator<PuzzleT> where PuzzleT : IPuzzle
+    public class PuzzleGenerator<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly Random _random = new Random();
-        private readonly Func<PuzzleT> _puzzleFactory;
-        private readonly Func<PuzzleT, SquareTracker> _trackerFactory;
+        private readonly Func<TPuzzle> _puzzleFactory;
+        private readonly Func<TPuzzle, SquareTracker> _trackerFactory;
 
         /// <summary>
         /// Creates a puzzle generator to create puzzles with custom rules and type.
@@ -21,7 +21,7 @@ namespace SudokuSpice
         /// A function that constructs a <see cref="SquareTracker"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
-        public PuzzleGenerator(Func<PuzzleT> puzzleFactory, Func<PuzzleT, SquareTracker> trackerFactory)
+        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, SquareTracker> trackerFactory)
         {
             _puzzleFactory = puzzleFactory;
             _trackerFactory = trackerFactory;
@@ -44,17 +44,17 @@ namespace SudokuSpice
         /// <paramref name="numSquaresToSet"/>.
         /// </param>
         /// <returns>
-        /// A puzzle of type <see cref="PuzzleT"/> with a unique solution and
+        /// A puzzle of type <c>TPuzzle</c> with a unique solution and
         /// <paramref name="numSquaresToSet"/> preset squares.
         /// </returns>
         /// <exception cref="TimeoutException">
         /// Thrown if no valid unique puzzle is found within the specified
         /// <paramref name="timeout"/>.
         /// </exception>
-        public PuzzleT Generate(int numSquaresToSet, TimeSpan timeout)
+        public TPuzzle Generate(int numSquaresToSet, TimeSpan timeout)
         {
             using var timeoutCancellationSource = new CancellationTokenSource(timeout);
-            var puzzleTask = new Task<PuzzleT>(() => _Generate(
+            var puzzleTask = new Task<TPuzzle>(() => _Generate(
                 numSquaresToSet, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
             puzzleTask.RunSynchronously();
 
@@ -65,16 +65,16 @@ namespace SudokuSpice
             if (puzzleTask.IsCanceled)
             {
                 throw new TimeoutException(
-                    $"Failed to generate a puzzle of type {typeof(PuzzleT).Name} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
+                    $"Failed to generate a puzzle of type {typeof(TPuzzle).Name} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
             }
 #pragma warning disable CS8597 // Thrown value may be null.
             throw puzzleTask.Exception;
 #pragma warning restore CS8597 // Thrown value may be null.
         }
 
-        private PuzzleT _Generate(int numSquaresToSet, CancellationToken cancellationToken)
+        private TPuzzle _Generate(int numSquaresToSet, CancellationToken cancellationToken)
         {
-            PuzzleT puzzle = _puzzleFactory.Invoke();
+            TPuzzle puzzle = _puzzleFactory.Invoke();
             bool foundValidPuzzle = false;
             while (!foundValidPuzzle)
             {
@@ -90,7 +90,7 @@ namespace SudokuSpice
 
         private bool _TryUnsetSquaresWhileSolvable(
             int totalNumSquaresToSet, int currentNumSet, CoordinateTracker setCoordinatesToTry,
-            PuzzleT puzzle, CancellationToken cancellationToken)
+            TPuzzle puzzle, CancellationToken cancellationToken)
         {
             if (currentNumSet == totalNumSquaresToSet)
             {
@@ -134,14 +134,14 @@ namespace SudokuSpice
             }
         }
 
-        private void _FillPuzzle(PuzzleT puzzle)
+        private void _FillPuzzle(TPuzzle puzzle)
         {
             var tracker = _trackerFactory.Invoke(puzzle);
             var solver = new Solver(tracker);
             solver.SolveRandomly();
         }
 
-        private bool _TryUnsetSquareAt(in Coordinate c, PuzzleT puzzle)
+        private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle)
         {
             // Set without checks when there can't be conflicts.
             if (puzzle.NumEmptySquares < 3)
@@ -151,7 +151,7 @@ namespace SudokuSpice
             }
             var previousValue = puzzle[in c];
             puzzle[in c] = null;
-            var puzzleCopy = (PuzzleT)puzzle.DeepCopy();
+            var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
             var tracker = _trackerFactory.Invoke(puzzleCopy);
             var solver = new Solver(tracker);
             var solveStats = solver.GetStatsForAllSolutions();
