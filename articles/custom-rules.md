@@ -208,8 +208,7 @@ var generator = new PuzzleGenerator<Puzzle>(
                     new StandardRules(puzzle, possibleValues.AllPossible),
                     new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
 		        }));
-    }
-)
+    });
 ```
 
 Remember to include heuristics for the fastest performance!
