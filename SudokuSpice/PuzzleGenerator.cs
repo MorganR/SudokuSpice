@@ -9,7 +9,7 @@ namespace SudokuSpice
     {
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
-        private readonly Func<TPuzzle, SquareTracker> _trackerFactory;
+        private readonly Func<TPuzzle, Solver> _solverFactory;
 
         /// <summary>
         /// Creates a puzzle generator to create puzzles with custom rules and type.
@@ -17,14 +17,14 @@ namespace SudokuSpice
         /// <param name="puzzleFactory">
         /// A function that constructs an empty <see cref="IPuzzle"/> of the desired type and shape.
         /// </param>
-        /// <param name="trackerFactory">
+        /// <param name="solverFactory">
         /// A function that constructs a <see cref="SquareTracker"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
-        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, SquareTracker> trackerFactory)
+        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, Solver> solverFactory)
         {
             _puzzleFactory = puzzleFactory;
-            _trackerFactory = trackerFactory;
+            _solverFactory = solverFactory;
         }
 
         /// <summary>
@@ -136,8 +136,7 @@ namespace SudokuSpice
 
         private void _FillPuzzle(TPuzzle puzzle)
         {
-            var tracker = _trackerFactory.Invoke(puzzle);
-            var solver = new Solver(tracker);
+            var solver = _solverFactory.Invoke(puzzle);
             solver.SolveRandomly();
         }
 
@@ -152,8 +151,7 @@ namespace SudokuSpice
             var previousValue = puzzle[in c];
             puzzle[in c] = null;
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
-            var tracker = _trackerFactory.Invoke(puzzleCopy);
-            var solver = new Solver(tracker);
+            var solver = _solverFactory.Invoke(puzzleCopy);
             var solveStats = solver.GetStatsForAllSolutions();
             if (solveStats.NumSolutionsFound == 1)
             {

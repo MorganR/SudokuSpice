@@ -38,9 +38,7 @@ namespace SudokuSpice.Test
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 puzzle, possibleValues, rowRule, columnRule, boxRule);
-            var squareTracker = new SquareTracker(
-                puzzle, possibleValues, ruleKeeper, heuristic);
-            var solver = new Solver(squareTracker);
+            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristic);
             solver.Solve();
             _AssertPuzzleSolved(puzzle);
         }
@@ -76,9 +74,7 @@ namespace SudokuSpice.Test
                 new List<ISudokuRule> { rowRule, columnRule, boxRule, diagonalRule });
             var heuristic = new StandardHeuristic(
                 puzzle, possibleValues, rowRule, columnRule, boxRule);
-            var squareTracker = new SquareTracker(
-                puzzle, possibleValues, ruleKeeper, heuristic);
-            var solver = new Solver(squareTracker);
+            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristic);
             solver.Solve();
             _AssertMegaPuzzleSolved(puzzle);
         }
@@ -99,8 +95,7 @@ namespace SudokuSpice.Test
             // Skip heuristics so the stats are easy to fully define.
             var possibleValues = new PossibleValues(puzzle);
             var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
-            var squareTracker = new SquareTracker(puzzle, possibleValues, ruleKeeper);
-            var solver = new Solver(squareTracker);
+            var solver = new Solver(puzzle, possibleValues, ruleKeeper);
             Assert.Equal(expectedStats, solver.GetStatsForAllSolutions());
         }
 
@@ -114,8 +109,7 @@ namespace SudokuSpice.Test
             var heuristics = new StandardHeuristic(
                 puzzle, possibleValues, (IMissingRowValuesTracker)rule,
                 (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);
-            var squareTracker = new SquareTracker(puzzle, possibleValues, ruleKeeper, heuristics);
-            var solver = new Solver(squareTracker);
+            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristics);
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions().NumSolutionsFound);
         }
 

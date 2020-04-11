@@ -3,13 +3,17 @@ using SudokuSpice.Heuristics;
 using SudokuSpice.Rules;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
+#if DEBUG
+[assembly: InternalsVisibleTo("SudokuSpice.Test")]
+#endif
 namespace SudokuSpice
 {
     /// <summary>
     /// Tracks and sets Sudoku squares and their possible values.
     /// </summary>
-    public class SquareTracker : ISquareTracker
+    internal class SquareTracker
     {
         private readonly IPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
@@ -17,6 +21,8 @@ namespace SudokuSpice
         private readonly ISudokuHeuristic? _heuristic;
         private readonly Stack<Coordinate> _setCoords;
         private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
+
+        public IReadOnlyPuzzle Puzzle => _puzzle;
 
         /// <summary>
         /// Constructs a square tracker with a <see cref="StandardRuleKeeper"/> and a
@@ -64,7 +70,10 @@ namespace SudokuSpice
             _coordsThatUsedHeuristics = new Stack<Coordinate>(puzzle.NumEmptySquares);
         }
 
-        private SquareTracker(SquareTracker existing)
+        /// <summary>
+        /// Creates a deep copy of this ISquareTracker in its current state.
+        /// </summary>
+        public SquareTracker(SquareTracker existing)
         {
             _puzzle = existing._puzzle.DeepCopy();
             _possibleValues = new PossibleValues(existing._possibleValues);
@@ -75,13 +84,10 @@ namespace SudokuSpice
             _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
         }
 
-        /// <inheritdoc/>
-        public ISquareTracker DeepCopy()
-        {
-            return new SquareTracker(this);
-        }
-
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the coordinate for the next square to fill in.
+        /// </summary>
+        /// <returns>The coordinate for the unset square with the least possible values.</returns>
         public Coordinate GetBestCoordinateToGuess()
         {
             Debug.Assert(_puzzle.NumEmptySquares > 0, "No unset squares left to guess!");
@@ -106,16 +112,21 @@ namespace SudokuSpice
             return bestCoord;
         }
 
-        /// <inheritdoc/>
-        public List<int> GetPossibleValues(in Coordinate c)
-        {
-            return _possibleValues[in c].GetSetBits();
-        }
+        /// <summary>
+        /// Gets the possible values at the given internal index.
+        /// </summary>
+        /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
+        /// <returns>A list of those possible values.</returns>
+        public List<int> GetPossibleValues(in Coordinate c) => _possibleValues[in c].GetSetBits();
 
-        /// <inheritdoc/>
-        public int GetNumEmptySquares() => _puzzle.NumEmptySquares;
-
-        /// <inheritdoc/>
+        /// <summary>
+        /// Tries to set the square at the given coordinate to the given possible value. This also 
+        /// modifies its internal data as needed to maintain track of the square's values. If the
+        /// value can't be set, this undoes all internal changes as if this method was not called.
+        /// </summary>
+        /// <param name="c">The coordinate of the square to set.</param>
+        /// <param name="value">The value to set the square to.</param>
+        /// <returns>True if the set succeeded.</returns>
         public bool TrySet(in Coordinate coord, int value)
         {
             bool isValid = _ruleKeeper.TrySet(in coord, value);
@@ -128,7 +139,9 @@ namespace SudokuSpice
             return true;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Unsets the most recently set square.
+        /// </summary>
         public void UnsetLast()
         {
             var lastCoord = _setCoords.Pop();

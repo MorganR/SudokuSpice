@@ -1,4 +1,6 @@
 using SudokuSpice.Data;
+using SudokuSpice.Heuristics;
+using SudokuSpice.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +9,32 @@ using System.Threading.Tasks;
 namespace SudokuSpice
 {
     /// <summary>
-    /// Solves a single <see cref="IPuzzle"/> using an <see cref="ISquareTracker"/>.
+    /// Solves a single <see cref="IPuzzle"/> using a <see cref="SquareTracker"/>.
     /// </summary>
     public class Solver
     {
-        private readonly ISquareTracker _tracker;
+        private readonly SquareTracker _tracker;
 
         /// <summary>
         /// Constructs a solver for a standard Sudoku puzzle that uses a standard heuristic and
         /// standard rule keeper. Provided for convenience.
         /// </summary>
-        public Solver(Puzzle puzzle) : this(new SquareTracker(puzzle)) {}
+        public Solver(Puzzle puzzle)
+        {
+            _tracker = new SquareTracker(puzzle);
+        }
 
         /// <summary>
         /// Constructs a solver for the given square tracker.
         /// </summary>
         /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
-        public Solver(ISquareTracker tracker)
+        public Solver(
+            IPuzzle puzzle,
+            PossibleValues possibleValues,
+            ISudokuRuleKeeper ruleKeeper,
+            ISudokuHeuristic? heuristic = null)
         {
-            _tracker = tracker;
+            _tracker = new SquareTracker(puzzle, possibleValues, ruleKeeper, heuristic);
         }
 
         /// <summary>
@@ -54,7 +63,7 @@ namespace SudokuSpice
 
         private bool _TrySolve()
         {
-            if (_tracker.GetNumEmptySquares() == 0)
+            if (_tracker.Puzzle.NumEmptySquares == 0)
             {
                 return true;
             }
@@ -75,7 +84,7 @@ namespace SudokuSpice
 
         private bool _TrySolveRandomly(Random random)
         {
-            if (_tracker.GetNumEmptySquares() == 0)
+            if (_tracker.Puzzle.NumEmptySquares == 0)
             {
                 return true;
             }
@@ -102,12 +111,12 @@ namespace SudokuSpice
         /// </summary>
         public SolveStats GetStatsForAllSolutions()
         {
-            return _TryAllSolutionsAsync(_tracker.DeepCopy()).Result;
+            return _TryAllSolutionsAsync(new SquareTracker(_tracker)).Result;
         }
 
-        private static Task<SolveStats> _TryAllSolutionsAsync(ISquareTracker tracker)
+        private static Task<SolveStats> _TryAllSolutionsAsync(SquareTracker tracker)
         {
-            if (tracker.GetNumEmptySquares() == 0)
+            if (tracker.Puzzle.NumEmptySquares == 0)
             {
                 return Task.FromResult(new SolveStats()
                 {
@@ -128,7 +137,7 @@ namespace SudokuSpice
         }
 
         private static async Task<SolveStats> _TryAllSolutionsWithGuessAsync(
-            ISquareTracker tracker,
+            SquareTracker tracker,
             Coordinate c,
             List<int> valuesToGuess)
         {
@@ -138,7 +147,7 @@ namespace SudokuSpice
             {
                 guessingTasks[idx++] = Task.Run(() =>
                 {
-                    var trackerCopy = tracker.DeepCopy();
+                    var trackerCopy = new SquareTracker(tracker);
                     if (trackerCopy.TrySet(in c, possibleValue))
                     {
                         return _TryAllSolutionsAsync(trackerCopy);

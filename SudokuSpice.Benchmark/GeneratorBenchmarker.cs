@@ -16,16 +16,6 @@ namespace SudokuSpice.Benchmark
         }
 
         [Benchmark]
-        public int SudokuSpiceDynamic()
-        {
-            var generator = new PuzzleGenerator<Puzzle>(
-                () => new Puzzle(9),
-                puzzle => new SquareTracker(puzzle));
-            var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
-            return puzzle.NumEmptySquares;
-        }
-
-        [Benchmark]
         public Board SudokuSharpSingles()
         {
             var rand = new Random();

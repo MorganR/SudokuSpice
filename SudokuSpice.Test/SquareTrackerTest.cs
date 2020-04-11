@@ -135,23 +135,6 @@ namespace SudokuSpice.Test
         }
 
         [Fact]
-        public void GetNumEmptySquares_MatchesPuzzleNumEmptySquares()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1,            4},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
-            });
-            var tracker = new SquareTracker(puzzle);
-
-            Assert.Equal(puzzle.NumEmptySquares, tracker.GetNumEmptySquares());
-
-            tracker.TrySet(new Coordinate(0, 1), 4);
-            Assert.Equal(puzzle.NumEmptySquares, tracker.GetNumEmptySquares());
-        }
-
-        [Fact]
         public void UnsetLast_UndoesPreviousUpdate()
         {
             var puzzle = new Puzzle(new int?[,] {
@@ -188,7 +171,7 @@ namespace SudokuSpice.Test
             var tracker = new SquareTracker(puzzle);
             var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(c => c, c => tracker.GetPossibleValues(in c));
 
-            var trackerCopy = tracker.DeepCopy();
+            var trackerCopy = new SquareTracker(tracker);
 
             var coord = new Coordinate(0, 1);
             var val = 4;

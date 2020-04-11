@@ -35,9 +35,7 @@ namespace SudokuSpice.Benchmark
                 new List<ISudokuRule> { standardRules });
             var heuristic = new StandardHeuristic(
                 p, possibleValues, standardRules, standardRules, standardRules);
-            var squareTracker = new SquareTracker(
-                p, possibleValues, ruleKeeper, heuristic);
-            var solver = new Solver(squareTracker);
+            var solver = new Solver(p, possibleValues, ruleKeeper, heuristic);
             solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
@@ -56,9 +54,7 @@ namespace SudokuSpice.Benchmark
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 p, possibleValues, rowRule, columnRule, boxRule);
-            var squareTracker = new SquareTracker(
-                p, possibleValues, ruleKeeper, heuristic);
-            var solver = new Solver(squareTracker);
+            var solver = new Solver(p, possibleValues, ruleKeeper, heuristic);
             solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
