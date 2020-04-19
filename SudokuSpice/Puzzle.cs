@@ -39,19 +39,31 @@ namespace SudokuSpice
         public Puzzle(int size)
         {
             Size = size;
-            NumSquares = size * size;
-            // Limit to up to 32 possible values (what fits in an int), and ensure that puzzles must
-            // be square.
-            if (Size > 25 || Size < 1)
+            switch (size)
             {
-                throw new ArgumentException("Size must be in the range [1, 25].");
+                case 1:
+                    NumSquares = 1;
+                    BoxSize = 1;
+                    break;
+                case 4:
+                    NumSquares = 4 * 4;
+                    BoxSize = 2;
+                    break;
+                case 9:
+                    NumSquares = 9 * 9;
+                    BoxSize = 3;
+                    break;
+                case 16:
+                    NumSquares = 16 * 16;
+                    BoxSize = 4;
+                    break;
+                case 25:
+                    NumSquares = 25 * 25;
+                    BoxSize = 5;
+                    break;
+                default:
+                    throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
             }
-            BoxSize = (int)Math.Sqrt(Size);
-            if (BoxSize * BoxSize != Size)
-            {
-                throw new ArgumentException("Puzzle size must be the square of a whole number.");
-            }
-
             _squares = new int?[size, size];
             _unsetCoordsTracker = new CoordinateTracker(Size);
             for (var row = 0; row < Size; row++)
@@ -77,20 +89,29 @@ namespace SudokuSpice
         {
             NumSquares = puzzleMatrix.Length;
             Size = puzzleMatrix.GetLength(0);
-            // Limit to up to 32 possible values (what fits in an int), and ensure that puzzles must
-            // be square.
-            if (Size > 25)
+            switch (Size)
             {
-                throw new ArgumentException("Max puzzle size is 25.");
+                case 1:
+                    BoxSize = 1;
+                    break;
+                case 4:
+                    BoxSize = 2;
+                    break;
+                case 9:
+                    BoxSize = 3;
+                    break;
+                case 16:
+                    BoxSize = 4;
+                    break;
+                case 25:
+                    BoxSize = 5;
+                    break;
+                default:
+                    throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
             }
             if (Size != puzzleMatrix.GetLength(1))
             {
                 throw new ArgumentException("Puzzle must be square.");
-            }
-            BoxSize = (int)Math.Sqrt(Size);
-            if (BoxSize * BoxSize != Size)
-            {
-                throw new ArgumentException("Puzzle dimensions must be the square of a whole number.");
             }
 
             _squares = (int?[,])puzzleMatrix.Clone();

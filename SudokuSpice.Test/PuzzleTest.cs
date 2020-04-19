@@ -1,4 +1,5 @@
 using SudokuSpice.Data;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -30,6 +31,29 @@ namespace SudokuSpice.Test
             puzzleCopy[1, 1] = 3;
             Assert.False(puzzle[1, 1].HasValue);
             Assert.Equal(3, puzzleCopy[1, 1]);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(4)]
+        [InlineData(9)]
+        [InlineData(16)]
+        [InlineData(25)]
+        public void Constructor_WithValidSize_Works(int size)
+        {
+            var puzzle = new Puzzle(size);
+            Assert.Equal(size, puzzle.Size);
+            Assert.False(puzzle[0, 0].HasValue);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(3)]
+        [InlineData(36)]
+        public void Constructor_WithInValidSize_Throws(int size)
+        {
+            Assert.Throws<ArgumentException>(() => new Puzzle(size));
         }
 
         [Fact]
