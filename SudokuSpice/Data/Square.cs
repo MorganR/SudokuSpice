@@ -32,10 +32,23 @@ namespace SudokuSpice.Data
             return _possibleValues[index];
         }
 
-        public List<PossibleSquareValue> GetStillPossibleValues()
+        public PossibleSquareValue[] GetStillPossibleValues()
         {
             Debug.Assert(_selectedValueIndex is null, $"Can't retrieve possible values from Square at {Coordinate} when the index {_selectedValueIndex} is already selected.");
-            return _possibleValues.Where(pv => pv.State == PossibleSquareState.UNKNOWN).ToList();
+            var possibleValues = new PossibleSquareValue[NumPossibleValues];
+            int i = 0;
+            foreach (var possibleValue in _possibleValues)
+            {
+                if (possibleValue.State == PossibleSquareState.UNKNOWN)
+                {
+                    possibleValues[i] = possibleValue;
+                    if (++i == NumPossibleValues)
+                    {
+                        return possibleValues;
+                    }
+                }
+            }
+            throw new ApplicationException($"Expected to find {NumPossibleValues} possible values but only found {i}.");
         }
 
         internal bool TrySet(int index)
