@@ -1,6 +1,7 @@
 ﻿using SudokuSpice.Constraints;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Xunit;
 
 namespace SudokuSpice.Test
@@ -13,10 +14,10 @@ namespace SudokuSpice.Test
         {
             var solver = new ConstraintBasedSolver(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            var possibleValues = new List<int>(puzzle.Size);
+            var possibleValues = new int[puzzle.Size];
             for (int i = 1; i <= puzzle.Size; i++)
             {
-                possibleValues.Add(i);
+                possibleValues[i - 1] = i;
             }
             solver.Solve(puzzle, possibleValues);
             _AssertPuzzleSolved(puzzle);

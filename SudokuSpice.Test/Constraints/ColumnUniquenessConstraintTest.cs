@@ -24,13 +24,13 @@ namespace SudokuSpice.Constraints.Test
             Assert.Same(matrix.GetSquare(new Coordinate(0, 2)).AllPossibleValues[0], matrix.ConstraintHeaders[8].FirstLink.PossibleSquare);
             Assert.Same(matrix.GetSquare(new Coordinate(0, 3)).AllPossibleValues[0], matrix.ConstraintHeaders[12].FirstLink.PossibleSquare);
 
-            int value = possibleValues[0];
+            int valueIndex = 0;
             int column = 0;
             var headerAtColumnValue = matrix.ConstraintHeaders[0];
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(0, column)).GetPossibleValue(value), headerAtColumnValue);
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(1, column)).GetPossibleValue(value), headerAtColumnValue);
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(2, column)).GetPossibleValue(value), headerAtColumnValue);
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(3, column)).GetPossibleValue(value), headerAtColumnValue);
+            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(0, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
+            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(1, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
+            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(2, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
+            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(3, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
         }
 
         [Fact]

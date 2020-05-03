@@ -7,44 +7,42 @@ namespace SudokuSpice.Data
 {
     public class Square
     {
-        private readonly IReadOnlyDictionary<int, int> _valueToIndex;
         private readonly PossibleSquareValue[] _possibleValues;
         private readonly Stack<PossibleSquareValue> _valuesDroppedOnSelect;
-        private int? _selectedValue;
+        private int? _selectedValueIndex;
 
         public Coordinate Coordinate { get; }
         public int NumPossibleValues { get; internal set; }
         public ReadOnlySpan<PossibleSquareValue> AllPossibleValues => new ReadOnlySpan<PossibleSquareValue>(_possibleValues);
 
-        public Square(Coordinate c, IReadOnlyDictionary<int, int> valueToIndex)
+        public Square(Coordinate c, int numPossibleValues)
         {
             Coordinate = c;
-            NumPossibleValues = valueToIndex.Count;
-            _possibleValues = new PossibleSquareValue[valueToIndex.Count];
-            foreach ((int value, int index) in valueToIndex)
+            NumPossibleValues = numPossibleValues;
+            _possibleValues = new PossibleSquareValue[numPossibleValues];
+            for(int i = 0; i < NumPossibleValues; i++)
             {
-                _possibleValues[index] = new PossibleSquareValue(this, value);
+                _possibleValues[i] = new PossibleSquareValue(this, i);
             }
-            _valueToIndex = valueToIndex;
             _valuesDroppedOnSelect = new Stack<PossibleSquareValue>(NumPossibleValues);
         }
 
-        public PossibleSquareValue GetPossibleValue(int value)
+        public PossibleSquareValue GetPossibleValue(int index)
         {
-            return _possibleValues[_valueToIndex[value]];
+            return _possibleValues[index];
         }
 
         public List<PossibleSquareValue> GetStillPossibleValues()
         {
-            Debug.Assert(_selectedValue is null, $"Can't retrieve possible values from Square at {Coordinate} when the value {_selectedValue} is already selected.");
+            Debug.Assert(_selectedValueIndex is null, $"Can't retrieve possible values from Square at {Coordinate} when the index {_selectedValueIndex} is already selected.");
             return _possibleValues.Where(pv => pv.State == PossibleSquareState.UNKNOWN).ToList();
         }
 
-        internal bool TrySetValue(int value)
+        internal bool TrySet(int index)
         {
-            Debug.Assert(_selectedValue is null, $"Tried to set Square {Coordinate} to value {value} when value already set to {_selectedValue}.");
-            Debug.Assert(_valuesDroppedOnSelect.Count == 0, $"Tried to set Square {Coordinate} to value {value} when {nameof(_valuesDroppedOnSelect)} was non-empty.");
-            if (!_possibleValues[_valueToIndex[value]].TrySelect())
+            Debug.Assert(_selectedValueIndex is null, $"Tried to set Square {Coordinate} to index {index} when value already set to index {_selectedValueIndex}.");
+            Debug.Assert(_valuesDroppedOnSelect.Count == 0, $"Tried to set Square {Coordinate} to index {index} when {nameof(_valuesDroppedOnSelect)} was non-empty.");
+            if (!_possibleValues[index].TrySelect())
             {
                 return false;
             }
@@ -56,21 +54,21 @@ namespace SudokuSpice.Data
                 }
                 if (!possibleValue.TryDrop()) {
                     _ReturnDroppedValues();
-                    _possibleValues[_valueToIndex[value]].Deselect();
+                    _possibleValues[index].Deselect();
                     return false;
                 }
                _valuesDroppedOnSelect.Push(possibleValue);
             }
-            _selectedValue = value;
+            _selectedValueIndex = index;
             return true;
         }
 
-        internal void UnsetValue()
+        internal void Unset()
         {
-            Debug.Assert(_selectedValue.HasValue, $"Tried to unset Square {Coordinate} when value was not set.");
+            Debug.Assert(_selectedValueIndex.HasValue, $"Tried to unset Square {Coordinate} when value was not set.");
             _ReturnDroppedValues();
-            _possibleValues[_valueToIndex[_selectedValue.Value]].Deselect();
-            _selectedValue = null;
+            _possibleValues[_selectedValueIndex.Value].Deselect();
+            _selectedValueIndex = null;
         }
 
         private void _ReturnDroppedValues()

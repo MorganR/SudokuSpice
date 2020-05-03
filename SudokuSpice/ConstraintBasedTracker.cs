@@ -17,6 +17,11 @@ namespace SudokuSpice
             _puzzle = puzzle;
             _matrix = matrix;
             _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
+            Dictionary<int, int> valuesToIndices = new Dictionary<int, int>(matrix.AllPossibleValues.Length);
+            for (int index = 0; index < matrix.AllPossibleValues.Length; index++)
+            {
+                valuesToIndices[matrix.AllPossibleValues[index]] = index;
+            }
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)
@@ -25,7 +30,7 @@ namespace SudokuSpice
                     var value = puzzle[row, col];
                     if (value.HasValue)
                     {
-                        if (!_matrix.GetSquare(in coordinate).TrySetValue(value.Value))
+                        if (!_matrix.GetSquare(in coordinate).TrySet(valuesToIndices[value.Value]))
                         {
                             throw new ArgumentException($"Given puzzle violates the constraints at {(coordinate)}.");
                         }
@@ -34,7 +39,7 @@ namespace SudokuSpice
             }
         }
 
-        public (Coordinate coord, IReadOnlyList<int> values) GetBestGuess()
+        public (Coordinate coord, IReadOnlyList<int> possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Square? bestSquare = null;
@@ -46,7 +51,7 @@ namespace SudokuSpice
                     maxPossibleValues = square.NumPossibleValues;
                     if (maxPossibleValues == 1)
                     {
-                        return (coord, new List<int> { square.GetStillPossibleValues()[0].Value });
+                        return (coord, new List<int> { square.GetStillPossibleValues()[0].ValueIndex });
                     }
                     bestSquare = square;
                 }
@@ -62,7 +67,7 @@ namespace SudokuSpice
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                     var possibleSquare = constraint.FirstLink.PossibleSquare;
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                    return (possibleSquare.Square.Coordinate, new List<int> { possibleSquare.Value });
+                    return (possibleSquare.Square.Coordinate, new List<int> { possibleSquare.ValueIndex });
                 }
             }
 #pragma warning disable CS8602 // Dereference of a possibly null reference. Not actually possible to be null unless _unsetCoords is empty.
@@ -73,16 +78,16 @@ namespace SudokuSpice
         private IReadOnlyList<int> _OrderPossibleValuesByProbability(in Coordinate c)
         {
             var possibleSquares = _matrix.GetSquare(in c).GetStillPossibleValues();
-            return possibleSquares.OrderBy(ps => ps.GetMinConstraintCount()).Select(ps => ps.Value).ToList();
+            return possibleSquares.OrderBy(ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToList();
         }
 
-        public bool TrySet(in Coordinate c, int value)
+        public bool TrySet(in Coordinate c, int valueIndex)
         {
-            if (!_matrix.GetSquare(in c).TrySetValue(value))
+            if (!_matrix.GetSquare(in c).TrySet(valueIndex))
             {
                 return false;
             }
-            _puzzle[in c] = value;
+            _puzzle[in c] = _matrix.AllPossibleValues[valueIndex];
             _setCoords.Push(c);
             return true;
         }
@@ -92,7 +97,7 @@ namespace SudokuSpice
             Debug.Assert(_setCoords.Count > 0, "Tried to call UnsetLast when no squares had been set.");
             var c = _setCoords.Pop();
             _puzzle[in c] = null;
-            _matrix.GetSquare(in c).UnsetValue();
+            _matrix.GetSquare(in c).Unset();
         }
     }
 }

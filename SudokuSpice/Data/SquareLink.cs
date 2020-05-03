@@ -77,7 +77,7 @@ namespace SudokuSpice.Data
 
         internal bool TrySatisfyConstraint()
         {
-            Debug.Assert(!Constraint.IsSatisfied, $"Constraint was already satisfied when selecting square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.Value}.");
+            Debug.Assert(!Constraint.IsSatisfied, $"Constraint was already satisfied when selecting square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.ValueIndex}.");
             Constraint.IsSatisfied = true;
             var link = Down;
             while (link != this)
@@ -100,8 +100,8 @@ namespace SudokuSpice.Data
 
         internal void UnsatisfyConstraint()
         {
-            Debug.Assert(Constraint.IsSatisfied, $"Constraint was not satisfied when deselecting square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.Value}.");
-            Debug.Assert(Constraint.GetLinks().Contains(this), $"Constraint was missing possible square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.Value} when unsatisfying constraint.");
+            Debug.Assert(Constraint.IsSatisfied, $"Constraint was not satisfied when deselecting square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.ValueIndex}.");
+            Debug.Assert(Constraint.GetLinks().Contains(this), $"Constraint was missing possible square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.ValueIndex} when unsatisfying constraint.");
             var link = Up;
             while (link != this)
             {

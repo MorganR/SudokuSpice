@@ -23,8 +23,8 @@ namespace SudokuSpice.Data.Test {
             var square = matrix.GetSquare(new Coordinate(0, 0));
             Assert.Equal(expectedPossibleValues.Length, square.NumPossibleValues);
             Assert.Equal(square.AllPossibleValues.ToArray(), square.GetStillPossibleValues());
-            Assert.Equal(expectedPossibleValues, square.AllPossibleValues.ToArray().Select(pv => pv.Value).ToArray());
-            Assert.Equal(4, square.GetPossibleValue(4).Value);
+            Assert.Equal(new int[] { 0, 1, 2, 3 }, square.AllPossibleValues.ToArray().Select(pv => pv.ValueIndex).ToArray());
+            Assert.Equal(2, square.GetPossibleValue(2).ValueIndex);
         }
 
         [Fact]

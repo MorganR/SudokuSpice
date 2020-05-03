@@ -14,9 +14,9 @@ namespace SudokuSpice
             _constraints = constraints;
         }
 
-        public void Solve(IPuzzle puzzle, IReadOnlyList<int> possibleValues)
+        public void Solve(IPuzzle puzzle, int[] possibleValues)
         {
-            var matrix = new ExactCoverMatrix(puzzle.Size, possibleValues);
+            var matrix = new ExactCoverMatrix(puzzle.Size, (int[])possibleValues.Clone());
             foreach (var constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);

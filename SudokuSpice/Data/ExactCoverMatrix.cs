@@ -7,25 +7,21 @@ namespace SudokuSpice.Data
     {
         private readonly Square[][] _matrix;
         private readonly List<ConstraintHeader> _constraintHeaders;
+        private readonly int[] _allPossibleValues;
 
-        public IReadOnlyList<int> AllPossibleValues { get; }
+        public ReadOnlySpan<int> AllPossibleValues => new ReadOnlySpan<int>(_allPossibleValues);
         public IReadOnlyList<ConstraintHeader> ConstraintHeaders => _constraintHeaders;
 
-        public ExactCoverMatrix(int puzzleSize, IReadOnlyList<int> allPossibleValues)
+        public ExactCoverMatrix(int puzzleSize, int[] allPossibleValues)
         {
             _matrix = new Square[puzzleSize][];
-            AllPossibleValues = allPossibleValues;
-            var valuesToIndices = new Dictionary<int, int>(allPossibleValues.Count);
-            for (int i = 0; i < allPossibleValues.Count; i++)
-            {
-                valuesToIndices[allPossibleValues[i]] = i;
-            }
+            _allPossibleValues = allPossibleValues;
             for (int row = 0; row < puzzleSize; row++)
             {
                 var colArray = new Square[puzzleSize];
                 for (int col = 0; col < puzzleSize; col++)
                 {
-                    colArray[col] = new Square(new Coordinate(row, col), valuesToIndices);
+                    colArray[col] = new Square(new Coordinate(row, col), allPossibleValues.Length);
                 }
                 _matrix[row] = colArray;
             }

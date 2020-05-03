@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.Constraints;
+using System.Collections.Immutable;
 using System.Linq;
 using Xunit;
 
@@ -9,16 +10,16 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryDrop_DropsOnSuccess()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
             var rowConstraints = matrix.ConstraintHeaders.Take(4 * 4).ToList();
             var columnConstraints = matrix.ConstraintHeaders.Skip(4 * 4).Take(4 * 4).ToList();
 
-            var value = 3;
+            int valueIndex = 1;
             var square = matrix.GetSquare(new Coordinate(1, 0));
-            var possibleValue = square.GetPossibleValue(value);
+            var possibleValue = square.GetPossibleValue(valueIndex);
 
             Assert.True(possibleValue.TryDrop());
             Assert.Equal(3, square.NumPossibleValues);
@@ -36,19 +37,19 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryDrop_LeavesUnchangedOnFailure()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
             var rowConstraints = matrix.ConstraintHeaders.Take(4 * 4).ToList();
             var columnConstraints = matrix.ConstraintHeaders.Skip(4 * 4).Take(4 * 4).ToList();
 
-            var value = 1;
-            Assert.True(matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(value).TryDrop());
-            Assert.True(matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(value).TryDrop());
-            Assert.True(matrix.GetSquare(new Coordinate(0, 2)).GetPossibleValue(value).TryDrop());
+            var valueIndex = 0;
+            Assert.True(matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(valueIndex).TryDrop());
+            Assert.True(matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex).TryDrop());
+            Assert.True(matrix.GetSquare(new Coordinate(0, 2)).GetPossibleValue(valueIndex).TryDrop());
             var square = matrix.GetSquare(new Coordinate(0, 3));
-            var possibleValue = square.GetPossibleValue(value);
+            var possibleValue = square.GetPossibleValue(valueIndex);
             Assert.False(possibleValue.TryDrop());
 
             Assert.Equal(4, square.NumPossibleValues);
@@ -63,9 +64,9 @@ namespace SudokuSpice.Data.Test
         }
 
         [Fact]
-        public void TryDrop_LeavesSatisfiedConstraintsUnchanged()
+        public void TryDrop_WithSatisfiedConstraint_LeavesSatisfiedConstraintUnchanged()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
@@ -75,9 +76,9 @@ namespace SudokuSpice.Data.Test
             var columnConstraint = columnConstraints[1];
             columnConstraint.IsSatisfied = true;
 
-            var value = 3;
+            var valueIndex = 1;
             var square = matrix.GetSquare(new Coordinate(1, 0));
-            var possibleValue = square.GetPossibleValue(value);
+            var possibleValue = square.GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TryDrop());
           
             Assert.Equal(3, rowConstraint.Count);
@@ -91,16 +92,16 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Return_UndoesDrop()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
             var rowConstraints = matrix.ConstraintHeaders.Take(4 * 4).ToList();
             var columnConstraints = matrix.ConstraintHeaders.Skip(4 * 4).Take(4 * 4).ToList();
 
-            var value = 1;
+            var valueIndex = 0;
             var square = matrix.GetSquare(new Coordinate(0, 0));
-            var possibleValue = square.GetPossibleValue(value);
+            var possibleValue = square.GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TryDrop());
             possibleValue.Return();
 
@@ -117,20 +118,20 @@ namespace SudokuSpice.Data.Test
         }
 
         [Fact]
-        public void Return_WithOneSatisfiedConstraint_IsSuccessful()
+        public void Return_WithSatisfiedConstraint_LeavesSatisfiedConstraintUnchanged()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
             var rowConstraints = matrix.ConstraintHeaders.Take(4 * 4).ToList();
             var columnConstraints = matrix.ConstraintHeaders.Skip(4 * 4).Take(4 * 4).ToList();
 
-            var value = 1;
+            var valueIndex = 0;
             var rowConstraint = rowConstraints[0];
             var columnConstraint = columnConstraints[0];
             var square = matrix.GetSquare(new Coordinate(0, 0));
-            var possibleValue = square.GetPossibleValue(value);
+            var possibleValue = square.GetPossibleValue(valueIndex);
             columnConstraint.IsSatisfied = true;
             Assert.True(possibleValue.TryDrop());
             possibleValue.Return();
@@ -149,14 +150,14 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySelect_SelectsSquare()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
-            var value = 1;
+            var valueIndex = 0;
             var square = matrix.GetSquare(new Coordinate(0, 1));
-            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(value);
+            var possibleValue = square.GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
 
             Assert.Equal(PossibleSquareState.SELECTED, possibleValue.State);
@@ -165,15 +166,15 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySelect_SatisfiesConstraints()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
             var rowConstraints = matrix.ConstraintHeaders.Take(4 * 4).ToList();
             var columnConstraints = matrix.ConstraintHeaders.Skip(4 * 4).Take(4 * 4).ToList();
 
-            var value = 1;
-            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(value);
+            var valueIndex = 0;
+            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
 
             var rowConstraint = rowConstraints[0];
@@ -187,15 +188,15 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySelect_DropsConstraintConnectedSquareValues()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
+            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
             var rowConstraints = matrix.ConstraintHeaders.Take(4 * 4).ToList();
             var columnConstraints = matrix.ConstraintHeaders.Skip(4 * 4).Take(4 * 4).ToList();
 
-            var value = 1;
-            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(value);
+            var valueIndex = 0;
+            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
 
             var rowConstraint = rowConstraints[0];
@@ -223,13 +224,13 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Deselect_WithSelectedValue_SetsStateAndSquareCountCorrectly()
         {
-
+            // TODO: Complete this
         }
 
         [Fact]
         public void Deselect_WithSelectedValue_ReturnsDroppedRows()
         {
-
+            // TODO: Complete this
         }
     }
 }

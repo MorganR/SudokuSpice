@@ -23,7 +23,7 @@ namespace SudokuSpice.Constraints
         {
             var startCoord = puzzle.GetStartingBoxCoordinate(box);
             var endCoord = new Coordinate(startCoord.Row + puzzle.BoxSize, startCoord.Column + puzzle.BoxSize);
-            for (int valueIdx = 0; valueIdx < matrix.AllPossibleValues.Count; valueIdx++)
+            for (int valueIdx = 0; valueIdx < matrix.AllPossibleValues.Length; valueIdx++)
             {
                 var possibleSquares = new PossibleSquareValue[puzzle.Size];
                 int i = 0;

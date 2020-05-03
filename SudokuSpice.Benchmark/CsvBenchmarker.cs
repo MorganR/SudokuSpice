@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using BenchmarkDotNet.Attributes;
 using SudokuSpice.Constraints;
 
@@ -34,7 +35,7 @@ namespace SudokuSpice.Benchmark
         {
             var solver = new ConstraintBasedSolver(new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             var puzzle = new Puzzle(sampleCollection.Random().NullableMatrix);
-            solver.Solve(puzzle, new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            solver.Solve(puzzle, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             return puzzle.NumEmptySquares == 0;
         }
 

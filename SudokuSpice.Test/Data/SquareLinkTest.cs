@@ -1,6 +1,7 @@
 ﻿using SudokuSpice.Constraints;
 using SudokuSpice.Data;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Xunit;
 
 namespace SudokuSpice.Data.Test
@@ -10,7 +11,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Constructor_AsFirstConnection_ConnectsCorrectly()
         {
-            var square = new Square(new Coordinate(0, 0), new Dictionary<int, int> { { 1, 0 }, { 2, 1 } });
+            var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader();
 
@@ -30,7 +31,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Constructor_AsSecondConnection_ConnectsCorrectly()
         {
-            var square = new Square(new Coordinate(0, 0), new Dictionary<int, int> { { 1, 0 }, { 2, 1 } });
+            var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader();
             var firstLink = new SquareLink(possibleSquare, constraintHeader);
@@ -55,7 +56,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryRemoveFromConstraint_OnSuccess()
         {
-            var square = new Square(new Coordinate(0, 0), new Dictionary<int, int> { { 1, 0 }, { 2, 1 } });
+            var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader();
             var firstLink = new SquareLink(possibleSquare, constraintHeader);
@@ -79,7 +80,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryRemoveFromConstraint_OnFailure_LeavesUnchanged()
         {
-            var square = new Square(new Coordinate(0, 0), new Dictionary<int, int> { { 1, 0 }, { 2, 1 } });
+            var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader();
             var link = new SquareLink(possibleSquare, constraintHeader);
@@ -98,7 +99,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void ReturnToConstraint_Succeeds()
         {
-            var square = new Square(new Coordinate(0, 0), new Dictionary<int, int> { { 1, 0 }, { 2, 1 } });
+            var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader();
             var firstLink = new SquareLink(possibleSquare, constraintHeader);
@@ -122,7 +123,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySatisfyConstraint_Succeeds()
         {
-            var matrix = new ExactCoverMatrix(2, new List<int> { 1, 2 });
+            var matrix = new ExactCoverMatrix(2, new int[] {1, 2});
             var header = ConstraintHeader.CreateConnectedHeader(
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
@@ -187,7 +188,7 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySatisfyConstraint_WithNoOtherChoicesOnConnectedPossible_Fails()
         {
-            var matrix = new ExactCoverMatrix(2, new List<int> { 1, 2 });
+            var matrix = new ExactCoverMatrix(2, new int[] {1, 2});
             var header = ConstraintHeader.CreateConnectedHeader(
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
