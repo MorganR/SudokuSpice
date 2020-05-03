@@ -113,6 +113,31 @@ namespace SudokuSpice.Test
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions().NumSolutionsFound);
         }
 
+        [Theory]
+        [MemberData(nameof(PuzzlesWithStats))]
+        public void GetStatsForAllSolutionsInParallel_WithoutHeuristics_ReturnsExpectedResults(Puzzle puzzle, SolveStats expectedStats)
+        {
+            // Skip heuristics so the stats are easy to fully define.
+            var possibleValues = new PossibleValues(puzzle);
+            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var solver = new Solver(puzzle, possibleValues, ruleKeeper);
+            Assert.Equal(expectedStats, solver.GetStatsForAllSolutionsInParallel());
+        }
+
+        [Theory]
+        [MemberData(nameof(PuzzlesWithStats))]
+        public void GetStatsForAllSolutionsInParallel_WithHeuristics_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
+        {
+            var possibleValues = new PossibleValues(puzzle);
+            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var rule = ruleKeeper.GetRules()[0];
+            var heuristics = new StandardHeuristic(
+                puzzle, possibleValues, (IMissingRowValuesTracker)rule,
+                (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);
+            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristics);
+            Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutionsInParallel().NumSolutionsFound);
+        }
+
         public static IEnumerable<object[]> ValidPuzzleGenerator()
         {
             yield return new object[]

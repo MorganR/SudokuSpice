@@ -4,7 +4,7 @@ using System;
 
 namespace SudokuSpice.Benchmark
 {
-    [SimpleJob]
+    [MultithreadedJob]
     public class GeneratorBenchmarker
     {
         [Benchmark(Baseline = true)]
@@ -12,6 +12,14 @@ namespace SudokuSpice.Benchmark
         {
             var generator = new StandardPuzzleGenerator(9);
             var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
+            return puzzle.NumEmptySquares;
+        }
+
+        [Benchmark]
+        public int SudokuSpiceParallel()
+        {
+            var generator = new StandardPuzzleGenerator(9);
+            var puzzle = generator.ParallelGenerate(30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }
 

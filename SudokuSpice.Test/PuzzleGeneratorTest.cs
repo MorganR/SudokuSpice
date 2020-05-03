@@ -38,5 +38,32 @@ namespace SudokuSpice.Test
             Assert.Throws<TimeoutException>(
                 () => generator.Generate(17, TimeSpan.FromMilliseconds(1)));
         }
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(4, 10)]
+        [InlineData(9, 30)]
+        public void ParallelGenerate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
+        {
+            var generator = new PuzzleGenerator<Puzzle>(
+                () => new Puzzle(size), puzzle => new Solver(puzzle));
+
+            var puzzle = generator.ParallelGenerate(numToSet, TimeSpan.FromSeconds(60));
+
+            Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
+            var solver = new Solver(puzzle);
+            var stats = solver.GetStatsForAllSolutions();
+            Assert.Equal(1, stats.NumSolutionsFound);
+        }
+
+        [Fact]
+        public void ParallelGenerate_WithShortTimeout_ThrowsTimeoutException()
+        {
+            var generator = new PuzzleGenerator<Puzzle>(
+                () => new Puzzle(9), puzzle => new Solver(puzzle));
+
+            Assert.Throws<TimeoutException>(
+                () => generator.ParallelGenerate(17, TimeSpan.FromMilliseconds(1)));
+        }
     }
 }

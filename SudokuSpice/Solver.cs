@@ -61,6 +61,28 @@ namespace SudokuSpice
             }
         }
 
+        /// <summary>
+        /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
+        /// is left unchanged.
+        /// </summary>
+        public SolveStats GetStatsForAllSolutions()
+        {
+            return _TryAllSolutions(new SquareTracker(_tracker));
+        }
+
+        /// <summary>
+        /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
+        /// is left unchanged. Work may be parallelized onto multiple threads where possible.
+        /// </summary>
+        public SolveStats GetStatsForAllSolutionsInParallel()
+        {
+            if (Environment.ProcessorCount == 1)
+            {
+                return GetStatsForAllSolutions();
+            }
+            return _TryAllSolutionsParallel(new SquareTracker(_tracker));
+        }
+
         private bool _TrySolve()
         {
             if (_tracker.Puzzle.NumEmptySquares == 0)
@@ -106,23 +128,64 @@ namespace SudokuSpice
             return false;
         }
 
-        /// <summary>
-        /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
-        /// is left unchanged.
-        /// </summary>
-        public SolveStats GetStatsForAllSolutions()
-        {
-            return _TryAllSolutionsAsync(new SquareTracker(_tracker)).Result;
-        }
-
-        private static Task<SolveStats> _TryAllSolutionsAsync(SquareTracker tracker)
+        private static SolveStats _TryAllSolutions(SquareTracker tracker)
         {
             if (tracker.Puzzle.NumEmptySquares == 0)
             {
-                return Task.FromResult(new SolveStats()
+                return new SolveStats()
                 {
                     NumSolutionsFound = 1,
-                });
+                };
+            }
+            var c = tracker.GetBestCoordinateToGuess();
+            var possibleValues = tracker.GetPossibleValues(in c);
+            if (possibleValues.Count == 1)
+            {
+                if (tracker.TrySet(in c, possibleValues[0]))
+                {
+                    return _TryAllSolutions(tracker);
+                }
+                return new SolveStats();
+            }
+            return _TryAllSolutionsWithGuess(tracker, c, possibleValues);
+        }
+
+        private static SolveStats _TryAllSolutionsWithGuess(
+            SquareTracker tracker,
+            Coordinate c,
+            List<int> valuesToGuess)
+        {
+            var solveStats = new SolveStats();
+            int idx = 0;
+            foreach (var possibleValue in valuesToGuess)
+            {
+                var trackerCopy = new SquareTracker(tracker);
+                if (trackerCopy.TrySet(in c, possibleValue))
+                {
+                    var guessStats = _TryAllSolutions(trackerCopy);
+                    solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
+                    solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
+                    solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
+                }
+                idx++;
+            }
+            if (solveStats.NumSolutionsFound == 0)
+            {
+                return new SolveStats();
+            }
+            solveStats.NumSquaresGuessed++;
+            solveStats.NumTotalGuesses += valuesToGuess.Count;
+            return solveStats;
+        }
+
+        private static SolveStats _TryAllSolutionsParallel(SquareTracker tracker)
+        {
+            if (tracker.Puzzle.NumEmptySquares == 0)
+            {
+                return new SolveStats()
+                {
+                    NumSolutionsFound = 1,
+                };
             }
             var c = tracker.GetBestCoordinateToGuess();
             var possibleValues = tracker.GetPossibleValues(in c);
@@ -130,44 +193,58 @@ namespace SudokuSpice
             {
                 if (tracker.TrySet(in c, possibleValues.Single()))
                 {
-                    return _TryAllSolutionsAsync(tracker);
+                    return _TryAllSolutionsParallel(tracker);
                 }
-                return Task.FromResult(new SolveStats());
+                return new SolveStats();
             }
-            return _TryAllSolutionsWithGuessAsync(tracker, c, possibleValues);
+            return  _TryAllSolutionsWithGuessParallel(tracker, c, possibleValues);
         }
 
-        private static async Task<SolveStats> _TryAllSolutionsWithGuessAsync(
+        private static SolveStats _TryAllSolutionsWithGuessParallel(
             SquareTracker tracker,
             Coordinate c,
             List<int> valuesToGuess)
         {
-            var guessingTasks = new Task<SolveStats>[valuesToGuess.Count];
-            int idx = 0;
-            foreach (var possibleValue in valuesToGuess)
+            var guessingTasks = new Task<SolveStats>[valuesToGuess.Count - 1];
+            for (int i = 0; i < guessingTasks.Length; i++)
             {
-                guessingTasks[idx++] = Task.Run(() =>
+                var guess = valuesToGuess[i];
+                var trackerCopy = new SquareTracker(tracker);
+                guessingTasks[i] = Task.Run(() =>
                 {
-                    var trackerCopy = new SquareTracker(tracker);
-                    if (trackerCopy.TrySet(in c, possibleValue))
+                    if (trackerCopy.TrySet(in c, guess))
                     {
-                        return _TryAllSolutionsAsync(trackerCopy);
+                        return _TryAllSolutionsParallel(trackerCopy);
                     }
-                    return Task.FromResult(new SolveStats());
+                    return new SolveStats();
                 });
             }
-            
-            var allStats = await Task.WhenAll(guessingTasks).ConfigureAwait(false);
-            var aggregatedStats = allStats.Where(s => s.NumSolutionsFound > 0).DefaultIfEmpty().Aggregate((agg, stats) =>
+            // Run the last guess in the current thread to avoid an extra tracker copy.
+            SolveStats stats;
+            if (tracker.TrySet(in c, valuesToGuess[^1]))
             {
-                agg.NumSolutionsFound += stats.NumSolutionsFound;
-                agg.NumSquaresGuessed += stats.NumSquaresGuessed;
-                agg.NumTotalGuesses += stats.NumTotalGuesses;
-                return agg;
-            });
-            aggregatedStats.NumSquaresGuessed++;
-            aggregatedStats.NumTotalGuesses += valuesToGuess.Count;
-            return aggregatedStats;
+                stats = _TryAllSolutionsParallel(tracker);
+            }
+            else
+            {
+                stats = new SolveStats();
+            }
+            int tasksRemaining = guessingTasks.Length;
+            Task.WaitAll(guessingTasks);
+            foreach (var guessTask in guessingTasks)
+            {
+                var guessStats = guessTask.Result;
+                stats.NumSolutionsFound += guessStats.NumSolutionsFound;
+                stats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
+                stats.NumTotalGuesses += guessStats.NumTotalGuesses;
+            }
+            if (stats.NumSolutionsFound == 0)
+            {
+                return new SolveStats();
+            }
+            stats.NumSquaresGuessed++;
+            stats.NumTotalGuesses += valuesToGuess.Count;
+            return stats;
         }
     }
 }

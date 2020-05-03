@@ -89,26 +89,15 @@ namespace SudokuSpice
         {
             NumSquares = puzzleMatrix.Length;
             Size = puzzleMatrix.GetLength(0);
-            switch (Size)
+            BoxSize = Size switch
             {
-                case 1:
-                    BoxSize = 1;
-                    break;
-                case 4:
-                    BoxSize = 2;
-                    break;
-                case 9:
-                    BoxSize = 3;
-                    break;
-                case 16:
-                    BoxSize = 4;
-                    break;
-                case 25:
-                    BoxSize = 5;
-                    break;
-                default:
-                    throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
-            }
+                1 => 1,
+                4 => 2,
+                9 => 3,
+                16 => 4,
+                25 => 5,
+                _ => throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25]."),
+            };
             if (Size != puzzleMatrix.GetLength(1))
             {
                 throw new ArgumentException("Puzzle must be square.");
