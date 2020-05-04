@@ -34,7 +34,7 @@ namespace SudokuSpice.Constraints
                         possibleSquares[i++] = matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues[valueIdx];
                     }
                 }
-                matrix.AddConstraintHeader(ConstraintHeader.CreateConnectedHeader(possibleSquares));
+                ConstraintHeader.CreateConnectedHeader(matrix, possibleSquares);
             }
 
         }

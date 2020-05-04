@@ -1,7 +1,4 @@
-﻿using SudokuSpice.Constraints;
-using SudokuSpice.Data;
-using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace SudokuSpice.Data.Test
@@ -11,9 +8,10 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Constructor_AsFirstConnection_ConnectsCorrectly()
         {
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader();
+            var constraintHeader = new ConstraintHeader(matrix);
 
             var link = new SquareLink(possibleSquare, constraintHeader);
 
@@ -31,9 +29,10 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Constructor_AsSecondConnection_ConnectsCorrectly()
         {
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader();
+            var constraintHeader = new ConstraintHeader(matrix);
             var firstLink = new SquareLink(possibleSquare, constraintHeader);
 
             var link = new SquareLink(possibleSquare, constraintHeader);
@@ -56,9 +55,10 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryRemoveFromConstraint_OnSuccess()
         {
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader();
+            var constraintHeader = new ConstraintHeader(matrix);
             var firstLink = new SquareLink(possibleSquare, constraintHeader);
             var secondLink = new SquareLink(possibleSquare, constraintHeader);
 
@@ -80,9 +80,10 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryRemoveFromConstraint_OnFailure_LeavesUnchanged()
         {
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader();
+            var constraintHeader = new ConstraintHeader(matrix);
             var link = new SquareLink(possibleSquare, constraintHeader);
 
             Assert.False(link.TryRemoveFromConstraint());
@@ -99,9 +100,10 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void ReturnToConstraint_Succeeds()
         {
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader();
+            var constraintHeader = new ConstraintHeader(matrix);
             var firstLink = new SquareLink(possibleSquare, constraintHeader);
             var secondLink = new SquareLink(possibleSquare, constraintHeader);
 
@@ -123,47 +125,55 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySatisfyConstraint_Succeeds()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] {1, 2});
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var header = ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
                 });
             ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
                 });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-               });
+                });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-               });
+                });
             ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
                 });
             ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
                 });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-               });
+                });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-               });
+                });
 
             var link = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink;
             Assert.True(link.TrySatisfyConstraint());
@@ -188,47 +198,55 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySatisfyConstraint_WithNoOtherChoicesOnConnectedPossible_Fails()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] {1, 2});
+            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
             var header = ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
                 });
             ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
                 });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-               });
+                });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-               });
+                });
             ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
                 });
             ConstraintHeader.CreateConnectedHeader(
+                matrix,
                 new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
                 });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-               });
+                });
             ConstraintHeader.CreateConnectedHeader(
-               new List<PossibleSquareValue> {
+                matrix,
+                new List<PossibleSquareValue> {
                     matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
                     matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-               });
+                });
             Assert.True(matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1].TryDrop());
 
             var link = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink;

@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.Data;
+using System.Linq;
 using Xunit;
 
 namespace SudokuSpice.Constraints.Test
@@ -15,22 +16,29 @@ namespace SudokuSpice.Constraints.Test
 
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
-            Assert.Equal(size * possibleValues.Length, matrix.ConstraintHeaders.Count);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0], matrix.ConstraintHeaders[0].FirstLink.PossibleSquare);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1], matrix.ConstraintHeaders[1].FirstLink.PossibleSquare);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[2], matrix.ConstraintHeaders[2].FirstLink.PossibleSquare);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[3], matrix.ConstraintHeaders[3].FirstLink.PossibleSquare);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0], matrix.ConstraintHeaders[4].FirstLink.PossibleSquare);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 2)).AllPossibleValues[0], matrix.ConstraintHeaders[8].FirstLink.PossibleSquare);
-            Assert.Same(matrix.GetSquare(new Coordinate(0, 3)).AllPossibleValues[0], matrix.ConstraintHeaders[12].FirstLink.PossibleSquare);
-
-            int valueIndex = 0;
-            int column = 0;
-            var headerAtColumnValue = matrix.ConstraintHeaders[0];
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(0, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(1, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(2, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
-            ConstraintTestingUtils.AssertPossibleSquareValueIsOnConstraint(matrix.GetSquare(new Coordinate(3, column)).GetPossibleValue(valueIndex), headerAtColumnValue);
+            Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
+            var firstColumnConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            var secondColumnConstraint = matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0].FirstLink.Constraint;
+            var thirdColumnConstraint = matrix.GetSquare(new Coordinate(0, 2)).AllPossibleValues[0].FirstLink.Constraint;
+            var fourthColumnConstraint = matrix.GetSquare(new Coordinate(0, 3)).AllPossibleValues[0].FirstLink.Constraint;
+            Assert.NotSame(firstColumnConstraint, secondColumnConstraint);
+            Assert.NotSame(firstColumnConstraint, thirdColumnConstraint);
+            Assert.NotSame(firstColumnConstraint, fourthColumnConstraint);
+            Assert.NotSame(secondColumnConstraint, thirdColumnConstraint);
+            Assert.NotSame(secondColumnConstraint, fourthColumnConstraint);
+            Assert.NotSame(thirdColumnConstraint, fourthColumnConstraint);
+            Assert.Same(firstColumnConstraint, matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(firstColumnConstraint, matrix.GetSquare(new Coordinate(2, 0)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(firstColumnConstraint, matrix.GetSquare(new Coordinate(3, 0)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(secondColumnConstraint, matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(secondColumnConstraint, matrix.GetSquare(new Coordinate(2, 1)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(secondColumnConstraint, matrix.GetSquare(new Coordinate(3, 1)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(thirdColumnConstraint, matrix.GetSquare(new Coordinate(1, 2)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(thirdColumnConstraint, matrix.GetSquare(new Coordinate(2, 2)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(thirdColumnConstraint, matrix.GetSquare(new Coordinate(3, 2)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(fourthColumnConstraint, matrix.GetSquare(new Coordinate(1, 3)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(fourthColumnConstraint, matrix.GetSquare(new Coordinate(2, 3)).AllPossibleValues[0].FirstLink.Constraint);
+            Assert.Same(fourthColumnConstraint, matrix.GetSquare(new Coordinate(3, 3)).AllPossibleValues[0].FirstLink.Constraint);
         }
 
         [Fact]

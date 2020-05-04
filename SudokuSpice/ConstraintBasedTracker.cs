@@ -8,9 +8,9 @@ namespace SudokuSpice
 {
     class ConstraintBasedTracker
     {
-        private IPuzzle _puzzle;
-        private ExactCoverMatrix _matrix;
-        private Stack<Coordinate> _setCoords;
+        private readonly IPuzzle _puzzle;
+        private readonly ExactCoverMatrix _matrix;
+        private readonly Stack<Coordinate> _setCoords;
 
         public ConstraintBasedTracker(IPuzzle puzzle, ExactCoverMatrix matrix)
         {
@@ -39,7 +39,7 @@ namespace SudokuSpice
             }
         }
 
-        public (Coordinate coord, IReadOnlyList<int> possibleValueIndices) GetBestGuess()
+        public (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Square? bestSquare = null;
@@ -51,23 +51,19 @@ namespace SudokuSpice
                     maxPossibleValues = square.NumPossibleValues;
                     if (maxPossibleValues == 1)
                     {
-                        return (coord, new List<int> { square.GetStillPossibleValues()[0].ValueIndex });
+                        return (coord, new int[] { square.GetStillPossibleValues()[0].ValueIndex });
                     }
                     bestSquare = square;
                 }
             }
-            foreach (var constraint in _matrix.ConstraintHeaders)
+            foreach (var constraint in _matrix.GetUnsatisfiedConstraintHeaders())
             {
-                if (constraint.IsSatisfied)
-                {
-                    continue;
-                }
                 if (constraint.Count == 1)
                 {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                     var possibleSquare = constraint.FirstLink.PossibleSquare;
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                    return (possibleSquare.Square.Coordinate, new List<int> { possibleSquare.ValueIndex });
+                    return (possibleSquare.Square.Coordinate, new int[] { possibleSquare.ValueIndex });
                 }
             }
 #pragma warning disable CS8602 // Dereference of a possibly null reference. Not actually possible to be null unless _unsetCoords is empty.
@@ -75,10 +71,10 @@ namespace SudokuSpice
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
 
-        private IReadOnlyList<int> _OrderPossibleValuesByProbability(in Coordinate c)
+        private int[] _OrderPossibleValuesByProbability(in Coordinate c)
         {
             var possibleSquares = _matrix.GetSquare(in c).GetStillPossibleValues();
-            return possibleSquares.OrderBy(ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToList();
+            return possibleSquares.OrderBy(ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
         }
 
         public bool TrySet(in Coordinate c, int valueIndex)

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace SudokuSpice.Data
+﻿namespace SudokuSpice.Data
 {
     public class SquareLink
     {
@@ -77,38 +75,12 @@ namespace SudokuSpice.Data
 
         internal bool TrySatisfyConstraint()
         {
-            Debug.Assert(!Constraint.IsSatisfied, $"Constraint was already satisfied when selecting square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.ValueIndex}.");
-            Constraint.IsSatisfied = true;
-            var link = Down;
-            while (link != this)
-            {
-                if (!link.PossibleSquare.TryDrop())
-                {
-                    link = link.Up;
-                    while (link != this)
-                    {
-                        link.PossibleSquare.Return();
-                        link = link.Up;
-                    }
-                    Constraint.IsSatisfied = false;
-                    return false;
-                }
-                link = link.Down;
-            }
-            return true;
+            return Constraint.TrySatisfyFrom(this);
         }
 
         internal void UnsatisfyConstraint()
         {
-            Debug.Assert(Constraint.IsSatisfied, $"Constraint was not satisfied when deselecting square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.ValueIndex}.");
-            Debug.Assert(Constraint.GetLinks().Contains(this), $"Constraint was missing possible square {PossibleSquare.Square.Coordinate}, value: {PossibleSquare.ValueIndex} when unsatisfying constraint.");
-            var link = Up;
-            while (link != this)
-            {
-                link.PossibleSquare.Return();
-                link = link.Up;
-            }
-            Constraint.IsSatisfied = false;
+            Constraint.UnsatisfyFrom(this);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SudokuSpice.Constraints
                     {
                         possibleSquares[row] = columnSquares[row].AllPossibleValues[i];
                     }
-                    matrix.AddConstraintHeader(ConstraintHeader.CreateConnectedHeader(possibleSquares));
+                    ConstraintHeader.CreateConnectedHeader(matrix, possibleSquares);
                 }
             }
         }

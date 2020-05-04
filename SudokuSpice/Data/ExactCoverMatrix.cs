@@ -6,11 +6,10 @@ namespace SudokuSpice.Data
     public class ExactCoverMatrix
     {
         private readonly Square[][] _matrix;
-        private readonly List<ConstraintHeader> _constraintHeaders;
         private readonly int[] _allPossibleValues;
+        internal ConstraintHeader? FirstHeader;
 
         public ReadOnlySpan<int> AllPossibleValues => new ReadOnlySpan<int>(_allPossibleValues);
-        public IReadOnlyList<ConstraintHeader> ConstraintHeaders => _constraintHeaders;
 
         public ExactCoverMatrix(int puzzleSize, int[] allPossibleValues)
         {
@@ -25,12 +24,6 @@ namespace SudokuSpice.Data
                 }
                 _matrix[row] = colArray;
             }
-            _constraintHeaders = new List<ConstraintHeader>();
-        }
-
-        public void AddConstraintHeader(ConstraintHeader constraint)
-        {
-            _constraintHeaders.Add(constraint);
         }
 
         public Square GetSquare(in Coordinate c)
@@ -51,6 +44,20 @@ namespace SudokuSpice.Data
                 squares.Add(_matrix[row][column]);
             }
             return squares;
+        }
+
+        public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
+        {
+            if (FirstHeader == null)
+            {
+                yield break;
+            }
+            var header = FirstHeader;
+            do
+            {
+                yield return header;
+                header = header.NextHeader;
+            } while (header != FirstHeader);
         }
     }
 }
