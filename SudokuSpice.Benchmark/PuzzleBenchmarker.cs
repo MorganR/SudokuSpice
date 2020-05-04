@@ -1,4 +1,5 @@
 using BenchmarkDotNet.Attributes;
+using SudokuSpice.Constraints;
 using SudokuSpice.Data;
 using SudokuSpice.Heuristics;
 using SudokuSpice.Rules;
@@ -56,6 +57,16 @@ namespace SudokuSpice.Benchmark
                 p, possibleValues, rowRule, columnRule, boxRule);
             var solver = new Solver(p, possibleValues, ruleKeeper, heuristic);
             solver.SolveRandomly();
+            return p.NumEmptySquares == 0;
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(NineByNinePuzzles))]
+        public bool SudokuSpiceConstraints(PuzzleSample puzzle)
+        {
+            var p = new Puzzle(puzzle.NullableMatrix);
+            var solver = new ConstraintBasedSolver(new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            solver.Solve(p, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             return p.NumEmptySquares == 0;
         }
 
