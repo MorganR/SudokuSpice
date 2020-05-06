@@ -60,49 +60,5 @@ namespace SudokuSpice.Test
             Assert.Throws<TimeoutException>(
                 () => generator.Generate(17, TimeSpan.FromMilliseconds(1)));
         }
-
-        [Theory]
-        [InlineData(1, -1)]
-        [InlineData(1, 2)]
-        [InlineData(4, 3)]
-        [InlineData(4, 17)]
-        [InlineData(9, 16)]
-        [InlineData(9, 82)]
-        [InlineData(16, 40)]
-        [InlineData(16, 266)]
-        [InlineData(25, 100)]
-        [InlineData(25, 626)]
-        public void ParallelGenerate_WithInvalidNumToSet_Throws(int size, int numToSet)
-        {
-            var generator = new StandardPuzzleGenerator(size);
-
-            Assert.Throws<ArgumentOutOfRangeException>(
-                () => generator.ParallelGenerate(numToSet, TimeSpan.FromSeconds(60)));
-        }
-
-        [Theory]
-        [InlineData(1, 1)]
-        [InlineData(4, 10)]
-        [InlineData(9, 30)]
-        public void ParallelGenerate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
-        {
-            var generator = new StandardPuzzleGenerator(size);
-
-            var puzzle = generator.ParallelGenerate(numToSet, TimeSpan.FromSeconds(60));
-
-            Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            var solver = new Solver(puzzle);
-            var stats = solver.GetStatsForAllSolutions();
-            Assert.Equal(1, stats.NumSolutionsFound);
-        }
-
-        [Fact]
-        public void ParallelGenerate_WithShortTimeout_ThrowsTimeoutException()
-        {
-            var generator = new StandardPuzzleGenerator(9);
-
-            Assert.Throws<TimeoutException>(
-                () => generator.ParallelGenerate(17, TimeSpan.FromMilliseconds(1)));
-        }
     }
 }

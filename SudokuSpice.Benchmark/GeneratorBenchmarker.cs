@@ -16,14 +16,6 @@ namespace SudokuSpice.Benchmark
         }
 
         [Benchmark]
-        public int SudokuSpiceParallel()
-        {
-            var generator = new StandardPuzzleGenerator(9);
-            var puzzle = generator.ParallelGenerate(30, TimeSpan.FromSeconds(10));
-            return puzzle.NumEmptySquares;
-        }
-
-        [Benchmark]
         public Board SudokuSharpSingles()
         {
             var rand = new Random();

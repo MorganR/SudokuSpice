@@ -75,46 +75,6 @@ namespace SudokuSpice
             return base.Generate(numSquaresToSet, timeout);
         }
 
-        /// <summary>
-        /// Generates a puzzle that has a unique solution with the given number of squares set.
-        /// Parallelizes work onto multiple threads where possible.
-        /// </summary>
-        /// <remarks>
-        /// Be careful calling this with low values, as it can take a very long time to generate
-        /// unique puzzles as numSquaresToSet approaches the minimum number of clues necessary to
-        /// provide a unique puzzle for this generator's size.
-        /// </remarks>
-        /// <param name="numSquaresToSet">
-        /// The number of squares that will be preset in the generated puzzle.
-        /// <para>
-        /// Valid ranges are 0-1 for puzzles of size 1, 4-16 for puzzles of size 4, 17-81 for
-        /// puzzles of size 9, 55-256 for puzzles of size 16, and 185 - 625 for puzzles of size 25.
-        /// Note that the lower bounds for puzzles sized 16 or 25 are estimates from
-        /// this forum: http://forum.enjoysudoku.com/minimum-givens-on-larger-puzzles-t4801.html
-        /// </para>
-        /// </param>
-        /// <param name="timeout">
-        /// The maximum timeout during which this function can search for a unique puzzle.
-        /// Especially useful when trying to generate puzzles with low
-        /// <paramref name="numSquaresToSet"/>.
-        /// </param>
-        /// <returns>
-        /// A puzzle of type <c>TPuzzle</c> with a unique solution and
-        /// <paramref name="numSquaresToSet"/> preset squares.
-        /// </returns>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if <paramref name="numSquaresToSet"/> is impossible for the given puzzle size.
-        /// </exception>
-        /// <exception cref="TimeoutException">
-        /// Thrown if no valid unique puzzle is found within the specified
-        /// <paramref name="timeout"/>.
-        /// </exception>
-        public new Puzzle ParallelGenerate(int numSquaresToSet, TimeSpan timeout)
-        {
-            _ValidateNumSquaresToSet(numSquaresToSet);
-            return base.ParallelGenerate(numSquaresToSet, timeout);
-        }
-
         private void _ValidateNumSquaresToSet(int numToSet)
         {
             // Inclusive bounds

@@ -7,12 +7,6 @@ namespace SudokuSpice
 {
     public class PuzzleGenerator<TPuzzle> where TPuzzle : IPuzzle
     {
-        private enum RunStyle
-        {
-            SYNCHRONOUS,
-            PARALLEL,
-        };
-
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
         private readonly Func<TPuzzle, Solver> _solverFactory;
@@ -59,44 +53,9 @@ namespace SudokuSpice
         /// </exception>
         public TPuzzle Generate(int numSquaresToSet, TimeSpan timeout)
         {
-            return _GenerateWithTimeout(numSquaresToSet, timeout, RunStyle.SYNCHRONOUS);
-        }
-
-        /// <summary>
-        /// Generates a puzzle that has a unique solution with the given number of squares set.
-        /// Parallelizes work onto multiple threads where possible.
-        /// </summary>
-        /// <remarks>
-        /// Be careful calling this with low values, as it can take a very long time to generate
-        /// unique puzzles as numSquaresToSet approaches the minimum number of clues necessary to
-        /// provide a unique puzzle for this generator's size.
-        /// </remarks>
-        /// <param name="numSquaresToSet">
-        /// The number of squares that will be preset in the generated puzzle.
-        /// </param>
-        /// <param name="timeout">
-        /// The maximum timeout during which this function can search for a unique puzzle.
-        /// Especially useful when trying to generate puzzles with low
-        /// <paramref name="numSquaresToSet"/>.
-        /// </param>
-        /// <returns>
-        /// A puzzle of type <c>TPuzzle</c> with a unique solution and
-        /// <paramref name="numSquaresToSet"/> preset squares.
-        /// </returns>
-        /// <exception cref="TimeoutException">
-        /// Thrown if no valid unique puzzle is found within the specified
-        /// <paramref name="timeout"/>.
-        /// </exception>
-        public TPuzzle ParallelGenerate(int numSquaresToSet, TimeSpan timeout)
-        {
-            return _GenerateWithTimeout(numSquaresToSet, timeout, RunStyle.PARALLEL);
-        }
-
-        private TPuzzle _GenerateWithTimeout(int numSquaresToSet, TimeSpan timeout, RunStyle runStyle)
-        {
             using var timeoutCancellationSource = new CancellationTokenSource(timeout);
             var puzzleTask = new Task<TPuzzle>(() => _Generate(
-                numSquaresToSet, runStyle, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
+                numSquaresToSet, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
             puzzleTask.RunSynchronously();
 
             if (puzzleTask.IsCompletedSuccessfully)
@@ -115,7 +74,7 @@ namespace SudokuSpice
             throw puzzleTask.Exception;
         }
 
-        private TPuzzle _Generate(int numSquaresToSet, RunStyle runStyle, CancellationToken cancellationToken)
+        private TPuzzle _Generate(int numSquaresToSet, CancellationToken cancellationToken)
         {
             TPuzzle puzzle = _puzzleFactory.Invoke();
             bool foundValidPuzzle = false;
@@ -126,14 +85,15 @@ namespace SudokuSpice
                 var setCoordinates = new CoordinateTracker(puzzle.Size);
                 _TrackAllCoordinates(setCoordinates, puzzle.Size);
                 foundValidPuzzle = _TryUnsetSquaresWhileSolvable(
-                    numSquaresToSet, puzzle.NumSetSquares, setCoordinates, puzzle, runStyle, cancellationToken);
+                        numSquaresToSet, puzzle.NumSetSquares, setCoordinates, puzzle,
+                        cancellationToken);
             }
             return puzzle;
         }
 
         private bool _TryUnsetSquaresWhileSolvable(
             int totalNumSquaresToSet, int currentNumSet, CoordinateTracker setCoordinatesToTry,
-            TPuzzle puzzle, RunStyle runStyle, CancellationToken cancellationToken)
+            TPuzzle puzzle, CancellationToken cancellationToken)
         {
             if (currentNumSet == totalNumSquaresToSet)
             {
@@ -145,13 +105,13 @@ namespace SudokuSpice
                 var randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
                 var previousValue = puzzle[in randomCoord];
                 setCoordinatesToTry.Untrack(in randomCoord);
-                if (!_TryUnsetSquareAt(randomCoord, puzzle, runStyle))
+                if (!_TryUnsetSquareAt(randomCoord, puzzle))
                 {
                     continue;
                 }
                 if (_TryUnsetSquaresWhileSolvable(
                     totalNumSquaresToSet, currentNumSet - 1,
-                    new CoordinateTracker(setCoordinatesToTry), puzzle, runStyle, cancellationToken))
+                    new CoordinateTracker(setCoordinatesToTry), puzzle, cancellationToken))
                 {
                     return true;
                 }
@@ -172,7 +132,7 @@ namespace SudokuSpice
             solver.SolveRandomly();
         }
 
-        private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle, RunStyle runStyle)
+        private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle)
         {
             // Set without checks when there can't be conflicts.
             if (puzzle.NumEmptySquares < 3)
@@ -184,11 +144,7 @@ namespace SudokuSpice
             puzzle[in c] = null;
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
             var solver = _solverFactory.Invoke(puzzleCopy);
-            var solveStats = runStyle switch
-            {
-                RunStyle.SYNCHRONOUS => solver.GetStatsForAllSolutions(),
-                _ => solver.GetStatsForAllSolutionsInParallel(),
-            };
+            var solveStats = solver.GetStatsForAllSolutions();
             if (solveStats.NumSolutionsFound == 1)
             {
                 return true;

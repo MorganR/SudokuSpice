@@ -3,8 +3,6 @@ using SudokuSpice.Heuristics;
 using SudokuSpice.Rules;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
@@ -68,19 +66,6 @@ namespace SudokuSpice
         public SolveStats GetStatsForAllSolutions()
         {
             return _TryAllSolutions(new SquareTracker(_tracker));
-        }
-
-        /// <summary>
-        /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
-        /// is left unchanged. Work may be parallelized onto multiple threads where possible.
-        /// </summary>
-        public SolveStats GetStatsForAllSolutionsInParallel()
-        {
-            if (Environment.ProcessorCount == 1)
-            {
-                return GetStatsForAllSolutions();
-            }
-            return _TryAllSolutionsParallel(new SquareTracker(_tracker));
         }
 
         private bool _TrySolve()
@@ -176,75 +161,6 @@ namespace SudokuSpice
             solveStats.NumSquaresGuessed++;
             solveStats.NumTotalGuesses += valuesToGuess.Count;
             return solveStats;
-        }
-
-        private static SolveStats _TryAllSolutionsParallel(SquareTracker tracker)
-        {
-            if (tracker.Puzzle.NumEmptySquares == 0)
-            {
-                return new SolveStats()
-                {
-                    NumSolutionsFound = 1,
-                };
-            }
-            var c = tracker.GetBestCoordinateToGuess();
-            var possibleValues = tracker.GetPossibleValues(in c);
-            if (possibleValues.Count == 1)
-            {
-                if (tracker.TrySet(in c, possibleValues.Single()))
-                {
-                    return _TryAllSolutionsParallel(tracker);
-                }
-                return new SolveStats();
-            }
-            return  _TryAllSolutionsWithGuessParallel(tracker, c, possibleValues);
-        }
-
-        private static SolveStats _TryAllSolutionsWithGuessParallel(
-            SquareTracker tracker,
-            Coordinate c,
-            List<int> valuesToGuess)
-        {
-            var guessingTasks = new Task<SolveStats>[valuesToGuess.Count - 1];
-            for (int i = 0; i < guessingTasks.Length; i++)
-            {
-                var guess = valuesToGuess[i];
-                var trackerCopy = new SquareTracker(tracker);
-                guessingTasks[i] = Task.Run(() =>
-                {
-                    if (trackerCopy.TrySet(in c, guess))
-                    {
-                        return _TryAllSolutionsParallel(trackerCopy);
-                    }
-                    return new SolveStats();
-                });
-            }
-            // Run the last guess in the current thread to avoid an extra tracker copy.
-            SolveStats stats;
-            if (tracker.TrySet(in c, valuesToGuess[^1]))
-            {
-                stats = _TryAllSolutionsParallel(tracker);
-            }
-            else
-            {
-                stats = new SolveStats();
-            }
-            int tasksRemaining = guessingTasks.Length;
-            Task.WaitAll(guessingTasks);
-            foreach (var guessTask in guessingTasks)
-            {
-                var guessStats = guessTask.Result;
-                stats.NumSolutionsFound += guessStats.NumSolutionsFound;
-                stats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
-                stats.NumTotalGuesses += guessStats.NumTotalGuesses;
-            }
-            if (stats.NumSolutionsFound == 0)
-            {
-                return new SolveStats();
-            }
-            stats.NumSquaresGuessed++;
-            stats.NumTotalGuesses += valuesToGuess.Count;
-            return stats;
         }
     }
 }

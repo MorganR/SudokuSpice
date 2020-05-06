@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using BenchmarkDotNet.Attributes;
 using SudokuSpice.Constraints;
+using SudokuSpice.Data;
 
 namespace SudokuSpice.Benchmark
 {
@@ -38,7 +39,6 @@ namespace SudokuSpice.Benchmark
             solver.Solve(puzzle, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             return puzzle.NumEmptySquares == 0;
         }
-
 
         [Benchmark]
         [ArgumentsSource(nameof(SampleCollections))]
