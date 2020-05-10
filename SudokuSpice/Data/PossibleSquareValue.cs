@@ -6,13 +6,13 @@ namespace SudokuSpice.Data
 {
     public class PossibleSquareValue
     {
-        internal readonly int ValueIndex;
-        internal readonly Square Square;
-        internal PossibleSquareState State { get; private set; }
+        public readonly int ValueIndex;
+        public readonly Square Square;
+        public PossibleSquareState State { get; private set; }
         [DisallowNull]
         internal SquareLink? FirstLink { get; private set; }
 
-        public PossibleSquareValue(Square square, int valueIndex)
+        internal PossibleSquareValue(Square square, int valueIndex)
         {
             ValueIndex = valueIndex;
             Square = square;

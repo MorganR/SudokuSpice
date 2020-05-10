@@ -3,13 +3,18 @@ using System;
 
 namespace SudokuSpice.Constraints
 {
+    /// <summary>
+    /// Enforces the constraint that all values in a row must be unique.
+    /// </summary>
     public class RowUniquenessConstraint : IConstraint
     {
+        /// <inheritdoc/>
         public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             for (int row = 0; row < puzzle.Size; row++)
             {
-                Span<bool> isConstraintSatisfiedAtIndex = stackalloc bool[matrix.AllPossibleValues.Length];
+                Span<bool> isConstraintSatisfiedAtIndex =
+                    stackalloc bool[matrix.AllPossibleValues.Length];
                 isConstraintSatisfiedAtIndex.Fill(false);
                 for (int column = 0; column < puzzle.Size; column++)
                 {
@@ -32,7 +37,8 @@ namespace SudokuSpice.Constraints
             }
         }
 
-        private static void _DropPossibleValuesForValueIndex(ReadOnlySpan<Square?> rowSquares, int valueIndex, ExactCoverMatrix matrix)
+        private static void _DropPossibleValuesForValueIndex(
+            ReadOnlySpan<Square?> rowSquares, int valueIndex, ExactCoverMatrix matrix)
         {
             for (int column = 0; column < rowSquares.Length; column++)
             {
@@ -44,25 +50,30 @@ namespace SudokuSpice.Constraints
                 var possibleValue = square.AllPossibleValues[valueIndex];
                 if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
                 {
-                    throw new ArgumentException($"Puzzle violated {nameof(RowUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} on row {square.Coordinate.Row}.");
+                    throw new ArgumentException(
+                        $"Puzzle violated {nameof(RowUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} on row {square.Coordinate.Row}.");
                 }
             }
         }
 
-        private static void _AddConstraintHeadersForValueIndex(ReadOnlySpan<Square?> rowSquares, int valueIndex, ExactCoverMatrix matrix)
+        private static void _AddConstraintHeadersForValueIndex(
+            ReadOnlySpan<Square?> rowSquares, int valueIndex, ExactCoverMatrix matrix)
         {
             var possibleSquares = new PossibleSquareValue[rowSquares.Length];
             int numPossibleSquares = 0;
             for (int column = 0; column < rowSquares.Length; column++)
             {
                 var square = rowSquares[column];
-                if (square is null || square.AllPossibleValues[valueIndex].State != PossibleSquareState.UNKNOWN)
+                if (square is null
+                    || square.AllPossibleValues[valueIndex].State != PossibleSquareState.UNKNOWN)
                 {
                     continue;
                 }
                 possibleSquares[numPossibleSquares++] = square.AllPossibleValues[valueIndex];
             }
-            ConstraintHeader.CreateConnectedHeader(matrix, new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
+            ConstraintHeader.CreateConnectedHeader(
+                matrix,
+                new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }

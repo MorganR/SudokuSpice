@@ -6,6 +6,10 @@ using System.Linq;
 
 namespace SudokuSpice.Data
 {
+    /// <summary>
+    /// Represents a column from an exact-cover matrix.
+    /// </summary>
+    /// <seealso cref="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
     public class ConstraintHeader
     {
         internal ExactCoverMatrix Matrix { get; private set; }
@@ -22,6 +26,16 @@ namespace SudokuSpice.Data
             NextHeader = PreviousHeader = this;
         }
 
+        /// <summary>
+        /// Creates a fully connected header that can be satisfied by any of the given
+        /// <paramref name="possibleSquares"/>. Adds and attaches necessary
+        /// <see cref="SquareLink"/>s.
+        /// </summary>
+        /// <param name="matrix">That matrix that this header should be attached to.</param>
+        /// <param name="possibleSquares">
+        /// The possible square values that would satisfy this header.
+        /// </param>
+        /// <returns>The newly constructed header.</returns>
         public static ConstraintHeader CreateConnectedHeader(ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares)
         {
             var header = new ConstraintHeader(matrix);

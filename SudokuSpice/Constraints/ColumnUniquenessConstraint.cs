@@ -4,13 +4,18 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Constraints
 {
+    /// <summary>
+    /// Enforces the constraint that all values in a column must be unique.
+    /// </summary>
     public class ColumnUniquenessConstraint : IConstraint
     {
+        /// <inheritdoc/>
         public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             for (int column = 0; column < puzzle.Size; column++)
             {
-                Span<bool> isConstraintSatisfiedAtIndex = stackalloc bool[matrix.AllPossibleValues.Length];
+                Span<bool> isConstraintSatisfiedAtIndex =
+                    stackalloc bool[matrix.AllPossibleValues.Length];
                 isConstraintSatisfiedAtIndex.Fill(false);
                 for (int row = 0; row < puzzle.Size; row++)
                 {
@@ -33,7 +38,8 @@ namespace SudokuSpice.Constraints
             }
         }
 
-        private static void _DropPossibleSquaresForValueIndex(IReadOnlyList<Square?> columnSquares, int valueIndex, ExactCoverMatrix matrix)
+        private static void _DropPossibleSquaresForValueIndex(
+            IReadOnlyList<Square?> columnSquares, int valueIndex, ExactCoverMatrix matrix)
         {
             for (int row = 0; row < columnSquares.Count; row++)
             {
@@ -45,12 +51,14 @@ namespace SudokuSpice.Constraints
                 var possibleValue = square.AllPossibleValues[valueIndex];
                 if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
                 {
-                    throw new ArgumentException($"Puzzle violated {nameof(ColumnUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} on column {square.Coordinate.Column}.");
+                    throw new ArgumentException(
+                        $"Puzzle violated {nameof(ColumnUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} on column {square.Coordinate.Column}.");
                 }
             }
         }
 
-        private static void _AddConstraintHeadersForValueIndex(IReadOnlyList<Square?> columnSquares, int valueIndex, ExactCoverMatrix matrix)
+        private static void _AddConstraintHeadersForValueIndex(
+            IReadOnlyList<Square?> columnSquares, int valueIndex, ExactCoverMatrix matrix)
         {
             var possibleSquares = new PossibleSquareValue[columnSquares.Count];
             int numPossibleSquares = 0;
@@ -63,7 +71,8 @@ namespace SudokuSpice.Constraints
                 }
                 possibleSquares[numPossibleSquares++] = square.AllPossibleValues[valueIndex];
             }
-            ConstraintHeader.CreateConnectedHeader(matrix, new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
+            ConstraintHeader.CreateConnectedHeader(
+                matrix, new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }
