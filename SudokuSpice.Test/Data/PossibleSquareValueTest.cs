@@ -9,8 +9,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryDrop_DropsOnSuccess()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -34,8 +34,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TryDrop_LeavesUnchangedOnFailure()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -62,8 +62,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Return_UndoesDrop()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -88,8 +88,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Return_WithSatisfiedConstraint_UndropsTheRowAsExpected()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -114,8 +114,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySelect_SelectsSquare()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -130,8 +130,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySelect_SatisfiesConstraints()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -152,8 +152,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void TrySelect_DropsConstraintConnectedSquareValues()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] {1, 3, 4, 5});
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] {1, 3, 4, 5});
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -167,7 +167,7 @@ namespace SudokuSpice.Data.Test
             Assert.Equal(4, constraintB.GetLinks().Count());
             foreach (var link in constraintA.GetLinks())
             {
-                if (ReferenceEquals(link.PossibleSquare, possibleValue))
+                if (link.PossibleSquare == possibleValue)
                 {
                     continue;
                 }
@@ -175,7 +175,7 @@ namespace SudokuSpice.Data.Test
             }
             foreach (var link in constraintB.GetLinks())
             {
-                if (ReferenceEquals(link.PossibleSquare, possibleValue))
+                if (link.PossibleSquare == possibleValue)
                 {
                     continue;
                 }
@@ -186,8 +186,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Deselect_WithSelectedValue_SetsStateAndSquareCountCorrectly()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 3, 4, 5 });
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -204,8 +204,8 @@ namespace SudokuSpice.Data.Test
         [Fact]
         public void Deselect_WithSelectedValue_ReturnsDroppedRows()
         {
-            var matrix = new ExactCoverMatrix(4, new int[] { 1, 3, 4, 5 });
             var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 3, 4, 5 });
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 

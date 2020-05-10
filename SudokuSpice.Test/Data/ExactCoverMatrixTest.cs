@@ -7,7 +7,8 @@ namespace SudokuSpice.Data.Test {
         [Fact]
         public void GetSquare_ReturnsSquareWithCorrectCoordinates()
         {
-            ExactCoverMatrix matrix = new ExactCoverMatrix(4, new int[] { 1, 2, 3, 4 });
+            var puzzle = new Puzzle(4);
+            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
 
             Assert.Equal(new Coordinate(0, 0), matrix.GetSquare(new Coordinate(0, 0)).Coordinate);
             Assert.Equal(new Coordinate(1, 2), matrix.GetSquare(new Coordinate(1, 2)).Coordinate);
@@ -18,7 +19,8 @@ namespace SudokuSpice.Data.Test {
         public void GetSquare_ReturnsSquareWithExpectedPossibleValues()
         {
             var expectedPossibleValues = new int[] { 0, 2, 4, 5 };
-            ExactCoverMatrix matrix = new ExactCoverMatrix(4, expectedPossibleValues);
+            var puzzle = new Puzzle(4);
+            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle, expectedPossibleValues);
 
             var square = matrix.GetSquare(new Coordinate(0, 0));
             Assert.Equal(expectedPossibleValues.Length, square.NumPossibleValues);
@@ -30,7 +32,8 @@ namespace SudokuSpice.Data.Test {
         [Fact]
         public void GetSquaresOnRow_ReturnsExpectedSquares()
         {
-            ExactCoverMatrix matrix = new ExactCoverMatrix(4, new int[] { 1, 2, 3, 4 });
+            var puzzle = new Puzzle(4);
+            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
 
             int row = 1;
             var squares = matrix.GetSquaresOnRow(row);
@@ -44,7 +47,8 @@ namespace SudokuSpice.Data.Test {
         [Fact]
         public void GetSquaresOnColumn_ReturnsExpectedSquares()
         {
-            ExactCoverMatrix matrix = new ExactCoverMatrix(4, new int[] { 1, 2, 3, 4 });
+            var puzzle = new Puzzle(4);
+            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
 
             int column = 1;
             var squares = matrix.GetSquaresOnColumn(column);

@@ -10,7 +10,7 @@ namespace SudokuSpice.Constraints.Test
             var link = constraint.FirstLink;
             do
             {
-                if (ReferenceEquals(link.PossibleSquare, possibleValue))
+                if (link.PossibleSquare == possibleValue)
                 {
                     return;
                 }

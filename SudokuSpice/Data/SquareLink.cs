@@ -1,43 +1,29 @@
-﻿namespace SudokuSpice.Data
+﻿using System;
+
+namespace SudokuSpice.Data
 {
-    public class SquareLink
+    internal class SquareLink
     {
         internal readonly PossibleSquareValue PossibleSquare;
         internal readonly ConstraintHeader Constraint;
-        internal SquareLink Left;
-        internal SquareLink Right;
-        internal SquareLink Up;
-        internal SquareLink Down;
+        internal SquareLink Left { get; set; }
+        internal SquareLink Right { get; set; }
+        internal SquareLink Up { get; set; }
+        internal SquareLink Down { get; set; }
 
-        public SquareLink(PossibleSquareValue possibleSquare, ConstraintHeader constraint)
+        private SquareLink(PossibleSquareValue possibleSquare, ConstraintHeader constraint)
         {
             PossibleSquare = possibleSquare;
-            if (possibleSquare.FirstLink is null)
-            {
-                possibleSquare.FirstLink = this;
-                Right = Left = this;
-            }
-            else
-            {
-                Right = possibleSquare.FirstLink;
-                Left = Right.Left;
-                Right.Left = this;
-                Left.Right = this;
-            }
             Constraint = constraint;
-            if (constraint.FirstLink is null)
-            {
-                constraint.FirstLink = this;
-                Down = Up = this;
-            }
-            else
-            {
-                Down = constraint.FirstLink;
-                Up = Down.Up;
-                Down.Up = this;
-                Up.Down = this;
-            }
-            Constraint.Count++;
+            Up = Down = Right = Left = this;
+        }
+
+        internal static SquareLink CreateConnectedLink(PossibleSquareValue possibleSquare, ConstraintHeader header)
+        {
+            var squareLink = new SquareLink(possibleSquare, header);
+            possibleSquare.Attach(squareLink);
+            header.Attach(squareLink);
+            return squareLink;
         }
 
         internal bool TryRemoveFromConstraint()
@@ -47,18 +33,7 @@
             {
                 return true;
             }
-            if (Constraint.Count == 1)
-            {
-                return false;
-            }
-            Down.Up = Up;
-            Up.Down = Down;
-            Constraint.Count--;
-            if (Constraint.FirstLink == this)
-            {
-                Constraint.FirstLink = Down;
-            }
-            return true;
+            return Constraint.TryDetach(this);
         }
 
         internal void ReturnToConstraint()
@@ -68,9 +43,7 @@
             {
                 return;
             }
-            Down.Up = this;
-            Up.Down = this;
-            Constraint.Count++;
+            Constraint.Reattach(this);
         }
 
         internal bool TrySatisfyConstraint()

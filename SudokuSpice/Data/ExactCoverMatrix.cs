@@ -5,40 +5,52 @@ namespace SudokuSpice.Data
 {
     public class ExactCoverMatrix
     {
-        private readonly Square[][] _matrix;
         private readonly int[] _allPossibleValues;
+        private readonly Square?[][] _matrix;
+        private readonly Dictionary<int, int> _valuesToIndices;
         internal ConstraintHeader? FirstHeader;
 
         public ReadOnlySpan<int> AllPossibleValues => new ReadOnlySpan<int>(_allPossibleValues);
 
-        public ExactCoverMatrix(int puzzleSize, int[] allPossibleValues)
+        public IReadOnlyDictionary<int, int> ValuesToIndices => _valuesToIndices;
+
+        public ExactCoverMatrix(IReadOnlyPuzzle puzzle, int[] allPossibleValues)
         {
-            _matrix = new Square[puzzleSize][];
+            _matrix = new Square[puzzle.Size][];
             _allPossibleValues = allPossibleValues;
-            for (int row = 0; row < puzzleSize; row++)
+            _valuesToIndices = new Dictionary<int, int>(allPossibleValues.Length);
+            for (int index = 0; index < allPossibleValues.Length; index++)
             {
-                var colArray = new Square[puzzleSize];
-                for (int col = 0; col < puzzleSize; col++)
+                _valuesToIndices[allPossibleValues[index]] = index;
+            }
+            for (int row = 0; row < puzzle.Size; row++)
+            {
+                var colArray = new Square[puzzle.Size];
+                for (int col = 0; col < puzzle.Size; col++)
                 {
-                    colArray[col] = new Square(new Coordinate(row, col), allPossibleValues.Length);
+                    var coord = new Coordinate(row, col);
+                    if (!puzzle[in coord].HasValue)
+                    {
+                        colArray[col] = new Square(coord, allPossibleValues.Length);
+                    }
                 }
                 _matrix[row] = colArray;
             }
         }
 
-        public Square GetSquare(in Coordinate c)
+        public Square? GetSquare(in Coordinate c)
         {
             return _matrix[c.Row][c.Column];
         }
 
-        public ReadOnlySpan<Square> GetSquaresOnRow(int row)
+        public ReadOnlySpan<Square?> GetSquaresOnRow(int row)
         {
-            return new ReadOnlySpan<Square>(_matrix[row]);
+            return new ReadOnlySpan<Square?>(_matrix[row]);
         }
 
-        public List<Square> GetSquaresOnColumn(int column)
+        public List<Square?> GetSquaresOnColumn(int column)
         {
-            var squares = new List<Square>(_matrix.Length);
+            var squares = new List<Square?>(_matrix.Length);
             for (int row = 0; row < _matrix.Length; row++)
             {
                 squares.Add(_matrix[row][column]);
@@ -58,6 +70,21 @@ namespace SudokuSpice.Data
                 yield return header;
                 header = header.NextHeader;
             } while (header != FirstHeader);
+        }
+
+        internal void Attach(ConstraintHeader header)
+        {
+            if (FirstHeader is null)
+            {
+                FirstHeader = header;
+            }
+            else
+            {
+                header.NextHeader = FirstHeader;
+                header.PreviousHeader = FirstHeader.PreviousHeader;
+                FirstHeader.PreviousHeader = header;
+                header.PreviousHeader.NextHeader = header;
+            }
         }
     }
 }

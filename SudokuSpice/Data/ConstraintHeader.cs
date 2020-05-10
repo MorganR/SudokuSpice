@@ -8,44 +8,32 @@ namespace SudokuSpice.Data
 {
     public class ConstraintHeader
     {
-        internal ExactCoverMatrix Matrix;
-        internal ConstraintHeader NextHeader;
-        internal ConstraintHeader PreviousHeader;
+        internal ExactCoverMatrix Matrix { get; private set; }
         [DisallowNull]
-        internal SquareLink? FirstLink;
-        internal int Count = 0;
+        internal SquareLink? FirstLink { get; private set; }
+        internal int Count { get; private set; }
 
         internal bool IsSatisfied { get; private set; }
+        internal ConstraintHeader NextHeader { get; set; }
+        internal ConstraintHeader PreviousHeader { get; set; }
 
         internal ConstraintHeader(ExactCoverMatrix matrix) {
             Matrix = matrix;
-            if (matrix.FirstHeader is null)
-            {
-                matrix.FirstHeader = this;
-                NextHeader = this;
-                PreviousHeader = this;
-            } else
-            {
-                NextHeader = matrix.FirstHeader;
-                PreviousHeader = NextHeader.PreviousHeader;
-                NextHeader.PreviousHeader = this;
-                PreviousHeader.NextHeader = this;
-            }
-            Count = 0;
+            NextHeader = PreviousHeader = this;
         }
 
-        public static ConstraintHeader CreateConnectedHeader(ExactCoverMatrix matrix, IEnumerable<PossibleSquareValue> possibleSquares)
+        public static ConstraintHeader CreateConnectedHeader(ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares)
         {
             var header = new ConstraintHeader(matrix);
+            matrix.Attach(header);
             foreach (var possibleSquare in possibleSquares)
             {
-                
-                var squareLink = new SquareLink(possibleSquare, header);
+                SquareLink.CreateConnectedLink(possibleSquare, header);
             }
             if (header.Count == 0)
             {
                 throw new ArgumentException(
-                    $"Must provide at least one {nameof(PossibleSquareValue)} when connecting a {nameof(ConstraintHeader)}.");
+                    $"Must provide at least one {nameof(PossibleSquareValue)} when creating a {nameof(ConstraintHeader)}.");
             }
             return header;
         }
@@ -94,6 +82,48 @@ namespace SudokuSpice.Data
             IsSatisfied = false;
             NextHeader.PreviousHeader = this;
             PreviousHeader.NextHeader = this;
+        }
+
+        internal bool TryDetach(SquareLink link)
+        {
+            Debug.Assert(
+                GetLinks().Contains(link),
+                $"Can't remove missing possible square {link.PossibleSquare.Square.Coordinate}, value: {link.PossibleSquare.ValueIndex} from constraint.");
+            if (Count == 1)
+            {
+                return false;
+            }
+            if (FirstLink == link)
+            {
+                FirstLink = link.Down;
+            }
+            link.Down.Up = link.Up;
+            link.Up.Down = link.Down;
+            Count--;
+            return true;
+        }
+
+        internal void Attach(SquareLink link)
+        {
+            if (FirstLink is null)
+            {
+                FirstLink = link;
+            }
+            else
+            {
+                link.Down = FirstLink;
+                link.Up = FirstLink.Up;
+                FirstLink.Up.Down = link;
+                FirstLink.Up = link;
+            }
+            Count++;
+        }
+
+        internal void Reattach(SquareLink link)
+        {
+            link.Down.Up = link;
+            link.Up.Down = link;
+            Count++;
         }
 
         internal IEnumerable<SquareLink> GetLinks()

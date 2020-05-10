@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SudokuSpice.Constraints;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SudokuSpice.Data.Test
@@ -6,266 +8,171 @@ namespace SudokuSpice.Data.Test
     public class SquareLinkTest
     {
         [Fact]
-        public void Constructor_AsFirstConnection_ConnectsCorrectly()
+        public void CreateConnectedLink_ConnectsCorrectly()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader(matrix);
 
-            var link = new SquareLink(possibleSquare, constraintHeader);
+            var link = SquareLink.CreateConnectedLink(possibleSquare, constraintHeader);
 
             Assert.Same(link, link.Up);
             Assert.Same(link, link.Down);
             Assert.Same(link, link.Right);
             Assert.Same(link, link.Left);
-            Assert.Same(link, possibleSquare.FirstLink);
-            Assert.Same(link, constraintHeader.FirstLink);
             Assert.Same(possibleSquare, link.PossibleSquare);
             Assert.Same(constraintHeader, link.Constraint);
             Assert.Equal(1, constraintHeader.Count);
+            Assert.Same(link, constraintHeader.FirstLink);
+            Assert.Same(link, possibleSquare.FirstLink);
         }
 
         [Fact]
-        public void Constructor_AsSecondConnection_ConnectsCorrectly()
+        public void CreateConnectedLink_WithExistingLinks_ConnectsCorrectly()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader(matrix);
-            var firstLink = new SquareLink(possibleSquare, constraintHeader);
 
-            var link = new SquareLink(possibleSquare, constraintHeader);
+            var firstLink = SquareLink.CreateConnectedLink(possibleSquare, constraintHeader);
+            var link = SquareLink.CreateConnectedLink(possibleSquare, constraintHeader);
 
-            Assert.Same(firstLink, link.Right);
-            Assert.Same(firstLink, link.Left);
             Assert.Same(firstLink, link.Up);
             Assert.Same(firstLink, link.Down);
-            Assert.Same(link, firstLink.Right);
-            Assert.Same(link, firstLink.Left);
+            Assert.Same(firstLink, link.Right);
+            Assert.Same(firstLink, link.Left);
             Assert.Same(link, firstLink.Up);
             Assert.Same(link, firstLink.Down);
-            Assert.Same(link, possibleSquare.FirstLink.Right);
-            Assert.Same(link, constraintHeader.FirstLink.Down);
+            Assert.Same(link, firstLink.Right);
+            Assert.Same(link, firstLink.Left);
             Assert.Same(possibleSquare, link.PossibleSquare);
             Assert.Same(constraintHeader, link.Constraint);
             Assert.Equal(2, constraintHeader.Count);
+            Assert.Same(firstLink, constraintHeader.FirstLink);
+            Assert.Same(firstLink, possibleSquare.FirstLink);
         }
 
         [Fact]
         public void TryRemoveFromConstraint_OnSuccess()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(matrix);
-            var firstLink = new SquareLink(possibleSquare, constraintHeader);
-            var secondLink = new SquareLink(possibleSquare, constraintHeader);
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var constraintHeader = ConstraintHeader.CreateConnectedHeader(
+                matrix,
+                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
+            var firstLink = constraintHeader.FirstLink;
+            var secondLink = firstLink.Down;
+            var thirdLink = secondLink.Down;
+            var fourthLink = thirdLink.Down;
 
             Assert.True(firstLink.TryRemoveFromConstraint());
 
-            Assert.Same(secondLink, firstLink.Up);
+            Assert.Same(fourthLink, firstLink.Up);
             Assert.Same(secondLink, firstLink.Down);
-            Assert.Same(secondLink, firstLink.Right);
-            Assert.Same(secondLink, firstLink.Left);
             Assert.Same(secondLink, constraintHeader.FirstLink);
-            Assert.Same(secondLink, secondLink.Up);
-            Assert.Same(secondLink, secondLink.Down);
-            Assert.Same(firstLink, secondLink.Right);
-            Assert.Same(firstLink, secondLink.Left);
-            Assert.Same(firstLink, possibleSquare.FirstLink);
-            Assert.Equal(1, constraintHeader.Count);
+            Assert.Same(fourthLink, secondLink.Up);
+            Assert.Same(secondLink, fourthLink.Down);
+            Assert.Equal(3, constraintHeader.Count);
         }
 
         [Fact]
-        public void TryRemoveFromConstraint_OnFailure_LeavesUnchanged()
+        public void TryRemoveFromConstraint_WhenConstraintSatisfied_LeavesUnchanged()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(matrix);
-            var link = new SquareLink(possibleSquare, constraintHeader);
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var constraintHeader = ConstraintHeader.CreateConnectedHeader(
+                matrix,
+                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
+            var firstLink = constraintHeader.FirstLink;
+            var secondLink = firstLink.Down;
+            var thirdLink = secondLink.Down;
+            var fourthLink = thirdLink.Down;
+            var expectedConstraintCount = constraintHeader.Count;
 
-            Assert.False(link.TryRemoveFromConstraint());
+            Assert.True(firstLink.TrySatisfyConstraint());
+            Assert.True(secondLink.TryRemoveFromConstraint());
 
-            Assert.Same(link, link.Up);
-            Assert.Same(link, link.Down);
-            Assert.Same(link, link.Right);
-            Assert.Same(link, link.Left);
-            Assert.Same(link, constraintHeader.FirstLink);
-            Assert.Same(link, possibleSquare.FirstLink);
-            Assert.Equal(1, constraintHeader.Count);
+            Assert.Equal(expectedConstraintCount, constraintHeader.Count);
+            Assert.Same(firstLink, secondLink.Up);
+            Assert.Same(secondLink, firstLink.Down);
+            Assert.Same(secondLink, thirdLink.Up);
+            Assert.Same(thirdLink, secondLink.Down);
         }
 
         [Fact]
         public void ReturnToConstraint_Succeeds()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(matrix);
-            var firstLink = new SquareLink(possibleSquare, constraintHeader);
-            var secondLink = new SquareLink(possibleSquare, constraintHeader);
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var constraintHeader = ConstraintHeader.CreateConnectedHeader(
+                matrix,
+                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
+            var firstLink = constraintHeader.FirstLink;
+            var secondLink = firstLink.Down;
+            var thirdLink = secondLink.Down;
+            var fourthLink = thirdLink.Down;
+            var expectedConstraintCount = constraintHeader.Count;
 
             Assert.True(firstLink.TryRemoveFromConstraint());
             firstLink.ReturnToConstraint();
 
-            Assert.Same(secondLink, firstLink.Up);
-            Assert.Same(secondLink, firstLink.Down);
-            Assert.Same(secondLink, firstLink.Right);
-            Assert.Same(secondLink, firstLink.Left);
+            Assert.Equal(expectedConstraintCount, constraintHeader.Count);
             Assert.Same(firstLink, secondLink.Up);
-            Assert.Same(firstLink, secondLink.Down);
-            Assert.Same(firstLink, secondLink.Right);
-            Assert.Same(firstLink, secondLink.Left);
-            Assert.Same(firstLink, possibleSquare.FirstLink);
-            Assert.Equal(2, constraintHeader.Count);
+            Assert.Same(secondLink, firstLink.Down);
+            Assert.Same(firstLink, fourthLink.Down);
+            Assert.Same(fourthLink, firstLink.Up);
         }
 
         [Fact]
         public void TrySatisfyConstraint_Succeeds()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
-            var header = ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-                });
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            new RowUniquenessConstraint().Constrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
             var link = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink;
+            var header = link.Constraint;
             Assert.True(link.TrySatisfyConstraint());
 
             Assert.True(header.IsSatisfied);
             Assert.True(link.Constraint.IsSatisfied);
-            Assert.NotSame(link.Right, link);
-            Assert.Same(link.Right, link.Left);
+            // Still connected horizontally.
             Assert.Same(link, link.Right.Left);
-            Assert.Same(link, link.Right.Right);
-            Assert.Contains(link, link.Constraint.GetLinks());
+            Assert.Same(link, link.Left.Right);
+            // Vertically connected links are dropped form possible values.
             Assert.Equal(PossibleSquareState.DROPPED, link.Up.PossibleSquare.State);
-            Assert.Equal(1, link.Up.PossibleSquare.Square.NumPossibleValues);
-            Assert.Same(link, link.Up.Down);
-            Assert.Same(link, link.Up.Up);
-            Assert.Same(link.Up.Right, link.Up.Left);
-            Assert.NotSame(link.Up, link.Up.Right);
-            Assert.Equal(1, link.Up.Right.Constraint.Count);
-            Assert.DoesNotContain(link.Up.Right, link.Up.Right.Constraint.GetLinks());
+            Assert.Equal(3, link.Up.PossibleSquare.Square.NumPossibleValues);
+            // Still connected vertically.
+            Assert.Contains(link, link.Constraint.GetLinks());
         }
 
         [Fact]
         public void TrySatisfyConstraint_WithNoOtherChoicesOnConnectedPossible_Fails()
         {
-            var matrix = new ExactCoverMatrix(2, new int[] { 1, 2 });
-            var header = ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-                });
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new List<PossibleSquareValue> {
-                    matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[1],
-                    matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[1],
-                });
-            Assert.True(matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[1].TryDrop());
+            var puzzle = new Puzzle(4);
+            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            new RowUniquenessConstraint().Constrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
-            var link = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink;
+            var square = matrix.GetSquare(new Coordinate(0, 0));
+            var lastLink = square.AllPossibleValues[0].FirstLink;
+            var header = lastLink.Constraint;
+            for (int i = 1; i < square.AllPossibleValues.Length; i++)
+            {
+                Assert.True(square.AllPossibleValues[i].TryDrop());
+            }
+            var link = lastLink.Down;
             Assert.False(link.TrySatisfyConstraint());
 
             Assert.False(header.IsSatisfied);
-            Assert.NotSame(link.Right, link);
-            Assert.Same(link.Right, link.Left);
-            Assert.Same(link, link.Right.Left);
-            Assert.Same(link, link.Right.Right);
-            Assert.Contains(link, link.Constraint.GetLinks());
-            Assert.Equal(PossibleSquareState.UNKNOWN, link.Up.PossibleSquare.State);
-            Assert.Equal(1, link.Up.PossibleSquare.Square.NumPossibleValues);
-            Assert.Same(link, link.Up.Down);
-            Assert.Same(link, link.Up.Up);
-            Assert.Same(link.Up.Right, link.Up.Left);
-            Assert.NotSame(link.Up, link.Up.Right);
-            Assert.Equal(2, link.Up.Right.Constraint.Count);
-            Assert.Contains(link.Up.Right, link.Up.Right.Constraint.GetLinks());
+            Assert.Equal(1, square.NumPossibleValues);
+            Assert.Same(lastLink.PossibleSquare, square.GetStillPossibleValues().Single());
+            Assert.Equal(PossibleSquareState.UNKNOWN, lastLink.PossibleSquare.State);
         }
     }
 }

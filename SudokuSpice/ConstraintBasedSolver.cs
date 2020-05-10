@@ -7,7 +7,7 @@ namespace SudokuSpice
 {
     public class ConstraintBasedSolver
     {
-        private IReadOnlyList<IConstraint> _constraints;
+        private readonly IReadOnlyList<IConstraint> _constraints;
 
         public ConstraintBasedSolver(IReadOnlyList<IConstraint> constraints)
         {
@@ -16,7 +16,7 @@ namespace SudokuSpice
 
         public void Solve(IPuzzle puzzle, int[] possibleValues)
         {
-            var matrix = new ExactCoverMatrix(puzzle.Size, (int[])possibleValues.Clone());
+            var matrix = new ExactCoverMatrix(puzzle, (int[])possibleValues.Clone());
             foreach (var constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);

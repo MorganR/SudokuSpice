@@ -6,17 +6,32 @@ namespace SudokuSpice.Data
 {
     public class PossibleSquareValue
     {
+        internal readonly int ValueIndex;
         internal readonly Square Square;
-        internal PossibleSquareState State;
+        internal PossibleSquareState State { get; private set; }
         [DisallowNull]
-        internal SquareLink? FirstLink;
-        public int ValueIndex { get; }
+        internal SquareLink? FirstLink { get; private set; }
 
         public PossibleSquareValue(Square square, int valueIndex)
         {
-            Square = square;
             ValueIndex = valueIndex;
+            Square = square;
             State = PossibleSquareState.UNKNOWN;
+        }
+
+        internal void Attach(SquareLink link)
+        {
+            if (FirstLink is null)
+            {
+                FirstLink = link;
+            }
+            else
+            {
+                link.Right = FirstLink;
+                link.Left = link.Right.Left;
+                link.Right.Left = link;
+                link.Left.Right = link;
+            }
         }
 
         internal bool TrySelect()
@@ -42,14 +57,16 @@ namespace SudokuSpice.Data
         internal bool TryDrop()
         {
             Debug.Assert(State == PossibleSquareState.UNKNOWN, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} was cleared while in state {State}.");
-            Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} was cleared while FirstLink was null.");
             if (Square.NumPossibleValues == 1)
             {
                 return false;
             }
-            if (!_TryUpdateLinks(link => link.TryRemoveFromConstraint(), link => link.ReturnToConstraint()))
+            if (FirstLink != null)
             {
-                return false;
+                if (!_TryUpdateLinks(link => link.TryRemoveFromConstraint(), link => link.ReturnToConstraint()))
+                {
+                    return false;
+                }
             }
             Square.NumPossibleValues--;
             State = PossibleSquareState.DROPPED;
