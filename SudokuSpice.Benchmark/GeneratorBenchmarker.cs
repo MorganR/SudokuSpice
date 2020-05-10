@@ -4,7 +4,7 @@ using System;
 
 namespace SudokuSpice.Benchmark
 {
-    [MultithreadedJob]
+    [SimpleJob]
     public class GeneratorBenchmarker
     {
         [Benchmark(Baseline = true)]
