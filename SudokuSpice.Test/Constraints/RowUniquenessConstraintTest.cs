@@ -12,7 +12,7 @@ namespace SudokuSpice.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix(puzzle, possibleValues);
+            var matrix = new ExactCoverMatrix(puzzle);
 
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -47,7 +47,7 @@ namespace SudokuSpice.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix(puzzle, possibleValues);
+            var matrix = new ExactCoverMatrix(puzzle);
 
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
 

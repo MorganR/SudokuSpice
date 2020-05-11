@@ -10,7 +10,7 @@ namespace SudokuSpice.Data.Test
         public void CreateConnectedLink_ConnectsCorrectly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader(matrix);
@@ -32,7 +32,7 @@ namespace SudokuSpice.Data.Test
         public void CreateConnectedLink_WithExistingLinks_ConnectsCorrectly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader(matrix);
@@ -59,7 +59,7 @@ namespace SudokuSpice.Data.Test
         public void TryRemoveFromConstraint_OnSuccess()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             var constraintHeader = ConstraintHeader.CreateConnectedHeader(
                 matrix,
                 matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
@@ -82,7 +82,7 @@ namespace SudokuSpice.Data.Test
         public void TryRemoveFromConstraint_WhenConstraintSatisfied_LeavesUnchanged()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             var constraintHeader = ConstraintHeader.CreateConnectedHeader(
                 matrix,
                 matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
@@ -106,7 +106,7 @@ namespace SudokuSpice.Data.Test
         public void ReturnToConstraint_Succeeds()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             var constraintHeader = ConstraintHeader.CreateConnectedHeader(
                 matrix,
                 matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
@@ -130,7 +130,7 @@ namespace SudokuSpice.Data.Test
         public void TrySatisfyConstraint_Succeeds()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 
@@ -154,7 +154,7 @@ namespace SudokuSpice.Data.Test
         public void TrySatisfyConstraint_WithNoOtherChoicesOnConnectedPossible_Fails()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle, new int[] { 1, 2, 3, 4 });
+            var matrix = new ExactCoverMatrix(puzzle);
             new RowUniquenessConstraint().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
 

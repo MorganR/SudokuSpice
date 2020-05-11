@@ -12,6 +12,10 @@ namespace SudokuSpice
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Puzzle : IPuzzle, IReadOnlyBoxPuzzle
     {
+        private readonly int?[,] _squares;
+        private readonly CoordinateTracker _unsetCoordsTracker;
+        private readonly int[] _allPossibleValues;
+
         /// <summary>The length of one side of the puzzle.</summary>
         public int Size { get; }
         /// <summary>The length of one side of a mini box within the puzzle.</summary>
@@ -23,9 +27,7 @@ namespace SudokuSpice
         public int NumEmptySquares { get { return _unsetCoordsTracker.NumTracked; } }
         /// <summary>The number of set/known squares in the puzzle.</summary>
         public int NumSetSquares { get { return NumSquares - NumEmptySquares; } }
-
-        private readonly int?[,] _squares;
-        private readonly CoordinateTracker _unsetCoordsTracker;
+        public ReadOnlySpan<int> AllPossibleValues => _allPossibleValues;
 
         /// <summary>
         /// Constructs a new puzzle of the given side length.
@@ -65,7 +67,7 @@ namespace SudokuSpice
                     throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
             }
             _squares = new int?[size, size];
-            _unsetCoordsTracker = new CoordinateTracker(Size);
+            _unsetCoordsTracker = new CoordinateTracker(size);
             for (var row = 0; row < Size; row++)
             {
                 for (var col = 0; col < Size; col++)
@@ -75,6 +77,11 @@ namespace SudokuSpice
                         _unsetCoordsTracker.Add(new Coordinate(row, col));
                     }
                 }
+            }
+            _allPossibleValues = new int[size];
+            for (int i = 0; i < size; i++)
+            {
+                _allPossibleValues[i] = i + 1;
             }
         }
 
@@ -114,6 +121,11 @@ namespace SudokuSpice
                         _unsetCoordsTracker.Add(new Coordinate(row, col));
                     }
                 }
+            }
+            _allPossibleValues = new int[Size];
+            for (int i = 0; i < Size; i++)
+            {
+                _allPossibleValues[i] = i + 1;
             }
         }
 

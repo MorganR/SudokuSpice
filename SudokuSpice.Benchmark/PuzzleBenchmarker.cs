@@ -66,7 +66,7 @@ namespace SudokuSpice.Benchmark
         {
             var p = new Puzzle(puzzle.NullableMatrix);
             var solver = new ConstraintBasedSolver(new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            solver.Solve(p, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            solver.Solve(p);
             return p.NumEmptySquares == 0;
         }
 

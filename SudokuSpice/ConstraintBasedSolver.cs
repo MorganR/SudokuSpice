@@ -40,22 +40,13 @@ namespace SudokuSpice
         /// Thrown if the puzzle cannot be solved with this solver's constraints, or if the
         /// possible values are not unique.
         /// </exception>
-        public void Solve(IPuzzle puzzle, ReadOnlySpan<int> possibleValues)
+        public void Solve(IPuzzle puzzle)
         {
-            var possibleValuesCopy = new int[possibleValues.Length];
-            for (int i = 0; i < possibleValues.Length; i++)
-            {
-                possibleValuesCopy[i] = possibleValues[i];
-                for (int j = i - 1; j >= 0; j--)
-                {
-                    if (possibleValuesCopy[j] == possibleValuesCopy[i])
-                    {
-                        throw new ArgumentException(
-                            $"{nameof(possibleValues)} must all be unique. Received values: {possibleValues.ToString()}.");
-                    }
-                }
+            if (_AreValuesUnique(puzzle.AllPossibleValues)) {
+                throw new ArgumentException(
+                    $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
-            var matrix = new ExactCoverMatrix(puzzle, possibleValuesCopy);
+            var matrix = new ExactCoverMatrix(puzzle);
             foreach (var constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
@@ -64,6 +55,21 @@ namespace SudokuSpice
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
+        }
+
+        private static bool _AreValuesUnique(ReadOnlySpan<int> values)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                for (int j = i - 1; j >= 0; j--)
+                {
+                    if (values[j] == values[i])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         private static bool _TrySolve(IPuzzle puzzle, ConstraintBasedTracker tracker)

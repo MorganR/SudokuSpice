@@ -16,6 +16,8 @@ namespace SudokuSpice
         public int NumEmptySquares { get; }
         /// <summary>The number of set/known squares in the puzzle.</summary>
         public int NumSetSquares { get; }
+        /// <summary>Gets all the possible values for this puzzle.</summary>
+        public ReadOnlySpan<int> AllPossibleValues { get; }
 
         /// <summary>
         /// Gets the current value of a given square. A square can be 'unset' by setting its value

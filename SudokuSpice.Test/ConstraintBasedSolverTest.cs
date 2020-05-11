@@ -14,12 +14,7 @@ namespace SudokuSpice.Test
         {
             var solver = new ConstraintBasedSolver(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            var possibleValues = new int[puzzle.Size];
-            for (int i = 1; i <= puzzle.Size; i++)
-            {
-                possibleValues[i - 1] = i;
-            }
-            solver.Solve(puzzle, possibleValues);
+            solver.Solve(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
 

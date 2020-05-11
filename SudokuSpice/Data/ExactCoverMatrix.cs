@@ -32,14 +32,14 @@ namespace SudokuSpice.Data
         /// </summary>
         public IReadOnlyDictionary<int, int> ValuesToIndices => _valuesToIndices;
 
-        internal ExactCoverMatrix(IReadOnlyPuzzle puzzle, int[] allPossibleValues)
+        internal ExactCoverMatrix(IReadOnlyPuzzle puzzle)
         {
             _matrix = new Square[puzzle.Size][];
-            _allPossibleValues = allPossibleValues;
-            _valuesToIndices = new Dictionary<int, int>(allPossibleValues.Length);
-            for (int index = 0; index < allPossibleValues.Length; index++)
+            _allPossibleValues = puzzle.AllPossibleValues.ToArray();
+            _valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
+            for (int index = 0; index < _allPossibleValues.Length; index++)
             {
-                _valuesToIndices[allPossibleValues[index]] = index;
+                _valuesToIndices[_allPossibleValues[index]] = index;
             }
             for (int row = 0; row < puzzle.Size; row++)
             {
@@ -49,7 +49,7 @@ namespace SudokuSpice.Data
                     var coord = new Coordinate(row, col);
                     if (!puzzle[in coord].HasValue)
                     {
-                        colArray[col] = new Square(coord, allPossibleValues.Length);
+                        colArray[col] = new Square(coord, _allPossibleValues.Length);
                     }
                 }
                 _matrix[row] = colArray;
