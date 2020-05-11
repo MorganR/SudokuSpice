@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using BenchmarkDotNet.Attributes;
 using SudokuSpice.Constraints;
-using SudokuSpice.Data;
 
 namespace SudokuSpice.Benchmark
 {

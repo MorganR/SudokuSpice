@@ -4,10 +4,24 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.Data
 {
+    /// <summary>
+    /// Represents a row in the <see cref="ExactCoverMatrix"/>. This represents a possible value
+    /// for a given <see cref="Square"/>.
+    /// </summary>
     public class PossibleSquareValue
     {
-        public readonly int ValueIndex;
-        public readonly Square Square;
+        /// <summary>
+        /// Gets the index of the possible value that this represents. This index corresponds with
+        /// <see cref="ExactCoverMatrix.AllPossibleValues"/>.
+        /// </summary>
+        public int ValueIndex { get; }
+        /// <summary>
+        /// Gets the square that this is a possible value for.
+        /// </summary>
+        public Square Square { get; }
+        /// <summary>
+        /// Gets the state of this row.
+        /// </summary>
         public PossibleSquareState State { get; private set; }
         [DisallowNull]
         internal SquareLink? FirstLink { get; private set; }

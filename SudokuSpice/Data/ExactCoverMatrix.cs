@@ -3,6 +3,17 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Data
 {
+    /// <summary>
+    /// Holds an exact-cover matrix for the current puzzle being solved.
+    /// </summary>
+    /// <remarks>
+    /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
+    /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
+    /// matrix. <see cref="SudokuSpice.Constraints.IConstraint">IConstraint</see>s will then add
+    /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding
+    /// <see cref="SquareLink"/>s.
+    /// </remarks>
+    /// <seealso cref="https://en.wikipedia.org/wiki/Exact_cover"/>
     public class ExactCoverMatrix
     {
         private readonly int[] _allPossibleValues;
@@ -10,11 +21,18 @@ namespace SudokuSpice.Data
         private readonly Dictionary<int, int> _valuesToIndices;
         internal ConstraintHeader? FirstHeader;
 
+        /// <summary>
+        /// Contains the possible values for the current puzzle.
+        /// </summary>
         public ReadOnlySpan<int> AllPossibleValues => new ReadOnlySpan<int>(_allPossibleValues);
 
+        /// <summary>
+        /// Maps possible values for the puzzle to indices in the <see cref="AllPossibleValues"/>
+        /// array.
+        /// </summary>
         public IReadOnlyDictionary<int, int> ValuesToIndices => _valuesToIndices;
 
-        public ExactCoverMatrix(IReadOnlyPuzzle puzzle, int[] allPossibleValues)
+        internal ExactCoverMatrix(IReadOnlyPuzzle puzzle, int[] allPossibleValues)
         {
             _matrix = new Square[puzzle.Size][];
             _allPossibleValues = allPossibleValues;
@@ -38,16 +56,28 @@ namespace SudokuSpice.Data
             }
         }
 
+        /// <summary>
+        /// Gets the square representing the given <see cref="Coordinate"/>. This returns null if
+        /// the square's value was preset in the current puzzle being solved.
+        /// </summary>
         public Square? GetSquare(in Coordinate c)
         {
             return _matrix[c.Row][c.Column];
         }
 
+        /// <summary>
+        /// Gets all the <see cref="Square"/>s on the requested row.
+        /// </summary>
+        /// <param name="row">A zero-based row index.</param>
         public ReadOnlySpan<Square?> GetSquaresOnRow(int row)
         {
             return new ReadOnlySpan<Square?>(_matrix[row]);
         }
 
+        /// <summary>
+        /// Gets all the <see cref="Square"/>s on the requested column.
+        /// </summary>
+        /// <param name="column">A zero-based column index.</param>
         public List<Square?> GetSquaresOnColumn(int column)
         {
             var squares = new List<Square?>(_matrix.Length);
@@ -58,6 +88,9 @@ namespace SudokuSpice.Data
             return squares;
         }
 
+        /// <summary>
+        /// Gets all the currently unsatisfied <see cref="ConstraintHeader"/>s.
+        /// </summary>
         public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
         {
             if (FirstHeader == null)

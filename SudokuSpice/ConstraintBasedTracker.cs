@@ -5,25 +5,25 @@ using System.Linq;
 
 namespace SudokuSpice
 {
-    class ConstraintBasedTracker
+    internal class ConstraintBasedTracker
     {
         private readonly IPuzzle _puzzle;
         private readonly ExactCoverMatrix _matrix;
         private readonly Stack<Coordinate> _setCoords;
 
-        public ConstraintBasedTracker(IPuzzle puzzle, ExactCoverMatrix matrix)
+        internal ConstraintBasedTracker(IPuzzle puzzle, ExactCoverMatrix matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;
             _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
-            Dictionary<int, int> valuesToIndices = new Dictionary<int, int>(matrix.AllPossibleValues.Length);
+            var valuesToIndices = new Dictionary<int, int>(matrix.AllPossibleValues.Length);
             for (int index = 0; index < matrix.AllPossibleValues.Length; index++)
             {
                 valuesToIndices[matrix.AllPossibleValues[index]] = index;
             }
         }
 
-        public (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
+        internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Square? bestSquare = null;
@@ -36,7 +36,8 @@ namespace SudokuSpice
                     maxPossibleValues = square.NumPossibleValues;
                     if (maxPossibleValues == 1)
                     {
-                        return (coord, new int[] { square.GetStillPossibleValues()[0].ValueIndex });
+                        return (coord,
+                            new int[] { square.GetStillPossibleValues()[0].ValueIndex });
                     }
                     bestSquare = square;
                 }
@@ -45,24 +46,28 @@ namespace SudokuSpice
             {
                 if (constraint.Count == 1)
                 {
-                    Debug.Assert(constraint.FirstLink != null, "Unsatisfied constraint had a null first link.");
+                    Debug.Assert(
+                        constraint.FirstLink != null,
+                        "Unsatisfied constraint had a null first link.");
                     var possibleSquare = constraint.FirstLink.PossibleSquare;
-                    return (possibleSquare.Square.Coordinate, new int[] { possibleSquare.ValueIndex });
+                    return (possibleSquare.Square.Coordinate,
+                        new int[] { possibleSquare.ValueIndex });
                 }
             }
-            Debug.Assert(bestSquare != null, $"{nameof(bestSquare)} was still null at the end of {nameof(GetBestGuess)}.");
-            return (bestSquare.Coordinate, _OrderPossibleValuesByProbability(bestSquare.Coordinate));
+            Debug.Assert(
+                bestSquare != null,
+                $"{nameof(bestSquare)} was still null at the end of {nameof(GetBestGuess)}.");
+            return (bestSquare.Coordinate,
+                _OrderPossibleValuesByProbability(bestSquare.Coordinate));
         }
 
-        private int[] _OrderPossibleValuesByProbability(in Coordinate c)
+        internal bool TrySet(in Coordinate c, int valueIndex)
         {
-            var possibleSquares = _matrix.GetSquare(in c).GetStillPossibleValues();
-            return possibleSquares.OrderBy(ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
-        }
-
-        public bool TrySet(in Coordinate c, int valueIndex)
-        {
-            if (!_matrix.GetSquare(in c).TrySet(valueIndex))
+            var square = _matrix.GetSquare(in c);
+            Debug.Assert(
+                square != null,
+                $"Tried to set {c} to value at {valueIndex}, but square was null.");
+            if (!square.TrySet(valueIndex))
             {
                 return false;
             }
@@ -71,14 +76,29 @@ namespace SudokuSpice
             return true;
         }
 
-        public void UnsetLast()
+        internal void UnsetLast()
         {
-            Debug.Assert(_setCoords.Count > 0, "Tried to call UnsetLast when no squares had been set.");
+            Debug.Assert(
+                _setCoords.Count > 0,
+                "Tried to call UnsetLast when no squares had been set.");
             var c = _setCoords.Pop();
             _puzzle[in c] = null;
             var square = _matrix.GetSquare(in c);
-            Debug.Assert(square != null, $"Tried to unset the last update to a null square at {c}.");
+            Debug.Assert(
+                square != null,
+                $"Tried to unset the last update to a null square at {c}.");
             square.Unset();
+        }
+
+        private int[] _OrderPossibleValuesByProbability(in Coordinate c)
+        {
+            var square = _matrix.GetSquare(in c);
+            Debug.Assert(
+                square != null,
+                $"Tried to order possible values at {c}, but square was null.");
+            var possibleSquares = square.GetStillPossibleValues();
+            return possibleSquares.OrderBy(
+                ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
         }
     }
 }

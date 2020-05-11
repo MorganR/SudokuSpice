@@ -48,7 +48,7 @@ namespace SudokuSpice.Constraints
                 {
                     continue;
                 }
-                var possibleValue = square.AllPossibleValues[valueIndex];
+                var possibleValue = square.GetPossibleValue(valueIndex);
                 if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
                 {
                     throw new ArgumentException(
@@ -65,11 +65,11 @@ namespace SudokuSpice.Constraints
             for (int row = 0; row < columnSquares.Count; row++)
             {
                 var square = columnSquares[row];
-                if (square is null || square.AllPossibleValues[valueIndex].State != PossibleSquareState.UNKNOWN)
+                if (square is null || square.GetPossibleValue(valueIndex).State != PossibleSquareState.UNKNOWN)
                 {
                     continue;
                 }
-                possibleSquares[numPossibleSquares++] = square.AllPossibleValues[valueIndex];
+                possibleSquares[numPossibleSquares++] = square.GetPossibleValue(valueIndex);
             }
             ConstraintHeader.CreateConnectedHeader(
                 matrix, new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
