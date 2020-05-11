@@ -42,7 +42,7 @@ namespace SudokuSpice
         /// </exception>
         public void Solve(IPuzzle puzzle)
         {
-            if (_AreValuesUnique(puzzle.AllPossibleValues)) {
+            if (!_AreValuesUnique(puzzle.AllPossibleValues)) {
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
