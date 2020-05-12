@@ -141,18 +141,23 @@ namespace SudokuSpice
             List<int> valuesToGuess)
         {
             var solveStats = new SolveStats();
-            int idx = 0;
-            foreach (var possibleValue in valuesToGuess)
+            for (int i = 0; i < valuesToGuess.Count - 1; i++)
             {
                 var trackerCopy = new SquareTracker(tracker);
-                if (trackerCopy.TrySet(in c, possibleValue))
+                if (trackerCopy.TrySet(in c, valuesToGuess[i]))
                 {
                     var guessStats = _TryAllSolutions(trackerCopy);
                     solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                     solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                     solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
                 }
-                idx++;
+            }
+            if (tracker.TrySet(in c, valuesToGuess[^1]))
+            {
+                var guessStats = _TryAllSolutions(tracker);
+                solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
+                solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
+                solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
             }
             if (solveStats.NumSolutionsFound == 0)
             {
