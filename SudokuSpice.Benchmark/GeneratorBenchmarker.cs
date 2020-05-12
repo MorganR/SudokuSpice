@@ -1,6 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
 using SudokuSharp;
+using SudokuSpice.Constraints;
 using System;
+using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
@@ -11,6 +13,21 @@ namespace SudokuSpice.Benchmark
         public int SudokuSpice()
         {
             var generator = new StandardPuzzleGenerator(9);
+            var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
+            return puzzle.NumEmptySquares;
+        }
+
+        [Benchmark]
+        public int SudokuSpiceConstraints()
+        {
+            var generator = new ConstraintBasedGenerator<Puzzle>(
+                () => new Puzzle(9),
+                new List<IConstraint>
+                {
+                    new RowUniquenessConstraint(),
+                    new ColumnUniquenessConstraint(),
+                    new BoxUniquenessConstraint(),
+                });
             var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }

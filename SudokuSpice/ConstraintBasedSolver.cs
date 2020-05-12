@@ -51,10 +51,44 @@ namespace SudokuSpice
             {
                 constraint.Constrain(puzzle, matrix);
             }
-            if (!_TrySolve(puzzle, new ConstraintBasedTracker(puzzle, matrix)))
+            if (!_TrySolve(new ConstraintBasedTracker(puzzle, matrix)))
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
+        }
+
+        public void SolveRandomly(IPuzzle puzzle)
+        {
+            if (!_AreValuesUnique(puzzle.AllPossibleValues))
+            {
+                throw new ArgumentException(
+                    $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
+            }
+            var matrix = new ExactCoverMatrix(puzzle);
+            foreach (var constraint in _constraints)
+            {
+                constraint.Constrain(puzzle, matrix);
+            }
+            if (!_TrySolveRandomly(new Random(), new ConstraintBasedTracker(puzzle, matrix)))
+            {
+                throw new ArgumentException($"Failed to solve the given puzzle.");
+            }
+        }
+
+        public SolveStats GetStatsForAllSolutions(IPuzzle puzzle)
+        {
+            if (!_AreValuesUnique(puzzle.AllPossibleValues))
+            {
+                throw new ArgumentException(
+                    $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
+            }
+            var puzzleCopy = puzzle.DeepCopy();
+            var matrix = new ExactCoverMatrix(puzzleCopy);
+            foreach (var constraint in _constraints)
+            {
+                constraint.Constrain(puzzleCopy, matrix);
+            }
+            return _TryAllSolutions(new ConstraintBasedTracker(puzzleCopy, matrix));
         }
 
         private static bool _AreValuesUnique(ReadOnlySpan<int> values)
@@ -72,9 +106,9 @@ namespace SudokuSpice
             return true;
         }
 
-        private static bool _TrySolve(IPuzzle puzzle, ConstraintBasedTracker tracker)
+        private static bool _TrySolve(ConstraintBasedTracker tracker)
         {
-            if (puzzle.NumEmptySquares == 0)
+            if (tracker.IsSolved)
             {
                 return true;
             }
@@ -83,7 +117,7 @@ namespace SudokuSpice
             {
                 if (tracker.TrySet(in c, possibleValue))
                 {
-                    if (_TrySolve(puzzle, tracker))
+                    if (_TrySolve(tracker))
                     {
                         return true;
                     }
@@ -91,6 +125,81 @@ namespace SudokuSpice
                 }
             }
             return false;
+        }
+
+        private static bool _TrySolveRandomly(Random rand, ConstraintBasedTracker tracker)
+        {
+            if (tracker.IsSolved)
+            {
+                return true;
+            }
+            (var c, var possibleValues) = tracker.GetBestGuess();
+            var possibleValuesList = new List<int>(possibleValues);
+            while (possibleValuesList.Count > 0)
+            {
+                int possibleValue = possibleValuesList[rand.Next(0, possibleValuesList.Count)];
+                if (tracker.TrySet(in c, possibleValue))
+                {
+                    if (_TrySolveRandomly(rand, tracker))
+                    {
+                        return true;
+                    }
+                    tracker.UnsetLast();
+                }
+                possibleValuesList.Remove(possibleValue);
+            }
+            return false;
+        }
+
+        private static SolveStats _TryAllSolutions(ConstraintBasedTracker tracker)
+        {
+            if (tracker.IsSolved)
+            {
+                return new SolveStats() { NumSolutionsFound = 1 };
+            }
+            (var c, var possibleValues) = tracker.GetBestGuess();
+            if (possibleValues.Length == 1)
+            {
+                if (tracker.TrySet(in c, possibleValues[0]))
+                {
+                    return _TryAllSolutions(tracker);
+                }
+                return new SolveStats();
+            }
+            return _TryAllSolutionsWithGuess(in c, possibleValues, tracker);
+        }
+
+        private static SolveStats _TryAllSolutionsWithGuess(
+            in Coordinate guessCoordinate,
+            ReadOnlySpan<int> valuesToGuess,
+            ConstraintBasedTracker tracker)
+        {
+            var solveStats = new SolveStats();
+            for(int i = 0; i < valuesToGuess.Length - 1; i++)
+            {
+                var trackerCopy = tracker.CopyForContinuation();
+                if (trackerCopy.TrySet(in guessCoordinate, valuesToGuess[i]))
+                {
+                    var stats = _TryAllSolutions(trackerCopy);
+                    solveStats.NumSolutionsFound += stats.NumSolutionsFound;
+                    solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
+                    solveStats.NumTotalGuesses += stats.NumTotalGuesses;
+                }
+            }
+            if (tracker.TrySet(in guessCoordinate, valuesToGuess[^1]))
+            {
+                var stats = _TryAllSolutions(tracker);
+                solveStats.NumSolutionsFound += stats.NumSolutionsFound;
+                solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
+                solveStats.NumTotalGuesses += stats.NumTotalGuesses;
+            }
+            if (solveStats.NumSolutionsFound == 0)
+            {
+                return new SolveStats();
+            }
+            solveStats.NumSquaresGuessed++;
+            solveStats.NumTotalGuesses += valuesToGuess.Length;
+            return solveStats;
         }
     }
 }

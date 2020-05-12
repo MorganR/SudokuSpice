@@ -11,16 +11,26 @@ namespace SudokuSpice
         private readonly ExactCoverMatrix _matrix;
         private readonly Stack<Coordinate> _setCoords;
 
+        internal bool IsSolved => _puzzle.NumEmptySquares == 0;
+
         internal ConstraintBasedTracker(IPuzzle puzzle, ExactCoverMatrix matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;
             _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
-            var valuesToIndices = new Dictionary<int, int>(matrix.AllPossibleValues.Length);
-            for (int index = 0; index < matrix.AllPossibleValues.Length; index++)
-            {
-                valuesToIndices[matrix.AllPossibleValues[index]] = index;
-            }
+        }
+
+        private ConstraintBasedTracker(ConstraintBasedTracker other)
+        {
+            _puzzle = other._puzzle.DeepCopy();
+            // Copy matrix, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
+            _matrix = other._matrix.CopyUnknowns();
+            _setCoords = new Stack<Coordinate>(_puzzle.NumEmptySquares);
+        }
+
+        internal ConstraintBasedTracker CopyForContinuation()
+        {
+            return new ConstraintBasedTracker(this);
         }
 
         internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()

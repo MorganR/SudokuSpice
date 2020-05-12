@@ -136,8 +136,10 @@ namespace SudokuSpice
         {
             Size = existing.Size;
             BoxSize = existing.BoxSize;
+            NumSquares = existing.NumSquares;
             _squares = (int?[,])existing._squares.Clone();
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
+            _allPossibleValues = existing.AllPossibleValues.ToArray();
         }
 
         /// <inheritdoc cref="IPuzzle"/>

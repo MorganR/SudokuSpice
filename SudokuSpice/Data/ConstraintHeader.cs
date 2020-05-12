@@ -26,6 +26,23 @@ namespace SudokuSpice.Data
             NextHeader = PreviousHeader = this;
         }
 
+        internal ConstraintHeader CopyToMatrix(ExactCoverMatrix matrix)
+        {
+            Debug.Assert(FirstLink != null, $"Can't copy a header with a null {nameof(FirstLink)}.");
+            Debug.Assert(!IsSatisfied, $"Can't copy a header that's already satisfied.");
+            var copy = new ConstraintHeader(matrix);
+            foreach (var link in GetLinks())
+            {
+                var square = matrix.GetSquare(link.PossibleSquare.Square.Coordinate);
+                Debug.Assert(square != null,
+                    $"Tried to copy a square link for a null square at {link.PossibleSquare.Square.Coordinate}.");
+                var possibleSquare = square.GetPossibleValue(link.PossibleSquare.ValueIndex);
+                Debug.Assert(possibleSquare != null, "Tried to link header to null possible square value.");
+                SquareLink.CreateConnectedLink(possibleSquare, copy);
+            }
+            return copy;
+        }
+
         /// <summary>
         /// Creates a fully connected header that can be satisfied by any of the given
         /// <paramref name="possibleSquares"/>. Adds and attaches necessary

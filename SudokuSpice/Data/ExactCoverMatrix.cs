@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SudokuSpice.Data
 {
@@ -18,7 +19,6 @@ namespace SudokuSpice.Data
     {
         private readonly int[] _allPossibleValues;
         private readonly Square?[][] _matrix;
-        private readonly Dictionary<int, int> _valuesToIndices;
         internal ConstraintHeader? FirstHeader;
 
         /// <summary>
@@ -30,17 +30,18 @@ namespace SudokuSpice.Data
         /// Maps possible values for the puzzle to indices in the <see cref="AllPossibleValues"/>
         /// array.
         /// </summary>
-        public IReadOnlyDictionary<int, int> ValuesToIndices => _valuesToIndices;
+        public IReadOnlyDictionary<int, int> ValuesToIndices { get; private set; }
 
         internal ExactCoverMatrix(IReadOnlyPuzzle puzzle)
         {
             _matrix = new Square[puzzle.Size][];
             _allPossibleValues = puzzle.AllPossibleValues.ToArray();
-            _valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
+            var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {
-                _valuesToIndices[_allPossibleValues[index]] = index;
+                valuesToIndices[_allPossibleValues[index]] = index;
             }
+            ValuesToIndices = valuesToIndices;
             for (int row = 0; row < puzzle.Size; row++)
             {
                 var colArray = new Square[puzzle.Size];
@@ -54,6 +55,48 @@ namespace SudokuSpice.Data
                 }
                 _matrix[row] = colArray;
             }
+        }
+
+        private ExactCoverMatrix(ExactCoverMatrix other)
+        {
+            _matrix = new Square[other._matrix.Length][];
+            _allPossibleValues = other.AllPossibleValues.ToArray();
+            ValuesToIndices = other.ValuesToIndices;
+        }
+
+        internal ExactCoverMatrix CopyUnknowns()
+        {
+            Debug.Assert(
+                FirstHeader != null, 
+                $"Cannot copy a matrix that still has a null {nameof(FirstHeader)}.");
+            var copy = new ExactCoverMatrix(this);
+            for (int row = 0; row < copy._matrix.Length; row++)
+            {
+                var colArray = _matrix[row];
+                var copyColArray = new Square[colArray.Length];
+                for (int col = 0; col < copyColArray.Length; col++)
+                {
+                    var square = colArray[col];
+                    if (square is null
+                        || square.IsSet)
+                    {
+                        continue;
+                    }
+                    copyColArray[col] = square.CopyWithPossibleValues();
+                }
+                copy._matrix[row] = copyColArray;
+            }
+            copy.FirstHeader = FirstHeader.CopyToMatrix(copy);
+            var copiedHeader = copy.FirstHeader;
+            for (var nextHeader = FirstHeader.NextHeader; nextHeader != FirstHeader; nextHeader = nextHeader.NextHeader)
+            {
+                copiedHeader.NextHeader = nextHeader.CopyToMatrix(copy);
+                copiedHeader.NextHeader.PreviousHeader = copiedHeader;
+                copiedHeader = copiedHeader.NextHeader;
+            }
+            copiedHeader.NextHeader = copy.FirstHeader;
+            copy.FirstHeader.PreviousHeader = copiedHeader;
+            return copy;
         }
 
         /// <summary>
