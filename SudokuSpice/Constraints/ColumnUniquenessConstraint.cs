@@ -1,6 +1,5 @@
 ﻿using SudokuSpice.Data;
 using System;
-using System.Collections.Generic;
 
 namespace SudokuSpice.Constraints
 {
@@ -14,65 +13,13 @@ namespace SudokuSpice.Constraints
         {
             for (int column = 0; column < puzzle.Size; column++)
             {
-                Span<bool> isConstraintSatisfiedAtIndex =
-                    stackalloc bool[matrix.AllPossibleValues.Length];
-                isConstraintSatisfiedAtIndex.Fill(false);
+                var columnCoordinates = new Coordinate[puzzle.Size];
                 for (int row = 0; row < puzzle.Size; row++)
                 {
-                    var value = puzzle[row, column];
-                    if (value.HasValue)
-                    {
-                        isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[value.Value]] = true;
-                    }
+                    columnCoordinates[row] = new Coordinate(row, column);
                 }
-                var columnSquares = matrix.GetSquaresOnColumn(column);
-                for (int valueIndex = 0; valueIndex < isConstraintSatisfiedAtIndex.Length; valueIndex++)
-                {
-                    if (isConstraintSatisfiedAtIndex[valueIndex])
-                    {
-                        _DropPossibleSquaresForValueIndex(columnSquares, valueIndex, matrix);
-                        continue;
-                    }
-                    _AddConstraintHeadersForValueIndex(columnSquares, valueIndex, matrix);
-                }
+                ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, columnCoordinates, matrix);
             }
-        }
-
-        private static void _DropPossibleSquaresForValueIndex(
-            IReadOnlyList<Square?> columnSquares, int valueIndex, ExactCoverMatrix matrix)
-        {
-            for (int row = 0; row < columnSquares.Count; row++)
-            {
-                var square = columnSquares[row];
-                if (square is null)
-                {
-                    continue;
-                }
-                var possibleValue = square.GetPossibleValue(valueIndex);
-                if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
-                {
-                    throw new ArgumentException(
-                        $"Puzzle violated {nameof(ColumnUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} on column {square.Coordinate.Column}.");
-                }
-            }
-        }
-
-        private static void _AddConstraintHeadersForValueIndex(
-            IReadOnlyList<Square?> columnSquares, int valueIndex, ExactCoverMatrix matrix)
-        {
-            var possibleSquares = new PossibleSquareValue[columnSquares.Count];
-            int numPossibleSquares = 0;
-            for (int row = 0; row < columnSquares.Count; row++)
-            {
-                var square = columnSquares[row];
-                if (square is null || square.GetPossibleValue(valueIndex).State != PossibleSquareState.UNKNOWN)
-                {
-                    continue;
-                }
-                possibleSquares[numPossibleSquares++] = square.GetPossibleValue(valueIndex);
-            }
-            ConstraintHeader.CreateConnectedHeader(
-                matrix, new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }
