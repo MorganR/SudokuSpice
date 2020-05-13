@@ -69,8 +69,15 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="framework-overview">Framework Overview</h1>
 
-<h2 id="concepts">Concepts</h2>
-<p>SudokuSpice uses three main interfaces:</p>
+<h2 id="solvers">Solvers</h2>
+<p><em>SudokuSpice</em> provides two different solvers: the
+<a class="xref" href="../api/SudokuSpice.ConstraintBasedSolver.html"><code>ConstraintBasedSolver</code></a> or the original
+<a class="xref" href="../api/SudokuSpice.Solver.html"><code>Solver</code></a>.</p>
+<p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
+puzzles. However, the constraint-based solver can be faster in some cases, especially when
+implementing custom rules or constraints.</p>
+<h2 id="important-concepts">Important concepts</h2>
+<p>SudokuSpice uses four main interfaces:</p>
 <ol>
 <li><p>The <a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a></p>
 <p>Puzzles store the underlying Sudoku data. You likely only need the standard
@@ -115,16 +122,242 @@ heuristics. To enforce multiple heuristics, define a custom heuristic that imple
 heuristics. This pattern is demonstrated by the
 <a class="xref" href="../api/SudokuSpice.Heuristics.StandardHeuristic.html"><code>StandardHeuristic</code></a>.</p>
 </li>
+<li><p>The <a class="xref" href="../api/SudokuSpice.Constraints.IConstraint.html"><code>IConstraint</code></a></p>
+</li>
 </ol>
-<p>For more information on extending SudokuSpice, see the <a href="custom-rules.html">custom rule example</a>.</p>
+<p>Constraints represent rules that the puzzle needs to satisfy. For example, the
+<a class="xref" href="../api/SudokuSpice.Constraints.RowUniquenessConstraint.html"><code>RowUniquenessConstraint</code></a> enforces the
+constraint that &quot;each row must contain all possible values.&quot;</p>
+<p>Constraints are implemented using an
+<a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a>. The exact-cover matrix combines
+two concepts into a single matrix. Each row represents a possible value for a single square, for
+example &quot;Row: 1, Column: 0, Value: 2&quot;. We'll represent this in the short-form notation: <code>R1C0V2</code>.
+Each column represents a single constraint that must be satisfied, for example, &quot;Row 1 contains a
+2.&quot; We'll represent columns in the short-form notation: &quot;R1V2&quot;. These rows and columns can be
+combined into a single matrix containing 1s and 0s, where a 1 is placed in each column (i.e.
+constraint) that a given row (i.e. possible square value) satisfies. For a standard Sudoku puzzle,
+this looks something like the following:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>R0V1</th>
+<th>R0V2</th>
+<th>...</th>
+<th>R1V1</th>
+<th>R1V2</th>
+<th>...</th>
+<th>C0V1</th>
+<th>C0V2</th>
+<th>...</th>
+<th>B0V1</th>
+<th>V0V2</th>
+<th>...</th>
+<th>B8V8</th>
+<th>B8V9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0C0V1</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>R0C0V2</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>R0C1V1</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>R0C1V2</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>R1C0V1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>R8C8V8</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>R8C8V9</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
+the <code>RxCxVx</code> cells in the first column) are represented by
+<a class="xref" href="../api/SudokuSpice.Data.PossibleSquareValue.html"><code>PossibleSquareValue</code>s</a>. Column headers (i.e. the
+cells in the first row) are represented by
+<a class="xref" href="../api/SudokuSpice.Data.ConstraintHeader.html"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
+<a href="xref:SudokuSpice.Data.SquareLink"><code>SquareLink</code>s</a>, which represent the 1s in the matrix. Each
+[<code>SquareLink</code>] is connected up and down to the other '1s' that satisfy that constraint header,
+and connected left and right to the other '1s' that are present for that possible square value.</p>
+<p>The constraint-based solver uses constraints instead of rules. It does not provide a separate
+heuristics concept because the exact-cover matrix provides the <code>UniqueIn*</code> heuristics by default.
+Adding additional layers of heuristics would add complexity with minimal, if any, performance
+improvement.</p>
+<p>For more information on extending SudokuSpice, see:</p>
+<ul>
+<li><a href="custom-rules.html">Custom rule example</a>.</li>
+<li><a href="custom-constraints.html">Custom constraint example</a>.</li>
+</ul>
 <h2 id="namespaces">Namespaces</h2>
 <ul>
 <li><strong><a class="xref" href="../api/SudokuSpice.html">SudokuSpice</a>:</strong> Contains the main public classes for solving and generating puzzles.</li>
-<li><strong><a class="xref" href="../api/SudokuSpice.Data.html">SudokuSpice.Data</a>:</strong> Contains data classes used internally, and made public for
+<li><strong><a class="xref" href="../api/SudokuSpice.Data.html">SudokuSpice.Data</a>:</strong> Contains data classes used internally, with some made public for
 users who wish to extend the framework.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.Heuristics.html">SudokuSpice.Heuristics</a>:</strong> Contains standard heuristics and interfaces for creating
 custom heuristics.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.Rules.html">SudokuSpice.Rules</a>:</strong> Contains rules, rule keepers, and interfaces for creating custom
+rules.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.Constraints.html">SudokuSpice.Constraints</a>:</strong> Contains standard constraints and the
+<a class="xref" href="../api/SudokuSpice.Constraints.IConstraint.html"><code>IConstraint</code></a> interface.
 rules.</li>
 </ul>
 </article>
