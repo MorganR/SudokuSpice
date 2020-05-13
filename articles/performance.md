@@ -102,9 +102,10 @@ puzzle generation. The *SudokuSharpSingle* method is more similar to the *Sudoku
 where squares are cleared completely at random, whereas the *SudokuSharpMixed* method uses a mix of
 single, double, and quadruple square clearings.
 
-|             Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
-|------------------- |----------:|----------:|----------:|------:|--------:|
-|        SudokuSpice |  1.517 ms | 0.0174 ms | 0.0154 ms |  1.00 |    0.00 |
-| SudokuSharpSingles | 14.483 ms | 0.5467 ms | 1.6033 ms |  9.37 |    0.67 |
-|   SudokuSharpMixed |  7.071 ms | 0.2590 ms | 0.7555 ms |  4.61 |    0.60 |
+|                 Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
+|----------------------- |----------:|----------:|----------:|------:|--------:|
+|            SudokuSpice |  1.458 ms | 0.0200 ms | 0.0187 ms |  1.00 |    0.00 |
+| SudokuSpiceConstraints |  2.453 ms | 0.0309 ms | 0.0289 ms |  1.68 |    0.04 |
+|     SudokuSharpSingles | 13.959 ms | 0.4725 ms | 1.3858 ms | 10.02 |    0.69 |
+|       SudokuSharpMixed |  7.070 ms | 0.2192 ms | 0.6427 ms |  4.76 |    0.56 |
 
