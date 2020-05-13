@@ -5,7 +5,7 @@ that the diagonals contain all unique values. In this case, however, we'll solve
 new constraint: the
 [`DiagonalUniquenessConstraint`](xref:SudokuSpice.Constraints.DiagonalUniquenessConstraint).
 
-If you haven't yet read the [constraints summary](frameworks.md#important-concepts), read that first!
+If you haven't yet read the [constraints summary](framework.md#important-concepts), read that first!
 
 ## Creating a constraint
 
@@ -18,7 +18,7 @@ The `IConstraint.Constrain` operation adds new
 [`ConstraintHeader`s](xref:SudokuSpice.Data.ConstraintHeader) (and corresponding
 [`SquareLink`s](xref:SudokuSpice.Data.SquareLink)) to the given
 [`ExactCoverMatrix`](xref:SudokuSpice.Data.ExactCoverMatrix). It must also drop any
-[`PossibleSquareValue`s](xref:SudokuSpice.Data.PossibleSquareValues) that are now impossible based
+[`PossibleSquareValue`s](xref:SudokuSpice.Data.PossibleSquareValue) that are now impossible based
 on applying this constraint to the puzzle's preset values.
 
 #### Define your headers
