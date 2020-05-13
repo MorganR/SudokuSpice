@@ -28,83 +28,16 @@ namespace SudokuSpice.Constraints
             var startCoord = puzzle.GetStartingBoxCoordinate(box);
             var endCoord = new Coordinate(
                 startCoord.Row + puzzle.BoxSize, startCoord.Column + puzzle.BoxSize);
-            Span<bool> isConstraintSatisfiedAtIndex =
-                stackalloc bool[matrix.AllPossibleValues.Length];
-            isConstraintSatisfiedAtIndex.Fill(false);
+            var boxCoordinates = new Coordinate[puzzle.Size];
+            int i = 0;
             for (int row = startCoord.Row; row < endCoord.Row; row++)
             {
                 for (int col = startCoord.Column; col < endCoord.Column; col++)
                 {
-                    var value = puzzle[row, col];
-                    if (value.HasValue)
-                    {
-                        isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[value.Value]] = true;
-                    }
+                    boxCoordinates[i++] = new Coordinate(row, col);
                 }
             }
-            for (int valueIndex = 0; valueIndex < isConstraintSatisfiedAtIndex.Length; valueIndex++)
-            {
-                if (isConstraintSatisfiedAtIndex[valueIndex])
-                {
-                    _DropPossibleValuesForValueIndex(
-                        in startCoord, in endCoord, valueIndex, matrix);
-                    continue;
-                }
-                _AddCoordinateHeadersForValueIndex(
-                    in startCoord, in endCoord, valueIndex, matrix);
-            }
-        }
-
-        private static void _DropPossibleValuesForValueIndex(
-            in Coordinate startCoord,
-            in Coordinate endCoord,
-            int valueIndex,
-            ExactCoverMatrix matrix)
-        {
-            for (int row = startCoord.Row; row < endCoord.Row; row++)
-            {
-                for (int col = startCoord.Column; col < endCoord.Column; col++)
-                {
-                    var square = matrix.GetSquare(new Coordinate(row, col));
-                    if (square is null)
-                    {
-                        continue;
-                    }
-                    var possibleValue = square.GetPossibleValue(valueIndex);
-                    if (possibleValue.State != PossibleSquareState.DROPPED
-                        && !possibleValue.TryDrop())
-                    {
-                        throw new ArgumentException(
-                            $"Puzzle violated {nameof(BoxUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} at ({row}, {col}).");
-                    }
-                }
-            }
-        }
-
-        private static void _AddCoordinateHeadersForValueIndex(
-            in Coordinate startCoord,
-            in Coordinate endCoord,
-            int valueIndex,
-            ExactCoverMatrix matrix)
-        {
-            var possibleSquares = new PossibleSquareValue[matrix.AllPossibleValues.Length];
-            int numPossibleSquares = 0;
-            for (int row = startCoord.Row; row < endCoord.Row; row++)
-            {
-                for (int col = startCoord.Column; col < endCoord.Column; col++)
-                {
-                    var square = matrix.GetSquare(new Coordinate(row, col));
-                    if (square is null
-                        || square.GetPossibleValue(valueIndex).State != PossibleSquareState.UNKNOWN)
-                    {
-                        continue;
-                    }
-                    possibleSquares[numPossibleSquares++] = square.GetPossibleValue(valueIndex);
-                }
-            }
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
+            ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, boxCoordinates, matrix);
         }
     }
 }

@@ -17,6 +17,35 @@ namespace SudokuSpice.Test
             _AssertPuzzleSolved(puzzle);
         }
 
+        [Fact]
+        public void Solve_WithMegaPuzzle_Solves()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                {null, null, null, null, 10,   1,    null, 8,    null, 15,   3,    11,   null, 2,    16,   null},
+                {14,   null, 2,    null, null, 4,    3,    null, null, 13,   8,    null, null, 12,   null, null},
+                {null, null, null, 12,   null, null, null, 15,   null, null, null, 7,    null, null, 9,    10},
+                {1,    10,   15,   null, 6,    null, null, null, null, 14,   null, null, null, null, null, 11},
+                {null, 11,   14,   6,    null, null, null, 9,    13,   8,    null, null, null, null, 2,    3},
+                {12,   null, null, null, 4,    null, 7,    3,    11,   6,    null, null, 16,   null, 5,    null},
+                {13,   16,   null, 2,    null, null, null, 1,    null, null, 5,    null, 10,   9,    null, null},
+                {null, 4,    null, null, 13,   null, 2,    null, null, null, 16,   3,    11,   null, null, null},
+                {null, null, null, 10,   3,    6,    null, null, null, 9,    null, 12,   null, null, 4,    null},
+                {null, null, 12,   15,   null, 9,    null, null, 7,    null, null, null, 1,    null, 3,    14},
+                {null, 1,    null, 4,    null, null, 5,    12,   3,    10,   null, 8,    null, null, null, 2},
+                {3,    6,    null, null, null, null, 15,   10,   4,    null, null, null, 12,   5,    7,    null},
+                {2,    null, null, null, null, null, 4,    null, null, null, null, 15,   null, 16,   11,   9},
+                {4,    14,   null, null, 16,   null, null, null, 2,    null, null, null, 6,    null, null, null},
+                {null, null, 16,   null, null, 7,    8,    null, null, 4,    10,   null, null, 14,   null, 5},
+                {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
+            });
+            var solver = new ConstraintBasedSolver(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint(), new DiagonalUniquenessConstraint() });
+
+            solver.Solve(puzzle);
+
+            _AssertPuzzleSolved(puzzle);
+        }
+
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)

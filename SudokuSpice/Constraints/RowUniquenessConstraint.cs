@@ -13,67 +13,28 @@ namespace SudokuSpice.Constraints
         {
             for (int row = 0; row < puzzle.Size; row++)
             {
+                var rowSquares = matrix.GetSquaresOnRow(row);
                 Span<bool> isConstraintSatisfiedAtIndex =
-                    stackalloc bool[matrix.AllPossibleValues.Length];
+                   stackalloc bool[matrix.AllPossibleValues.Length];
                 isConstraintSatisfiedAtIndex.Fill(false);
-                for (int column = 0; column < puzzle.Size; column++)
+                for (int col = 0; col < puzzle.Size; col++)
                 {
-                    var value = puzzle[row, column];
-                    if (value.HasValue)
+                    var puzzleValue = puzzle[row, col];
+                    if (puzzleValue.HasValue)
                     {
-                        isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[value.Value]] = true;
+                        isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[puzzleValue.Value]] = true;
                     }
                 }
-                var rowSquares = matrix.GetSquaresOnRow(row);
                 for (int valueIndex = 0; valueIndex < isConstraintSatisfiedAtIndex.Length; valueIndex++)
                 {
                     if (isConstraintSatisfiedAtIndex[valueIndex])
                     {
-                        _DropPossibleValuesForValueIndex(rowSquares, valueIndex, matrix);
+                        ConstraintUtil.DropPossibleSquaresForValueIndex(rowSquares, valueIndex, matrix);
                         continue;
                     }
-                    _AddConstraintHeadersForValueIndex(rowSquares, valueIndex, matrix);
+                    ConstraintUtil.AddConstraintHeadersForValueIndex(rowSquares, valueIndex, matrix);
                 }
             }
-        }
-
-        private static void _DropPossibleValuesForValueIndex(
-            ReadOnlySpan<Square?> rowSquares, int valueIndex, ExactCoverMatrix matrix)
-        {
-            for (int column = 0; column < rowSquares.Length; column++)
-            {
-                var square = rowSquares[column];
-                if (square is null)
-                {
-                    continue;
-                }
-                var possibleValue = square.GetPossibleValue(valueIndex);
-                if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
-                {
-                    throw new ArgumentException(
-                        $"Puzzle violated {nameof(RowUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} on row {square.Coordinate.Row}.");
-                }
-            }
-        }
-
-        private static void _AddConstraintHeadersForValueIndex(
-            ReadOnlySpan<Square?> rowSquares, int valueIndex, ExactCoverMatrix matrix)
-        {
-            var possibleSquares = new PossibleSquareValue[rowSquares.Length];
-            int numPossibleSquares = 0;
-            for (int column = 0; column < rowSquares.Length; column++)
-            {
-                var square = rowSquares[column];
-                if (square is null
-                    || square.GetPossibleValue(valueIndex).State != PossibleSquareState.UNKNOWN)
-                {
-                    continue;
-                }
-                possibleSquares[numPossibleSquares++] = square.GetPossibleValue(valueIndex);
-            }
-            ConstraintHeader.CreateConnectedHeader(
-                matrix,
-                new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }
