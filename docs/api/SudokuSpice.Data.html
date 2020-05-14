@@ -77,11 +77,25 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="SudokuSpice.Data.ConstraintHeader.html">ConstraintHeader</a></h4>
+      <section><p>Represents a column from an exact-cover matrix.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.Data.CoordinateTracker.html">CoordinateTracker</a></h4>
       <section><p>Efficiently tracks a set of <a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a>s.</p>
 </section>
+      <h4><a class="xref" href="SudokuSpice.Data.ExactCoverMatrix.html">ExactCoverMatrix</a></h4>
+      <section><p>Holds an exact-cover matrix for the current puzzle being solved.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleSquareValue</a></h4>
+      <section><p>Represents a row in the <a class="xref" href="SudokuSpice.Data.ExactCoverMatrix.html">ExactCoverMatrix</a>. This represents a possible value
+for a given <a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html#SudokuSpice_Data_PossibleSquareValue_Square">Square</a>.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.Data.PossibleValues.html">PossibleValues</a></h4>
       <section><p>Tracks per-square possible values for a puzzle.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Data.Square.html">Square</a></h4>
+      <section><p>Represents a location in a puzzle, including tracking the current possible values at that
+location.</p>
 </section>
     <h3 id="structs">Structs
   </h3>
@@ -100,6 +114,9 @@
       <section><p>Indicates the action taken during an
 <a class="xref" href="SudokuSpice.Data.CoordinateTracker.html#SudokuSpice_Data_CoordinateTracker_AddOrTrackIfUntracked_SudokuSpice_Data_Coordinate__">AddOrTrackIfUntracked(Coordinate)</a>
 operation.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Data.PossibleSquareState.html">PossibleSquareState</a></h4>
+      <section><p>Indicates if a <a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleSquareValue</a> is still possible, selected, or dropped.</p>
 </section>
 </article>
           </div>

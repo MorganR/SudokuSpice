@@ -5,9 +5,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Quick Start | SudokuSpice </title>
+    <title>Namespace SudokuSpice.Constraints
+   | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Quick Start | SudokuSpice ">
+    <meta name="title" content="Namespace SudokuSpice.Constraints
+   | SudokuSpice ">
     <meta name="generator" content="docfx 2.51.0.0">
     
     <link rel="shortcut icon" href="../images/sudokuspice-black.png">
@@ -66,45 +68,34 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="">
-<h1 id="quick-start">Quick Start</h1>
-
-<p>For more information, see the <a href="framework.html">Framework Overview</a>.</p>
-<h2 id="solving">Solving</h2>
-<p>If you need to solve a standard Sudoku puzzle, you can simply create a
-<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a>, create a <a class="xref" href="../api/SudokuSpice.Solver.html"><code>Solver</code></a>, and solve it.</p>
-<pre><code class="lang-csharp">var puzzle = new Puzzle(new int?[,]
-    {
-        {null,    2, null,    6, null,    8, null, null, null},
-        {   5,    8, null, null, null,    9,    7, null, null},
-        {null, null, null, null,    4, null, null, null, null},
-        {   3,    7, null, null, null, null,    5, null, null},
-        {   6, null, null, null, null, null, null, null,    4},
-        {null, null,    8, null, null, null, null,    1,    3},
-        {null, null, null, null,    2, null, null, null, null},
-        {null, null,    9,    8, null, null, null,    3,    6},
-        {null, null, null,    3, null,    6, null,    9, null},
-    });
-var solver = new Solver(puzzle);
-solver.Solve();
-// Puzzle is now solved!
-
-// Values can be accessed individually like this:
-int row = 0;
-int column = 1;
-var value = puzzle[row, column]; // Returns 2
-</code></pre>
-<h2 id="generating">Generating</h2>
-<p>If you need to generate Sudoku puzzles, simply create a <a href="xref:SudokuSpice.Generator"><code>Generator</code></a>
-and call <code>Generate</code> as many times as you like.</p>
-<pre><code class="lang-csharp">// Create a 9x9 puzzle generator.
-var generator = new StandardPuzzleGenerator(/*size=*/9);
-// Generate a 9x9 puzzle with 30 preset square values.
-var puzzle = generator.Generate(/*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
-</code></pre>
-<p><strong>Warning:</strong> Requesting a small number of set squares when calling <code>Generate</code> can take a very long time,
-and may eventually time out. For quickly generating 9x9 puzzles, it's recommended to use a value of
-23 or greater.</p>
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.Constraints">
+  
+  <h1 id="SudokuSpice_Constraints" data-uid="SudokuSpice.Constraints" class="text-break">Namespace SudokuSpice.Constraints
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.Constraints.BoxUniquenessConstraint.html">BoxUniquenessConstraint</a></h4>
+      <section><p>Enforces the constraint that all values in a box must be unique.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Constraints.ColumnUniquenessConstraint.html">ColumnUniquenessConstraint</a></h4>
+      <section><p>Enforces the constraint that all values in a column must be unique.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Constraints.ConstraintUtil.html">ConstraintUtil</a></h4>
+      <section><p>Provides utilities for easily implementing constraints.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Constraints.DiagonalUniquenessConstraint.html">DiagonalUniquenessConstraint</a></h4>
+      <section><p>Enforces the constraint that all values in on each diagonal must be unique.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Constraints.RowUniquenessConstraint.html">RowUniquenessConstraint</a></h4>
+      <section><p>Enforces the constraint that all values in a row must be unique.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.Constraints.IConstraint.html">IConstraint</a></h4>
+      <section></section>
 </article>
           </div>
           
@@ -112,9 +103,6 @@ and may eventually time out. For quickly generating 9x9 puzzles, it's recommende
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/articles/quickstart.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
