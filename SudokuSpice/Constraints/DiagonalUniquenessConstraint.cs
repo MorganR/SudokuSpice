@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.Data;
+using System;
 
 namespace SudokuSpice.Constraints
 {
@@ -16,7 +17,7 @@ namespace SudokuSpice.Constraints
 
         private void _ConstrainForwardDiagonal(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
-            var coordinates = new Coordinate[puzzle.Size];
+            Span<Coordinate> coordinates = stackalloc Coordinate[puzzle.Size];
             for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
             {
                 coordinates[row] = new Coordinate(row, col);
@@ -26,12 +27,12 @@ namespace SudokuSpice.Constraints
 
         private void _ConstrainBackwardDiagonal(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
-            var oordinates = new Coordinate[puzzle.Size];
+            Span<Coordinate> Coordinates = stackalloc Coordinate[puzzle.Size];
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
             {
-                oordinates[row] = new Coordinate(row, col);
+                Coordinates[row] = new Coordinate(row, col);
             }
-            ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, oordinates, matrix);
+            ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, Coordinates, matrix);
         }
     }
 }
