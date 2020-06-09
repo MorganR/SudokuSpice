@@ -13,6 +13,14 @@ namespace SudokuSpice.Rules
         /// <summary>
         /// Gets the possible values for the given coordinate based on this rule.
         /// </summary>
+        /// <remarks>
+        /// When implementing this method, avoid depending on dynamic information in the current
+        /// puzzle being solved, such as the currently set values. This method must return
+        /// information that reflects the most recent calls to
+        /// <see cref="Update(in Coordinate, int, CoordinateTracker)">Update</see>
+        /// or <see cref="Revert(in Coordinate, int, CoordinateTracker)">Revert</see>, which can
+        /// happen before or after modifying the underlying puzzle's data.
+        /// </remarks>
         /// <returns>The possible values represented as a <see cref="BitVector"/>.</returns>
         BitVector GetPossibleValues(in Coordinate c);
         /// <summary>
@@ -24,6 +32,9 @@ namespace SudokuSpice.Rules
         /// where the caller already knows all the possible coordinates that could be affected.
         /// </para>
         /// </summary>
+        /// <remarks>
+        /// This method will always be called before reverting the value on the underlying puzzle.
+        /// </remarks>
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
         void Revert(in Coordinate c, int val);
@@ -31,6 +42,9 @@ namespace SudokuSpice.Rules
         /// Undoes an update for the given value at the specified coordinate. Tracks affected
         /// coordinates in the given tracker.
         /// </summary>
+        /// <remarks>
+        /// This method will always be called before reverting the value on the underlying puzzle.
+        /// </remarks>
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
         /// <param name="coordTracker">
@@ -42,6 +56,9 @@ namespace SudokuSpice.Rules
         /// Updates possible values based on setting the given coordinate to the given value.
         /// Tracks affected coordinates in the given tracker.
         /// </summary>
+        /// <remarks>
+        /// This method will always be called before setting the value on the underlying puzzle.
+        /// </remarks>
         /// <param name="c">The coordinate to update.</param>
         /// <param name="val">The value to set <c>c</c> to.</param>
         /// <param name="coordTracker">

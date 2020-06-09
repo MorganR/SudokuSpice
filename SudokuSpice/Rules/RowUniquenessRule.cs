@@ -43,27 +43,33 @@ namespace SudokuSpice.Rules
             _unsetRowValues = existing._unsetRowValues.AsSpan().ToArray();
         }
 
+        /// <inheritdoc/>
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
         {
             return new RowUniquenessRule(this, puzzle);
         }
 
+        /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c) => _unsetRowValues[c.Row];
 
+        /// <inheritdoc/>
         public BitVector GetMissingValuesForRow(int row) => _unsetRowValues[row];
 
+        /// <inheritdoc/>
         public void Revert(in Coordinate c, int val)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val);
         }
 
+        /// <inheritdoc/>
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             this.Revert(in c, val);
             _AddUnsetFromRow(in c, coordTracker);
         }
 
+        /// <inheritdoc/>
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
