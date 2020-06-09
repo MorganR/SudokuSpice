@@ -13,8 +13,8 @@ namespace SudokuSpice.Constraints
         /// </summary>
         /// <remarks>
         /// This drops any <see cref="PossibleSquareValue"/>s that are no longer possible, and
-        /// adds <see cref="ConstraintHeader"/>s and <see cref="SquareLink"/>s to enforce this 
-        /// constraint for the ones that are still possible.
+        /// adds <see cref="ConstraintHeader"/>s and links to enforce this constraint for the ones
+        /// that are still possible.
         /// </remarks>
         /// <param name="puzzle">The puzzle being solved.</param>
         /// <param name="squareCoordinates">

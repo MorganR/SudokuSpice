@@ -11,8 +11,7 @@ namespace SudokuSpice.Data
     /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
     /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
     /// matrix. <see cref="SudokuSpice.Constraints.IConstraint">IConstraint</see>s will then add
-    /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding
-    /// <see cref="SquareLink"/>s.
+    /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding links.
     /// </remarks>
     /// <seealso cref="https://en.wikipedia.org/wiki/Exact_cover"/>
     public class ExactCoverMatrix

@@ -45,8 +45,8 @@ namespace SudokuSpice.Data
 
         /// <summary>
         /// Creates a fully connected header that can be satisfied by any of the given
-        /// <paramref name="possibleSquares"/>. Adds and attaches necessary
-        /// <see cref="SquareLink"/>s.
+        /// <paramref name="possibleSquares"/>. Adds and attaches necessary links to connect the
+        /// matrix.
         /// </summary>
         /// <param name="matrix">That matrix that this header should be attached to.</param>
         /// <param name="possibleSquares">

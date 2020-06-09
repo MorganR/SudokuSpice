@@ -5,8 +5,8 @@ namespace SudokuSpice.Constraints
     public interface IConstraint
     {
         /// <summary>
-        /// Adds necessary <see cref="ConstraintHeader"/>s and <see cref="SquareLink"/>s to the
-        /// given <paramref name="matrix"/>.
+        /// Adds necessary <see cref="ConstraintHeader"/>s and links to the given
+        /// <paramref name="matrix"/>.
         /// </summary>
         /// <remarks>
         /// This skips adding <c>ConstraintHeader</c>s that are already satisfied by the given

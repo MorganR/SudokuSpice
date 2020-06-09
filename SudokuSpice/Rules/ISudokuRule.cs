@@ -18,8 +18,8 @@ namespace SudokuSpice.Rules
         /// puzzle being solved, such as the currently set values. This method must return
         /// information that reflects the most recent calls to
         /// <see cref="Update(in Coordinate, int, CoordinateTracker)">Update</see>
-        /// or <see cref="Revert(in Coordinate, int, CoordinateTracker)">Revert</see>, which can
-        /// happen before or after modifying the underlying puzzle's data.
+        /// or <see cref="Revert(in Coordinate, int, CoordinateTracker)">Revert</see>, as it can
+        /// be called before or after modifying the underlying puzzle's data.
         /// </remarks>
         /// <returns>The possible values represented as a <see cref="BitVector"/>.</returns>
         BitVector GetPossibleValues(in Coordinate c);

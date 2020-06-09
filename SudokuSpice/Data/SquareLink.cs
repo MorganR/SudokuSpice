@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SudokuSpice.Data
+﻿namespace SudokuSpice.Data
 {
     internal class SquareLink
     {
