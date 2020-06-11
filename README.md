@@ -1,6 +1,6 @@
 # SudokuSpice
 
-**Docs:** https://sudokuspice.dev
+**Docs:** https://www.sudokuspice.dev
 
 An efficient sudoku solving and generating library targeting .NET Core and .NET Standard.
 
