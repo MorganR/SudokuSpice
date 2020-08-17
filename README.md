@@ -1,5 +1,7 @@
 # SudokuSpice
 
+![.NET Core](https://github.com/MorganR/SudokuSpice/workflows/.NET%20Core/badge.svg)
+
 **Docs:** https://www.sudokuspice.dev
 
 An efficient sudoku solving and generating library targeting .NET Core and .NET Standard.
