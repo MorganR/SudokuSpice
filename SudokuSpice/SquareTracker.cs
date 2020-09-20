@@ -3,11 +3,7 @@ using SudokuSpice.Heuristics;
 using SudokuSpice.Rules;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
-#if DEBUG
-[assembly: InternalsVisibleTo("SudokuSpice.Test")]
-#endif
 namespace SudokuSpice
 {
     /// <summary>
