@@ -53,9 +53,13 @@ namespace SudokuSpice
         /// </exception>
         public TPuzzle Generate(int numSquaresToSet, TimeSpan timeout)
         {
-            using var timeoutCancellationSource = new CancellationTokenSource(timeout);
+            int timeoutMillis = Math.Max(1, Convert.ToInt32(timeout.TotalMilliseconds));
+            using var timeoutCancellationSource = new CancellationTokenSource();
             var puzzleTask = new Task<TPuzzle>(() => _Generate(
                 numSquaresToSet, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
+            timeoutCancellationSource.CancelAfter(timeoutMillis);
+            // This throws InvalidOperationException if the task has been canceled already (i.e. the
+            // timeout has finished).
             puzzleTask.RunSynchronously();
 
             if (puzzleTask.IsCompletedSuccessfully)
