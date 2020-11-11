@@ -9,7 +9,7 @@ namespace SudokuSpice.Data
     /// <summary>
     /// Represents a column from an exact-cover matrix.
     /// </summary>
-    /// <seealso cref="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
+    /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
     public class ConstraintHeader
     {
         internal ExactCoverMatrix Matrix { get; private set; }

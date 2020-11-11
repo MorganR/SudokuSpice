@@ -13,7 +13,7 @@ namespace SudokuSpice.Data
     /// matrix. <see cref="SudokuSpice.Constraints.IConstraint">IConstraint</see>s will then add
     /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding links.
     /// </remarks>
-    /// <seealso cref="https://en.wikipedia.org/wiki/Exact_cover"/>
+    /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover"/>
     public class ExactCoverMatrix
     {
         private readonly int[] _allPossibleValues;

@@ -18,7 +18,7 @@ behavior, such as by adding new heuristics, or by introducing modified rules.
 
 ## Releases
 
-### 2.0.0 (beta) - 2020-05-12
+### 2.0.0 - 2020-05-12
 
 *  Adds ConstraintBasedSolver and ConstraintBasedGenerator.
 *  Replaces the parallel implementation of 'Generate' and 'GetStatsForAllSolutions' with a

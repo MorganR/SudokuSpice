@@ -1,0 +1,116 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Constraints.IConstraint
+  commentId: T:SudokuSpice.Constraints.IConstraint
+  id: IConstraint
+  parent: SudokuSpice.Constraints
+  children:
+  - SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  langs:
+  - csharp
+  - vb
+  name: IConstraint
+  nameWithType: IConstraint
+  fullName: SudokuSpice.Constraints.IConstraint
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/Constraints/IConstraint.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: IConstraint
+    path: ../SudokuSpice/Constraints/IConstraint.cs
+    startLine: 4
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  syntax:
+    content: public interface IConstraint
+    content.vb: Public Interface IConstraint
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  commentId: M:SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  id: Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  parent: SudokuSpice.Constraints.IConstraint
+  langs:
+  - csharp
+  - vb
+  name: Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  nameWithType: IConstraint.Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  fullName: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.ExactCoverMatrix)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Constraints/IConstraint.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Constrain
+    path: ../SudokuSpice/Constraints/IConstraint.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  summary: "\nAdds necessary <xref href=\"SudokuSpice.Data.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
+  remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.Data.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
+  example: []
+  syntax:
+    content: void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
+    - id: matrix
+      type: SudokuSpice.Data.ExactCoverMatrix
+      description: The exact-cover matrix to constrain.
+    content.vb: Sub Constrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix)
+  overload: SudokuSpice.Constraints.IConstraint.Constrain*
+references:
+- uid: SudokuSpice.Constraints
+  commentId: N:SudokuSpice.Constraints
+  name: SudokuSpice.Constraints
+  nameWithType: SudokuSpice.Constraints
+  fullName: SudokuSpice.Constraints
+- uid: SudokuSpice.Data.ConstraintHeader
+  commentId: T:SudokuSpice.Data.ConstraintHeader
+  parent: SudokuSpice.Data
+  name: ConstraintHeader
+  nameWithType: ConstraintHeader
+  fullName: SudokuSpice.Data.ConstraintHeader
+- uid: SudokuSpice.Data.PossibleSquareValue
+  commentId: T:SudokuSpice.Data.PossibleSquareValue
+  parent: SudokuSpice.Data
+  name: PossibleSquareValue
+  nameWithType: PossibleSquareValue
+  fullName: SudokuSpice.Data.PossibleSquareValue
+- uid: SudokuSpice.Data.ExactCoverMatrix
+  commentId: T:SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.Data
+  name: ExactCoverMatrix
+  nameWithType: ExactCoverMatrix
+  fullName: SudokuSpice.Data.ExactCoverMatrix
+- uid: SudokuSpice.Constraints.IConstraint.Constrain*
+  commentId: Overload:SudokuSpice.Constraints.IConstraint.Constrain
+  name: Constrain
+  nameWithType: IConstraint.Constrain
+  fullName: SudokuSpice.Constraints.IConstraint.Constrain
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.Data
+  commentId: N:SudokuSpice.Data
+  name: SudokuSpice.Data
+  nameWithType: SudokuSpice.Data
+  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice

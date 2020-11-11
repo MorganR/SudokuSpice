@@ -1,0 +1,600 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  id: IReadOnlyPuzzle
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  - SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  - SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+  - SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  - SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  - SudokuSpice.IReadOnlyPuzzle.NumSquares
+  - SudokuSpice.IReadOnlyPuzzle.Size
+  langs:
+  - csharp
+  - vb
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: IReadOnlyPuzzle
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 9
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  example: []
+  syntax:
+    content: public interface IReadOnlyPuzzle
+    content.vb: Public Interface IReadOnlyPuzzle
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.IReadOnlyPuzzle.Size
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Size
+  id: Size
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: IReadOnlyPuzzle.Size
+  fullName: SudokuSpice.IReadOnlyPuzzle.Size
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Size
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 11
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property Size As Integer
+  overload: SudokuSpice.IReadOnlyPuzzle.Size*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSquares
+  id: NumSquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: NumSquares
+  nameWithType: IReadOnlyPuzzle.NumSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSquares
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: NumSquares
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 13
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The total number of squares in the puzzle.
+  example: []
+  syntax:
+    content: int NumSquares { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property NumSquares As Integer
+  overload: SudokuSpice.IReadOnlyPuzzle.NumSquares*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  id: NumEmptySquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: NumEmptySquares
+  nameWithType: IReadOnlyPuzzle.NumEmptySquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: NumEmptySquares
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 15
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The current number of empty/unknown squares in the puzzle.
+  example: []
+  syntax:
+    content: int NumEmptySquares { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property NumEmptySquares As Integer
+  overload: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  id: NumSetSquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: NumSetSquares
+  nameWithType: IReadOnlyPuzzle.NumSetSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: NumSetSquares
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 17
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The number of set/known squares in the puzzle.
+  example: []
+  syntax:
+    content: int NumSetSquares { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: ReadOnly Property NumSetSquares As Integer
+  overload: SudokuSpice.IReadOnlyPuzzle.NumSetSquares*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  id: AllPossibleValues
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: AllPossibleValues
+  nameWithType: IReadOnlyPuzzle.AllPossibleValues
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: AllPossibleValues
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Gets all the possible values for this puzzle.
+  example: []
+  syntax:
+    content: ReadOnlySpan<int> AllPossibleValues { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{System.Int32}
+    content.vb: ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
+  overload: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+  id: Item(System.Int32,System.Int32)
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: Item[Int32, Int32]
+  nameWithType: IReadOnlyPuzzle.Item[Int32, Int32]
+  fullName: SudokuSpice.IReadOnlyPuzzle.Item[System.Int32, System.Int32]
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: this[]
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 25
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nGets the current value of a given square. A square can be &apos;unset&apos; by setting its value\nto <code>null</code>.\n"
+  example: []
+  syntax:
+    content: int? this[int row, int col] { get; }
+    parameters:
+    - id: row
+      type: System.Int32
+    - id: col
+      type: System.Int32
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: ReadOnly Property Item(row As Integer, col As Integer) As Integer?
+  overload: SudokuSpice.IReadOnlyPuzzle.Item*
+  nameWithType.vb: IReadOnlyPuzzle.Item(Int32, Int32)
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.Item(System.Int32, System.Int32)
+  name.vb: Item(Int32, Int32)
+- uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  id: Item(SudokuSpice.Data.Coordinate@)
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: Item[Coordinate]
+  nameWithType: IReadOnlyPuzzle.Item[Coordinate]
+  fullName: SudokuSpice.IReadOnlyPuzzle.Item[SudokuSpice.Data.Coordinate]
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: this[]
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 27
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: int? this[in Coordinate c] { get; }
+    parameters:
+    - id: c
+      type: SudokuSpice.Data.Coordinate
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: ReadOnly Property Item(ByRef c As Coordinate) As Integer?
+  overload: SudokuSpice.IReadOnlyPuzzle.Item*
+  nameWithType.vb: IReadOnlyPuzzle.Item(ByRef Coordinate)
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.Item(ByRef SudokuSpice.Data.Coordinate)
+  name.vb: Item(ByRef Coordinate)
+- uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  commentId: M:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  id: GetUnsetCoords
+  parent: SudokuSpice.IReadOnlyPuzzle
+  langs:
+  - csharp
+  - vb
+  name: GetUnsetCoords()
+  nameWithType: IReadOnlyPuzzle.GetUnsetCoords()
+  fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/IReadOnlyPuzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetUnsetCoords
+    path: ../SudokuSpice/IReadOnlyPuzzle.cs
+    startLine: 33
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Gets a span of <code>Coordinate</code>s for all the unset squares.
+  example: []
+  syntax:
+    content: ReadOnlySpan<Coordinate> GetUnsetCoords()
+    return:
+      type: System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+    content.vb: Function GetUnsetCoords As ReadOnlySpan(Of Coordinate)
+  overload: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords*
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.IReadOnlyPuzzle.Size*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.Size
+  name: Size
+  nameWithType: IReadOnlyPuzzle.Size
+  fullName: SudokuSpice.IReadOnlyPuzzle.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSquares*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumSquares
+  name: NumSquares
+  nameWithType: IReadOnlyPuzzle.NumSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  name: NumEmptySquares
+  nameWithType: IReadOnlyPuzzle.NumEmptySquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  name: NumSetSquares
+  nameWithType: IReadOnlyPuzzle.NumSetSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  name: AllPossibleValues
+  nameWithType: IReadOnlyPuzzle.AllPossibleValues
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Int32>
+  nameWithType: ReadOnlySpan<Int32>
+  fullName: System.ReadOnlySpan<System.Int32>
+  nameWithType.vb: ReadOnlySpan(Of Int32)
+  fullName.vb: System.ReadOnlySpan(Of System.Int32)
+  name.vb: ReadOnlySpan(Of Int32)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IReadOnlyPuzzle.Item*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.Item
+  name: Item
+  nameWithType: IReadOnlyPuzzle.Item
+  fullName: SudokuSpice.IReadOnlyPuzzle.Item
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Int32>
+  nameWithType: Nullable<Int32>
+  fullName: System.Nullable<System.Int32>
+  nameWithType.vb: Nullable(Of Int32)
+  fullName.vb: System.Nullable(Of System.Int32)
+  name.vb: Nullable(Of Int32)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Data.Coordinate
+  commentId: T:SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Data
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Data.Coordinate
+- uid: SudokuSpice.Data
+  commentId: N:SudokuSpice.Data
+  name: SudokuSpice.Data
+  nameWithType: SudokuSpice.Data
+  fullName: SudokuSpice.Data
+- uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  name: GetUnsetCoords
+  nameWithType: IReadOnlyPuzzle.GetUnsetCoords
+  fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+- uid: System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Coordinate>
+  nameWithType: ReadOnlySpan<Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Data.Coordinate>
+  nameWithType.vb: ReadOnlySpan(Of Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Data.Coordinate)
+  name.vb: ReadOnlySpan(Of Coordinate)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )

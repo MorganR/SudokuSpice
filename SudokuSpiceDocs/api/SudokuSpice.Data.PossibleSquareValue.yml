@@ -1,0 +1,504 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Data.PossibleSquareValue
+  commentId: T:SudokuSpice.Data.PossibleSquareValue
+  id: PossibleSquareValue
+  parent: SudokuSpice.Data
+  children:
+  - SudokuSpice.Data.PossibleSquareValue.Square
+  - SudokuSpice.Data.PossibleSquareValue.State
+  - SudokuSpice.Data.PossibleSquareValue.ValueIndex
+  langs:
+  - csharp
+  - vb
+  name: PossibleSquareValue
+  nameWithType: PossibleSquareValue
+  fullName: SudokuSpice.Data.PossibleSquareValue
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/Data/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: PossibleSquareValue
+    path: ../SudokuSpice/Data/PossibleSquareValue.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Data
+  summary: "\nRepresents a row in the <xref href=\"SudokuSpice.Data.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.Data.PossibleSquareValue.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public class PossibleSquareValue
+    content.vb: Public Class PossibleSquareValue
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SudokuSpice.Data.PossibleSquareValue.ValueIndex
+  commentId: P:SudokuSpice.Data.PossibleSquareValue.ValueIndex
+  id: ValueIndex
+  parent: SudokuSpice.Data.PossibleSquareValue
+  langs:
+  - csharp
+  - vb
+  name: ValueIndex
+  nameWithType: PossibleSquareValue.ValueIndex
+  fullName: SudokuSpice.Data.PossibleSquareValue.ValueIndex
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Data/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ValueIndex
+    path: ../SudokuSpice/Data/PossibleSquareValue.cs
+    startLine: 16
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Data
+  summary: "\nGets the index of the possible value that this represents. This index corresponds with\n<xref href=\"SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public int ValueIndex { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ValueIndex As Integer
+  overload: SudokuSpice.Data.PossibleSquareValue.ValueIndex*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.Data.PossibleSquareValue.Square
+  commentId: P:SudokuSpice.Data.PossibleSquareValue.Square
+  id: Square
+  parent: SudokuSpice.Data.PossibleSquareValue
+  langs:
+  - csharp
+  - vb
+  name: Square
+  nameWithType: PossibleSquareValue.Square
+  fullName: SudokuSpice.Data.PossibleSquareValue.Square
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Data/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Square
+    path: ../SudokuSpice/Data/PossibleSquareValue.cs
+    startLine: 20
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Data
+  summary: "\nGets the square that this is a possible value for.\n"
+  example: []
+  syntax:
+    content: public Square Square { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.Data.Square
+    content.vb: Public ReadOnly Property Square As Square
+  overload: SudokuSpice.Data.PossibleSquareValue.Square*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.Data.PossibleSquareValue.State
+  commentId: P:SudokuSpice.Data.PossibleSquareValue.State
+  id: State
+  parent: SudokuSpice.Data.PossibleSquareValue
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: PossibleSquareValue.State
+  fullName: SudokuSpice.Data.PossibleSquareValue.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Data/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: State
+    path: ../SudokuSpice/Data/PossibleSquareValue.cs
+    startLine: 24
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Data
+  summary: "\nGets the state of this row.\n"
+  example: []
+  syntax:
+    content: public PossibleSquareState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.Data.PossibleSquareState
+    content.vb: Public ReadOnly Property State As PossibleSquareState
+  overload: SudokuSpice.Data.PossibleSquareValue.State*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: SudokuSpice.Data.ExactCoverMatrix
+  commentId: T:SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.Data
+  name: ExactCoverMatrix
+  nameWithType: ExactCoverMatrix
+  fullName: SudokuSpice.Data.ExactCoverMatrix
+- uid: SudokuSpice.Data.PossibleSquareValue.Square
+  commentId: P:SudokuSpice.Data.PossibleSquareValue.Square
+  isExternal: true
+- uid: SudokuSpice.Data
+  commentId: N:SudokuSpice.Data
+  name: SudokuSpice.Data
+  nameWithType: SudokuSpice.Data
+  fullName: SudokuSpice.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+  commentId: P:SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+  isExternal: true
+- uid: SudokuSpice.Data.PossibleSquareValue.ValueIndex*
+  commentId: Overload:SudokuSpice.Data.PossibleSquareValue.ValueIndex
+  name: ValueIndex
+  nameWithType: PossibleSquareValue.ValueIndex
+  fullName: SudokuSpice.Data.PossibleSquareValue.ValueIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.Data.PossibleSquareValue.Square*
+  commentId: Overload:SudokuSpice.Data.PossibleSquareValue.Square
+  name: Square
+  nameWithType: PossibleSquareValue.Square
+  fullName: SudokuSpice.Data.PossibleSquareValue.Square
+- uid: SudokuSpice.Data.Square
+  commentId: T:SudokuSpice.Data.Square
+  parent: SudokuSpice.Data
+  name: Square
+  nameWithType: Square
+  fullName: SudokuSpice.Data.Square
+- uid: SudokuSpice.Data.PossibleSquareValue.State*
+  commentId: Overload:SudokuSpice.Data.PossibleSquareValue.State
+  name: State
+  nameWithType: PossibleSquareValue.State
+  fullName: SudokuSpice.Data.PossibleSquareValue.State
+- uid: SudokuSpice.Data.PossibleSquareState
+  commentId: T:SudokuSpice.Data.PossibleSquareState
+  parent: SudokuSpice.Data
+  name: PossibleSquareState
+  nameWithType: PossibleSquareState
+  fullName: SudokuSpice.Data.PossibleSquareState

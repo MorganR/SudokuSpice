@@ -1,0 +1,819 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Constraints.ConstraintUtil
+  commentId: T:SudokuSpice.Constraints.ConstraintUtil
+  id: ConstraintUtil
+  parent: SudokuSpice.Constraints
+  children:
+  - SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  - SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},System.Span{System.Boolean})
+  - SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  - SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},SudokuSpice.Data.ExactCoverMatrix)
+  langs:
+  - csharp
+  - vb
+  name: ConstraintUtil
+  nameWithType: ConstraintUtil
+  fullName: SudokuSpice.Constraints.ConstraintUtil
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/Constraints/ConstraintUtil.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ConstraintUtil
+    path: ../SudokuSpice/Constraints/ConstraintUtil.cs
+    startLine: 8
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  summary: "\nProvides utilities for easily implementing constraints.\n"
+  example: []
+  syntax:
+    content: public static class ConstraintUtil
+    content.vb: Public Module ConstraintUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},SudokuSpice.Data.ExactCoverMatrix)
+  commentId: M:SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},SudokuSpice.Data.ExactCoverMatrix)
+  id: ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},SudokuSpice.Data.ExactCoverMatrix)
+  parent: SudokuSpice.Constraints.ConstraintUtil
+  langs:
+  - csharp
+  - vb
+  name: ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle, ReadOnlySpan<Coordinate>, ExactCoverMatrix)
+  nameWithType: ConstraintUtil.ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle, ReadOnlySpan<Coordinate>, ExactCoverMatrix)
+  fullName: SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle, System.ReadOnlySpan<SudokuSpice.Data.Coordinate>, SudokuSpice.Data.ExactCoverMatrix)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Constraints/ConstraintUtil.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ImplementUniquenessConstraintForSquares
+    path: ../SudokuSpice/Constraints/ConstraintUtil.cs
+    startLine: 26
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  summary: "\nEnforces uniqueness of the values at the given coordinates.\n"
+  remarks: "\nThis drops any <xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible, and\nadds <xref href=\"SudokuSpice.Data.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s and links to enforce this constraint for the ones\nthat are still possible.\n"
+  example: []
+  syntax:
+    content: public static void ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle puzzle, ReadOnlySpan<Coordinate> squareCoordinates, ExactCoverMatrix matrix)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle being solved.
+    - id: squareCoordinates
+      type: System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+      description: "\nThe coordinates that must contain unique values.\n"
+    - id: matrix
+      type: SudokuSpice.Data.ExactCoverMatrix
+      description: The exact cover matrix for the current puzzle.
+    content.vb: Public Shared Sub ImplementUniquenessConstraintForSquares(puzzle As IReadOnlyPuzzle, squareCoordinates As ReadOnlySpan(Of Coordinate), matrix As ExactCoverMatrix)
+  overload: SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if the puzzle violates uniquness for the given coordinates.\n"
+  nameWithType.vb: ConstraintUtil.ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle, ReadOnlySpan(Of Coordinate), ExactCoverMatrix)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle, System.ReadOnlySpan(Of SudokuSpice.Data.Coordinate), SudokuSpice.Data.ExactCoverMatrix)
+  name.vb: ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle, ReadOnlySpan(Of Coordinate), ExactCoverMatrix)
+- uid: SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},System.Span{System.Boolean})
+  commentId: M:SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},System.Span{System.Boolean})
+  id: CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.Data.Coordinate},System.Span{System.Boolean})
+  parent: SudokuSpice.Constraints.ConstraintUtil
+  langs:
+  - csharp
+  - vb
+  name: CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan<Coordinate>, Span<Boolean>)
+  nameWithType: ConstraintUtil.CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan<Coordinate>, Span<Boolean>)
+  fullName: SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.ExactCoverMatrix, System.ReadOnlySpan<SudokuSpice.Data.Coordinate>, System.Span<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Constraints/ConstraintUtil.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: CheckForSetValues
+    path: ../SudokuSpice/Constraints/ConstraintUtil.cs
+    startLine: 61
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  summary: "\nFills the <code data-dev-comment-type=\"paramref\" class=\"paramref\">isValueIndexPresentInSquares</code> span according to which\nvalue indices are already set in the given list of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">squareCoordinates</code>. Each index is true if that value is already set.\n"
+  example: []
+  syntax:
+    content: public static void CheckForSetValues(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix, ReadOnlySpan<Coordinate> squareCoordinates, Span<bool> isValueIndexPresentInSquares)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The current puzzle being solved.
+    - id: matrix
+      type: SudokuSpice.Data.ExactCoverMatrix
+      description: The matrix for the puzzle being solved.
+    - id: squareCoordinates
+      type: System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+      description: The coordinates to check.
+    - id: isValueIndexPresentInSquares
+      type: System.Span{System.Boolean}
+      description: "\nAn array that will be updated to indicate which values are set.\n"
+    content.vb: Public Shared Sub CheckForSetValues(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix, squareCoordinates As ReadOnlySpan(Of Coordinate), isValueIndexPresentInSquares As Span(Of Boolean))
+  overload: SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues*
+  nameWithType.vb: ConstraintUtil.CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan(Of Coordinate), Span(Of Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.Data.Coordinate), System.Span(Of System.Boolean))
+  name.vb: CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan(Of Coordinate), Span(Of Boolean))
+- uid: SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  commentId: M:SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  id: DropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  parent: SudokuSpice.Constraints.ConstraintUtil
+  langs:
+  - csharp
+  - vb
+  name: DropPossibleSquaresForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix)
+  nameWithType: ConstraintUtil.DropPossibleSquaresForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix)
+  fullName: SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan<SudokuSpice.Data.Square>, System.Int32, SudokuSpice.Data.ExactCoverMatrix)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Constraints/ConstraintUtil.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: DropPossibleSquaresForValueIndex
+    path: ../SudokuSpice/Constraints/ConstraintUtil.cs
+    startLine: 91
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  summary: "\nDrops <xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n"
+  example: []
+  syntax:
+    content: public static void DropPossibleSquaresForValueIndex(ReadOnlySpan<Square> squares, int valueIndex, ExactCoverMatrix matrix)
+    parameters:
+    - id: squares
+      type: System.ReadOnlySpan{SudokuSpice.Data.Square}
+      description: The squares to drop, if not null.
+    - id: valueIndex
+      type: System.Int32
+      description: "\nThe value index of the possible values within the squares.\n"
+    - id: matrix
+      type: SudokuSpice.Data.ExactCoverMatrix
+      description: The matrix for the puzzle currently being solved.
+    content.vb: Public Shared Sub DropPossibleSquaresForValueIndex(squares As ReadOnlySpan(Of Square), valueIndex As Integer, matrix As ExactCoverMatrix)
+  overload: SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if the puzzle violates uniquness for the given coordinates.\n"
+  nameWithType.vb: ConstraintUtil.DropPossibleSquaresForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan(Of SudokuSpice.Data.Square), System.Int32, SudokuSpice.Data.ExactCoverMatrix)
+  name.vb: DropPossibleSquaresForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix)
+- uid: SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  commentId: M:SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  id: AddConstraintHeadersForValueIndex(System.ReadOnlySpan{SudokuSpice.Data.Square},System.Int32,SudokuSpice.Data.ExactCoverMatrix)
+  parent: SudokuSpice.Constraints.ConstraintUtil
+  langs:
+  - csharp
+  - vb
+  name: AddConstraintHeadersForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix)
+  nameWithType: ConstraintUtil.AddConstraintHeadersForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix)
+  fullName: SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan<SudokuSpice.Data.Square>, System.Int32, SudokuSpice.Data.ExactCoverMatrix)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Constraints/ConstraintUtil.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: AddConstraintHeadersForValueIndex
+    path: ../SudokuSpice/Constraints/ConstraintUtil.cs
+    startLine: 125
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Constraints
+  summary: "\nAdd a <xref href=\"SudokuSpice.Data.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
+  example: []
+  syntax:
+    content: public static void AddConstraintHeadersForValueIndex(ReadOnlySpan<Square> squares, int valueIndex, ExactCoverMatrix matrix)
+    parameters:
+    - id: squares
+      type: System.ReadOnlySpan{SudokuSpice.Data.Square}
+      description: The squares to add possible square values from.
+    - id: valueIndex
+      type: System.Int32
+      description: "\nThe value index of the possible value within the squares.\n"
+    - id: matrix
+      type: SudokuSpice.Data.ExactCoverMatrix
+      description: The matrix for the current puzzle being solved.
+    content.vb: Public Shared Sub AddConstraintHeadersForValueIndex(squares As ReadOnlySpan(Of Square), valueIndex As Integer, matrix As ExactCoverMatrix)
+  overload: SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex*
+  nameWithType.vb: ConstraintUtil.AddConstraintHeadersForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan(Of SudokuSpice.Data.Square), System.Int32, SudokuSpice.Data.ExactCoverMatrix)
+  name.vb: AddConstraintHeadersForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix)
+references:
+- uid: SudokuSpice.Constraints
+  commentId: N:SudokuSpice.Constraints
+  name: SudokuSpice.Constraints
+  nameWithType: SudokuSpice.Constraints
+  fullName: SudokuSpice.Constraints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.Data.PossibleSquareValue
+  commentId: T:SudokuSpice.Data.PossibleSquareValue
+  parent: SudokuSpice.Data
+  name: PossibleSquareValue
+  nameWithType: PossibleSquareValue
+  fullName: SudokuSpice.Data.PossibleSquareValue
+- uid: SudokuSpice.Data.ConstraintHeader
+  commentId: T:SudokuSpice.Data.ConstraintHeader
+  parent: SudokuSpice.Data
+  name: ConstraintHeader
+  nameWithType: ConstraintHeader
+  fullName: SudokuSpice.Data.ConstraintHeader
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+- uid: SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares*
+  commentId: Overload:SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares
+  name: ImplementUniquenessConstraintForSquares
+  nameWithType: ConstraintUtil.ImplementUniquenessConstraintForSquares
+  fullName: SudokuSpice.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Data.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Coordinate>
+  nameWithType: ReadOnlySpan<Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Data.Coordinate>
+  nameWithType.vb: ReadOnlySpan(Of Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Data.Coordinate)
+  name.vb: ReadOnlySpan(Of Coordinate)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Data.ExactCoverMatrix
+  commentId: T:SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.Data
+  name: ExactCoverMatrix
+  nameWithType: ExactCoverMatrix
+  fullName: SudokuSpice.Data.ExactCoverMatrix
+- uid: SudokuSpice.Data
+  commentId: N:SudokuSpice.Data
+  name: SudokuSpice.Data
+  nameWithType: SudokuSpice.Data
+  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues*
+  commentId: Overload:SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues
+  name: CheckForSetValues
+  nameWithType: ConstraintUtil.CheckForSetValues
+  fullName: SudokuSpice.Constraints.ConstraintUtil.CheckForSetValues
+- uid: System.Span{System.Boolean}
+  commentId: T:System.Span{System.Boolean}
+  parent: System
+  definition: System.Span`1
+  name: Span<Boolean>
+  nameWithType: Span<Boolean>
+  fullName: System.Span<System.Boolean>
+  nameWithType.vb: Span(Of Boolean)
+  fullName.vb: System.Span(Of System.Boolean)
+  name.vb: Span(Of Boolean)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    nameWithType: Span
+    fullName: System.Span
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    nameWithType: Span
+    fullName: System.Span
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    nameWithType: Span
+    fullName: System.Span
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    nameWithType: Span
+    fullName: System.Span
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex*
+  commentId: Overload:SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex
+  name: DropPossibleSquaresForValueIndex
+  nameWithType: ConstraintUtil.DropPossibleSquaresForValueIndex
+  fullName: SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex
+- uid: System.ReadOnlySpan{SudokuSpice.Data.Square}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Data.Square}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Square>
+  nameWithType: ReadOnlySpan<Square>
+  fullName: System.ReadOnlySpan<SudokuSpice.Data.Square>
+  nameWithType.vb: ReadOnlySpan(Of Square)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Data.Square)
+  name.vb: ReadOnlySpan(Of Square)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Data.Square
+    name: Square
+    nameWithType: Square
+    fullName: SudokuSpice.Data.Square
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Data.Square
+    name: Square
+    nameWithType: Square
+    fullName: SudokuSpice.Data.Square
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex*
+  commentId: Overload:SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex
+  name: AddConstraintHeadersForValueIndex
+  nameWithType: ConstraintUtil.AddConstraintHeadersForValueIndex
+  fullName: SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex

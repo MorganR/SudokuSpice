@@ -1,0 +1,378 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Rules.IMissingColumnValuesTracker
+  commentId: T:SudokuSpice.Rules.IMissingColumnValuesTracker
+  id: IMissingColumnValuesTracker
+  parent: SudokuSpice.Rules
+  children:
+  - SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: IMissingColumnValuesTracker
+  nameWithType: IMissingColumnValuesTracker
+  fullName: SudokuSpice.Rules.IMissingColumnValuesTracker
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/Rules/IMissingColumnValuesTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: IMissingColumnValuesTracker
+    path: ../SudokuSpice/Rules/IMissingColumnValuesTracker.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Rules
+  summary: "\nTracks all the required unset values for a given column in the Puzzle.\n"
+  example: []
+  syntax:
+    content: 'public interface IMissingColumnValuesTracker : ISudokuRule'
+    content.vb: >-
+      Public Interface IMissingColumnValuesTracker
+          Inherits ISudokuRule
+  inheritedMembers:
+  - SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)
+  - SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)
+  - SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+  - SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+  - SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn(System.Int32)
+  commentId: M:SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn(System.Int32)
+  id: GetMissingValuesForColumn(System.Int32)
+  parent: SudokuSpice.Rules.IMissingColumnValuesTracker
+  langs:
+  - csharp
+  - vb
+  name: GetMissingValuesForColumn(Int32)
+  nameWithType: IMissingColumnValuesTracker.GetMissingValuesForColumn(Int32)
+  fullName: SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Rules/IMissingColumnValuesTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetMissingValuesForColumn
+    path: ../SudokuSpice/Rules/IMissingColumnValuesTracker.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.Rules
+  summary: "\nReturns all the values that still need to be set in the given column.\n"
+  example: []
+  syntax:
+    content: BitVector GetMissingValuesForColumn(int column)
+    parameters:
+    - id: column
+      type: System.Int32
+    return:
+      type: SudokuSpice.Data.BitVector
+    content.vb: Function GetMissingValuesForColumn(column As Integer) As BitVector
+  overload: SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn*
+references:
+- uid: SudokuSpice.Rules
+  commentId: N:SudokuSpice.Rules
+  name: SudokuSpice.Rules
+  nameWithType: SudokuSpice.Rules
+  fullName: SudokuSpice.Rules
+- uid: SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)
+  commentId: M:SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)
+  parent: SudokuSpice.Rules.ISudokuRule
+  name: GetPossibleValues(Coordinate)
+  nameWithType: ISudokuRule.GetPossibleValues(Coordinate)
+  fullName: SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate)
+  spec.csharp:
+  - uid: SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: ISudokuRule.GetPossibleValues
+    fullName: SudokuSpice.Rules.ISudokuRule.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: ISudokuRule.GetPossibleValues
+    fullName: SudokuSpice.Rules.ISudokuRule.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)
+  parent: SudokuSpice.Rules.ISudokuRule
+  isExternal: true
+  name: Revert(Coordinate, Int32)
+  nameWithType: ISudokuRule.Revert(Coordinate, Int32)
+  fullName: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate, System.Int32)
+  spec.csharp:
+  - uid: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)
+    name: Revert
+    nameWithType: ISudokuRule.Revert
+    fullName: SudokuSpice.Rules.ISudokuRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)
+    name: Revert
+    nameWithType: ISudokuRule.Revert
+    fullName: SudokuSpice.Rules.ISudokuRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+  commentId: M:SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+  parent: SudokuSpice.Rules.ISudokuRule
+  isExternal: true
+  name: Revert(Coordinate, Int32, CoordinateTracker)
+  nameWithType: ISudokuRule.Revert(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate, System.Int32, SudokuSpice.Data.CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+    name: Revert
+    nameWithType: ISudokuRule.Revert
+    fullName: SudokuSpice.Rules.ISudokuRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.Data.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.Data.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+    name: Revert
+    nameWithType: ISudokuRule.Revert
+    fullName: SudokuSpice.Rules.ISudokuRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.Data.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.Data.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+  commentId: M:SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+  parent: SudokuSpice.Rules.ISudokuRule
+  isExternal: true
+  name: Update(Coordinate, Int32, CoordinateTracker)
+  nameWithType: ISudokuRule.Update(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate, System.Int32, SudokuSpice.Data.CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+    name: Update
+    nameWithType: ISudokuRule.Update
+    fullName: SudokuSpice.Rules.ISudokuRule.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.Data.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.Data.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)
+    name: Update
+    nameWithType: ISudokuRule.Update
+    fullName: SudokuSpice.Rules.ISudokuRule.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Data.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Data.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.Data.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.Data.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.Rules.ISudokuRule
+  name: CopyWithNewReference(IReadOnlyPuzzle)
+  nameWithType: ISudokuRule.CopyWithNewReference(IReadOnlyPuzzle)
+  fullName: SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+    name: CopyWithNewReference
+    nameWithType: ISudokuRule.CopyWithNewReference
+    fullName: SudokuSpice.Rules.ISudokuRule.CopyWithNewReference
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+    name: CopyWithNewReference
+    nameWithType: ISudokuRule.CopyWithNewReference
+    fullName: SudokuSpice.Rules.ISudokuRule.CopyWithNewReference
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Rules.ISudokuRule
+  commentId: T:SudokuSpice.Rules.ISudokuRule
+  parent: SudokuSpice.Rules
+  name: ISudokuRule
+  nameWithType: ISudokuRule
+  fullName: SudokuSpice.Rules.ISudokuRule
+- uid: SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn*
+  commentId: Overload:SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn
+  name: GetMissingValuesForColumn
+  nameWithType: IMissingColumnValuesTracker.GetMissingValuesForColumn
+  fullName: SudokuSpice.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.Data.BitVector
+  commentId: T:SudokuSpice.Data.BitVector
+  parent: SudokuSpice.Data
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.Data.BitVector
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.Data
+  commentId: N:SudokuSpice.Data
+  name: SudokuSpice.Data
+  nameWithType: SudokuSpice.Data
+  fullName: SudokuSpice.Data

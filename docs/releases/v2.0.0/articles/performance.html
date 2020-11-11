@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Performance | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Performance | SudokuSpice ">
+    <meta name="generator" content="docfx 2.51.0.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v2.0.0">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="performance">Performance</h1>
+
+<p>All benchmarks were run using <a href="https://benchmarkdotnet.org/articles/overview.html">BenchmarkDotNet</a>.</p>
+<p>The performance of this library has been compared to other .NET sudoku libraries.</p>
+<p><strong>Compared libraries:</strong></p>
+<ul>
+<li><a href="https://github.com/BenjaminChambers/SudokuSharp">SudokuSharp</a></li>
+<li><a href="https://github.com/zhiliangxu/SudokuSolver">SudokuSolverLite</a></li>
+</ul>
+<h2 id="puzzle-solving-performance">Puzzle solving performance</h2>
+<p>These were compared using a set of 1750 generated puzzles, with 24 - 30 preset squares, grouped
+by the number of squares that needed to be guessed to solve the puzzle if using just the basic
+Sudoku constraints and no heuristics. <em>SudokuSpice</em> demonstrates considerably more speed and
+stability regardless of the number of guesses.</p>
+<p>Note: SudokuSpiceConstraints is a different solver implementation that's still in beta.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>sampleCollection</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">25.27 us</td>
+<td style="text-align: right;">0.028 us</td>
+<td style="text-align: right;">0.025 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">72.75 us</td>
+<td style="text-align: right;">0.171 us</td>
+<td style="text-align: right;">0.160 us</td>
+<td style="text-align: right;">2.88</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">730.24 us</td>
+<td style="text-align: right;">24.979 us</td>
+<td style="text-align: right;">73.652 us</td>
+<td style="text-align: right;">29.56</td>
+<td style="text-align: right;">3.65</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">1,311.49 us</td>
+<td style="text-align: right;">26.373 us</td>
+<td style="text-align: right;">69.937 us</td>
+<td style="text-align: right;">51.37</td>
+<td style="text-align: right;">2.68</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">39.25 us</td>
+<td style="text-align: right;">0.140 us</td>
+<td style="text-align: right;">0.131 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">77.74 us</td>
+<td style="text-align: right;">0.112 us</td>
+<td style="text-align: right;">0.105 us</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">1,535.82 us</td>
+<td style="text-align: right;">49.958 us</td>
+<td style="text-align: right;">144.936 us</td>
+<td style="text-align: right;">37.70</td>
+<td style="text-align: right;">4.00</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">4,320.99 us</td>
+<td style="text-align: right;">616.973 us</td>
+<td style="text-align: right;">1,819.158 us</td>
+<td style="text-align: right;">110.61</td>
+<td style="text-align: right;">52.94</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">52.02 us</td>
+<td style="text-align: right;">0.320 us</td>
+<td style="text-align: right;">0.299 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">80.45 us</td>
+<td style="text-align: right;">0.121 us</td>
+<td style="text-align: right;">0.107 us</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">2,508.12 us</td>
+<td style="text-align: right;">176.608 us</td>
+<td style="text-align: right;">515.175 us</td>
+<td style="text-align: right;">50.63</td>
+<td style="text-align: right;">11.58</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">4,054.04 us</td>
+<td style="text-align: right;">218.452 us</td>
+<td style="text-align: right;">637.235 us</td>
+<td style="text-align: right;">76.83</td>
+<td style="text-align: right;">11.31</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">72.29 us</td>
+<td style="text-align: right;">0.318 us</td>
+<td style="text-align: right;">0.282 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">85.50 us</td>
+<td style="text-align: right;">0.222 us</td>
+<td style="text-align: right;">0.207 us</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">3,509.47 us</td>
+<td style="text-align: right;">207.330 us</td>
+<td style="text-align: right;">598.194 us</td>
+<td style="text-align: right;">48.69</td>
+<td style="text-align: right;">7.68</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">10,709.14 us</td>
+<td style="text-align: right;">1,107.427 us</td>
+<td style="text-align: right;">3,247.891 us</td>
+<td style="text-align: right;">148.95</td>
+<td style="text-align: right;">43.79</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">92.16 us</td>
+<td style="text-align: right;">0.874 us</td>
+<td style="text-align: right;">0.818 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">91.14 us</td>
+<td style="text-align: right;">0.423 us</td>
+<td style="text-align: right;">0.395 us</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">5,608.38 us</td>
+<td style="text-align: right;">397.728 us</td>
+<td style="text-align: right;">1,153.882 us</td>
+<td style="text-align: right;">61.56</td>
+<td style="text-align: right;">12.10</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">21,316.38 us</td>
+<td style="text-align: right;">2,473.149 us</td>
+<td style="text-align: right;">7,095.928 us</td>
+<td style="text-align: right;">248.16</td>
+<td style="text-align: right;">95.30</td>
+</tr>
+</tbody>
+</table>
+<p>Each library was also compared with a select set of examples, most of which require more advanced
+techniques. These demonstrate that <em>SudokuSharp</em> can take the lead in some very simple cases, when
+the slight overhead needed by <em>SudokuSpice</em> dominates, but that this overhead leads to very
+effective performance enhancements for more complicated examples.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>puzzle</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td>Easy</td>
+<td style="text-align: right;">11.160 us</td>
+<td style="text-align: right;">0.0227 us</td>
+<td style="text-align: right;">0.0202 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Easy</td>
+<td style="text-align: right;">17.435 us</td>
+<td style="text-align: right;">0.0391 us</td>
+<td style="text-align: right;">0.0365 us</td>
+<td style="text-align: right;">1.56</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>Easy</td>
+<td style="text-align: right;">22.431 us</td>
+<td style="text-align: right;">0.0449 us</td>
+<td style="text-align: right;">0.0398 us</td>
+<td style="text-align: right;">2.01</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Easy</td>
+<td style="text-align: right;">28.521 us</td>
+<td style="text-align: right;">0.0418 us</td>
+<td style="text-align: right;">0.0370 us</td>
+<td style="text-align: right;">2.56</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Easy</td>
+<td style="text-align: right;">6.791 us</td>
+<td style="text-align: right;">0.0066 us</td>
+<td style="text-align: right;">0.0055 us</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Easy</td>
+<td style="text-align: right;">158.927 us</td>
+<td style="text-align: right;">0.2036 us</td>
+<td style="text-align: right;">0.1700 us</td>
+<td style="text-align: right;">14.24</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Medium</td>
+<td style="text-align: right;">84.024 us</td>
+<td style="text-align: right;">0.3301 us</td>
+<td style="text-align: right;">0.3088 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Medium</td>
+<td style="text-align: right;">114.455 us</td>
+<td style="text-align: right;">0.4465 us</td>
+<td style="text-align: right;">0.4176 us</td>
+<td style="text-align: right;">1.36</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>Medium</td>
+<td style="text-align: right;">140.599 us</td>
+<td style="text-align: right;">0.7713 us</td>
+<td style="text-align: right;">0.7214 us</td>
+<td style="text-align: right;">1.67</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Medium</td>
+<td style="text-align: right;">79.551 us</td>
+<td style="text-align: right;">0.1945 us</td>
+<td style="text-align: right;">0.1819 us</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Medium</td>
+<td style="text-align: right;">3,030.810 us</td>
+<td style="text-align: right;">20.9265 us</td>
+<td style="text-align: right;">19.5746 us</td>
+<td style="text-align: right;">36.07</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Medium</td>
+<td style="text-align: right;">2,409.765 us</td>
+<td style="text-align: right;">4.7837 us</td>
+<td style="text-align: right;">4.4747 us</td>
+<td style="text-align: right;">28.68</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardA</td>
+<td style="text-align: right;">64.487 us</td>
+<td style="text-align: right;">0.1538 us</td>
+<td style="text-align: right;">0.1363 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardA</td>
+<td style="text-align: right;">90.592 us</td>
+<td style="text-align: right;">0.1677 us</td>
+<td style="text-align: right;">0.1487 us</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardA</td>
+<td style="text-align: right;">112.272 us</td>
+<td style="text-align: right;">0.2002 us</td>
+<td style="text-align: right;">0.1775 us</td>
+<td style="text-align: right;">1.74</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardA</td>
+<td style="text-align: right;">84.761 us</td>
+<td style="text-align: right;">0.0814 us</td>
+<td style="text-align: right;">0.0762 us</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardA</td>
+<td style="text-align: right;">3,239.970 us</td>
+<td style="text-align: right;">64.2654 us</td>
+<td style="text-align: right;">78.9237 us</td>
+<td style="text-align: right;">50.26</td>
+<td style="text-align: right;">1.19</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardA</td>
+<td style="text-align: right;">25,231.589 us</td>
+<td style="text-align: right;">32.9460 us</td>
+<td style="text-align: right;">30.8177 us</td>
+<td style="text-align: right;">391.28</td>
+<td style="text-align: right;">0.87</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardB</td>
+<td style="text-align: right;">183.338 us</td>
+<td style="text-align: right;">0.8504 us</td>
+<td style="text-align: right;">0.7539 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardB</td>
+<td style="text-align: right;">240.076 us</td>
+<td style="text-align: right;">0.7208 us</td>
+<td style="text-align: right;">0.6390 us</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardB</td>
+<td style="text-align: right;">282.650 us</td>
+<td style="text-align: right;">1.7789 us</td>
+<td style="text-align: right;">1.6640 us</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardB</td>
+<td style="text-align: right;">96.462 us</td>
+<td style="text-align: right;">0.1471 us</td>
+<td style="text-align: right;">0.1304 us</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardB</td>
+<td style="text-align: right;">23,623.887 us</td>
+<td style="text-align: right;">856.9693 us</td>
+<td style="text-align: right;">2,526.7932 us</td>
+<td style="text-align: right;">132.83</td>
+<td style="text-align: right;">12.22</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardB</td>
+<td style="text-align: right;">4,932.185 us</td>
+<td style="text-align: right;">8.1122 us</td>
+<td style="text-align: right;">7.5881 us</td>
+<td style="text-align: right;">26.90</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilA</td>
+<td style="text-align: right;">114.194 us</td>
+<td style="text-align: right;">0.1773 us</td>
+<td style="text-align: right;">0.1572 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilA</td>
+<td style="text-align: right;">148.737 us</td>
+<td style="text-align: right;">0.3679 us</td>
+<td style="text-align: right;">0.3072 us</td>
+<td style="text-align: right;">1.30</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilA</td>
+<td style="text-align: right;">171.400 us</td>
+<td style="text-align: right;">1.5910 us</td>
+<td style="text-align: right;">1.4882 us</td>
+<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilA</td>
+<td style="text-align: right;">94.374 us</td>
+<td style="text-align: right;">0.1791 us</td>
+<td style="text-align: right;">0.1675 us</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilA</td>
+<td style="text-align: right;">42,915.898 us</td>
+<td style="text-align: right;">2,453.4413 us</td>
+<td style="text-align: right;">7,234.0270 us</td>
+<td style="text-align: right;">349.47</td>
+<td style="text-align: right;">51.71</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilA</td>
+<td style="text-align: right;">406,520.717 us</td>
+<td style="text-align: right;">694.0898 us</td>
+<td style="text-align: right;">615.2926 us</td>
+<td style="text-align: right;">3,559.92</td>
+<td style="text-align: right;">7.74</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilB</td>
+<td style="text-align: right;">1,175.542 us</td>
+<td style="text-align: right;">19.8557 us</td>
+<td style="text-align: right;">18.5730 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilB</td>
+<td style="text-align: right;">1,641.804 us</td>
+<td style="text-align: right;">32.6006 us</td>
+<td style="text-align: right;">33.4784 us</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: right;">0.03</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilB</td>
+<td style="text-align: right;">1,976.243 us</td>
+<td style="text-align: right;">36.3720 us</td>
+<td style="text-align: right;">40.4274 us</td>
+<td style="text-align: right;">1.68</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilB</td>
+<td style="text-align: right;">243.918 us</td>
+<td style="text-align: right;">0.6293 us</td>
+<td style="text-align: right;">0.5886 us</td>
+<td style="text-align: right;">0.21</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilB</td>
+<td style="text-align: right;">46,652.167 us</td>
+<td style="text-align: right;">856.3394 us</td>
+<td style="text-align: right;">801.0204 us</td>
+<td style="text-align: right;">39.69</td>
+<td style="text-align: right;">0.82</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilB</td>
+<td style="text-align: right;">51,580.925 us</td>
+<td style="text-align: right;">97.4053 us</td>
+<td style="text-align: right;">91.1130 us</td>
+<td style="text-align: right;">43.89</td>
+<td style="text-align: right;">0.68</td>
+</tr>
+</tbody>
+</table>
+<h2 id="puzzle-generating-performance">Puzzle generating performance</h2>
+<p>To compare puzzle generation, <em>SudokuSpice</em> and <em>SudokuSharp</em> were used to generate puzzles with 30
+preset squares. <em>SudokuSharp</em> shows two different numbers since it uses a different interface for
+puzzle generation. The <em>SudokuSharpSingle</em> method is more similar to the <em>SudokuSpice</em> method,
+where squares are cleared completely at random, whereas the <em>SudokuSharpMixed</em> method uses a mix of
+single, double, and quadruple square clearings.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td style="text-align: right;">1.458 ms</td>
+<td style="text-align: right;">0.0200 ms</td>
+<td style="text-align: right;">0.0187 ms</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td style="text-align: right;">2.453 ms</td>
+<td style="text-align: right;">0.0309 ms</td>
+<td style="text-align: right;">0.0289 ms</td>
+<td style="text-align: right;">1.68</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+<tr>
+<td>SudokuSharpSingles</td>
+<td style="text-align: right;">13.959 ms</td>
+<td style="text-align: right;">0.4725 ms</td>
+<td style="text-align: right;">1.3858 ms</td>
+<td style="text-align: right;">10.02</td>
+<td style="text-align: right;">0.69</td>
+</tr>
+<tr>
+<td>SudokuSharpMixed</td>
+<td style="text-align: right;">7.070 ms</td>
+<td style="text-align: right;">0.2192 ms</td>
+<td style="text-align: right;">0.6427 ms</td>
+<td style="text-align: right;">4.76</td>
+<td style="text-align: right;">0.56</td>
+</tr>
+</tbody>
+</table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v2.0.0/articles/performance.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
