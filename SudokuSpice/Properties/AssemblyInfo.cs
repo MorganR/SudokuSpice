@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 
 #if DEBUG
-[assembly: InternalsVisibleTo("SudokuSpice.Test")]
+[assembly: InternalsVisibleTo("SudokuSpice.InternalTest")]
 #endif

@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace SudokuSpice.Data.Test
+namespace SudokuSpice.Data.InternalTest
 {
     public class SquareLinkTest
     {

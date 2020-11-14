@@ -1,7 +1,7 @@
 ﻿using SudokuSpice.Data;
 using Xunit;
 
-namespace SudokuSpice.Constraints.Test
+namespace SudokuSpice.Constraints.InternalTest
 {
     class ConstraintTestingUtils
     {
