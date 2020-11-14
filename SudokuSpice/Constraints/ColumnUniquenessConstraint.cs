@@ -11,9 +11,9 @@ namespace SudokuSpice.Constraints
         /// <inheritdoc/>
         public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
+            Span<Coordinate> columnCoordinates = stackalloc Coordinate[puzzle.Size];
             for (int column = 0; column < puzzle.Size; column++)
             {
-                var columnCoordinates = new Coordinate[puzzle.Size];
                 for (int row = 0; row < puzzle.Size; row++)
                 {
                     columnCoordinates[row] = new Coordinate(row, column);

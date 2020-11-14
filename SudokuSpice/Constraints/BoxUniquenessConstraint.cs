@@ -28,7 +28,7 @@ namespace SudokuSpice.Constraints
             var startCoord = puzzle.GetStartingBoxCoordinate(box);
             var endCoord = new Coordinate(
                 startCoord.Row + puzzle.BoxSize, startCoord.Column + puzzle.BoxSize);
-            var boxCoordinates = new Coordinate[puzzle.Size];
+            Span<Coordinate> boxCoordinates = stackalloc Coordinate[puzzle.Size];
             int i = 0;
             for (int row = startCoord.Row; row < endCoord.Row; row++)
             {

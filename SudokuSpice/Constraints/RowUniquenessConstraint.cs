@@ -11,12 +11,12 @@ namespace SudokuSpice.Constraints
         /// <inheritdoc/>
         public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
+            Span<bool> isConstraintSatisfiedAtIndex =
+                   stackalloc bool[matrix.AllPossibleValues.Length];
             for (int row = 0; row < puzzle.Size; row++)
             {
                 var rowSquares = matrix.GetSquaresOnRow(row);
-                Span<bool> isConstraintSatisfiedAtIndex =
-                   stackalloc bool[matrix.AllPossibleValues.Length];
-                isConstraintSatisfiedAtIndex.Fill(false);
+                isConstraintSatisfiedAtIndex.Clear();
                 for (int col = 0; col < puzzle.Size; col++)
                 {
                     var puzzleValue = puzzle[row, col];
