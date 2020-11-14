@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-#if NETCOREAPP3_1
 using System.Runtime.Intrinsics.X86;
-#endif
 
 namespace SudokuSpice.Data
 {
@@ -41,12 +39,10 @@ namespace SudokuSpice.Data
         {
             get
             {
-#if NETCOREAPP3_1
                 if (Popcnt.IsSupported)
                 {
                     return (int)Popcnt.PopCount(Data);
                 }
-#endif
                 int count = 0;
                 for (int i = 0; i < 32; i++)
                 {
@@ -78,12 +74,10 @@ namespace SudokuSpice.Data
             {
                 throw new ArgumentOutOfRangeException(nameof(size), size, "Must be between 0 and 32 inclusive.");
             }
-#if NETCOREAPP3_1
             if (Bmi2.IsSupported)
             {
                 return new BitVector(Bmi2.ZeroHighBits(uint.MaxValue, (uint)size));
             }
-#endif
             return new BitVector((uint)((1 << size) - 1));
         }
 
@@ -156,7 +150,6 @@ namespace SudokuSpice.Data
         /// <returns>A list of the bits that are set.</returns>
         public readonly List<int> GetSetBits()
         {
-#if NETCOREAPP3_1
             if (Popcnt.IsSupported)
             {
                 var numSetBits = Count;
@@ -170,7 +163,6 @@ namespace SudokuSpice.Data
                 }
                 return setBits;
             }
-#endif
             var bits = new List<int>(32);
             for (int i = 0; i < _masks.Length; i++)
             {
