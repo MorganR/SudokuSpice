@@ -73,12 +73,12 @@
 values. In this case, we can use the standard <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> to store the
 data, but we need to add a custom rule. In this example, we'll go through the steps for
 implementing and using the
-<a class="xref" href="../api/SudokuSpice.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
+<a href="xref:SudokuSpice.Rules.DiagonalUniquenessRule"><code>DiagonalUniquenessRule</code></a>.</p>
 <h2 id="creating-a-rule">Creating a rule</h2>
 <h3 id="constructor">Constructor</h3>
-<p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.Rules.ISudokuRule.html"><code>ISudokuRule</code></a>, and we'll
+<p>The new rule needs to extend the <a href="xref:SudokuSpice.Rules.ISudokuRule"><code>ISudokuRule</code></a>, and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the <a class="xref" href="../api/SudokuSpice.Data.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
+we'll use the <a class="xref" href="../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
 set-like struct using the bits of a <code>uint</code>.</p>
 <pre><code class="lang-csharp">public class DiagonalUniquenessRule : ISudokuRule
 {
@@ -146,7 +146,7 @@ private bool _IsOnForwardDiag(in Coordinate c)
 <h3 id="update">Update</h3>
 <p>Great, now we need to provide a way for the rule keeper to update this rule. When the rule keeper
 wants to set a square's value, it will call <code>ISudokuRule.Update</code> with the location and new value.
-It will also include a <a class="xref" href="../api/SudokuSpice.Data.CoordinateTracker.html"><code>CoordinateTracker</code></a>, with which
+It will also include a <a class="xref" href="../api/SudokuSpice.CoordinateTracker.html"><code>CoordinateTracker</code></a>, with which
 this rule needs to track any coordinates whose possible values have changed.</p>
 <pre><code class="lang-csharp">public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
 {
@@ -200,8 +200,8 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 <h3 id="copywithnewreference">CopyWithNewReference</h3>
 <p>Lastly, we must implement the <code>ISudokuRule.CopyWithNewReference</code> method to provide a deep copy for
 the
-<a class="xref" href="../api/SudokuSpice.Solver.html#SudokuSpice_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
-method and for the <a class="xref" href="../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
+<a href="xref:SudokuSpice.Solver#SudokuSpice_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
+method and for the <a href="xref:SudokuSpice.PuzzleGenerator%601"><code>PuzzleGenerator</code></a>.</p>
 <pre><code class="lang-csharp">public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
 {
     return new DiagonalUniquenessRule(this, puzzle);

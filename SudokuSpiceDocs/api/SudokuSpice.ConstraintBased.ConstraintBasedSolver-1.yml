@@ -1,0 +1,673 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+  id: ConstraintBasedSolver`1
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{`0}})
+  - SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.GetStatsForAllSolutions(`0)
+  - SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.Solve(`0)
+  - SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.SolveRandomly(`0)
+  langs:
+  - csharp
+  - vb
+  name: ConstraintBasedSolver<TPuzzle>
+  nameWithType: ConstraintBasedSolver<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ConstraintBasedSolver
+    path: ../SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nSolves <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using an <see cref=\"!:ExactCoverMatrix\"></see>.\n"
+  remarks: "\nThis class is thread-safe.\n"
+  example: []
+  syntax:
+    content: >-
+      public class ConstraintBasedSolver<TPuzzle>
+          where TPuzzle : IPuzzle
+    typeParameters:
+    - id: TPuzzle
+    content.vb: Public Class ConstraintBasedSolver(Of TPuzzle As IPuzzle)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle)
+  name.vb: ConstraintBasedSolver(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{`0}})
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{`0}})
+  id: '#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{`0}})'
+  parent: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+  langs:
+  - csharp
+  - vb
+  name: ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>>)
+  nameWithType: ConstraintBasedSolver<TPuzzle>.ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>>)
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.ConstraintBasedSolver(System.Collections.Generic.IReadOnlyList<SudokuSpice.ConstraintBased.Constraints.IConstraint<TPuzzle>>)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: .ctor
+    path: ../SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+    startLine: 21
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nCreates a solver that can solve <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using the given\n<see cref=\"!:IConstraint\"></see>s. The same solver can be reused for multiple puzzles.\n"
+  example: []
+  syntax:
+    content: public ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)
+    parameters:
+    - id: constraints
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{{TPuzzle}}}
+      description: The constraints to satisfy when solving puzzles.
+    content.vb: Public Sub New(constraints As IReadOnlyList(Of IConstraint(Of TPuzzle)))
+  overload: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor*
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).ConstraintBasedSolver(IReadOnlyList(Of IConstraint(Of TPuzzle)))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).ConstraintBasedSolver(System.Collections.Generic.IReadOnlyList(Of SudokuSpice.ConstraintBased.Constraints.IConstraint(Of TPuzzle)))
+  name.vb: ConstraintBasedSolver(IReadOnlyList(Of IConstraint(Of TPuzzle)))
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.Solve(`0)
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.Solve(`0)
+  id: Solve(`0)
+  parent: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+  langs:
+  - csharp
+  - vb
+  name: Solve(TPuzzle)
+  nameWithType: ConstraintBasedSolver<TPuzzle>.Solve(TPuzzle)
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.Solve(TPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Solve
+    path: ../SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+    startLine: 41
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nSolves the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. This modifies the puzzle&apos;s data.\n"
+  remarks: "\nIt is safe to call this method from different threads on the same solver object,\nalthough note that the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code> is modified.\n"
+  example: []
+  syntax:
+    content: public void Solve(TPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+      description: The puzzle to solve.
+    content.vb: Public Sub Solve(puzzle As TPuzzle)
+  overload: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.Solve*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if the puzzle cannot be solved with this solver&apos;s constraints, or if the\npossible values are not unique.\n"
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).Solve(TPuzzle)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).Solve(TPuzzle)
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.SolveRandomly(`0)
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.SolveRandomly(`0)
+  id: SolveRandomly(`0)
+  parent: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+  langs:
+  - csharp
+  - vb
+  name: SolveRandomly(TPuzzle)
+  nameWithType: ConstraintBasedSolver<TPuzzle>.SolveRandomly(TPuzzle)
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.SolveRandomly(TPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: SolveRandomly
+    path: ../SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+    startLine: 58
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: public void SolveRandomly(TPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    content.vb: Public Sub SolveRandomly(puzzle As TPuzzle)
+  overload: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.SolveRandomly*
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).SolveRandomly(TPuzzle)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).SolveRandomly(TPuzzle)
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.GetStatsForAllSolutions(`0)
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.GetStatsForAllSolutions(`0)
+  id: GetStatsForAllSolutions(`0)
+  parent: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+  langs:
+  - csharp
+  - vb
+  name: GetStatsForAllSolutions(TPuzzle)
+  nameWithType: ConstraintBasedSolver<TPuzzle>.GetStatsForAllSolutions(TPuzzle)
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.GetStatsForAllSolutions(TPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetStatsForAllSolutions
+    path: ../SudokuSpice/ConstraintBased/ConstraintBasedSolver.cs
+    startLine: 76
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: public SolveStats GetStatsForAllSolutions(TPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    return:
+      type: SudokuSpice.SolveStats
+    content.vb: Public Function GetStatsForAllSolutions(puzzle As TPuzzle) As SolveStats
+  overload: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.GetStatsForAllSolutions*
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).GetStatsForAllSolutions(TPuzzle)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).GetStatsForAllSolutions(TPuzzle)
+references:
+- uid: SudokuSpice.IPuzzle
+  commentId: T:SudokuSpice.IPuzzle
+  parent: SudokuSpice
+  name: IPuzzle
+  nameWithType: IPuzzle
+  fullName: SudokuSpice.IPuzzle
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor*
+  commentId: Overload:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor
+  name: ConstraintBasedSolver
+  nameWithType: ConstraintBasedSolver<TPuzzle>.ConstraintBasedSolver
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.ConstraintBasedSolver
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).ConstraintBasedSolver
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).ConstraintBasedSolver
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{{TPuzzle}}}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint{`0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  name: IReadOnlyList<IConstraint<TPuzzle>>
+  nameWithType: IReadOnlyList<IConstraint<TPuzzle>>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.ConstraintBased.Constraints.IConstraint<TPuzzle>>
+  nameWithType.vb: IReadOnlyList(Of IConstraint(Of TPuzzle))
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.ConstraintBased.Constraints.IConstraint(Of TPuzzle))
+  name.vb: IReadOnlyList(Of IConstraint(Of TPuzzle))
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+    name: IConstraint
+    nameWithType: IConstraint
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+    name: IConstraint
+    nameWithType: IConstraint
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.Solve*
+  commentId: Overload:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.Solve
+  name: Solve
+  nameWithType: ConstraintBasedSolver<TPuzzle>.Solve
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.Solve
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).Solve
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).Solve
+- uid: '{TPuzzle}'
+  commentId: '!:TPuzzle'
+  definition: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.SolveRandomly*
+  commentId: Overload:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.SolveRandomly
+  name: SolveRandomly
+  nameWithType: ConstraintBasedSolver<TPuzzle>.SolveRandomly
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.SolveRandomly
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).SolveRandomly
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).SolveRandomly
+- uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.GetStatsForAllSolutions*
+  commentId: Overload:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.GetStatsForAllSolutions
+  name: GetStatsForAllSolutions
+  nameWithType: ConstraintBasedSolver<TPuzzle>.GetStatsForAllSolutions
+  fullName: SudokuSpice.ConstraintBased.ConstraintBasedSolver<TPuzzle>.GetStatsForAllSolutions
+  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle).GetStatsForAllSolutions
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintBasedSolver(Of TPuzzle).GetStatsForAllSolutions
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats

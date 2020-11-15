@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace SudokuSpice.Data.Test
+namespace SudokuSpice.Test
 {
     public class CoordinateTest
     {

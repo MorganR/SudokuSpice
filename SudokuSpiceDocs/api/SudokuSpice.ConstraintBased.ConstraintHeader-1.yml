@@ -1,0 +1,657 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader`1
+  id: ConstraintHeader`1
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
+  langs:
+  - csharp
+  - vb
+  name: ConstraintHeader<TPuzzle>
+  nameWithType: ConstraintHeader<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/framework/ConstraintHeader.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ConstraintHeader
+    path: ../SudokuSpice/ConstraintBased/framework/ConstraintHeader.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nRepresents a column from an exact-cover matrix.\n"
+  example: []
+  syntax:
+    content: >-
+      public class ConstraintHeader<TPuzzle>
+          where TPuzzle : IReadOnlyPuzzle
+    typeParameters:
+    - id: TPuzzle
+    content.vb: Public Class ConstraintHeader(Of TPuzzle As IReadOnlyPuzzle)
+  seealso:
+  - linkType: HRef
+    linkId: https://en.wikipedia.org/wiki/Exact_cover
+    altText: Exact cover (Wikipedia)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: ConstraintHeader(Of TPuzzle)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle)
+  name.vb: ConstraintHeader(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
+  id: CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
+  parent: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  langs:
+  - csharp
+  - vb
+  name: CreateConnectedHeader(ExactCoverMatrix<TPuzzle>, ReadOnlySpan<PossibleSquareValue<TPuzzle>>)
+  nameWithType: ConstraintHeader<TPuzzle>.CreateConnectedHeader(ExactCoverMatrix<TPuzzle>, ReadOnlySpan<PossibleSquareValue<TPuzzle>>)
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>, System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/framework/ConstraintHeader.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: CreateConnectedHeader
+    path: ../SudokuSpice/ConstraintBased/framework/ConstraintHeader.cs
+    startLine: 55
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nCreates a fully connected header that can be satisfied by any of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleSquares</code>. Adds and attaches necessary links to connect the\nmatrix.\n"
+  example: []
+  syntax:
+    content: public static ConstraintHeader<TPuzzle> CreateConnectedHeader(ExactCoverMatrix<TPuzzle> matrix, ReadOnlySpan<PossibleSquareValue<TPuzzle>> possibleSquares)
+    parameters:
+    - id: matrix
+      type: SudokuSpice.ConstraintBased.ExactCoverMatrix{{TPuzzle}}
+      description: That matrix that this header should be attached to.
+    - id: possibleSquares
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{{TPuzzle}}}
+      description: "\nThe possible square values that would satisfy this header.\n"
+    return:
+      type: SudokuSpice.ConstraintBased.ConstraintHeader{{TPuzzle}}
+      description: The newly constructed header.
+    content.vb: Public Shared Function CreateConnectedHeader(matrix As ExactCoverMatrix(Of TPuzzle), possibleSquares As ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle))) As ConstraintHeader(Of TPuzzle)
+  overload: SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader*
+  nameWithType.vb: ConstraintHeader(Of TPuzzle).CreateConnectedHeader(ExactCoverMatrix(Of TPuzzle), ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle).CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle), System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)))
+  name.vb: CreateConnectedHeader(ExactCoverMatrix(Of TPuzzle), ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle)))
+references:
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader*
+  commentId: Overload:SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader
+  name: CreateConnectedHeader
+  nameWithType: ConstraintHeader<TPuzzle>.CreateConnectedHeader
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>.CreateConnectedHeader
+  nameWithType.vb: ConstraintHeader(Of TPuzzle).CreateConnectedHeader
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle).CreateConnectedHeader
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix{{TPuzzle}}
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix{`0}
+  parent: SudokuSpice.ConstraintBased
+  definition: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  name: ExactCoverMatrix<TPuzzle>
+  nameWithType: ExactCoverMatrix<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>
+  nameWithType.vb: ExactCoverMatrix(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle)
+  name.vb: ExactCoverMatrix(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{{TPuzzle}}}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<PossibleSquareValue<TPuzzle>>
+  nameWithType: ReadOnlySpan<PossibleSquareValue<TPuzzle>>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>>
+  nameWithType.vb: ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle))
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle))
+  name.vb: ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle))
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+    name: PossibleSquareValue
+    nameWithType: PossibleSquareValue
+    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+    name: PossibleSquareValue
+    nameWithType: PossibleSquareValue
+    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader{{TPuzzle}}
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader{`0}
+  parent: SudokuSpice.ConstraintBased
+  definition: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  name: ConstraintHeader<TPuzzle>
+  nameWithType: ConstraintHeader<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>
+  nameWithType.vb: ConstraintHeader(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle)
+  name.vb: ConstraintHeader(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+    name: ConstraintHeader
+    nameWithType: ConstraintHeader
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+    name: ConstraintHeader
+    nameWithType: ConstraintHeader
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  name: ExactCoverMatrix<TPuzzle>
+  nameWithType: ExactCoverMatrix<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>
+  nameWithType.vb: ExactCoverMatrix(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle)
+  name.vb: ExactCoverMatrix(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader`1
+  name: ConstraintHeader<TPuzzle>
+  nameWithType: ConstraintHeader<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>
+  nameWithType.vb: ConstraintHeader(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle)
+  name.vb: ConstraintHeader(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+    name: ConstraintHeader
+    nameWithType: ConstraintHeader
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+    name: ConstraintHeader
+    nameWithType: ConstraintHeader
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )

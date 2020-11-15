@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace SudokuSpice.Data.Test
+namespace SudokuSpice.Test
 {
     public class CoordinateTrackerTest
     {

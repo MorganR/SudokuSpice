@@ -1,22 +1,22 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.ExactCoverMatrix
-  commentId: T:SudokuSpice.Data.ExactCoverMatrix
+- uid: SudokuSpice.ExactCoverMatrix
+  commentId: T:SudokuSpice.ExactCoverMatrix
   id: ExactCoverMatrix
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
-  - SudokuSpice.Data.ExactCoverMatrix.GetSquare(SudokuSpice.Data.Coordinate@)
-  - SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
-  - SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
-  - SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
-  - SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices
+  - SudokuSpice.ExactCoverMatrix.AllPossibleValues
+  - SudokuSpice.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)
+  - SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
+  - SudokuSpice.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
+  - SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+  - SudokuSpice.ExactCoverMatrix.ValuesToIndices
   langs:
   - csharp
   - vb
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.Data.ExactCoverMatrix
+  fullName: SudokuSpice.ExactCoverMatrix
   type: Class
   source:
     remote:
@@ -28,9 +28,9 @@ items:
     startLine: 16
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Data.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.Data.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
+  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
     content: public class ExactCoverMatrix
@@ -55,16 +55,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
-  commentId: P:SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+- uid: SudokuSpice.ExactCoverMatrix.AllPossibleValues
+  commentId: P:SudokuSpice.ExactCoverMatrix.AllPossibleValues
   id: AllPossibleValues
-  parent: SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: AllPossibleValues
   nameWithType: ExactCoverMatrix.AllPossibleValues
-  fullName: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+  fullName: SudokuSpice.ExactCoverMatrix.AllPossibleValues
   type: Property
   source:
     remote:
@@ -76,7 +76,7 @@ items:
     startLine: 25
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nContains the possible values for the current puzzle.\n"
   example: []
   syntax:
@@ -85,23 +85,23 @@ items:
     return:
       type: System.ReadOnlySpan{System.Int32}
     content.vb: Public ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
-  overload: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues*
+  overload: SudokuSpice.ExactCoverMatrix.AllPossibleValues*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices
-  commentId: P:SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices
+- uid: SudokuSpice.ExactCoverMatrix.ValuesToIndices
+  commentId: P:SudokuSpice.ExactCoverMatrix.ValuesToIndices
   id: ValuesToIndices
-  parent: SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: ValuesToIndices
   nameWithType: ExactCoverMatrix.ValuesToIndices
-  fullName: SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices
+  fullName: SudokuSpice.ExactCoverMatrix.ValuesToIndices
   type: Property
   source:
     remote:
@@ -113,8 +113,8 @@ items:
     startLine: 31
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
+  namespace: SudokuSpice
+  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
   example: []
   syntax:
     content: public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
@@ -122,23 +122,23 @@ items:
     return:
       type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
     content.vb: Public ReadOnly Property ValuesToIndices As IReadOnlyDictionary(Of Integer, Integer)
-  overload: SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices*
+  overload: SudokuSpice.ExactCoverMatrix.ValuesToIndices*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetSquare(SudokuSpice.Data.Coordinate@)
-  commentId: M:SudokuSpice.Data.ExactCoverMatrix.GetSquare(SudokuSpice.Data.Coordinate@)
-  id: GetSquare(SudokuSpice.Data.Coordinate@)
-  parent: SudokuSpice.Data.ExactCoverMatrix
+- uid: SudokuSpice.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)
+  id: GetSquare(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetSquare(Coordinate)
   nameWithType: ExactCoverMatrix.GetSquare(Coordinate)
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetSquare(SudokuSpice.Data.Coordinate)
+  fullName: SudokuSpice.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -150,35 +150,35 @@ items:
     startLine: 104
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nGets the square representing the given <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. This returns null if\nthe square&apos;s value was preset in the current puzzle being solved.\n"
+  namespace: SudokuSpice
+  summary: "\nGets the square representing the given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. This returns null if\nthe square&apos;s value was preset in the current puzzle being solved.\n"
   example: []
   syntax:
     content: public Square GetSquare(in Coordinate c)
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.Data.Square
+      type: SudokuSpice.Square
     content.vb: Public Function GetSquare(ByRef c As Coordinate) As Square
-  overload: SudokuSpice.Data.ExactCoverMatrix.GetSquare*
+  overload: SudokuSpice.ExactCoverMatrix.GetSquare*
   nameWithType.vb: ExactCoverMatrix.GetSquare(ByRef Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.ExactCoverMatrix.GetSquare(ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.ExactCoverMatrix.GetSquare(ByRef SudokuSpice.Coordinate)
   name.vb: GetSquare(ByRef Coordinate)
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
-  commentId: M:SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
+- uid: SudokuSpice.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
+  commentId: M:SudokuSpice.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
   id: GetSquaresOnRow(System.Int32)
-  parent: SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetSquaresOnRow(Int32)
   nameWithType: ExactCoverMatrix.GetSquaresOnRow(Int32)
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
+  fullName: SudokuSpice.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
   type: Method
   source:
     remote:
@@ -190,8 +190,8 @@ items:
     startLine: 113
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nGets all the <xref href=\"SudokuSpice.Data.Square\" data-throw-if-not-resolved=\"false\"></xref>s on the requested row.\n"
+  namespace: SudokuSpice
+  summary: "\nGets all the <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s on the requested row.\n"
   example: []
   syntax:
     content: public ReadOnlySpan<Square> GetSquaresOnRow(int row)
@@ -200,23 +200,23 @@ items:
       type: System.Int32
       description: A zero-based row index.
     return:
-      type: System.ReadOnlySpan{SudokuSpice.Data.Square}
+      type: System.ReadOnlySpan{SudokuSpice.Square}
     content.vb: Public Function GetSquaresOnRow(row As Integer) As ReadOnlySpan(Of Square)
-  overload: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow*
+  overload: SudokuSpice.ExactCoverMatrix.GetSquaresOnRow*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
-  commentId: M:SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
+- uid: SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
+  commentId: M:SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
   id: GetSquaresOnColumn(System.Int32)
-  parent: SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetSquaresOnColumn(Int32)
   nameWithType: ExactCoverMatrix.GetSquaresOnColumn(Int32)
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
+  fullName: SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
   type: Method
   source:
     remote:
@@ -228,8 +228,8 @@ items:
     startLine: 122
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nGets all the <xref href=\"SudokuSpice.Data.Square\" data-throw-if-not-resolved=\"false\"></xref>s on the requested column.\n"
+  namespace: SudokuSpice
+  summary: "\nGets all the <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s on the requested column.\n"
   example: []
   syntax:
     content: public List<Square> GetSquaresOnColumn(int column)
@@ -238,23 +238,23 @@ items:
       type: System.Int32
       description: A zero-based column index.
     return:
-      type: System.Collections.Generic.List{SudokuSpice.Data.Square}
+      type: System.Collections.Generic.List{SudokuSpice.Square}
     content.vb: Public Function GetSquaresOnColumn(column As Integer) As List(Of Square)
-  overload: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn*
+  overload: SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
-  commentId: M:SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+- uid: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+  commentId: M:SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
   id: GetUnsatisfiedConstraintHeaders
-  parent: SudokuSpice.Data.ExactCoverMatrix
+  parent: SudokuSpice.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetUnsatisfiedConstraintHeaders()
   nameWithType: ExactCoverMatrix.GetUnsatisfiedConstraintHeaders()
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders()
+  fullName: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders()
   type: Method
   source:
     remote:
@@ -266,49 +266,49 @@ items:
     startLine: 135
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.Data.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  namespace: SudokuSpice
+  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
   example: []
   syntax:
     content: public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
     return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Data.ConstraintHeader}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintHeader}
     content.vb: Public Function GetUnsatisfiedConstraintHeaders As IEnumerable(Of ConstraintHeader)
-  overload: SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
+  overload: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: SudokuSpice.Data.Square
-  commentId: T:SudokuSpice.Data.Square
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.Square
+  commentId: T:SudokuSpice.Square
+  parent: SudokuSpice
   name: Square
   nameWithType: Square
-  fullName: SudokuSpice.Data.Square
-- uid: SudokuSpice.Data.PossibleSquareValue
-  commentId: T:SudokuSpice.Data.PossibleSquareValue
-  parent: SudokuSpice.Data
+  fullName: SudokuSpice.Square
+- uid: SudokuSpice.PossibleSquareValue
+  commentId: T:SudokuSpice.PossibleSquareValue
+  parent: SudokuSpice
   name: PossibleSquareValue
   nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.Data.PossibleSquareValue
+  fullName: SudokuSpice.PossibleSquareValue
 - uid: SudokuSpice.Constraints.IConstraint
   commentId: T:SudokuSpice.Constraints.IConstraint
   parent: SudokuSpice.Constraints
   name: IConstraint
   nameWithType: IConstraint
   fullName: SudokuSpice.Constraints.IConstraint
-- uid: SudokuSpice.Data.ConstraintHeader
-  commentId: T:SudokuSpice.Data.ConstraintHeader
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.ConstraintHeader
+  commentId: T:SudokuSpice.ConstraintHeader
+  parent: SudokuSpice
   name: ConstraintHeader
   nameWithType: ConstraintHeader
-  fullName: SudokuSpice.Data.ConstraintHeader
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+  fullName: SudokuSpice.ConstraintHeader
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues*
-  commentId: Overload:SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+- uid: SudokuSpice.ExactCoverMatrix.AllPossibleValues*
+  commentId: Overload:SudokuSpice.ExactCoverMatrix.AllPossibleValues
   name: AllPossibleValues
   nameWithType: ExactCoverMatrix.AllPossibleValues
-  fullName: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+  fullName: SudokuSpice.ExactCoverMatrix.AllPossibleValues
 - uid: System.ReadOnlySpan{System.Int32}
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System
@@ -694,14 +694,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
-  commentId: P:SudokuSpice.Data.ExactCoverMatrix.AllPossibleValues
+- uid: SudokuSpice.ExactCoverMatrix.AllPossibleValues
+  commentId: P:SudokuSpice.ExactCoverMatrix.AllPossibleValues
   isExternal: true
-- uid: SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices*
-  commentId: Overload:SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices
+- uid: SudokuSpice.ExactCoverMatrix.ValuesToIndices*
+  commentId: Overload:SudokuSpice.ExactCoverMatrix.ValuesToIndices
   name: ValuesToIndices
   nameWithType: ExactCoverMatrix.ValuesToIndices
-  fullName: SudokuSpice.Data.ExactCoverMatrix.ValuesToIndices
+  fullName: SudokuSpice.ExactCoverMatrix.ValuesToIndices
 - uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   parent: System.Collections.Generic
@@ -819,22 +819,22 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetSquare*
-  commentId: Overload:SudokuSpice.Data.ExactCoverMatrix.GetSquare
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.ExactCoverMatrix.GetSquare*
+  commentId: Overload:SudokuSpice.ExactCoverMatrix.GetSquare
   name: GetSquare
   nameWithType: ExactCoverMatrix.GetSquare
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetSquare
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow*
-  commentId: Overload:SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow
+  fullName: SudokuSpice.ExactCoverMatrix.GetSquare
+- uid: SudokuSpice.ExactCoverMatrix.GetSquaresOnRow*
+  commentId: Overload:SudokuSpice.ExactCoverMatrix.GetSquaresOnRow
   name: GetSquaresOnRow
   nameWithType: ExactCoverMatrix.GetSquaresOnRow
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnRow
+  fullName: SudokuSpice.ExactCoverMatrix.GetSquaresOnRow
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -842,15 +842,15 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: System.ReadOnlySpan{SudokuSpice.Data.Square}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.Data.Square}
+- uid: System.ReadOnlySpan{SudokuSpice.Square}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Square}
   parent: System
   definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Square>
   nameWithType: ReadOnlySpan<Square>
-  fullName: System.ReadOnlySpan<SudokuSpice.Data.Square>
+  fullName: System.ReadOnlySpan<SudokuSpice.Square>
   nameWithType.vb: ReadOnlySpan(Of Square)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Data.Square)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Square)
   name.vb: ReadOnlySpan(Of Square)
   spec.csharp:
   - uid: System.ReadOnlySpan`1
@@ -861,10 +861,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Data.Square
+  - uid: SudokuSpice.Square
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -877,27 +877,27 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Data.Square
+  - uid: SudokuSpice.Square
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn*
-  commentId: Overload:SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn
+- uid: SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn*
+  commentId: Overload:SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn
   name: GetSquaresOnColumn
   nameWithType: ExactCoverMatrix.GetSquaresOnColumn
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetSquaresOnColumn
-- uid: System.Collections.Generic.List{SudokuSpice.Data.Square}
-  commentId: T:System.Collections.Generic.List{SudokuSpice.Data.Square}
+  fullName: SudokuSpice.ExactCoverMatrix.GetSquaresOnColumn
+- uid: System.Collections.Generic.List{SudokuSpice.Square}
+  commentId: T:System.Collections.Generic.List{SudokuSpice.Square}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
   name: List<Square>
   nameWithType: List<Square>
-  fullName: System.Collections.Generic.List<SudokuSpice.Data.Square>
+  fullName: System.Collections.Generic.List<SudokuSpice.Square>
   nameWithType.vb: List(Of Square)
-  fullName.vb: System.Collections.Generic.List(Of SudokuSpice.Data.Square)
+  fullName.vb: System.Collections.Generic.List(Of SudokuSpice.Square)
   name.vb: List(Of Square)
   spec.csharp:
   - uid: System.Collections.Generic.List`1
@@ -908,10 +908,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Data.Square
+  - uid: SudokuSpice.Square
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -924,10 +924,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Data.Square
+  - uid: SudokuSpice.Square
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: )
     nameWithType: )
     fullName: )
@@ -970,20 +970,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
-  commentId: Overload:SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+- uid: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
+  commentId: Overload:SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
   name: GetUnsatisfiedConstraintHeaders
   nameWithType: ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
-  fullName: SudokuSpice.Data.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Data.ConstraintHeader}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Data.ConstraintHeader}
+  fullName: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintHeader}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintHeader}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<ConstraintHeader>
   nameWithType: IEnumerable<ConstraintHeader>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Data.ConstraintHeader>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintHeader>
   nameWithType.vb: IEnumerable(Of ConstraintHeader)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Data.ConstraintHeader)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintHeader)
   name.vb: IEnumerable(Of ConstraintHeader)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
@@ -994,10 +994,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Data.ConstraintHeader
+  - uid: SudokuSpice.ConstraintHeader
     name: ConstraintHeader
     nameWithType: ConstraintHeader
-    fullName: SudokuSpice.Data.ConstraintHeader
+    fullName: SudokuSpice.ConstraintHeader
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1010,10 +1010,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Data.ConstraintHeader
+  - uid: SudokuSpice.ConstraintHeader
     name: ConstraintHeader
     nameWithType: ConstraintHeader
-    fullName: SudokuSpice.Data.ConstraintHeader
+    fullName: SudokuSpice.ConstraintHeader
   - name: )
     nameWithType: )
     fullName: )

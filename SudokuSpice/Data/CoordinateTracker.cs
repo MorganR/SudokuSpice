@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace SudokuSpice.Data
+namespace SudokuSpice
 {
     /// <summary>Efficiently tracks a set of <see cref="Coordinate"/>s.</summary>
     /// <remarks>

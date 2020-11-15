@@ -1,19 +1,19 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
-  commentId: T:SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
   id: CoordinateTracker.AddOrTrackResult
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.AddedAndTracked
-  - SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Tracked
-  - SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Unchanged
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
   langs:
   - csharp
   - vb
   name: CoordinateTracker.AddOrTrackResult
   nameWithType: CoordinateTracker.AddOrTrackResult
-  fullName: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult
   type: Enum
   source:
     remote:
@@ -25,8 +25,8 @@ items:
     startLine: 28
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nIndicates the action taken during an\n<xref href=\"SudokuSpice.Data.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Data.Coordinate%40)\" data-throw-if-not-resolved=\"false\"></xref>\noperation.\n"
+  namespace: SudokuSpice
+  summary: "\nIndicates the action taken during an\n<xref href=\"SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate%40)\" data-throw-if-not-resolved=\"false\"></xref>\noperation.\n"
   example: []
   syntax:
     content: public enum AddOrTrackResult
@@ -37,16 +37,16 @@ items:
   modifiers.vb:
   - Public
   - Enum
-- uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.AddedAndTracked
-  commentId: F:SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  commentId: F:SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
   id: AddedAndTracked
-  parent: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice.CoordinateTracker.AddOrTrackResult
   langs:
   - csharp
   - vb
   name: AddedAndTracked
   nameWithType: CoordinateTracker.AddOrTrackResult.AddedAndTracked
-  fullName: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
   type: Field
   source:
     remote:
@@ -58,29 +58,29 @@ items:
     startLine: 34
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nThe given <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was previously unknown, and has been added and\ntracked.\n"
+  namespace: SudokuSpice
+  summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was previously unknown, and has been added and\ntracked.\n"
   example: []
   syntax:
     content: AddedAndTracked = 0
     return:
-      type: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
   modifiers.csharp:
   - public
   - const
   modifiers.vb:
   - Public
   - Const
-- uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Tracked
-  commentId: F:SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Tracked
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
+  commentId: F:SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
   id: Tracked
-  parent: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice.CoordinateTracker.AddOrTrackResult
   langs:
   - csharp
   - vb
   name: Tracked
   nameWithType: CoordinateTracker.AddOrTrackResult.Tracked
-  fullName: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Tracked
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
   type: Field
   source:
     remote:
@@ -92,29 +92,29 @@ items:
     startLine: 39
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nThe given <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already added but was untracked, and is now\ntracked.\n"
+  namespace: SudokuSpice
+  summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already added but was untracked, and is now\ntracked.\n"
   example: []
   syntax:
     content: Tracked = 1
     return:
-      type: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
   modifiers.csharp:
   - public
   - const
   modifiers.vb:
   - Public
   - Const
-- uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Unchanged
-  commentId: F:SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Unchanged
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
+  commentId: F:SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
   id: Unchanged
-  parent: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice.CoordinateTracker.AddOrTrackResult
   langs:
   - csharp
   - vb
   name: Unchanged
   nameWithType: CoordinateTracker.AddOrTrackResult.Unchanged
-  fullName: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult.Unchanged
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
   type: Field
   source:
     remote:
@@ -126,13 +126,13 @@ items:
     startLine: 43
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nThe given <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already tracked. No changes were needed.\n"
+  namespace: SudokuSpice
+  summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already tracked. No changes were needed.\n"
   example: []
   syntax:
     content: Unchanged = 2
     return:
-      type: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
   modifiers.csharp:
   - public
   - const
@@ -140,23 +140,23 @@ items:
   - Public
   - Const
 references:
-- uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Data.Coordinate@)
-  commentId: M:SudokuSpice.Data.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Data.Coordinate@)
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
   isExternal: true
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
-- uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
-  commentId: T:SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
-  parent: SudokuSpice.Data
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice
   name: CoordinateTracker.AddOrTrackResult
   nameWithType: CoordinateTracker.AddOrTrackResult
-  fullName: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult

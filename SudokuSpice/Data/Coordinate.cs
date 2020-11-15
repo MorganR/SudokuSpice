@@ -1,6 +1,6 @@
 using System;
 
-namespace SudokuSpice.Data
+namespace SudokuSpice
 {
     /// <summary>
     /// Uniquely identifies the location of a square in a Sudoku puzzle.

@@ -27,7 +27,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nSolves <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using an <xref href=\"SudokuSpice.Data.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nSolves <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using an <xref href=\"SudokuSpice.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   remarks: "\nThis class is thread-safe.\n"
   example: []
   syntax:
@@ -190,7 +190,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IPuzzle
     return:
-      type: SudokuSpice.Data.SolveStats
+      type: SudokuSpice.SolveStats
     content.vb: Public Function GetStatsForAllSolutions(puzzle As IPuzzle) As SolveStats
   overload: SudokuSpice.ConstraintBasedSolver.GetStatsForAllSolutions*
   modifiers.csharp:
@@ -204,12 +204,12 @@ references:
   name: IPuzzle
   nameWithType: IPuzzle
   fullName: SudokuSpice.IPuzzle
-- uid: SudokuSpice.Data.ExactCoverMatrix
-  commentId: T:SudokuSpice.Data.ExactCoverMatrix
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.ExactCoverMatrix
+  commentId: T:SudokuSpice.ExactCoverMatrix
+  parent: SudokuSpice
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.Data.ExactCoverMatrix
+  fullName: SudokuSpice.ExactCoverMatrix
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
@@ -501,11 +501,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System
   commentId: N:System
   isExternal: true
@@ -633,9 +633,9 @@ references:
   name: GetStatsForAllSolutions
   nameWithType: ConstraintBasedSolver.GetStatsForAllSolutions
   fullName: SudokuSpice.ConstraintBasedSolver.GetStatsForAllSolutions
-- uid: SudokuSpice.Data.SolveStats
-  commentId: T:SudokuSpice.Data.SolveStats
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
   name: SolveStats
   nameWithType: SolveStats
-  fullName: SudokuSpice.Data.SolveStats
+  fullName: SudokuSpice.SolveStats

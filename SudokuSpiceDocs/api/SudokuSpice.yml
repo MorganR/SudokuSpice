@@ -4,15 +4,15 @@ items:
   commentId: N:SudokuSpice
   id: SudokuSpice
   children:
-  - SudokuSpice.ConstraintBasedGenerator`1
-  - SudokuSpice.ConstraintBasedSolver`1
+  - SudokuSpice.BitVector
+  - SudokuSpice.Coordinate
+  - SudokuSpice.CoordinateTracker
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult
   - SudokuSpice.IPuzzle
   - SudokuSpice.IReadOnlyBoxPuzzle
   - SudokuSpice.IReadOnlyPuzzle
   - SudokuSpice.Puzzle
-  - SudokuSpice.PuzzleGenerator`1
-  - SudokuSpice.Solver
-  - SudokuSpice.StandardPuzzleGenerator
+  - SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
@@ -23,78 +23,30 @@ items:
   assemblies:
   - SudokuSpice
 references:
-- uid: SudokuSpice.ConstraintBasedGenerator`1
-  commentId: T:SudokuSpice.ConstraintBasedGenerator`1
-  name: ConstraintBasedGenerator<TPuzzle>
-  nameWithType: ConstraintBasedGenerator<TPuzzle>
-  fullName: SudokuSpice.ConstraintBasedGenerator<TPuzzle>
-  nameWithType.vb: ConstraintBasedGenerator(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBasedGenerator(Of TPuzzle)
-  name.vb: ConstraintBasedGenerator(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBasedGenerator`1
-    name: ConstraintBasedGenerator
-    nameWithType: ConstraintBasedGenerator
-    fullName: SudokuSpice.ConstraintBasedGenerator
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBasedGenerator`1
-    name: ConstraintBasedGenerator
-    nameWithType: ConstraintBasedGenerator
-    fullName: SudokuSpice.ConstraintBasedGenerator
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.ConstraintBasedSolver`1
-  commentId: T:SudokuSpice.ConstraintBasedSolver`1
-  name: ConstraintBasedSolver<TPuzzle>
-  nameWithType: ConstraintBasedSolver<TPuzzle>
-  fullName: SudokuSpice.ConstraintBasedSolver<TPuzzle>
-  nameWithType.vb: ConstraintBasedSolver(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBasedSolver(Of TPuzzle)
-  name.vb: ConstraintBasedSolver(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBasedSolver`1
-    name: ConstraintBasedSolver
-    nameWithType: ConstraintBasedSolver
-    fullName: SudokuSpice.ConstraintBasedSolver
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBasedSolver`1
-    name: ConstraintBasedSolver
-    nameWithType: ConstraintBasedSolver
-    fullName: SudokuSpice.ConstraintBasedSolver
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.CoordinateTracker
+  commentId: T:SudokuSpice.CoordinateTracker
+  parent: SudokuSpice
+  name: CoordinateTracker
+  nameWithType: CoordinateTracker
+  fullName: SudokuSpice.CoordinateTracker
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice
+  name: CoordinateTracker.AddOrTrackResult
+  nameWithType: CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult
 - uid: SudokuSpice.IPuzzle
   commentId: T:SudokuSpice.IPuzzle
   parent: SudokuSpice
@@ -119,52 +71,12 @@ references:
   name: Puzzle
   nameWithType: Puzzle
   fullName: SudokuSpice.Puzzle
-- uid: SudokuSpice.PuzzleGenerator`1
-  commentId: T:SudokuSpice.PuzzleGenerator`1
-  name: PuzzleGenerator<TPuzzle>
-  nameWithType: PuzzleGenerator<TPuzzle>
-  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>
-  nameWithType.vb: PuzzleGenerator(Of TPuzzle)
-  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle)
-  name.vb: PuzzleGenerator(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.PuzzleGenerator`1
-    name: PuzzleGenerator
-    nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.PuzzleGenerator
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.PuzzleGenerator`1
-    name: PuzzleGenerator
-    nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.PuzzleGenerator
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.Solver
-  commentId: T:SudokuSpice.Solver
-  name: Solver
-  nameWithType: Solver
-  fullName: SudokuSpice.Solver
-- uid: SudokuSpice.StandardPuzzleGenerator
-  commentId: T:SudokuSpice.StandardPuzzleGenerator
-  name: StandardPuzzleGenerator
-  nameWithType: StandardPuzzleGenerator
-  fullName: SudokuSpice.StandardPuzzleGenerator
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice

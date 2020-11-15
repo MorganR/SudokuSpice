@@ -120,13 +120,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.%23ctor(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.Data.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.%23ctor(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/RowUniquenessRule.cs/#L15">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_RowUniquenessRule__ctor_" data-uid="SudokuSpice.Rules.RowUniquenessRule.#ctor*"></a>
-  <h4 id="SudokuSpice_Rules_RowUniquenessRule__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_Data_BitVector_" data-uid="SudokuSpice.Rules.RowUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.BitVector)">RowUniquenessRule(IReadOnlyPuzzle, BitVector)</h4>
+  <h4 id="SudokuSpice_Rules_RowUniquenessRule__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_" data-uid="SudokuSpice.Rules.RowUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)">RowUniquenessRule(IReadOnlyPuzzle, BitVector)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -258,13 +258,13 @@ puzzle should contain the same data as the current puzzle referenced by this rul
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_SudokuSpice_Data_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.GetPossibleValues(SudokuSpice.Data.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/RowUniquenessRule.cs/#L53">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_" data-uid="SudokuSpice.Rules.RowUniquenessRule.GetPossibleValues*"></a>
-  <h4 id="SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_SudokuSpice_Data_Coordinate__" data-uid="SudokuSpice.Rules.RowUniquenessRule.GetPossibleValues(SudokuSpice.Data.Coordinate@)">GetPossibleValues(Coordinate)</h4>
+  <h4 id="SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.Rules.RowUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)">GetPossibleValues(Coordinate)</h4>
   <div class="markdown level1 summary"><p>Gets the possible values for the given coordinate based on this rule.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -305,27 +305,27 @@ puzzle should contain the same data as the current puzzle referenced by this rul
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_SudokuSpice_Data_Coordinate___remarks">Remarks</h5>
+  <h5 id="SudokuSpice_Rules_RowUniquenessRule_GetPossibleValues_SudokuSpice_Coordinate___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When implementing this method, avoid depending on dynamic information in the current
 puzzle being solved, such as the currently set values. This method must return
 information that reflects the most recent calls to
-<a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_">Update(Coordinate, Int32, CoordinateTracker)</a>
-or <a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_">Revert(Coordinate, Int32, CoordinateTracker)</a>, as it can
+<a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_">Update(Coordinate, Int32, CoordinateTracker)</a>
+or <a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_">Revert(Coordinate, Int32, CoordinateTracker)</a>, as it can
 be called before or after modifying the underlying puzzle's data.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Data.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/RowUniquenessRule.cs/#L59">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_RowUniquenessRule_Revert_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Revert*"></a>
-  <h4 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
+  <h4 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
   <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
 <p>
 This performs the same internal updates as
-<a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_">Revert(Coordinate, Int32, CoordinateTracker)</a>, but without passing
+<a class="xref" href="SudokuSpice.Rules.ISudokuRule.html#SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_">Revert(Coordinate, Int32, CoordinateTracker)</a>, but without passing
 affected coordinates back to the caller. Therefore this is more efficient in cases
 where the caller already knows all the possible coordinates that could be affected.
 </p>
@@ -359,18 +359,18 @@ where the caller already knows all the possible coordinates that could be affect
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Data_Coordinate__System_Int32__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before reverting the value on the underlying puzzle.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Data.Coordinate%40%2CSystem.Int32%2CSudokuSpice.Data.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/RowUniquenessRule.cs/#L66">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_RowUniquenessRule_Revert_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Revert*"></a>
-  <h4 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
+  <h4 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
   <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate. Tracks affected
 coordinates in the given tracker.</p>
 </div>
@@ -410,18 +410,18 @@ tracker.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_Rules_RowUniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before reverting the value on the underlying puzzle.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_Update_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.Update(SudokuSpice.Data.Coordinate%40%2CSystem.Int32%2CSudokuSpice.Data.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_RowUniquenessRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.RowUniquenessRule.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/RowUniquenessRule.cs/#L73">View Source</a>
   </span>
   <a id="SudokuSpice_Rules_RowUniquenessRule_Update_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Update*"></a>
-  <h4 id="SudokuSpice_Rules_RowUniquenessRule_Update_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Update(SudokuSpice.Data.Coordinate@,System.Int32,SudokuSpice.Data.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>
+  <h4 id="SudokuSpice_Rules_RowUniquenessRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.Rules.RowUniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>
   <div class="markdown level1 summary"><p>Updates possible values based on setting the given coordinate to the given value.
 Tracks affected coordinates in the given tracker.</p>
 </div>
@@ -461,7 +461,7 @@ tracker.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_Rules_RowUniquenessRule_Update_SudokuSpice_Data_Coordinate__System_Int32_SudokuSpice_Data_CoordinateTracker__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_Rules_RowUniquenessRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before setting the value on the underlying puzzle.</p>
 </div>
   <h3 id="implements">Implements</h3>

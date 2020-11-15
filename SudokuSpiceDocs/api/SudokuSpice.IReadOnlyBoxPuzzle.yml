@@ -18,12 +18,12 @@ items:
   type: Interface
   source:
     remote:
-      path: SudokuSpice/IReadOnlyBoxPuzzle.cs
+      path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: IReadOnlyBoxPuzzle
-    path: ../SudokuSpice/IReadOnlyBoxPuzzle.cs
-    startLine: 9
+    path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
+    startLine: 8
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -41,7 +41,7 @@ items:
   - SudokuSpice.IReadOnlyPuzzle.NumSetSquares
   - SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
   - SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
-  - SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  - SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
   - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   modifiers.csharp:
   - public
@@ -62,12 +62,12 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/IReadOnlyBoxPuzzle.cs
+      path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: BoxSize
-    path: ../SudokuSpice/IReadOnlyBoxPuzzle.cs
-    startLine: 16
+    path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
+    startLine: 15
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -97,12 +97,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/IReadOnlyBoxPuzzle.cs
+      path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetBoxIndex
-    path: ../SudokuSpice/IReadOnlyBoxPuzzle.cs
-    startLine: 18
+    path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
+    startLine: 17
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -132,12 +132,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/IReadOnlyBoxPuzzle.cs
+      path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetStartingBoxCoordinate
-    path: ../SudokuSpice/IReadOnlyBoxPuzzle.cs
-    startLine: 21
+    path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
+    startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -149,7 +149,7 @@ items:
     - id: box
       type: System.Int32
     return:
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     content.vb: Function GetStartingBoxCoordinate(box As Integer) As Coordinate
   overload: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate*
 - uid: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
@@ -165,16 +165,16 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/IReadOnlyBoxPuzzle.cs
+      path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: YieldUnsetCoordsForBox
-    path: ../SudokuSpice/IReadOnlyBoxPuzzle.cs
-    startLine: 26
+    path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
+    startLine: 25
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nYields an enumerable of <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>s for all the unset squares in the given box.\n"
+  summary: "\nYields an enumerable of <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>s for all the unset squares in the given box.\n"
   example: []
   syntax:
     content: IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box)
@@ -182,7 +182,7 @@ items:
     - id: box
       type: System.Int32
     return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Data.Coordinate}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
     content.vb: Function YieldUnsetCoordsForBox(box As Integer) As IEnumerable(Of Coordinate)
   overload: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox*
 references:
@@ -279,42 +279,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
-  commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+- uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
   parent: SudokuSpice.IReadOnlyPuzzle
   name: Item[Coordinate]
   nameWithType: IReadOnlyPuzzle.Item[Coordinate]
-  fullName: SudokuSpice.IReadOnlyPuzzle.Item[SudokuSpice.Data.Coordinate]
+  fullName: SudokuSpice.IReadOnlyPuzzle.Item[SudokuSpice.Coordinate]
   nameWithType.vb: IReadOnlyPuzzle.Item(Coordinate)
-  fullName.vb: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate)
   name.vb: Item(Coordinate)
   spec.csharp:
-  - uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  - uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
     name: Item
     nameWithType: IReadOnlyPuzzle.Item
     fullName: SudokuSpice.IReadOnlyPuzzle.Item
   - name: '['
     nameWithType: '['
     fullName: '['
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ']'
     nameWithType: ']'
     fullName: ']'
   spec.vb:
-  - uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  - uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
     name: Item
     nameWithType: IReadOnlyPuzzle.Item
     fullName: SudokuSpice.IReadOnlyPuzzle.Item
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: )
     nameWithType: )
     fullName: )
@@ -380,31 +380,26 @@ references:
   name: GetStartingBoxCoordinate
   nameWithType: IReadOnlyBoxPuzzle.GetStartingBoxCoordinate
   fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+  fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox*
   commentId: Overload:SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
   name: YieldUnsetCoordsForBox
   nameWithType: IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
   fullName: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Data.Coordinate}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Data.Coordinate}
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<Coordinate>
   nameWithType: IEnumerable<Coordinate>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Data.Coordinate>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Coordinate>
   nameWithType.vb: IEnumerable(Of Coordinate)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Data.Coordinate)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Coordinate)
   name.vb: IEnumerable(Of Coordinate)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
@@ -415,10 +410,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -431,10 +426,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: )
     nameWithType: )
     fullName: )

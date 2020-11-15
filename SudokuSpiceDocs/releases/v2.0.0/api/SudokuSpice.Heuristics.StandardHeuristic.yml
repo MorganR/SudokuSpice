@@ -5,8 +5,8 @@ items:
   id: StandardHeuristic
   parent: SudokuSpice.Heuristics
   children:
-  - SudokuSpice.Heuristics.StandardHeuristic.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.Data.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)
-  - SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  - SudokuSpice.Heuristics.StandardHeuristic.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)
+  - SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
   - SudokuSpice.Heuristics.StandardHeuristic.UndoLastUpdate
   - SudokuSpice.Heuristics.StandardHeuristic.UpdateAll
   langs:
@@ -52,16 +52,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Heuristics.StandardHeuristic.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.Data.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)
-  commentId: M:SudokuSpice.Heuristics.StandardHeuristic.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.Data.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)
-  id: '#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.Data.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)'
+- uid: SudokuSpice.Heuristics.StandardHeuristic.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)
+  commentId: M:SudokuSpice.Heuristics.StandardHeuristic.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)
+  id: '#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.PossibleValues,SudokuSpice.Rules.IMissingRowValuesTracker,SudokuSpice.Rules.IMissingColumnValuesTracker,SudokuSpice.Rules.IMissingBoxValuesTracker)'
   parent: SudokuSpice.Heuristics.StandardHeuristic
   langs:
   - csharp
   - vb
   name: StandardHeuristic(IReadOnlyBoxPuzzle, PossibleValues, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker)
   nameWithType: StandardHeuristic.StandardHeuristic(IReadOnlyBoxPuzzle, PossibleValues, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker)
-  fullName: SudokuSpice.Heuristics.StandardHeuristic.StandardHeuristic(SudokuSpice.IReadOnlyBoxPuzzle, SudokuSpice.Data.PossibleValues, SudokuSpice.Rules.IMissingRowValuesTracker, SudokuSpice.Rules.IMissingColumnValuesTracker, SudokuSpice.Rules.IMissingBoxValuesTracker)
+  fullName: SudokuSpice.Heuristics.StandardHeuristic.StandardHeuristic(SudokuSpice.IReadOnlyBoxPuzzle, SudokuSpice.PossibleValues, SudokuSpice.Rules.IMissingRowValuesTracker, SudokuSpice.Rules.IMissingColumnValuesTracker, SudokuSpice.Rules.IMissingBoxValuesTracker)
   type: Constructor
   source:
     remote:
@@ -80,7 +80,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IReadOnlyBoxPuzzle
     - id: possibleValues
-      type: SudokuSpice.Data.PossibleValues
+      type: SudokuSpice.PossibleValues
     - id: rowRule
       type: SudokuSpice.Rules.IMissingRowValuesTracker
     - id: columnRule
@@ -93,16 +93,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
-  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+- uid: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
   parent: SudokuSpice.Heuristics.StandardHeuristic
   langs:
   - csharp
   - vb
   name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList<ISudokuRule>)
   nameWithType: StandardHeuristic.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.Rules.ISudokuRule>)
+  fullName: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.Rules.ISudokuRule>)
   type: Method
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
     - id: possibleValues
-      type: SudokuSpice.Data.PossibleValues
+      type: SudokuSpice.PossibleValues
     - id: rules
       type: System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule}
     return:
@@ -131,13 +131,13 @@ items:
     content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues, rules As IReadOnlyList(Of ISudokuRule)) As ISudokuHeuristic
   overload: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences*
   implements:
-  - SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  - SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
   nameWithType.vb: StandardHeuristic.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList(Of ISudokuRule))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Rules.ISudokuRule))
+  fullName.vb: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList(Of ISudokuRule))
 - uid: SudokuSpice.Heuristics.StandardHeuristic.UndoLastUpdate
   commentId: M:SudokuSpice.Heuristics.StandardHeuristic.UndoLastUpdate
@@ -525,12 +525,12 @@ references:
   name: IReadOnlyBoxPuzzle
   nameWithType: IReadOnlyBoxPuzzle
   fullName: SudokuSpice.IReadOnlyBoxPuzzle
-- uid: SudokuSpice.Data.PossibleValues
-  commentId: T:SudokuSpice.Data.PossibleValues
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.PossibleValues
+  commentId: T:SudokuSpice.PossibleValues
+  parent: SudokuSpice
   name: PossibleValues
   nameWithType: PossibleValues
-  fullName: SudokuSpice.Data.PossibleValues
+  fullName: SudokuSpice.PossibleValues
 - uid: SudokuSpice.Rules.IMissingRowValuesTracker
   commentId: T:SudokuSpice.Rules.IMissingRowValuesTracker
   parent: SudokuSpice.Rules
@@ -554,11 +554,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.Rules
   commentId: N:SudokuSpice.Rules
   name: SudokuSpice.Rules
@@ -569,18 +569,18 @@ references:
   name: CopyWithNewReferences
   nameWithType: StandardHeuristic.CopyWithNewReferences
   fullName: SudokuSpice.Heuristics.StandardHeuristic.CopyWithNewReferences
-- uid: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+- uid: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
   parent: SudokuSpice.Heuristics.ISudokuHeuristic
   isExternal: true
   name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList<ISudokuRule>)
   nameWithType: ISudokuHeuristic.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.Rules.ISudokuRule>)
+  fullName: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.Rules.ISudokuRule>)
   nameWithType.vb: ISudokuHeuristic.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList(Of ISudokuRule))
-  fullName.vb: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Rules.ISudokuRule))
+  fullName.vb: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList(Of ISudokuRule))
   spec.csharp:
-  - uid: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  - uid: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
     name: CopyWithNewReferences
     nameWithType: ISudokuHeuristic.CopyWithNewReferences
     fullName: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences
@@ -594,10 +594,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.Data.PossibleValues
+  - uid: SudokuSpice.PossibleValues
     name: PossibleValues
     nameWithType: PossibleValues
-    fullName: SudokuSpice.Data.PossibleValues
+    fullName: SudokuSpice.PossibleValues
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -620,7 +620,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  - uid: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
     name: CopyWithNewReferences
     nameWithType: ISudokuHeuristic.CopyWithNewReferences
     fullName: SudokuSpice.Heuristics.ISudokuHeuristic.CopyWithNewReferences
@@ -634,10 +634,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.Data.PossibleValues
+  - uid: SudokuSpice.PossibleValues
     name: PossibleValues
     nameWithType: PossibleValues
-    fullName: SudokuSpice.Data.PossibleValues
+    fullName: SudokuSpice.PossibleValues
   - name: ', '
     nameWithType: ', '
     fullName: ', '

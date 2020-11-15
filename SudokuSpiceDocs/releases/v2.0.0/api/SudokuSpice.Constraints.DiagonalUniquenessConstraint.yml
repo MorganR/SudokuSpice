@@ -5,7 +5,7 @@ items:
   id: DiagonalUniquenessConstraint
   parent: SudokuSpice.Constraints
   children:
-  - SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  - SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
   langs:
   - csharp
   - vb
@@ -49,16 +49,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
-  commentId: M:SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
-  id: Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+- uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  commentId: M:SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  id: Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
   parent: SudokuSpice.Constraints.DiagonalUniquenessConstraint
   langs:
   - csharp
   - vb
   name: Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
   nameWithType: DiagonalUniquenessConstraint.Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.ExactCoverMatrix)
+  fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ExactCoverMatrix)
   type: Method
   source:
     remote:
@@ -71,8 +71,8 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.Constraints
-  summary: "\nAdds necessary <xref href=\"SudokuSpice.Data.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
-  remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.Data.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
+  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
+  remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
   example: []
   syntax:
     content: public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -81,12 +81,12 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to solve.
     - id: matrix
-      type: SudokuSpice.Data.ExactCoverMatrix
+      type: SudokuSpice.ExactCoverMatrix
       description: The exact-cover matrix to constrain.
     content.vb: Public Sub Constrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix)
   overload: SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain*
   implements:
-  - SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  - SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -400,14 +400,14 @@ references:
   name: Constrain
   nameWithType: DiagonalUniquenessConstraint.Constrain
   fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint.Constrain
-- uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
-  commentId: M:SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+- uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  commentId: M:SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
   parent: SudokuSpice.Constraints.IConstraint
   name: Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
   nameWithType: IConstraint.Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.ExactCoverMatrix)
+  fullName: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ExactCoverMatrix)
   spec.csharp:
-  - uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  - uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
     name: Constrain
     nameWithType: IConstraint.Constrain
     fullName: SudokuSpice.Constraints.IConstraint.Constrain
@@ -421,15 +421,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.Data.ExactCoverMatrix
+  - uid: SudokuSpice.ExactCoverMatrix
     name: ExactCoverMatrix
     nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.Data.ExactCoverMatrix
+    fullName: SudokuSpice.ExactCoverMatrix
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.ExactCoverMatrix)
+  - uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
     name: Constrain
     nameWithType: IConstraint.Constrain
     fullName: SudokuSpice.Constraints.IConstraint.Constrain
@@ -443,10 +443,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.Data.ExactCoverMatrix
+  - uid: SudokuSpice.ExactCoverMatrix
     name: ExactCoverMatrix
     nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.Data.ExactCoverMatrix
+    fullName: SudokuSpice.ExactCoverMatrix
   - name: )
     nameWithType: )
     fullName: )
@@ -456,19 +456,19 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.Data.ExactCoverMatrix
-  commentId: T:SudokuSpice.Data.ExactCoverMatrix
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.ExactCoverMatrix
+  commentId: T:SudokuSpice.ExactCoverMatrix
+  parent: SudokuSpice
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.Data.ExactCoverMatrix
+  fullName: SudokuSpice.ExactCoverMatrix
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice

@@ -29,7 +29,7 @@ SudokuSpice uses four main interfaces:
 	[`BoxUniquenessRule`](xref:SudokuSpice.Rules.BoxUniquenessRule). For convenience and
 	efficiency, these come prepackaged in the
 	[`StandardRules`](xref:SudokuSpice.Rules.StandardRules) class. Rules do not directly modify the
-	[`IPuzzle`](xref:SudokuSpice.IPuzzle) or [`PossibleValues`](xref:SudokuSpice.Data.PossibleValues)
+	[`IPuzzle`](xref:SudokuSpice.IPuzzle) or [`PossibleValues`](xref:SudokuSpice.PossibleValues)
 	themselves. They should use an [`IReadOnlyPuzzle`](xref:SudokuSpice.IReadOnlyPuzzle) and just
 	enough internal state to efficiently provide the possible values of any given square according to
 	*only* that rule.
@@ -40,7 +40,7 @@ SudokuSpice uses four main interfaces:
 	are generally messier and more complex than simply creating custom rules.
 	[`StandardRuleKeeper`](xref:SudokuSpice.Rules.StandardRuleKeeper) is an example of this. Check out
 	the [benchmarks](performance.md) for performance comparisons. The rule keeper actually
-	updates the [`PossibleValues`](xref:SudokuSpice.Data.PossibleValues) based on all the rules while
+	updates the [`PossibleValues`](xref:SudokuSpice.PossibleValues) based on all the rules while
 	ensuring that no rules are broken by a given update.
 
 3.  The [`ISudokuHeuristic`](xref:SudokuSpice.Heuristics.ISudokuHeuristic)
@@ -51,7 +51,7 @@ SudokuSpice uses four main interfaces:
 	and still improve solving times.
 	
 	Heuristics depend on an [`IReadOnlyPuzzle`](xref:SudokuSpice.IReadOnlyPuzzle) and directly modify
-	the [`PossibleValues`](xref:SudokuSpice.Data.PossibleValues). They can alo optionally depend on one or
+	the [`PossibleValues`](xref:SudokuSpice.PossibleValues). They can alo optionally depend on one or
 	more rules, as is demonstrated by the
 	[`UniqueInRowHeuristic`](xref:SudokuSpice.Heuristics.UniqueInRowHeuristic). Heuristics can either
 	be *perfect* heuristics, i.e. they reduce squares to only one possible value (like the `UniqueIn*`
@@ -94,9 +94,9 @@ SudokuSpice uses four main interfaces:
 
   SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
   the `RxCxVx` cells in the first column) are represented by
-  [`PossibleSquareValue`s](xref:SudokuSpice.Data.PossibleSquareValue). Column headers (i.e. the
+  [`PossibleSquareValue`s](xref:SudokuSpice.PossibleSquareValue). Column headers (i.e. the
   cells in the first row) are represented by
-  [`ConstraintHeader`s](xref:SudokuSpice.Data.ConstraintHeader). Rows and columns are connected by
+  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintHeader). Rows and columns are connected by
   `SquareLink`s, which represent the 1s in the matrix. Each `SquareLink` is connected up and down
   to the other '1s' that satisfy that constraint header, and connected left and right to the other
   '1s' that are present for that possible square value.
@@ -114,7 +114,7 @@ For more information on extending SudokuSpice, see:
 ## Namespaces
 
 *   **<xref:SudokuSpice>:** Contains the main public classes for solving and generating puzzles.
-*   **<xref:SudokuSpice.Data>:** Contains data classes used internally, with some made public for
+*   **<xref:SudokuSpice>:** Contains data classes used internally, with some made public for
 	users who wish to extend the framework.
 *   **<xref:SudokuSpice.Heuristics>:** Contains standard heuristics and interfaces for creating
 	custom heuristics.

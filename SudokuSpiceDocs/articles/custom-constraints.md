@@ -15,10 +15,10 @@ no work needs to be done in the constructor.
 ### The `Constrain` method
 
 The `IConstraint.Constrain` operation adds new
-[`ConstraintHeader`s](xref:SudokuSpice.Data.ConstraintHeader) (and corresponding
+[`ConstraintHeader`s](xref:SudokuSpice.ConstraintHeader) (and corresponding
 `SquareLink`s) to the given
-[`ExactCoverMatrix`](xref:SudokuSpice.Data.ExactCoverMatrix). It must also drop any
-[`PossibleSquareValue`s](xref:SudokuSpice.Data.PossibleSquareValue) that are now impossible based
+[`ExactCoverMatrix`](xref:SudokuSpice.ExactCoverMatrix). It must also drop any
+[`PossibleSquareValue`s](xref:SudokuSpice.PossibleSquareValue) that are now impossible based
 on applying this constraint to the puzzle's preset values.
 
 #### Define your headers

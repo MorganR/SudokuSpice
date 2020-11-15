@@ -1,19 +1,19 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.PossibleSquareState
-  commentId: T:SudokuSpice.Data.PossibleSquareState
+- uid: SudokuSpice.PossibleSquareState
+  commentId: T:SudokuSpice.PossibleSquareState
   id: PossibleSquareState
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.PossibleSquareState.DROPPED
-  - SudokuSpice.Data.PossibleSquareState.SELECTED
-  - SudokuSpice.Data.PossibleSquareState.UNKNOWN
+  - SudokuSpice.PossibleSquareState.DROPPED
+  - SudokuSpice.PossibleSquareState.SELECTED
+  - SudokuSpice.PossibleSquareState.UNKNOWN
   langs:
   - csharp
   - vb
   name: PossibleSquareState
   nameWithType: PossibleSquareState
-  fullName: SudokuSpice.Data.PossibleSquareState
+  fullName: SudokuSpice.PossibleSquareState
   type: Enum
   source:
     remote:
@@ -25,8 +25,8 @@ items:
     startLine: 5
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nIndicates if a <xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible, selected, or dropped.\n"
+  namespace: SudokuSpice
+  summary: "\nIndicates if a <xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible, selected, or dropped.\n"
   example: []
   syntax:
     content: public enum PossibleSquareState
@@ -37,16 +37,16 @@ items:
   modifiers.vb:
   - Public
   - Enum
-- uid: SudokuSpice.Data.PossibleSquareState.UNKNOWN
-  commentId: F:SudokuSpice.Data.PossibleSquareState.UNKNOWN
+- uid: SudokuSpice.PossibleSquareState.UNKNOWN
+  commentId: F:SudokuSpice.PossibleSquareState.UNKNOWN
   id: UNKNOWN
-  parent: SudokuSpice.Data.PossibleSquareState
+  parent: SudokuSpice.PossibleSquareState
   langs:
   - csharp
   - vb
   name: UNKNOWN
   nameWithType: PossibleSquareState.UNKNOWN
-  fullName: SudokuSpice.Data.PossibleSquareState.UNKNOWN
+  fullName: SudokuSpice.PossibleSquareState.UNKNOWN
   type: Field
   source:
     remote:
@@ -58,29 +58,29 @@ items:
     startLine: 10
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nThis <xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible.\n"
+  namespace: SudokuSpice
+  summary: "\nThis <xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible.\n"
   example: []
   syntax:
     content: UNKNOWN = 0
     return:
-      type: SudokuSpice.Data.PossibleSquareState
+      type: SudokuSpice.PossibleSquareState
   modifiers.csharp:
   - public
   - const
   modifiers.vb:
   - Public
   - Const
-- uid: SudokuSpice.Data.PossibleSquareState.SELECTED
-  commentId: F:SudokuSpice.Data.PossibleSquareState.SELECTED
+- uid: SudokuSpice.PossibleSquareState.SELECTED
+  commentId: F:SudokuSpice.PossibleSquareState.SELECTED
   id: SELECTED
-  parent: SudokuSpice.Data.PossibleSquareState
+  parent: SudokuSpice.PossibleSquareState
   langs:
   - csharp
   - vb
   name: SELECTED
   nameWithType: PossibleSquareState.SELECTED
-  fullName: SudokuSpice.Data.PossibleSquareState.SELECTED
+  fullName: SudokuSpice.PossibleSquareState.SELECTED
   type: Field
   source:
     remote:
@@ -92,29 +92,29 @@ items:
     startLine: 14
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nThis <xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> has been selected.\n"
+  namespace: SudokuSpice
+  summary: "\nThis <xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> has been selected.\n"
   example: []
   syntax:
     content: SELECTED = 1
     return:
-      type: SudokuSpice.Data.PossibleSquareState
+      type: SudokuSpice.PossibleSquareState
   modifiers.csharp:
   - public
   - const
   modifiers.vb:
   - Public
   - Const
-- uid: SudokuSpice.Data.PossibleSquareState.DROPPED
-  commentId: F:SudokuSpice.Data.PossibleSquareState.DROPPED
+- uid: SudokuSpice.PossibleSquareState.DROPPED
+  commentId: F:SudokuSpice.PossibleSquareState.DROPPED
   id: DROPPED
-  parent: SudokuSpice.Data.PossibleSquareState
+  parent: SudokuSpice.PossibleSquareState
   langs:
   - csharp
   - vb
   name: DROPPED
   nameWithType: PossibleSquareState.DROPPED
-  fullName: SudokuSpice.Data.PossibleSquareState.DROPPED
+  fullName: SudokuSpice.PossibleSquareState.DROPPED
   type: Field
   source:
     remote:
@@ -126,13 +126,13 @@ items:
     startLine: 19
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nThis <xref href=\"SudokuSpice.Data.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
+  namespace: SudokuSpice
+  summary: "\nThis <xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
   example: []
   syntax:
     content: DROPPED = 2
     return:
-      type: SudokuSpice.Data.PossibleSquareState
+      type: SudokuSpice.PossibleSquareState
   modifiers.csharp:
   - public
   - const
@@ -140,20 +140,20 @@ items:
   - Public
   - Const
 references:
-- uid: SudokuSpice.Data.PossibleSquareValue
-  commentId: T:SudokuSpice.Data.PossibleSquareValue
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.PossibleSquareValue
+  commentId: T:SudokuSpice.PossibleSquareValue
+  parent: SudokuSpice
   name: PossibleSquareValue
   nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.Data.PossibleSquareValue
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
-- uid: SudokuSpice.Data.PossibleSquareState
-  commentId: T:SudokuSpice.Data.PossibleSquareState
-  parent: SudokuSpice.Data
+  fullName: SudokuSpice.PossibleSquareValue
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.PossibleSquareState
+  commentId: T:SudokuSpice.PossibleSquareState
+  parent: SudokuSpice
   name: PossibleSquareState
   nameWithType: PossibleSquareState
-  fullName: SudokuSpice.Data.PossibleSquareState
+  fullName: SudokuSpice.PossibleSquareState

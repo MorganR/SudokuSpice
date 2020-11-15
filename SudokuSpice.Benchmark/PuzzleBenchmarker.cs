@@ -1,9 +1,10 @@
 using BenchmarkDotNet.Attributes;
-using SudokuSpice.Constraints;
-using SudokuSpice.Data;
-using SudokuSpice.Heuristics;
-using SudokuSpice.Rules;
 using System.Collections.Generic;
+using SudokuSpice.ConstraintBased;
+using SudokuSpice.ConstraintBased.Constraints;
+using SudokuSpice.RuleBased.Rules;
+using SudokuSpice.RuleBased;
+using SudokuSpice.RuleBased.Heuristics;
 
 namespace SudokuSpice.Benchmark
 {

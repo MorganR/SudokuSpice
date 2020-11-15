@@ -1,23 +1,23 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.PossibleValues
-  commentId: T:SudokuSpice.Data.PossibleValues
+- uid: SudokuSpice.PossibleValues
+  commentId: T:SudokuSpice.PossibleValues
   id: PossibleValues
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.Data.PossibleValues)
-  - SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.BitVector)
-  - SudokuSpice.Data.PossibleValues.AllPossible
-  - SudokuSpice.Data.PossibleValues.Intersect(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.BitVector)
-  - SudokuSpice.Data.PossibleValues.Item(SudokuSpice.Data.Coordinate@)
-  - SudokuSpice.Data.PossibleValues.Reset(SudokuSpice.Data.Coordinate@)
+  - SudokuSpice.PossibleValues.#ctor(SudokuSpice.PossibleValues)
+  - SudokuSpice.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  - SudokuSpice.PossibleValues.AllPossible
+  - SudokuSpice.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  - SudokuSpice.PossibleValues.Item(SudokuSpice.Coordinate@)
+  - SudokuSpice.PossibleValues.Reset(SudokuSpice.Coordinate@)
   langs:
   - csharp
   - vb
   name: PossibleValues
   nameWithType: PossibleValues
-  fullName: SudokuSpice.Data.PossibleValues
+  fullName: SudokuSpice.PossibleValues
   type: Class
   source:
     remote:
@@ -29,7 +29,7 @@ items:
     startLine: 7
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nTracks per-square possible values for a puzzle.\n"
   example: []
   syntax:
@@ -51,16 +51,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Data.PossibleValues.AllPossible
-  commentId: P:SudokuSpice.Data.PossibleValues.AllPossible
+- uid: SudokuSpice.PossibleValues.AllPossible
+  commentId: P:SudokuSpice.PossibleValues.AllPossible
   id: AllPossible
-  parent: SudokuSpice.Data.PossibleValues
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: AllPossible
   nameWithType: PossibleValues.AllPossible
-  fullName: SudokuSpice.Data.PossibleValues.AllPossible
+  fullName: SudokuSpice.PossibleValues.AllPossible
   type: Property
   source:
     remote:
@@ -72,32 +72,32 @@ items:
     startLine: 15
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nReturns a <xref href=\"SudokuSpice.Data.BitVector\" data-throw-if-not-resolved=\"false\"></xref> for the complete set of possible values for any given\nsquare in the puzzle represented by this <code>PossibleValues</code> object.\n"
+  namespace: SudokuSpice
+  summary: "\nReturns a <xref href=\"SudokuSpice.BitVector\" data-throw-if-not-resolved=\"false\"></xref> for the complete set of possible values for any given\nsquare in the puzzle represented by this <code>PossibleValues</code> object.\n"
   example: []
   syntax:
     content: public BitVector AllPossible { get; }
     parameters: []
     return:
-      type: SudokuSpice.Data.BitVector
+      type: SudokuSpice.BitVector
     content.vb: Public ReadOnly Property AllPossible As BitVector
-  overload: SudokuSpice.Data.PossibleValues.AllPossible*
+  overload: SudokuSpice.PossibleValues.AllPossible*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
   id: '#ctor(SudokuSpice.IReadOnlyPuzzle)'
-  parent: SudokuSpice.Data.PossibleValues
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: PossibleValues(IReadOnlyPuzzle)
   nameWithType: PossibleValues.PossibleValues(IReadOnlyPuzzle)
-  fullName: SudokuSpice.Data.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle)
   type: Constructor
   source:
     remote:
@@ -109,7 +109,7 @@ items:
     startLine: 23
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nConstructs a <code>PossibleValues</code> object to track possible values for the given\npuzzle. Assumes that the possible values are 1 to <code>puzzle.Size</code>.\n"
   example: []
   syntax:
@@ -119,21 +119,21 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle for which we want to track possible values.
     content.vb: Public Sub New(puzzle As IReadOnlyPuzzle)
-  overload: SudokuSpice.Data.PossibleValues.#ctor*
+  overload: SudokuSpice.PossibleValues.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.BitVector)
-  commentId: M:SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.BitVector)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.BitVector)'
-  parent: SudokuSpice.Data.PossibleValues
+- uid: SudokuSpice.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)'
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: PossibleValues(IReadOnlyPuzzle, BitVector)
   nameWithType: PossibleValues.PossibleValues(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.Data.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.BitVector)
+  fullName: SudokuSpice.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   type: Constructor
   source:
     remote:
@@ -145,7 +145,7 @@ items:
     startLine: 44
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nConstructs a <code>PossibleValues</code> object to track possible values for the given puzzle.\n"
   example: []
   syntax:
@@ -155,24 +155,24 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle for which we want to track possible values.
     - id: allPossible
-      type: SudokuSpice.Data.BitVector
+      type: SudokuSpice.BitVector
       description: "\nThe full set of possible values for any given square in this puzzle.\n"
     content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, allPossible As BitVector)
-  overload: SudokuSpice.Data.PossibleValues.#ctor*
+  overload: SudokuSpice.PossibleValues.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.Data.PossibleValues)
-  commentId: M:SudokuSpice.Data.PossibleValues.#ctor(SudokuSpice.Data.PossibleValues)
-  id: '#ctor(SudokuSpice.Data.PossibleValues)'
-  parent: SudokuSpice.Data.PossibleValues
+- uid: SudokuSpice.PossibleValues.#ctor(SudokuSpice.PossibleValues)
+  commentId: M:SudokuSpice.PossibleValues.#ctor(SudokuSpice.PossibleValues)
+  id: '#ctor(SudokuSpice.PossibleValues)'
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: PossibleValues(PossibleValues)
   nameWithType: PossibleValues.PossibleValues(PossibleValues)
-  fullName: SudokuSpice.Data.PossibleValues.PossibleValues(SudokuSpice.Data.PossibleValues)
+  fullName: SudokuSpice.PossibleValues.PossibleValues(SudokuSpice.PossibleValues)
   type: Constructor
   source:
     remote:
@@ -184,31 +184,31 @@ items:
     startLine: 61
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nCopy-constructor to provide a deep copy.\n"
   example: []
   syntax:
     content: public PossibleValues(PossibleValues existing)
     parameters:
     - id: existing
-      type: SudokuSpice.Data.PossibleValues
+      type: SudokuSpice.PossibleValues
       description: "\nThe existing <code>PossibleValues</code> object that you want to copy.\n"
     content.vb: Public Sub New(existing As PossibleValues)
-  overload: SudokuSpice.Data.PossibleValues.#ctor*
+  overload: SudokuSpice.PossibleValues.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.PossibleValues.Item(SudokuSpice.Data.Coordinate@)
-  commentId: P:SudokuSpice.Data.PossibleValues.Item(SudokuSpice.Data.Coordinate@)
-  id: Item(SudokuSpice.Data.Coordinate@)
-  parent: SudokuSpice.Data.PossibleValues
+- uid: SudokuSpice.PossibleValues.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.PossibleValues.Item(SudokuSpice.Coordinate@)
+  id: Item(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: Item[Coordinate]
   nameWithType: PossibleValues.Item[Coordinate]
-  fullName: SudokuSpice.Data.PossibleValues.Item[SudokuSpice.Data.Coordinate]
+  fullName: SudokuSpice.PossibleValues.Item[SudokuSpice.Coordinate]
   type: Property
   source:
     remote:
@@ -220,20 +220,20 @@ items:
     startLine: 72
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nProvides read and write access to the possible values for the given square.\n"
   example: []
   syntax:
     content: public BitVector this[in Coordinate c] { get; set; }
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
-      description: The <xref href="SudokuSpice.Data.Coordinate" data-throw-if-not-resolved="false"></xref> of the square.
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> of the square.
     return:
-      type: SudokuSpice.Data.BitVector
-      description: The possible values for that square as a <xref href="SudokuSpice.Data.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.BitVector
+      description: The possible values for that square as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Property Item(ByRef c As Coordinate) As BitVector
-  overload: SudokuSpice.Data.PossibleValues.Item*
+  overload: SudokuSpice.PossibleValues.Item*
   nameWithType.vb: PossibleValues.Item(ByRef Coordinate)
   modifiers.csharp:
   - public
@@ -241,18 +241,18 @@ items:
   - set
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.PossibleValues.Item(ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.PossibleValues.Item(ByRef SudokuSpice.Coordinate)
   name.vb: Item(ByRef Coordinate)
-- uid: SudokuSpice.Data.PossibleValues.Intersect(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.BitVector)
-  commentId: M:SudokuSpice.Data.PossibleValues.Intersect(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.BitVector)
-  id: Intersect(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.BitVector)
-  parent: SudokuSpice.Data.PossibleValues
+- uid: SudokuSpice.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  id: Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: Intersect(Coordinate, BitVector)
   nameWithType: PossibleValues.Intersect(Coordinate, BitVector)
-  fullName: SudokuSpice.Data.PossibleValues.Intersect(SudokuSpice.Data.Coordinate, SudokuSpice.Data.BitVector)
+  fullName: SudokuSpice.PossibleValues.Intersect(SudokuSpice.Coordinate, SudokuSpice.BitVector)
   type: Method
   source:
     remote:
@@ -264,37 +264,37 @@ items:
     startLine: 85
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nUpdates the possible values for the square at the given <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> to be\nthe intersect of their current value and the given <code>possibleValues</code>.\n"
+  namespace: SudokuSpice
+  summary: "\nUpdates the possible values for the square at the given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> to be\nthe intersect of their current value and the given <code>possibleValues</code>.\n"
   example: []
   syntax:
     content: public void Intersect(in Coordinate c, BitVector possibleValues)
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
-      description: The <xref href="SudokuSpice.Data.Coordinate" data-throw-if-not-resolved="false"></xref> of the square to update.
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> of the square to update.
     - id: possibleValues
-      type: SudokuSpice.Data.BitVector
+      type: SudokuSpice.BitVector
       description: The possible values to intersect with.
     content.vb: Public Sub Intersect(ByRef c As Coordinate, possibleValues As BitVector)
-  overload: SudokuSpice.Data.PossibleValues.Intersect*
+  overload: SudokuSpice.PossibleValues.Intersect*
   nameWithType.vb: PossibleValues.Intersect(ByRef Coordinate, BitVector)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.PossibleValues.Intersect(ByRef SudokuSpice.Data.Coordinate, SudokuSpice.Data.BitVector)
+  fullName.vb: SudokuSpice.PossibleValues.Intersect(ByRef SudokuSpice.Coordinate, SudokuSpice.BitVector)
   name.vb: Intersect(ByRef Coordinate, BitVector)
-- uid: SudokuSpice.Data.PossibleValues.Reset(SudokuSpice.Data.Coordinate@)
-  commentId: M:SudokuSpice.Data.PossibleValues.Reset(SudokuSpice.Data.Coordinate@)
-  id: Reset(SudokuSpice.Data.Coordinate@)
-  parent: SudokuSpice.Data.PossibleValues
+- uid: SudokuSpice.PossibleValues.Reset(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.PossibleValues.Reset(SudokuSpice.Coordinate@)
+  id: Reset(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.PossibleValues
   langs:
   - csharp
   - vb
   name: Reset(Coordinate)
   nameWithType: PossibleValues.Reset(Coordinate)
-  fullName: SudokuSpice.Data.PossibleValues.Reset(SudokuSpice.Data.Coordinate)
+  fullName: SudokuSpice.PossibleValues.Reset(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -306,30 +306,30 @@ items:
     startLine: 96
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nResets the possible values for the given <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> to the full set of\npossible values for this puzzle.\n"
+  namespace: SudokuSpice
+  summary: "\nResets the possible values for the given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> to the full set of\npossible values for this puzzle.\n"
   example: []
   syntax:
     content: public void Reset(in Coordinate c)
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
       description: The <code>Coordinate</code> of the square to reset.
     content.vb: Public Sub Reset(ByRef c As Coordinate)
-  overload: SudokuSpice.Data.PossibleValues.Reset*
+  overload: SudokuSpice.PossibleValues.Reset*
   nameWithType.vb: PossibleValues.Reset(ByRef Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.PossibleValues.Reset(ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.PossibleValues.Reset(ByRef SudokuSpice.Coordinate)
   name.vb: Reset(ByRef Coordinate)
 references:
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -622,22 +622,22 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.Data.BitVector
-  commentId: T:SudokuSpice.Data.BitVector
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.Data.BitVector
-- uid: SudokuSpice.Data.PossibleValues.AllPossible*
-  commentId: Overload:SudokuSpice.Data.PossibleValues.AllPossible
+  fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.PossibleValues.AllPossible*
+  commentId: Overload:SudokuSpice.PossibleValues.AllPossible
   name: AllPossible
   nameWithType: PossibleValues.AllPossible
-  fullName: SudokuSpice.Data.PossibleValues.AllPossible
-- uid: SudokuSpice.Data.PossibleValues.#ctor*
-  commentId: Overload:SudokuSpice.Data.PossibleValues.#ctor
+  fullName: SudokuSpice.PossibleValues.AllPossible
+- uid: SudokuSpice.PossibleValues.#ctor*
+  commentId: Overload:SudokuSpice.PossibleValues.#ctor
   name: PossibleValues
   nameWithType: PossibleValues.PossibleValues
-  fullName: SudokuSpice.Data.PossibleValues.PossibleValues
+  fullName: SudokuSpice.PossibleValues.PossibleValues
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
@@ -649,30 +649,30 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.Data.PossibleValues
-  commentId: T:SudokuSpice.Data.PossibleValues
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.PossibleValues
+  commentId: T:SudokuSpice.PossibleValues
+  parent: SudokuSpice
   name: PossibleValues
   nameWithType: PossibleValues
-  fullName: SudokuSpice.Data.PossibleValues
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+  fullName: SudokuSpice.PossibleValues
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
-- uid: SudokuSpice.Data.PossibleValues.Item*
-  commentId: Overload:SudokuSpice.Data.PossibleValues.Item
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.PossibleValues.Item*
+  commentId: Overload:SudokuSpice.PossibleValues.Item
   name: Item
   nameWithType: PossibleValues.Item
-  fullName: SudokuSpice.Data.PossibleValues.Item
-- uid: SudokuSpice.Data.PossibleValues.Intersect*
-  commentId: Overload:SudokuSpice.Data.PossibleValues.Intersect
+  fullName: SudokuSpice.PossibleValues.Item
+- uid: SudokuSpice.PossibleValues.Intersect*
+  commentId: Overload:SudokuSpice.PossibleValues.Intersect
   name: Intersect
   nameWithType: PossibleValues.Intersect
-  fullName: SudokuSpice.Data.PossibleValues.Intersect
-- uid: SudokuSpice.Data.PossibleValues.Reset*
-  commentId: Overload:SudokuSpice.Data.PossibleValues.Reset
+  fullName: SudokuSpice.PossibleValues.Intersect
+- uid: SudokuSpice.PossibleValues.Reset*
+  commentId: Overload:SudokuSpice.PossibleValues.Reset
   name: Reset
   nameWithType: PossibleValues.Reset
-  fullName: SudokuSpice.Data.PossibleValues.Reset
+  fullName: SudokuSpice.PossibleValues.Reset

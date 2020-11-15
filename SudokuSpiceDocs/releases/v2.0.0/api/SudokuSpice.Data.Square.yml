@@ -1,20 +1,20 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.Square
-  commentId: T:SudokuSpice.Data.Square
+- uid: SudokuSpice.Square
+  commentId: T:SudokuSpice.Square
   id: Square
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.Square.Coordinate
-  - SudokuSpice.Data.Square.GetPossibleValue(System.Int32)
-  - SudokuSpice.Data.Square.IsSet
-  - SudokuSpice.Data.Square.NumPossibleValues
+  - SudokuSpice.Square.Coordinate
+  - SudokuSpice.Square.GetPossibleValue(System.Int32)
+  - SudokuSpice.Square.IsSet
+  - SudokuSpice.Square.NumPossibleValues
   langs:
   - csharp
   - vb
   name: Square
   nameWithType: Square
-  fullName: SudokuSpice.Data.Square
+  fullName: SudokuSpice.Square
   type: Class
   source:
     remote:
@@ -26,7 +26,7 @@ items:
     startLine: 10
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nRepresents a location in a puzzle, including tracking the current possible values at that\nlocation.\n"
   example: []
   syntax:
@@ -48,16 +48,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Data.Square.Coordinate
-  commentId: P:SudokuSpice.Data.Square.Coordinate
+- uid: SudokuSpice.Square.Coordinate
+  commentId: P:SudokuSpice.Square.Coordinate
   id: Coordinate
-  parent: SudokuSpice.Data.Square
+  parent: SudokuSpice.Square
   langs:
   - csharp
   - vb
   name: Coordinate
   nameWithType: Square.Coordinate
-  fullName: SudokuSpice.Data.Square.Coordinate
+  fullName: SudokuSpice.Square.Coordinate
   type: Property
   source:
     remote:
@@ -69,32 +69,32 @@ items:
     startLine: 20
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nGets the <xref href=\"SudokuSpice.Data.Square.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> of this square.\n"
+  namespace: SudokuSpice
+  summary: "\nGets the <xref href=\"SudokuSpice.Square.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> of this square.\n"
   example: []
   syntax:
     content: public Coordinate Coordinate { get; }
     parameters: []
     return:
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     content.vb: Public ReadOnly Property Coordinate As Coordinate
-  overload: SudokuSpice.Data.Square.Coordinate*
+  overload: SudokuSpice.Square.Coordinate*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.Square.NumPossibleValues
-  commentId: P:SudokuSpice.Data.Square.NumPossibleValues
+- uid: SudokuSpice.Square.NumPossibleValues
+  commentId: P:SudokuSpice.Square.NumPossibleValues
   id: NumPossibleValues
-  parent: SudokuSpice.Data.Square
+  parent: SudokuSpice.Square
   langs:
   - csharp
   - vb
   name: NumPossibleValues
   nameWithType: Square.NumPossibleValues
-  fullName: SudokuSpice.Data.Square.NumPossibleValues
+  fullName: SudokuSpice.Square.NumPossibleValues
   type: Property
   source:
     remote:
@@ -106,7 +106,7 @@ items:
     startLine: 24
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the current number of possible values this square has.\n"
   example: []
   syntax:
@@ -115,23 +115,23 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property NumPossibleValues As Integer
-  overload: SudokuSpice.Data.Square.NumPossibleValues*
+  overload: SudokuSpice.Square.NumPossibleValues*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.Square.IsSet
-  commentId: P:SudokuSpice.Data.Square.IsSet
+- uid: SudokuSpice.Square.IsSet
+  commentId: P:SudokuSpice.Square.IsSet
   id: IsSet
-  parent: SudokuSpice.Data.Square
+  parent: SudokuSpice.Square
   langs:
   - csharp
   - vb
   name: IsSet
   nameWithType: Square.IsSet
-  fullName: SudokuSpice.Data.Square.IsSet
+  fullName: SudokuSpice.Square.IsSet
   type: Property
   source:
     remote:
@@ -143,7 +143,7 @@ items:
     startLine: 28
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets whether or not this square&apos;s value is currently set.\n"
   example: []
   syntax:
@@ -152,23 +152,23 @@ items:
     return:
       type: System.Boolean
     content.vb: Public ReadOnly Property IsSet As Boolean
-  overload: SudokuSpice.Data.Square.IsSet*
+  overload: SudokuSpice.Square.IsSet*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.Square.GetPossibleValue(System.Int32)
-  commentId: M:SudokuSpice.Data.Square.GetPossibleValue(System.Int32)
+- uid: SudokuSpice.Square.GetPossibleValue(System.Int32)
+  commentId: M:SudokuSpice.Square.GetPossibleValue(System.Int32)
   id: GetPossibleValue(System.Int32)
-  parent: SudokuSpice.Data.Square
+  parent: SudokuSpice.Square
   langs:
   - csharp
   - vb
   name: GetPossibleValue(Int32)
   nameWithType: Square.GetPossibleValue(Int32)
-  fullName: SudokuSpice.Data.Square.GetPossibleValue(System.Int32)
+  fullName: SudokuSpice.Square.GetPossibleValue(System.Int32)
   type: Method
   source:
     remote:
@@ -180,7 +180,7 @@ items:
     startLine: 67
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the possible value with the given value-index.\n"
   example: []
   syntax:
@@ -189,19 +189,19 @@ items:
     - id: index
       type: System.Int32
     return:
-      type: SudokuSpice.Data.PossibleSquareValue
+      type: SudokuSpice.PossibleSquareValue
     content.vb: Public Function GetPossibleValue(index As Integer) As PossibleSquareValue
-  overload: SudokuSpice.Data.Square.GetPossibleValue*
+  overload: SudokuSpice.Square.GetPossibleValue*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -494,25 +494,25 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.Data.Square.Coordinate
-  commentId: P:SudokuSpice.Data.Square.Coordinate
+- uid: SudokuSpice.Square.Coordinate
+  commentId: P:SudokuSpice.Square.Coordinate
   isExternal: true
-- uid: SudokuSpice.Data.Square.Coordinate*
-  commentId: Overload:SudokuSpice.Data.Square.Coordinate
+- uid: SudokuSpice.Square.Coordinate*
+  commentId: Overload:SudokuSpice.Square.Coordinate
   name: Coordinate
   nameWithType: Square.Coordinate
-  fullName: SudokuSpice.Data.Square.Coordinate
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+  fullName: SudokuSpice.Square.Coordinate
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
-- uid: SudokuSpice.Data.Square.NumPossibleValues*
-  commentId: Overload:SudokuSpice.Data.Square.NumPossibleValues
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.Square.NumPossibleValues*
+  commentId: Overload:SudokuSpice.Square.NumPossibleValues
   name: NumPossibleValues
   nameWithType: Square.NumPossibleValues
-  fullName: SudokuSpice.Data.Square.NumPossibleValues
+  fullName: SudokuSpice.Square.NumPossibleValues
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -520,11 +520,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.Data.Square.IsSet*
-  commentId: Overload:SudokuSpice.Data.Square.IsSet
+- uid: SudokuSpice.Square.IsSet*
+  commentId: Overload:SudokuSpice.Square.IsSet
   name: IsSet
   nameWithType: Square.IsSet
-  fullName: SudokuSpice.Data.Square.IsSet
+  fullName: SudokuSpice.Square.IsSet
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -532,14 +532,14 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.Data.Square.GetPossibleValue*
-  commentId: Overload:SudokuSpice.Data.Square.GetPossibleValue
+- uid: SudokuSpice.Square.GetPossibleValue*
+  commentId: Overload:SudokuSpice.Square.GetPossibleValue
   name: GetPossibleValue
   nameWithType: Square.GetPossibleValue
-  fullName: SudokuSpice.Data.Square.GetPossibleValue
-- uid: SudokuSpice.Data.PossibleSquareValue
-  commentId: T:SudokuSpice.Data.PossibleSquareValue
-  parent: SudokuSpice.Data
+  fullName: SudokuSpice.Square.GetPossibleValue
+- uid: SudokuSpice.PossibleSquareValue
+  commentId: T:SudokuSpice.PossibleSquareValue
+  parent: SudokuSpice
   name: PossibleSquareValue
   nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.Data.PossibleSquareValue
+  fullName: SudokuSpice.PossibleSquareValue

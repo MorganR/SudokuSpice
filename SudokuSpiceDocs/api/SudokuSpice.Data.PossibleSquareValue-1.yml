@@ -1,19 +1,19 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.PossibleSquareValue`1
-  commentId: T:SudokuSpice.Data.PossibleSquareValue`1
+- uid: SudokuSpice.PossibleSquareValue`1
+  commentId: T:SudokuSpice.PossibleSquareValue`1
   id: PossibleSquareValue`1
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.PossibleSquareValue`1.Square
-  - SudokuSpice.Data.PossibleSquareValue`1.State
-  - SudokuSpice.Data.PossibleSquareValue`1.ValueIndex
+  - SudokuSpice.PossibleSquareValue`1.Square
+  - SudokuSpice.PossibleSquareValue`1.State
+  - SudokuSpice.PossibleSquareValue`1.ValueIndex
   langs:
   - csharp
   - vb
   name: PossibleSquareValue<TPuzzle>
   nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>
   type: Class
   source:
     remote:
@@ -25,8 +25,8 @@ items:
     startLine: 10
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nRepresents a row in the <see cref=\"!:ExactCoverMatrix\"></see>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.Data.PossibleSquareValue%601.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  namespace: SudokuSpice
+  summary: "\nRepresents a row in the <see cref=\"!:ExactCoverMatrix\"></see>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.PossibleSquareValue%601.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: >-
@@ -52,18 +52,18 @@ items:
   modifiers.vb:
   - Public
   - Class
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle)
   name.vb: PossibleSquareValue(Of TPuzzle)
-- uid: SudokuSpice.Data.PossibleSquareValue`1.ValueIndex
-  commentId: P:SudokuSpice.Data.PossibleSquareValue`1.ValueIndex
+- uid: SudokuSpice.PossibleSquareValue`1.ValueIndex
+  commentId: P:SudokuSpice.PossibleSquareValue`1.ValueIndex
   id: ValueIndex
-  parent: SudokuSpice.Data.PossibleSquareValue`1
+  parent: SudokuSpice.PossibleSquareValue`1
   langs:
   - csharp
   - vb
   name: ValueIndex
   nameWithType: PossibleSquareValue<TPuzzle>.ValueIndex
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>.ValueIndex
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>.ValueIndex
   type: Property
   source:
     remote:
@@ -75,7 +75,7 @@ items:
     startLine: 16
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the index of the possible value that this represents. This index corresponds with\n<see cref=\"!:ExactCoverMatrix.AllPossibleValues\"></see>.\n"
   example: []
   syntax:
@@ -84,7 +84,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property ValueIndex As Integer
-  overload: SudokuSpice.Data.PossibleSquareValue`1.ValueIndex*
+  overload: SudokuSpice.PossibleSquareValue`1.ValueIndex*
   nameWithType.vb: PossibleSquareValue(Of TPuzzle).ValueIndex
   modifiers.csharp:
   - public
@@ -92,17 +92,17 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle).ValueIndex
-- uid: SudokuSpice.Data.PossibleSquareValue`1.Square
-  commentId: P:SudokuSpice.Data.PossibleSquareValue`1.Square
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle).ValueIndex
+- uid: SudokuSpice.PossibleSquareValue`1.Square
+  commentId: P:SudokuSpice.PossibleSquareValue`1.Square
   id: Square
-  parent: SudokuSpice.Data.PossibleSquareValue`1
+  parent: SudokuSpice.PossibleSquareValue`1
   langs:
   - csharp
   - vb
   name: Square
   nameWithType: PossibleSquareValue<TPuzzle>.Square
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>.Square
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>.Square
   type: Property
   source:
     remote:
@@ -114,16 +114,16 @@ items:
     startLine: 20
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the square that this is a possible value for.\n"
   example: []
   syntax:
     content: public Square<TPuzzle> Square { get; }
     parameters: []
     return:
-      type: SudokuSpice.Data.Square{{TPuzzle}}
+      type: SudokuSpice.Square{{TPuzzle}}
     content.vb: Public ReadOnly Property Square As Square(Of TPuzzle)
-  overload: SudokuSpice.Data.PossibleSquareValue`1.Square*
+  overload: SudokuSpice.PossibleSquareValue`1.Square*
   nameWithType.vb: PossibleSquareValue(Of TPuzzle).Square
   modifiers.csharp:
   - public
@@ -131,17 +131,17 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle).Square
-- uid: SudokuSpice.Data.PossibleSquareValue`1.State
-  commentId: P:SudokuSpice.Data.PossibleSquareValue`1.State
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle).Square
+- uid: SudokuSpice.PossibleSquareValue`1.State
+  commentId: P:SudokuSpice.PossibleSquareValue`1.State
   id: State
-  parent: SudokuSpice.Data.PossibleSquareValue`1
+  parent: SudokuSpice.PossibleSquareValue`1
   langs:
   - csharp
   - vb
   name: State
   nameWithType: PossibleSquareValue<TPuzzle>.State
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>.State
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>.State
   type: Property
   source:
     remote:
@@ -153,16 +153,16 @@ items:
     startLine: 24
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the state of this row.\n"
   example: []
   syntax:
     content: public PossibleSquareState State { get; }
     parameters: []
     return:
-      type: SudokuSpice.Data.PossibleSquareState
+      type: SudokuSpice.PossibleSquareState
     content.vb: Public ReadOnly Property State As PossibleSquareState
-  overload: SudokuSpice.Data.PossibleSquareValue`1.State*
+  overload: SudokuSpice.PossibleSquareValue`1.State*
   nameWithType.vb: PossibleSquareValue(Of TPuzzle).State
   modifiers.csharp:
   - public
@@ -170,16 +170,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle).State
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle).State
 references:
-- uid: SudokuSpice.Data.PossibleSquareValue`1.Square
-  commentId: P:SudokuSpice.Data.PossibleSquareValue`1.Square
+- uid: SudokuSpice.PossibleSquareValue`1.Square
+  commentId: P:SudokuSpice.PossibleSquareValue`1.Square
   isExternal: true
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -472,13 +472,13 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.Data.PossibleSquareValue`1.ValueIndex*
-  commentId: Overload:SudokuSpice.Data.PossibleSquareValue`1.ValueIndex
+- uid: SudokuSpice.PossibleSquareValue`1.ValueIndex*
+  commentId: Overload:SudokuSpice.PossibleSquareValue`1.ValueIndex
   name: ValueIndex
   nameWithType: PossibleSquareValue<TPuzzle>.ValueIndex
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>.ValueIndex
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>.ValueIndex
   nameWithType.vb: PossibleSquareValue(Of TPuzzle).ValueIndex
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle).ValueIndex
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle).ValueIndex
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -486,28 +486,28 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.Data.PossibleSquareValue`1.Square*
-  commentId: Overload:SudokuSpice.Data.PossibleSquareValue`1.Square
+- uid: SudokuSpice.PossibleSquareValue`1.Square*
+  commentId: Overload:SudokuSpice.PossibleSquareValue`1.Square
   name: Square
   nameWithType: PossibleSquareValue<TPuzzle>.Square
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>.Square
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>.Square
   nameWithType.vb: PossibleSquareValue(Of TPuzzle).Square
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle).Square
-- uid: SudokuSpice.Data.Square{{TPuzzle}}
-  commentId: T:SudokuSpice.Data.Square{`0}
-  parent: SudokuSpice.Data
-  definition: SudokuSpice.Data.Square`1
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle).Square
+- uid: SudokuSpice.Square{{TPuzzle}}
+  commentId: T:SudokuSpice.Square{`0}
+  parent: SudokuSpice
+  definition: SudokuSpice.Square`1
   name: Square<TPuzzle>
   nameWithType: Square<TPuzzle>
-  fullName: SudokuSpice.Data.Square<TPuzzle>
+  fullName: SudokuSpice.Square<TPuzzle>
   nameWithType.vb: Square(Of TPuzzle)
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle)
+  fullName.vb: SudokuSpice.Square(Of TPuzzle)
   name.vb: Square(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.Data.Square`1
+  - uid: SudokuSpice.Square`1
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: <
     nameWithType: <
     fullName: <
@@ -518,10 +518,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.Data.Square`1
+  - uid: SudokuSpice.Square`1
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -531,19 +531,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Square`1
-  commentId: T:SudokuSpice.Data.Square`1
+- uid: SudokuSpice.Square`1
+  commentId: T:SudokuSpice.Square`1
   name: Square<TPuzzle>
   nameWithType: Square<TPuzzle>
-  fullName: SudokuSpice.Data.Square<TPuzzle>
+  fullName: SudokuSpice.Square<TPuzzle>
   nameWithType.vb: Square(Of TPuzzle)
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle)
+  fullName.vb: SudokuSpice.Square(Of TPuzzle)
   name.vb: Square(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.Data.Square`1
+  - uid: SudokuSpice.Square`1
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: <
     nameWithType: <
     fullName: <
@@ -554,10 +554,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.Data.Square`1
+  - uid: SudokuSpice.Square`1
     name: Square
     nameWithType: Square
-    fullName: SudokuSpice.Data.Square
+    fullName: SudokuSpice.Square
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -567,16 +567,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.PossibleSquareValue`1.State*
-  commentId: Overload:SudokuSpice.Data.PossibleSquareValue`1.State
+- uid: SudokuSpice.PossibleSquareValue`1.State*
+  commentId: Overload:SudokuSpice.PossibleSquareValue`1.State
   name: State
   nameWithType: PossibleSquareValue<TPuzzle>.State
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>.State
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>.State
   nameWithType.vb: PossibleSquareValue(Of TPuzzle).State
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle).State
-- uid: SudokuSpice.Data.PossibleSquareState
-  commentId: T:SudokuSpice.Data.PossibleSquareState
-  parent: SudokuSpice.Data
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle).State
+- uid: SudokuSpice.PossibleSquareState
+  commentId: T:SudokuSpice.PossibleSquareState
+  parent: SudokuSpice
   name: PossibleSquareState
   nameWithType: PossibleSquareState
-  fullName: SudokuSpice.Data.PossibleSquareState
+  fullName: SudokuSpice.PossibleSquareState

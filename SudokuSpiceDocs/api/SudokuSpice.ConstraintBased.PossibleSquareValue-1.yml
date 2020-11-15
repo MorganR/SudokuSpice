@@ -1,0 +1,582 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  id: PossibleSquareValue`1
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  - SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
+  - SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+  langs:
+  - csharp
+  - vb
+  name: PossibleSquareValue<TPuzzle>
+  nameWithType: PossibleSquareValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: PossibleSquareValue
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nRepresents a row in the <see cref=\"!:ExactCoverMatrix\"></see>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: >-
+      public class PossibleSquareValue<TPuzzle>
+          where TPuzzle : IReadOnlyPuzzle
+    typeParameters:
+    - id: TPuzzle
+    content.vb: Public Class PossibleSquareValue(Of TPuzzle As IReadOnlyPuzzle)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
+  name.vb: PossibleSquareValue(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+  id: ValueIndex
+  parent: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  langs:
+  - csharp
+  - vb
+  name: ValueIndex
+  nameWithType: PossibleSquareValue<TPuzzle>.ValueIndex
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.ValueIndex
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ValueIndex
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    startLine: 16
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets the index of the possible value that this represents. This index corresponds with\n<see cref=\"!:ExactCoverMatrix.AllPossibleValues\"></see>.\n"
+  example: []
+  syntax:
+    content: public int ValueIndex { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ValueIndex As Integer
+  overload: SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex*
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle).ValueIndex
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).ValueIndex
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  id: Square
+  parent: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  langs:
+  - csharp
+  - vb
+  name: Square
+  nameWithType: PossibleSquareValue<TPuzzle>.Square
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.Square
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Square
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    startLine: 20
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets the square that this is a possible value for.\n"
+  example: []
+  syntax:
+    content: public Square<TPuzzle> Square { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.Square{{TPuzzle}}
+    content.vb: Public ReadOnly Property Square As Square(Of TPuzzle)
+  overload: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square*
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle).Square
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).Square
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
+  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
+  id: State
+  parent: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: PossibleSquareValue<TPuzzle>.State
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: State
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    startLine: 24
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets the state of this row.\n"
+  example: []
+  syntax:
+    content: public PossibleSquareState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.PossibleSquareState
+    content.vb: Public ReadOnly Property State As PossibleSquareState
+  overload: SudokuSpice.ConstraintBased.PossibleSquareValue`1.State*
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle).State
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).State
+references:
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  isExternal: true
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex*
+  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+  name: ValueIndex
+  nameWithType: PossibleSquareValue<TPuzzle>.ValueIndex
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.ValueIndex
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle).ValueIndex
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).ValueIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square*
+  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  name: Square
+  nameWithType: PossibleSquareValue<TPuzzle>.Square
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.Square
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle).Square
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).Square
+- uid: SudokuSpice.ConstraintBased.Square{{TPuzzle}}
+  commentId: T:SudokuSpice.ConstraintBased.Square{`0}
+  parent: SudokuSpice.ConstraintBased
+  definition: SudokuSpice.ConstraintBased.Square`1
+  name: Square<TPuzzle>
+  nameWithType: Square<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.Square<TPuzzle>
+  nameWithType.vb: Square(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.Square(Of TPuzzle)
+  name.vb: Square(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.Square`1
+    name: Square
+    nameWithType: Square
+    fullName: SudokuSpice.ConstraintBased.Square
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Square`1
+    name: Square
+    nameWithType: Square
+    fullName: SudokuSpice.ConstraintBased.Square
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.Square`1
+  commentId: T:SudokuSpice.ConstraintBased.Square`1
+  name: Square<TPuzzle>
+  nameWithType: Square<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.Square<TPuzzle>
+  nameWithType.vb: Square(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.Square(Of TPuzzle)
+  name.vb: Square(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.Square`1
+    name: Square
+    nameWithType: Square
+    fullName: SudokuSpice.ConstraintBased.Square
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Square`1
+    name: Square
+    nameWithType: Square
+    fullName: SudokuSpice.ConstraintBased.Square
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
+  name: State
+  nameWithType: PossibleSquareValue<TPuzzle>.State
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.State
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle).State
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).State
+- uid: SudokuSpice.ConstraintBased.PossibleSquareState
+  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareState
+  parent: SudokuSpice.ConstraintBased
+  name: PossibleSquareState
+  nameWithType: PossibleSquareState
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareState

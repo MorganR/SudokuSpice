@@ -1,27 +1,27 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
   id: Coordinate
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.Coordinate.#ctor(System.Int32,System.Int32)
-  - SudokuSpice.Data.Coordinate.Column
-  - SudokuSpice.Data.Coordinate.Deconstruct(System.Int32@,System.Int32@)
-  - SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)
-  - SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate@)
-  - SudokuSpice.Data.Coordinate.Equals(System.Object)
-  - SudokuSpice.Data.Coordinate.GetHashCode
-  - SudokuSpice.Data.Coordinate.op_Equality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  - SudokuSpice.Data.Coordinate.op_Inequality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  - SudokuSpice.Data.Coordinate.Row
-  - SudokuSpice.Data.Coordinate.ToString
+  - SudokuSpice.Coordinate.#ctor(System.Int32,System.Int32)
+  - SudokuSpice.Coordinate.Column
+  - SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
+  - SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  - SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
+  - SudokuSpice.Coordinate.Equals(System.Object)
+  - SudokuSpice.Coordinate.GetHashCode
+  - SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  - SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  - SudokuSpice.Coordinate.Row
+  - SudokuSpice.Coordinate.ToString
   langs:
   - csharp
   - vb
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
+  fullName: SudokuSpice.Coordinate
   type: Struct
   source:
     remote:
@@ -33,7 +33,7 @@ items:
     startLine: 11
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nUniquely identifies the location of a square in a Sudoku puzzle.\n"
   remarks: "\nNote that this struct is <xref uid=\"langword_csharp_readonly\" name=\"readonly\" href=\"\"></xref>, so can be efficiently referenced using\n<xref uid=\"langword_csharp_in\" name=\"in\" href=\"\"></xref>. This may provide minor performance enhancement on some architectures.\n"
   example: []
@@ -43,7 +43,7 @@ items:
       Public Structure Coordinate
           Implements IEquatable(Of Coordinate)
   implements:
-  - System.IEquatable{SudokuSpice.Data.Coordinate}
+  - System.IEquatable{SudokuSpice.Coordinate}
   inheritedMembers:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
@@ -54,16 +54,16 @@ items:
   modifiers.vb:
   - Public
   - Structure
-- uid: SudokuSpice.Data.Coordinate.Row
-  commentId: P:SudokuSpice.Data.Coordinate.Row
+- uid: SudokuSpice.Coordinate.Row
+  commentId: P:SudokuSpice.Coordinate.Row
   id: Row
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Row
   nameWithType: Coordinate.Row
-  fullName: SudokuSpice.Data.Coordinate.Row
+  fullName: SudokuSpice.Coordinate.Row
   type: Property
   source:
     remote:
@@ -75,7 +75,7 @@ items:
     startLine: 16
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nThe zero-based row in the puzzle, starting at the top.\n"
   example: []
   syntax:
@@ -84,23 +84,23 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property Row As Integer
-  overload: SudokuSpice.Data.Coordinate.Row*
+  overload: SudokuSpice.Coordinate.Row*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.Coordinate.Column
-  commentId: P:SudokuSpice.Data.Coordinate.Column
+- uid: SudokuSpice.Coordinate.Column
+  commentId: P:SudokuSpice.Coordinate.Column
   id: Column
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Column
   nameWithType: Coordinate.Column
-  fullName: SudokuSpice.Data.Coordinate.Column
+  fullName: SudokuSpice.Coordinate.Column
   type: Property
   source:
     remote:
@@ -112,7 +112,7 @@ items:
     startLine: 20
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nThe zero-based column in the puzzle, starting on the left.\n"
   example: []
   syntax:
@@ -121,23 +121,23 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property Column As Integer
-  overload: SudokuSpice.Data.Coordinate.Column*
+  overload: SudokuSpice.Coordinate.Column*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Data.Coordinate.#ctor(System.Int32,System.Int32)
-  commentId: M:SudokuSpice.Data.Coordinate.#ctor(System.Int32,System.Int32)
+- uid: SudokuSpice.Coordinate.#ctor(System.Int32,System.Int32)
+  commentId: M:SudokuSpice.Coordinate.#ctor(System.Int32,System.Int32)
   id: '#ctor(System.Int32,System.Int32)'
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Coordinate(Int32, Int32)
   nameWithType: Coordinate.Coordinate(Int32, Int32)
-  fullName: SudokuSpice.Data.Coordinate.Coordinate(System.Int32, System.Int32)
+  fullName: SudokuSpice.Coordinate.Coordinate(System.Int32, System.Int32)
   type: Constructor
   source:
     remote:
@@ -149,7 +149,7 @@ items:
     startLine: 22
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public Coordinate(int row, int col)
     parameters:
@@ -158,21 +158,21 @@ items:
     - id: col
       type: System.Int32
     content.vb: Public Sub New(row As Integer, col As Integer)
-  overload: SudokuSpice.Data.Coordinate.#ctor*
+  overload: SudokuSpice.Coordinate.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.Coordinate.Deconstruct(System.Int32@,System.Int32@)
-  commentId: M:SudokuSpice.Data.Coordinate.Deconstruct(System.Int32@,System.Int32@)
+- uid: SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
+  commentId: M:SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
   id: Deconstruct(System.Int32@,System.Int32@)
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Deconstruct(out Int32, out Int32)
   nameWithType: Coordinate.Deconstruct(out Int32, out Int32)
-  fullName: SudokuSpice.Data.Coordinate.Deconstruct(out System.Int32, out System.Int32)
+  fullName: SudokuSpice.Coordinate.Deconstruct(out System.Int32, out System.Int32)
   type: Method
   source:
     remote:
@@ -184,7 +184,7 @@ items:
     startLine: 28
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public void Deconstruct(out int row, out int col)
     parameters:
@@ -193,24 +193,24 @@ items:
     - id: col
       type: System.Int32
     content.vb: Public Sub Deconstruct(ByRef row As Integer, ByRef col As Integer)
-  overload: SudokuSpice.Data.Coordinate.Deconstruct*
+  overload: SudokuSpice.Coordinate.Deconstruct*
   nameWithType.vb: Coordinate.Deconstruct(ByRef Int32, ByRef Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.Coordinate.Deconstruct(ByRef System.Int32, ByRef System.Int32)
+  fullName.vb: SudokuSpice.Coordinate.Deconstruct(ByRef System.Int32, ByRef System.Int32)
   name.vb: Deconstruct(ByRef Int32, ByRef Int32)
-- uid: SudokuSpice.Data.Coordinate.ToString
-  commentId: M:SudokuSpice.Data.Coordinate.ToString
+- uid: SudokuSpice.Coordinate.ToString
+  commentId: M:SudokuSpice.Coordinate.ToString
   id: ToString
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: ToString()
   nameWithType: Coordinate.ToString()
-  fullName: SudokuSpice.Data.Coordinate.ToString()
+  fullName: SudokuSpice.Coordinate.ToString()
   type: Method
   source:
     remote:
@@ -222,30 +222,30 @@ items:
     startLine: 30
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public override string ToString()
     return:
       type: System.String
     content.vb: Public Overrides Function ToString As String
   overridden: System.ValueType.ToString
-  overload: SudokuSpice.Data.Coordinate.ToString*
+  overload: SudokuSpice.Coordinate.ToString*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.Data.Coordinate.Equals(System.Object)
-  commentId: M:SudokuSpice.Data.Coordinate.Equals(System.Object)
+- uid: SudokuSpice.Coordinate.Equals(System.Object)
+  commentId: M:SudokuSpice.Coordinate.Equals(System.Object)
   id: Equals(System.Object)
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Equals(Object)
   nameWithType: Coordinate.Equals(Object)
-  fullName: SudokuSpice.Data.Coordinate.Equals(System.Object)
+  fullName: SudokuSpice.Coordinate.Equals(System.Object)
   type: Method
   source:
     remote:
@@ -257,7 +257,7 @@ items:
     startLine: 35
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public override bool Equals(object obj)
     parameters:
@@ -267,23 +267,23 @@ items:
       type: System.Boolean
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
   overridden: System.ValueType.Equals(System.Object)
-  overload: SudokuSpice.Data.Coordinate.Equals*
+  overload: SudokuSpice.Coordinate.Equals*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.Data.Coordinate.GetHashCode
-  commentId: M:SudokuSpice.Data.Coordinate.GetHashCode
+- uid: SudokuSpice.Coordinate.GetHashCode
+  commentId: M:SudokuSpice.Coordinate.GetHashCode
   id: GetHashCode
-  parent: SudokuSpice.Data.Coordinate
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: GetHashCode()
   nameWithType: Coordinate.GetHashCode()
-  fullName: SudokuSpice.Data.Coordinate.GetHashCode()
+  fullName: SudokuSpice.Coordinate.GetHashCode()
   type: Method
   source:
     remote:
@@ -295,30 +295,30 @@ items:
     startLine: 44
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public override int GetHashCode()
     return:
       type: System.Int32
     content.vb: Public Overrides Function GetHashCode As Integer
   overridden: System.ValueType.GetHashCode
-  overload: SudokuSpice.Data.Coordinate.GetHashCode*
+  overload: SudokuSpice.Coordinate.GetHashCode*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)
-  commentId: M:SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)
-  id: Equals(SudokuSpice.Data.Coordinate)
-  parent: SudokuSpice.Data.Coordinate
+- uid: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  commentId: M:SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  id: Equals(SudokuSpice.Coordinate)
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Equals(Coordinate)
   nameWithType: Coordinate.Equals(Coordinate)
-  fullName: SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)
+  fullName: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -330,32 +330,32 @@ items:
     startLine: 49
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public bool Equals(Coordinate other)
     parameters:
     - id: other
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     return:
       type: System.Boolean
     content.vb: Public Function Equals(other As Coordinate) As Boolean
-  overload: SudokuSpice.Data.Coordinate.Equals*
+  overload: SudokuSpice.Coordinate.Equals*
   implements:
-  - System.IEquatable{SudokuSpice.Data.Coordinate}.Equals(SudokuSpice.Data.Coordinate)
+  - System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate@)
-  commentId: M:SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate@)
-  id: Equals(SudokuSpice.Data.Coordinate@)
-  parent: SudokuSpice.Data.Coordinate
+- uid: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
+  id: Equals(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Equals(Coordinate)
   nameWithType: Coordinate.Equals(Coordinate)
-  fullName: SudokuSpice.Data.Coordinate.Equals(SudokuSpice.Data.Coordinate)
+  fullName: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -367,33 +367,33 @@ items:
     startLine: 54
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public bool Equals(in Coordinate other)
     parameters:
     - id: other
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     return:
       type: System.Boolean
     content.vb: Public Function Equals(ByRef other As Coordinate) As Boolean
-  overload: SudokuSpice.Data.Coordinate.Equals*
+  overload: SudokuSpice.Coordinate.Equals*
   nameWithType.vb: Coordinate.Equals(ByRef Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.Coordinate.Equals(ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.Coordinate.Equals(ByRef SudokuSpice.Coordinate)
   name.vb: Equals(ByRef Coordinate)
-- uid: SudokuSpice.Data.Coordinate.op_Equality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  commentId: M:SudokuSpice.Data.Coordinate.op_Equality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  id: op_Equality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  parent: SudokuSpice.Data.Coordinate
+- uid: SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  id: op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Equality(Coordinate, Coordinate)
   nameWithType: Coordinate.Equality(Coordinate, Coordinate)
-  fullName: SudokuSpice.Data.Coordinate.Equality(SudokuSpice.Data.Coordinate, SudokuSpice.Data.Coordinate)
+  fullName: SudokuSpice.Coordinate.Equality(SudokuSpice.Coordinate, SudokuSpice.Coordinate)
   type: Operator
   source:
     remote:
@@ -405,18 +405,18 @@ items:
     startLine: 59
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public static bool operator ==(in Coordinate left, in Coordinate right)
     parameters:
     - id: left
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     - id: right
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     return:
       type: System.Boolean
     content.vb: Public Shared Operator =(ByRef left As Coordinate, ByRef right As Coordinate) As Boolean
-  overload: SudokuSpice.Data.Coordinate.op_Equality*
+  overload: SudokuSpice.Coordinate.op_Equality*
   nameWithType.vb: Coordinate.Equality(ByRef Coordinate, ByRef Coordinate)
   modifiers.csharp:
   - public
@@ -424,18 +424,18 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.Data.Coordinate.Equality(ByRef SudokuSpice.Data.Coordinate, ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.Coordinate.Equality(ByRef SudokuSpice.Coordinate, ByRef SudokuSpice.Coordinate)
   name.vb: Equality(ByRef Coordinate, ByRef Coordinate)
-- uid: SudokuSpice.Data.Coordinate.op_Inequality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  commentId: M:SudokuSpice.Data.Coordinate.op_Inequality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  id: op_Inequality(SudokuSpice.Data.Coordinate@,SudokuSpice.Data.Coordinate@)
-  parent: SudokuSpice.Data.Coordinate
+- uid: SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  id: op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
   name: Inequality(Coordinate, Coordinate)
   nameWithType: Coordinate.Inequality(Coordinate, Coordinate)
-  fullName: SudokuSpice.Data.Coordinate.Inequality(SudokuSpice.Data.Coordinate, SudokuSpice.Data.Coordinate)
+  fullName: SudokuSpice.Coordinate.Inequality(SudokuSpice.Coordinate, SudokuSpice.Coordinate)
   type: Operator
   source:
     remote:
@@ -447,18 +447,18 @@ items:
     startLine: 64
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public static bool operator !=(in Coordinate left, in Coordinate right)
     parameters:
     - id: left
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     - id: right
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     return:
       type: System.Boolean
     content.vb: Public Shared Operator <>(ByRef left As Coordinate, ByRef right As Coordinate) As Boolean
-  overload: SudokuSpice.Data.Coordinate.op_Inequality*
+  overload: SudokuSpice.Coordinate.op_Inequality*
   nameWithType.vb: Coordinate.Inequality(ByRef Coordinate, ByRef Coordinate)
   modifiers.csharp:
   - public
@@ -466,23 +466,23 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.Data.Coordinate.Inequality(ByRef SudokuSpice.Data.Coordinate, ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.Coordinate.Inequality(ByRef SudokuSpice.Coordinate, ByRef SudokuSpice.Coordinate)
   name.vb: Inequality(ByRef Coordinate, ByRef Coordinate)
 references:
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
-- uid: System.IEquatable{SudokuSpice.Data.Coordinate}
-  commentId: T:System.IEquatable{SudokuSpice.Data.Coordinate}
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.IEquatable{SudokuSpice.Coordinate}
+  commentId: T:System.IEquatable{SudokuSpice.Coordinate}
   parent: System
   definition: System.IEquatable`1
   name: IEquatable<Coordinate>
   nameWithType: IEquatable<Coordinate>
-  fullName: System.IEquatable<SudokuSpice.Data.Coordinate>
+  fullName: System.IEquatable<SudokuSpice.Coordinate>
   nameWithType.vb: IEquatable(Of Coordinate)
-  fullName.vb: System.IEquatable(Of SudokuSpice.Data.Coordinate)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Coordinate)
   name.vb: IEquatable(Of Coordinate)
   spec.csharp:
   - uid: System.IEquatable`1
@@ -493,10 +493,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -509,10 +509,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: )
     nameWithType: )
     fullName: )
@@ -713,11 +713,11 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.Data.Coordinate.Row*
-  commentId: Overload:SudokuSpice.Data.Coordinate.Row
+- uid: SudokuSpice.Coordinate.Row*
+  commentId: Overload:SudokuSpice.Coordinate.Row
   name: Row
   nameWithType: Coordinate.Row
-  fullName: SudokuSpice.Data.Coordinate.Row
+  fullName: SudokuSpice.Coordinate.Row
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -725,21 +725,21 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.Data.Coordinate.Column*
-  commentId: Overload:SudokuSpice.Data.Coordinate.Column
+- uid: SudokuSpice.Coordinate.Column*
+  commentId: Overload:SudokuSpice.Coordinate.Column
   name: Column
   nameWithType: Coordinate.Column
-  fullName: SudokuSpice.Data.Coordinate.Column
-- uid: SudokuSpice.Data.Coordinate.#ctor*
-  commentId: Overload:SudokuSpice.Data.Coordinate.#ctor
+  fullName: SudokuSpice.Coordinate.Column
+- uid: SudokuSpice.Coordinate.#ctor*
+  commentId: Overload:SudokuSpice.Coordinate.#ctor
   name: Coordinate
   nameWithType: Coordinate.Coordinate
-  fullName: SudokuSpice.Data.Coordinate.Coordinate
-- uid: SudokuSpice.Data.Coordinate.Deconstruct*
-  commentId: Overload:SudokuSpice.Data.Coordinate.Deconstruct
+  fullName: SudokuSpice.Coordinate.Coordinate
+- uid: SudokuSpice.Coordinate.Deconstruct*
+  commentId: Overload:SudokuSpice.Coordinate.Deconstruct
   name: Deconstruct
   nameWithType: Coordinate.Deconstruct
-  fullName: SudokuSpice.Data.Coordinate.Deconstruct
+  fullName: SudokuSpice.Coordinate.Deconstruct
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType
@@ -771,11 +771,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate.ToString*
-  commentId: Overload:SudokuSpice.Data.Coordinate.ToString
+- uid: SudokuSpice.Coordinate.ToString*
+  commentId: Overload:SudokuSpice.Coordinate.ToString
   name: ToString
   nameWithType: Coordinate.ToString
-  fullName: SudokuSpice.Data.Coordinate.ToString
+  fullName: SudokuSpice.Coordinate.ToString
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -831,11 +831,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate.Equals*
-  commentId: Overload:SudokuSpice.Data.Coordinate.Equals
+- uid: SudokuSpice.Coordinate.Equals*
+  commentId: Overload:SudokuSpice.Coordinate.Equals
   name: Equals
   nameWithType: Coordinate.Equals
-  fullName: SudokuSpice.Data.Coordinate.Equals
+  fullName: SudokuSpice.Coordinate.Equals
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -874,33 +874,33 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate.GetHashCode*
-  commentId: Overload:SudokuSpice.Data.Coordinate.GetHashCode
+- uid: SudokuSpice.Coordinate.GetHashCode*
+  commentId: Overload:SudokuSpice.Coordinate.GetHashCode
   name: GetHashCode
   nameWithType: Coordinate.GetHashCode
-  fullName: SudokuSpice.Data.Coordinate.GetHashCode
-- uid: System.IEquatable{SudokuSpice.Data.Coordinate}.Equals(SudokuSpice.Data.Coordinate)
-  commentId: M:System.IEquatable{SudokuSpice.Data.Coordinate}.Equals(SudokuSpice.Data.Coordinate)
-  parent: System.IEquatable{SudokuSpice.Data.Coordinate}
+  fullName: SudokuSpice.Coordinate.GetHashCode
+- uid: System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+  commentId: M:System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+  parent: System.IEquatable{SudokuSpice.Coordinate}
   definition: System.IEquatable`1.Equals(`0)
   name: Equals(Coordinate)
   nameWithType: IEquatable<Coordinate>.Equals(Coordinate)
-  fullName: System.IEquatable<SudokuSpice.Data.Coordinate>.Equals(SudokuSpice.Data.Coordinate)
+  fullName: System.IEquatable<SudokuSpice.Coordinate>.Equals(SudokuSpice.Coordinate)
   nameWithType.vb: IEquatable(Of Coordinate).Equals(Coordinate)
-  fullName.vb: System.IEquatable(Of SudokuSpice.Data.Coordinate).Equals(SudokuSpice.Data.Coordinate)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Coordinate).Equals(SudokuSpice.Coordinate)
   spec.csharp:
   - uid: System.IEquatable`1.Equals(`0)
     name: Equals
     nameWithType: IEquatable<Coordinate>.Equals
-    fullName: System.IEquatable<SudokuSpice.Data.Coordinate>.Equals
+    fullName: System.IEquatable<SudokuSpice.Coordinate>.Equals
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: )
     nameWithType: )
     fullName: )
@@ -908,24 +908,24 @@ references:
   - uid: System.IEquatable`1.Equals(`0)
     name: Equals
     nameWithType: IEquatable(Of Coordinate).Equals
-    fullName: System.IEquatable(Of SudokuSpice.Data.Coordinate).Equals
+    fullName: System.IEquatable(Of SudokuSpice.Coordinate).Equals
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
+  fullName: SudokuSpice.Coordinate
 - uid: System.IEquatable`1.Equals(`0)
   commentId: M:System.IEquatable`1.Equals(`0)
   isExternal: true
@@ -964,13 +964,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate.op_Equality*
-  commentId: Overload:SudokuSpice.Data.Coordinate.op_Equality
+- uid: SudokuSpice.Coordinate.op_Equality*
+  commentId: Overload:SudokuSpice.Coordinate.op_Equality
   name: Equality
   nameWithType: Coordinate.Equality
-  fullName: SudokuSpice.Data.Coordinate.Equality
-- uid: SudokuSpice.Data.Coordinate.op_Inequality*
-  commentId: Overload:SudokuSpice.Data.Coordinate.op_Inequality
+  fullName: SudokuSpice.Coordinate.Equality
+- uid: SudokuSpice.Coordinate.op_Inequality*
+  commentId: Overload:SudokuSpice.Coordinate.op_Inequality
   name: Inequality
   nameWithType: Coordinate.Inequality
-  fullName: SudokuSpice.Data.Coordinate.Inequality
+  fullName: SudokuSpice.Coordinate.Inequality

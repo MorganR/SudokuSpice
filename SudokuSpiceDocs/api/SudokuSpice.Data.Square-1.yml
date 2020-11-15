@@ -1,20 +1,20 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.Square`1
-  commentId: T:SudokuSpice.Data.Square`1
+- uid: SudokuSpice.Square`1
+  commentId: T:SudokuSpice.Square`1
   id: Square`1
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.Square`1.Coordinate
-  - SudokuSpice.Data.Square`1.GetPossibleValue(System.Int32)
-  - SudokuSpice.Data.Square`1.IsSet
-  - SudokuSpice.Data.Square`1.NumPossibleValues
+  - SudokuSpice.Square`1.Coordinate
+  - SudokuSpice.Square`1.GetPossibleValue(System.Int32)
+  - SudokuSpice.Square`1.IsSet
+  - SudokuSpice.Square`1.NumPossibleValues
   langs:
   - csharp
   - vb
   name: Square<TPuzzle>
   nameWithType: Square<TPuzzle>
-  fullName: SudokuSpice.Data.Square<TPuzzle>
+  fullName: SudokuSpice.Square<TPuzzle>
   type: Class
   source:
     remote:
@@ -26,7 +26,7 @@ items:
     startLine: 10
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nRepresents a location in a puzzle, including tracking the current possible values at that\nlocation.\n"
   example: []
   syntax:
@@ -53,18 +53,18 @@ items:
   modifiers.vb:
   - Public
   - Class
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle)
+  fullName.vb: SudokuSpice.Square(Of TPuzzle)
   name.vb: Square(Of TPuzzle)
-- uid: SudokuSpice.Data.Square`1.Coordinate
-  commentId: P:SudokuSpice.Data.Square`1.Coordinate
+- uid: SudokuSpice.Square`1.Coordinate
+  commentId: P:SudokuSpice.Square`1.Coordinate
   id: Coordinate
-  parent: SudokuSpice.Data.Square`1
+  parent: SudokuSpice.Square`1
   langs:
   - csharp
   - vb
   name: Coordinate
   nameWithType: Square<TPuzzle>.Coordinate
-  fullName: SudokuSpice.Data.Square<TPuzzle>.Coordinate
+  fullName: SudokuSpice.Square<TPuzzle>.Coordinate
   type: Property
   source:
     remote:
@@ -76,16 +76,16 @@ items:
     startLine: 20
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
-  summary: "\nGets the <xref href=\"SudokuSpice.Data.Square%601.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> of this square.\n"
+  namespace: SudokuSpice
+  summary: "\nGets the <xref href=\"SudokuSpice.Square%601.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> of this square.\n"
   example: []
   syntax:
     content: public Coordinate Coordinate { get; }
     parameters: []
     return:
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
     content.vb: Public ReadOnly Property Coordinate As Coordinate
-  overload: SudokuSpice.Data.Square`1.Coordinate*
+  overload: SudokuSpice.Square`1.Coordinate*
   nameWithType.vb: Square(Of TPuzzle).Coordinate
   modifiers.csharp:
   - public
@@ -93,17 +93,17 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).Coordinate
-- uid: SudokuSpice.Data.Square`1.NumPossibleValues
-  commentId: P:SudokuSpice.Data.Square`1.NumPossibleValues
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).Coordinate
+- uid: SudokuSpice.Square`1.NumPossibleValues
+  commentId: P:SudokuSpice.Square`1.NumPossibleValues
   id: NumPossibleValues
-  parent: SudokuSpice.Data.Square`1
+  parent: SudokuSpice.Square`1
   langs:
   - csharp
   - vb
   name: NumPossibleValues
   nameWithType: Square<TPuzzle>.NumPossibleValues
-  fullName: SudokuSpice.Data.Square<TPuzzle>.NumPossibleValues
+  fullName: SudokuSpice.Square<TPuzzle>.NumPossibleValues
   type: Property
   source:
     remote:
@@ -115,7 +115,7 @@ items:
     startLine: 24
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the current number of possible values this square has.\n"
   example: []
   syntax:
@@ -124,7 +124,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property NumPossibleValues As Integer
-  overload: SudokuSpice.Data.Square`1.NumPossibleValues*
+  overload: SudokuSpice.Square`1.NumPossibleValues*
   nameWithType.vb: Square(Of TPuzzle).NumPossibleValues
   modifiers.csharp:
   - public
@@ -132,17 +132,17 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).NumPossibleValues
-- uid: SudokuSpice.Data.Square`1.IsSet
-  commentId: P:SudokuSpice.Data.Square`1.IsSet
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).NumPossibleValues
+- uid: SudokuSpice.Square`1.IsSet
+  commentId: P:SudokuSpice.Square`1.IsSet
   id: IsSet
-  parent: SudokuSpice.Data.Square`1
+  parent: SudokuSpice.Square`1
   langs:
   - csharp
   - vb
   name: IsSet
   nameWithType: Square<TPuzzle>.IsSet
-  fullName: SudokuSpice.Data.Square<TPuzzle>.IsSet
+  fullName: SudokuSpice.Square<TPuzzle>.IsSet
   type: Property
   source:
     remote:
@@ -154,7 +154,7 @@ items:
     startLine: 28
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets whether or not this square&apos;s value is currently set.\n"
   example: []
   syntax:
@@ -163,7 +163,7 @@ items:
     return:
       type: System.Boolean
     content.vb: Public ReadOnly Property IsSet As Boolean
-  overload: SudokuSpice.Data.Square`1.IsSet*
+  overload: SudokuSpice.Square`1.IsSet*
   nameWithType.vb: Square(Of TPuzzle).IsSet
   modifiers.csharp:
   - public
@@ -171,17 +171,17 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).IsSet
-- uid: SudokuSpice.Data.Square`1.GetPossibleValue(System.Int32)
-  commentId: M:SudokuSpice.Data.Square`1.GetPossibleValue(System.Int32)
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).IsSet
+- uid: SudokuSpice.Square`1.GetPossibleValue(System.Int32)
+  commentId: M:SudokuSpice.Square`1.GetPossibleValue(System.Int32)
   id: GetPossibleValue(System.Int32)
-  parent: SudokuSpice.Data.Square`1
+  parent: SudokuSpice.Square`1
   langs:
   - csharp
   - vb
   name: GetPossibleValue(Int32)
   nameWithType: Square<TPuzzle>.GetPossibleValue(Int32)
-  fullName: SudokuSpice.Data.Square<TPuzzle>.GetPossibleValue(System.Int32)
+  fullName: SudokuSpice.Square<TPuzzle>.GetPossibleValue(System.Int32)
   type: Method
   source:
     remote:
@@ -193,7 +193,7 @@ items:
     startLine: 67
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nGets the possible value with the given value-index.\n"
   example: []
   syntax:
@@ -202,21 +202,21 @@ items:
     - id: index
       type: System.Int32
     return:
-      type: SudokuSpice.Data.PossibleSquareValue{{TPuzzle}}
+      type: SudokuSpice.PossibleSquareValue{{TPuzzle}}
     content.vb: Public Function GetPossibleValue(index As Integer) As PossibleSquareValue(Of TPuzzle)
-  overload: SudokuSpice.Data.Square`1.GetPossibleValue*
+  overload: SudokuSpice.Square`1.GetPossibleValue*
   nameWithType.vb: Square(Of TPuzzle).GetPossibleValue(Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).GetPossibleValue(System.Int32)
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).GetPossibleValue(System.Int32)
 references:
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -509,29 +509,29 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.Data.Square`1.Coordinate
-  commentId: P:SudokuSpice.Data.Square`1.Coordinate
+- uid: SudokuSpice.Square`1.Coordinate
+  commentId: P:SudokuSpice.Square`1.Coordinate
   isExternal: true
-- uid: SudokuSpice.Data.Square`1.Coordinate*
-  commentId: Overload:SudokuSpice.Data.Square`1.Coordinate
+- uid: SudokuSpice.Square`1.Coordinate*
+  commentId: Overload:SudokuSpice.Square`1.Coordinate
   name: Coordinate
   nameWithType: Square<TPuzzle>.Coordinate
-  fullName: SudokuSpice.Data.Square<TPuzzle>.Coordinate
+  fullName: SudokuSpice.Square<TPuzzle>.Coordinate
   nameWithType.vb: Square(Of TPuzzle).Coordinate
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).Coordinate
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).Coordinate
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
-- uid: SudokuSpice.Data.Square`1.NumPossibleValues*
-  commentId: Overload:SudokuSpice.Data.Square`1.NumPossibleValues
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.Square`1.NumPossibleValues*
+  commentId: Overload:SudokuSpice.Square`1.NumPossibleValues
   name: NumPossibleValues
   nameWithType: Square<TPuzzle>.NumPossibleValues
-  fullName: SudokuSpice.Data.Square<TPuzzle>.NumPossibleValues
+  fullName: SudokuSpice.Square<TPuzzle>.NumPossibleValues
   nameWithType.vb: Square(Of TPuzzle).NumPossibleValues
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).NumPossibleValues
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).NumPossibleValues
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -539,13 +539,13 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.Data.Square`1.IsSet*
-  commentId: Overload:SudokuSpice.Data.Square`1.IsSet
+- uid: SudokuSpice.Square`1.IsSet*
+  commentId: Overload:SudokuSpice.Square`1.IsSet
   name: IsSet
   nameWithType: Square<TPuzzle>.IsSet
-  fullName: SudokuSpice.Data.Square<TPuzzle>.IsSet
+  fullName: SudokuSpice.Square<TPuzzle>.IsSet
   nameWithType.vb: Square(Of TPuzzle).IsSet
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).IsSet
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).IsSet
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -553,28 +553,28 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.Data.Square`1.GetPossibleValue*
-  commentId: Overload:SudokuSpice.Data.Square`1.GetPossibleValue
+- uid: SudokuSpice.Square`1.GetPossibleValue*
+  commentId: Overload:SudokuSpice.Square`1.GetPossibleValue
   name: GetPossibleValue
   nameWithType: Square<TPuzzle>.GetPossibleValue
-  fullName: SudokuSpice.Data.Square<TPuzzle>.GetPossibleValue
+  fullName: SudokuSpice.Square<TPuzzle>.GetPossibleValue
   nameWithType.vb: Square(Of TPuzzle).GetPossibleValue
-  fullName.vb: SudokuSpice.Data.Square(Of TPuzzle).GetPossibleValue
-- uid: SudokuSpice.Data.PossibleSquareValue{{TPuzzle}}
-  commentId: T:SudokuSpice.Data.PossibleSquareValue{`0}
-  parent: SudokuSpice.Data
-  definition: SudokuSpice.Data.PossibleSquareValue`1
+  fullName.vb: SudokuSpice.Square(Of TPuzzle).GetPossibleValue
+- uid: SudokuSpice.PossibleSquareValue{{TPuzzle}}
+  commentId: T:SudokuSpice.PossibleSquareValue{`0}
+  parent: SudokuSpice
+  definition: SudokuSpice.PossibleSquareValue`1
   name: PossibleSquareValue<TPuzzle>
   nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>
   nameWithType.vb: PossibleSquareValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle)
   name.vb: PossibleSquareValue(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.Data.PossibleSquareValue`1
+  - uid: SudokuSpice.PossibleSquareValue`1
     name: PossibleSquareValue
     nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.Data.PossibleSquareValue
+    fullName: SudokuSpice.PossibleSquareValue
   - name: <
     nameWithType: <
     fullName: <
@@ -585,10 +585,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.Data.PossibleSquareValue`1
+  - uid: SudokuSpice.PossibleSquareValue`1
     name: PossibleSquareValue
     nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.Data.PossibleSquareValue
+    fullName: SudokuSpice.PossibleSquareValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -598,19 +598,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.PossibleSquareValue`1
-  commentId: T:SudokuSpice.Data.PossibleSquareValue`1
+- uid: SudokuSpice.PossibleSquareValue`1
+  commentId: T:SudokuSpice.PossibleSquareValue`1
   name: PossibleSquareValue<TPuzzle>
   nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.Data.PossibleSquareValue<TPuzzle>
+  fullName: SudokuSpice.PossibleSquareValue<TPuzzle>
   nameWithType.vb: PossibleSquareValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.Data.PossibleSquareValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.PossibleSquareValue(Of TPuzzle)
   name.vb: PossibleSquareValue(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.Data.PossibleSquareValue`1
+  - uid: SudokuSpice.PossibleSquareValue`1
     name: PossibleSquareValue
     nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.Data.PossibleSquareValue
+    fullName: SudokuSpice.PossibleSquareValue
   - name: <
     nameWithType: <
     fullName: <
@@ -621,10 +621,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.Data.PossibleSquareValue`1
+  - uid: SudokuSpice.PossibleSquareValue`1
     name: PossibleSquareValue
     nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.Data.PossibleSquareValue
+    fullName: SudokuSpice.PossibleSquareValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

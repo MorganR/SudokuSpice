@@ -77,21 +77,22 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBasedGenerator-1.html">ConstraintBasedGenerator&lt;TPuzzle&gt;</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBasedSolver-1.html">ConstraintBasedSolver&lt;TPuzzle&gt;</a></h4>
-      <section><p>Solves <a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a>s using an <see cref="!:ExactCoverMatrix"></see>.</p>
+      <h4><a class="xref" href="SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></h4>
+      <section><p>Efficiently tracks a set of <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>s.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.Puzzle.html">Puzzle</a></h4>
       <section><p>Manages underlying puzzle data.</p>
 </section>
-      <h4><a class="xref" href="SudokuSpice.PuzzleGenerator-1.html">PuzzleGenerator&lt;TPuzzle&gt;</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SudokuSpice.Solver.html">Solver</a></h4>
-      <section><p>Solves a single <a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a> using a <span class="xref">SudokuSpice.SquareTracker</span>.</p>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></h4>
+      <section><p>A 32-bit vector with simple operations for getting and setting bits.</p>
 </section>
-      <h4><a class="xref" href="SudokuSpice.StandardPuzzleGenerator.html">StandardPuzzleGenerator</a></h4>
-      <section><p>Generates standard Sudoku puzzles.</p>
+      <h4><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></h4>
+      <section><p>Uniquely identifies the location of a square in a Sudoku puzzle.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.Data.SolveStats.html">SolveStats</a></h4>
+      <section><p>Contains statistics about an attempt to solve a puzzle.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -104,6 +105,13 @@ within the puzzle.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></h4>
       <section><p>Provides read-only access to a puzzle's data.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.CoordinateTracker.AddOrTrackResult.html">CoordinateTracker.AddOrTrackResult</a></h4>
+      <section><p>Indicates the action taken during an
+<a class="xref" href="SudokuSpice.CoordinateTracker.html#SudokuSpice_CoordinateTracker_AddOrTrackIfUntracked_SudokuSpice_Coordinate__">AddOrTrackIfUntracked(Coordinate)</a>
+operation.</p>
 </section>
 </article>
           </div>

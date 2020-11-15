@@ -1,6 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
 using SudokuSharp;
-using SudokuSpice.Constraints;
+using SudokuSpice.ConstraintBased;
+using SudokuSpice.ConstraintBased.Constraints;
+using SudokuSpice.RuleBased;
 using System;
 using System.Collections.Generic;
 

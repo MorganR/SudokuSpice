@@ -5,11 +5,11 @@ items:
   id: DynamicRuleKeeper
   parent: SudokuSpice.Rules
   children:
-  - SudokuSpice.Rules.DynamicRuleKeeper.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
-  - SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
+  - SudokuSpice.Rules.DynamicRuleKeeper.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  - SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
   - SudokuSpice.Rules.DynamicRuleKeeper.GetRules
-  - SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
-  - SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
+  - SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
   langs:
   - csharp
   - vb
@@ -53,16 +53,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Rules.DynamicRuleKeeper.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})'
+- uid: SudokuSpice.Rules.DynamicRuleKeeper.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})
+  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule})'
   parent: SudokuSpice.Rules.DynamicRuleKeeper
   langs:
   - csharp
   - vb
   name: DynamicRuleKeeper(IReadOnlyPuzzle, PossibleValues, IReadOnlyList<ISudokuRule>)
   nameWithType: DynamicRuleKeeper.DynamicRuleKeeper(IReadOnlyPuzzle, PossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.Rules.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.Rules.ISudokuRule>)
+  fullName: SudokuSpice.Rules.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.Rules.ISudokuRule>)
   type: Constructor
   source:
     remote:
@@ -81,7 +81,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
     - id: possibleValues
-      type: SudokuSpice.Data.PossibleValues
+      type: SudokuSpice.PossibleValues
     - id: rules
       type: System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule}
     content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues, rules As IReadOnlyList(Of ISudokuRule))
@@ -91,18 +91,18 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Rules.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Rules.ISudokuRule))
+  fullName.vb: SudokuSpice.Rules.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Rules.ISudokuRule))
   name.vb: DynamicRuleKeeper(IReadOnlyPuzzle, PossibleValues, IReadOnlyList(Of ISudokuRule))
-- uid: SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
-  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
-  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
+- uid: SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
+  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
+  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
   parent: SudokuSpice.Rules.DynamicRuleKeeper
   langs:
   - csharp
   - vb
   name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
   nameWithType: DynamicRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  fullName: SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues)
+  fullName: SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues)
   type: Method
   source:
     remote:
@@ -115,7 +115,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.Rules
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.Data.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
   example: []
   syntax:
     content: public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
@@ -124,14 +124,14 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
     - id: possibleValues
-      type: SudokuSpice.Data.PossibleValues
+      type: SudokuSpice.PossibleValues
       description: "\nThe new possible values reference. Should contain the same data as the current possible\nvalues instance.\n"
     return:
       type: SudokuSpice.Rules.ISudokuRuleKeeper
     content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues) As ISudokuRuleKeeper
   overload: SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences*
   implements:
-  - SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
+  - SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -172,16 +172,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
-  id: TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
+- uid: SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  id: TrySet(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.Rules.DynamicRuleKeeper
   langs:
   - csharp
   - vb
   name: TrySet(Coordinate, Int32)
   nameWithType: DynamicRuleKeeper.TrySet(Coordinate, Int32)
-  fullName: SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Data.Coordinate, System.Int32)
+  fullName: SudokuSpice.Rules.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate, System.Int32)
   type: Method
   source:
     remote:
@@ -200,7 +200,7 @@ items:
     content: public bool TrySet(in Coordinate c, int value)
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
       description: The coordinate to update.
     - id: value
       type: System.Int32
@@ -211,24 +211,24 @@ items:
     content.vb: Public Function TrySet(ByRef c As Coordinate, value As Integer) As Boolean
   overload: SudokuSpice.Rules.DynamicRuleKeeper.TrySet*
   implements:
-  - SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
+  - SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   nameWithType.vb: DynamicRuleKeeper.TrySet(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Rules.DynamicRuleKeeper.TrySet(ByRef SudokuSpice.Data.Coordinate, System.Int32)
+  fullName.vb: SudokuSpice.Rules.DynamicRuleKeeper.TrySet(ByRef SudokuSpice.Coordinate, System.Int32)
   name.vb: TrySet(ByRef Coordinate, Int32)
-- uid: SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
-  id: Unset(SudokuSpice.Data.Coordinate@,System.Int32)
+- uid: SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  id: Unset(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.Rules.DynamicRuleKeeper
   langs:
   - csharp
   - vb
   name: Unset(Coordinate, Int32)
   nameWithType: DynamicRuleKeeper.Unset(Coordinate, Int32)
-  fullName: SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Data.Coordinate, System.Int32)
+  fullName: SudokuSpice.Rules.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate, System.Int32)
   type: Method
   source:
     remote:
@@ -247,7 +247,7 @@ items:
     content: public void Unset(in Coordinate c, int value)
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
       description: The coordinate where a value is being unset.
     - id: value
       type: System.Int32
@@ -255,13 +255,13 @@ items:
     content.vb: Public Sub Unset(ByRef c As Coordinate, value As Integer)
   overload: SudokuSpice.Rules.DynamicRuleKeeper.Unset*
   implements:
-  - SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
+  - SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
   nameWithType.vb: DynamicRuleKeeper.Unset(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Rules.DynamicRuleKeeper.Unset(ByRef SudokuSpice.Data.Coordinate, System.Int32)
+  fullName.vb: SudokuSpice.Rules.DynamicRuleKeeper.Unset(ByRef SudokuSpice.Coordinate, System.Int32)
   name.vb: Unset(ByRef Coordinate, Int32)
 references:
 - uid: SudokuSpice.Rules
@@ -578,12 +578,12 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.Data.PossibleValues
-  commentId: T:SudokuSpice.Data.PossibleValues
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.PossibleValues
+  commentId: T:SudokuSpice.PossibleValues
+  parent: SudokuSpice
   name: PossibleValues
   nameWithType: PossibleValues
-  fullName: SudokuSpice.Data.PossibleValues
+  fullName: SudokuSpice.PossibleValues
 - uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule}
   commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.Rules.ISudokuRule}
   parent: System.Collections.Generic
@@ -631,11 +631,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Collections.Generic.IReadOnlyList`1
   commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
@@ -686,14 +686,14 @@ references:
   name: CopyWithNewReferences
   nameWithType: DynamicRuleKeeper.CopyWithNewReferences
   fullName: SudokuSpice.Rules.DynamicRuleKeeper.CopyWithNewReferences
-- uid: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
-  commentId: M:SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
+- uid: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
+  commentId: M:SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
   parent: SudokuSpice.Rules.ISudokuRuleKeeper
   name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
   nameWithType: ISudokuRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  fullName: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.Data.PossibleValues)
+  fullName: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.PossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
+  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
     name: CopyWithNewReferences
     nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
     fullName: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences
@@ -707,15 +707,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.Data.PossibleValues
+  - uid: SudokuSpice.PossibleValues
     name: PossibleValues
     nameWithType: PossibleValues
-    fullName: SudokuSpice.Data.PossibleValues
+    fullName: SudokuSpice.PossibleValues
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.Data.PossibleValues)
+  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.PossibleValues)
     name: CopyWithNewReferences
     nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
     fullName: SudokuSpice.Rules.ISudokuRuleKeeper.CopyWithNewReferences
@@ -729,10 +729,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.Data.PossibleValues
+  - uid: SudokuSpice.PossibleValues
     name: PossibleValues
     nameWithType: PossibleValues
-    fullName: SudokuSpice.Data.PossibleValues
+    fullName: SudokuSpice.PossibleValues
   - name: )
     nameWithType: )
     fullName: )
@@ -774,25 +774,25 @@ references:
   name: TrySet
   nameWithType: DynamicRuleKeeper.TrySet
   fullName: SudokuSpice.Rules.DynamicRuleKeeper.TrySet
-- uid: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
+- uid: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.Rules.ISudokuRuleKeeper
   isExternal: true
   name: TrySet(Coordinate, Int32)
   nameWithType: ISudokuRuleKeeper.TrySet(Coordinate, Int32)
-  fullName: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Data.Coordinate, System.Int32)
+  fullName: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate, System.Int32)
   spec.csharp:
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
+  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
     name: TrySet
     nameWithType: ISudokuRuleKeeper.TrySet
     fullName: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -805,17 +805,17 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Data.Coordinate@,System.Int32)
+  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
     name: TrySet
     nameWithType: ISudokuRuleKeeper.TrySet
     fullName: SudokuSpice.Rules.ISudokuRuleKeeper.TrySet
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -827,12 +827,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
+  fullName: SudokuSpice.Coordinate
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -852,25 +852,25 @@ references:
   name: Unset
   nameWithType: DynamicRuleKeeper.Unset
   fullName: SudokuSpice.Rules.DynamicRuleKeeper.Unset
-- uid: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
+- uid: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.Rules.ISudokuRuleKeeper
   isExternal: true
   name: Unset(Coordinate, Int32)
   nameWithType: ISudokuRuleKeeper.Unset(Coordinate, Int32)
-  fullName: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Data.Coordinate, System.Int32)
+  fullName: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate, System.Int32)
   spec.csharp:
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
+  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
     name: Unset
     nameWithType: ISudokuRuleKeeper.Unset
     fullName: SudokuSpice.Rules.ISudokuRuleKeeper.Unset
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -883,17 +883,17 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Data.Coordinate@,System.Int32)
+  - uid: SudokuSpice.Rules.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
     name: Unset
     nameWithType: ISudokuRuleKeeper.Unset
     fullName: SudokuSpice.Rules.ISudokuRuleKeeper.Unset
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.Coordinate
+  - uid: SudokuSpice.Coordinate
     name: Coordinate
     nameWithType: Coordinate
-    fullName: SudokuSpice.Data.Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ', '
     nameWithType: ', '
     fullName: ', '

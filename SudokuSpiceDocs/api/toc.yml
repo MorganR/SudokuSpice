@@ -2,12 +2,14 @@
 - uid: SudokuSpice
   name: SudokuSpice
   items:
-  - uid: SudokuSpice.ConstraintBasedGenerator`1
-    name: ConstraintBasedGenerator<TPuzzle>
-    name.vb: ConstraintBasedGenerator(Of TPuzzle)
-  - uid: SudokuSpice.ConstraintBasedSolver`1
-    name: ConstraintBasedSolver<TPuzzle>
-    name.vb: ConstraintBasedSolver(Of TPuzzle)
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+  - uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+    name: CoordinateTracker.AddOrTrackResult
   - uid: SudokuSpice.IPuzzle
     name: IPuzzle
   - uid: SudokuSpice.IReadOnlyBoxPuzzle
@@ -16,99 +18,100 @@
     name: IReadOnlyPuzzle
   - uid: SudokuSpice.Puzzle
     name: Puzzle
-  - uid: SudokuSpice.PuzzleGenerator`1
-    name: PuzzleGenerator<TPuzzle>
-    name.vb: PuzzleGenerator(Of TPuzzle)
-  - uid: SudokuSpice.Solver
-    name: Solver
-  - uid: SudokuSpice.StandardPuzzleGenerator
-    name: StandardPuzzleGenerator
-- uid: SudokuSpice.Constraints
-  name: SudokuSpice.Constraints
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+- uid: SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
   items:
-  - uid: SudokuSpice.Constraints.BoxUniquenessConstraint`1
-    name: BoxUniquenessConstraint<TPuzzle>
-    name.vb: BoxUniquenessConstraint(Of TPuzzle)
-  - uid: SudokuSpice.Constraints.ColumnUniquenessConstraint`1
-    name: ColumnUniquenessConstraint<TPuzzle>
-    name.vb: ColumnUniquenessConstraint(Of TPuzzle)
-  - uid: SudokuSpice.Constraints.ConstraintUtil
-    name: ConstraintUtil
-  - uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
-    name: DiagonalUniquenessConstraint<TPuzzle>
-    name.vb: DiagonalUniquenessConstraint(Of TPuzzle)
-  - uid: SudokuSpice.Constraints.IConstraint`1
-    name: IConstraint<TPuzzle>
-    name.vb: IConstraint(Of TPuzzle)
-  - uid: SudokuSpice.Constraints.RowUniquenessConstraint`1
-    name: RowUniquenessConstraint<TPuzzle>
-    name.vb: RowUniquenessConstraint(Of TPuzzle)
-- uid: SudokuSpice.Data
-  name: SudokuSpice.Data
-  items:
-  - uid: SudokuSpice.Data.BitVector
-    name: BitVector
-  - uid: SudokuSpice.Data.ConstraintHeader`1
+  - uid: SudokuSpice.ConstraintBased.ConstraintBasedGenerator`1
+    name: ConstraintBasedGenerator<TPuzzle>
+    name.vb: ConstraintBasedGenerator(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
+    name: ConstraintBasedSolver<TPuzzle>
+    name.vb: ConstraintBasedSolver(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
     name: ConstraintHeader<TPuzzle>
     name.vb: ConstraintHeader(Of TPuzzle)
-  - uid: SudokuSpice.Data.Coordinate
-    name: Coordinate
-  - uid: SudokuSpice.Data.CoordinateTracker
-    name: CoordinateTracker
-  - uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
-    name: CoordinateTracker.AddOrTrackResult
-  - uid: SudokuSpice.Data.ExactCoverMatrix`1
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
     name: ExactCoverMatrix<TPuzzle>
     name.vb: ExactCoverMatrix(Of TPuzzle)
-  - uid: SudokuSpice.Data.PossibleSquareState
+  - uid: SudokuSpice.ConstraintBased.PossibleSquareState
     name: PossibleSquareState
-  - uid: SudokuSpice.Data.PossibleSquareValue`1
+  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
     name: PossibleSquareValue<TPuzzle>
     name.vb: PossibleSquareValue(Of TPuzzle)
-  - uid: SudokuSpice.Data.PossibleValues
-    name: PossibleValues
-  - uid: SudokuSpice.Data.SolveStats
-    name: SolveStats
-  - uid: SudokuSpice.Data.Square`1
+  - uid: SudokuSpice.ConstraintBased.Square`1
     name: Square<TPuzzle>
     name.vb: Square(Of TPuzzle)
-- uid: SudokuSpice.Heuristics
-  name: SudokuSpice.Heuristics
+- uid: SudokuSpice.ConstraintBased.Constraints
+  name: SudokuSpice.ConstraintBased.Constraints
   items:
-  - uid: SudokuSpice.Heuristics.ISudokuHeuristic
-    name: ISudokuHeuristic
-  - uid: SudokuSpice.Heuristics.StandardHeuristic
-    name: StandardHeuristic
-  - uid: SudokuSpice.Heuristics.UniqueInBoxHeuristic
-    name: UniqueInBoxHeuristic
-  - uid: SudokuSpice.Heuristics.UniqueInColumnHeuristic
-    name: UniqueInColumnHeuristic
-  - uid: SudokuSpice.Heuristics.UniqueInRowHeuristic
-    name: UniqueInRowHeuristic
-- uid: SudokuSpice.Rules
-  name: SudokuSpice.Rules
+  - uid: SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint`1
+    name: BoxUniquenessConstraint<TPuzzle>
+    name.vb: BoxUniquenessConstraint(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.Constraints.ColumnUniquenessConstraint`1
+    name: ColumnUniquenessConstraint<TPuzzle>
+    name.vb: ColumnUniquenessConstraint(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil
+    name: ConstraintUtil
+  - uid: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint`1
+    name: DiagonalUniquenessConstraint<TPuzzle>
+    name.vb: DiagonalUniquenessConstraint(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+    name: IConstraint<TPuzzle>
+    name.vb: IConstraint(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint`1
+    name: RowUniquenessConstraint<TPuzzle>
+    name.vb: RowUniquenessConstraint(Of TPuzzle)
+- uid: SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
   items:
-  - uid: SudokuSpice.Rules.BoxUniquenessRule
-    name: BoxUniquenessRule
-  - uid: SudokuSpice.Rules.ColumnUniquenessRule
-    name: ColumnUniquenessRule
-  - uid: SudokuSpice.Rules.DiagonalUniquenessRule
-    name: DiagonalUniquenessRule
-  - uid: SudokuSpice.Rules.DynamicRuleKeeper
+  - uid: SudokuSpice.RuleBased.DynamicRuleKeeper
     name: DynamicRuleKeeper
-  - uid: SudokuSpice.Rules.IMissingBoxValuesTracker
-    name: IMissingBoxValuesTracker
-  - uid: SudokuSpice.Rules.IMissingColumnValuesTracker
-    name: IMissingColumnValuesTracker
-  - uid: SudokuSpice.Rules.IMissingRowValuesTracker
-    name: IMissingRowValuesTracker
-  - uid: SudokuSpice.Rules.ISudokuRule
-    name: ISudokuRule
-  - uid: SudokuSpice.Rules.ISudokuRuleKeeper
+  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper
     name: ISudokuRuleKeeper
-  - uid: SudokuSpice.Rules.RowUniquenessRule
-    name: RowUniquenessRule
-  - uid: SudokuSpice.Rules.StandardRuleKeeper
+  - uid: SudokuSpice.RuleBased.PossibleValues
+    name: PossibleValues
+  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
+    name: PuzzleGenerator<TPuzzle>
+    name.vb: PuzzleGenerator(Of TPuzzle)
+  - uid: SudokuSpice.RuleBased.Solver
+    name: Solver
+  - uid: SudokuSpice.RuleBased.StandardPuzzleGenerator
+    name: StandardPuzzleGenerator
+  - uid: SudokuSpice.RuleBased.StandardRuleKeeper
     name: StandardRuleKeeper
-  - uid: SudokuSpice.Rules.StandardRules
+- uid: SudokuSpice.RuleBased.Heuristics
+  name: SudokuSpice.RuleBased.Heuristics
+  items:
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+    name: ISudokuHeuristic
+  - uid: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+    name: StandardHeuristic
+  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic
+    name: UniqueInBoxHeuristic
+  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic
+    name: UniqueInColumnHeuristic
+  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic
+    name: UniqueInRowHeuristic
+- uid: SudokuSpice.RuleBased.Rules
+  name: SudokuSpice.RuleBased.Rules
+  items:
+  - uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
+    name: BoxUniquenessRule
+  - uid: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule
+    name: ColumnUniquenessRule
+  - uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule
+    name: DiagonalUniquenessRule
+  - uid: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
+    name: IMissingBoxValuesTracker
+  - uid: SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker
+    name: IMissingColumnValuesTracker
+  - uid: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker
+    name: IMissingRowValuesTracker
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule
+    name: ISudokuRule
+  - uid: SudokuSpice.RuleBased.Rules.RowUniquenessRule
+    name: RowUniquenessRule
+  - uid: SudokuSpice.RuleBased.Rules.StandardRules
     name: StandardRules

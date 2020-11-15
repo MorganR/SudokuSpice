@@ -1,25 +1,25 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Data.SolveStats
-  commentId: T:SudokuSpice.Data.SolveStats
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
   id: SolveStats
-  parent: SudokuSpice.Data
+  parent: SudokuSpice
   children:
-  - SudokuSpice.Data.SolveStats.Equals(SudokuSpice.Data.SolveStats)
-  - SudokuSpice.Data.SolveStats.Equals(System.Object)
-  - SudokuSpice.Data.SolveStats.GetHashCode
-  - SudokuSpice.Data.SolveStats.NumSolutionsFound
-  - SudokuSpice.Data.SolveStats.NumSquaresGuessed
-  - SudokuSpice.Data.SolveStats.NumTotalGuesses
-  - SudokuSpice.Data.SolveStats.op_Equality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  - SudokuSpice.Data.SolveStats.op_Inequality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  - SudokuSpice.Data.SolveStats.ToString
+  - SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.Equals(System.Object)
+  - SudokuSpice.SolveStats.GetHashCode
+  - SudokuSpice.SolveStats.NumSolutionsFound
+  - SudokuSpice.SolveStats.NumSquaresGuessed
+  - SudokuSpice.SolveStats.NumTotalGuesses
+  - SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.ToString
   langs:
   - csharp
   - vb
   name: SolveStats
   nameWithType: SolveStats
-  fullName: SudokuSpice.Data.SolveStats
+  fullName: SudokuSpice.SolveStats
   type: Struct
   source:
     remote:
@@ -31,7 +31,7 @@ items:
     startLine: 7
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nContains statistics about an attempt to solve a puzzle.\n"
   example: []
   syntax:
@@ -40,7 +40,7 @@ items:
       Public Structure SolveStats
           Implements IEquatable(Of SolveStats)
   implements:
-  - System.IEquatable{SudokuSpice.Data.SolveStats}
+  - System.IEquatable{SudokuSpice.SolveStats}
   inheritedMembers:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
@@ -51,16 +51,16 @@ items:
   modifiers.vb:
   - Public
   - Structure
-- uid: SudokuSpice.Data.SolveStats.NumSolutionsFound
-  commentId: P:SudokuSpice.Data.SolveStats.NumSolutionsFound
+- uid: SudokuSpice.SolveStats.NumSolutionsFound
+  commentId: P:SudokuSpice.SolveStats.NumSolutionsFound
   id: NumSolutionsFound
-  parent: SudokuSpice.Data.SolveStats
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: NumSolutionsFound
   nameWithType: SolveStats.NumSolutionsFound
-  fullName: SudokuSpice.Data.SolveStats.NumSolutionsFound
+  fullName: SudokuSpice.SolveStats.NumSolutionsFound
   type: Property
   source:
     remote:
@@ -72,7 +72,7 @@ items:
     startLine: 13
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nThe number of solutions found for this puzzle. For any real Sudoku puzzle, this should\nbe 1.\n"
   example: []
   syntax:
@@ -81,23 +81,23 @@ items:
     return:
       type: System.Int32
     content.vb: Public Property NumSolutionsFound As Integer
-  overload: SudokuSpice.Data.SolveStats.NumSolutionsFound*
+  overload: SudokuSpice.SolveStats.NumSolutionsFound*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.SolveStats.NumSquaresGuessed
-  commentId: P:SudokuSpice.Data.SolveStats.NumSquaresGuessed
+- uid: SudokuSpice.SolveStats.NumSquaresGuessed
+  commentId: P:SudokuSpice.SolveStats.NumSquaresGuessed
   id: NumSquaresGuessed
-  parent: SudokuSpice.Data.SolveStats
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: NumSquaresGuessed
   nameWithType: SolveStats.NumSquaresGuessed
-  fullName: SudokuSpice.Data.SolveStats.NumSquaresGuessed
+  fullName: SudokuSpice.SolveStats.NumSquaresGuessed
   type: Property
   source:
     remote:
@@ -109,9 +109,9 @@ items:
     startLine: 23
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nThe number of squares for which the solver had to guess while finding a solution.\n"
-  remarks: "\nUnlike <xref href=\"SudokuSpice.Data.SolveStats.NumTotalGuesses\" data-throw-if-not-resolved=\"false\"></xref>, if the solver was\nsetting a square that had three possible values, this would only add 1 to\n<code>NumSquaresGuessed</code>. If NumSolutionsFound is greater than 1, then the precise\nmeaning of this value is undefined.\n"
+  remarks: "\nUnlike <xref href=\"SudokuSpice.SolveStats.NumTotalGuesses\" data-throw-if-not-resolved=\"false\"></xref>, if the solver was\nsetting a square that had three possible values, this would only add 1 to\n<code>NumSquaresGuessed</code>. If NumSolutionsFound is greater than 1, then the precise\nmeaning of this value is undefined.\n"
   example: []
   syntax:
     content: public int NumSquaresGuessed { get; set; }
@@ -119,23 +119,23 @@ items:
     return:
       type: System.Int32
     content.vb: Public Property NumSquaresGuessed As Integer
-  overload: SudokuSpice.Data.SolveStats.NumSquaresGuessed*
+  overload: SudokuSpice.SolveStats.NumSquaresGuessed*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.SolveStats.NumTotalGuesses
-  commentId: P:SudokuSpice.Data.SolveStats.NumTotalGuesses
+- uid: SudokuSpice.SolveStats.NumTotalGuesses
+  commentId: P:SudokuSpice.SolveStats.NumTotalGuesses
   id: NumTotalGuesses
-  parent: SudokuSpice.Data.SolveStats
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: NumTotalGuesses
   nameWithType: SolveStats.NumTotalGuesses
-  fullName: SudokuSpice.Data.SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
   type: Property
   source:
     remote:
@@ -147,7 +147,7 @@ items:
     startLine: 35
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   summary: "\nThe total number of guesses used to solve the puzzle. A &apos;guess&apos; is any time the\nsolver tries setting a square to one value when there are multiple possible values\nfor that square.\n"
   remarks: "\nExample Guesses: if the solver tried to set square (0,1) with possible values [2, 3, 5]\nthen this would add three total guesses since there were three possible values for this\ncoordinate. This would be true even if only one of the values actually led to a\nsolution.\n"
   example: []
@@ -157,23 +157,23 @@ items:
     return:
       type: System.Int32
     content.vb: Public Property NumTotalGuesses As Integer
-  overload: SudokuSpice.Data.SolveStats.NumTotalGuesses*
+  overload: SudokuSpice.SolveStats.NumTotalGuesses*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.SolveStats.Equals(System.Object)
-  commentId: M:SudokuSpice.Data.SolveStats.Equals(System.Object)
+- uid: SudokuSpice.SolveStats.Equals(System.Object)
+  commentId: M:SudokuSpice.SolveStats.Equals(System.Object)
   id: Equals(System.Object)
-  parent: SudokuSpice.Data.SolveStats
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: Equals(Object)
   nameWithType: SolveStats.Equals(Object)
-  fullName: SudokuSpice.Data.SolveStats.Equals(System.Object)
+  fullName: SudokuSpice.SolveStats.Equals(System.Object)
   type: Method
   source:
     remote:
@@ -185,7 +185,7 @@ items:
     startLine: 37
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public override bool Equals(object obj)
     parameters:
@@ -195,23 +195,23 @@ items:
       type: System.Boolean
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
   overridden: System.ValueType.Equals(System.Object)
-  overload: SudokuSpice.Data.SolveStats.Equals*
+  overload: SudokuSpice.SolveStats.Equals*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.Data.SolveStats.Equals(SudokuSpice.Data.SolveStats)
-  commentId: M:SudokuSpice.Data.SolveStats.Equals(SudokuSpice.Data.SolveStats)
-  id: Equals(SudokuSpice.Data.SolveStats)
-  parent: SudokuSpice.Data.SolveStats
+- uid: SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  id: Equals(SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: Equals(SolveStats)
   nameWithType: SolveStats.Equals(SolveStats)
-  fullName: SudokuSpice.Data.SolveStats.Equals(SudokuSpice.Data.SolveStats)
+  fullName: SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
   type: Method
   source:
     remote:
@@ -223,32 +223,32 @@ items:
     startLine: 46
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public bool Equals(SolveStats other)
     parameters:
     - id: other
-      type: SudokuSpice.Data.SolveStats
+      type: SudokuSpice.SolveStats
     return:
       type: System.Boolean
     content.vb: Public Function Equals(other As SolveStats) As Boolean
-  overload: SudokuSpice.Data.SolveStats.Equals*
+  overload: SudokuSpice.SolveStats.Equals*
   implements:
-  - System.IEquatable{SudokuSpice.Data.SolveStats}.Equals(SudokuSpice.Data.SolveStats)
+  - System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Data.SolveStats.GetHashCode
-  commentId: M:SudokuSpice.Data.SolveStats.GetHashCode
+- uid: SudokuSpice.SolveStats.GetHashCode
+  commentId: M:SudokuSpice.SolveStats.GetHashCode
   id: GetHashCode
-  parent: SudokuSpice.Data.SolveStats
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: GetHashCode()
   nameWithType: SolveStats.GetHashCode()
-  fullName: SudokuSpice.Data.SolveStats.GetHashCode()
+  fullName: SudokuSpice.SolveStats.GetHashCode()
   type: Method
   source:
     remote:
@@ -260,30 +260,30 @@ items:
     startLine: 53
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public override int GetHashCode()
     return:
       type: System.Int32
     content.vb: Public Overrides Function GetHashCode As Integer
   overridden: System.ValueType.GetHashCode
-  overload: SudokuSpice.Data.SolveStats.GetHashCode*
+  overload: SudokuSpice.SolveStats.GetHashCode*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.Data.SolveStats.op_Equality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  commentId: M:SudokuSpice.Data.SolveStats.op_Equality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  id: op_Equality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  parent: SudokuSpice.Data.SolveStats
+- uid: SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  id: op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: Equality(SolveStats, SolveStats)
   nameWithType: SolveStats.Equality(SolveStats, SolveStats)
-  fullName: SudokuSpice.Data.SolveStats.Equality(SudokuSpice.Data.SolveStats, SudokuSpice.Data.SolveStats)
+  fullName: SudokuSpice.SolveStats.Equality(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
   type: Operator
   source:
     remote:
@@ -295,34 +295,34 @@ items:
     startLine: 58
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public static bool operator ==(SolveStats left, SolveStats right)
     parameters:
     - id: left
-      type: SudokuSpice.Data.SolveStats
+      type: SudokuSpice.SolveStats
     - id: right
-      type: SudokuSpice.Data.SolveStats
+      type: SudokuSpice.SolveStats
     return:
       type: System.Boolean
     content.vb: Public Shared Operator =(left As SolveStats, right As SolveStats) As Boolean
-  overload: SudokuSpice.Data.SolveStats.op_Equality*
+  overload: SudokuSpice.SolveStats.op_Equality*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.Data.SolveStats.op_Inequality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  commentId: M:SudokuSpice.Data.SolveStats.op_Inequality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  id: op_Inequality(SudokuSpice.Data.SolveStats,SudokuSpice.Data.SolveStats)
-  parent: SudokuSpice.Data.SolveStats
+- uid: SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  id: op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: Inequality(SolveStats, SolveStats)
   nameWithType: SolveStats.Inequality(SolveStats, SolveStats)
-  fullName: SudokuSpice.Data.SolveStats.Inequality(SudokuSpice.Data.SolveStats, SudokuSpice.Data.SolveStats)
+  fullName: SudokuSpice.SolveStats.Inequality(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
   type: Operator
   source:
     remote:
@@ -334,34 +334,34 @@ items:
     startLine: 63
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public static bool operator !=(SolveStats left, SolveStats right)
     parameters:
     - id: left
-      type: SudokuSpice.Data.SolveStats
+      type: SudokuSpice.SolveStats
     - id: right
-      type: SudokuSpice.Data.SolveStats
+      type: SudokuSpice.SolveStats
     return:
       type: System.Boolean
     content.vb: Public Shared Operator <>(left As SolveStats, right As SolveStats) As Boolean
-  overload: SudokuSpice.Data.SolveStats.op_Inequality*
+  overload: SudokuSpice.SolveStats.op_Inequality*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.Data.SolveStats.ToString
-  commentId: M:SudokuSpice.Data.SolveStats.ToString
+- uid: SudokuSpice.SolveStats.ToString
+  commentId: M:SudokuSpice.SolveStats.ToString
   id: ToString
-  parent: SudokuSpice.Data.SolveStats
+  parent: SudokuSpice.SolveStats
   langs:
   - csharp
   - vb
   name: ToString()
   nameWithType: SolveStats.ToString()
-  fullName: SudokuSpice.Data.SolveStats.ToString()
+  fullName: SudokuSpice.SolveStats.ToString()
   type: Method
   source:
     remote:
@@ -373,14 +373,14 @@ items:
     startLine: 68
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Data
+  namespace: SudokuSpice
   syntax:
     content: public override string ToString()
     return:
       type: System.String
     content.vb: Public Overrides Function ToString As String
   overridden: System.ValueType.ToString
-  overload: SudokuSpice.Data.SolveStats.ToString*
+  overload: SudokuSpice.SolveStats.ToString*
   modifiers.csharp:
   - public
   - override
@@ -388,20 +388,20 @@ items:
   - Public
   - Overrides
 references:
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
-- uid: System.IEquatable{SudokuSpice.Data.SolveStats}
-  commentId: T:System.IEquatable{SudokuSpice.Data.SolveStats}
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.IEquatable{SudokuSpice.SolveStats}
+  commentId: T:System.IEquatable{SudokuSpice.SolveStats}
   parent: System
   definition: System.IEquatable`1
   name: IEquatable<SolveStats>
   nameWithType: IEquatable<SolveStats>
-  fullName: System.IEquatable<SudokuSpice.Data.SolveStats>
+  fullName: System.IEquatable<SudokuSpice.SolveStats>
   nameWithType.vb: IEquatable(Of SolveStats)
-  fullName.vb: System.IEquatable(Of SudokuSpice.Data.SolveStats)
+  fullName.vb: System.IEquatable(Of SudokuSpice.SolveStats)
   name.vb: IEquatable(Of SolveStats)
   spec.csharp:
   - uid: System.IEquatable`1
@@ -412,10 +412,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Data.SolveStats
+  - uid: SudokuSpice.SolveStats
     name: SolveStats
     nameWithType: SolveStats
-    fullName: SudokuSpice.Data.SolveStats
+    fullName: SudokuSpice.SolveStats
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -428,10 +428,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Data.SolveStats
+  - uid: SudokuSpice.SolveStats
     name: SolveStats
     nameWithType: SolveStats
-    fullName: SudokuSpice.Data.SolveStats
+    fullName: SudokuSpice.SolveStats
   - name: )
     nameWithType: )
     fullName: )
@@ -632,11 +632,11 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.Data.SolveStats.NumSolutionsFound*
-  commentId: Overload:SudokuSpice.Data.SolveStats.NumSolutionsFound
+- uid: SudokuSpice.SolveStats.NumSolutionsFound*
+  commentId: Overload:SudokuSpice.SolveStats.NumSolutionsFound
   name: NumSolutionsFound
   nameWithType: SolveStats.NumSolutionsFound
-  fullName: SudokuSpice.Data.SolveStats.NumSolutionsFound
+  fullName: SudokuSpice.SolveStats.NumSolutionsFound
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -644,19 +644,19 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.Data.SolveStats.NumTotalGuesses
-  commentId: P:SudokuSpice.Data.SolveStats.NumTotalGuesses
+- uid: SudokuSpice.SolveStats.NumTotalGuesses
+  commentId: P:SudokuSpice.SolveStats.NumTotalGuesses
   isExternal: true
-- uid: SudokuSpice.Data.SolveStats.NumSquaresGuessed*
-  commentId: Overload:SudokuSpice.Data.SolveStats.NumSquaresGuessed
+- uid: SudokuSpice.SolveStats.NumSquaresGuessed*
+  commentId: Overload:SudokuSpice.SolveStats.NumSquaresGuessed
   name: NumSquaresGuessed
   nameWithType: SolveStats.NumSquaresGuessed
-  fullName: SudokuSpice.Data.SolveStats.NumSquaresGuessed
-- uid: SudokuSpice.Data.SolveStats.NumTotalGuesses*
-  commentId: Overload:SudokuSpice.Data.SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumSquaresGuessed
+- uid: SudokuSpice.SolveStats.NumTotalGuesses*
+  commentId: Overload:SudokuSpice.SolveStats.NumTotalGuesses
   name: NumTotalGuesses
   nameWithType: SolveStats.NumTotalGuesses
-  fullName: SudokuSpice.Data.SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
 - uid: System.ValueType.Equals(System.Object)
   commentId: M:System.ValueType.Equals(System.Object)
   parent: System.ValueType
@@ -698,11 +698,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.SolveStats.Equals*
-  commentId: Overload:SudokuSpice.Data.SolveStats.Equals
+- uid: SudokuSpice.SolveStats.Equals*
+  commentId: Overload:SudokuSpice.SolveStats.Equals
   name: Equals
   nameWithType: SolveStats.Equals
-  fullName: SudokuSpice.Data.SolveStats.Equals
+  fullName: SudokuSpice.SolveStats.Equals
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -717,28 +717,28 @@ references:
   name: ValueType
   nameWithType: ValueType
   fullName: System.ValueType
-- uid: System.IEquatable{SudokuSpice.Data.SolveStats}.Equals(SudokuSpice.Data.SolveStats)
-  commentId: M:System.IEquatable{SudokuSpice.Data.SolveStats}.Equals(SudokuSpice.Data.SolveStats)
-  parent: System.IEquatable{SudokuSpice.Data.SolveStats}
+- uid: System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+  commentId: M:System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+  parent: System.IEquatable{SudokuSpice.SolveStats}
   definition: System.IEquatable`1.Equals(`0)
   name: Equals(SolveStats)
   nameWithType: IEquatable<SolveStats>.Equals(SolveStats)
-  fullName: System.IEquatable<SudokuSpice.Data.SolveStats>.Equals(SudokuSpice.Data.SolveStats)
+  fullName: System.IEquatable<SudokuSpice.SolveStats>.Equals(SudokuSpice.SolveStats)
   nameWithType.vb: IEquatable(Of SolveStats).Equals(SolveStats)
-  fullName.vb: System.IEquatable(Of SudokuSpice.Data.SolveStats).Equals(SudokuSpice.Data.SolveStats)
+  fullName.vb: System.IEquatable(Of SudokuSpice.SolveStats).Equals(SudokuSpice.SolveStats)
   spec.csharp:
   - uid: System.IEquatable`1.Equals(`0)
     name: Equals
     nameWithType: IEquatable<SolveStats>.Equals
-    fullName: System.IEquatable<SudokuSpice.Data.SolveStats>.Equals
+    fullName: System.IEquatable<SudokuSpice.SolveStats>.Equals
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.SolveStats
+  - uid: SudokuSpice.SolveStats
     name: SolveStats
     nameWithType: SolveStats
-    fullName: SudokuSpice.Data.SolveStats
+    fullName: SudokuSpice.SolveStats
   - name: )
     nameWithType: )
     fullName: )
@@ -746,24 +746,24 @@ references:
   - uid: System.IEquatable`1.Equals(`0)
     name: Equals
     nameWithType: IEquatable(Of SolveStats).Equals
-    fullName: System.IEquatable(Of SudokuSpice.Data.SolveStats).Equals
+    fullName: System.IEquatable(Of SudokuSpice.SolveStats).Equals
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Data.SolveStats
+  - uid: SudokuSpice.SolveStats
     name: SolveStats
     nameWithType: SolveStats
-    fullName: SudokuSpice.Data.SolveStats
+    fullName: SudokuSpice.SolveStats
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.SolveStats
-  commentId: T:SudokuSpice.Data.SolveStats
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
   name: SolveStats
   nameWithType: SolveStats
-  fullName: SudokuSpice.Data.SolveStats
+  fullName: SudokuSpice.SolveStats
 - uid: System.IEquatable`1.Equals(`0)
   commentId: M:System.IEquatable`1.Equals(`0)
   isExternal: true
@@ -833,21 +833,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.SolveStats.GetHashCode*
-  commentId: Overload:SudokuSpice.Data.SolveStats.GetHashCode
+- uid: SudokuSpice.SolveStats.GetHashCode*
+  commentId: Overload:SudokuSpice.SolveStats.GetHashCode
   name: GetHashCode
   nameWithType: SolveStats.GetHashCode
-  fullName: SudokuSpice.Data.SolveStats.GetHashCode
-- uid: SudokuSpice.Data.SolveStats.op_Equality*
-  commentId: Overload:SudokuSpice.Data.SolveStats.op_Equality
+  fullName: SudokuSpice.SolveStats.GetHashCode
+- uid: SudokuSpice.SolveStats.op_Equality*
+  commentId: Overload:SudokuSpice.SolveStats.op_Equality
   name: Equality
   nameWithType: SolveStats.Equality
-  fullName: SudokuSpice.Data.SolveStats.Equality
-- uid: SudokuSpice.Data.SolveStats.op_Inequality*
-  commentId: Overload:SudokuSpice.Data.SolveStats.op_Inequality
+  fullName: SudokuSpice.SolveStats.Equality
+- uid: SudokuSpice.SolveStats.op_Inequality*
+  commentId: Overload:SudokuSpice.SolveStats.op_Inequality
   name: Inequality
   nameWithType: SolveStats.Inequality
-  fullName: SudokuSpice.Data.SolveStats.Inequality
+  fullName: SudokuSpice.SolveStats.Inequality
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType
@@ -879,11 +879,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.SolveStats.ToString*
-  commentId: Overload:SudokuSpice.Data.SolveStats.ToString
+- uid: SudokuSpice.SolveStats.ToString*
+  commentId: Overload:SudokuSpice.SolveStats.ToString
   name: ToString
   nameWithType: SolveStats.ToString
-  fullName: SudokuSpice.Data.SolveStats.ToString
+  fullName: SudokuSpice.SolveStats.ToString
 - uid: System.String
   commentId: T:System.String
   parent: System

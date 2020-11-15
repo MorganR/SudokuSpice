@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SudokuSpice.Data
+namespace SudokuSpice
 {
     /// <summary>
     /// Contains statistics about an attempt to solve a puzzle.

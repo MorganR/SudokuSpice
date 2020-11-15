@@ -12,7 +12,7 @@ implementing and using the
 
 The new rule needs to extend the [`ISudokuRule`](xref:SudokuSpice.Rules.ISudokuRule), and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the [`BitVector`](xref:SudokuSpice.Data.BitVector) struct, which provides an efficient
+we'll use the [`BitVector`](xref:SudokuSpice.BitVector) struct, which provides an efficient
 set-like struct using the bits of a `uint`.
 
 ```csharp
@@ -88,7 +88,7 @@ private bool _IsOnForwardDiag(in Coordinate c)
 
 Great, now we need to provide a way for the rule keeper to update this rule. When the rule keeper
 wants to set a square's value, it will call `ISudokuRule.Update` with the location and new value.
-It will also include a [`CoordinateTracker`](xref:SudokuSpice.Data.CoordinateTracker), with which
+It will also include a [`CoordinateTracker`](xref:SudokuSpice.CoordinateTracker), with which
 this rule needs to track any coordinates whose possible values have changed.
 
 ```csharp

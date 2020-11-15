@@ -6,7 +6,7 @@ items:
   parent: SudokuSpice
   children:
   - SudokuSpice.IPuzzle.DeepCopy
-  - SudokuSpice.IPuzzle.Item(SudokuSpice.Data.Coordinate@)
+  - SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
   - SudokuSpice.IPuzzle.Item(System.Int32,System.Int32)
   langs:
   - csharp
@@ -87,16 +87,16 @@ items:
   - set
   fullName.vb: SudokuSpice.IPuzzle.Item(System.Int32, System.Int32)
   name.vb: Item(Int32, Int32)
-- uid: SudokuSpice.IPuzzle.Item(SudokuSpice.Data.Coordinate@)
-  commentId: P:SudokuSpice.IPuzzle.Item(SudokuSpice.Data.Coordinate@)
-  id: Item(SudokuSpice.Data.Coordinate@)
+- uid: SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+  id: Item(SudokuSpice.Coordinate@)
   parent: SudokuSpice.IPuzzle
   langs:
   - csharp
   - vb
   name: Item[Coordinate]
   nameWithType: IPuzzle.Item[Coordinate]
-  fullName: SudokuSpice.IPuzzle.Item[SudokuSpice.Data.Coordinate]
+  fullName: SudokuSpice.IPuzzle.Item[SudokuSpice.Coordinate]
   type: Property
   source:
     remote:
@@ -109,13 +109,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets or sets the value of the given square, like <xref href=\"SudokuSpice.IPuzzle.Item(System.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, but\nusing a <xref href=\"SudokuSpice.Data.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref uid=\"langword_csharp_int\" name=\"int\" href=\"\"></xref> accessors.\n"
+  summary: "\nGets or sets the value of the given square, like <xref href=\"SudokuSpice.IPuzzle.Item(System.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, but\nusing a <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref uid=\"langword_csharp_int\" name=\"int\" href=\"\"></xref> accessors.\n"
   example: []
   syntax:
     content: int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
-      type: SudokuSpice.Data.Coordinate
+      type: SudokuSpice.Coordinate
       description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
@@ -126,7 +126,7 @@ items:
   modifiers.csharp:
   - get
   - set
-  fullName.vb: SudokuSpice.IPuzzle.Item(ByRef SudokuSpice.Data.Coordinate)
+  fullName.vb: SudokuSpice.IPuzzle.Item(ByRef SudokuSpice.Coordinate)
   name.vb: Item(ByRef Coordinate)
 - uid: SudokuSpice.IPuzzle.DeepCopy
   commentId: M:SudokuSpice.IPuzzle.DeepCopy
@@ -387,23 +387,23 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Data.Coordinate
-  commentId: T:SudokuSpice.Data.Coordinate
-  parent: SudokuSpice.Data
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
-  fullName: SudokuSpice.Data.Coordinate
+  fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.IPuzzle
   commentId: T:SudokuSpice.IPuzzle
   parent: SudokuSpice
   name: IPuzzle
   nameWithType: IPuzzle
   fullName: SudokuSpice.IPuzzle
-- uid: SudokuSpice.Data
-  commentId: N:SudokuSpice.Data
-  name: SudokuSpice.Data
-  nameWithType: SudokuSpice.Data
-  fullName: SudokuSpice.Data
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.IPuzzle.DeepCopy*
   commentId: Overload:SudokuSpice.IPuzzle.DeepCopy
   name: DeepCopy
