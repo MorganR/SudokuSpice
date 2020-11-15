@@ -8,7 +8,7 @@ namespace SudokuSpice.Data.Test {
         public void GetSquare_ReturnsSquareWithCorrectCoordinates()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle);
+            ExactCoverMatrix<Puzzle> matrix = new (puzzle);
 
             Assert.Equal(new Coordinate(0, 0), matrix.GetSquare(new Coordinate(0, 0)).Coordinate);
             Assert.Equal(new Coordinate(1, 2), matrix.GetSquare(new Coordinate(1, 2)).Coordinate);
@@ -20,7 +20,7 @@ namespace SudokuSpice.Data.Test {
         {
             var expectedPossibleValues = new int[] { 0, 2, 4, 5 };
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle);
+            ExactCoverMatrix<Puzzle> matrix = new (puzzle);
 
             var square = matrix.GetSquare(new Coordinate(0, 0));
             Assert.Equal(expectedPossibleValues.Length, square.NumPossibleValues);
@@ -33,7 +33,7 @@ namespace SudokuSpice.Data.Test {
         public void GetSquaresOnRow_ReturnsExpectedSquares()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle);
+            ExactCoverMatrix<Puzzle> matrix = new (puzzle);
 
             int row = 1;
             var squares = matrix.GetSquaresOnRow(row);
@@ -48,7 +48,7 @@ namespace SudokuSpice.Data.Test {
         public void GetSquaresOnColumn_ReturnsExpectedSquares()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new ExactCoverMatrix(puzzle);
+            ExactCoverMatrix<Puzzle> matrix = new (puzzle);
 
             int column = 1;
             var squares = matrix.GetSquaresOnColumn(column);

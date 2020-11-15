@@ -1,24 +1,24 @@
 ﻿namespace SudokuSpice.Data
 {
-    internal class SquareLink
+    internal class SquareLink<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
-        internal readonly PossibleSquareValue PossibleSquare;
-        internal readonly ConstraintHeader Constraint;
-        internal SquareLink Left { get; set; }
-        internal SquareLink Right { get; set; }
-        internal SquareLink Up { get; set; }
-        internal SquareLink Down { get; set; }
+        internal readonly PossibleSquareValue<TPuzzle> PossibleSquare;
+        internal readonly ConstraintHeader<TPuzzle> Constraint;
+        internal SquareLink<TPuzzle> Left { get; set; }
+        internal SquareLink<TPuzzle> Right { get; set; }
+        internal SquareLink<TPuzzle> Up { get; set; }
+        internal SquareLink<TPuzzle> Down { get; set; }
 
-        private SquareLink(PossibleSquareValue possibleSquare, ConstraintHeader constraint)
+        private SquareLink(PossibleSquareValue<TPuzzle> possibleSquare, ConstraintHeader<TPuzzle> constraint)
         {
             PossibleSquare = possibleSquare;
             Constraint = constraint;
             Up = Down = Right = Left = this;
         }
 
-        internal static SquareLink CreateConnectedLink(PossibleSquareValue possibleSquare, ConstraintHeader header)
+        internal static SquareLink<TPuzzle> CreateConnectedLink(PossibleSquareValue<TPuzzle> possibleSquare, ConstraintHeader<TPuzzle> header)
         {
-            var squareLink = new SquareLink(possibleSquare, header);
+            var squareLink = new SquareLink<TPuzzle>(possibleSquare, header);
             possibleSquare.Attach(squareLink);
             header.Attach(squareLink);
             return squareLink;

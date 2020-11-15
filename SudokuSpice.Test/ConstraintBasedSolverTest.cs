@@ -11,8 +11,8 @@ namespace SudokuSpice.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var solver = new ConstraintBasedSolver(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            var solver = new ConstraintBasedSolver<Puzzle>(
+                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
             solver.Solve(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
@@ -38,8 +38,8 @@ namespace SudokuSpice.Test
                 {null, null, 16,   null, null, 7,    8,    null, null, 4,    10,   null, null, 14,   null, 5},
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
-            var solver = new ConstraintBasedSolver(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint(), new DiagonalUniquenessConstraint() });
+            var solver = new ConstraintBasedSolver<Puzzle>(
+                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>(), new DiagonalUniquenessConstraint<Puzzle>() });
 
             solver.Solve(puzzle);
 
@@ -50,8 +50,8 @@ namespace SudokuSpice.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var solver = new ConstraintBasedSolver(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            var solver = new ConstraintBasedSolver<Puzzle>(
+                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
             solver.SolveRandomly(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
@@ -60,8 +60,8 @@ namespace SudokuSpice.Test
         [MemberData(nameof(PuzzlesWithStats))]
         public void GetStatsForAllSolutions_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
         {
-            var solver = new ConstraintBasedSolver(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            var solver = new ConstraintBasedSolver<Puzzle>(
+                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 

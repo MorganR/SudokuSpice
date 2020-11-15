@@ -11,7 +11,7 @@ namespace SudokuSpice.Test
         public void Constructor_WithValidArgs_Works()
         {
             var generator = new ConstraintBasedGenerator<Puzzle>(
-                () => new Puzzle(9), new List<IConstraint> { new RowUniquenessConstraint() });
+                () => new Puzzle(9), new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>() });
         }
 
         [Theory]
@@ -22,10 +22,10 @@ namespace SudokuSpice.Test
         {
             var generator = new ConstraintBasedGenerator<Puzzle>(
                 () => new Puzzle(size),
-                new List<IConstraint> {
-                    new RowUniquenessConstraint(),
-                    new ColumnUniquenessConstraint(),
-                    new BoxUniquenessConstraint()
+                new List<IConstraint<Puzzle>> {
+                    new RowUniquenessConstraint<Puzzle>(),
+                    new ColumnUniquenessConstraint<Puzzle>(),
+                    new BoxUniquenessConstraint<Puzzle>()
                 });
 
             var puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
@@ -41,10 +41,10 @@ namespace SudokuSpice.Test
         {
             var generator = new ConstraintBasedGenerator<Puzzle>(
                 () => new Puzzle(9),
-                new List<IConstraint> {
-                    new RowUniquenessConstraint(),
-                    new ColumnUniquenessConstraint(),
-                    new BoxUniquenessConstraint()
+                new List<IConstraint<Puzzle>> {
+                    new RowUniquenessConstraint<Puzzle>(),
+                    new ColumnUniquenessConstraint<Puzzle>(),
+                    new BoxUniquenessConstraint<Puzzle>()
                 });
 
             Assert.Throws<TimeoutException>(

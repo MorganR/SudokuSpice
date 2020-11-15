@@ -2,7 +2,7 @@
 
 namespace SudokuSpice.Constraints
 {
-    public interface IConstraint
+    public interface IConstraint<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
         /// <summary>
         /// Adds necessary <see cref="ConstraintHeader"/>s and links to the given
@@ -17,6 +17,6 @@ namespace SudokuSpice.Constraints
         /// </remarks>
         /// <param name="puzzle">The puzzle to solve.</param>
         /// <param name="matrix">The exact-cover matrix to constrain.</param>
-        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix);
+        public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix);
     }
 }

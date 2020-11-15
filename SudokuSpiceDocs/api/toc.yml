@@ -5,8 +5,9 @@
   - uid: SudokuSpice.ConstraintBasedGenerator`1
     name: ConstraintBasedGenerator<TPuzzle>
     name.vb: ConstraintBasedGenerator(Of TPuzzle)
-  - uid: SudokuSpice.ConstraintBasedSolver
-    name: ConstraintBasedSolver
+  - uid: SudokuSpice.ConstraintBasedSolver`1
+    name: ConstraintBasedSolver<TPuzzle>
+    name.vb: ConstraintBasedSolver(Of TPuzzle)
   - uid: SudokuSpice.IPuzzle
     name: IPuzzle
   - uid: SudokuSpice.IReadOnlyBoxPuzzle
@@ -25,43 +26,52 @@
 - uid: SudokuSpice.Constraints
   name: SudokuSpice.Constraints
   items:
-  - uid: SudokuSpice.Constraints.BoxUniquenessConstraint
-    name: BoxUniquenessConstraint
-  - uid: SudokuSpice.Constraints.ColumnUniquenessConstraint
-    name: ColumnUniquenessConstraint
+  - uid: SudokuSpice.Constraints.BoxUniquenessConstraint`1
+    name: BoxUniquenessConstraint<TPuzzle>
+    name.vb: BoxUniquenessConstraint(Of TPuzzle)
+  - uid: SudokuSpice.Constraints.ColumnUniquenessConstraint`1
+    name: ColumnUniquenessConstraint<TPuzzle>
+    name.vb: ColumnUniquenessConstraint(Of TPuzzle)
   - uid: SudokuSpice.Constraints.ConstraintUtil
     name: ConstraintUtil
-  - uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint
-    name: DiagonalUniquenessConstraint
-  - uid: SudokuSpice.Constraints.IConstraint
-    name: IConstraint
-  - uid: SudokuSpice.Constraints.RowUniquenessConstraint
-    name: RowUniquenessConstraint
+  - uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
+    name: DiagonalUniquenessConstraint<TPuzzle>
+    name.vb: DiagonalUniquenessConstraint(Of TPuzzle)
+  - uid: SudokuSpice.Constraints.IConstraint`1
+    name: IConstraint<TPuzzle>
+    name.vb: IConstraint(Of TPuzzle)
+  - uid: SudokuSpice.Constraints.RowUniquenessConstraint`1
+    name: RowUniquenessConstraint<TPuzzle>
+    name.vb: RowUniquenessConstraint(Of TPuzzle)
 - uid: SudokuSpice.Data
   name: SudokuSpice.Data
   items:
   - uid: SudokuSpice.Data.BitVector
     name: BitVector
-  - uid: SudokuSpice.Data.ConstraintHeader
-    name: ConstraintHeader
+  - uid: SudokuSpice.Data.ConstraintHeader`1
+    name: ConstraintHeader<TPuzzle>
+    name.vb: ConstraintHeader(Of TPuzzle)
   - uid: SudokuSpice.Data.Coordinate
     name: Coordinate
   - uid: SudokuSpice.Data.CoordinateTracker
     name: CoordinateTracker
   - uid: SudokuSpice.Data.CoordinateTracker.AddOrTrackResult
     name: CoordinateTracker.AddOrTrackResult
-  - uid: SudokuSpice.Data.ExactCoverMatrix
-    name: ExactCoverMatrix
+  - uid: SudokuSpice.Data.ExactCoverMatrix`1
+    name: ExactCoverMatrix<TPuzzle>
+    name.vb: ExactCoverMatrix(Of TPuzzle)
   - uid: SudokuSpice.Data.PossibleSquareState
     name: PossibleSquareState
-  - uid: SudokuSpice.Data.PossibleSquareValue
-    name: PossibleSquareValue
+  - uid: SudokuSpice.Data.PossibleSquareValue`1
+    name: PossibleSquareValue<TPuzzle>
+    name.vb: PossibleSquareValue(Of TPuzzle)
   - uid: SudokuSpice.Data.PossibleValues
     name: PossibleValues
   - uid: SudokuSpice.Data.SolveStats
     name: SolveStats
-  - uid: SudokuSpice.Data.Square
-    name: Square
+  - uid: SudokuSpice.Data.Square`1
+    name: Square<TPuzzle>
+    name.vb: Square(Of TPuzzle)
 - uid: SudokuSpice.Heuristics
   name: SudokuSpice.Heuristics
   items:

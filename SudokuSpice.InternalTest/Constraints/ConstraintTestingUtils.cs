@@ -5,7 +5,9 @@ namespace SudokuSpice.Constraints.InternalTest
 {
     class ConstraintTestingUtils
     {
-        public static void AssertPossibleSquareValueIsOnConstraint(PossibleSquareValue possibleValue, ConstraintHeader constraint)
+        public static void AssertPossibleSquareValueIsOnConstraint<TPuzzle>(
+            PossibleSquareValue<TPuzzle> possibleValue, ConstraintHeader<TPuzzle> constraint)
+            where TPuzzle : IReadOnlyPuzzle
         {
             var link = constraint.FirstLink;
             do

@@ -6,10 +6,10 @@ namespace SudokuSpice.Constraints
     /// <summary>
     /// Enforces the constraint that all values in a column must be unique.
     /// </summary>
-    public class ColumnUniquenessConstraint : IConstraint
+    public class ColumnUniquenessConstraint<TPuzzle> : IConstraint<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
         /// <inheritdoc/>
-        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
             Span<Coordinate> columnCoordinates = stackalloc Coordinate[puzzle.Size];
             for (int column = 0; column < puzzle.Size; column++)

@@ -11,16 +11,16 @@ namespace SudokuSpice
     /// <remarks>
     /// This class is thread-safe.
     /// </remarks>
-    public class ConstraintBasedSolver
+    public class ConstraintBasedSolver<TPuzzle> where TPuzzle : IPuzzle
     {
-        private readonly IReadOnlyList<IConstraint> _constraints;
+        private readonly IReadOnlyList<IConstraint<TPuzzle>> _constraints;
 
         /// <summary>
         /// Creates a solver that can solve <see cref="IPuzzle"/>s using the given
         /// <see cref="IConstraint"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>
-        public ConstraintBasedSolver(IReadOnlyList<IConstraint> constraints)
+        public ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)
         {
             _constraints = constraints;
         }
@@ -40,55 +40,55 @@ namespace SudokuSpice
         /// Thrown if the puzzle cannot be solved with this solver's constraints, or if the
         /// possible values are not unique.
         /// </exception>
-        public void Solve(IPuzzle puzzle)
+        public void Solve(TPuzzle puzzle)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValues)) {
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = new ExactCoverMatrix<TPuzzle>(puzzle);
             foreach (var constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
             }
-            if (!_TrySolve(new ConstraintBasedTracker(puzzle, matrix)))
+            if (!_TrySolve(new ConstraintBasedTracker<TPuzzle>(puzzle, matrix)))
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
         }
 
-        public void SolveRandomly(IPuzzle puzzle)
+        public void SolveRandomly(TPuzzle puzzle)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValues))
             {
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = new ExactCoverMatrix<TPuzzle>(puzzle);
             foreach (var constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
             }
-            if (!_TrySolveRandomly(new Random(), new ConstraintBasedTracker(puzzle, matrix)))
+            if (!_TrySolveRandomly(new Random(), new ConstraintBasedTracker<TPuzzle>(puzzle, matrix)))
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
         }
 
-        public SolveStats GetStatsForAllSolutions(IPuzzle puzzle)
+        public SolveStats GetStatsForAllSolutions(TPuzzle puzzle)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValues))
             {
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
-            var puzzleCopy = puzzle.DeepCopy();
-            var matrix = new ExactCoverMatrix(puzzleCopy);
+            var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
+            var matrix = new ExactCoverMatrix<TPuzzle>(puzzleCopy);
             foreach (var constraint in _constraints)
             {
                 constraint.Constrain(puzzleCopy, matrix);
             }
-            return _TryAllSolutions(new ConstraintBasedTracker(puzzleCopy, matrix));
+            return _TryAllSolutions(new ConstraintBasedTracker<TPuzzle>(puzzleCopy, matrix));
         }
 
         private static bool _AreValuesUnique(ReadOnlySpan<int> values)
@@ -106,7 +106,7 @@ namespace SudokuSpice
             return true;
         }
 
-        private static bool _TrySolve(ConstraintBasedTracker tracker)
+        private static bool _TrySolve(ConstraintBasedTracker<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -127,7 +127,7 @@ namespace SudokuSpice
             return false;
         }
 
-        private static bool _TrySolveRandomly(Random rand, ConstraintBasedTracker tracker)
+        private static bool _TrySolveRandomly(Random rand, ConstraintBasedTracker<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -151,7 +151,7 @@ namespace SudokuSpice
             return false;
         }
 
-        private static SolveStats _TryAllSolutions(ConstraintBasedTracker tracker)
+        private static SolveStats _TryAllSolutions(ConstraintBasedTracker<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -172,7 +172,7 @@ namespace SudokuSpice
         private static SolveStats _TryAllSolutionsWithGuess(
             in Coordinate guessCoordinate,
             ReadOnlySpan<int> valuesToGuess,
-            ConstraintBasedTracker tracker)
+            ConstraintBasedTracker<TPuzzle> tracker)
         {
             var solveStats = new SolveStats();
             for(int i = 0; i < valuesToGuess.Length - 1; i++)

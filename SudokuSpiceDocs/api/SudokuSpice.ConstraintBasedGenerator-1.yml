@@ -5,7 +5,7 @@ items:
   id: ConstraintBasedGenerator`1
   parent: SudokuSpice
   children:
-  - SudokuSpice.ConstraintBasedGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint})
+  - SudokuSpice.ConstraintBasedGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{`0}})
   - SudokuSpice.ConstraintBasedGenerator`1.Generate(System.Int32,System.TimeSpan)
   langs:
   - csharp
@@ -51,16 +51,16 @@ items:
   - Class
   fullName.vb: SudokuSpice.ConstraintBasedGenerator(Of TPuzzle)
   name.vb: ConstraintBasedGenerator(Of TPuzzle)
-- uid: SudokuSpice.ConstraintBasedGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint})
-  commentId: M:SudokuSpice.ConstraintBasedGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint})
-  id: '#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint})'
+- uid: SudokuSpice.ConstraintBasedGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{`0}})
+  commentId: M:SudokuSpice.ConstraintBasedGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{`0}})
+  id: '#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{`0}})'
   parent: SudokuSpice.ConstraintBasedGenerator`1
   langs:
   - csharp
   - vb
-  name: ConstraintBasedGenerator(Func<TPuzzle>, IReadOnlyList<IConstraint>)
-  nameWithType: ConstraintBasedGenerator<TPuzzle>.ConstraintBasedGenerator(Func<TPuzzle>, IReadOnlyList<IConstraint>)
-  fullName: SudokuSpice.ConstraintBasedGenerator<TPuzzle>.ConstraintBasedGenerator(System.Func<TPuzzle>, System.Collections.Generic.IReadOnlyList<SudokuSpice.Constraints.IConstraint>)
+  name: ConstraintBasedGenerator(Func<TPuzzle>, IReadOnlyList<IConstraint<TPuzzle>>)
+  nameWithType: ConstraintBasedGenerator<TPuzzle>.ConstraintBasedGenerator(Func<TPuzzle>, IReadOnlyList<IConstraint<TPuzzle>>)
+  fullName: SudokuSpice.ConstraintBasedGenerator<TPuzzle>.ConstraintBasedGenerator(System.Func<TPuzzle>, System.Collections.Generic.IReadOnlyList<SudokuSpice.Constraints.IConstraint<TPuzzle>>)
   type: Constructor
   source:
     remote:
@@ -76,22 +76,22 @@ items:
   summary: "\nCreates a puzzle generator to create puzzles with custom rules and type.\n"
   example: []
   syntax:
-    content: public ConstraintBasedGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint> constraints)
+    content: public ConstraintBasedGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint<TPuzzle>> constraints)
     parameters:
     - id: puzzleFactory
       type: System.Func{{TPuzzle}}
       description: "\nA function that constructs an empty <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> of the desired type and shape.\n"
     - id: constraints
-      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint}
-    content.vb: Public Sub New(puzzleFactory As Func(Of TPuzzle), constraints As IReadOnlyList(Of IConstraint))
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{{TPuzzle}}}
+    content.vb: Public Sub New(puzzleFactory As Func(Of TPuzzle), constraints As IReadOnlyList(Of IConstraint(Of TPuzzle)))
   overload: SudokuSpice.ConstraintBasedGenerator`1.#ctor*
-  nameWithType.vb: ConstraintBasedGenerator(Of TPuzzle).ConstraintBasedGenerator(Func(Of TPuzzle), IReadOnlyList(Of IConstraint))
+  nameWithType.vb: ConstraintBasedGenerator(Of TPuzzle).ConstraintBasedGenerator(Func(Of TPuzzle), IReadOnlyList(Of IConstraint(Of TPuzzle)))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBasedGenerator(Of TPuzzle).ConstraintBasedGenerator(System.Func(Of TPuzzle), System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Constraints.IConstraint))
-  name.vb: ConstraintBasedGenerator(Func(Of TPuzzle), IReadOnlyList(Of IConstraint))
+  fullName.vb: SudokuSpice.ConstraintBasedGenerator(Of TPuzzle).ConstraintBasedGenerator(System.Func(Of TPuzzle), System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Constraints.IConstraint(Of TPuzzle)))
+  name.vb: ConstraintBasedGenerator(Func(Of TPuzzle), IReadOnlyList(Of IConstraint(Of TPuzzle)))
 - uid: SudokuSpice.ConstraintBasedGenerator`1.Generate(System.Int32,System.TimeSpan)
   commentId: M:SudokuSpice.ConstraintBasedGenerator`1.Generate(System.Int32,System.TimeSpan)
   id: Generate(System.Int32,System.TimeSpan)
@@ -495,16 +495,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint}
-  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint}
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{{TPuzzle}}}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.Constraints.IConstraint{`0}}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IReadOnlyList`1
-  name: IReadOnlyList<IConstraint>
-  nameWithType: IReadOnlyList<IConstraint>
-  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.Constraints.IConstraint>
-  nameWithType.vb: IReadOnlyList(Of IConstraint)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Constraints.IConstraint)
-  name.vb: IReadOnlyList(Of IConstraint)
+  name: IReadOnlyList<IConstraint<TPuzzle>>
+  nameWithType: IReadOnlyList<IConstraint<TPuzzle>>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.Constraints.IConstraint<TPuzzle>>
+  nameWithType.vb: IReadOnlyList(Of IConstraint(Of TPuzzle))
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.Constraints.IConstraint(Of TPuzzle))
+  name.vb: IReadOnlyList(Of IConstraint(Of TPuzzle))
   spec.csharp:
   - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
@@ -514,10 +514,19 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Constraints.IConstraint
+  - uid: SudokuSpice.Constraints.IConstraint`1
     name: IConstraint
     nameWithType: IConstraint
     fullName: SudokuSpice.Constraints.IConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -530,10 +539,19 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Constraints.IConstraint
+  - uid: SudokuSpice.Constraints.IConstraint`1
     name: IConstraint
     nameWithType: IConstraint
     fullName: SudokuSpice.Constraints.IConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )

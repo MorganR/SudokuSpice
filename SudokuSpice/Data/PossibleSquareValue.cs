@@ -8,7 +8,7 @@ namespace SudokuSpice.Data
     /// Represents a row in the <see cref="ExactCoverMatrix"/>. This represents a possible value
     /// for a given <see cref="Square"/>.
     /// </summary>
-    public class PossibleSquareValue
+    public class PossibleSquareValue<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
         /// <summary>
         /// Gets the index of the possible value that this represents. This index corresponds with
@@ -18,22 +18,22 @@ namespace SudokuSpice.Data
         /// <summary>
         /// Gets the square that this is a possible value for.
         /// </summary>
-        public Square Square { get; }
+        public Square<TPuzzle> Square { get; }
         /// <summary>
         /// Gets the state of this row.
         /// </summary>
         public PossibleSquareState State { get; private set; }
         [DisallowNull]
-        internal SquareLink? FirstLink { get; private set; }
+        internal SquareLink<TPuzzle>? FirstLink { get; private set; }
 
-        internal PossibleSquareValue(Square square, int valueIndex)
+        internal PossibleSquareValue(Square<TPuzzle> square, int valueIndex)
         {
             ValueIndex = valueIndex;
             Square = square;
             State = PossibleSquareState.UNKNOWN;
         }
 
-        internal void Attach(SquareLink link)
+        internal void Attach(SquareLink<TPuzzle> link)
         {
             if (FirstLink is null)
             {
@@ -112,7 +112,7 @@ namespace SudokuSpice.Data
             return minCount;
         }
 
-        private bool _TryUpdateLinks(Func<SquareLink, bool> tryFn, Action<SquareLink> undoFn)
+        private bool _TryUpdateLinks(Func<SquareLink<TPuzzle>, bool> tryFn, Action<SquareLink<TPuzzle>> undoFn)
         {
             Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} called {nameof(_TryUpdateLinks)} while FirstLink was null.");
             var link = FirstLink;
@@ -132,7 +132,7 @@ namespace SudokuSpice.Data
             return true;
         }
 
-        private void _RevertLinks(Action<SquareLink> fn)
+        private void _RevertLinks(Action<SquareLink<TPuzzle>> fn)
         {
             Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} called {nameof(_RevertLinks)} while FirstLink was null.");
             var lastLink = FirstLink.Left;

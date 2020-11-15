@@ -10,12 +10,12 @@ namespace SudokuSpice.Data.InternalTest
         public void CreateConnectedLink_ConnectsCorrectly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(matrix);
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var square = new Square<Puzzle>(new Coordinate(0, 0), 2);
+            var possibleSquare = new PossibleSquareValue<Puzzle>(square, 1);
+            var constraintHeader = new ConstraintHeader<Puzzle>(matrix);
 
-            var link = SquareLink.CreateConnectedLink(possibleSquare, constraintHeader);
+            var link = SquareLink<Puzzle>.CreateConnectedLink(possibleSquare, constraintHeader);
 
             Assert.Same(link, link.Up);
             Assert.Same(link, link.Down);
@@ -32,13 +32,13 @@ namespace SudokuSpice.Data.InternalTest
         public void CreateConnectedLink_WithExistingLinks_ConnectsCorrectly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(matrix);
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var square = new Square<Puzzle>(new Coordinate(0, 0), 2);
+            var possibleSquare = new PossibleSquareValue<Puzzle>(square, 1);
+            var constraintHeader = new ConstraintHeader<Puzzle>(matrix);
 
-            var firstLink = SquareLink.CreateConnectedLink(possibleSquare, constraintHeader);
-            var link = SquareLink.CreateConnectedLink(possibleSquare, constraintHeader);
+            var firstLink = SquareLink<Puzzle>.CreateConnectedLink(possibleSquare, constraintHeader);
+            var link = SquareLink<Puzzle>.CreateConnectedLink(possibleSquare, constraintHeader);
 
             Assert.Same(firstLink, link.Up);
             Assert.Same(firstLink, link.Down);
@@ -59,8 +59,8 @@ namespace SudokuSpice.Data.InternalTest
         public void TryRemoveFromConstraint_OnSuccess()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var constraintHeader = ConstraintHeader.CreateConnectedHeader(
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var constraintHeader = ConstraintHeader<Puzzle>.CreateConnectedHeader(
                 matrix,
                 matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
             var firstLink = constraintHeader.FirstLink;
@@ -82,8 +82,8 @@ namespace SudokuSpice.Data.InternalTest
         public void TryRemoveFromConstraint_WhenConstraintSatisfied_LeavesUnchanged()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var constraintHeader = ConstraintHeader.CreateConnectedHeader(
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var constraintHeader = ConstraintHeader<Puzzle>.CreateConnectedHeader(
                 matrix,
                 matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
             var firstLink = constraintHeader.FirstLink;
@@ -106,8 +106,8 @@ namespace SudokuSpice.Data.InternalTest
         public void ReturnToConstraint_Succeeds()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var constraintHeader = ConstraintHeader.CreateConnectedHeader(
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var constraintHeader = ConstraintHeader<Puzzle>.CreateConnectedHeader(
                 matrix,
                 matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
             var firstLink = constraintHeader.FirstLink;
@@ -130,9 +130,9 @@ namespace SudokuSpice.Data.InternalTest
         public void TrySatisfyConstraint_Succeeds()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
+            new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             var link = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink;
             var header = link.Constraint;
@@ -154,9 +154,9 @@ namespace SudokuSpice.Data.InternalTest
         public void TrySatisfyConstraint_WithNoOtherChoicesOnConnectedPossible_Fails()
         {
             var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
+            new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             var square = matrix.GetSquare(new Coordinate(0, 0));
             var lastLink = square.AllPossibleValues[0].FirstLink;

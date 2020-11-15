@@ -5,38 +5,39 @@ using System.Linq;
 
 namespace SudokuSpice
 {
-    internal class ConstraintBasedTracker
+    internal class ConstraintBasedTracker<TPuzzle> where TPuzzle : IPuzzle
     {
-        private readonly IPuzzle _puzzle;
-        private readonly ExactCoverMatrix _matrix;
+        private readonly TPuzzle _puzzle;
+        private readonly ExactCoverMatrix<TPuzzle> _matrix;
         private readonly Stack<Coordinate> _setCoords;
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
-        internal ConstraintBasedTracker(IPuzzle puzzle, ExactCoverMatrix matrix)
+        internal ConstraintBasedTracker(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;
             _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
         }
 
-        private ConstraintBasedTracker(ConstraintBasedTracker other)
+        private ConstraintBasedTracker(ConstraintBasedTracker<TPuzzle> other)
         {
-            _puzzle = other._puzzle.DeepCopy();
+            // Puzzle is guaranteed to be of type TPuzzle.
+            _puzzle = (TPuzzle)other._puzzle.DeepCopy();
             // Copy matrix, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
             _matrix = other._matrix.CopyUnknowns();
             _setCoords = new Stack<Coordinate>(_puzzle.NumEmptySquares);
         }
 
-        internal ConstraintBasedTracker CopyForContinuation()
+        internal ConstraintBasedTracker<TPuzzle> CopyForContinuation()
         {
-            return new ConstraintBasedTracker(this);
+            return new ConstraintBasedTracker<TPuzzle>(this);
         }
 
         internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
-            Square? bestSquare = null;
+            Square<TPuzzle>? bestSquare = null;
             foreach (var coord in _puzzle.GetUnsetCoords())
             {
                 var square = _matrix.GetSquare(in coord);

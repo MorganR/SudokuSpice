@@ -4,12 +4,12 @@ items:
   commentId: N:SudokuSpice.Constraints
   id: SudokuSpice.Constraints
   children:
-  - SudokuSpice.Constraints.BoxUniquenessConstraint
-  - SudokuSpice.Constraints.ColumnUniquenessConstraint
+  - SudokuSpice.Constraints.BoxUniquenessConstraint`1
+  - SudokuSpice.Constraints.ColumnUniquenessConstraint`1
   - SudokuSpice.Constraints.ConstraintUtil
-  - SudokuSpice.Constraints.DiagonalUniquenessConstraint
-  - SudokuSpice.Constraints.IConstraint
-  - SudokuSpice.Constraints.RowUniquenessConstraint
+  - SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
+  - SudokuSpice.Constraints.IConstraint`1
+  - SudokuSpice.Constraints.RowUniquenessConstraint`1
   langs:
   - csharp
   - vb
@@ -20,39 +20,188 @@ items:
   assemblies:
   - SudokuSpice
 references:
-- uid: SudokuSpice.Constraints.BoxUniquenessConstraint
-  commentId: T:SudokuSpice.Constraints.BoxUniquenessConstraint
-  name: BoxUniquenessConstraint
-  nameWithType: BoxUniquenessConstraint
-  fullName: SudokuSpice.Constraints.BoxUniquenessConstraint
-- uid: SudokuSpice.Constraints.ColumnUniquenessConstraint
-  commentId: T:SudokuSpice.Constraints.ColumnUniquenessConstraint
-  name: ColumnUniquenessConstraint
-  nameWithType: ColumnUniquenessConstraint
-  fullName: SudokuSpice.Constraints.ColumnUniquenessConstraint
+- uid: SudokuSpice.Constraints.BoxUniquenessConstraint`1
+  commentId: T:SudokuSpice.Constraints.BoxUniquenessConstraint`1
+  name: BoxUniquenessConstraint<TPuzzle>
+  nameWithType: BoxUniquenessConstraint<TPuzzle>
+  fullName: SudokuSpice.Constraints.BoxUniquenessConstraint<TPuzzle>
+  nameWithType.vb: BoxUniquenessConstraint(Of TPuzzle)
+  fullName.vb: SudokuSpice.Constraints.BoxUniquenessConstraint(Of TPuzzle)
+  name.vb: BoxUniquenessConstraint(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.Constraints.BoxUniquenessConstraint`1
+    name: BoxUniquenessConstraint
+    nameWithType: BoxUniquenessConstraint
+    fullName: SudokuSpice.Constraints.BoxUniquenessConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.Constraints.BoxUniquenessConstraint`1
+    name: BoxUniquenessConstraint
+    nameWithType: BoxUniquenessConstraint
+    fullName: SudokuSpice.Constraints.BoxUniquenessConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Constraints.ColumnUniquenessConstraint`1
+  commentId: T:SudokuSpice.Constraints.ColumnUniquenessConstraint`1
+  name: ColumnUniquenessConstraint<TPuzzle>
+  nameWithType: ColumnUniquenessConstraint<TPuzzle>
+  fullName: SudokuSpice.Constraints.ColumnUniquenessConstraint<TPuzzle>
+  nameWithType.vb: ColumnUniquenessConstraint(Of TPuzzle)
+  fullName.vb: SudokuSpice.Constraints.ColumnUniquenessConstraint(Of TPuzzle)
+  name.vb: ColumnUniquenessConstraint(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.Constraints.ColumnUniquenessConstraint`1
+    name: ColumnUniquenessConstraint
+    nameWithType: ColumnUniquenessConstraint
+    fullName: SudokuSpice.Constraints.ColumnUniquenessConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.Constraints.ColumnUniquenessConstraint`1
+    name: ColumnUniquenessConstraint
+    nameWithType: ColumnUniquenessConstraint
+    fullName: SudokuSpice.Constraints.ColumnUniquenessConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Constraints.ConstraintUtil
   commentId: T:SudokuSpice.Constraints.ConstraintUtil
   name: ConstraintUtil
   nameWithType: ConstraintUtil
   fullName: SudokuSpice.Constraints.ConstraintUtil
-- uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint
-  commentId: T:SudokuSpice.Constraints.DiagonalUniquenessConstraint
-  name: DiagonalUniquenessConstraint
-  nameWithType: DiagonalUniquenessConstraint
-  fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint
-- uid: SudokuSpice.Constraints.IConstraint
-  commentId: T:SudokuSpice.Constraints.IConstraint
-  parent: SudokuSpice.Constraints
-  name: IConstraint
-  nameWithType: IConstraint
-  fullName: SudokuSpice.Constraints.IConstraint
-- uid: SudokuSpice.Constraints.RowUniquenessConstraint
-  commentId: T:SudokuSpice.Constraints.RowUniquenessConstraint
-  name: RowUniquenessConstraint
-  nameWithType: RowUniquenessConstraint
-  fullName: SudokuSpice.Constraints.RowUniquenessConstraint
-- uid: SudokuSpice.Constraints
-  commentId: N:SudokuSpice.Constraints
-  name: SudokuSpice.Constraints
-  nameWithType: SudokuSpice.Constraints
-  fullName: SudokuSpice.Constraints
+- uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
+  commentId: T:SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
+  name: DiagonalUniquenessConstraint<TPuzzle>
+  nameWithType: DiagonalUniquenessConstraint<TPuzzle>
+  fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint<TPuzzle>
+  nameWithType.vb: DiagonalUniquenessConstraint(Of TPuzzle)
+  fullName.vb: SudokuSpice.Constraints.DiagonalUniquenessConstraint(Of TPuzzle)
+  name.vb: DiagonalUniquenessConstraint(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
+    name: DiagonalUniquenessConstraint
+    nameWithType: DiagonalUniquenessConstraint
+    fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.Constraints.DiagonalUniquenessConstraint`1
+    name: DiagonalUniquenessConstraint
+    nameWithType: DiagonalUniquenessConstraint
+    fullName: SudokuSpice.Constraints.DiagonalUniquenessConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Constraints.IConstraint`1
+  commentId: T:SudokuSpice.Constraints.IConstraint`1
+  name: IConstraint<TPuzzle>
+  nameWithType: IConstraint<TPuzzle>
+  fullName: SudokuSpice.Constraints.IConstraint<TPuzzle>
+  nameWithType.vb: IConstraint(Of TPuzzle)
+  fullName.vb: SudokuSpice.Constraints.IConstraint(Of TPuzzle)
+  name.vb: IConstraint(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.Constraints.IConstraint`1
+    name: IConstraint
+    nameWithType: IConstraint
+    fullName: SudokuSpice.Constraints.IConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.Constraints.IConstraint`1
+    name: IConstraint
+    nameWithType: IConstraint
+    fullName: SudokuSpice.Constraints.IConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Constraints.RowUniquenessConstraint`1
+  commentId: T:SudokuSpice.Constraints.RowUniquenessConstraint`1
+  name: RowUniquenessConstraint<TPuzzle>
+  nameWithType: RowUniquenessConstraint<TPuzzle>
+  fullName: SudokuSpice.Constraints.RowUniquenessConstraint<TPuzzle>
+  nameWithType.vb: RowUniquenessConstraint(Of TPuzzle)
+  fullName.vb: SudokuSpice.Constraints.RowUniquenessConstraint(Of TPuzzle)
+  name.vb: RowUniquenessConstraint(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.Constraints.RowUniquenessConstraint`1
+    name: RowUniquenessConstraint
+    nameWithType: RowUniquenessConstraint
+    fullName: SudokuSpice.Constraints.RowUniquenessConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.Constraints.RowUniquenessConstraint`1
+    name: RowUniquenessConstraint
+    nameWithType: RowUniquenessConstraint
+    fullName: SudokuSpice.Constraints.RowUniquenessConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )

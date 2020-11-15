@@ -96,6 +96,10 @@ namespace SudokuSpice
         {
             NumSquares = puzzleMatrix.Length;
             Size = puzzleMatrix.GetLength(0);
+            if (Size != puzzleMatrix.GetLength(1))
+            {
+                throw new ArgumentException("Puzzle must be square.");
+            }
             BoxSize = Size switch
             {
                 1 => 1,
@@ -105,11 +109,7 @@ namespace SudokuSpice
                 25 => 5,
                 _ => throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25]."),
             };
-            if (Size != puzzleMatrix.GetLength(1))
-            {
-                throw new ArgumentException("Puzzle must be square.");
-            }
-
+            
             _squares = (int?[,])puzzleMatrix.Clone();
             _unsetCoordsTracker = new CoordinateTracker(Size);
             for (var row = 0; row < Size; row++)

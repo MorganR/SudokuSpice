@@ -24,15 +24,15 @@ namespace SudokuSpice.Constraints
         /// <exception cref="ArgumentException">
         /// Thrown if the puzzle violates uniquness for the given coordinates.
         /// </exception>
-        public static void ImplementUniquenessConstraintForSquares(
-            IReadOnlyPuzzle puzzle,
+        public static void ImplementUniquenessConstraintForSquares<TPuzzle>(
+            TPuzzle puzzle,
             ReadOnlySpan<Coordinate> squareCoordinates,
-            ExactCoverMatrix matrix)
+            ExactCoverMatrix<TPuzzle> matrix) where TPuzzle : IReadOnlyPuzzle
         {
             Span<bool> isConstraintSatisfiedAtIndex =
                     stackalloc bool[matrix.AllPossibleValues.Length];
             CheckForSetValues(puzzle, matrix, squareCoordinates, isConstraintSatisfiedAtIndex);
-            var squares = new Square?[squareCoordinates.Length];
+            var squares = new Square<TPuzzle>?[squareCoordinates.Length];
             for (int i = 0; i < squares.Length; i++)
             {
                 squares[i] = matrix.GetSquare(in squareCoordinates[i]);
@@ -59,11 +59,11 @@ namespace SudokuSpice.Constraints
         /// <param name="isValueIndexPresentInSquares">
         /// An array that will be updated to indicate which values are set.
         /// </param>
-        public static void CheckForSetValues(
-            IReadOnlyPuzzle puzzle,
-            ExactCoverMatrix matrix,
+        public static void CheckForSetValues<TPuzzle>(
+            TPuzzle puzzle,
+            ExactCoverMatrix<TPuzzle> matrix,
             ReadOnlySpan<Coordinate> squareCoordinates,
-            Span<bool> isValueIndexPresentInSquares)
+            Span<bool> isValueIndexPresentInSquares) where TPuzzle : IReadOnlyPuzzle
         {
             isValueIndexPresentInSquares.Fill(false);
             for (int i = 0; i < squareCoordinates.Length; i++)
@@ -89,8 +89,9 @@ namespace SudokuSpice.Constraints
         /// <exception cref="ArgumentException">
         /// Thrown if the puzzle violates uniquness for the given coordinates.
         /// </exception>
-        public static void DropPossibleSquaresForValueIndex(
-            ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
+        public static void DropPossibleSquaresForValueIndex<TPuzzle>(
+            ReadOnlySpan<Square<TPuzzle>?> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
+            where TPuzzle : IReadOnlyPuzzle
         {
             for (int i = 0; i < squares.Length; i++)
             {
@@ -107,7 +108,7 @@ namespace SudokuSpice.Constraints
                 if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
                 {
                     throw new ArgumentException(
-                        $"Puzzle violated {nameof(RowUniquenessConstraint)} for value {matrix.AllPossibleValues[valueIndex]} at square {square.Coordinate}.");
+                        $"Puzzle violated constraints for value {matrix.AllPossibleValues[valueIndex]} at square {square.Coordinate}.");
                 }
             }
         }
@@ -123,10 +124,11 @@ namespace SudokuSpice.Constraints
         /// The value index of the possible value within the squares.
         /// </param>
         /// <param name="matrix">The matrix for the current puzzle being solved.</param>
-        public static void AddConstraintHeadersForValueIndex(
-            ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
+        public static void AddConstraintHeadersForValueIndex<TPuzzle>(
+            ReadOnlySpan<Square<TPuzzle>?> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
+            where TPuzzle : IReadOnlyPuzzle
         {
-            var possibleSquares = new PossibleSquareValue[squares.Length];
+            var possibleSquares = new PossibleSquareValue<TPuzzle>[squares.Length];
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
             {
@@ -143,9 +145,9 @@ namespace SudokuSpice.Constraints
                 }
                 possibleSquares[numPossibleSquares++] = possibleSquare;
             }
-            ConstraintHeader.CreateConnectedHeader(
+            ConstraintHeader<TPuzzle>.CreateConnectedHeader(
                 matrix,
-                new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
+                new ReadOnlySpan<PossibleSquareValue<TPuzzle>>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }

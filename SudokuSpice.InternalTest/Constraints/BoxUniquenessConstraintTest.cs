@@ -12,9 +12,9 @@ namespace SudokuSpice.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
 
-            new BoxUniquenessConstraint().Constrain(puzzle, matrix);
+            new BoxUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
             var firstBoxConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
@@ -47,9 +47,9 @@ namespace SudokuSpice.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
 
-            new BoxUniquenessConstraint().Constrain(puzzle, matrix);
+            new BoxUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             for (int row = 0; row < size; row++)
             {

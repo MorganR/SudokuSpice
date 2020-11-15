@@ -8,12 +8,12 @@ namespace SudokuSpice.Data
     /// Represents a location in a puzzle, including tracking the current possible values at that
     /// location.
     /// </summary>
-    public class Square
+    public class Square<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
-        private readonly PossibleSquareValue?[] _possibleValues;
-        private readonly Stack<PossibleSquareValue> _valuesDroppedOnSelect;
+        private readonly PossibleSquareValue<TPuzzle>?[] _possibleValues;
+        private readonly Stack<PossibleSquareValue<TPuzzle>> _valuesDroppedOnSelect;
         private int? _selectedValueIndex;
-        internal ReadOnlySpan<PossibleSquareValue?> AllPossibleValues => new ReadOnlySpan<PossibleSquareValue?>(_possibleValues);
+        internal ReadOnlySpan<PossibleSquareValue<TPuzzle>?> AllPossibleValues => new ReadOnlySpan<PossibleSquareValue<TPuzzle>?>(_possibleValues);
 
         /// <summary>
         /// Gets the <see cref="Coordinate"/> of this square.
@@ -32,19 +32,19 @@ namespace SudokuSpice.Data
         {
             Coordinate = c;
             NumPossibleValues = numPossibleValues;
-            _possibleValues = new PossibleSquareValue[numPossibleValues];
+            _possibleValues = new PossibleSquareValue<TPuzzle>[numPossibleValues];
             for(int i = 0; i < NumPossibleValues; i++)
             {
-                _possibleValues[i] = new PossibleSquareValue(this, i);
+                _possibleValues[i] = new PossibleSquareValue<TPuzzle>(this, i);
             }
-            _valuesDroppedOnSelect = new Stack<PossibleSquareValue>(NumPossibleValues);
+            _valuesDroppedOnSelect = new Stack<PossibleSquareValue<TPuzzle>>(NumPossibleValues);
         }
 
-        private Square(Square other)
+        private Square(Square<TPuzzle> other)
         {
             Coordinate = other.Coordinate;
             NumPossibleValues = other.NumPossibleValues;
-            _possibleValues = new PossibleSquareValue[other._possibleValues.Length];
+            _possibleValues = new PossibleSquareValue<TPuzzle>[other._possibleValues.Length];
             for (int i = 0; i < _possibleValues.Length; i++)
             {
                 var otherPossibleValue = other._possibleValues[i];
@@ -52,30 +52,30 @@ namespace SudokuSpice.Data
                 {
                     continue;
                 }
-                _possibleValues[i] = new PossibleSquareValue(this, i);
+                _possibleValues[i] = new PossibleSquareValue<TPuzzle>(this, i);
             }
-            _valuesDroppedOnSelect = new Stack<PossibleSquareValue>(NumPossibleValues);
+            _valuesDroppedOnSelect = new Stack<PossibleSquareValue<TPuzzle>>(NumPossibleValues);
         }
 
-        internal Square CopyWithPossibleValues()
+        internal Square<TPuzzle> CopyWithPossibleValues()
         {
-            return new Square(this);
+            return new Square<TPuzzle>(this);
         }
 
         /// <summary>
         /// Gets the possible value with the given value-index.
         /// </summary>
-        public PossibleSquareValue? GetPossibleValue(int index)
+        public PossibleSquareValue<TPuzzle>? GetPossibleValue(int index)
         {
             return _possibleValues[index];
         }
 
-        internal PossibleSquareValue[] GetStillPossibleValues()
+        internal PossibleSquareValue<TPuzzle>[] GetStillPossibleValues()
         {
             Debug.Assert(
                 _selectedValueIndex is null,
                 $"Can't retrieve possible values from Square at {Coordinate} when the index {_selectedValueIndex} is already selected.");
-            var possibleValues = new PossibleSquareValue[NumPossibleValues];
+            var possibleValues = new PossibleSquareValue<TPuzzle>[NumPossibleValues];
             int i = 0;
             foreach (var possibleValue in _possibleValues)
             {

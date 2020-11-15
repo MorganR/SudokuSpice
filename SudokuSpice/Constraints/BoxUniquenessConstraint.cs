@@ -6,24 +6,19 @@ namespace SudokuSpice.Constraints
     /// <summary>
     /// Enforces the constraint that all values in a box must be unique.
     /// </summary>
-    public class BoxUniquenessConstraint : IConstraint
+    public class BoxUniquenessConstraint<TPuzzle> : IConstraint<TPuzzle> where TPuzzle : IReadOnlyBoxPuzzle
     {
         /// <inheritdoc/>
-        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
-            var boxPuzzle = puzzle as IReadOnlyBoxPuzzle;
-            if (boxPuzzle is null) {
-                throw new ArgumentException(
-                    $"puzzle must be of type {nameof(IReadOnlyBoxPuzzle)}. Received type: {puzzle.GetType().Name}.");
-            }
-            for (int box = 0; box < boxPuzzle.Size; box++)
+            for (int box = 0; box < puzzle.Size; box++)
             {
-                _AppendConstraintHeadersInBox(box, boxPuzzle, matrix);
+                _AppendConstraintHeadersInBox(box, puzzle, matrix);
             }
         }
 
         private static void _AppendConstraintHeadersInBox(
-            int box, IReadOnlyBoxPuzzle puzzle, ExactCoverMatrix matrix)
+            int box, TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
             var startCoord = puzzle.GetStartingBoxCoordinate(box);
             var endCoord = new Coordinate(

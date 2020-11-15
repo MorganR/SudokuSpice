@@ -72,17 +72,17 @@
 <p>Let's continue the <a href="custom-rules.html">custom rules example</a>, where we want to solve a puzzle that also enforces
 that the diagonals contain all unique values. In this case, however, we'll solve this by adding a
 new constraint: the
-<a class="xref" href="../api/SudokuSpice.Constraints.DiagonalUniquenessConstraint.html"><code>DiagonalUniquenessConstraint</code></a>.</p>
+<a href="xref:SudokuSpice.Constraints.DiagonalUniquenessConstraint"><code>DiagonalUniquenessConstraint</code></a>.</p>
 <p>If you haven't yet read the <a href="framework.html#important-concepts">constraints summary</a>, read that first!</p>
 <h2 id="creating-a-constraint">Creating a constraint</h2>
 <p>Unlike rules, a single constraint object can be used to solve multiple puzzles. Generally speaking,
 no work needs to be done in the constructor.</p>
 <h3 id="the-constrain-method">The <code>Constrain</code> method</h3>
 <p>The <code>IConstraint.Constrain</code> operation adds new
-<a class="xref" href="../api/SudokuSpice.Data.ConstraintHeader.html"><code>ConstraintHeader</code>s</a> (and corresponding
+<a href="xref:SudokuSpice.Data.ConstraintHeader"><code>ConstraintHeader</code>s</a> (and corresponding
 <code>SquareLink</code>s) to the given
-<a class="xref" href="../api/SudokuSpice.Data.ExactCoverMatrix.html"><code>ExactCoverMatrix</code></a>. It must also drop any
-<a class="xref" href="../api/SudokuSpice.Data.PossibleSquareValue.html"><code>PossibleSquareValue</code>s</a> that are now impossible based
+<a href="xref:SudokuSpice.Data.ExactCoverMatrix"><code>ExactCoverMatrix</code></a>. It must also drop any
+<a href="xref:SudokuSpice.Data.PossibleSquareValue"><code>PossibleSquareValue</code>s</a> that are now impossible based
 on applying this constraint to the puzzle's preset values.</p>
 <h4 id="define-your-headers">Define your headers</h4>
 <p>The first thing we need to identify is what a constraint header looks like for this constraint.

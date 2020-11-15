@@ -30,6 +30,7 @@ namespace SudokuSpice
             "CA1043:Use Integral Or String Argument For Indexers",
             Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c] { get; }
+
         /// <summary>Gets a span of <c>Coordinate</c>s for all the unset squares.</summary>
         public ReadOnlySpan<Coordinate> GetUnsetCoords();
     }
