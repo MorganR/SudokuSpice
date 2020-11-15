@@ -110,6 +110,7 @@
   <h5 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class ExactCoverMatrix&lt;TPuzzle&gt;
+
     where TPuzzle : IReadOnlyPuzzle</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -129,7 +130,7 @@
   </table>
   <h5 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_1_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>The exact cover matrix is organized by <a class="xref" href="SudokuSpice.ConstraintBased.Square-1.html">Square&lt;TPuzzle&gt;</a>s, which in turn contain
-<a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue-1.html">PossibleSquareValue&lt;TPuzzle&gt;</a>s. Each of these represents a row in the exact-cover
+<a class="xref" href="SudokuSpice.ConstraintBased.PossibleValue-1.html">PossibleValue&lt;TPuzzle&gt;</a>s. Each of these represents a row in the exact-cover
 matrix. <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstraint-1.html">IConstraint&lt;TPuzzle&gt;</a>s will then add
 <a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader-1.html">ConstraintHeader&lt;TPuzzle&gt;</a>s, the columns of the matrix and corresponding links.</p>
 </div>

@@ -25,7 +25,7 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpice(PuzzleSampleCollection sampleCollection)
         {
             var puzzle = new Puzzle(sampleCollection.Random().NullableMatrix);
-            var solver = new Solver(puzzle);
+            var solver = new PuzzleSolver(puzzle);
             solver.Solve();
             return puzzle.NumEmptySquares == 0;
         }
@@ -34,7 +34,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(SampleCollections))]
         public bool SudokuSpiceConstraints(PuzzleSampleCollection sampleCollection)
         {
-            var solver = new ConstraintBasedSolver<Puzzle>(new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
+            var solver = new PuzzleSolver<Puzzle>(new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
             var puzzle = new Puzzle(sampleCollection.Random().NullableMatrix);
             solver.Solve(puzzle);
             return puzzle.NumEmptySquares == 0;

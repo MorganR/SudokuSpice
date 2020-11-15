@@ -56,7 +56,7 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.Constraints
   summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
-  remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
+  remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
   example: []
   syntax:
     content: void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -81,12 +81,12 @@ references:
   name: ConstraintHeader
   nameWithType: ConstraintHeader
   fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
-- uid: SudokuSpice.PossibleSquareValue
-  commentId: T:SudokuSpice.PossibleSquareValue
+- uid: SudokuSpice.PossibleValue
+  commentId: T:SudokuSpice.PossibleValue
   parent: SudokuSpice
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.PossibleSquareValue
+  name: PossibleValue
+  nameWithType: PossibleValue
+  fullName: SudokuSpice.PossibleValue
 - uid: SudokuSpice.ExactCoverMatrix
   commentId: T:SudokuSpice.ExactCoverMatrix
   parent: SudokuSpice

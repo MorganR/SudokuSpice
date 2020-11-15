@@ -33,6 +33,7 @@ items:
     content: 'public class StandardHeuristic : ISudokuHeuristic'
     content.vb: >-
       Public Class StandardHeuristic
+
           Implements ISudokuHeuristic
   inheritance:
   - System.Object
@@ -161,7 +162,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUndoes the last modifications made by this heuristic.\n"
   example: []
   syntax:
     content: public void UndoLastUpdate()
@@ -195,13 +195,11 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUpdates all the current possible values.\n"
   example: []
   syntax:
     content: public bool UpdateAll()
     return:
       type: System.Boolean
-      description: Returns true if any modifications were made.
     content.vb: Public Function UpdateAll As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.StandardHeuristic.UpdateAll*
   implements:

@@ -23,12 +23,6 @@
 - uid: SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   items:
-  - uid: SudokuSpice.ConstraintBased.ConstraintBasedGenerator`1
-    name: ConstraintBasedGenerator<TPuzzle>
-    name.vb: ConstraintBasedGenerator(Of TPuzzle)
-  - uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1
-    name: ConstraintBasedSolver<TPuzzle>
-    name.vb: ConstraintBasedSolver(Of TPuzzle)
   - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
     name: ConstraintHeader<TPuzzle>
     name.vb: ConstraintHeader(Of TPuzzle)
@@ -37,9 +31,15 @@
     name.vb: ExactCoverMatrix(Of TPuzzle)
   - uid: SudokuSpice.ConstraintBased.PossibleSquareState
     name: PossibleSquareState
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue<TPuzzle>
-    name.vb: PossibleSquareValue(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue<TPuzzle>
+    name.vb: PossibleValue(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.PuzzleGenerator`1
+    name: PuzzleGenerator<TPuzzle>
+    name.vb: PuzzleGenerator(Of TPuzzle)
+  - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
+    name: PuzzleSolver<TPuzzle>
+    name.vb: PuzzleSolver(Of TPuzzle)
   - uid: SudokuSpice.ConstraintBased.Square`1
     name: Square<TPuzzle>
     name.vb: Square(Of TPuzzle)
@@ -75,8 +75,8 @@
   - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
     name: PuzzleGenerator<TPuzzle>
     name.vb: PuzzleGenerator(Of TPuzzle)
-  - uid: SudokuSpice.RuleBased.Solver
-    name: Solver
+  - uid: SudokuSpice.RuleBased.PuzzleSolver
+    name: PuzzleSolver
   - uid: SudokuSpice.RuleBased.StandardPuzzleGenerator
     name: StandardPuzzleGenerator
   - uid: SudokuSpice.RuleBased.StandardRuleKeeper

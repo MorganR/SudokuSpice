@@ -3,7 +3,7 @@
 ## Solvers
 
 *SudokuSpice* provides two different solvers: the
-[`ConstraintBasedSolver`](xref:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1) or the original
+[`PuzzleSolver`](xref:SudokuSpice.ConstraintBased.PuzzleSolver`1) or the original
 [`Solver`](xref:SudokuSpice.RuleBased.Solver).
 
 Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
@@ -94,7 +94,7 @@ SudokuSpice uses four main interfaces:
 
   SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
   the `RxCxVx` cells in the first column) are represented by
-  [`PossibleSquareValue`s](xref:SudokuSpice.ConstraintBased.PossibleSquareValue`1). Column headers (i.e. the
+  [`PossibleValue`s](xref:SudokuSpice.ConstraintBased.PossibleValue`1). Column headers (i.e. the
   cells in the first row) are represented by
   [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader`1). Rows and columns are connected by
   `SquareLink`s, which represent the 1s in the matrix. Each `SquareLink` is connected up and down

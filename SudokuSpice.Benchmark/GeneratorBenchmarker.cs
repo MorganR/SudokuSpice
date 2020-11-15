@@ -22,7 +22,7 @@ namespace SudokuSpice.Benchmark
         [Benchmark]
         public int SudokuSpiceConstraints()
         {
-            var generator = new ConstraintBasedGenerator<Puzzle>(
+            var generator = new ConstraintBased.PuzzleGenerator<Puzzle>(
                 () => new Puzzle(9),
                 new List<IConstraint<Puzzle>>
                 {

@@ -30,7 +30,7 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
+  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
     content: public class ExactCoverMatrix
@@ -286,12 +286,12 @@ references:
   name: Square
   nameWithType: Square
   fullName: SudokuSpice.Square
-- uid: SudokuSpice.PossibleSquareValue
-  commentId: T:SudokuSpice.PossibleSquareValue
+- uid: SudokuSpice.PossibleValue
+  commentId: T:SudokuSpice.PossibleValue
   parent: SudokuSpice
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.PossibleSquareValue
+  name: PossibleValue
+  nameWithType: PossibleValue
+  fullName: SudokuSpice.PossibleValue
 - uid: SudokuSpice.Constraints.IConstraint
   commentId: T:SudokuSpice.Constraints.IConstraint
   parent: SudokuSpice.Constraints

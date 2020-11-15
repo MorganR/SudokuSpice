@@ -32,6 +32,7 @@ items:
     - id: TPuzzle
     content.vb: >-
       Public Class RowUniquenessConstraint(Of TPuzzle As IReadOnlyPuzzle)
+
           Implements IConstraint(Of TPuzzle)
   inheritance:
   - System.Object
@@ -76,18 +77,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
-  remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix%601\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
   example: []
   syntax:
     content: public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
-      description: The puzzle to solve.
     - id: matrix
       type: SudokuSpice.ConstraintBased.ExactCoverMatrix{{TPuzzle}}
-      description: The exact-cover matrix to constrain.
     content.vb: Public Sub Constrain(puzzle As TPuzzle, matrix As ExactCoverMatrix(Of TPuzzle))
   overload: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint`1.Constrain*
   implements:

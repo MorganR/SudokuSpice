@@ -150,7 +150,7 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 
 Lastly, we must implement the `ISudokuRule.CopyWithNewReference` method to provide a deep copy for
 the
-[`Solver.GetStatsForAllSolutions`](xref:SudokuSpice.RuleBased.Solver#SudokuSpice_RuleBased_Solver_GetStatsForAllSolutions)
+[`PuzzleSolver.GetStatsForAllSolutions`](xref:SudokuSpice.RuleBased.PuzzleSolver#SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions)
 method and for the [`PuzzleGenerator`](xref:SudokuSpice.RuleBased.PuzzleGenerator`1).
 
 ```csharp
@@ -176,7 +176,7 @@ as follows:
 
 ```csharp
 var possibleValues = new PossibleValues(puzzle);
-var solver = new Solver(
+var solver = new PuzzleSolver(
     puzzle,
     possibleValues,
     new DynamicRuleKeeper(

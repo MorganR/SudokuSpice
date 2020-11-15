@@ -6,11 +6,11 @@ using Xunit.Abstractions;
 
 namespace SudokuSpice.RuleBased.Test
 {
-    public class SolverTest
+    public class PuzzleSolverTest
     {
         private readonly ITestOutputHelper _output;
 
-        public SolverTest(ITestOutputHelper output)
+        public PuzzleSolverTest(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -19,7 +19,7 @@ namespace SudokuSpice.RuleBased.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void Solve_WithPuzzleConstructor_SolvesPuzzle(Puzzle puzzle)
         {
-            var solver = new Solver(puzzle);
+            var solver = new PuzzleSolver(puzzle);
             solver.Solve();
             _AssertPuzzleSolved(puzzle);
         }
@@ -37,7 +37,7 @@ namespace SudokuSpice.RuleBased.Test
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 puzzle, possibleValues, rowRule, columnRule, boxRule);
-            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristic);
+            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper, heuristic);
             solver.Solve();
             _AssertPuzzleSolved(puzzle);
         }
@@ -73,7 +73,7 @@ namespace SudokuSpice.RuleBased.Test
                 new List<ISudokuRule> { rowRule, columnRule, boxRule, diagonalRule });
             var heuristic = new StandardHeuristic(
                 puzzle, possibleValues, rowRule, columnRule, boxRule);
-            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristic);
+            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper, heuristic);
             solver.Solve();
             _AssertMegaPuzzleSolved(puzzle);
         }
@@ -82,7 +82,7 @@ namespace SudokuSpice.RuleBased.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var solver = new Solver(puzzle);
+            var solver = new PuzzleSolver(puzzle);
             solver.SolveRandomly();
             _AssertPuzzleSolved(puzzle);
         }
@@ -94,7 +94,7 @@ namespace SudokuSpice.RuleBased.Test
             // Skip heuristics so the stats are easy to fully define.
             var possibleValues = new PossibleValues(puzzle);
             var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
-            var solver = new Solver(puzzle, possibleValues, ruleKeeper);
+            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper);
             Assert.Equal(expectedStats, solver.GetStatsForAllSolutions());
         }
 
@@ -108,7 +108,7 @@ namespace SudokuSpice.RuleBased.Test
             var heuristics = new StandardHeuristic(
                 puzzle, possibleValues, (IMissingRowValuesTracker)rule,
                 (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);
-            var solver = new Solver(puzzle, possibleValues, ruleKeeper, heuristics);
+            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper, heuristics);
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions().NumSolutionsFound);
         }
 

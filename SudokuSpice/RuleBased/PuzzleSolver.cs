@@ -7,7 +7,7 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Solves a single <see cref="IPuzzle"/> using a <see cref="SquareTracker"/>.
     /// </summary>
-    public class Solver
+    public class PuzzleSolver
     {
         private readonly SquareTracker _tracker;
 
@@ -15,7 +15,7 @@ namespace SudokuSpice.RuleBased
         /// Constructs a solver for a standard Sudoku puzzle that uses a standard heuristic and
         /// standard rule keeper. Provided for convenience.
         /// </summary>
-        public Solver(Puzzle puzzle)
+        public PuzzleSolver(Puzzle puzzle)
         {
             _tracker = new SquareTracker(puzzle);
         }
@@ -24,7 +24,7 @@ namespace SudokuSpice.RuleBased
         /// Constructs a solver for the given square tracker.
         /// </summary>
         /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
-        public Solver(
+        public PuzzleSolver(
             IPuzzle puzzle,
             PossibleValues possibleValues,
             ISudokuRuleKeeper ruleKeeper,

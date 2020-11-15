@@ -20,7 +20,7 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpice(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var solver = new Solver(p);
+            var solver = new PuzzleSolver(p);
             solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
@@ -37,7 +37,7 @@ namespace SudokuSpice.Benchmark
                 new List<ISudokuRule> { standardRules });
             var heuristic = new StandardHeuristic(
                 p, possibleValues, standardRules, standardRules, standardRules);
-            var solver = new Solver(p, possibleValues, ruleKeeper, heuristic);
+            var solver = new PuzzleSolver(p, possibleValues, ruleKeeper, heuristic);
             solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
@@ -56,7 +56,7 @@ namespace SudokuSpice.Benchmark
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 p, possibleValues, rowRule, columnRule, boxRule);
-            var solver = new Solver(p, possibleValues, ruleKeeper, heuristic);
+            var solver = new PuzzleSolver(p, possibleValues, ruleKeeper, heuristic);
             solver.SolveRandomly();
             return p.NumEmptySquares == 0;
         }
@@ -66,7 +66,7 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpiceConstraints(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var solver = new ConstraintBasedSolver<Puzzle>(
+            var solver = new PuzzleSolver<Puzzle>(
                 new IConstraint<Puzzle>[] {
                     new RowUniquenessConstraint<Puzzle>(),
                     new ColumnUniquenessConstraint<Puzzle>(),

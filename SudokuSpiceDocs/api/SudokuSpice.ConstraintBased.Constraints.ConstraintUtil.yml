@@ -72,11 +72,12 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
   summary: "\nEnforces uniqueness of the values at the given coordinates.\n"
-  remarks: "\nThis drops any <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible, and\nadds <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s and links to enforce this constraint for the ones\nthat are still possible.\n"
+  remarks: "\nThis drops any <xref href=\"SudokuSpice.ConstraintBased.PossibleValue%601\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible, and\nadds <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s and links to enforce this constraint for the ones\nthat are still possible.\n"
   example: []
   syntax:
     content: >-
       public static void ImplementUniquenessConstraintForSquares<TPuzzle>(TPuzzle puzzle, ReadOnlySpan<Coordinate> squareCoordinates, ExactCoverMatrix<TPuzzle> matrix)
+
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: puzzle
@@ -132,6 +133,7 @@ items:
   syntax:
     content: >-
       public static void CheckForSetValues<TPuzzle>(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix, ReadOnlySpan<Coordinate> squareCoordinates, Span<bool> isValueIndexPresentInSquares)
+
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: puzzle
@@ -181,11 +183,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nDrops <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n"
+  summary: "\nDrops <xref href=\"SudokuSpice.ConstraintBased.PossibleValue%601\" data-throw-if-not-resolved=\"false\"></xref>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n"
   example: []
   syntax:
     content: >-
       public static void DropPossibleSquaresForValueIndex<TPuzzle>(ReadOnlySpan<Square<TPuzzle>> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
+
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: squares
@@ -236,11 +239,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nAdd a <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
+  summary: "\nAdd a <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<xref href=\"SudokuSpice.ConstraintBased.PossibleValue%601\" data-throw-if-not-resolved=\"false\"></xref>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
   example: []
   syntax:
     content: >-
       public static void AddConstraintHeadersForValueIndex<TPuzzle>(ReadOnlySpan<Square<TPuzzle>> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
+
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: squares
@@ -563,19 +567,19 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  name: PossibleSquareValue<TPuzzle>
-  nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
-  name.vb: PossibleSquareValue(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1
+  commentId: T:SudokuSpice.ConstraintBased.PossibleValue`1
+  name: PossibleValue<TPuzzle>
+  nameWithType: PossibleValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>
+  nameWithType.vb: PossibleValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)
+  name.vb: PossibleValue(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: <
     nameWithType: <
     fullName: <
@@ -586,10 +590,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

@@ -72,7 +72,7 @@
 <p>For more information, see the <a href="framework.html">Framework Overview</a>.</p>
 <h2 id="solving">Solving</h2>
 <p>If you need to solve a standard Sudoku puzzle, you can simply create a
-<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a>, create a <a class="xref" href="../api/SudokuSpice.RuleBased.Solver.html"><code>Solver</code></a>, and solve it.</p>
+<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a>, create a <a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver.html"><code>PuzzleSolver</code></a>, and solve it.</p>
 <pre><code class="lang-csharp">var puzzle = new Puzzle(new int?[,]
     {
         {null,    2, null,    6, null,    8, null, null, null},
@@ -85,7 +85,7 @@
         {null, null,    9,    8, null, null, null,    3,    6},
         {null, null, null,    3, null,    6, null,    9, null},
     });
-var solver = new Solver(puzzle);
+var solver = new PuzzleSolver(puzzle);
 solver.Solve();
 // Puzzle is now solved!
 

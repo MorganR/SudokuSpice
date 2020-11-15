@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased
     /// <remarks>
     /// This class is thread-safe.
     /// </remarks>
-    public class ConstraintBasedSolver<TPuzzle> where TPuzzle : IPuzzle
+    public class PuzzleSolver<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly IReadOnlyList<IConstraint<TPuzzle>> _constraints;
 
@@ -19,7 +19,7 @@ namespace SudokuSpice.ConstraintBased
         /// <see cref="IConstraint{TPuzzle}"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>
-        public ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)
+        public PuzzleSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)
         {
             _constraints = constraints;
         }
@@ -51,7 +51,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 constraint.Constrain(puzzle, matrix);
             }
-            if (!_TrySolve(new ConstraintBasedTracker<TPuzzle>(puzzle, matrix)))
+            if (!_TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix)))
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
@@ -69,7 +69,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 constraint.Constrain(puzzle, matrix);
             }
-            if (!_TrySolveRandomly(new Random(), new ConstraintBasedTracker<TPuzzle>(puzzle, matrix)))
+            if (!_TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)))
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
@@ -88,7 +88,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 constraint.Constrain(puzzleCopy, matrix);
             }
-            return _TryAllSolutions(new ConstraintBasedTracker<TPuzzle>(puzzleCopy, matrix));
+            return _TryAllSolutions(new SquareTracker<TPuzzle>(puzzleCopy, matrix));
         }
 
         private static bool _AreValuesUnique(ReadOnlySpan<int> values)
@@ -106,7 +106,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        private static bool _TrySolve(ConstraintBasedTracker<TPuzzle> tracker)
+        private static bool _TrySolve(SquareTracker<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -127,7 +127,7 @@ namespace SudokuSpice.ConstraintBased
             return false;
         }
 
-        private static bool _TrySolveRandomly(Random rand, ConstraintBasedTracker<TPuzzle> tracker)
+        private static bool _TrySolveRandomly(Random rand, SquareTracker<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -151,7 +151,7 @@ namespace SudokuSpice.ConstraintBased
             return false;
         }
 
-        private static SolveStats _TryAllSolutions(ConstraintBasedTracker<TPuzzle> tracker)
+        private static SolveStats _TryAllSolutions(SquareTracker<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -172,12 +172,12 @@ namespace SudokuSpice.ConstraintBased
         private static SolveStats _TryAllSolutionsWithGuess(
             in Coordinate guessCoordinate,
             ReadOnlySpan<int> valuesToGuess,
-            ConstraintBasedTracker<TPuzzle> tracker)
+            SquareTracker<TPuzzle> tracker)
         {
             var solveStats = new SolveStats();
             for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
-                ConstraintBasedTracker<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
+                SquareTracker<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
                 if (trackerCopy.TrySet(in guessCoordinate, valuesToGuess[i]))
                 {
                     SolveStats stats = _TryAllSolutions(trackerCopy);

@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased
     {
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
-        private readonly Func<TPuzzle, Solver> _solverFactory;
+        private readonly Func<TPuzzle, PuzzleSolver> _solverFactory;
 
         /// <summary>
         /// Creates a puzzle generator to create puzzles with custom rules and type.
@@ -20,7 +20,7 @@ namespace SudokuSpice.RuleBased
         /// A function that constructs a <see cref="SquareTracker"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
-        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, Solver> solverFactory)
+        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, PuzzleSolver> solverFactory)
         {
             _puzzleFactory = puzzleFactory;
             _solverFactory = solverFactory;
@@ -128,7 +128,7 @@ namespace SudokuSpice.RuleBased
 
         private void _FillPuzzle(TPuzzle puzzle)
         {
-            Solver? solver = _solverFactory.Invoke(puzzle);
+            PuzzleSolver? solver = _solverFactory.Invoke(puzzle);
             solver.SolveRandomly();
         }
 
@@ -143,7 +143,7 @@ namespace SudokuSpice.RuleBased
             int? previousValue = puzzle[in c];
             puzzle[in c] = null;
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
-            Solver? solver = _solverFactory.Invoke(puzzleCopy);
+            PuzzleSolver? solver = _solverFactory.Invoke(puzzleCopy);
             SolveStats solveStats = solver.GetStatsForAllSolutions();
             if (solveStats.NumSolutionsFound == 1)
             {

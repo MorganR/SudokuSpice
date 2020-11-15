@@ -71,8 +71,8 @@
 
 <h2 id="solvers">Solvers</h2>
 <p><em>SudokuSpice</em> provides two different solvers: the
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintBasedSolver-1.html"><code>ConstraintBasedSolver</code></a> or the original
-<a class="xref" href="../api/SudokuSpice.RuleBased.Solver.html"><code>Solver</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>PuzzleSolver</code></a> or the original
+<a href="xref:SudokuSpice.RuleBased.Solver"><code>Solver</code></a>.</p>
 <p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
 implementing custom rules or constraints.</p>
@@ -332,7 +332,7 @@ this looks something like the following:</p>
 </table>
 <p>SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
 the <code>RxCxVx</code> cells in the first column) are represented by
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleSquareValue-1.html"><code>PossibleSquareValue</code>s</a>. Column headers (i.e. the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleValue-1.html"><code>PossibleValue</code>s</a>. Column headers (i.e. the
 cells in the first row) are represented by
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader-1.html"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
 <code>SquareLink</code>s, which represent the 1s in the matrix. Each <code>SquareLink</code> is connected up and down

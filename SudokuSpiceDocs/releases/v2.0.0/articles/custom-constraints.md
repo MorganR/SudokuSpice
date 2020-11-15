@@ -18,7 +18,7 @@ The `IConstraint.Constrain` operation adds new
 [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}) (and corresponding
 `SquareLink`s) to the given
 [`ExactCoverMatrix`](xref:SudokuSpice.ExactCoverMatrix). It must also drop any
-[`PossibleSquareValue`s](xref:SudokuSpice.PossibleSquareValue) that are now impossible based
+[`PossibleValue`s](xref:SudokuSpice.PossibleValue) that are now impossible based
 on applying this constraint to the puzzle's preset values.
 
 #### Define your headers

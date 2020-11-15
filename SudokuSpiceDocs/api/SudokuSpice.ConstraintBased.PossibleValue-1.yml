@@ -1,27 +1,27 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  id: PossibleSquareValue`1
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1
+  commentId: T:SudokuSpice.ConstraintBased.PossibleValue`1
+  id: PossibleValue`1
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
-  - SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
-  - SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+  - SudokuSpice.ConstraintBased.PossibleValue`1.Square
+  - SudokuSpice.ConstraintBased.PossibleValue`1.State
+  - SudokuSpice.ConstraintBased.PossibleValue`1.ValueIndex
   langs:
   - csharp
   - vb
-  name: PossibleSquareValue<TPuzzle>
-  nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
+  name: PossibleValue<TPuzzle>
+  nameWithType: PossibleValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>
   type: Class
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/framework/PossibleValue.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: PossibleSquareValue
-    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    id: PossibleValue
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleValue.cs
     startLine: 10
   assemblies:
   - SudokuSpice
@@ -30,11 +30,12 @@ items:
   example: []
   syntax:
     content: >-
-      public class PossibleSquareValue<TPuzzle>
+      public class PossibleValue<TPuzzle>
+
           where TPuzzle : IReadOnlyPuzzle
     typeParameters:
     - id: TPuzzle
-    content.vb: Public Class PossibleSquareValue(Of TPuzzle As IReadOnlyPuzzle)
+    content.vb: Public Class PossibleValue(Of TPuzzle As IReadOnlyPuzzle)
   inheritance:
   - System.Object
   inheritedMembers:
@@ -45,33 +46,33 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
+  nameWithType.vb: PossibleValue(Of TPuzzle)
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
-  name.vb: PossibleSquareValue(Of TPuzzle)
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)
+  name.vb: PossibleValue(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1.ValueIndex
+  commentId: P:SudokuSpice.ConstraintBased.PossibleValue`1.ValueIndex
   id: ValueIndex
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  parent: SudokuSpice.ConstraintBased.PossibleValue`1
   langs:
   - csharp
   - vb
   name: ValueIndex
-  nameWithType: PossibleSquareValue<TPuzzle>.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.ValueIndex
+  nameWithType: PossibleValue<TPuzzle>.ValueIndex
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>.ValueIndex
   type: Property
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/framework/PossibleValue.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: ValueIndex
-    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleValue.cs
     startLine: 16
   assemblies:
   - SudokuSpice
@@ -84,33 +85,33 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property ValueIndex As Integer
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex*
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle).ValueIndex
+  overload: SudokuSpice.ConstraintBased.PossibleValue`1.ValueIndex*
+  nameWithType.vb: PossibleValue(Of TPuzzle).ValueIndex
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).ValueIndex
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle).ValueIndex
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1.Square
+  commentId: P:SudokuSpice.ConstraintBased.PossibleValue`1.Square
   id: Square
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  parent: SudokuSpice.ConstraintBased.PossibleValue`1
   langs:
   - csharp
   - vb
   name: Square
-  nameWithType: PossibleSquareValue<TPuzzle>.Square
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.Square
+  nameWithType: PossibleValue<TPuzzle>.Square
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>.Square
   type: Property
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/framework/PossibleValue.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: Square
-    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleValue.cs
     startLine: 20
   assemblies:
   - SudokuSpice
@@ -123,33 +124,33 @@ items:
     return:
       type: SudokuSpice.ConstraintBased.Square{{TPuzzle}}
     content.vb: Public ReadOnly Property Square As Square(Of TPuzzle)
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square*
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle).Square
+  overload: SudokuSpice.ConstraintBased.PossibleValue`1.Square*
+  nameWithType.vb: PossibleValue(Of TPuzzle).Square
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).Square
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle).Square
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1.State
+  commentId: P:SudokuSpice.ConstraintBased.PossibleValue`1.State
   id: State
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  parent: SudokuSpice.ConstraintBased.PossibleValue`1
   langs:
   - csharp
   - vb
   name: State
-  nameWithType: PossibleSquareValue<TPuzzle>.State
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.State
+  nameWithType: PossibleValue<TPuzzle>.State
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>.State
   type: Property
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/framework/PossibleValue.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: State
-    path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareValue.cs
+    path: ../SudokuSpice/ConstraintBased/framework/PossibleValue.cs
     startLine: 24
   assemblies:
   - SudokuSpice
@@ -162,15 +163,15 @@ items:
     return:
       type: SudokuSpice.ConstraintBased.PossibleSquareState
     content.vb: Public ReadOnly Property State As PossibleSquareState
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue`1.State*
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle).State
+  overload: SudokuSpice.ConstraintBased.PossibleValue`1.State*
+  nameWithType.vb: PossibleValue(Of TPuzzle).State
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).State
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle).State
 references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix`1
@@ -544,13 +545,13 @@ references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
   commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
   isExternal: true
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue`1.ValueIndex
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1.ValueIndex*
+  commentId: Overload:SudokuSpice.ConstraintBased.PossibleValue`1.ValueIndex
   name: ValueIndex
-  nameWithType: PossibleSquareValue<TPuzzle>.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.ValueIndex
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle).ValueIndex
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).ValueIndex
+  nameWithType: PossibleValue<TPuzzle>.ValueIndex
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>.ValueIndex
+  nameWithType.vb: PossibleValue(Of TPuzzle).ValueIndex
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle).ValueIndex
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -558,13 +559,13 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue`1.Square
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1.Square*
+  commentId: Overload:SudokuSpice.ConstraintBased.PossibleValue`1.Square
   name: Square
-  nameWithType: PossibleSquareValue<TPuzzle>.Square
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.Square
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle).Square
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).Square
+  nameWithType: PossibleValue<TPuzzle>.Square
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>.Square
+  nameWithType.vb: PossibleValue(Of TPuzzle).Square
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle).Square
 - uid: SudokuSpice.ConstraintBased.Square{{TPuzzle}}
   commentId: T:SudokuSpice.ConstraintBased.Square{`0}
   parent: SudokuSpice.ConstraintBased
@@ -603,13 +604,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1.State*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue`1.State
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.PossibleValue`1.State
   name: State
-  nameWithType: PossibleSquareValue<TPuzzle>.State
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>.State
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle).State
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle).State
+  nameWithType: PossibleValue<TPuzzle>.State
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>.State
+  nameWithType.vb: PossibleValue(Of TPuzzle).State
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle).State
 - uid: SudokuSpice.ConstraintBased.PossibleSquareState
   commentId: T:SudokuSpice.ConstraintBased.PossibleSquareState
   parent: SudokuSpice.ConstraintBased

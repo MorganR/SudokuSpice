@@ -35,6 +35,7 @@ items:
     content: 'public class DiagonalUniquenessRule : ISudokuRule'
     content.vb: >-
       Public Class DiagonalUniquenessRule
+
           Implements ISudokuRule
   inheritance:
   - System.Object
@@ -111,14 +112,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nCreates a deep copy of this ISudokuRule, with any internal <code>IReadOnlyPuzzle</code>\nreferences updated to the given puzzle.\n"
   example: []
   syntax:
     content: public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
     return:
       type: SudokuSpice.RuleBased.Rules.ISudokuRule
     content.vb: Public Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As ISudokuRule
@@ -151,8 +150,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nGets the possible values for the given coordinate based on this rule.\n"
-  remarks: "\nWhen implementing this method, avoid depending on dynamic information in the current\npuzzle being solved, such as the currently set values. This method must return\ninformation that reflects the most recent calls to\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>\nor <xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>, as it can\nbe called before or after modifying the underlying puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public BitVector GetPossibleValues(in Coordinate c)
@@ -161,7 +158,6 @@ items:
       type: SudokuSpice.Coordinate
     return:
       type: SudokuSpice.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.GetPossibleValues*
   implements:
@@ -195,18 +191,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUndoes an update for the given value at the specified coordinate.\n<p>\nThis performs the same internal updates as\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>, but without passing\naffected coordinates back to the caller. Therefore this is more efficient in cases\nwhere the caller already knows all the possible coordinates that could be affected.\n</p>\n"
-  remarks: "\nThis method will always be called before reverting the value on the underlying puzzle.\n"
   example: []
   syntax:
     content: public void Revert(in Coordinate c, int val)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The coordinate where a value is being unset.
     - id: val
       type: System.Int32
-      description: The value being unset.
     content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer)
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Revert*
   implements:
@@ -240,21 +232,16 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUndoes an update for the given value at the specified coordinate. Tracks affected\ncoordinates in the given tracker.\n"
-  remarks: "\nThis method will always be called before reverting the value on the underlying puzzle.\n"
   example: []
   syntax:
     content: public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The coordinate where a value is being unset.
     - id: val
       type: System.Int32
-      description: The value being unset.
     - id: coordTracker
       type: SudokuSpice.CoordinateTracker
-      description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
     content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Revert*
   implements:
@@ -288,21 +275,16 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUpdates possible values based on setting the given coordinate to the given value.\nTracks affected coordinates in the given tracker.\n"
-  remarks: "\nThis method will always be called before setting the value on the underlying puzzle.\n"
   example: []
   syntax:
     content: public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The coordinate to update.
     - id: val
       type: System.Int32
-      description: The value to set <code>c</code> to.
     - id: coordTracker
       type: SudokuSpice.CoordinateTracker
-      description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
     content.vb: Public Sub Update(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Update*
   implements:

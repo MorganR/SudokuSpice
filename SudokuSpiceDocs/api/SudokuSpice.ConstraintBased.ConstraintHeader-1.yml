@@ -5,7 +5,7 @@ items:
   id: ConstraintHeader`1
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
+  - SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{`0}})
   langs:
   - csharp
   - vb
@@ -29,6 +29,7 @@ items:
   syntax:
     content: >-
       public class ConstraintHeader<TPuzzle>
+
           where TPuzzle : IReadOnlyPuzzle
     typeParameters:
     - id: TPuzzle
@@ -56,16 +57,16 @@ items:
   - Class
   fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle)
   name.vb: ConstraintHeader(Of TPuzzle)
-- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
-  commentId: M:SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
-  id: CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}})
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{`0}})
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{`0}})
+  id: CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix{`0},System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{`0}})
   parent: SudokuSpice.ConstraintBased.ConstraintHeader`1
   langs:
   - csharp
   - vb
-  name: CreateConnectedHeader(ExactCoverMatrix<TPuzzle>, ReadOnlySpan<PossibleSquareValue<TPuzzle>>)
-  nameWithType: ConstraintHeader<TPuzzle>.CreateConnectedHeader(ExactCoverMatrix<TPuzzle>, ReadOnlySpan<PossibleSquareValue<TPuzzle>>)
-  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>, System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>>)
+  name: CreateConnectedHeader(ExactCoverMatrix<TPuzzle>, ReadOnlySpan<PossibleValue<TPuzzle>>)
+  nameWithType: ConstraintHeader<TPuzzle>.CreateConnectedHeader(ExactCoverMatrix<TPuzzle>, ReadOnlySpan<PossibleValue<TPuzzle>>)
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>.CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>, System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>>)
   type: Method
   source:
     remote:
@@ -81,28 +82,28 @@ items:
   summary: "\nCreates a fully connected header that can be satisfied by any of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleSquares</code>. Adds and attaches necessary links to connect the\nmatrix.\n"
   example: []
   syntax:
-    content: public static ConstraintHeader<TPuzzle> CreateConnectedHeader(ExactCoverMatrix<TPuzzle> matrix, ReadOnlySpan<PossibleSquareValue<TPuzzle>> possibleSquares)
+    content: public static ConstraintHeader<TPuzzle> CreateConnectedHeader(ExactCoverMatrix<TPuzzle> matrix, ReadOnlySpan<PossibleValue<TPuzzle>> possibleSquares)
     parameters:
     - id: matrix
       type: SudokuSpice.ConstraintBased.ExactCoverMatrix{{TPuzzle}}
       description: That matrix that this header should be attached to.
     - id: possibleSquares
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{{TPuzzle}}}
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{{TPuzzle}}}
       description: "\nThe possible square values that would satisfy this header.\n"
     return:
       type: SudokuSpice.ConstraintBased.ConstraintHeader{{TPuzzle}}
       description: The newly constructed header.
-    content.vb: Public Shared Function CreateConnectedHeader(matrix As ExactCoverMatrix(Of TPuzzle), possibleSquares As ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle))) As ConstraintHeader(Of TPuzzle)
+    content.vb: Public Shared Function CreateConnectedHeader(matrix As ExactCoverMatrix(Of TPuzzle), possibleSquares As ReadOnlySpan(Of PossibleValue(Of TPuzzle))) As ConstraintHeader(Of TPuzzle)
   overload: SudokuSpice.ConstraintBased.ConstraintHeader`1.CreateConnectedHeader*
-  nameWithType.vb: ConstraintHeader(Of TPuzzle).CreateConnectedHeader(ExactCoverMatrix(Of TPuzzle), ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle)))
+  nameWithType.vb: ConstraintHeader(Of TPuzzle).CreateConnectedHeader(ExactCoverMatrix(Of TPuzzle), ReadOnlySpan(Of PossibleValue(Of TPuzzle)))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle).CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle), System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)))
-  name.vb: CreateConnectedHeader(ExactCoverMatrix(Of TPuzzle), ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle)))
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle).CreateConnectedHeader(SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle), System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)))
+  name.vb: CreateConnectedHeader(ExactCoverMatrix(Of TPuzzle), ReadOnlySpan(Of PossibleValue(Of TPuzzle)))
 references:
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
@@ -446,16 +447,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{{TPuzzle}}}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue{`0}}
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{{TPuzzle}}}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleValue{`0}}
   parent: System
   definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<PossibleSquareValue<TPuzzle>>
-  nameWithType: ReadOnlySpan<PossibleSquareValue<TPuzzle>>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>>
-  nameWithType.vb: ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle))
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle))
-  name.vb: ReadOnlySpan(Of PossibleSquareValue(Of TPuzzle))
+  name: ReadOnlySpan<PossibleValue<TPuzzle>>
+  nameWithType: ReadOnlySpan<PossibleValue<TPuzzle>>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>>
+  nameWithType.vb: ReadOnlySpan(Of PossibleValue(Of TPuzzle))
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle))
+  name.vb: ReadOnlySpan(Of PossibleValue(Of TPuzzle))
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
@@ -465,10 +466,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: <
     nameWithType: <
     fullName: <
@@ -490,10 +491,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

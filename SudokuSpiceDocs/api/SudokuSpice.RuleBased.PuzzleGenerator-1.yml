@@ -5,7 +5,7 @@ items:
   id: PuzzleGenerator`1
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.Solver})
+  - SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.PuzzleSolver})
   - SudokuSpice.RuleBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)
   langs:
   - csharp
@@ -28,6 +28,7 @@ items:
   syntax:
     content: >-
       public class PuzzleGenerator<TPuzzle>
+
           where TPuzzle : IPuzzle
     typeParameters:
     - id: TPuzzle
@@ -53,16 +54,16 @@ items:
   - Class
   fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle)
   name.vb: PuzzleGenerator(Of TPuzzle)
-- uid: SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.Solver})
-  commentId: M:SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.Solver})
-  id: '#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.Solver})'
+- uid: SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.PuzzleSolver})
+  commentId: M:SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.PuzzleSolver})
+  id: '#ctor(System.Func{`0},System.Func{`0,SudokuSpice.RuleBased.PuzzleSolver})'
   parent: SudokuSpice.RuleBased.PuzzleGenerator`1
   langs:
   - csharp
   - vb
-  name: PuzzleGenerator(Func<TPuzzle>, Func<TPuzzle, Solver>)
-  nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<TPuzzle>, Func<TPuzzle, Solver>)
-  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator(System.Func<TPuzzle>, System.Func<TPuzzle, SudokuSpice.RuleBased.Solver>)
+  name: PuzzleGenerator(Func<TPuzzle>, Func<TPuzzle, PuzzleSolver>)
+  nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<TPuzzle>, Func<TPuzzle, PuzzleSolver>)
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator(System.Func<TPuzzle>, System.Func<TPuzzle, SudokuSpice.RuleBased.PuzzleSolver>)
   type: Constructor
   source:
     remote:
@@ -78,23 +79,23 @@ items:
   summary: "\nCreates a puzzle generator to create puzzles with custom rules and type.\n"
   example: []
   syntax:
-    content: public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, Solver> solverFactory)
+    content: public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, PuzzleSolver> solverFactory)
     parameters:
     - id: puzzleFactory
       type: System.Func{{TPuzzle}}
       description: "\nA function that constructs an empty <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> of the desired type and shape.\n"
     - id: solverFactory
-      type: System.Func{{TPuzzle},SudokuSpice.RuleBased.Solver}
+      type: System.Func{{TPuzzle},SudokuSpice.RuleBased.PuzzleSolver}
       description: "\nA function that constructs a <xref href=\"SudokuSpice.RuleBased.SquareTracker\" data-throw-if-not-resolved=\"false\"></xref> for the desired puzzle type.\nThis allows callers to use non-standard rules and heuristics.\n"
-    content.vb: Public Sub New(puzzleFactory As Func(Of TPuzzle), solverFactory As Func(Of TPuzzle, Solver))
+    content.vb: Public Sub New(puzzleFactory As Func(Of TPuzzle), solverFactory As Func(Of TPuzzle, PuzzleSolver))
   overload: SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor*
-  nameWithType.vb: PuzzleGenerator(Of TPuzzle).PuzzleGenerator(Func(Of TPuzzle), Func(Of TPuzzle, Solver))
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).PuzzleGenerator(Func(Of TPuzzle), Func(Of TPuzzle, PuzzleSolver))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator(System.Func(Of TPuzzle), System.Func(Of TPuzzle, SudokuSpice.RuleBased.Solver))
-  name.vb: PuzzleGenerator(Func(Of TPuzzle), Func(Of TPuzzle, Solver))
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator(System.Func(Of TPuzzle), System.Func(Of TPuzzle, SudokuSpice.RuleBased.PuzzleSolver))
+  name.vb: PuzzleGenerator(Func(Of TPuzzle), Func(Of TPuzzle, PuzzleSolver))
 - uid: SudokuSpice.RuleBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)
   commentId: M:SudokuSpice.RuleBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)
   id: Generate(System.Int32,System.TimeSpan)
@@ -498,16 +499,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Func{{TPuzzle},SudokuSpice.RuleBased.Solver}
-  commentId: T:System.Func{`0,SudokuSpice.RuleBased.Solver}
+- uid: System.Func{{TPuzzle},SudokuSpice.RuleBased.PuzzleSolver}
+  commentId: T:System.Func{`0,SudokuSpice.RuleBased.PuzzleSolver}
   parent: System
   definition: System.Func`2
-  name: Func<TPuzzle, Solver>
-  nameWithType: Func<TPuzzle, Solver>
-  fullName: System.Func<TPuzzle, SudokuSpice.RuleBased.Solver>
-  nameWithType.vb: Func(Of TPuzzle, Solver)
-  fullName.vb: System.Func(Of TPuzzle, SudokuSpice.RuleBased.Solver)
-  name.vb: Func(Of TPuzzle, Solver)
+  name: Func<TPuzzle, PuzzleSolver>
+  nameWithType: Func<TPuzzle, PuzzleSolver>
+  fullName: System.Func<TPuzzle, SudokuSpice.RuleBased.PuzzleSolver>
+  nameWithType.vb: Func(Of TPuzzle, PuzzleSolver)
+  fullName.vb: System.Func(Of TPuzzle, SudokuSpice.RuleBased.PuzzleSolver)
+  name.vb: Func(Of TPuzzle, PuzzleSolver)
   spec.csharp:
   - uid: System.Func`2
     name: Func
@@ -523,10 +524,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.RuleBased.Solver
-    name: Solver
-    nameWithType: Solver
-    fullName: SudokuSpice.RuleBased.Solver
+  - uid: SudokuSpice.RuleBased.PuzzleSolver
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -545,10 +546,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.RuleBased.Solver
-    name: Solver
-    nameWithType: Solver
-    fullName: SudokuSpice.RuleBased.Solver
+  - uid: SudokuSpice.RuleBased.PuzzleSolver
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
   - name: )
     nameWithType: )
     fullName: )

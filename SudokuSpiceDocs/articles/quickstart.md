@@ -5,7 +5,7 @@ For more information, see the [Framework Overview](framework.md).
 ## Solving
 
 If you need to solve a standard Sudoku puzzle, you can simply create a
-[`Puzzle`](xref:SudokuSpice.Puzzle), create a [`Solver`](xref:SudokuSpice.RuleBased.Solver), and solve it.
+[`Puzzle`](xref:SudokuSpice.Puzzle), create a [`PuzzleSolver`](xref:SudokuSpice.RuleBased.PuzzleSolver), and solve it.
 
 ```csharp
 var puzzle = new Puzzle(new int?[,]
@@ -20,7 +20,7 @@ var puzzle = new Puzzle(new int?[,]
         {null, null,    9,    8, null, null, null,    3,    6},
         {null, null, null,    3, null,    6, null,    9, null},
     });
-var solver = new Solver(puzzle);
+var solver = new PuzzleSolver(puzzle);
 solver.Solve();
 // Puzzle is now solved!
 

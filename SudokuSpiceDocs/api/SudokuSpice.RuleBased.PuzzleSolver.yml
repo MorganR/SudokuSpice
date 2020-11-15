@@ -1,29 +1,29 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.RuleBased.Solver
-  commentId: T:SudokuSpice.RuleBased.Solver
-  id: Solver
+- uid: SudokuSpice.RuleBased.PuzzleSolver
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver
+  id: PuzzleSolver
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.Solver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  - SudokuSpice.RuleBased.Solver.#ctor(SudokuSpice.Puzzle)
-  - SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions
-  - SudokuSpice.RuleBased.Solver.Solve
-  - SudokuSpice.RuleBased.Solver.SolveRandomly
+  - SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+  - SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.Puzzle)
+  - SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
+  - SudokuSpice.RuleBased.PuzzleSolver.Solve
+  - SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
   langs:
   - csharp
   - vb
-  name: Solver
-  nameWithType: Solver
-  fullName: SudokuSpice.RuleBased.Solver
+  name: PuzzleSolver
+  nameWithType: PuzzleSolver
+  fullName: SudokuSpice.RuleBased.PuzzleSolver
   type: Class
   source:
     remote:
-      path: SudokuSpice/RuleBased/Solver.cs
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: Solver
-    path: ../SudokuSpice/RuleBased/Solver.cs
+    id: PuzzleSolver
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
     startLine: 9
   assemblies:
   - SudokuSpice
@@ -31,8 +31,8 @@ items:
   summary: "\nSolves a single <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> using a <xref href=\"SudokuSpice.RuleBased.SquareTracker\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
-    content: public class Solver
-    content.vb: Public Class Solver
+    content: public class PuzzleSolver
+    content.vb: Public Class PuzzleSolver
   inheritance:
   - System.Object
   inheritedMembers:
@@ -49,24 +49,24 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Solver.#ctor(SudokuSpice.Puzzle)
-  commentId: M:SudokuSpice.RuleBased.Solver.#ctor(SudokuSpice.Puzzle)
+- uid: SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.Puzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.Puzzle)
   id: '#ctor(SudokuSpice.Puzzle)'
-  parent: SudokuSpice.RuleBased.Solver
+  parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: Solver(Puzzle)
-  nameWithType: Solver.Solver(Puzzle)
-  fullName: SudokuSpice.RuleBased.Solver.Solver(SudokuSpice.Puzzle)
+  name: PuzzleSolver(Puzzle)
+  nameWithType: PuzzleSolver.PuzzleSolver(Puzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver(SudokuSpice.Puzzle)
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/RuleBased/Solver.cs
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/RuleBased/Solver.cs
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
     startLine: 17
   assemblies:
   - SudokuSpice
@@ -74,34 +74,34 @@ items:
   summary: "\nConstructs a solver for a standard Sudoku puzzle that uses a standard heuristic and\nstandard rule keeper. Provided for convenience.\n"
   example: []
   syntax:
-    content: public Solver(Puzzle puzzle)
+    content: public PuzzleSolver(Puzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.Puzzle
     content.vb: Public Sub New(puzzle As Puzzle)
-  overload: SudokuSpice.RuleBased.Solver.#ctor*
+  overload: SudokuSpice.RuleBased.PuzzleSolver.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Solver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  commentId: M:SudokuSpice.RuleBased.Solver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+- uid: SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
   id: '#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)'
-  parent: SudokuSpice.RuleBased.Solver
+  parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: Solver(IPuzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
-  nameWithType: Solver.Solver(IPuzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
-  fullName: SudokuSpice.RuleBased.Solver.Solver(SudokuSpice.IPuzzle, SudokuSpice.RuleBased.PossibleValues, SudokuSpice.RuleBased.ISudokuRuleKeeper, SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+  name: PuzzleSolver(IPuzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
+  nameWithType: PuzzleSolver.PuzzleSolver(IPuzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver(SudokuSpice.IPuzzle, SudokuSpice.RuleBased.PossibleValues, SudokuSpice.RuleBased.ISudokuRuleKeeper, SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/RuleBased/Solver.cs
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/RuleBased/Solver.cs
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
     startLine: 26
   assemblies:
   - SudokuSpice
@@ -109,7 +109,7 @@ items:
   summary: "\nConstructs a solver for the given square tracker.\n"
   example: []
   syntax:
-    content: public Solver(IPuzzle puzzle, PossibleValues possibleValues, ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)
+    content: public PuzzleSolver(IPuzzle puzzle, PossibleValues possibleValues, ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)
     parameters:
     - id: puzzle
       type: SudokuSpice.IPuzzle
@@ -120,29 +120,29 @@ items:
     - id: heuristic
       type: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
     content.vb: Public Sub New(puzzle As IPuzzle, possibleValues As PossibleValues, ruleKeeper As ISudokuRuleKeeper, heuristic As ISudokuHeuristic = Nothing)
-  overload: SudokuSpice.RuleBased.Solver.#ctor*
+  overload: SudokuSpice.RuleBased.PuzzleSolver.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Solver.Solve
-  commentId: M:SudokuSpice.RuleBased.Solver.Solve
+- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.Solve
   id: Solve
-  parent: SudokuSpice.RuleBased.Solver
+  parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
   name: Solve()
-  nameWithType: Solver.Solve()
-  fullName: SudokuSpice.RuleBased.Solver.Solve()
+  nameWithType: PuzzleSolver.Solve()
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Solver.cs
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: Solve
-    path: ../SudokuSpice/RuleBased/Solver.cs
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
     startLine: 38
   assemblies:
   - SudokuSpice
@@ -152,29 +152,29 @@ items:
   syntax:
     content: public void Solve()
     content.vb: Public Sub Solve
-  overload: SudokuSpice.RuleBased.Solver.Solve*
+  overload: SudokuSpice.RuleBased.PuzzleSolver.Solve*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Solver.SolveRandomly
-  commentId: M:SudokuSpice.RuleBased.Solver.SolveRandomly
+- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
   id: SolveRandomly
-  parent: SudokuSpice.RuleBased.Solver
+  parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
   name: SolveRandomly()
-  nameWithType: Solver.SolveRandomly()
-  fullName: SudokuSpice.RuleBased.Solver.SolveRandomly()
+  nameWithType: PuzzleSolver.SolveRandomly()
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Solver.cs
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: SolveRandomly
-    path: ../SudokuSpice/RuleBased/Solver.cs
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
     startLine: 50
   assemblies:
   - SudokuSpice
@@ -184,29 +184,29 @@ items:
   syntax:
     content: public void SolveRandomly()
     content.vb: Public Sub SolveRandomly
-  overload: SudokuSpice.RuleBased.Solver.SolveRandomly*
+  overload: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions
-  commentId: M:SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions
+- uid: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
   id: GetStatsForAllSolutions
-  parent: SudokuSpice.RuleBased.Solver
+  parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
   name: GetStatsForAllSolutions()
-  nameWithType: Solver.GetStatsForAllSolutions()
-  fullName: SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions()
+  nameWithType: PuzzleSolver.GetStatsForAllSolutions()
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Solver.cs
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetStatsForAllSolutions
-    path: ../SudokuSpice/RuleBased/Solver.cs
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
     startLine: 63
   assemblies:
   - SudokuSpice
@@ -218,7 +218,7 @@ items:
     return:
       type: SudokuSpice.SolveStats
     content.vb: Public Function GetStatsForAllSolutions As SolveStats
-  overload: SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions*
+  overload: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -535,11 +535,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.RuleBased.Solver.#ctor*
-  commentId: Overload:SudokuSpice.RuleBased.Solver.#ctor
-  name: Solver
-  nameWithType: Solver.Solver
-  fullName: SudokuSpice.RuleBased.Solver.Solver
+- uid: SudokuSpice.RuleBased.PuzzleSolver.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.#ctor
+  name: PuzzleSolver
+  nameWithType: PuzzleSolver.PuzzleSolver
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver
 - uid: SudokuSpice.Puzzle
   commentId: T:SudokuSpice.Puzzle
   parent: SudokuSpice
@@ -569,21 +569,21 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
-- uid: SudokuSpice.RuleBased.Solver.Solve*
-  commentId: Overload:SudokuSpice.RuleBased.Solver.Solve
+- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.Solve
   name: Solve
-  nameWithType: Solver.Solve
-  fullName: SudokuSpice.RuleBased.Solver.Solve
-- uid: SudokuSpice.RuleBased.Solver.SolveRandomly*
-  commentId: Overload:SudokuSpice.RuleBased.Solver.SolveRandomly
+  nameWithType: PuzzleSolver.Solve
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve
+- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
   name: SolveRandomly
-  nameWithType: Solver.SolveRandomly
-  fullName: SudokuSpice.RuleBased.Solver.SolveRandomly
-- uid: SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions*
-  commentId: Overload:SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions
+  nameWithType: PuzzleSolver.SolveRandomly
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
+- uid: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
   name: GetStatsForAllSolutions
-  nameWithType: Solver.GetStatsForAllSolutions
-  fullName: SudokuSpice.RuleBased.Solver.GetStatsForAllSolutions
+  nameWithType: PuzzleSolver.GetStatsForAllSolutions
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
 - uid: SudokuSpice.SolveStats
   commentId: T:SudokuSpice.SolveStats
   parent: SudokuSpice

@@ -46,6 +46,7 @@ items:
     content: 'public class Puzzle : IPuzzle, IReadOnlyBoxPuzzle, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
+
           Implements IPuzzle, IReadOnlyBoxPuzzle, IReadOnlyPuzzle
   inheritance:
   - System.Object
@@ -434,7 +435,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -481,7 +481,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public IPuzzle DeepCopy()
@@ -517,17 +516,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
-      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.Puzzle.Item*
   implements:

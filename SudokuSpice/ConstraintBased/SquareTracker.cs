@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
-    internal class ConstraintBasedTracker<TPuzzle> where TPuzzle : IPuzzle
+    internal class SquareTracker<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly TPuzzle _puzzle;
         private readonly ExactCoverMatrix<TPuzzle> _matrix;
@@ -12,14 +12,14 @@ namespace SudokuSpice.ConstraintBased
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
-        internal ConstraintBasedTracker(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+        internal SquareTracker(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;
             _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
         }
 
-        private ConstraintBasedTracker(ConstraintBasedTracker<TPuzzle> other)
+        private SquareTracker(SquareTracker<TPuzzle> other)
         {
             // Puzzle is guaranteed to be of type TPuzzle.
             _puzzle = (TPuzzle)other._puzzle.DeepCopy();
@@ -28,7 +28,7 @@ namespace SudokuSpice.ConstraintBased
             _setCoords = new Stack<Coordinate>(_puzzle.NumEmptySquares);
         }
 
-        internal ConstraintBasedTracker<TPuzzle> CopyForContinuation() => new ConstraintBasedTracker<TPuzzle>(this);
+        internal SquareTracker<TPuzzle> CopyForContinuation() => new SquareTracker<TPuzzle>(this);
 
         internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
@@ -56,7 +56,7 @@ namespace SudokuSpice.ConstraintBased
                     Debug.Assert(
                         constraint.FirstLink != null,
                         "Unsatisfied constraint had a null first link.");
-                    PossibleSquareValue<TPuzzle>? possibleSquare = constraint.FirstLink.PossibleSquare;
+                    PossibleValue<TPuzzle>? possibleSquare = constraint.FirstLink.PossibleSquare;
                     return (possibleSquare.Square.Coordinate,
                         new int[] { possibleSquare.ValueIndex });
                 }
@@ -103,7 +103,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 square != null,
                 $"Tried to order possible values at {c}, but square was null.");
-            PossibleSquareValue<TPuzzle>[]? possibleSquares = square.GetStillPossibleValues();
+            PossibleValue<TPuzzle>[]? possibleSquares = square.GetStillPossibleValues();
             return possibleSquares.OrderBy(
                 ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
         }

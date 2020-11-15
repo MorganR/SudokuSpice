@@ -123,7 +123,7 @@
   <a id="SudokuSpice_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_" data-uid="SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex*"></a>
   <h4 id="SudokuSpice_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_System_ReadOnlySpan_SudokuSpice_Square__System_Int32_SudokuSpice_ExactCoverMatrix_" data-uid="SudokuSpice.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan{SudokuSpice.Square},System.Int32,SudokuSpice.ExactCoverMatrix)">AddConstraintHeadersForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
   <div class="markdown level1 summary"><p>Add a <a class="xref" href="SudokuSpice.Data.ConstraintHeader.html">ConstraintHeader</a> connecting all the
-<a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleSquareValue</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
+<a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleValue</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
 given <code data-dev-comment-type="paramref" class="paramref">squares</code>. Skips null squares, null possible values, and any
 possible values in a known state (i.e. dropped or selected).</p>
 </div>
@@ -225,7 +225,7 @@ value indices are already set in the given list of
   </span>
   <a id="SudokuSpice_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_" data-uid="SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex*"></a>
   <h4 id="SudokuSpice_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_System_ReadOnlySpan_SudokuSpice_Square__System_Int32_SudokuSpice_ExactCoverMatrix_" data-uid="SudokuSpice.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.Square},System.Int32,SudokuSpice.ExactCoverMatrix)">DropPossibleSquaresForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
-  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleSquareValue</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
+  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleValue</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
 from the given set of <code data-dev-comment-type="paramref" class="paramref">squares</code>. Null squares and possible values are
 ignored.</p>
 </div>
@@ -327,7 +327,7 @@ ignored.</p>
     </tbody>
   </table>
   <h5 id="SudokuSpice_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_System_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ExactCoverMatrix__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleSquareValue</a>s that are no longer possible, and
+  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.Data.PossibleSquareValue.html">PossibleValue</a>s that are no longer possible, and
 adds <a class="xref" href="SudokuSpice.Data.ConstraintHeader.html">ConstraintHeader</a>s and links to enforce this constraint for the ones
 that are still possible.</p>
 </div>

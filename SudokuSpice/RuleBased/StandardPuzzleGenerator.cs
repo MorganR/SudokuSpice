@@ -21,7 +21,7 @@ namespace SudokuSpice.RuleBased
         /// Thrown if <c>size</c> is anything except the values 1, 4, 9, 16, or 25.
         /// </exception>
         public StandardPuzzleGenerator(int size)
-            : base(() => new Puzzle(size), puzzle => new Solver(puzzle))
+            : base(() => new Puzzle(size), puzzle => new PuzzleSolver(puzzle))
         {
             _size = size;
             _boxSize = size switch {

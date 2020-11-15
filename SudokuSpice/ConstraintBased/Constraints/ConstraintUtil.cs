@@ -11,7 +11,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// Enforces uniqueness of the values at the given coordinates.
         /// </summary>
         /// <remarks>
-        /// This drops any <see cref="PossibleSquareValue{TPuzzle}"/>s that are no longer possible, and
+        /// This drops any <see cref="PossibleValue{TPuzzle}"/>s that are no longer possible, and
         /// adds <see cref="ConstraintHeader{TPuzzle}"/>s and links to enforce this constraint for the ones
         /// that are still possible.
         /// </remarks>
@@ -76,7 +76,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Drops <see cref="PossibleSquareValue{TPuzzle}"/>s with the given <paramref name="valueIndex"/>
+        /// Drops <see cref="PossibleValue{TPuzzle}"/>s with the given <paramref name="valueIndex"/>
         /// from the given set of <paramref name="squares"/>. Null squares and possible values are
         /// ignored.
         /// </summary>
@@ -99,7 +99,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleSquareValue<TPuzzle>? possibleValue = square.GetPossibleValue(valueIndex);
+                PossibleValue<TPuzzle>? possibleValue = square.GetPossibleValue(valueIndex);
                 if (possibleValue is null)
                 {
                     continue;
@@ -114,7 +114,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
 
         /// <summary>
         /// Add a <see cref="ConstraintHeader{TPuzzle}"/> connecting all the
-        /// <see cref="PossibleSquareValue{TPuzzle}"/>s at the given <paramref name="valueIndex"/> on the
+        /// <see cref="PossibleValue{TPuzzle}"/>s at the given <paramref name="valueIndex"/> on the
         /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
         /// possible values in a known state (i.e. dropped or selected).
         /// </summary>
@@ -127,7 +127,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             ReadOnlySpan<Square<TPuzzle>?> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
             where TPuzzle : IReadOnlyPuzzle
         {
-            var possibleSquares = new PossibleSquareValue<TPuzzle>[squares.Length];
+            var possibleSquares = new PossibleValue<TPuzzle>[squares.Length];
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
             {
@@ -136,7 +136,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleSquareValue<TPuzzle>? possibleSquare = square.GetPossibleValue(valueIndex);
+                PossibleValue<TPuzzle>? possibleSquare = square.GetPossibleValue(valueIndex);
                 if (possibleSquare is null
                     || possibleSquare.State != PossibleSquareState.UNKNOWN)
                 {
@@ -146,7 +146,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             ConstraintHeader<TPuzzle>.CreateConnectedHeader(
                 matrix,
-                new ReadOnlySpan<PossibleSquareValue<TPuzzle>>(possibleSquares, 0, numPossibleSquares));
+                new ReadOnlySpan<PossibleValue<TPuzzle>>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }

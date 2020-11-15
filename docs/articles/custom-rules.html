@@ -200,7 +200,7 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 <h3 id="copywithnewreference">CopyWithNewReference</h3>
 <p>Lastly, we must implement the <code>ISudokuRule.CopyWithNewReference</code> method to provide a deep copy for
 the
-<a class="xref" href="../api/SudokuSpice.RuleBased.Solver.html#SudokuSpice_RuleBased_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions"><code>PuzzleSolver.GetStatsForAllSolutions</code></a>
 method and for the <a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
 <pre><code class="lang-csharp">public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
 {
@@ -220,7 +220,7 @@ private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle 
 <p>Now let's assume we have a <code>puzzle</code> already that we want to solve with this rule. We can solve it
 as follows:</p>
 <pre><code class="lang-csharp">var possibleValues = new PossibleValues(puzzle);
-var solver = new Solver(
+var solver = new PuzzleSolver(
     puzzle,
     possibleValues,
     new DynamicRuleKeeper(

@@ -6,12 +6,12 @@ using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Test
 {
-    public class ConstraintBasedGeneratorTest
+    public class PuzzleGeneratorTest
     {
         [Fact]
         public void Constructor_WithValidArgs_Works()
         {
-            var generator = new ConstraintBasedGenerator<Puzzle>(
+            var generator = new PuzzleGenerator<Puzzle>(
                 () => new Puzzle(9), new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>() });
         }
 
@@ -21,7 +21,7 @@ namespace SudokuSpice.ConstraintBased.Test
         [InlineData(9, 30)]
         public void Generate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
         {
-            var generator = new ConstraintBasedGenerator<Puzzle>(
+            var generator = new PuzzleGenerator<Puzzle>(
                 () => new Puzzle(size),
                 new List<IConstraint<Puzzle>> {
                     new RowUniquenessConstraint<Puzzle>(),
@@ -32,7 +32,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            var solver = new Solver(puzzle);
+            var solver = new PuzzleSolver(puzzle);
             SolveStats stats = solver.GetStatsForAllSolutions();
             Assert.Equal(1, stats.NumSolutionsFound);
         }
@@ -40,7 +40,7 @@ namespace SudokuSpice.ConstraintBased.Test
         [Fact]
         public void Generate_WithShortTimeout_ThrowsTimeoutException()
         {
-            var generator = new ConstraintBasedGenerator<Puzzle>(
+            var generator = new PuzzleGenerator<Puzzle>(
                 () => new Puzzle(9),
                 new List<IConstraint<Puzzle>> {
                     new RowUniquenessConstraint<Puzzle>(),

@@ -9,7 +9,7 @@
         /// <remarks>
         /// This skips adding <c>ConstraintHeader</c>s that are already satisfied by the given
         /// <paramref name="puzzle"/>. Instead, it drops the corresponding
-        /// <see cref="PossibleSquareValue{TPuzzle}"/>s that would have been included in these headers.
+        /// <see cref="PossibleValue{TPuzzle}"/>s that would have been included in these headers.
         /// 
         /// Note: See <see cref="ExactCoverMatrix{TPuzzle}"/> to understand how the matrix works.
         /// </remarks>

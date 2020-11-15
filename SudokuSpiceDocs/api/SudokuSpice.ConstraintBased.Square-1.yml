@@ -32,6 +32,7 @@ items:
   syntax:
     content: >-
       public class Square<TPuzzle>
+
           where TPuzzle : IReadOnlyPuzzle
     typeParameters:
     - id: TPuzzle
@@ -197,13 +198,13 @@ items:
   summary: "\nGets the possible value with the given value-index.\n"
   example: []
   syntax:
-    content: public PossibleSquareValue<TPuzzle> GetPossibleValue(int index)
+    content: public PossibleValue<TPuzzle> GetPossibleValue(int index)
     parameters:
     - id: index
       type: System.Int32
     return:
-      type: SudokuSpice.ConstraintBased.PossibleSquareValue{{TPuzzle}}
-    content.vb: Public Function GetPossibleValue(index As Integer) As PossibleSquareValue(Of TPuzzle)
+      type: SudokuSpice.ConstraintBased.PossibleValue{{TPuzzle}}
+    content.vb: Public Function GetPossibleValue(index As Integer) As PossibleValue(Of TPuzzle)
   overload: SudokuSpice.ConstraintBased.Square`1.GetPossibleValue*
   nameWithType.vb: Square(Of TPuzzle).GetPossibleValue(Int32)
   modifiers.csharp:
@@ -565,21 +566,21 @@ references:
   fullName: SudokuSpice.ConstraintBased.Square<TPuzzle>.GetPossibleValue
   nameWithType.vb: Square(Of TPuzzle).GetPossibleValue
   fullName.vb: SudokuSpice.ConstraintBased.Square(Of TPuzzle).GetPossibleValue
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue{{TPuzzle}}
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue{`0}
+- uid: SudokuSpice.ConstraintBased.PossibleValue{{TPuzzle}}
+  commentId: T:SudokuSpice.ConstraintBased.PossibleValue{`0}
   parent: SudokuSpice.ConstraintBased
-  definition: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  name: PossibleSquareValue<TPuzzle>
-  nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
-  name.vb: PossibleSquareValue(Of TPuzzle)
+  definition: SudokuSpice.ConstraintBased.PossibleValue`1
+  name: PossibleValue<TPuzzle>
+  nameWithType: PossibleValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>
+  nameWithType.vb: PossibleValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)
+  name.vb: PossibleValue(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: <
     nameWithType: <
     fullName: <
@@ -590,10 +591,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -603,19 +604,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  name: PossibleSquareValue<TPuzzle>
-  nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
-  name.vb: PossibleSquareValue(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1
+  commentId: T:SudokuSpice.ConstraintBased.PossibleValue`1
+  name: PossibleValue<TPuzzle>
+  nameWithType: PossibleValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>
+  nameWithType.vb: PossibleValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)
+  name.vb: PossibleValue(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: <
     nameWithType: <
     fullName: <
@@ -626,10 +627,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

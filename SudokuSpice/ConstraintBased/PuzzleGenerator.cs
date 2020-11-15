@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSpice.ConstraintBased
 {
-    public class ConstraintBasedGenerator<TPuzzle> where TPuzzle : IPuzzle
+    public class PuzzleGenerator<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
@@ -19,10 +19,10 @@ namespace SudokuSpice.ConstraintBased
         /// A function that constructs an empty <see cref="IPuzzle"/> of the desired type and shape.
         /// </param>
         /// <param name="solverFactory">
-        /// A function that constructs a <see cref="ConstraintBasedTracker{TPuzzle}"/> for the desired puzzle type.
+        /// A function that constructs a <see cref="SquareTracker{TPuzzle}"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
-        public ConstraintBasedGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint<TPuzzle>> constraints)
+        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint<TPuzzle>> constraints)
         {
             _puzzleFactory = puzzleFactory;
             _constraints = constraints;
@@ -130,7 +130,7 @@ namespace SudokuSpice.ConstraintBased
 
         private void _FillPuzzle(TPuzzle puzzle)
         {
-            var solver = new ConstraintBasedSolver<TPuzzle>(_constraints);
+            var solver = new PuzzleSolver<TPuzzle>(_constraints);
             solver.SolveRandomly(puzzle);
         }
 
@@ -144,7 +144,7 @@ namespace SudokuSpice.ConstraintBased
             }
             int? previousValue = puzzle[in c];
             puzzle[in c] = null;
-            var solver = new ConstraintBasedSolver<TPuzzle>(_constraints);
+            var solver = new PuzzleSolver<TPuzzle>(_constraints);
             SolveStats solveStats = solver.GetStatsForAllSolutions(puzzle);
             if (solveStats.NumSolutionsFound == 1)
             {

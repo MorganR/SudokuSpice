@@ -30,11 +30,12 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square%601\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint%601\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
+  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square%601\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.PossibleValue%601\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint%601\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
     content: >-
       public class ExactCoverMatrix<TPuzzle>
+
           where TPuzzle : IReadOnlyPuzzle
     typeParameters:
     - id: TPuzzle
@@ -333,19 +334,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue`1
-  name: PossibleSquareValue<TPuzzle>
-  nameWithType: PossibleSquareValue<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
-  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
-  name.vb: PossibleSquareValue(Of TPuzzle)
+- uid: SudokuSpice.ConstraintBased.PossibleValue`1
+  commentId: T:SudokuSpice.ConstraintBased.PossibleValue`1
+  name: PossibleValue<TPuzzle>
+  nameWithType: PossibleValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>
+  nameWithType.vb: PossibleValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)
+  name.vb: PossibleValue(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: <
     nameWithType: <
     fullName: <
@@ -356,10 +357,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
+    name: PossibleValue
+    nameWithType: PossibleValue
+    fullName: SudokuSpice.ConstraintBased.PossibleValue
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

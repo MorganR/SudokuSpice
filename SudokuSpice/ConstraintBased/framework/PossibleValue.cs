@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a row in the <see cref="ExactCoverMatrix{TPuzzle}"/>. This represents a possible value
     /// for a given <see cref="Square{TPuzzle}"/>.
     /// </summary>
-    public class PossibleSquareValue<TPuzzle> where TPuzzle : IReadOnlyPuzzle
+    public class PossibleValue<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
         /// <summary>
         /// Gets the index of the possible value that this represents. This index corresponds with
@@ -24,16 +24,16 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public PossibleSquareState State { get; private set; }
         [DisallowNull]
-        internal SquareLink<TPuzzle>? FirstLink { get; private set; }
+        internal Link<TPuzzle>? FirstLink { get; private set; }
 
-        internal PossibleSquareValue(Square<TPuzzle> square, int valueIndex)
+        internal PossibleValue(Square<TPuzzle> square, int valueIndex)
         {
             ValueIndex = valueIndex;
             Square = square;
             State = PossibleSquareState.UNKNOWN;
         }
 
-        internal void Attach(SquareLink<TPuzzle> link)
+        internal void Attach(Link<TPuzzle> link)
         {
             if (FirstLink is null)
             {
@@ -99,7 +99,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(FirstLink != null, $"Called {nameof(GetMinConstraintCount)} on PossibleSquare at {Square.Coordinate} with value {ValueIndex} while FirstLink was null.");
             int minCount = FirstLink.Constraint.Count;
-            SquareLink<TPuzzle>? link = FirstLink.Right;
+            Link<TPuzzle>? link = FirstLink.Right;
             while (link != FirstLink)
             {
                 if (link.Constraint.Count < minCount)
@@ -111,10 +111,10 @@ namespace SudokuSpice.ConstraintBased
             return minCount;
         }
 
-        private bool _TryUpdateLinks(Func<SquareLink<TPuzzle>, bool> tryFn, Action<SquareLink<TPuzzle>> undoFn)
+        private bool _TryUpdateLinks(Func<Link<TPuzzle>, bool> tryFn, Action<Link<TPuzzle>> undoFn)
         {
             Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} called {nameof(_TryUpdateLinks)} while FirstLink was null.");
-            SquareLink<TPuzzle>? link = FirstLink;
+            Link<TPuzzle>? link = FirstLink;
             do
             {
                 if (!tryFn(link))
@@ -131,11 +131,11 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        private void _RevertLinks(Action<SquareLink<TPuzzle>> fn)
+        private void _RevertLinks(Action<Link<TPuzzle>> fn)
         {
             Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} called {nameof(_RevertLinks)} while FirstLink was null.");
-            SquareLink<TPuzzle>? lastLink = FirstLink.Left;
-            SquareLink<TPuzzle>? link = lastLink;
+            Link<TPuzzle>? lastLink = FirstLink.Left;
+            Link<TPuzzle>? link = lastLink;
             do
             {
                 fn(link);
