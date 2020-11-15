@@ -131,7 +131,6 @@ possible values in a known state (i.e. dropped or selected).</p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void AddConstraintHeadersForValueIndex&lt;TPuzzle&gt;(ReadOnlySpan&lt;Square&lt;TPuzzle&gt;&gt; squares, int valueIndex, ExactCoverMatrix&lt;TPuzzle&gt; matrix)
-
     where TPuzzle : IReadOnlyPuzzle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -196,7 +195,6 @@ value indices are already set in the given list of
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void CheckForSetValues&lt;TPuzzle&gt;(TPuzzle puzzle, ExactCoverMatrix&lt;TPuzzle&gt; matrix, ReadOnlySpan&lt;Coordinate&gt; squareCoordinates, Span&lt;bool&gt; isValueIndexPresentInSquares)
-
     where TPuzzle : IReadOnlyPuzzle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -267,7 +265,6 @@ ignored.</p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void DropPossibleSquaresForValueIndex&lt;TPuzzle&gt;(ReadOnlySpan&lt;Square&lt;TPuzzle&gt;&gt; squares, int valueIndex, ExactCoverMatrix&lt;TPuzzle&gt; matrix)
-
     where TPuzzle : IReadOnlyPuzzle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -346,7 +343,6 @@ ignored.</p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void ImplementUniquenessConstraintForSquares&lt;TPuzzle&gt;(TPuzzle puzzle, ReadOnlySpan&lt;Coordinate&gt; squareCoordinates, ExactCoverMatrix&lt;TPuzzle&gt; matrix)
-
     where TPuzzle : IReadOnlyPuzzle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

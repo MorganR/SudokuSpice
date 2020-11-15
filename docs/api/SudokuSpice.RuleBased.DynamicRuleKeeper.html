@@ -170,7 +170,10 @@
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this rule keeper, including copies of any
+<a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>s it contains, with updated internal
+<a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a> and <a class="xref" href="SudokuSpice.RuleBased.PossibleValues.html">PossibleValues</a> references.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -189,12 +192,15 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The new puzzle reference. Should contain the same data as the current puzzle instance.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.PossibleValues.html">PossibleValues</a></td>
         <td><span class="parametername">possibleValues</span></td>
-        <td></td>
+        <td><p>The new possible values reference. Should contain the same data as the current possible
+values instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -222,7 +228,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules">GetRules()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>s enforced by this rule keeper.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -252,7 +259,10 @@
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)">TrySet(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates possible values based on setting the given coordinate to the given value. If
+this update fails (i.e. it leads to an unset square with no possible values), then it
+returns false and leaves the possible values unchanged.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -271,12 +281,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate to update.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value to set <code>c</code> to.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -291,7 +303,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>True if the possible values have been updated and the rules are still satisfied.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -304,7 +317,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.Unset*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)">Unset(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -323,12 +337,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate where a value is being unset.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value being unset.</p>
+</td>
       </tr>
     </tbody>
   </table>

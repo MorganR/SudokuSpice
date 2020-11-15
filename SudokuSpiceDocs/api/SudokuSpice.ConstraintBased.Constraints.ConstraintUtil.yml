@@ -77,7 +77,6 @@ items:
   syntax:
     content: >-
       public static void ImplementUniquenessConstraintForSquares<TPuzzle>(TPuzzle puzzle, ReadOnlySpan<Coordinate> squareCoordinates, ExactCoverMatrix<TPuzzle> matrix)
-
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: puzzle
@@ -133,7 +132,6 @@ items:
   syntax:
     content: >-
       public static void CheckForSetValues<TPuzzle>(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix, ReadOnlySpan<Coordinate> squareCoordinates, Span<bool> isValueIndexPresentInSquares)
-
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: puzzle
@@ -188,7 +186,6 @@ items:
   syntax:
     content: >-
       public static void DropPossibleSquaresForValueIndex<TPuzzle>(ReadOnlySpan<Square<TPuzzle>> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
-
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: squares
@@ -244,7 +241,6 @@ items:
   syntax:
     content: >-
       public static void AddConstraintHeadersForValueIndex<TPuzzle>(ReadOnlySpan<Square<TPuzzle>> squares, int valueIndex, ExactCoverMatrix<TPuzzle> matrix)
-
           where TPuzzle : IReadOnlyPuzzle
     parameters:
     - id: squares
