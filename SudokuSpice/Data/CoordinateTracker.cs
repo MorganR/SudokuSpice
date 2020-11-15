@@ -129,11 +129,11 @@ namespace SudokuSpice
         public void Untrack(in Coordinate c)
         {
             Debug.Assert(NumTracked > 0, "The tracker is empty");
-            var idx = _coordToIdx[c.Row, c.Column];
+            int idx = _coordToIdx[c.Row, c.Column];
             Debug.Assert(idx >= 0, $"Coordinate {c} was never added.");
             Debug.Assert(idx < NumTracked, $"Coordinate {c} is already untracked.");
             NumTracked--;
-            var lastTrackedCoord = _coords[NumTracked];
+            Coordinate lastTrackedCoord = _coords[NumTracked];
             _coords[idx] = lastTrackedCoord;
             _coords[NumTracked] = c;
             _coordToIdx[lastTrackedCoord.Row, lastTrackedCoord.Column] = idx;
@@ -143,24 +143,18 @@ namespace SudokuSpice
         /// <summary>
         /// Untracks all <see cref="Coordinate"/>s.
         /// </summary>
-        public void UntrackAll()
-        {
-            NumTracked = 0;
-        }
+        public void UntrackAll() => NumTracked = 0;
 
         /// <summary>
         /// Provides readonly access to the currently tracked <see cref="Coordinate"/>s.
         /// </summary>
-        public ReadOnlySpan<Coordinate> GetTrackedCoords()
-        {
-            return new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);
-        }
+        public ReadOnlySpan<Coordinate> GetTrackedCoords() => new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);
 
         private void _Track(in Coordinate c, int index)
         {
             Debug.Assert(index >= 0, $"Coordinate {c} was never added.");
             Debug.Assert(index >= NumTracked, $"Coordinate {c} is already tracked.");
-            var otherUntrackedCoord = _coords[NumTracked];
+            Coordinate otherUntrackedCoord = _coords[NumTracked];
             _coords[index] = otherUntrackedCoord;
             _coords[NumTracked] = c;
             _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = index;

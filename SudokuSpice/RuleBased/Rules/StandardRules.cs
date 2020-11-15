@@ -30,12 +30,11 @@ namespace SudokuSpice.RuleBased.Rules
                     if (col == 0)
                     {
                         boxIdx = (row / puzzle.BoxSize) * puzzle.BoxSize;
-                    }
-                    else if (col % puzzle.BoxSize == 0)
+                    } else if (col % puzzle.BoxSize == 0)
                     {
                         boxIdx++;
                     }
-                    var val = puzzle[row, col];
+                    int? val = puzzle[row, col];
                     if (!val.HasValue)
                     {
                         continue;
@@ -143,7 +142,7 @@ namespace SudokuSpice.RuleBased.Rules
                     coordTracker.AddOrTrackIfUntracked(new Coordinate(row, c.Column));
                 }
             }
-            foreach (var inBoxCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
+            foreach (Coordinate inBoxCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
             {
                 if (inBoxCoord.Row == c.Row || inBoxCoord.Column == c.Column)
                 {

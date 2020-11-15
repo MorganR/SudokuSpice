@@ -1,10 +1,10 @@
 using BenchmarkDotNet.Attributes;
-using System.Collections.Generic;
 using SudokuSpice.ConstraintBased;
 using SudokuSpice.ConstraintBased.Constraints;
-using SudokuSpice.RuleBased.Rules;
 using SudokuSpice.RuleBased;
 using SudokuSpice.RuleBased.Heuristics;
+using SudokuSpice.RuleBased.Rules;
+using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
@@ -99,11 +99,9 @@ namespace SudokuSpice.Benchmark
 
         [Benchmark]
         [ArgumentsSource(nameof(NineByNinePuzzles))]
-        public bool SudokuSolverLite(PuzzleSample puzzle)
-        {
+        public bool SudokuSolverLite(PuzzleSample puzzle) =>
             // Must clone the input, since this method solves the puzzle in-place.
-            return SudokuSolver.SudokuSolver.Solve((int[,])puzzle.Matrix.Clone());
-        }
+            SudokuSolver.SudokuSolver.Solve((int[,])puzzle.Matrix.Clone());
 
     }
 }

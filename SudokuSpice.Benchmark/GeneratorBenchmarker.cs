@@ -15,7 +15,7 @@ namespace SudokuSpice.Benchmark
         public int SudokuSpice()
         {
             var generator = new StandardPuzzleGenerator(9);
-            var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
+            Puzzle puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }
 
@@ -30,7 +30,7 @@ namespace SudokuSpice.Benchmark
                     new ColumnUniquenessConstraint<Puzzle>(),
                     new BoxUniquenessConstraint<Puzzle>(),
                 });
-            var puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
+            Puzzle puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }
 
@@ -38,8 +38,8 @@ namespace SudokuSpice.Benchmark
         public Board SudokuSharpSingles()
         {
             var rand = new Random();
-            var board = Factory.Solution(rand);
-            var puzzle = Factory.Puzzle(board, rand, QuadsToCut: 0, PairsToCut: 0, SinglesToCut: 51);
+            Board board = Factory.Solution(rand);
+            Board puzzle = Factory.Puzzle(board, rand, QuadsToCut: 0, PairsToCut: 0, SinglesToCut: 51);
             return puzzle;
         }
 
@@ -47,8 +47,8 @@ namespace SudokuSpice.Benchmark
         public Board SudokuSharpMixed()
         {
             var rand = new Random();
-            var board = Factory.Solution(rand);
-            var puzzle = Factory.Puzzle(board, rand, QuadsToCut: 6, PairsToCut: 8, SinglesToCut: 11);
+            Board board = Factory.Solution(rand);
+            Board puzzle = Factory.Puzzle(board, rand, QuadsToCut: 6, PairsToCut: 8, SinglesToCut: 11);
             return puzzle;
         }
     }

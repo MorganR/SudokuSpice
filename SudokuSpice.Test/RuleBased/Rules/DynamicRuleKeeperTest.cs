@@ -1,5 +1,4 @@
-﻿using SudokuSpice;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -53,7 +52,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     new ColumnUniquenessRule(puzzle, possibleValues.AllPossible),
                     new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
-            var ex = Assert.Throws<ArgumentException>(() =>
+            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
                 var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             });
@@ -80,19 +79,19 @@ namespace SudokuSpice.RuleBased.Rules.Test
 
             var puzzleCopy = new Puzzle(puzzle);
             var possibleValuesCopy = new PossibleValues(possibleValues);
-            var ruleKeeperCopy = ruleKeeper.CopyWithNewReferences(puzzleCopy, possibleValuesCopy);
+            ISudokuRuleKeeper ruleKeeperCopy = ruleKeeper.CopyWithNewReferences(puzzleCopy, possibleValuesCopy);
 
-            var rulesCopy = ruleKeeperCopy.GetRules();
+            IReadOnlyList<ISudokuRule> rulesCopy = ruleKeeperCopy.GetRules();
             Assert.Equal(rules.Count, rulesCopy.Count);
             for (int i = 0; i < rules.Count; i++)
             {
                 Assert.NotSame(rules[i], rulesCopy[i]);
-                var originalType = rules[i].GetType();
-                var copiedType = rulesCopy[i].GetType();
+                Type originalType = rules[i].GetType();
+                Type copiedType = rulesCopy[i].GetType();
                 Assert.Equal(originalType, copiedType);
             }
             var coord = new Coordinate(0, 1);
-            var val = 4;
+            int val = 4;
             Assert.True(ruleKeeperCopy.TrySet(coord, val));
             Assert.Equal(new BitVector(0b11000), possibleValues[new Coordinate(1, 1)]);
             Assert.Equal(new BitVector(0b01000), possibleValuesCopy[new Coordinate(1, 1)]);
@@ -116,7 +115,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             Assert.True(ruleKeeper.TrySet(coord, val));
             puzzle[coord] = val;
             Assert.Equal(new BitVector(0b10000), possibleValues[new Coordinate(0, 1)]);
@@ -142,12 +141,12 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
-            var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
+            IDictionary<Coordinate, BitVector> initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
             var coord = new Coordinate(1, 0);
-            var val = 4;
+            int val = 4;
             Assert.False(ruleKeeper.TrySet(coord, val));
 
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 Assert.Equal(initialPossibleValues[c], possibleValues[in c]);
             }
@@ -170,12 +169,12 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
-            var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
+            IDictionary<Coordinate, BitVector> initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
             var coord = new Coordinate(1, 1);
-            var val = 2;
+            int val = 2;
             Assert.False(ruleKeeper.TrySet(coord, val));
 
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 Assert.Equal(initialPossibleValues[c], possibleValues[in c]);
             }
@@ -198,16 +197,16 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true)
                 };
             var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, rules);
-            var initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
+            IDictionary<Coordinate, BitVector> initialPossibleValues = _RetrieveAllUnsetPossibleValues(puzzle, possibleValues);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             Assert.True(ruleKeeper.TrySet(in coord, val));
             puzzle[in coord] = val;
 
             puzzle[in coord] = null;
             ruleKeeper.Unset(in coord, val);
 
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 Assert.Equal(initialPossibleValues[c], possibleValues[in c]);
             }
@@ -217,7 +216,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             Puzzle puzzle, PossibleValues possibleValues)
         {
             var unsetPossibleValues = new Dictionary<Coordinate, BitVector>();
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 unsetPossibleValues[c] = possibleValues[in c];
             }

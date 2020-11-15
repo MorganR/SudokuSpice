@@ -41,12 +41,13 @@ namespace SudokuSpice.ConstraintBased
         /// </exception>
         public void Solve(TPuzzle puzzle)
         {
-            if (!_AreValuesUnique(puzzle.AllPossibleValues)) {
+            if (!_AreValuesUnique(puzzle.AllPossibleValues))
+            {
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
             var matrix = new ExactCoverMatrix<TPuzzle>(puzzle);
-            foreach (var constraint in _constraints)
+            foreach (IConstraint<TPuzzle>? constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
             }
@@ -64,7 +65,7 @@ namespace SudokuSpice.ConstraintBased
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
             var matrix = new ExactCoverMatrix<TPuzzle>(puzzle);
-            foreach (var constraint in _constraints)
+            foreach (IConstraint<TPuzzle>? constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
             }
@@ -83,7 +84,7 @@ namespace SudokuSpice.ConstraintBased
             }
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
             var matrix = new ExactCoverMatrix<TPuzzle>(puzzleCopy);
-            foreach (var constraint in _constraints)
+            foreach (IConstraint<TPuzzle>? constraint in _constraints)
             {
                 constraint.Constrain(puzzleCopy, matrix);
             }
@@ -111,8 +112,8 @@ namespace SudokuSpice.ConstraintBased
             {
                 return true;
             }
-            (var c, var possibleValues) = tracker.GetBestGuess();
-            foreach (var possibleValue in possibleValues)
+            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
+            foreach (int possibleValue in possibleValues)
             {
                 if (tracker.TrySet(in c, possibleValue))
                 {
@@ -132,7 +133,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 return true;
             }
-            (var c, var possibleValues) = tracker.GetBestGuess();
+            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
             var possibleValuesList = new List<int>(possibleValues);
             while (possibleValuesList.Count > 0)
             {
@@ -145,7 +146,7 @@ namespace SudokuSpice.ConstraintBased
                     }
                     tracker.UnsetLast();
                 }
-                possibleValuesList.Remove(possibleValue);
+                _ = possibleValuesList.Remove(possibleValue);
             }
             return false;
         }
@@ -156,7 +157,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 return new SolveStats() { NumSolutionsFound = 1 };
             }
-            (var c, var possibleValues) = tracker.GetBestGuess();
+            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
             if (possibleValues.Length == 1)
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
@@ -174,12 +175,12 @@ namespace SudokuSpice.ConstraintBased
             ConstraintBasedTracker<TPuzzle> tracker)
         {
             var solveStats = new SolveStats();
-            for(int i = 0; i < valuesToGuess.Length - 1; i++)
+            for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
-                var trackerCopy = tracker.CopyForContinuation();
+                ConstraintBasedTracker<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
                 if (trackerCopy.TrySet(in guessCoordinate, valuesToGuess[i]))
                 {
-                    var stats = _TryAllSolutions(trackerCopy);
+                    SolveStats stats = _TryAllSolutions(trackerCopy);
                     solveStats.NumSolutionsFound += stats.NumSolutionsFound;
                     solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
                     solveStats.NumTotalGuesses += stats.NumTotalGuesses;
@@ -187,7 +188,7 @@ namespace SudokuSpice.ConstraintBased
             }
             if (tracker.TrySet(in guessCoordinate, valuesToGuess[^1]))
             {
-                var stats = _TryAllSolutions(tracker);
+                SolveStats stats = _TryAllSolutions(tracker);
                 solveStats.NumSolutionsFound += stats.NumSolutionsFound;
                 solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
                 solveStats.NumTotalGuesses += stats.NumTotalGuesses;

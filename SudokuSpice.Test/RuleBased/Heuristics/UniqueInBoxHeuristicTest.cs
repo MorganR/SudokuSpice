@@ -53,13 +53,13 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
 
             var puzzleCopy = new Puzzle(puzzle);
             var possibleValuesCopy = new PossibleValues(possibleValues);
-            var ruleKeeperCopy = (StandardRuleKeeper) ruleKeeper.CopyWithNewReferences(
+            var ruleKeeperCopy = (StandardRuleKeeper)ruleKeeper.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy);
-            var heuristicCopy = heuristic.CopyWithNewReferences(
+            ISudokuHeuristic heuristicCopy = heuristic.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy, ruleKeeperCopy.GetRules());
 
             var coord = new Coordinate(1, 1);
-            var originalPossibleValues = possibleValues[coord];
+            BitVector originalPossibleValues = possibleValues[coord];
             Assert.Equal(originalPossibleValues, possibleValuesCopy[coord]);
             heuristicCopy.UpdateAll();
             Assert.Equal(originalPossibleValues, possibleValues[coord]);

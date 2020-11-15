@@ -23,9 +23,9 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
             Assert.Equal(new BitVector(0b10100), possibleValues[new Coordinate(1, 0)]); // Pre-modified
             Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(2, 1)]); // Pre-modified
             Assert.Equal(new BitVector(0b01100), possibleValues[new Coordinate(2, 2)]); // Pre-modified
-            
+
             heuristic.UpdateAll();
-            
+
             Assert.Equal(new BitVector(0b10000), possibleValues[new Coordinate(0, 1)]); // Modified
             Assert.Equal(new BitVector(0b01000), possibleValues[new Coordinate(0, 2)]);
             Assert.Equal(new BitVector(0b00100), possibleValues[new Coordinate(1, 0)]); // Modified
@@ -55,15 +55,15 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
             var possibleValuesCopy = new PossibleValues(possibleValues);
             var ruleKeeperCopy = (StandardRuleKeeper)ruleKeeper.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy);
-            var heuristicCopy = heuristic.CopyWithNewReferences(
+            ISudokuHeuristic heuristicCopy = heuristic.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy, ruleKeeperCopy.GetRules());
 
             var coord = new Coordinate(0, 1);
-            var originalPossibleValues = possibleValues[coord];
+            BitVector originalPossibleValues = possibleValues[coord];
             Assert.Equal(originalPossibleValues, possibleValuesCopy[coord]);
             heuristicCopy.UpdateAll();
             Assert.Equal(originalPossibleValues, possibleValues[coord]);
             Assert.NotEqual(originalPossibleValues, possibleValuesCopy[coord]);
         }
-}
+    }
 }

@@ -2,9 +2,9 @@
 
 namespace SudokuSpice.Benchmark
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             BenchmarkSwitcher.FromTypes(new[] {
                 typeof(PuzzleBenchmarker),

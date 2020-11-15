@@ -1,6 +1,6 @@
 namespace SudokuSpice.Benchmark
 {
-    class SudokuSample
+    internal class SudokuSample
     {
         public int NumSet { get; set; }
         public int NumSquaresToGuess { get; set; }

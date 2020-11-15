@@ -38,8 +38,7 @@ namespace SudokuSpice.ConstraintBased
             if (FirstLink is null)
             {
                 FirstLink = link;
-            }
-            else
+            } else
             {
                 link.Right = FirstLink;
                 link.Left = link.Right.Left;
@@ -100,7 +99,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(FirstLink != null, $"Called {nameof(GetMinConstraintCount)} on PossibleSquare at {Square.Coordinate} with value {ValueIndex} while FirstLink was null.");
             int minCount = FirstLink.Constraint.Count;
-            var link = FirstLink.Right;
+            SquareLink<TPuzzle>? link = FirstLink.Right;
             while (link != FirstLink)
             {
                 if (link.Constraint.Count < minCount)
@@ -115,7 +114,7 @@ namespace SudokuSpice.ConstraintBased
         private bool _TryUpdateLinks(Func<SquareLink<TPuzzle>, bool> tryFn, Action<SquareLink<TPuzzle>> undoFn)
         {
             Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} called {nameof(_TryUpdateLinks)} while FirstLink was null.");
-            var link = FirstLink;
+            SquareLink<TPuzzle>? link = FirstLink;
             do
             {
                 if (!tryFn(link))
@@ -135,8 +134,8 @@ namespace SudokuSpice.ConstraintBased
         private void _RevertLinks(Action<SquareLink<TPuzzle>> fn)
         {
             Debug.Assert(FirstLink != null, $"PossibleSquare at {Square.Coordinate} with value {ValueIndex} called {nameof(_RevertLinks)} while FirstLink was null.");
-            var lastLink = FirstLink.Left;
-            var link = lastLink;
+            SquareLink<TPuzzle>? lastLink = FirstLink.Left;
+            SquareLink<TPuzzle>? link = lastLink;
             do
             {
                 fn(link);

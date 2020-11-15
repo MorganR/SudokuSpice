@@ -20,9 +20,9 @@ namespace SudokuSpice.RuleBased
             _possibleValues = possibleValues;
             _coordTracker = new CoordinateTracker(puzzle.Size);
             _rules = rules;
-            foreach (var c in _puzzle.GetUnsetCoords())
+            foreach (Coordinate c in _puzzle.GetUnsetCoords())
             {
-                foreach (var r in _rules)
+                foreach (ISudokuRule? r in _rules)
                 {
                     _possibleValues.Intersect(in c, r.GetPossibleValues(in c));
                 }
@@ -40,7 +40,7 @@ namespace SudokuSpice.RuleBased
             _possibleValues = possibleValues;
             _coordTracker = new CoordinateTracker(puzzle.Size);
             var rules = new List<ISudokuRule>(existing._rules.Count);
-            foreach (var rule in existing._rules)
+            foreach (ISudokuRule? rule in existing._rules)
             {
                 rules.Add(rule.CopyWithNewReference(puzzle));
             }
@@ -48,16 +48,10 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <inheritdoc/>
-        public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
-        {
-            return new DynamicRuleKeeper(this, puzzle, possibleValues);
-        }
+        public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues) => new DynamicRuleKeeper(this, puzzle, possibleValues);
 
         /// <inheritdoc/>
-        public IReadOnlyList<ISudokuRule> GetRules()
-        {
-            return _rules;
-        }
+        public IReadOnlyList<ISudokuRule> GetRules() => _rules;
 
         /// <inheritdoc/>
         public bool TrySet(in Coordinate c, int value)
@@ -67,21 +61,21 @@ namespace SudokuSpice.RuleBased
                 return false;
             }
             _coordTracker.UntrackAll();
-            foreach (var r in _rules)
+            foreach (ISudokuRule? r in _rules)
             {
                 r.Update(in c, value, _coordTracker);
             }
-            var trackedCoords = _coordTracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = _coordTracker.GetTrackedCoords();
             for (int i = 0; i < trackedCoords.Length; i++)
             {
                 Coordinate affectedCoord = trackedCoords[i];
-                foreach (var r in _rules)
+                foreach (ISudokuRule? r in _rules)
                 {
                     _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }
                 if (_possibleValues[in affectedCoord].IsEmpty())
                 {
-                    foreach (var r in _rules)
+                    foreach (ISudokuRule? r in _rules)
                     {
                         r.Revert(in c, value);
                     }
@@ -89,7 +83,7 @@ namespace SudokuSpice.RuleBased
                     {
                         affectedCoord = trackedCoords[i];
                         _possibleValues.Reset(in affectedCoord);
-                        foreach (var r in _rules)
+                        foreach (ISudokuRule? r in _rules)
                         {
                             _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                         }
@@ -104,14 +98,14 @@ namespace SudokuSpice.RuleBased
         public void Unset(in Coordinate c, int value)
         {
             _coordTracker.UntrackAll();
-            foreach (var r in _rules)
+            foreach (ISudokuRule? r in _rules)
             {
                 r.Revert(in c, value, _coordTracker);
             }
-            foreach (var affectedCoord in _coordTracker.GetTrackedCoords())
+            foreach (Coordinate affectedCoord in _coordTracker.GetTrackedCoords())
             {
                 _possibleValues.Reset(in affectedCoord);
-                foreach (var r in _rules)
+                foreach (ISudokuRule? r in _rules)
                 {
                     _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }

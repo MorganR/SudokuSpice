@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using SudokuSpice.ConstraintBased;
 using SudokuSpice.ConstraintBased.Constraints;
 using SudokuSpice.RuleBased;
+using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
@@ -44,7 +44,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(SampleCollections))]
         public bool SudokuSharp(PuzzleSampleCollection sampleCollection)
         {
-            var sample = sampleCollection.Random();
+            PuzzleSample sample = sampleCollection.Random();
             var board = new SudokuSharp.Board();
             for (int row = 0; row < 9; row++)
             {
@@ -64,10 +64,8 @@ namespace SudokuSpice.Benchmark
 
         [Benchmark]
         [ArgumentsSource(nameof(SampleCollections))]
-        public bool SudokuSolverLite(PuzzleSampleCollection sampleCollection)
-        {
+        public bool SudokuSolverLite(PuzzleSampleCollection sampleCollection) =>
             // Must clone the input, since this method solves the puzzle in-place.
-            return SudokuSolver.SudokuSolver.Solve((int[,])sampleCollection.Random().Matrix.Clone());
-        }
+            SudokuSolver.SudokuSolver.Solve((int[,])sampleCollection.Random().Matrix.Clone());
     }
 }

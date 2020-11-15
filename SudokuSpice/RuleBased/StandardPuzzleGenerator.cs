@@ -6,7 +6,6 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Generates standard Sudoku puzzles.
     /// </summary>
-    [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>
     {
         private readonly int _size;
@@ -25,8 +24,7 @@ namespace SudokuSpice.RuleBased
             : base(() => new Puzzle(size), puzzle => new Solver(puzzle))
         {
             _size = size;
-            _boxSize = size switch
-            {
+            _boxSize = size switch {
                 1 => 1,
                 4 => 2,
                 9 => 3,

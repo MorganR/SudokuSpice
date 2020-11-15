@@ -29,11 +29,11 @@ namespace SudokuSpice.ConstraintBased.Test
                     new BoxUniquenessConstraint<Puzzle>()
                 });
 
-            var puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
+            Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
             var solver = new Solver(puzzle);
-            var stats = solver.GetStatsForAllSolutions();
+            SolveStats stats = solver.GetStatsForAllSolutions();
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 

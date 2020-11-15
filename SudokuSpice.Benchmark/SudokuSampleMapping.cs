@@ -2,7 +2,7 @@ using TinyCsvParser.Mapping;
 
 namespace SudokuSpice.Benchmark
 {
-    class SudokuSampleMapping : CsvMapping<SudokuSample>
+    internal class SudokuSampleMapping : CsvMapping<SudokuSample>
     {
         public SudokuSampleMapping() : base()
         {

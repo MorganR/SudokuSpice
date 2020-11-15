@@ -50,10 +50,7 @@ namespace SudokuSpice.Test
         [InlineData(0)]
         [InlineData(3)]
         [InlineData(36)]
-        public void Constructor_WithInValidSize_Throws(int size)
-        {
-            Assert.Throws<ArgumentException>(() => new Puzzle(size));
-        }
+        public void Constructor_WithInValidSize_Throws(int size) => Assert.Throws<ArgumentException>(() => new Puzzle(size));
 
         [Fact]
         public void Size_ReturnsPuzzleSize()
@@ -127,7 +124,7 @@ namespace SudokuSpice.Test
                 {null, 1, null, null},
                 {3, null, 4, null}
             });
-            var initialNumUnset = puzzle.NumEmptySquares;
+            int initialNumUnset = puzzle.NumEmptySquares;
             puzzle[0, 1] = 3;
             Assert.Equal(initialNumUnset - 1, puzzle.NumEmptySquares);
         }
@@ -141,7 +138,7 @@ namespace SudokuSpice.Test
                 {null, 1, null, null},
                 {3, null, 4, null}
             });
-            var initialNumUnset = puzzle.NumEmptySquares;
+            int initialNumUnset = puzzle.NumEmptySquares;
             puzzle[0, 1] = 3;
             puzzle[0, 1] = null;
             Assert.Null(puzzle[0, 1]);
@@ -194,8 +191,8 @@ namespace SudokuSpice.Test
                 {null, 1, null, null},
                 {3, null, 4, null}
             });
-            var allUnset = puzzle.GetUnsetCoords().ToArray();
-            foreach (var unset in allUnset)
+            Coordinate[] allUnset = puzzle.GetUnsetCoords().ToArray();
+            foreach (Coordinate unset in allUnset)
             {
                 Assert.Null(puzzle[unset]);
             }
@@ -211,9 +208,9 @@ namespace SudokuSpice.Test
                 {null, 1, null, null},
                 {3, null, 4, null}
             });
-            var box = 1;
+            int box = 1;
             var allUnset = new List<Coordinate>(puzzle.YieldUnsetCoordsForBox(box));
-            foreach (var unset in allUnset)
+            foreach (Coordinate unset in allUnset)
             {
                 Assert.Equal(box, puzzle.GetBoxIndex(unset.Row, unset.Column));
                 Assert.Null(puzzle[unset]);

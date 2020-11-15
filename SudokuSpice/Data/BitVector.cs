@@ -13,7 +13,7 @@ namespace SudokuSpice
 
         private static uint[] _CreateMasks()
         {
-            var masks = new uint[32];
+            uint[]? masks = new uint[32];
             masks[0] = 1;
             for (int i = 1; i < 32; i++)
             {
@@ -37,8 +37,7 @@ namespace SudokuSpice
         /// </remarks>
         public readonly int Count
         {
-            get
-            {
+            get {
                 if (Popcnt.IsSupported)
                 {
                     return (int)Popcnt.PopCount(Data);
@@ -87,10 +86,7 @@ namespace SudokuSpice
         /// <param name="a">One bit vector.</param>
         /// <param name="b">The other bit vector.</param>
         /// <returns> A new <c>BitVector</c> that is the intersect of the given vectors.</returns>
-        public static BitVector FindIntersect(BitVector a, BitVector b)
-        {
-            return new BitVector(a.Data & b.Data);
-        }
+        public static BitVector FindIntersect(BitVector a, BitVector b) => new BitVector(a.Data & b.Data);
 
         /// <summary>
         /// Creates a bit vector that is the union of the given vectors.
@@ -98,47 +94,32 @@ namespace SudokuSpice
         /// <param name="a">One bit vector.</param>
         /// <param name="b">The other bit vector.</param>
         /// <returns> A new <c>BitVector</c> that is the union of the given vectors.</returns>
-        public static BitVector FindUnion(BitVector a, BitVector b)
-        {
-            return new BitVector(a.Data | b.Data);
-        }
+        public static BitVector FindUnion(BitVector a, BitVector b) => new BitVector(a.Data | b.Data);
 
         /// <summary>
         /// Unsets the given bit index in the given vector. Leaves other bits unchanged.
         /// </summary>
         /// <param name="bit">The zero-based index of the bit to unset.</param>
-        public void UnsetBit(int bit)
-        {
-            Data &= ~_masks[bit];
-        }
+        public void UnsetBit(int bit) => Data &= ~_masks[bit];
 
         /// <summary>
         /// Sets the given bit index in the given vector. Leaves other bits unchanged.
         /// </summary>
         /// <param name="bit">The zero-based index of the bit to set.</param>
-        public void SetBit(int bit)
-        {
-            Data |= _masks[bit];
-        }
+        public void SetBit(int bit) => Data |= _masks[bit];
 
         /// <summary>
         /// Checks if this vector is empty (i.e. no bits are set).
         /// </summary>
         /// <returns>True if empty.</returns>
-        public readonly bool IsEmpty()
-        {
-            return Data == 0;
-        }
+        public readonly bool IsEmpty() => Data == 0;
 
         /// <summary>
         /// Checks if the bit is true at the given index.
         /// </summary>
         /// <param name="bit">The zero-based index of the bit to check.</param>
         /// <returns>True if set.</returns>
-        public readonly bool IsBitSet(int bit)
-        {
-            return Convert.ToBoolean(Data & _masks[bit]);
-        }
+        public readonly bool IsBitSet(int bit) => Convert.ToBoolean(Data & _masks[bit]);
 
         /// <summary>
         /// Gets a list of the bits set in this bit vector.
@@ -152,7 +133,7 @@ namespace SudokuSpice
         {
             if (Popcnt.IsSupported)
             {
-                var numSetBits = Count;
+                int numSetBits = Count;
                 var setBits = new List<int>(numSetBits);
                 for (int i = 0; setBits.Count < numSetBits; i++)
                 {

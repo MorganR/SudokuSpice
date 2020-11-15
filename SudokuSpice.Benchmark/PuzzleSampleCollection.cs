@@ -38,7 +38,7 @@ namespace SudokuSpice.Benchmark
 
         public PuzzleSample Next()
         {
-            var idx = _idx;
+            int idx = _idx;
             if (++_idx == _samples.Count)
             {
                 _idx = 0;
@@ -46,10 +46,7 @@ namespace SudokuSpice.Benchmark
             return _samples[idx];
         }
 
-        public PuzzleSample Random()
-        {
-            return _samples[_random.Next(0, _samples.Count)];
-        }
+        public PuzzleSample Random() => _samples[_random.Next(0, _samples.Count)];
 
         public override string ToString() => _name;
     }

@@ -1,17 +1,17 @@
 ﻿namespace SudokuSpice.Benchmark
 {
-    class CsvUtils
+    internal class CsvUtils
     {
         public static int?[,] PuzzleStringToMatrix(string puzzle)
         {
-            var matrix = new int?[9, 9];
+            int?[,] matrix = new int?[9, 9];
             int idx = -1;
-            for (var row = 0; row < 9; row++)
+            for (int row = 0; row < 9; row++)
             {
-                for (var col = 0; col < 9; col++)
+                for (int col = 0; col < 9; col++)
                 {
                     ++idx;
-                    var c = puzzle[idx];
+                    char c = puzzle[idx];
                     if (c == '0')
                     {
                         continue;

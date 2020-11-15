@@ -74,8 +74,8 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <inheritdoc/>
         public void UndoLastUpdate()
         {
-            var overwrittenPossibles = _previousPossiblesStack.Pop();
-            foreach (var coordPossiblesPair in overwrittenPossibles)
+            IReadOnlyDictionary<Coordinate, BitVector>? overwrittenPossibles = _previousPossiblesStack.Pop();
+            foreach (KeyValuePair<Coordinate, BitVector> coordPossiblesPair in overwrittenPossibles)
             {
                 _possibleValues[coordPossiblesPair.Key] = coordPossiblesPair.Value;
             }
@@ -83,7 +83,7 @@ namespace SudokuSpice.RuleBased.Heuristics
 
         private void _UpdateRow(int row, IDictionary<Coordinate, BitVector> previousPossibles)
         {
-            foreach (var possible in _possiblesToCheckInRow[row].GetSetBits())
+            foreach (int possible in _possiblesToCheckInRow[row].GetSetBits())
             {
                 bool isUniqueCoordForPossible = false;
                 int uniqueCol = -1;

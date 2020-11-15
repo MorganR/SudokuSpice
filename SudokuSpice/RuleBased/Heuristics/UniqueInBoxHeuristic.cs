@@ -56,14 +56,14 @@ namespace SudokuSpice.RuleBased.Heuristics
         {
             if (puzzle is IReadOnlyBoxPuzzle boxPuzzle)
             {
-                var missingValuesTracker = rules.FirstOrDefault(r => r is IMissingBoxValuesTracker);
+                ISudokuRule? missingValuesTracker = rules.FirstOrDefault(r => r is IMissingBoxValuesTracker);
                 if (missingValuesTracker is null)
                 {
                     throw new ArgumentException(
                         $"{nameof(rules)} must contain an {nameof(IMissingBoxValuesTracker)} to copy a {nameof(BoxUniquenessRule)}.");
                 }
                 return new UniqueInBoxHeuristic(
-                    this, boxPuzzle, possibleValues,(IMissingBoxValuesTracker)missingValuesTracker);
+                    this, boxPuzzle, possibleValues, (IMissingBoxValuesTracker)missingValuesTracker);
             }
             throw new ArgumentException(
                 $"An {nameof(IReadOnlyBoxPuzzle)} is required to copy {nameof(BoxUniquenessRule)}.");
@@ -85,8 +85,8 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <inheritdoc/>
         public void UndoLastUpdate()
         {
-            var overwrittenPossibles = _previousPossiblesStack.Pop();
-            foreach (var coordPossiblesPair in overwrittenPossibles)
+            IReadOnlyDictionary<Coordinate, BitVector>? overwrittenPossibles = _previousPossiblesStack.Pop();
+            foreach (KeyValuePair<Coordinate, BitVector> coordPossiblesPair in overwrittenPossibles)
             {
                 _possibleValues[coordPossiblesPair.Key] = coordPossiblesPair.Value;
             }
@@ -94,10 +94,10 @@ namespace SudokuSpice.RuleBased.Heuristics
 
         private void _UpdateBox(int box, IDictionary<Coordinate, BitVector> previousPossibles)
         {
-            foreach (var possible in _possiblesToCheckInBox[box].GetSetBits())
+            foreach (int possible in _possiblesToCheckInBox[box].GetSetBits())
             {
                 Coordinate? uniqueCoord = null;
-                foreach (var c in _puzzle.YieldUnsetCoordsForBox(box))
+                foreach (Coordinate c in _puzzle.YieldUnsetCoordsForBox(box))
                 {
                     if (_possibleValues[in c].IsBitSet(possible))
                     {

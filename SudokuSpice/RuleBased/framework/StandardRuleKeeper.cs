@@ -33,12 +33,11 @@ namespace SudokuSpice.RuleBased
                     if (col == 0)
                     {
                         boxIdx = (row / puzzle.BoxSize) * puzzle.BoxSize;
-                    }
-                    else if (col % puzzle.BoxSize == 0)
+                    } else if (col % puzzle.BoxSize == 0)
                     {
                         boxIdx++;
                     }
-                    var val = puzzle[row, col];
+                    int? val = puzzle[row, col];
                     if (!val.HasValue)
                     {
                         continue;
@@ -60,7 +59,7 @@ namespace SudokuSpice.RuleBased
                     _unsetBoxValues[boxIdx].UnsetBit(val.Value);
                 }
             }
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 _possibleValues.Intersect(in c, _GetPossibleValues(in c));
             }
@@ -142,7 +141,7 @@ namespace SudokuSpice.RuleBased
                 }
                 _possibleValues[in workingCoord] = updatedPossibles;
             }
-            foreach (var inBoxCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
+            foreach (Coordinate inBoxCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
             {
                 if (inBoxCoord.Row == c.Row || inBoxCoord.Column == c.Column)
                 {
@@ -167,10 +166,7 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <inheritdoc/>
-        public IReadOnlyList<ISudokuRule> GetRules()
-        {
-            return new List<ISudokuRule>() { this };
-        }
+        public IReadOnlyList<ISudokuRule> GetRules() => new List<ISudokuRule>() { this };
 
         /// <inheritdoc/>
         public BitVector GetMissingValuesForRow(int row) => _unsetRowValues[row];
@@ -206,7 +202,7 @@ namespace SudokuSpice.RuleBased
         private void _UnsetRowValues(in Coordinate c, int numToUnset)
         {
             Coordinate workingCoord;
-            for (var col = numToUnset - 1; col >= 0; col--)
+            for (int col = numToUnset - 1; col >= 0; col--)
             {
                 workingCoord = new Coordinate(c.Row, col);
                 if (col == c.Column || _puzzle[in workingCoord].HasValue)
@@ -220,7 +216,7 @@ namespace SudokuSpice.RuleBased
         private void _UnsetColumnValues(in Coordinate c, int numToUnset)
         {
             Coordinate workingCoord;
-            for (var row = numToUnset - 1; row >= 0; row--)
+            for (int row = numToUnset - 1; row >= 0; row--)
             {
                 workingCoord = new Coordinate(row, c.Column);
                 if (row == c.Row || _puzzle[in workingCoord].HasValue)
@@ -233,7 +229,7 @@ namespace SudokuSpice.RuleBased
 
         private void _UnsetBoxValues(in Coordinate c, int boxIdx)
         {
-            foreach (var workingCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
+            foreach (Coordinate workingCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
             {
                 if (workingCoord.Row == c.Row || workingCoord.Column == c.Column)
                 {
@@ -247,45 +243,30 @@ namespace SudokuSpice.RuleBased
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public BitVector GetPossibleValues(in Coordinate c)
-        {
-            throw new NotImplementedException();
-        }
+        public BitVector GetPossibleValues(in Coordinate c) => throw new NotImplementedException();
 
         /// <summary>
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public void Revert(in Coordinate c, int val)
-        {
-            throw new NotImplementedException();
-        }
+        public void Revert(in Coordinate c, int val) => throw new NotImplementedException();
 
         /// <summary>
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
-        {
-            throw new NotImplementedException();
-        }
+        public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker) => throw new NotImplementedException();
 
         /// <summary>
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
-        {
-            throw new NotImplementedException();
-        }
+        public void Update(in Coordinate c, int val, CoordinateTracker coordTracker) => throw new NotImplementedException();
 
         /// <summary>
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
-        {
-            throw new NotImplementedException();
-        }
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle) => throw new NotImplementedException();
     }
 }

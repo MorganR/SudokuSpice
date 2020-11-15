@@ -139,10 +139,10 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         public void UnsetLast()
         {
-            var lastCoord = _setCoords.Pop();
+            Coordinate lastCoord = _setCoords.Pop();
 #pragma warning disable CS8629 // Nullable value type may be null.
             // If this is null, then we want to throw because this method is being misused.
-            var value = _puzzle[in lastCoord].Value;
+            int value = _puzzle[in lastCoord].Value;
 #pragma warning restore CS8629 // Nullable value type may be null.
             _puzzle[in lastCoord] = null;
             if (_coordsThatUsedHeuristics.Count > 0
@@ -160,8 +160,8 @@ namespace SudokuSpice.RuleBased
         private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()
         {
             int minNumPossibles = _puzzle.Size + 1;
-            Coordinate bestCoord = new Coordinate(0, 0);
-            foreach (var c in _puzzle.GetUnsetCoords())
+            var bestCoord = new Coordinate(0, 0);
+            foreach (Coordinate c in _puzzle.GetUnsetCoords())
             {
                 int numPossibles = _possibleValues[in c].Count;
                 if (numPossibles == 1)

@@ -105,8 +105,8 @@ namespace SudokuSpice.RuleBased
             while (setCoordinatesToTry.NumTracked > 0)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
-                var previousValue = puzzle[in randomCoord];
+                Coordinate randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
+                int? previousValue = puzzle[in randomCoord];
                 setCoordinatesToTry.Untrack(in randomCoord);
                 if (!_TryUnsetSquareAt(randomCoord, puzzle))
                 {
@@ -124,14 +124,11 @@ namespace SudokuSpice.RuleBased
             return false;
         }
 
-        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker)
-        {
-            return tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
-        }
+        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
 
         private void _FillPuzzle(TPuzzle puzzle)
         {
-            var solver = _solverFactory.Invoke(puzzle);
+            Solver? solver = _solverFactory.Invoke(puzzle);
             solver.SolveRandomly();
         }
 
@@ -143,11 +140,11 @@ namespace SudokuSpice.RuleBased
                 puzzle[in c] = null;
                 return true;
             }
-            var previousValue = puzzle[in c];
+            int? previousValue = puzzle[in c];
             puzzle[in c] = null;
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
-            var solver = _solverFactory.Invoke(puzzleCopy);
-            var solveStats = solver.GetStatsForAllSolutions();
+            Solver? solver = _solverFactory.Invoke(puzzleCopy);
+            SolveStats solveStats = solver.GetStatsForAllSolutions();
             if (solveStats.NumSolutionsFound == 1)
             {
                 return true;

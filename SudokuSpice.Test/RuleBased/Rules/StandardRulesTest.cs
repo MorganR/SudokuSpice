@@ -1,5 +1,4 @@
-﻿using SudokuSpice;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -31,7 +30,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Constructor_WithDuplicateValueInRow_Throws()
         {
-            var ex = Assert.Throws<ArgumentException>(() =>
+            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
                 var rule = new StandardRules(
                     new Puzzle(new int?[,] {
@@ -48,7 +47,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Constructor_WithDuplicateValueInColumn_Throws()
         {
-            var ex = Assert.Throws<ArgumentException>(() =>
+            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
                 var rule = new StandardRules(
                     new Puzzle(
@@ -66,7 +65,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Constructor_WithDuplicateValueInBox_Throws()
         {
-            var ex = Assert.Throws<ArgumentException>(() =>
+            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
                 var rule = new StandardRules(
                     new Puzzle(
@@ -93,7 +92,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
 
             var puzzleCopy = new Puzzle(puzzle);
-            var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
+            ISudokuRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 3;
             var coord = new Coordinate(1, 1);
             ruleCopy.Update(coord, val, new CoordinateTracker(puzzle.Size));
@@ -101,7 +100,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
 
             puzzleCopy[coord] = val;
             var secondCoord = new Coordinate(0, 1);
-            var secondVal = 4;
+            int secondVal = 4;
             var coordTracker = new CoordinateTracker(puzzle.Size);
             ruleCopy.Update(secondCoord, secondVal, coordTracker);
             var originalCoordTracker = new CoordinateTracker(puzzle.Size);
@@ -126,7 +125,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             rule.Update(coord, val, coordTracker);
             Assert.Equal(
                 new HashSet<Coordinate> {
@@ -149,10 +148,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {           3,            2,            4,            1}
             });
             var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
-            var initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
+            BitVector[,] initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             rule.Update(coord, val, updatedCoordTracker);
 
             var revertedCoordTracker = new CoordinateTracker(puzzle.Size);

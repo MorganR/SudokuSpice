@@ -32,7 +32,7 @@ namespace SudokuSpice.RuleBased.Rules
                     {
                         boxIdx++;
                     }
-                    var val = puzzle[row, col];
+                    int? val = puzzle[row, col];
                     if (!val.HasValue)
                     {
                         continue;
@@ -96,7 +96,7 @@ namespace SudokuSpice.RuleBased.Rules
 
         private void _AddUnsetFromBox(in Coordinate c, int box, CoordinateTracker coordTracker)
         {
-            foreach (var unsetCoord in _puzzle.YieldUnsetCoordsForBox(box))
+            foreach (Coordinate unsetCoord in _puzzle.YieldUnsetCoordsForBox(box))
             {
                 if ((_skipMatchingRowAndCol &&
                     (c.Column == unsetCoord.Column || c.Row == unsetCoord.Row))

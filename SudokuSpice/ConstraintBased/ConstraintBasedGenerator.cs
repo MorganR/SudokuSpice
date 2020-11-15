@@ -107,8 +107,8 @@ namespace SudokuSpice.ConstraintBased
             while (setCoordinatesToTry.NumTracked > 0)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
-                var previousValue = puzzle[in randomCoord];
+                Coordinate randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
+                int? previousValue = puzzle[in randomCoord];
                 setCoordinatesToTry.Untrack(in randomCoord);
                 if (!_TryUnsetSquareAt(randomCoord, puzzle))
                 {
@@ -126,10 +126,7 @@ namespace SudokuSpice.ConstraintBased
             return false;
         }
 
-        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker)
-        {
-            return tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
-        }
+        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
 
         private void _FillPuzzle(TPuzzle puzzle)
         {
@@ -145,10 +142,10 @@ namespace SudokuSpice.ConstraintBased
                 puzzle[in c] = null;
                 return true;
             }
-            var previousValue = puzzle[in c];
+            int? previousValue = puzzle[in c];
             puzzle[in c] = null;
             var solver = new ConstraintBasedSolver<TPuzzle>(_constraints);
-            var solveStats = solver.GetStatsForAllSolutions(puzzle);
+            SolveStats solveStats = solver.GetStatsForAllSolutions(puzzle);
             if (solveStats.NumSolutionsFound == 1)
             {
                 return true;
@@ -163,7 +160,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 for (int col = 0; col < puzzleSize; col++)
                 {
-                    tracker.AddOrTrackIfUntracked(new Coordinate(row, col));
+                    _ = tracker.AddOrTrackIfUntracked(new Coordinate(row, col));
                 }
             }
         }

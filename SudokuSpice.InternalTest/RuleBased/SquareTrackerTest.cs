@@ -48,7 +48,7 @@ namespace SudokuSpice.RuleBased.Test
             var tracker = new SquareTracker(puzzle);
 
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             Assert.True(tracker.TrySet(in coord, val));
             Assert.Equal(puzzle[in coord], val);
         }
@@ -65,8 +65,8 @@ namespace SudokuSpice.RuleBased.Test
             var tracker = new SquareTracker(puzzle);
 
             var coord = new Coordinate(0, 2);
-            var val = 4;
-            var expectedPossibleValues = tracker.GetPossibleValues(in coord);
+            int val = 4;
+            List<int> expectedPossibleValues = tracker.GetPossibleValues(in coord);
             Assert.False(tracker.TrySet(in coord, val));
             Assert.False(puzzle[in coord].HasValue);
             Assert.Equal(expectedPossibleValues, tracker.GetPossibleValues(in coord));
@@ -84,8 +84,8 @@ namespace SudokuSpice.RuleBased.Test
             var tracker = new SquareTracker(puzzle);
 
             var coord = new Coordinate(1, 1);
-            var val = 2;
-            var expectedPossibleValues = tracker.GetPossibleValues(in coord);
+            int val = 2;
+            List<int> expectedPossibleValues = tracker.GetPossibleValues(in coord);
             Assert.False(tracker.TrySet(in coord, val));
             Assert.False(puzzle[in coord].HasValue);
             Assert.Equal(expectedPossibleValues, tracker.GetPossibleValues(in coord));
@@ -126,7 +126,7 @@ namespace SudokuSpice.RuleBased.Test
             var tracker = new SquareTracker(puzzle, possibleValues, ruleKeeper, heuristic);
             tracker.TrySet(new Coordinate(0, 1), 4);
 
-            foreach(var coord in puzzle.GetUnsetCoords())
+            foreach (Coordinate coord in puzzle.GetUnsetCoords())
             {
                 Assert.Equal(possibleValues[in coord].GetSetBits(), tracker.GetPossibleValues(in coord));
             }
@@ -149,9 +149,9 @@ namespace SudokuSpice.RuleBased.Test
             tracker.UnsetLast();
 
             Assert.False(puzzle[in coord].HasValue);
-            var unsetCoords = puzzle.GetUnsetCoords();
+            System.ReadOnlySpan<Coordinate> unsetCoords = puzzle.GetUnsetCoords();
             Assert.Equal(expectedPossibles.Count, unsetCoords.Length);
-            foreach (var c in unsetCoords)
+            foreach (Coordinate c in unsetCoords)
             {
                 Assert.Equal(expectedPossibles[c], tracker.GetPossibleValues(in c));
             }
@@ -172,10 +172,10 @@ namespace SudokuSpice.RuleBased.Test
             var trackerCopy = new SquareTracker(tracker);
 
             var coord = new Coordinate(0, 1);
-            var val = 4;
+            int val = 4;
             tracker.TrySet(coord, val);
 
-            foreach (var c in expectedPossibles.Keys)
+            foreach (Coordinate c in expectedPossibles.Keys)
             {
                 Assert.Equal(expectedPossibles[c], trackerCopy.GetPossibleValues(in c));
             }

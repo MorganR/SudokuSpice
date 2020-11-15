@@ -16,10 +16,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
-            var firstColumnConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            var secondColumnConstraint = matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0].FirstLink.Constraint;
-            var thirdColumnConstraint = matrix.GetSquare(new Coordinate(0, 2)).AllPossibleValues[0].FirstLink.Constraint;
-            var fourthColumnConstraint = matrix.GetSquare(new Coordinate(0, 3)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> firstColumnConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> secondColumnConstraint = matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> thirdColumnConstraint = matrix.GetSquare(new Coordinate(0, 2)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> fourthColumnConstraint = matrix.GetSquare(new Coordinate(0, 3)).AllPossibleValues[0].FirstLink.Constraint;
             Assert.NotSame(firstColumnConstraint, secondColumnConstraint);
             Assert.NotSame(firstColumnConstraint, thirdColumnConstraint);
             Assert.NotSame(firstColumnConstraint, fourthColumnConstraint);
@@ -54,7 +54,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             {
                 for (int col = 0; col < size; col++)
                 {
-                    foreach (var possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
+                    foreach (PossibleSquareValue<Puzzle> possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
                     {
                         Assert.NotNull(possibleValue.FirstLink);
                     }

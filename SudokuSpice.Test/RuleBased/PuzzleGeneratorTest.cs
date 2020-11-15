@@ -21,11 +21,11 @@ namespace SudokuSpice.RuleBased.Test
             var generator = new PuzzleGenerator<Puzzle>(
                 () => new Puzzle(size), puzzle => new Solver(puzzle));
 
-            var puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
+            Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
             var solver = new Solver(puzzle);
-            var stats = solver.GetStatsForAllSolutions();
+            SolveStats stats = solver.GetStatsForAllSolutions();
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 

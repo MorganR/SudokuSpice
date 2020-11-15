@@ -12,10 +12,7 @@ namespace SudokuSpice.RuleBased.Test
         [InlineData(30)]
         [InlineData(36)]
         [InlineData(400)]
-        public void Constructor_WithInvalidArgs_Throws(int size)
-        {
-            Assert.Throws<ArgumentException>(() => new StandardPuzzleGenerator(size));
-        }
+        public void Constructor_WithInvalidArgs_Throws(int size) => Assert.Throws<ArgumentException>(() => new StandardPuzzleGenerator(size));
 
         [Theory]
         [InlineData(1, -1)]
@@ -43,12 +40,12 @@ namespace SudokuSpice.RuleBased.Test
         public void Generate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
         {
             var generator = new StandardPuzzleGenerator(size);
-            
-            var puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
+
+            Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
             var solver = new Solver(puzzle);
-            var stats = solver.GetStatsForAllSolutions();
+            SolveStats stats = solver.GetStatsForAllSolutions();
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 

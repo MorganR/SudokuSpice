@@ -11,7 +11,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         private readonly UniqueInRowHeuristic _rowHeuristic;
         private readonly UniqueInColumnHeuristic _columnHeuristic;
         private readonly UniqueInBoxHeuristic _boxHeuristic;
-        private readonly Stack<int> _numHeuristicsRan; 
+        private readonly Stack<int> _numHeuristicsRan;
 
         public StandardHeuristic(IReadOnlyBoxPuzzle puzzle, PossibleValues possibleValues,
             IMissingRowValuesTracker rowRule, IMissingColumnValuesTracker columnRule, IMissingBoxValuesTracker boxRule)
@@ -45,10 +45,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         public ISudokuHeuristic CopyWithNewReferences(
             IReadOnlyPuzzle puzzle,
             PossibleValues possibleValues,
-            IReadOnlyList<ISudokuRule> rules)
-        {
-            return new StandardHeuristic(this, puzzle, possibleValues, rules);
-        }
+            IReadOnlyList<ISudokuRule> rules) => new StandardHeuristic(this, puzzle, possibleValues, rules);
 
         /// <inheritdoc/>
         public void UndoLastUpdate()

@@ -51,24 +51,12 @@ namespace SudokuSpice
                 && NumTotalGuesses == other.NumTotalGuesses;
         }
 
-        public override int GetHashCode()
-        {
-            return NumSolutionsFound ^ NumSquaresGuessed ^ NumTotalGuesses;
-        }
+        public override int GetHashCode() => NumSolutionsFound ^ NumSquaresGuessed ^ NumTotalGuesses;
 
-        public static bool operator ==(SolveStats left, SolveStats right)
-        {
-            return left.Equals(right);
-        }
+        public static bool operator ==(SolveStats left, SolveStats right) => left.Equals(right);
 
-        public static bool operator !=(SolveStats left, SolveStats right)
-        {
-            return !left.Equals(right);
-        }
+        public static bool operator !=(SolveStats left, SolveStats right) => !left.Equals(right);
 
-        public override string ToString()
-        {
-            return $"NumSolutionsFound: {NumSolutionsFound}, NumSquaresGuessed: {NumSquaresGuessed}, NumTotalGuesses: {NumTotalGuesses}";
-        }
+        public override string ToString() => $"NumSolutionsFound: {NumSolutionsFound}, NumSquaresGuessed: {NumSquaresGuessed}, NumTotalGuesses: {NumTotalGuesses}";
     }
 }

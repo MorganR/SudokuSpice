@@ -22,7 +22,7 @@ namespace SudokuSpice.RuleBased.Rules
             {
                 for (int col = 0; col < puzzle.Size; col++)
                 {
-                    var val = puzzle[row, col];
+                    int? val = puzzle[row, col];
                     if (!val.HasValue)
                     {
                         continue;
@@ -43,14 +43,11 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
-        {
-            return new ColumnUniquenessRule(this, puzzle);
-        }
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle) => new ColumnUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c) => _unsetColumnValues[c.Column];
-        
+
         /// <inheritdoc/>
         public BitVector GetMissingValuesForColumn(int col) => _unsetColumnValues[col];
 
@@ -64,7 +61,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
-            this.Revert(in c, val);
+            Revert(in c, val);
             _AddUnsetFromColumn(in c, coordTracker);
         }
 

@@ -66,16 +66,16 @@ namespace SudokuSpice.ConstraintBased
         internal ExactCoverMatrix<TPuzzle> CopyUnknowns()
         {
             Debug.Assert(
-                FirstHeader != null, 
+                FirstHeader != null,
                 $"Cannot copy a matrix that still has a null {nameof(FirstHeader)}.");
             var copy = new ExactCoverMatrix<TPuzzle>(this);
             for (int row = 0; row < copy._matrix.Length; row++)
             {
-                var colArray = _matrix[row];
+                Square<TPuzzle>?[]? colArray = _matrix[row];
                 var copyColArray = new Square<TPuzzle>[colArray.Length];
                 for (int col = 0; col < copyColArray.Length; col++)
                 {
-                    var square = colArray[col];
+                    Square<TPuzzle>? square = colArray[col];
                     if (square is null
                         || square.IsSet)
                     {
@@ -86,8 +86,8 @@ namespace SudokuSpice.ConstraintBased
                 copy._matrix[row] = copyColArray;
             }
             copy.FirstHeader = FirstHeader.CopyToMatrix(copy);
-            var copiedHeader = copy.FirstHeader;
-            for (var nextHeader = FirstHeader.NextHeader; nextHeader != FirstHeader; nextHeader = nextHeader.NextHeader)
+            ConstraintHeader<TPuzzle>? copiedHeader = copy.FirstHeader;
+            for (ConstraintHeader<TPuzzle>? nextHeader = FirstHeader.NextHeader; nextHeader != FirstHeader; nextHeader = nextHeader.NextHeader)
             {
                 copiedHeader.NextHeader = nextHeader.CopyToMatrix(copy);
                 copiedHeader.NextHeader.PreviousHeader = copiedHeader;
@@ -102,19 +102,13 @@ namespace SudokuSpice.ConstraintBased
         /// Gets the square representing the given <see cref="Coordinate"/>. This returns null if
         /// the square's value was preset in the current puzzle being solved.
         /// </summary>
-        public Square<TPuzzle>? GetSquare(in Coordinate c)
-        {
-            return _matrix[c.Row][c.Column];
-        }
+        public Square<TPuzzle>? GetSquare(in Coordinate c) => _matrix[c.Row][c.Column];
 
         /// <summary>
         /// Gets all the <see cref="Square{TPuzzle}"/>s on the requested row.
         /// </summary>
         /// <param name="row">A zero-based row index.</param>
-        public ReadOnlySpan<Square<TPuzzle>?> GetSquaresOnRow(int row)
-        {
-            return new ReadOnlySpan<Square<TPuzzle>?>(_matrix[row]);
-        }
+        public ReadOnlySpan<Square<TPuzzle>?> GetSquaresOnRow(int row) => new ReadOnlySpan<Square<TPuzzle>?>(_matrix[row]);
 
         /// <summary>
         /// Gets all the <see cref="Square{TPuzzle}"/>s on the requested column.
@@ -139,7 +133,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 yield break;
             }
-            var header = FirstHeader;
+            ConstraintHeader<TPuzzle>? header = FirstHeader;
             do
             {
                 yield return header;
@@ -152,8 +146,7 @@ namespace SudokuSpice.ConstraintBased
             if (FirstHeader is null)
             {
                 FirstHeader = header;
-            }
-            else
+            } else
             {
                 header.NextHeader = FirstHeader;
                 header.PreviousHeader = FirstHeader.PreviousHeader;

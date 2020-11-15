@@ -21,7 +21,8 @@ namespace SudokuSpice.ConstraintBased
         internal ConstraintHeader<TPuzzle> NextHeader { get; set; }
         internal ConstraintHeader<TPuzzle> PreviousHeader { get; set; }
 
-        internal ConstraintHeader(ExactCoverMatrix<TPuzzle> matrix) {
+        internal ConstraintHeader(ExactCoverMatrix<TPuzzle> matrix)
+        {
             Matrix = matrix;
             NextHeader = PreviousHeader = this;
         }
@@ -31,14 +32,14 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(FirstLink != null, $"Can't copy a header with a null {nameof(FirstLink)}.");
             Debug.Assert(!IsSatisfied, $"Can't copy a header that's already satisfied.");
             var copy = new ConstraintHeader<TPuzzle>(matrix);
-            foreach (var link in GetLinks())
+            foreach (SquareLink<TPuzzle>? link in GetLinks())
             {
-                var square = matrix.GetSquare(link.PossibleSquare.Square.Coordinate);
+                Square<TPuzzle>? square = matrix.GetSquare(link.PossibleSquare.Square.Coordinate);
                 Debug.Assert(square != null,
                     $"Tried to copy a square link for a null square at {link.PossibleSquare.Square.Coordinate}.");
-                var possibleSquare = square.GetPossibleValue(link.PossibleSquare.ValueIndex);
+                PossibleSquareValue<TPuzzle>? possibleSquare = square.GetPossibleValue(link.PossibleSquare.ValueIndex);
                 Debug.Assert(possibleSquare != null, "Tried to link header to null possible square value.");
-                SquareLink<TPuzzle>.CreateConnectedLink(possibleSquare, copy);
+                _ = SquareLink<TPuzzle>.CreateConnectedLink(possibleSquare, copy);
             }
             return copy;
         }
@@ -60,9 +61,9 @@ namespace SudokuSpice.ConstraintBased
         {
             var header = new ConstraintHeader<TPuzzle>(matrix);
             matrix.Attach(header);
-            foreach (var possibleSquare in possibleSquares)
+            foreach (PossibleSquareValue<TPuzzle>? possibleSquare in possibleSquares)
             {
-                SquareLink<TPuzzle>.CreateConnectedLink(possibleSquare, header);
+                _ = SquareLink<TPuzzle>.CreateConnectedLink(possibleSquare, header);
             }
             if (header.Count == 0)
             {
@@ -78,7 +79,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(FirstLink != null, $"Tried to satisfy constraint via square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex} but {nameof(FirstLink)} was null.");
             Debug.Assert(GetLinks().Contains(sourceLink), $"Constraint was missing possible square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex} when satisfying constraint.");
             IsSatisfied = true;
-            var link = sourceLink.Down;
+            SquareLink<TPuzzle>? link = sourceLink.Down;
             while (link != sourceLink)
             {
                 if (!link.PossibleSquare.TryDrop())
@@ -107,7 +108,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(IsSatisfied, $"Constraint was not satisfied when deselecting square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex}.");
             Debug.Assert(GetLinks().Contains(sourceLink), $"Constraint was missing possible square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex} when unsatisfying constraint.");
-            var link = sourceLink.Up;
+            SquareLink<TPuzzle>? link = sourceLink.Up;
             while (link != sourceLink)
             {
                 link.PossibleSquare.Return();
@@ -142,8 +143,7 @@ namespace SudokuSpice.ConstraintBased
             if (FirstLink is null)
             {
                 FirstLink = link;
-            }
-            else
+            } else
             {
                 link.Down = FirstLink;
                 link.Up = FirstLink.Up;
@@ -166,7 +166,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 yield break;
             }
-            var link = FirstLink;
+            SquareLink<TPuzzle>? link = FirstLink;
             do
             {
                 yield return link;

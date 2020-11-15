@@ -28,10 +28,7 @@ namespace SudokuSpice
 
         public void Deconstruct(out int row, out int col) => (row, col) = (Row, Column);
 
-        public override string ToString()
-        {
-            return $"({Row}, {Column})";
-        }
+        public override string ToString() => $"({Row}, {Column})";
 
         public override bool Equals(object? obj)
         {
@@ -42,29 +39,14 @@ namespace SudokuSpice
             return false;
         }
 
-        public override int GetHashCode()
-        {
-            return Row + (Column << 16);
-        }
+        public override int GetHashCode() => Row + (Column << 16);
 
-        public bool Equals(Coordinate other)
-        {
-            return Equals(in other);
-        }
+        public bool Equals(Coordinate other) => Equals(in other);
 
-        public bool Equals(in Coordinate other)
-        {
-            return Row == other.Row && Column == other.Column;
-        }
+        public bool Equals(in Coordinate other) => Row == other.Row && Column == other.Column;
 
-        public static bool operator ==(in Coordinate left, in Coordinate right)
-        {
-            return left.Equals(in right);
-        }
+        public static bool operator ==(in Coordinate left, in Coordinate right) => left.Equals(in right);
 
-        public static bool operator !=(in Coordinate left, in Coordinate right)
-        {
-            return !(left == right);
-        }
+        public static bool operator !=(in Coordinate left, in Coordinate right) => !(left == right);
     }
 }

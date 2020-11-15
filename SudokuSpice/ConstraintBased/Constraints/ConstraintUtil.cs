@@ -67,7 +67,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             isValueIndexPresentInSquares.Fill(false);
             for (int i = 0; i < squareCoordinates.Length; i++)
             {
-                var puzzleValue = puzzle[squareCoordinates[i]];
+                int? puzzleValue = puzzle[squareCoordinates[i]];
                 if (puzzleValue.HasValue)
                 {
                     isValueIndexPresentInSquares[matrix.ValuesToIndices[puzzleValue.Value]] = true;
@@ -94,12 +94,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
         {
             for (int i = 0; i < squares.Length; i++)
             {
-                var square = squares[i];
+                Square<TPuzzle>? square = squares[i];
                 if (square is null)
                 {
                     continue;
                 }
-                var possibleValue = square.GetPossibleValue(valueIndex);
+                PossibleSquareValue<TPuzzle>? possibleValue = square.GetPossibleValue(valueIndex);
                 if (possibleValue is null)
                 {
                     continue;
@@ -131,12 +131,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
             {
-                var square = squares[i];
+                Square<TPuzzle>? square = squares[i];
                 if (square is null)
                 {
                     continue;
                 }
-                var possibleSquare = square.GetPossibleValue(valueIndex);
+                PossibleSquareValue<TPuzzle>? possibleSquare = square.GetPossibleValue(valueIndex);
                 if (possibleSquare is null
                     || possibleSquare.State != PossibleSquareState.UNKNOWN)
                 {

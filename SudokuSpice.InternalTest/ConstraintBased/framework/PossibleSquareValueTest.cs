@@ -15,12 +15,12 @@ namespace SudokuSpice.ConstraintBased.Test
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             int valueIndex = 1;
-            var square = matrix.GetSquare(new Coordinate(1, 0));
-            var possibleValue = square.GetPossibleValue(valueIndex);
-            var linkA = possibleValue.FirstLink;
-            var linkB = linkA.Right;
-            var constraintA = linkA.Constraint;
-            var constraintB = linkB.Constraint;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(1, 0));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
+            SquareLink<Puzzle> linkA = possibleValue.FirstLink;
+            SquareLink<Puzzle> linkB = linkA.Right;
+            ConstraintHeader<Puzzle> constraintA = linkA.Constraint;
+            ConstraintHeader<Puzzle> constraintB = linkB.Constraint;
 
             Assert.True(possibleValue.TryDrop());
             Assert.Equal(3, square.NumPossibleValues);
@@ -39,16 +39,16 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
+            int valueIndex = 0;
             Assert.True(matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(valueIndex).TryDrop());
             Assert.True(matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex).TryDrop());
             Assert.True(matrix.GetSquare(new Coordinate(0, 2)).GetPossibleValue(valueIndex).TryDrop());
-            var square = matrix.GetSquare(new Coordinate(0, 3));
-            var possibleValue = square.GetPossibleValue(valueIndex);
-            var linkA = possibleValue.FirstLink;
-            var linkB = linkA.Right;
-            var constraintA = linkA.Constraint;
-            var constraintB = linkB.Constraint;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 3));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
+            SquareLink<Puzzle> linkA = possibleValue.FirstLink;
+            SquareLink<Puzzle> linkB = linkA.Right;
+            ConstraintHeader<Puzzle> constraintA = linkA.Constraint;
+            ConstraintHeader<Puzzle> constraintB = linkB.Constraint;
             Assert.False(possibleValue.TryDrop());
 
             Assert.Equal(4, square.NumPossibleValues);
@@ -67,18 +67,18 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var square = matrix.GetSquare(new Coordinate(0, 0));
-            var possibleValue = square.GetPossibleValue(valueIndex);
-            var linkA = possibleValue.FirstLink;
-            var linkB = linkA.Right;
+            int valueIndex = 0;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 0));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
+            SquareLink<Puzzle> linkA = possibleValue.FirstLink;
+            SquareLink<Puzzle> linkB = linkA.Right;
             Assert.True(possibleValue.TryDrop());
             possibleValue.Return();
 
             Assert.Equal(4, square.NumPossibleValues);
             Assert.Equal(PossibleSquareState.UNKNOWN, possibleValue.State);
-            var constraintA = linkA.Constraint;
-            var constraintB = linkB.Constraint;
+            ConstraintHeader<Puzzle> constraintA = linkA.Constraint;
+            ConstraintHeader<Puzzle> constraintB = linkB.Constraint;
             Assert.Equal(4, constraintA.Count);
             Assert.Equal(4, constraintB.Count);
             Assert.Contains(linkA, constraintA.GetLinks());
@@ -93,13 +93,13 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var square = matrix.GetSquare(new Coordinate(0, 0));
-            var possibleValue = square.GetPossibleValue(valueIndex);
-            var linkA = possibleValue.FirstLink;
-            var linkB = linkA.Right;
-            var constraintA = linkA.Constraint;
-            var constraintB = linkB.Constraint;
+            int valueIndex = 0;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 0));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
+            SquareLink<Puzzle> linkA = possibleValue.FirstLink;
+            SquareLink<Puzzle> linkB = linkA.Right;
+            ConstraintHeader<Puzzle> constraintA = linkA.Constraint;
+            ConstraintHeader<Puzzle> constraintB = linkB.Constraint;
             Assert.True(constraintB.TrySatisfyFrom(possibleValue.FirstLink.Right.Up));
             possibleValue.Return();
 
@@ -119,9 +119,9 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var square = matrix.GetSquare(new Coordinate(0, 1));
-            var possibleValue = square.GetPossibleValue(valueIndex);
+            int valueIndex = 0;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 1));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
 
             Assert.Equal(PossibleSquareState.SELECTED, possibleValue.State);
@@ -135,12 +135,12 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
+            int valueIndex = 0;
+            PossibleSquareValue<Puzzle> possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
 
-            var constraintA = possibleValue.FirstLink.Constraint;
-            var constraintB = possibleValue.FirstLink.Right.Constraint;
+            ConstraintHeader<Puzzle> constraintA = possibleValue.FirstLink.Constraint;
+            ConstraintHeader<Puzzle> constraintB = possibleValue.FirstLink.Right.Constraint;
             Assert.True(constraintA.IsSatisfied);
             Assert.True(constraintB.IsSatisfied);
             Assert.Equal(4, constraintA.Count);
@@ -157,15 +157,15 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
+            int valueIndex = 0;
+            PossibleSquareValue<Puzzle> possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
 
-            var constraintA = possibleValue.FirstLink.Constraint;
-            var constraintB = possibleValue.FirstLink.Right.Constraint;
+            ConstraintHeader<Puzzle> constraintA = possibleValue.FirstLink.Constraint;
+            ConstraintHeader<Puzzle> constraintB = possibleValue.FirstLink.Right.Constraint;
             Assert.Equal(4, constraintA.GetLinks().Count());
             Assert.Equal(4, constraintB.GetLinks().Count());
-            foreach (var link in constraintA.GetLinks())
+            foreach (SquareLink<Puzzle> link in constraintA.GetLinks())
             {
                 if (link.PossibleSquare == possibleValue)
                 {
@@ -173,7 +173,7 @@ namespace SudokuSpice.ConstraintBased.Test
                 }
                 Assert.Equal(PossibleSquareState.DROPPED, link.PossibleSquare.State);
             }
-            foreach (var link in constraintB.GetLinks())
+            foreach (SquareLink<Puzzle> link in constraintB.GetLinks())
             {
                 if (link.PossibleSquare == possibleValue)
                 {
@@ -191,9 +191,9 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var square = matrix.GetSquare(new Coordinate(0, 1));
-            var possibleValue = square.GetPossibleValue(valueIndex);
+            int valueIndex = 0;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 1));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
             possibleValue.Deselect();
 
@@ -209,28 +209,28 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
             new ColumnUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
-            var valueIndex = 0;
-            var square = matrix.GetSquare(new Coordinate(0, 1));
-            var possibleValue = square.GetPossibleValue(valueIndex);
+            int valueIndex = 0;
+            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 1));
+            PossibleSquareValue<Puzzle> possibleValue = square.GetPossibleValue(valueIndex);
             Assert.True(possibleValue.TrySelect());
             possibleValue.Deselect();
 
-            var linkA = possibleValue.FirstLink;
-            var linkB = linkA.Right;
-            var constraintA = linkA.Constraint;
-            var constraintB = linkB.Constraint;
+            SquareLink<Puzzle> linkA = possibleValue.FirstLink;
+            SquareLink<Puzzle> linkB = linkA.Right;
+            ConstraintHeader<Puzzle> constraintA = linkA.Constraint;
+            ConstraintHeader<Puzzle> constraintB = linkB.Constraint;
             Assert.False(constraintA.IsSatisfied);
             Assert.False(constraintB.IsSatisfied);
             Assert.Equal(4, constraintA.Count);
             Assert.Equal(4, constraintB.Count);
-            foreach (var link in constraintA.GetLinks())
+            foreach (SquareLink<Puzzle> link in constraintA.GetLinks())
             {
                 if (link != linkA)
                 {
                     Assert.Equal(PossibleSquareState.UNKNOWN, link.PossibleSquare.State);
                 }
             }
-            foreach (var link in constraintB.GetLinks())
+            foreach (SquareLink<Puzzle> link in constraintB.GetLinks())
             {
                 if (link != linkB)
                 {

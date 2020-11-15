@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.RuleBased
 {
-   public interface ISudokuRuleKeeper
+    public interface ISudokuRuleKeeper
     {
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value. If

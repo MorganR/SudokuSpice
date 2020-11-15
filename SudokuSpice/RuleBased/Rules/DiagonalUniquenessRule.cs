@@ -22,7 +22,7 @@ namespace SudokuSpice.RuleBased.Rules
             // Iterate through the backward diagonal (like a backslash '\')
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
             {
-                var val = puzzle[row, col];
+                int? val = puzzle[row, col];
                 if (val.HasValue)
                 {
                     if (!_unsetBackwardDiag.IsBitSet(val.Value))
@@ -36,7 +36,7 @@ namespace SudokuSpice.RuleBased.Rules
             // Iterate through the forward diagonal (like a forward slash '/')
             for (int row = 0, col = puzzle.Size - 1; row < puzzle.Size; row++, col--)
             {
-                var val = puzzle[row, col];
+                int? val = puzzle[row, col];
                 if (val.HasValue)
                 {
                     if (!_unsetForwardDiag.IsBitSet(val.Value))
@@ -58,10 +58,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
-        {
-            return new DiagonalUniquenessRule(this, puzzle);
-        }
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle) => new DiagonalUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c)
@@ -124,15 +121,9 @@ namespace SudokuSpice.RuleBased.Rules
             }
         }
 
-        private static bool _IsOnBackwardDiag(in Coordinate c)
-        {
-            return c.Row == c.Column;
-        }
+        private static bool _IsOnBackwardDiag(in Coordinate c) => c.Row == c.Column;
 
-        private bool _IsOnForwardDiag(in Coordinate c)
-        {
-            return c.Column == _puzzle.Size - c.Row - 1;
-        }
+        private bool _IsOnForwardDiag(in Coordinate c) => c.Column == _puzzle.Size - c.Row - 1;
 
         private void _AddUnsetFromBackwardDiag(in Coordinate c, CoordinateTracker coordTracker)
         {

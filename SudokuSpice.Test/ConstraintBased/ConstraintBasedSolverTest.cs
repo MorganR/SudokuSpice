@@ -237,29 +237,29 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             Assert.Equal(0, puzzle.NumEmptySquares);
             var alreadyFound = new HashSet<int>(puzzle.Size);
-            for (var row = 0; row < puzzle.Size; row++)
+            for (int row = 0; row < puzzle.Size; row++)
             {
                 alreadyFound.Clear();
-                for (var col = 0; col < puzzle.Size; col++)
+                for (int col = 0; col < puzzle.Size; col++)
                 {
                     Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that row!");
                 }
             }
-            for (var col = 0; col < puzzle.Size; col++)
+            for (int col = 0; col < puzzle.Size; col++)
             {
                 alreadyFound.Clear();
-                for (var row = 0; row < puzzle.Size; row++)
+                for (int row = 0; row < puzzle.Size; row++)
                 {
                     Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that col!");
                 }
             }
-            for (var box = 0; box < puzzle.Size; box++)
+            for (int box = 0; box < puzzle.Size; box++)
             {
                 alreadyFound.Clear();
-                (var startRow, var startCol) = puzzle.GetStartingBoxCoordinate(box);
-                for (var row = startRow; row < startRow + puzzle.BoxSize; row++)
+                (int startRow, int startCol) = puzzle.GetStartingBoxCoordinate(box);
+                for (int row = startRow; row < startRow + puzzle.BoxSize; row++)
                 {
-                    for (var col = startCol; col < startCol + puzzle.BoxSize; col++)
+                    for (int col = startCol; col < startCol + puzzle.BoxSize; col++)
                     {
                         Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that box!");
                     }

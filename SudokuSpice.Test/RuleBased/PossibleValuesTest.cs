@@ -67,7 +67,7 @@ namespace SudokuSpice.RuleBased.Test
             Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 2)]);
             Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 3)]);
         }
-        
+
         [Fact]
         public void CopyConstructor_PerformsDeepCopy()
         {

@@ -14,17 +14,17 @@ namespace SudokuSpice.ConstraintBased.Constraints
             _ConstrainBackwardDiagonal(puzzle, matrix);
         }
 
-        private void _ConstrainForwardDiagonal(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+        private static void _ConstrainForwardDiagonal(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
             Span<Coordinate> coordinates = stackalloc Coordinate[puzzle.Size];
-            for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
+            for (int row = 0, col = puzzle.Size - 1; row < puzzle.Size; row++, col--)
             {
                 coordinates[row] = new Coordinate(row, col);
             }
             ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
         }
 
-        private void _ConstrainBackwardDiagonal(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+        private static void _ConstrainBackwardDiagonal(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
             Span<Coordinate> Coordinates = stackalloc Coordinate[puzzle.Size];
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)

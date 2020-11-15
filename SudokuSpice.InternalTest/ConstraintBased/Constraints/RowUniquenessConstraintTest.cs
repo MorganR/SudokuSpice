@@ -16,10 +16,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
 
             Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
-            var firstRowConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            var secondRowConstraint = matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            var thirdRowConstraint = matrix.GetSquare(new Coordinate(2, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            var fourthRowConstraint = matrix.GetSquare(new Coordinate(3, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> firstRowConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> secondRowConstraint = matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> thirdRowConstraint = matrix.GetSquare(new Coordinate(2, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader<Puzzle> fourthRowConstraint = matrix.GetSquare(new Coordinate(3, 0)).AllPossibleValues[0].FirstLink.Constraint;
             Assert.NotSame(firstRowConstraint, secondRowConstraint);
             Assert.NotSame(firstRowConstraint, thirdRowConstraint);
             Assert.NotSame(firstRowConstraint, fourthRowConstraint);
@@ -54,7 +54,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             {
                 for (int col = 0; col < size; col++)
                 {
-                    foreach (var possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
+                    foreach (PossibleSquareValue<Puzzle> possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
                     {
                         Assert.NotNull(possibleValue.FirstLink);
                     }

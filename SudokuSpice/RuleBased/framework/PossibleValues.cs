@@ -28,7 +28,7 @@ namespace SudokuSpice.RuleBased
             var allPossible = BitVector.CreateWithSize(puzzle.Size + 1);
             allPossible.UnsetBit(0);
             AllPossible = allPossible;
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 _possibleValues[c.Row, c.Column] = AllPossible;
             }
@@ -47,7 +47,7 @@ namespace SudokuSpice.RuleBased
         {
             _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
             AllPossible = allPossible;
-            foreach (var c in puzzle.GetUnsetCoords())
+            foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 _possibleValues[c.Row, c.Column] = AllPossible;
             }
@@ -94,9 +94,6 @@ namespace SudokuSpice.RuleBased
         /// possible values for this puzzle.
         /// </summary>
         /// <param name="c">The <c>Coordinate</c> of the square to reset.</param>
-        public void Reset(in Coordinate c)
-        {
-            _possibleValues[c.Row, c.Column] = AllPossible;
-        }
+        public void Reset(in Coordinate c) => _possibleValues[c.Row, c.Column] = AllPossible;
     }
 }

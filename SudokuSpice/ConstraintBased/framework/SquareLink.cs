@@ -44,14 +44,8 @@
             Constraint.Reattach(this);
         }
 
-        internal bool TrySatisfyConstraint()
-        {
-            return Constraint.TrySatisfyFrom(this);
-        }
+        internal bool TrySatisfyConstraint() => Constraint.TrySatisfyFrom(this);
 
-        internal void UnsatisfyConstraint()
-        {
-            Constraint.UnsatisfyFrom(this);
-        }
+        internal void UnsatisfyConstraint() => Constraint.UnsatisfyFrom(this);
     }
 }

@@ -9,7 +9,7 @@ namespace SudokuSpice.Test
         [Fact]
         public void CopyConstructor_CreatesDeepCopy()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
             tracker.Add(new Coordinate(0, 0));
 
@@ -26,16 +26,16 @@ namespace SudokuSpice.Test
         [Fact]
         public void Add_UpToSize_Succeeds()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength);
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength);
 
-            foreach (var c in coords)
+            foreach (Coordinate c in coords)
             {
                 tracker.Add(c);
             }
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(coords.Count, trackedCoords.Length);
             for (int i = 0; i < coords.Count; i++)
             {
@@ -46,13 +46,13 @@ namespace SudokuSpice.Test
         [Fact]
         public void Add_OverSize_Throws()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength + 1);
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength + 1);
 
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
-                foreach (var c in coords)
+                foreach (Coordinate c in coords)
                 {
                     tracker.Add(c);
                 }
@@ -62,10 +62,10 @@ namespace SudokuSpice.Test
         [Fact]
         public void Untrack_One_Succeeds()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength);
-            foreach (var c in coords)
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength);
+            foreach (Coordinate c in coords)
             {
                 tracker.Add(c);
             }
@@ -73,7 +73,7 @@ namespace SudokuSpice.Test
 
             tracker.Untrack(in untrackedCoord);
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(coords.Count - 1, trackedCoords.Length);
             Assert.DoesNotContain(untrackedCoord, trackedCoords.ToArray());
         }
@@ -81,29 +81,29 @@ namespace SudokuSpice.Test
         [Fact]
         public void Untrack_All_Succeeds()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength);
-            foreach (var c in coords)
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength);
+            foreach (Coordinate c in coords)
             {
                 tracker.Add(c);
             }
 
-            foreach (var c in coords)
+            foreach (Coordinate c in coords)
             {
                 tracker.Untrack(in c);
             }
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(0, trackedCoords.Length);
         }
 
         [Fact]
         public void UntrackAll_Succeeds()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength);
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength);
             for (int i = 0; i < coords.Count / 2; i++)
             {
                 tracker.Add(coords[i]);
@@ -114,13 +114,13 @@ namespace SudokuSpice.Test
             Assert.Equal(0, tracker.NumTracked);
             Assert.Equal(0, tracker.GetTrackedCoords().Length);
 
-            foreach (var c in coords)
+            foreach (Coordinate c in coords)
             {
                 tracker.AddOrTrackIfUntracked(in c);
             }
 
             Assert.Equal(coords.Count, tracker.NumTracked);
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(coords.Count, trackedCoords.Length);
             Assert.Equal(
                 new HashSet<Coordinate>(coords), new HashSet<Coordinate>(trackedCoords.ToArray()));
@@ -130,10 +130,10 @@ namespace SudokuSpice.Test
         [Fact]
         public void Track_One_Succeeds()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength);
-            foreach (var c in coords)
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength);
+            foreach (Coordinate c in coords)
             {
                 tracker.Add(c);
             }
@@ -142,7 +142,7 @@ namespace SudokuSpice.Test
             tracker.Untrack(in trackedCoord);
             tracker.Track(in trackedCoord);
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(coords.Count, trackedCoords.Length);
             Assert.Contains(trackedCoord, trackedCoords.ToArray());
         }
@@ -150,16 +150,16 @@ namespace SudokuSpice.Test
         [Fact]
         public void MixedTrackAndUntrack_Succeeds()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
-            var coords = _CreateCoordinateListForLength(sideLength);
-            foreach (var c in coords)
+            IList<Coordinate> coords = _CreateCoordinateListForLength(sideLength);
+            foreach (Coordinate c in coords)
             {
                 tracker.Add(c);
             }
             int numFirstUntracked = 4;
             int numRetracked = 2;
-            
+
             for (int i = 0; i < numFirstUntracked; i++)
             {
                 tracker.Untrack(coords[i]);
@@ -169,7 +169,7 @@ namespace SudokuSpice.Test
                 tracker.Track(coords[i]);
             }
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(7, trackedCoords.Length);
             Assert.Contains(coords[0], trackedCoords.ToArray());
             Assert.Contains(coords[1], trackedCoords.ToArray());
@@ -180,7 +180,7 @@ namespace SudokuSpice.Test
         [Fact]
         public void AddOrTrackIfUntracked_WithUnadded_ReturnsAddedAndTracked()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
 
             var coord = new Coordinate(1, 1);
@@ -188,7 +188,7 @@ namespace SudokuSpice.Test
                 CoordinateTracker.AddOrTrackResult.AddedAndTracked,
                 tracker.AddOrTrackIfUntracked(coord));
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(1, trackedCoords.Length);
             Assert.Contains(coord, trackedCoords.ToArray());
         }
@@ -196,7 +196,7 @@ namespace SudokuSpice.Test
         [Fact]
         public void AddOrTrackIfUntracked_WithUntracked_ReturnsTracked()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
 
             var coord = new Coordinate(1, 1);
@@ -207,7 +207,7 @@ namespace SudokuSpice.Test
                 CoordinateTracker.AddOrTrackResult.Tracked,
                 tracker.AddOrTrackIfUntracked(coord));
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(1, trackedCoords.Length);
             Assert.Contains(coord, trackedCoords.ToArray());
         }
@@ -215,7 +215,7 @@ namespace SudokuSpice.Test
         [Fact]
         public void AddOrTrackIfUntracked_WithTracked_ReturnsUnchanged()
         {
-            var sideLength = 3;
+            int sideLength = 3;
             var tracker = new CoordinateTracker(sideLength);
 
             var coord = new Coordinate(1, 1);
@@ -225,7 +225,7 @@ namespace SudokuSpice.Test
                 CoordinateTracker.AddOrTrackResult.Unchanged,
                 tracker.AddOrTrackIfUntracked(coord));
 
-            var trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
             Assert.Equal(1, trackedCoords.Length);
             Assert.Contains(coord, trackedCoords.ToArray());
         }

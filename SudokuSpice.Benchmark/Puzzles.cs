@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
-public static class Puzzles
-{
-    public static IEnumerable<PuzzleSample> NineByNinePuzzles() => new[]
+    public static class Puzzles
     {
+        public static IEnumerable<PuzzleSample> NineByNinePuzzles() => new[]
+        {
         new PuzzleSample(
             "Easy",
             new int?[,]
@@ -92,8 +92,8 @@ public static class Puzzles
             }),
     };
 
-    public static IEnumerable<PuzzleSample> MegaPuzzles() => new[]
-    {
+        public static IEnumerable<PuzzleSample> MegaPuzzles() => new[]
+        {
         new PuzzleSample(
             "MegaA",
             new int?[,]
@@ -137,5 +137,5 @@ public static class Puzzles
                 {null,    1, null, null, null, null,    5, null,   16,    6,    3, null, null,   14,    4, null}
             })
     };
-}
+    }
 }

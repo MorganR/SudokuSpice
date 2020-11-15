@@ -61,10 +61,7 @@ namespace SudokuSpice.RuleBased
         /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
         /// is left unchanged.
         /// </summary>
-        public SolveStats GetStatsForAllSolutions()
-        {
-            return _TryAllSolutions(new SquareTracker(_tracker));
-        }
+        public SolveStats GetStatsForAllSolutions() => _TryAllSolutions(new SquareTracker(_tracker));
 
         private bool _TrySolve()
         {
@@ -72,8 +69,8 @@ namespace SudokuSpice.RuleBased
             {
                 return true;
             }
-            var c = _tracker.GetBestCoordinateToGuess();
-            foreach (var possibleValue in _tracker.GetPossibleValues(in c))
+            Coordinate c = _tracker.GetBestCoordinateToGuess();
+            foreach (int possibleValue in _tracker.GetPossibleValues(in c))
             {
                 if (_tracker.TrySet(in c, possibleValue))
                 {
@@ -93,8 +90,8 @@ namespace SudokuSpice.RuleBased
             {
                 return true;
             }
-            var c = _tracker.GetBestCoordinateToGuess();
-            var possibleValues = _tracker.GetPossibleValues(in c);
+            Coordinate c = _tracker.GetBestCoordinateToGuess();
+            List<int>? possibleValues = _tracker.GetPossibleValues(in c);
             while (possibleValues.Count > 0)
             {
                 int possibleValue = possibleValues[random.Next(0, possibleValues.Count)];
@@ -115,13 +112,12 @@ namespace SudokuSpice.RuleBased
         {
             if (tracker.Puzzle.NumEmptySquares == 0)
             {
-                return new SolveStats()
-                {
+                return new SolveStats() {
                     NumSolutionsFound = 1,
                 };
             }
-            var c = tracker.GetBestCoordinateToGuess();
-            var possibleValues = tracker.GetPossibleValues(in c);
+            Coordinate c = tracker.GetBestCoordinateToGuess();
+            List<int>? possibleValues = tracker.GetPossibleValues(in c);
             if (possibleValues.Count == 1)
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
@@ -144,7 +140,7 @@ namespace SudokuSpice.RuleBased
                 var trackerCopy = new SquareTracker(tracker);
                 if (trackerCopy.TrySet(in c, valuesToGuess[i]))
                 {
-                    var guessStats = _TryAllSolutions(trackerCopy);
+                    SolveStats guessStats = _TryAllSolutions(trackerCopy);
                     solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                     solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                     solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
@@ -152,7 +148,7 @@ namespace SudokuSpice.RuleBased
             }
             if (tracker.TrySet(in c, valuesToGuess[^1]))
             {
-                var guessStats = _TryAllSolutions(tracker);
+                SolveStats guessStats = _TryAllSolutions(tracker);
                 solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                 solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                 solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;

@@ -65,10 +65,7 @@ namespace SudokuSpice.Test
 
         [Theory]
         [MemberData(nameof(SolveStatsAndObjectsForEquality))]
-        public void Equals_WithObject_IsCorrect(SolveStats stats, object other, bool isEqual)
-        {
-            Assert.Equal(isEqual, stats.Equals(other));
-        }
+        public void Equals_WithObject_IsCorrect(SolveStats stats, object other, bool isEqual) => Assert.Equal(isEqual, stats.Equals(other));
 
         public static IEnumerable<object[]> SolveStatsAndObjectsForEquality()
         {

@@ -23,9 +23,9 @@ namespace SudokuSpice
         /// <summary>The total number of squares in the puzzle.</summary>
         public int NumSquares { get; }
         /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
-        public int NumEmptySquares { get { return _unsetCoordsTracker.NumTracked; } }
+        public int NumEmptySquares => _unsetCoordsTracker.NumTracked;
         /// <summary>The number of set/known squares in the puzzle.</summary>
-        public int NumSetSquares { get { return NumSquares - NumEmptySquares; } }
+        public int NumSetSquares => NumSquares - NumEmptySquares;
         public ReadOnlySpan<int> AllPossibleValues => _allPossibleValues;
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace SudokuSpice
             }
             _squares = new int?[size, size];
             _unsetCoordsTracker = new CoordinateTracker(size);
-            for (var row = 0; row < Size; row++)
+            for (int row = 0; row < Size; row++)
             {
-                for (var col = 0; col < Size; col++)
+                for (int col = 0; col < Size; col++)
                 {
                     if (!_squares[row, col].HasValue)
                     {
@@ -99,8 +99,7 @@ namespace SudokuSpice
             {
                 throw new ArgumentException("Puzzle must be square.");
             }
-            BoxSize = Size switch
-            {
+            BoxSize = Size switch {
                 1 => 1,
                 4 => 2,
                 9 => 3,
@@ -108,12 +107,12 @@ namespace SudokuSpice
                 25 => 5,
                 _ => throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25]."),
             };
-            
+
             _squares = (int?[,])puzzleMatrix.Clone();
             _unsetCoordsTracker = new CoordinateTracker(Size);
-            for (var row = 0; row < Size; row++)
+            for (int row = 0; row < Size; row++)
             {
-                for (var col = 0; col < Size; col++)
+                for (int col = 0; col < Size; col++)
                 {
                     if (!_squares[row, col].HasValue)
                     {
@@ -145,13 +144,11 @@ namespace SudokuSpice
         public int? this[int row, int col]
         {
             get => _squares[row, col];
-            set
-            {
+            set {
                 if (value.HasValue)
                 {
                     _Set(row, col, value.Value);
-                }
-                else
+                } else
                 {
                     _Unset(row, col);
                 }
@@ -159,10 +156,7 @@ namespace SudokuSpice
         }
 
         /// <inheritdoc cref="IPuzzle"/>
-        public IPuzzle DeepCopy()
-        {
-            return new Puzzle(this);
-        }
+        public IPuzzle DeepCopy() => new Puzzle(this);
 
         /// <inheritdoc cref="IPuzzle"/>
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
@@ -176,28 +170,22 @@ namespace SudokuSpice
         public int GetBoxIndex(int row, int col) => (row / BoxSize) * BoxSize + col / BoxSize;
 
         /// <summary>Returns the top-left coordinate for the given box.</summary>
-        public Coordinate GetStartingBoxCoordinate(int box)
-        {
-            return new Coordinate((box / BoxSize) * BoxSize, (box % BoxSize) * BoxSize);
-        }
+        public Coordinate GetStartingBoxCoordinate(int box) => new Coordinate((box / BoxSize) * BoxSize, (box % BoxSize) * BoxSize);
 
         /// <summary>Gets a span of coordinates for all the unset squares.</summary>
-        public ReadOnlySpan<Coordinate> GetUnsetCoords()
-        {
-            return _unsetCoordsTracker.GetTrackedCoords();
-        }
+        public ReadOnlySpan<Coordinate> GetUnsetCoords() => _unsetCoordsTracker.GetTrackedCoords();
 
         /// <summary>
         /// Yields an enumerable of coordinates for all the unset squares in the given box.
         /// </summary>
         public IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box)
         {
-            (var startRow, var startCol) = GetStartingBoxCoordinate(box);
-            var endRow = startRow + BoxSize;
-            var endCol = startCol + BoxSize;
-            for (var row = startRow; row < endRow; row++)
+            (int startRow, int startCol) = GetStartingBoxCoordinate(box);
+            int endRow = startRow + BoxSize;
+            int endCol = startCol + BoxSize;
+            for (int row = startRow; row < endRow; row++)
             {
-                for (var col = startCol; col < endCol; col++)
+                for (int col = startCol; col < endCol; col++)
                 {
                     if (_squares[row, col].HasValue)
                     {
@@ -215,7 +203,7 @@ namespace SudokuSpice
         public override string ToString()
         {
             int maxDigitLength = Size.ToString(NumberFormatInfo.InvariantInfo).Length;
-            StringBuilder strBuild = new StringBuilder();
+            var strBuild = new StringBuilder();
             for (int row = 0; row < Size; row++)
             {
                 if (row % BoxSize == 0)
@@ -225,7 +213,7 @@ namespace SudokuSpice
                 strBuild.Append('|');
                 for (int col = 0; col < Size; col++)
                 {
-                    var numberString =
+                    string? numberString =
                         _squares[row, col].HasValue ?
 #pragma warning disable CS8629 // Nullable value type may be null.
                         // Protected by the above check.
@@ -240,8 +228,7 @@ namespace SudokuSpice
                     if (col % BoxSize == BoxSize - 1)
                     {
                         strBuild.Append('|');
-                    }
-                    else
+                    } else
                     {
                         strBuild.Append(',');
                     }
@@ -276,15 +263,14 @@ namespace SudokuSpice
             {
                 if (col % BoxSize == 0)
                 {
-                    strBuild.Append("+");
-                }
-                else
+                    strBuild.Append('+');
+                } else
                 {
-                    strBuild.Append("-");
+                    strBuild.Append('-');
                 }
                 for (int numCharsToAppend = maxDigitLength; numCharsToAppend > 0; numCharsToAppend--)
                 {
-                    strBuild.Append("-");
+                    strBuild.Append('-');
                 }
             }
             strBuild.Append("+\n");

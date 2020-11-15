@@ -19,7 +19,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private static void _AppendConstraintHeadersInBox(
             int box, TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
         {
-            var startCoord = puzzle.GetStartingBoxCoordinate(box);
+            Coordinate startCoord = puzzle.GetStartingBoxCoordinate(box);
             var endCoord = new Coordinate(
                 startCoord.Row + puzzle.BoxSize, startCoord.Column + puzzle.BoxSize);
             Span<Coordinate> boxCoordinates = stackalloc Coordinate[puzzle.Size];

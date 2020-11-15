@@ -1,5 +1,4 @@
-﻿using SudokuSpice;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -29,7 +28,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [InlineData(25)]
         public void Constructor_AcceptsValidPuzzleSizes(int size)
         {
-            var matrix = new int?[size, size];
+            int?[,] matrix = new int?[size, size];
             var puzzle = new Puzzle(matrix);
             var rule = new ColumnUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             Assert.NotNull(rule);
@@ -38,7 +37,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Constructor_WithDuplicateValueInColumn_Throws()
         {
-            var ex = Assert.Throws<ArgumentException>(() =>
+            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
                 var rule = new ColumnUniquenessRule(
                     new Puzzle(
@@ -65,7 +64,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             var rule = new ColumnUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
 
             var puzzleCopy = new Puzzle(puzzle);
-            var ruleCopy = rule.CopyWithNewReference(puzzleCopy);
+            ISudokuRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 4;
             var coord = new Coordinate(3, 2);
             ruleCopy.Update(coord, val, new CoordinateTracker(puzzle.Size));
@@ -73,7 +72,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
 
             puzzleCopy[coord] = val;
             var secondCoord = new Coordinate(2, 2);
-            var secondVal = 2;
+            int secondVal = 2;
             var coordTracker = new CoordinateTracker(puzzle.Size);
             ruleCopy.Update(secondCoord, secondVal, coordTracker);
             var originalCoordTracker = new CoordinateTracker(puzzle.Size);
@@ -98,7 +97,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             var rule = new ColumnUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             rule.Update(coord, val, coordTracker);
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 1), new Coordinate(3, 1) },
@@ -119,9 +118,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
             var rule = new ColumnUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
-            var initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
+            IList<BitVector> initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             rule.Update(coord, val, new CoordinateTracker(puzzle.Size));
 
             rule.Revert(coord, val);
@@ -144,10 +143,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
             var rule = new ColumnUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
-            var initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
+            IList<BitVector> initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
-            var val = 3;
+            int val = 3;
             rule.Update(coord, val, updatedCoordTracker);
 
             var revertedCoordTracker = new CoordinateTracker(puzzle.Size);
@@ -174,7 +173,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
             var rule = new ColumnUniquenessRule(puzzle, _GetAllPossibleValues(puzzle.Size));
-            var possibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
+            IList<BitVector> possibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
 
             for (int column = 0; column < possibleValuesByColumn.Count; column++)
             {

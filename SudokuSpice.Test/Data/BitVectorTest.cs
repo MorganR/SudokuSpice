@@ -30,10 +30,7 @@ namespace SudokuSpice.Test
         [Theory]
         [InlineData(-1)]
         [InlineData(33)]
-        public void CreateWithSize_InvalidValues_ThrowsOutOfRange(int size)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>("size", () => BitVector.CreateWithSize(size));
-        }
+        public void CreateWithSize_InvalidValues_ThrowsOutOfRange(int size) => Assert.Throws<ArgumentOutOfRangeException>("size", () => BitVector.CreateWithSize(size));
 
         [Theory]
         [InlineData(0, 0, 0)]
@@ -115,7 +112,7 @@ namespace SudokuSpice.Test
             // No-op (set)
             vector.SetBit(8);
             Assert.Equal(5, vector.Count);
-           
+
             // Mutate (unset)
             vector.UnsetBit(0);
             Assert.Equal(4, vector.Count);
