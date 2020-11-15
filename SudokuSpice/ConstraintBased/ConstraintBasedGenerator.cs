@@ -19,7 +19,7 @@ namespace SudokuSpice.ConstraintBased
         /// A function that constructs an empty <see cref="IPuzzle"/> of the desired type and shape.
         /// </param>
         /// <param name="solverFactory">
-        /// A function that constructs a <see cref="SquareTracker"/> for the desired puzzle type.
+        /// A function that constructs a <see cref="ConstraintBasedTracker{TPuzzle}"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
         public ConstraintBasedGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint<TPuzzle>> constraints)

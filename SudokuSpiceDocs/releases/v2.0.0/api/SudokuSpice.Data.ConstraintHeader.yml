@@ -1,17 +1,17 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintHeader
-  commentId: T:SudokuSpice.ConstraintHeader
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
   id: ConstraintHeader
   parent: SudokuSpice
   children:
-  - SudokuSpice.ConstraintHeader.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
+  - SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
   langs:
   - csharp
   - vb
   name: ConstraintHeader
   nameWithType: ConstraintHeader
-  fullName: SudokuSpice.ConstraintHeader
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
   type: Class
   source:
     remote:
@@ -49,16 +49,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintHeader.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
-  commentId: M:SudokuSpice.ConstraintHeader.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
+  commentId: M:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
   id: CreateConnectedHeader(SudokuSpice.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.PossibleSquareValue})
-  parent: SudokuSpice.ConstraintHeader
+  parent: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
   langs:
   - csharp
   - vb
   name: CreateConnectedHeader(ExactCoverMatrix, ReadOnlySpan<PossibleSquareValue>)
   nameWithType: ConstraintHeader.CreateConnectedHeader(ExactCoverMatrix, ReadOnlySpan<PossibleSquareValue>)
-  fullName: SudokuSpice.ConstraintHeader.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix, System.ReadOnlySpan<SudokuSpice.PossibleSquareValue>)
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix, System.ReadOnlySpan<SudokuSpice.PossibleSquareValue>)
   type: Method
   source:
     remote:
@@ -83,10 +83,10 @@ items:
       type: System.ReadOnlySpan{SudokuSpice.PossibleSquareValue}
       description: "\nThe possible square values that would satisfy this header.\n"
     return:
-      type: SudokuSpice.ConstraintHeader
+      type: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
       description: The newly constructed header.
     content.vb: Public Shared Function CreateConnectedHeader(matrix As ExactCoverMatrix, possibleSquares As ReadOnlySpan(Of PossibleSquareValue)) As ConstraintHeader
-  overload: SudokuSpice.ConstraintHeader.CreateConnectedHeader*
+  overload: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader*
   nameWithType.vb: ConstraintHeader.CreateConnectedHeader(ExactCoverMatrix, ReadOnlySpan(Of PossibleSquareValue))
   modifiers.csharp:
   - public
@@ -94,7 +94,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.ConstraintHeader.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.PossibleSquareValue))
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader(SudokuSpice.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.PossibleSquareValue))
   name.vb: CreateConnectedHeader(ExactCoverMatrix, ReadOnlySpan(Of PossibleSquareValue))
 references:
 - uid: SudokuSpice
@@ -394,11 +394,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintHeader.CreateConnectedHeader*
-  commentId: Overload:SudokuSpice.ConstraintHeader.CreateConnectedHeader
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader*
+  commentId: Overload:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader
   name: CreateConnectedHeader
   nameWithType: ConstraintHeader.CreateConnectedHeader
-  fullName: SudokuSpice.ConstraintHeader.CreateConnectedHeader
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}.CreateConnectedHeader
 - uid: SudokuSpice.ExactCoverMatrix
   commentId: T:SudokuSpice.ExactCoverMatrix
   parent: SudokuSpice
@@ -447,12 +447,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintHeader
-  commentId: T:SudokuSpice.ConstraintHeader
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
   parent: SudokuSpice
   name: ConstraintHeader
   nameWithType: ConstraintHeader
-  fullName: SudokuSpice.ConstraintHeader
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
 - uid: System.ReadOnlySpan`1
   commentId: T:System.ReadOnlySpan`1
   isExternal: true

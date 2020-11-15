@@ -3,8 +3,8 @@
 ## Solvers
 
 *SudokuSpice* provides two different solvers: the
-[`ConstraintBasedSolver`](xref:SudokuSpice.ConstraintBasedSolver) or the original
-[`Solver`](xref:SudokuSpice.Solver).
+[`ConstraintBasedSolver`](xref:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1) or the original
+[`Solver`](xref:SudokuSpice.RuleBased.Solver).
 
 Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
@@ -21,29 +21,29 @@ SudokuSpice uses four main interfaces:
 	you need to do something a little different, like work with a puzzle with jagged regions
 	instead of the normal square box regions.
 
-2.  The [`ISudokuRule`](xref:SudokuSpice.Rules.ISudokuRule)
+2.  The [`ISudokuRule`](xref:SudokuSpice.RuleBased.Rules.ISudokuRule)
 	
 	Rules define - you guessed it - the rules for a puzzle. For example, standard Sudokus use the
-	[`RowUniquenessRule`](xref:SudokuSpice.Rules.RowUniquenessRule), the
-	[`ColumnUniquenessRule`](xref:SudokuSpice.Rules.ColumnUniquenessRule), and the
-	[`BoxUniquenessRule`](xref:SudokuSpice.Rules.BoxUniquenessRule). For convenience and
+	[`RowUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.RowUniquenessRule), the
+	[`ColumnUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.ColumnUniquenessRule), and the
+	[`BoxUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.BoxUniquenessRule). For convenience and
 	efficiency, these come prepackaged in the
-	[`StandardRules`](xref:SudokuSpice.Rules.StandardRules) class. Rules do not directly modify the
-	[`IPuzzle`](xref:SudokuSpice.IPuzzle) or [`PossibleValues`](xref:SudokuSpice.PossibleValues)
+	[`StandardRules`](xref:SudokuSpice.RuleBased.Rules.StandardRules) class. Rules do not directly modify the
+	[`IPuzzle`](xref:SudokuSpice.IPuzzle) or [`PossibleValues`](xref:SudokuSpice.RuleBased.PossibleValues)
 	themselves. They should use an [`IReadOnlyPuzzle`](xref:SudokuSpice.IReadOnlyPuzzle) and just
 	enough internal state to efficiently provide the possible values of any given square according to
 	*only* that rule.
 	
-	Rules are enforced by an [`ISudokuRuleKeeper`](xref:SudokuSpice.Rules.ISudokuRuleKeeper). The
-	[`DynamicRuleKeeper`](xref:SudokuSpice.Rules.DynamicRuleKeeper) provides a general implementation
+	Rules are enforced by an [`ISudokuRuleKeeper`](xref:SudokuSpice.RuleBased.ISudokuRuleKeeper). The
+	[`DynamicRuleKeeper`](xref:SudokuSpice.RuleBased.DynamicRuleKeeper) provides a general implementation
 	that works with any number of rules. Custom implementations can provide even more efficiency, but
 	are generally messier and more complex than simply creating custom rules.
-	[`StandardRuleKeeper`](xref:SudokuSpice.Rules.StandardRuleKeeper) is an example of this. Check out
+	[`StandardRuleKeeper`](xref:SudokuSpice.RuleBased.StandardRuleKeeper) is an example of this. Check out
 	the [benchmarks](performance.md) for performance comparisons. The rule keeper actually
-	updates the [`PossibleValues`](xref:SudokuSpice.PossibleValues) based on all the rules while
+	updates the [`PossibleValues`](xref:SudokuSpice.RuleBased.PossibleValues) based on all the rules while
 	ensuring that no rules are broken by a given update.
 
-3.  The [`ISudokuHeuristic`](xref:SudokuSpice.Heuristics.ISudokuHeuristic)
+3.  The [`ISudokuHeuristic`](xref:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
 
 	Heuristics are logical tricks that can be used to reduce the number of possible values for any
 	given square. These are only used in solving when the framework would otherwise have to guess
@@ -51,9 +51,9 @@ SudokuSpice uses four main interfaces:
 	and still improve solving times.
 	
 	Heuristics depend on an [`IReadOnlyPuzzle`](xref:SudokuSpice.IReadOnlyPuzzle) and directly modify
-	the [`PossibleValues`](xref:SudokuSpice.PossibleValues). They can alo optionally depend on one or
+	the [`PossibleValues`](xref:SudokuSpice.RuleBased.PossibleValues). They can alo optionally depend on one or
 	more rules, as is demonstrated by the
-	[`UniqueInRowHeuristic`](xref:SudokuSpice.Heuristics.UniqueInRowHeuristic). Heuristics can either
+	[`UniqueInRowHeuristic`](xref:SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic). Heuristics can either
 	be *perfect* heuristics, i.e. they reduce squares to only one possible value (like the `UniqueIn*`
 	heuristics), or they can be *loose* heuristics, i.e. they eliminate possible values from squares,
 	but don't necessarily reduce them down to a single possible value.
@@ -61,12 +61,12 @@ SudokuSpice uses four main interfaces:
 	Due to heuristics' complexity and flexibility, no generic class is provided to enforce multiple
 	heuristics. To enforce multiple heuristics, define a custom heuristic that implements your desired
 	heuristics. This pattern is demonstrated by the
-	[`StandardHeuristic`](xref:SudokuSpice.Heuristics.StandardHeuristic).
+	[`StandardHeuristic`](xref:SudokuSpice.RuleBased.Heuristics.StandardHeuristic).
 
-4.  The [`IConstraint`](xref:SudokuSpice.Constraints.IConstraint)
+4.  The [`IConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.IConstraint`1)
 
   Constraints represent rules that the puzzle needs to satisfy. For example, the
-  [`RowUniquenessConstraint`](xref:SudokuSpice.Constraints.RowUniquenessConstraint) enforces the
+  [`RowUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint`1) enforces the
   constraint that "each row must contain all possible values."
 
   Constraints are implemented using an
@@ -94,9 +94,9 @@ SudokuSpice uses four main interfaces:
 
   SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
   the `RxCxVx` cells in the first column) are represented by
-  [`PossibleSquareValue`s](xref:SudokuSpice.PossibleSquareValue). Column headers (i.e. the
+  [`PossibleSquareValue`s](xref:SudokuSpice.ConstraintBased.PossibleSquareValue`1). Column headers (i.e. the
   cells in the first row) are represented by
-  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintHeader). Rows and columns are connected by
+  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader`1). Rows and columns are connected by
   `SquareLink`s, which represent the 1s in the matrix. Each `SquareLink` is connected up and down
   to the other '1s' that satisfy that constraint header, and connected left and right to the other
   '1s' that are present for that possible square value.
@@ -113,13 +113,14 @@ For more information on extending SudokuSpice, see:
 
 ## Namespaces
 
-*   **<xref:SudokuSpice>:** Contains the main public classes for solving and generating puzzles.
-*   **<xref:SudokuSpice>:** Contains data classes used internally, with some made public for
-	users who wish to extend the framework.
-*   **<xref:SudokuSpice.Heuristics>:** Contains standard heuristics and interfaces for creating
-	custom heuristics.
-*   **<xref:SudokuSpice.Rules>:** Contains rules, rule keepers, and interfaces for creating custom
+*   **<xref:SudokuSpice>:** Contains base classes for solving and generating puzzles.
+*   **<xref:SudokuSpice.RuleBased>:** Contains classes for rule-based puzzle-solving and
+	-generating.
+*   **<xref:SudokuSpice.RuleBased.Heuristics>:** Contains standard heuristics and interfaces for
+	creating custom heuristics.
+*   **<xref:SudokuSpice.RuleBased.Rules>:** Contains rules and interfaces for creating custom
 	rules.
-*   **<xref:SudokuSpice.Constraints>:** Contains standard constraints and the
-    [`IConstraint`](xref:SudokuSpice.Constraints.IConstraint) interface.
-	rules.
+*   **<xref:SudokuSpice.ConstraintBased>:** Contains classes for constraint-based puzzle-solving
+	and -generating.
+*   **<xref:SudokuSpice.ConstraintBased.Constraints>:** Contains standard constraints and the
+    [`IConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.IConstraint`1) interface.

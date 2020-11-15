@@ -55,7 +55,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.Constraints
-  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
+  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
   remarks: "\nThis skips adding <code>ConstraintHeader</code>s that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
   example: []
   syntax:
@@ -75,12 +75,12 @@ references:
   name: SudokuSpice.Constraints
   nameWithType: SudokuSpice.Constraints
   fullName: SudokuSpice.Constraints
-- uid: SudokuSpice.ConstraintHeader
-  commentId: T:SudokuSpice.ConstraintHeader
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
   parent: SudokuSpice
   name: ConstraintHeader
   nameWithType: ConstraintHeader
-  fullName: SudokuSpice.ConstraintHeader
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
 - uid: SudokuSpice.PossibleSquareValue
   commentId: T:SudokuSpice.PossibleSquareValue
   parent: SudokuSpice

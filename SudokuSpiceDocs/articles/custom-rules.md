@@ -4,13 +4,13 @@ Let's say we want to solve a puzzle that also enforces that the diagonals contai
 values. In this case, we can use the standard [`Puzzle`](xref:SudokuSpice.Puzzle) to store the
 data, but we need to add a custom rule. In this example, we'll go through the steps for
 implementing and using the
-[`DiagonalUniquenessRule`](xref:SudokuSpice.Rules.DiagonalUniquenessRule).
+[`DiagonalUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule).
 
 ## Creating a rule
 
 ### Constructor
 
-The new rule needs to extend the [`ISudokuRule`](xref:SudokuSpice.Rules.ISudokuRule), and we'll
+The new rule needs to extend the [`ISudokuRule`](xref:SudokuSpice.RuleBased.Rules.ISudokuRule), and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
 we'll use the [`BitVector`](xref:SudokuSpice.BitVector) struct, which provides an efficient
 set-like struct using the bits of a `uint`.
@@ -150,8 +150,8 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 
 Lastly, we must implement the `ISudokuRule.CopyWithNewReference` method to provide a deep copy for
 the
-[`Solver.GetStatsForAllSolutions`](xref:SudokuSpice.Solver#SudokuSpice_Solver_GetStatsForAllSolutions)
-method and for the [`PuzzleGenerator`](xref:SudokuSpice.PuzzleGenerator`1).
+[`Solver.GetStatsForAllSolutions`](xref:SudokuSpice.RuleBased.Solver#SudokuSpice_RuleBased_Solver_GetStatsForAllSolutions)
+method and for the [`PuzzleGenerator`](xref:SudokuSpice.RuleBased.PuzzleGenerator`1).
 
 ```csharp
 public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)

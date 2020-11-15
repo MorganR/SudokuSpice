@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Solves <see cref="IPuzzle"/>s using an <see cref="ExactCoverMatrix"/>.
+    /// Solves <see cref="IPuzzle"/>s using an <see cref="ExactCoverMatrix{TPuzzle}"/>.
     /// </summary>
     /// <remarks>
     /// This class is thread-safe.
@@ -16,7 +16,7 @@ namespace SudokuSpice.ConstraintBased
 
         /// <summary>
         /// Creates a solver that can solve <see cref="IPuzzle"/>s using the given
-        /// <see cref="IConstraint"/>s. The same solver can be reused for multiple puzzles.
+        /// <see cref="IConstraint{TPuzzle}"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>
         public ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)

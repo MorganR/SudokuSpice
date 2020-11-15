@@ -73,10 +73,10 @@
 values. In this case, we can use the standard <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> to store the
 data, but we need to add a custom rule. In this example, we'll go through the steps for
 implementing and using the
-<a href="xref:SudokuSpice.Rules.DiagonalUniquenessRule"><code>DiagonalUniquenessRule</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
 <h2 id="creating-a-rule">Creating a rule</h2>
 <h3 id="constructor">Constructor</h3>
-<p>The new rule needs to extend the <a href="xref:SudokuSpice.Rules.ISudokuRule"><code>ISudokuRule</code></a>, and we'll
+<p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ISudokuRule.html"><code>ISudokuRule</code></a>, and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
 we'll use the <a class="xref" href="../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
 set-like struct using the bits of a <code>uint</code>.</p>
@@ -200,8 +200,8 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 <h3 id="copywithnewreference">CopyWithNewReference</h3>
 <p>Lastly, we must implement the <code>ISudokuRule.CopyWithNewReference</code> method to provide a deep copy for
 the
-<a href="xref:SudokuSpice.Solver#SudokuSpice_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
-method and for the <a href="xref:SudokuSpice.PuzzleGenerator%601"><code>PuzzleGenerator</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.RuleBased.Solver.html#SudokuSpice_RuleBased_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
+method and for the <a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
 <pre><code class="lang-csharp">public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
 {
     return new DiagonalUniquenessRule(this, puzzle);

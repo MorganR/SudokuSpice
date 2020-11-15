@@ -122,8 +122,8 @@
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex*"></a>
   <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex__1_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square___0___System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix___0__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex``1(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square{``0}},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix{``0})">AddConstraintHeadersForValueIndex&lt;TPuzzle&gt;(ReadOnlySpan&lt;Square&lt;TPuzzle&gt;&gt;, Int32, ExactCoverMatrix&lt;TPuzzle&gt;)</h4>
-  <div class="markdown level1 summary"><p>Add a <see cref="!:ConstraintHeader"></see> connecting all the
-<see cref="!:PossibleSquareValue"></see>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
+  <div class="markdown level1 summary"><p>Add a <a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader-1.html">ConstraintHeader&lt;TPuzzle&gt;</a> connecting all the
+<a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue-1.html">PossibleSquareValue&lt;TPuzzle&gt;</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
 given <code data-dev-comment-type="paramref" class="paramref">squares</code>. Skips null squares, null possible values, and any
 possible values in a known state (i.e. dropped or selected).</p>
 </div>
@@ -257,7 +257,7 @@ value indices are already set in the given list of
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex*"></a>
   <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex__1_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square___0___System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix___0__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex``1(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square{``0}},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix{``0})">DropPossibleSquaresForValueIndex&lt;TPuzzle&gt;(ReadOnlySpan&lt;Square&lt;TPuzzle&gt;&gt;, Int32, ExactCoverMatrix&lt;TPuzzle&gt;)</h4>
-  <div class="markdown level1 summary"><p>Drops <see cref="!:PossibleSquareValue"></see>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
+  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue-1.html">PossibleSquareValue&lt;TPuzzle&gt;</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
 from the given set of <code data-dev-comment-type="paramref" class="paramref">squares</code>. Null squares and possible values are
 ignored.</p>
 </div>
@@ -391,8 +391,8 @@ ignored.</p>
     </tbody>
   </table>
   <h5 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares__1___0_System_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix___0___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This drops any <see cref="!:PossibleSquareValue"></see>s that are no longer possible, and
-adds <see cref="!:ConstraintHeader"></see>s and links to enforce this constraint for the ones
+  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue-1.html">PossibleSquareValue&lt;TPuzzle&gt;</a>s that are no longer possible, and
+adds <a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader-1.html">ConstraintHeader&lt;TPuzzle&gt;</a>s and links to enforce this constraint for the ones
 that are still possible.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>

@@ -27,7 +27,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nSolves <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using an <see cref=\"!:ExactCoverMatrix\"></see>.\n"
+  summary: "\nSolves <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using an <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix%601\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   remarks: "\nThis class is thread-safe.\n"
   example: []
   syntax:
@@ -78,7 +78,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nCreates a solver that can solve <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using the given\n<see cref=\"!:IConstraint\"></see>s. The same solver can be reused for multiple puzzles.\n"
+  summary: "\nCreates a solver that can solve <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref>s using the given\n<xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint%601\" data-throw-if-not-resolved=\"false\"></xref>s. The same solver can be reused for multiple puzzles.\n"
   example: []
   syntax:
     content: public ConstraintBasedSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)
@@ -217,6 +217,42 @@ references:
   name: IPuzzle
   nameWithType: IPuzzle
   fullName: SudokuSpice.IPuzzle
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  name: ExactCoverMatrix<TPuzzle>
+  nameWithType: ExactCoverMatrix<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>
+  nameWithType.vb: ExactCoverMatrix(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle)
+  name.vb: ExactCoverMatrix(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -519,6 +555,42 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+  name: IConstraint<TPuzzle>
+  nameWithType: IConstraint<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint<TPuzzle>
+  nameWithType.vb: IConstraint(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.IConstraint(Of TPuzzle)
+  name.vb: IConstraint(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+    name: IConstraint
+    nameWithType: IConstraint
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
+    name: IConstraint
+    nameWithType: IConstraint
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor*
   commentId: Overload:SudokuSpice.ConstraintBased.ConstraintBasedSolver`1.#ctor
   name: ConstraintBasedSolver

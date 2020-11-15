@@ -5,14 +5,14 @@ using System.Diagnostics.CodeAnalysis;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Represents a row in the <see cref="ExactCoverMatrix"/>. This represents a possible value
-    /// for a given <see cref="Square"/>.
+    /// Represents a row in the <see cref="ExactCoverMatrix{TPuzzle}"/>. This represents a possible value
+    /// for a given <see cref="Square{TPuzzle}"/>.
     /// </summary>
     public class PossibleSquareValue<TPuzzle> where TPuzzle : IReadOnlyPuzzle
     {
         /// <summary>
         /// Gets the index of the possible value that this represents. This index corresponds with
-        /// <see cref="ExactCoverMatrix.AllPossibleValues"/>.
+        /// <see cref="ExactCoverMatrix{TPuzzle}.AllPossibleValues"/>.
         /// </summary>
         public int ValueIndex { get; }
         /// <summary>

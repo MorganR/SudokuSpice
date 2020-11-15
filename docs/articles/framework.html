@@ -71,8 +71,8 @@
 
 <h2 id="solvers">Solvers</h2>
 <p><em>SudokuSpice</em> provides two different solvers: the
-<a href="xref:SudokuSpice.ConstraintBasedSolver"><code>ConstraintBasedSolver</code></a> or the original
-<a href="xref:SudokuSpice.Solver"><code>Solver</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintBasedSolver-1.html"><code>ConstraintBasedSolver</code></a> or the original
+<a class="xref" href="../api/SudokuSpice.RuleBased.Solver.html"><code>Solver</code></a>.</p>
 <p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
 implementing custom rules or constraints.</p>
@@ -85,48 +85,48 @@ implementing custom rules or constraints.</p>
 you need to do something a little different, like work with a puzzle with jagged regions
 instead of the normal square box regions.</p>
 </li>
-<li><p>The <a href="xref:SudokuSpice.Rules.ISudokuRule"><code>ISudokuRule</code></a></p>
+<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ISudokuRule.html"><code>ISudokuRule</code></a></p>
 <p>Rules define - you guessed it - the rules for a puzzle. For example, standard Sudokus use the
-<a href="xref:SudokuSpice.Rules.RowUniquenessRule"><code>RowUniquenessRule</code></a>, the
-<a href="xref:SudokuSpice.Rules.ColumnUniquenessRule"><code>ColumnUniquenessRule</code></a>, and the
-<a href="xref:SudokuSpice.Rules.BoxUniquenessRule"><code>BoxUniquenessRule</code></a>. For convenience and
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.RowUniquenessRule.html"><code>RowUniquenessRule</code></a>, the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.html"><code>ColumnUniquenessRule</code></a>, and the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.BoxUniquenessRule.html"><code>BoxUniquenessRule</code></a>. For convenience and
 efficiency, these come prepackaged in the
-<a href="xref:SudokuSpice.Rules.StandardRules"><code>StandardRules</code></a> class. Rules do not directly modify the
-<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or <a class="xref" href="../api/SudokuSpice.Data.PossibleValues.html"><code>PossibleValues</code></a>
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.StandardRules.html"><code>StandardRules</code></a> class. Rules do not directly modify the
+<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or <a class="xref" href="../api/SudokuSpice.RuleBased.PossibleValues.html"><code>PossibleValues</code></a>
 themselves. They should use an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
 enough internal state to efficiently provide the possible values of any given square according to
 <em>only</em> that rule.</p>
-<p>Rules are enforced by an <a href="xref:SudokuSpice.Rules.ISudokuRuleKeeper"><code>ISudokuRuleKeeper</code></a>. The
-<a href="xref:SudokuSpice.Rules.DynamicRuleKeeper"><code>DynamicRuleKeeper</code></a> provides a general implementation
+<p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.RuleBased.ISudokuRuleKeeper.html"><code>ISudokuRuleKeeper</code></a>. The
+<a class="xref" href="../api/SudokuSpice.RuleBased.DynamicRuleKeeper.html"><code>DynamicRuleKeeper</code></a> provides a general implementation
 that works with any number of rules. Custom implementations can provide even more efficiency, but
 are generally messier and more complex than simply creating custom rules.
-<a href="xref:SudokuSpice.Rules.StandardRuleKeeper"><code>StandardRuleKeeper</code></a> is an example of this. Check out
+<a class="xref" href="../api/SudokuSpice.RuleBased.StandardRuleKeeper.html"><code>StandardRuleKeeper</code></a> is an example of this. Check out
 the <a href="performance.html">benchmarks</a> for performance comparisons. The rule keeper actually
-updates the <a class="xref" href="../api/SudokuSpice.Data.PossibleValues.html"><code>PossibleValues</code></a> based on all the rules while
+updates the <a class="xref" href="../api/SudokuSpice.RuleBased.PossibleValues.html"><code>PossibleValues</code></a> based on all the rules while
 ensuring that no rules are broken by a given update.</p>
 </li>
-<li><p>The <a href="xref:SudokuSpice.Heuristics.ISudokuHeuristic"><code>ISudokuHeuristic</code></a></p>
+<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.html"><code>ISudokuHeuristic</code></a></p>
 <p>Heuristics are logical tricks that can be used to reduce the number of possible values for any
 given square. These are only used in solving when the framework would otherwise have to guess
 (i.e. all unset squares have at least two possible values), so they can be relatively expensive
 and still improve solving times.</p>
 <p>Heuristics depend on an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and directly modify
-the <a class="xref" href="../api/SudokuSpice.Data.PossibleValues.html"><code>PossibleValues</code></a>. They can alo optionally depend on one or
+the <a class="xref" href="../api/SudokuSpice.RuleBased.PossibleValues.html"><code>PossibleValues</code></a>. They can alo optionally depend on one or
 more rules, as is demonstrated by the
-<a href="xref:SudokuSpice.Heuristics.UniqueInRowHeuristic"><code>UniqueInRowHeuristic</code></a>. Heuristics can either
+<a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.html"><code>UniqueInRowHeuristic</code></a>. Heuristics can either
 be <em>perfect</em> heuristics, i.e. they reduce squares to only one possible value (like the <code>UniqueIn*</code>
 heuristics), or they can be <em>loose</em> heuristics, i.e. they eliminate possible values from squares,
 but don't necessarily reduce them down to a single possible value.</p>
 <p>Due to heuristics' complexity and flexibility, no generic class is provided to enforce multiple
 heuristics. To enforce multiple heuristics, define a custom heuristic that implements your desired
 heuristics. This pattern is demonstrated by the
-<a href="xref:SudokuSpice.Heuristics.StandardHeuristic"><code>StandardHeuristic</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.StandardHeuristic.html"><code>StandardHeuristic</code></a>.</p>
 </li>
-<li><p>The <a href="xref:SudokuSpice.Constraints.IConstraint"><code>IConstraint</code></a></p>
+<li><p>The <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint-1.html"><code>IConstraint</code></a></p>
 </li>
 </ol>
 <p>Constraints represent rules that the puzzle needs to satisfy. For example, the
-<a href="xref:SudokuSpice.Constraints.RowUniquenessConstraint"><code>RowUniquenessConstraint</code></a> enforces the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint-1.html"><code>RowUniquenessConstraint</code></a> enforces the
 constraint that &quot;each row must contain all possible values.&quot;</p>
 <p>Constraints are implemented using an
 <a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a>. The exact-cover matrix combines
@@ -332,9 +332,9 @@ this looks something like the following:</p>
 </table>
 <p>SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
 the <code>RxCxVx</code> cells in the first column) are represented by
-<a href="xref:SudokuSpice.PossibleSquareValue"><code>PossibleSquareValue</code>s</a>. Column headers (i.e. the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleSquareValue-1.html"><code>PossibleSquareValue</code>s</a>. Column headers (i.e. the
 cells in the first row) are represented by
-<a href="xref:SudokuSpice.ConstraintHeader"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader-1.html"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
 <code>SquareLink</code>s, which represent the 1s in the matrix. Each <code>SquareLink</code> is connected up and down
 to the other '1s' that satisfy that constraint header, and connected left and right to the other
 '1s' that are present for that possible square value.</p>
@@ -349,16 +349,17 @@ improvement.</p>
 </ul>
 <h2 id="namespaces">Namespaces</h2>
 <ul>
-<li><strong><a class="xref" href="../api/SudokuSpice.Data.html">SudokuSpice</a>:</strong> Contains the main public classes for solving and generating puzzles.</li>
-<li><strong><a class="xref" href="../api/SudokuSpice.Data.html">SudokuSpice</a>:</strong> Contains data classes used internally, with some made public for
-users who wish to extend the framework.</li>
-<li><strong>&lt;xref:SudokuSpice.Heuristics&gt;:</strong> Contains standard heuristics and interfaces for creating
-custom heuristics.</li>
-<li><strong>&lt;xref:SudokuSpice.Rules&gt;:</strong> Contains rules, rule keepers, and interfaces for creating custom
+<li><strong><a class="xref" href="../api/SudokuSpice.html">SudokuSpice</a>:</strong> Contains base classes for solving and generating puzzles.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a>:</strong> Contains classes for rule-based puzzle-solving and
+-generating.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.html">SudokuSpice.RuleBased.Heuristics</a>:</strong> Contains standard heuristics and interfaces for
+creating custom heuristics.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.RuleBased.Rules.html">SudokuSpice.RuleBased.Rules</a>:</strong> Contains rules and interfaces for creating custom
 rules.</li>
-<li><strong>&lt;xref:SudokuSpice.Constraints&gt;:</strong> Contains standard constraints and the
-<a href="xref:SudokuSpice.Constraints.IConstraint"><code>IConstraint</code></a> interface.
-rules.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a>:</strong> Contains classes for constraint-based puzzle-solving
+and -generating.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.html">SudokuSpice.ConstraintBased.Constraints</a>:</strong> Contains standard constraints and the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint-1.html"><code>IConstraint</code></a> interface.</li>
 </ul>
 </article>
           </div>

@@ -5,7 +5,7 @@ For more information, see the [Framework Overview](framework.md).
 ## Solving
 
 If you need to solve a standard Sudoku puzzle, you can simply create a
-[`Puzzle`](xref:SudokuSpice.Puzzle), create a [`Solver`](xref:SudokuSpice.Solver), and solve it.
+[`Puzzle`](xref:SudokuSpice.Puzzle), create a [`Solver`](xref:SudokuSpice.RuleBased.Solver), and solve it.
 
 ```csharp
 var puzzle = new Puzzle(new int?[,]
@@ -32,7 +32,7 @@ var value = puzzle[row, column]; // Returns 2
 
 ## Generating
 
-If you need to generate Sudoku puzzles, simply create a [`StandardPuzzleGenerator`](xref:SudokuSpice.StandardPuzzleGenerator)
+If you need to generate Sudoku puzzles, simply create a [`StandardPuzzleGenerator`](xref:SudokuSpice.RuleBased.StandardPuzzleGenerator)
 and call `Generate` as many times as you like.
 
 ```csharp

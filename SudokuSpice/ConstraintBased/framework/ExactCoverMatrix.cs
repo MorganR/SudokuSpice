@@ -8,10 +8,10 @@ namespace SudokuSpice.ConstraintBased
     /// Holds an exact-cover matrix for the current puzzle being solved.
     /// </summary>
     /// <remarks>
-    /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
-    /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
-    /// matrix. <see cref="SudokuSpice.ConstraintBased.Constraints.IConstraint">IConstraint</see>s will then add
-    /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding links.
+    /// The exact cover matrix is organized by <see cref="Square{TPuzzle}"/>s, which in turn contain
+    /// <see cref="PossibleSquareValue{TPuzzle}"/>s. Each of these represents a row in the exact-cover
+    /// matrix. <see cref="Constraints.IConstraint{TPuzzle}">IConstraint</see>s will then add
+    /// <see cref="ConstraintHeader{TPuzzle}"/>s, the columns of the matrix and corresponding links.
     /// </remarks>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover"/>
     public class ExactCoverMatrix<TPuzzle> where TPuzzle : IReadOnlyPuzzle
@@ -108,7 +108,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <summary>
-        /// Gets all the <see cref="Square"/>s on the requested row.
+        /// Gets all the <see cref="Square{TPuzzle}"/>s on the requested row.
         /// </summary>
         /// <param name="row">A zero-based row index.</param>
         public ReadOnlySpan<Square<TPuzzle>?> GetSquaresOnRow(int row)
@@ -117,7 +117,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <summary>
-        /// Gets all the <see cref="Square"/>s on the requested column.
+        /// Gets all the <see cref="Square{TPuzzle}"/>s on the requested column.
         /// </summary>
         /// <param name="column">A zero-based column index.</param>
         public List<Square<TPuzzle>?> GetSquaresOnColumn(int column)
@@ -131,7 +131,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <summary>
-        /// Gets all the currently unsatisfied <see cref="ConstraintHeader"/>s.
+        /// Gets all the currently unsatisfied <see cref="ConstraintHeader{TPuzzle}"/>s.
         /// </summary>
         public IEnumerable<ConstraintHeader<TPuzzle>> GetUnsatisfiedConstraintHeaders()
         {

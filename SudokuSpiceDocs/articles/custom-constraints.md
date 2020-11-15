@@ -3,7 +3,7 @@
 Let's continue the [custom rules example](custom-rules.md), where we want to solve a puzzle that also enforces
 that the diagonals contain all unique values. In this case, however, we'll solve this by adding a
 new constraint: the
-[`DiagonalUniquenessConstraint`](xref:SudokuSpice.Constraints.DiagonalUniquenessConstraint).
+[`DiagonalUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint`1).
 
 If you haven't yet read the [constraints summary](framework.md#important-concepts), read that first!
 
@@ -15,10 +15,10 @@ no work needs to be done in the constructor.
 ### The `Constrain` method
 
 The `IConstraint.Constrain` operation adds new
-[`ConstraintHeader`s](xref:SudokuSpice.ConstraintHeader) (and corresponding
+[`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader`1) (and corresponding
 `SquareLink`s) to the given
-[`ExactCoverMatrix`](xref:SudokuSpice.ExactCoverMatrix). It must also drop any
-[`PossibleSquareValue`s](xref:SudokuSpice.PossibleSquareValue) that are now impossible based
+[`ExactCoverMatrix`](xref:SudokuSpice.ConstraintBased.ExactCoverMatrix`1). It must also drop any
+[`PossibleSquareValue`s](xref:SudokuSpice.ConstraintBased.PossibleSquareValue`1) that are now impossible based
 on applying this constraint to the puzzle's preset values.
 
 #### Define your headers
@@ -36,7 +36,7 @@ The unique coordinates here are those on the forward diagonal, and those on the 
 We can find all the coordinates on the forward diagonal as follows:
 
 ```csharp
-public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
 {
     var forwardDiagonalCoordinates = new Coordinate[puzzle.Size];
     for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
@@ -52,17 +52,18 @@ public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
 
 We need to identify which values are actually possible on each diagonal based on the preset
 values. Within the constraint-based solver, we map a puzzle's possible values to zero-based indices
-based on the order they are returne when we first call puzzle.AllPossibleValues. This mapping is
+based on the order they are returne when we first call `puzzle.AllPossibleValues`. This mapping is
 handled by the `ExactCoverMatrix`.
 
 ```csharp
-public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
 {
     ...
 
     Span<bool> isConstraintSatisfiedAtIndex =
             stackalloc bool[matrix.AllPossibleValues.Length];
-    isConstraintSatisfiedAtIndex.Fill(false);
+    // Zero the array since stackalloc does not guarantee this.
+    isConstraintSatisfiedAtIndex.Clear();
     for (int i = 0; i < forwardDiagonalCoordinates.Length; i++)
     {
         var puzzleValue = puzzle[forwardDiagonalCoordinates[i]];
@@ -82,7 +83,7 @@ Now we can iterate through each possible value on each diagonal, drop possible s
 are no longer possible, and add constraint headers for the rest.
 
 ```csharp
-public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
 {
     ...
     var squares = new Square?[forwardDiagonalCoordinates.Length];
@@ -103,10 +104,10 @@ public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
     // TODO: Add headers and drop rows for the backward diagonal.
 }
 ```
-Note that here we made use of the [`ConstraintUtil`](xref:SudokuSpice.Constraints.ConstraintUtil)
-to easily add headers and drop rows. This provides a few useful functions for implementin
-constraints. In fact, we could have replaced all of this work for handling the forward diagonal
-with the following:
+Note that here we made use of the
+[`ConstraintUtil`](xref:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil) to easily
+add headers and drop rows. This provides a few useful functions for implementing constraints. In 
+fact, we could have replaced all of this work for handling the forward diagonal with the following:
 
 ```csharp
 Span<Coordinate> coordinates = stackalloc Coordinate[puzzle.Size];
@@ -116,4 +117,3 @@ for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
 }
 ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
 ```
-

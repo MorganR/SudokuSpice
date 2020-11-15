@@ -72,7 +72,7 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
   summary: "\nEnforces uniqueness of the values at the given coordinates.\n"
-  remarks: "\nThis drops any <see cref=\"!:PossibleSquareValue\"></see>s that are no longer possible, and\nadds <see cref=\"!:ConstraintHeader\"></see>s and links to enforce this constraint for the ones\nthat are still possible.\n"
+  remarks: "\nThis drops any <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible, and\nadds <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s and links to enforce this constraint for the ones\nthat are still possible.\n"
   example: []
   syntax:
     content: >-
@@ -181,7 +181,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nDrops <see cref=\"!:PossibleSquareValue\"></see>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n"
+  summary: "\nDrops <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n"
   example: []
   syntax:
     content: >-
@@ -236,7 +236,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nAdd a <see cref=\"!:ConstraintHeader\"></see> connecting all the\n<see cref=\"!:PossibleSquareValue\"></see>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
+  summary: "\nAdd a <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue%601\" data-throw-if-not-resolved=\"false\"></xref>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
   example: []
   syntax:
     content: >-
@@ -563,6 +563,78 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue`1
+  name: PossibleSquareValue<TPuzzle>
+  nameWithType: PossibleSquareValue<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue<TPuzzle>
+  nameWithType.vb: PossibleSquareValue(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PossibleSquareValue(Of TPuzzle)
+  name.vb: PossibleSquareValue(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+    name: PossibleSquareValue
+    nameWithType: PossibleSquareValue
+    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue`1
+    name: PossibleSquareValue
+    nameWithType: PossibleSquareValue
+    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader`1
+  name: ConstraintHeader<TPuzzle>
+  nameWithType: ConstraintHeader<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>
+  nameWithType.vb: ConstraintHeader(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle)
+  name.vb: ConstraintHeader(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+    name: ConstraintHeader
+    nameWithType: ConstraintHeader
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+    name: ConstraintHeader
+    nameWithType: ConstraintHeader
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true

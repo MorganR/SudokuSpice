@@ -11,8 +11,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// Enforces uniqueness of the values at the given coordinates.
         /// </summary>
         /// <remarks>
-        /// This drops any <see cref="PossibleSquareValue"/>s that are no longer possible, and
-        /// adds <see cref="ConstraintHeader"/>s and links to enforce this constraint for the ones
+        /// This drops any <see cref="PossibleSquareValue{TPuzzle}"/>s that are no longer possible, and
+        /// adds <see cref="ConstraintHeader{TPuzzle}"/>s and links to enforce this constraint for the ones
         /// that are still possible.
         /// </remarks>
         /// <param name="puzzle">The puzzle being solved.</param>
@@ -76,7 +76,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Drops <see cref="PossibleSquareValue"/>s with the given <paramref name="valueIndex"/>
+        /// Drops <see cref="PossibleSquareValue{TPuzzle}"/>s with the given <paramref name="valueIndex"/>
         /// from the given set of <paramref name="squares"/>. Null squares and possible values are
         /// ignored.
         /// </summary>
@@ -113,8 +113,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Add a <see cref="ConstraintHeader"/> connecting all the
-        /// <see cref="PossibleSquareValue"/>s at the given <paramref name="valueIndex"/> on the
+        /// Add a <see cref="ConstraintHeader{TPuzzle}"/> connecting all the
+        /// <see cref="PossibleSquareValue{TPuzzle}"/>s at the given <paramref name="valueIndex"/> on the
         /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
         /// possible values in a known state (i.e. dropped or selected).
         /// </summary>
