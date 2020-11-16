@@ -72,7 +72,7 @@
 <h2 id="solvers">Solvers</h2>
 <p><em>SudokuSpice</em> provides two different solvers: the
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>PuzzleSolver</code></a> or the original
-<a href="xref:SudokuSpice.RuleBased.Solver"><code>Solver</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver.html"><code>PuzzleSolver</code></a>.</p>
 <p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
 implementing custom rules or constraints.</p>
@@ -122,11 +122,11 @@ heuristics. To enforce multiple heuristics, define a custom heuristic that imple
 heuristics. This pattern is demonstrated by the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.StandardHeuristic.html"><code>StandardHeuristic</code></a>.</p>
 </li>
-<li><p>The <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint-1.html"><code>IConstraint</code></a></p>
+<li><p>The <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint.html"><code>IConstraint</code></a></p>
 </li>
 </ol>
 <p>Constraints represent rules that the puzzle needs to satisfy. For example, the
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint-1.html"><code>RowUniquenessConstraint</code></a> enforces the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html"><code>RowUniquenessConstraint</code></a> enforces the
 constraint that &quot;each row must contain all possible values.&quot;</p>
 <p>Constraints are implemented using an
 <a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a>. The exact-cover matrix combines
@@ -332,9 +332,9 @@ this looks something like the following:</p>
 </table>
 <p>SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
 the <code>RxCxVx</code> cells in the first column) are represented by
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleValue-1.html"><code>PossibleValue</code>s</a>. Column headers (i.e. the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleValue.html"><code>PossibleValue</code>s</a>. Column headers (i.e. the
 cells in the first row) are represented by
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader-1.html"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader.html"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
 <code>SquareLink</code>s, which represent the 1s in the matrix. Each <code>SquareLink</code> is connected up and down
 to the other '1s' that satisfy that constraint header, and connected left and right to the other
 '1s' that are present for that possible square value.</p>
@@ -359,7 +359,7 @@ rules.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a>:</strong> Contains classes for constraint-based puzzle-solving
 and -generating.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.html">SudokuSpice.ConstraintBased.Constraints</a>:</strong> Contains standard constraints and the
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint-1.html"><code>IConstraint</code></a> interface.</li>
+<a href="xref:SudokuSpice.ConstraintBased.Constraints.IConstraint%601"><code>IConstraint</code></a> interface.</li>
 </ul>
 </article>
           </div>

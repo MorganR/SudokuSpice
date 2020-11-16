@@ -1,22 +1,22 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix`1
-  id: ExactCoverMatrix`1
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+  id: ExactCoverMatrix
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquare(SudokuSpice.Coordinate@)
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnColumn(System.Int32)
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnRow(System.Int32)
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetUnsatisfiedConstraintHeaders
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix`1.ValuesToIndices
+  - SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+  - SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)
+  - SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
+  - SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
+  - SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+  - SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
   langs:
   - csharp
   - vb
-  name: ExactCoverMatrix<TPuzzle>
-  nameWithType: ExactCoverMatrix<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>
+  name: ExactCoverMatrix
+  nameWithType: ExactCoverMatrix
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
   type: Class
   source:
     remote:
@@ -30,15 +30,11 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square%601\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.PossibleValue%601\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint%601\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
+  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
-    content: >-
-      public class ExactCoverMatrix<TPuzzle>
-          where TPuzzle : IReadOnlyPuzzle
-    typeParameters:
-    - id: TPuzzle
-    content.vb: Public Class ExactCoverMatrix(Of TPuzzle As IReadOnlyPuzzle)
+    content: public class ExactCoverMatrix
+    content.vb: Public Class ExactCoverMatrix
   seealso:
   - linkType: HRef
     linkId: https://en.wikipedia.org/wiki/Exact_cover
@@ -53,25 +49,22 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle)
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle)
-  name.vb: ExactCoverMatrix(Of TPuzzle)
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
   id: AllPossibleValues
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: AllPossibleValues
-  nameWithType: ExactCoverMatrix<TPuzzle>.AllPossibleValues
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.AllPossibleValues
+  nameWithType: ExactCoverMatrix.AllPossibleValues
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
   type: Property
   source:
     remote:
@@ -92,25 +85,23 @@ items:
     return:
       type: System.ReadOnlySpan{System.Int32}
     content.vb: Public ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues*
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).AllPossibleValues
+  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).AllPossibleValues
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.ValuesToIndices
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.ValuesToIndices
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
   id: ValuesToIndices
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: ValuesToIndices
-  nameWithType: ExactCoverMatrix<TPuzzle>.ValuesToIndices
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.ValuesToIndices
+  nameWithType: ExactCoverMatrix.ValuesToIndices
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
   type: Property
   source:
     remote:
@@ -123,7 +114,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix%601.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
+  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
   example: []
   syntax:
     content: public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
@@ -131,25 +122,23 @@ items:
     return:
       type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
     content.vb: Public ReadOnly Property ValuesToIndices As IReadOnlyDictionary(Of Integer, Integer)
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.ValuesToIndices*
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).ValuesToIndices
+  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).ValuesToIndices
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquare(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquare(SudokuSpice.Coordinate@)
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)
   id: GetSquare(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetSquare(Coordinate)
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetSquare(Coordinate)
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetSquare(SudokuSpice.Coordinate)
+  nameWithType: ExactCoverMatrix.GetSquare(Coordinate)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -165,31 +154,31 @@ items:
   summary: "\nGets the square representing the given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. This returns null if\nthe square&apos;s value was preset in the current puzzle being solved.\n"
   example: []
   syntax:
-    content: public Square<TPuzzle> GetSquare(in Coordinate c)
+    content: public Square GetSquare(in Coordinate c)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.ConstraintBased.Square{{TPuzzle}}
-    content.vb: Public Function GetSquare(ByRef c As Coordinate) As Square(Of TPuzzle)
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquare*
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetSquare(ByRef Coordinate)
+      type: SudokuSpice.ConstraintBased.Square
+    content.vb: Public Function GetSquare(ByRef c As Coordinate) As Square
+  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare*
+  nameWithType.vb: ExactCoverMatrix.GetSquare(ByRef Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetSquare(ByRef SudokuSpice.Coordinate)
+  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(ByRef SudokuSpice.Coordinate)
   name.vb: GetSquare(ByRef Coordinate)
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnRow(System.Int32)
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnRow(System.Int32)
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
   id: GetSquaresOnRow(System.Int32)
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetSquaresOnRow(Int32)
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetSquaresOnRow(Int32)
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetSquaresOnRow(System.Int32)
+  nameWithType: ExactCoverMatrix.GetSquaresOnRow(Int32)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow(System.Int32)
   type: Method
   source:
     remote:
@@ -202,34 +191,32 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets all the <xref href=\"SudokuSpice.ConstraintBased.Square%601\" data-throw-if-not-resolved=\"false\"></xref>s on the requested row.\n"
+  summary: "\nGets all the <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref>s on the requested row.\n"
   example: []
   syntax:
-    content: public ReadOnlySpan<Square<TPuzzle>> GetSquaresOnRow(int row)
+    content: public ReadOnlySpan<Square> GetSquaresOnRow(int row)
     parameters:
     - id: row
       type: System.Int32
       description: A zero-based row index.
     return:
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square{{TPuzzle}}}
-    content.vb: Public Function GetSquaresOnRow(row As Integer) As ReadOnlySpan(Of Square(Of TPuzzle))
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnRow*
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetSquaresOnRow(Int32)
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
+    content.vb: Public Function GetSquaresOnRow(row As Integer) As ReadOnlySpan(Of Square)
+  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetSquaresOnRow(System.Int32)
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnColumn(System.Int32)
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnColumn(System.Int32)
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
   id: GetSquaresOnColumn(System.Int32)
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetSquaresOnColumn(Int32)
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetSquaresOnColumn(Int32)
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetSquaresOnColumn(System.Int32)
+  nameWithType: ExactCoverMatrix.GetSquaresOnColumn(Int32)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)
   type: Method
   source:
     remote:
@@ -242,34 +229,32 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets all the <xref href=\"SudokuSpice.ConstraintBased.Square%601\" data-throw-if-not-resolved=\"false\"></xref>s on the requested column.\n"
+  summary: "\nGets all the <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref>s on the requested column.\n"
   example: []
   syntax:
-    content: public List<Square<TPuzzle>> GetSquaresOnColumn(int column)
+    content: public List<Square> GetSquaresOnColumn(int column)
     parameters:
     - id: column
       type: System.Int32
       description: A zero-based column index.
     return:
-      type: System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square{{TPuzzle}}}
-    content.vb: Public Function GetSquaresOnColumn(column As Integer) As List(Of Square(Of TPuzzle))
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnColumn*
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetSquaresOnColumn(Int32)
+      type: System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square}
+    content.vb: Public Function GetSquaresOnColumn(column As Integer) As List(Of Square)
+  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetSquaresOnColumn(System.Int32)
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetUnsatisfiedConstraintHeaders
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetUnsatisfiedConstraintHeaders
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
   id: GetUnsatisfiedConstraintHeaders
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix`1
+  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
   langs:
   - csharp
   - vb
   name: GetUnsatisfiedConstraintHeaders()
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetUnsatisfiedConstraintHeaders()
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetUnsatisfiedConstraintHeaders()
+  nameWithType: ExactCoverMatrix.GetUnsatisfiedConstraintHeaders()
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders()
   type: Method
   source:
     remote:
@@ -282,165 +267,43 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader%601\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
   example: []
   syntax:
-    content: public IEnumerable<ConstraintHeader<TPuzzle>> GetUnsatisfiedConstraintHeaders()
+    content: public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
     return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader{{TPuzzle}}}
-    content.vb: Public Function GetUnsatisfiedConstraintHeaders As IEnumerable(Of ConstraintHeader(Of TPuzzle))
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetUnsatisfiedConstraintHeaders*
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetUnsatisfiedConstraintHeaders()
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
+    content.vb: Public Function GetUnsatisfiedConstraintHeaders As IEnumerable(Of ConstraintHeader)
+  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetUnsatisfiedConstraintHeaders()
 references:
-- uid: SudokuSpice.ConstraintBased.Square`1
-  commentId: T:SudokuSpice.ConstraintBased.Square`1
-  name: Square<TPuzzle>
-  nameWithType: Square<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.Square<TPuzzle>
-  nameWithType.vb: Square(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.Square(Of TPuzzle)
-  name.vb: Square(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.Square`1
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.ConstraintBased.Square
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBased.Square`1
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.ConstraintBased.Square
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.ConstraintBased.PossibleValue`1
-  commentId: T:SudokuSpice.ConstraintBased.PossibleValue`1
-  name: PossibleValue<TPuzzle>
-  nameWithType: PossibleValue<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.PossibleValue<TPuzzle>
-  nameWithType.vb: PossibleValue(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.PossibleValue(Of TPuzzle)
-  name.vb: PossibleValue(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
-    name: PossibleValue
-    nameWithType: PossibleValue
-    fullName: SudokuSpice.ConstraintBased.PossibleValue
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBased.PossibleValue`1
-    name: PossibleValue
-    nameWithType: PossibleValue
-    fullName: SudokuSpice.ConstraintBased.PossibleValue
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
-  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint`1
-  name: IConstraint<TPuzzle>
-  nameWithType: IConstraint<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint<TPuzzle>
-  nameWithType.vb: IConstraint(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.IConstraint(Of TPuzzle)
-  name.vb: IConstraint(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
-    name: IConstraint
-    nameWithType: IConstraint
-    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint`1
-    name: IConstraint
-    nameWithType: IConstraint
-    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
-  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader`1
-  name: ConstraintHeader<TPuzzle>
-  nameWithType: ConstraintHeader<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>
-  nameWithType.vb: ConstraintHeader(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle)
-  name.vb: ConstraintHeader(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
-    name: ConstraintHeader
-    nameWithType: ConstraintHeader
-    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
-    name: ConstraintHeader
-    nameWithType: ConstraintHeader
-    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: SudokuSpice.ConstraintBased.Square
+  commentId: T:SudokuSpice.ConstraintBased.Square
+  parent: SudokuSpice.ConstraintBased
+  name: Square
+  nameWithType: Square
+  fullName: SudokuSpice.ConstraintBased.Square
+- uid: SudokuSpice.ConstraintBased.PossibleValue
+  commentId: T:SudokuSpice.ConstraintBased.PossibleValue
+  parent: SudokuSpice.ConstraintBased
+  name: PossibleValue
+  nameWithType: PossibleValue
+  fullName: SudokuSpice.ConstraintBased.PossibleValue
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
+  name: IConstraint
+  nameWithType: IConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader
+  parent: SudokuSpice.ConstraintBased
+  name: ConstraintHeader
+  nameWithType: ConstraintHeader
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -732,19 +595,22 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased.Constraints
+  commentId: N:SudokuSpice.ConstraintBased.Constraints
+  name: SudokuSpice.ConstraintBased.Constraints
+  nameWithType: SudokuSpice.ConstraintBased.Constraints
+  fullName: SudokuSpice.ConstraintBased.Constraints
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
   name: AllPossibleValues
-  nameWithType: ExactCoverMatrix<TPuzzle>.AllPossibleValues
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.AllPossibleValues
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).AllPossibleValues
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).AllPossibleValues
+  nameWithType: ExactCoverMatrix.AllPossibleValues
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
 - uid: System.ReadOnlySpan{System.Int32}
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System
@@ -828,16 +694,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.AllPossibleValues
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
   isExternal: true
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.ValuesToIndices*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.ValuesToIndices
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
   name: ValuesToIndices
-  nameWithType: ExactCoverMatrix<TPuzzle>.ValuesToIndices
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.ValuesToIndices
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).ValuesToIndices
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).ValuesToIndices
+  nameWithType: ExactCoverMatrix.ValuesToIndices
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
 - uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   parent: System.Collections.Generic
@@ -961,63 +825,21 @@ references:
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquare*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquare
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare
   name: GetSquare
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetSquare
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetSquare
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetSquare
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetSquare
-- uid: SudokuSpice.ConstraintBased.Square{{TPuzzle}}
-  commentId: T:SudokuSpice.ConstraintBased.Square{`0}
-  parent: SudokuSpice.ConstraintBased
-  definition: SudokuSpice.ConstraintBased.Square`1
-  name: Square<TPuzzle>
-  nameWithType: Square<TPuzzle>
-  fullName: SudokuSpice.ConstraintBased.Square<TPuzzle>
-  nameWithType.vb: Square(Of TPuzzle)
-  fullName.vb: SudokuSpice.ConstraintBased.Square(Of TPuzzle)
-  name.vb: Square(Of TPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.Square`1
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.ConstraintBased.Square
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.ConstraintBased.Square`1
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.ConstraintBased.Square
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
+  nameWithType: ExactCoverMatrix.GetSquare
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnRow*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnRow
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow
   name: GetSquaresOnRow
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetSquaresOnRow
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetSquaresOnRow
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetSquaresOnRow
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetSquaresOnRow
+  nameWithType: ExactCoverMatrix.GetSquaresOnRow
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -1025,16 +847,16 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square{{TPuzzle}}}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square{`0}}
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
   parent: System
   definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<Square<TPuzzle>>
-  nameWithType: ReadOnlySpan<Square<TPuzzle>>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square<TPuzzle>>
-  nameWithType.vb: ReadOnlySpan(Of Square(Of TPuzzle))
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square(Of TPuzzle))
-  name.vb: ReadOnlySpan(Of Square(Of TPuzzle))
+  name: ReadOnlySpan<Square>
+  nameWithType: ReadOnlySpan<Square>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square>
+  nameWithType.vb: ReadOnlySpan(Of Square)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square)
+  name.vb: ReadOnlySpan(Of Square)
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
@@ -1044,19 +866,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.Square`1
+  - uid: SudokuSpice.ConstraintBased.Square
     name: Square
     nameWithType: Square
     fullName: SudokuSpice.ConstraintBased.Square
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1069,39 +882,28 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.Square`1
+  - uid: SudokuSpice.ConstraintBased.Square
     name: Square
     nameWithType: Square
     fullName: SudokuSpice.ConstraintBased.Square
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnColumn*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetSquaresOnColumn
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn
   name: GetSquaresOnColumn
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetSquaresOnColumn
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetSquaresOnColumn
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetSquaresOnColumn
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetSquaresOnColumn
-- uid: System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square{{TPuzzle}}}
-  commentId: T:System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square{`0}}
+  nameWithType: ExactCoverMatrix.GetSquaresOnColumn
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn
+- uid: System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square}
+  commentId: T:System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
-  name: List<Square<TPuzzle>>
-  nameWithType: List<Square<TPuzzle>>
-  fullName: System.Collections.Generic.List<SudokuSpice.ConstraintBased.Square<TPuzzle>>
-  nameWithType.vb: List(Of Square(Of TPuzzle))
-  fullName.vb: System.Collections.Generic.List(Of SudokuSpice.ConstraintBased.Square(Of TPuzzle))
-  name.vb: List(Of Square(Of TPuzzle))
+  name: List<Square>
+  nameWithType: List<Square>
+  fullName: System.Collections.Generic.List<SudokuSpice.ConstraintBased.Square>
+  nameWithType.vb: List(Of Square)
+  fullName.vb: System.Collections.Generic.List(Of SudokuSpice.ConstraintBased.Square)
+  name.vb: List(Of Square)
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
@@ -1111,19 +913,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.Square`1
+  - uid: SudokuSpice.ConstraintBased.Square
     name: Square
     nameWithType: Square
     fullName: SudokuSpice.ConstraintBased.Square
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1136,19 +929,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.Square`1
+  - uid: SudokuSpice.ConstraintBased.Square
     name: Square
     nameWithType: Square
     fullName: SudokuSpice.ConstraintBased.Square
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -1191,23 +975,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetUnsatisfiedConstraintHeaders*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix`1.GetUnsatisfiedConstraintHeaders
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
   name: GetUnsatisfiedConstraintHeaders
-  nameWithType: ExactCoverMatrix<TPuzzle>.GetUnsatisfiedConstraintHeaders
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix<TPuzzle>.GetUnsatisfiedConstraintHeaders
-  nameWithType.vb: ExactCoverMatrix(Of TPuzzle).GetUnsatisfiedConstraintHeaders
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix(Of TPuzzle).GetUnsatisfiedConstraintHeaders
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader{{TPuzzle}}}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader{`0}}
+  nameWithType: ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<ConstraintHeader<TPuzzle>>
-  nameWithType: IEnumerable<ConstraintHeader<TPuzzle>>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.ConstraintHeader<TPuzzle>>
-  nameWithType.vb: IEnumerable(Of ConstraintHeader(Of TPuzzle))
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.ConstraintHeader(Of TPuzzle))
-  name.vb: IEnumerable(Of ConstraintHeader(Of TPuzzle))
+  name: IEnumerable<ConstraintHeader>
+  nameWithType: IEnumerable<ConstraintHeader>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.ConstraintHeader>
+  nameWithType.vb: IEnumerable(Of ConstraintHeader)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.ConstraintHeader)
+  name.vb: IEnumerable(Of ConstraintHeader)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
@@ -1217,19 +999,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader
     name: ConstraintHeader
     nameWithType: ConstraintHeader
     fullName: SudokuSpice.ConstraintBased.ConstraintHeader
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1242,19 +1015,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader`1
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader
     name: ConstraintHeader
     nameWithType: ConstraintHeader
     fullName: SudokuSpice.ConstraintBased.ConstraintHeader
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )

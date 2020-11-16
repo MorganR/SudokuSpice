@@ -10,36 +10,36 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a column from an exact-cover matrix.
     /// </summary>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
-    public class ConstraintHeader<TPuzzle> where TPuzzle : IReadOnlyPuzzle
+    public class ConstraintHeader
     {
-        internal ExactCoverMatrix<TPuzzle> Matrix { get; private set; }
+        internal ExactCoverMatrix Matrix { get; private set; }
         [DisallowNull]
-        internal Link<TPuzzle>? FirstLink { get; private set; }
+        internal Link? FirstLink { get; private set; }
         internal int Count { get; private set; }
 
         internal bool IsSatisfied { get; private set; }
-        internal ConstraintHeader<TPuzzle> NextHeader { get; set; }
-        internal ConstraintHeader<TPuzzle> PreviousHeader { get; set; }
+        internal ConstraintHeader NextHeader { get; set; }
+        internal ConstraintHeader PreviousHeader { get; set; }
 
-        internal ConstraintHeader(ExactCoverMatrix<TPuzzle> matrix)
+        internal ConstraintHeader(ExactCoverMatrix matrix)
         {
             Matrix = matrix;
             NextHeader = PreviousHeader = this;
         }
 
-        internal ConstraintHeader<TPuzzle> CopyToMatrix(ExactCoverMatrix<TPuzzle> matrix)
+        internal ConstraintHeader CopyToMatrix(ExactCoverMatrix matrix)
         {
             Debug.Assert(FirstLink != null, $"Can't copy a header with a null {nameof(FirstLink)}.");
             Debug.Assert(!IsSatisfied, $"Can't copy a header that's already satisfied.");
-            var copy = new ConstraintHeader<TPuzzle>(matrix);
-            foreach (Link<TPuzzle>? link in GetLinks())
+            var copy = new ConstraintHeader(matrix);
+            foreach (Link? link in GetLinks())
             {
-                Square<TPuzzle>? square = matrix.GetSquare(link.PossibleSquare.Square.Coordinate);
+                Square? square = matrix.GetSquare(link.PossibleSquare.Square.Coordinate);
                 Debug.Assert(square != null,
                     $"Tried to copy a square link for a null square at {link.PossibleSquare.Square.Coordinate}.");
-                PossibleValue<TPuzzle>? possibleSquare = square.GetPossibleValue(link.PossibleSquare.ValueIndex);
+                PossibleValue? possibleSquare = square.GetPossibleValue(link.PossibleSquare.ValueIndex);
                 Debug.Assert(possibleSquare != null, "Tried to link header to null possible square value.");
-                _ = Link<TPuzzle>.CreateConnectedLink(possibleSquare, copy);
+                _ = Link.CreateConnectedLink(possibleSquare, copy);
             }
             return copy;
         }
@@ -56,30 +56,30 @@ namespace SudokuSpice.ConstraintBased
         /// <returns>The newly constructed header.</returns>
         [SuppressMessage("Design", "CA1000:Do not declare static members on generic types",
             Justification = "Static factory method is cleaner than using constructor and separate method.")]
-        public static ConstraintHeader<TPuzzle> CreateConnectedHeader(
-            ExactCoverMatrix<TPuzzle> matrix, ReadOnlySpan<PossibleValue<TPuzzle>> possibleSquares)
+        public static ConstraintHeader CreateConnectedHeader(
+            ExactCoverMatrix matrix, ReadOnlySpan<PossibleValue> possibleSquares)
         {
-            var header = new ConstraintHeader<TPuzzle>(matrix);
+            var header = new ConstraintHeader(matrix);
             matrix.Attach(header);
-            foreach (PossibleValue<TPuzzle>? possibleSquare in possibleSquares)
+            foreach (PossibleValue? possibleSquare in possibleSquares)
             {
-                _ = Link<TPuzzle>.CreateConnectedLink(possibleSquare, header);
+                _ = Link.CreateConnectedLink(possibleSquare, header);
             }
             if (header.Count == 0)
             {
                 throw new ArgumentException(
-                    $"Must provide at least one {nameof(PossibleValue<TPuzzle>)} when creating a {nameof(ConstraintHeader<TPuzzle>)}.");
+                    $"Must provide at least one {nameof(PossibleValue)} when creating a {nameof(ConstraintHeader)}.");
             }
             return header;
         }
 
-        internal bool TrySatisfyFrom(Link<TPuzzle> sourceLink)
+        internal bool TrySatisfyFrom(Link sourceLink)
         {
             Debug.Assert(!IsSatisfied, $"Constraint was already satisfied when selecting square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex}.");
             Debug.Assert(FirstLink != null, $"Tried to satisfy constraint via square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex} but {nameof(FirstLink)} was null.");
             Debug.Assert(GetLinks().Contains(sourceLink), $"Constraint was missing possible square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex} when satisfying constraint.");
             IsSatisfied = true;
-            Link<TPuzzle>? link = sourceLink.Down;
+            Link? link = sourceLink.Down;
             while (link != sourceLink)
             {
                 if (!link.PossibleSquare.TryDrop())
@@ -104,11 +104,11 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        internal void UnsatisfyFrom(Link<TPuzzle> sourceLink)
+        internal void UnsatisfyFrom(Link sourceLink)
         {
             Debug.Assert(IsSatisfied, $"Constraint was not satisfied when deselecting square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex}.");
             Debug.Assert(GetLinks().Contains(sourceLink), $"Constraint was missing possible square {sourceLink.PossibleSquare.Square.Coordinate}, value: {sourceLink.PossibleSquare.ValueIndex} when unsatisfying constraint.");
-            Link<TPuzzle>? link = sourceLink.Up;
+            Link? link = sourceLink.Up;
             while (link != sourceLink)
             {
                 link.PossibleSquare.Return();
@@ -119,7 +119,7 @@ namespace SudokuSpice.ConstraintBased
             PreviousHeader.NextHeader = this;
         }
 
-        internal bool TryDetach(Link<TPuzzle> link)
+        internal bool TryDetach(Link link)
         {
             Debug.Assert(
                 GetLinks().Contains(link),
@@ -138,7 +138,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        internal void Attach(Link<TPuzzle> link)
+        internal void Attach(Link link)
         {
             if (FirstLink is null)
             {
@@ -153,20 +153,20 @@ namespace SudokuSpice.ConstraintBased
             Count++;
         }
 
-        internal void Reattach(Link<TPuzzle> link)
+        internal void Reattach(Link link)
         {
             link.Down.Up = link;
             link.Up.Down = link;
             Count++;
         }
 
-        internal IEnumerable<Link<TPuzzle>> GetLinks()
+        internal IEnumerable<Link> GetLinks()
         {
             if (FirstLink == null)
             {
                 yield break;
             }
-            Link<TPuzzle>? link = FirstLink;
+            Link? link = FirstLink;
             do
             {
                 yield return link;

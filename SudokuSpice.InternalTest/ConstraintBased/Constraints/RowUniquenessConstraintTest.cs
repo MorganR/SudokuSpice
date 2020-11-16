@@ -11,15 +11,15 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var matrix = new ExactCoverMatrix(puzzle);
 
-            new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().Constrain(puzzle, matrix);
 
             Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
-            ConstraintHeader<Puzzle> firstRowConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            ConstraintHeader<Puzzle> secondRowConstraint = matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            ConstraintHeader<Puzzle> thirdRowConstraint = matrix.GetSquare(new Coordinate(2, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            ConstraintHeader<Puzzle> fourthRowConstraint = matrix.GetSquare(new Coordinate(3, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader firstRowConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader secondRowConstraint = matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader thirdRowConstraint = matrix.GetSquare(new Coordinate(2, 0)).AllPossibleValues[0].FirstLink.Constraint;
+            ConstraintHeader fourthRowConstraint = matrix.GetSquare(new Coordinate(3, 0)).AllPossibleValues[0].FirstLink.Constraint;
             Assert.NotSame(firstRowConstraint, secondRowConstraint);
             Assert.NotSame(firstRowConstraint, thirdRowConstraint);
             Assert.NotSame(firstRowConstraint, fourthRowConstraint);
@@ -46,15 +46,15 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix<Puzzle>(puzzle);
+            var matrix = new ExactCoverMatrix(puzzle);
 
-            new RowUniquenessConstraint<Puzzle>().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().Constrain(puzzle, matrix);
 
             for (int row = 0; row < size; row++)
             {
                 for (int col = 0; col < size; col++)
                 {
-                    foreach (PossibleValue<Puzzle> possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
+                    foreach (PossibleValue possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
                     {
                         Assert.NotNull(possibleValue.FirstLink);
                     }

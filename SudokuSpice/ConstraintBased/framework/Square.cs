@@ -8,12 +8,12 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a location in a puzzle, including tracking the current possible values at that
     /// location.
     /// </summary>
-    public class Square<TPuzzle> where TPuzzle : IReadOnlyPuzzle
+    public class Square
     {
-        private readonly PossibleValue<TPuzzle>?[] _possibleValues;
-        private readonly Stack<PossibleValue<TPuzzle>> _valuesDroppedOnSelect;
+        private readonly PossibleValue?[] _possibleValues;
+        private readonly Stack<PossibleValue> _valuesDroppedOnSelect;
         private int? _selectedValueIndex;
-        internal ReadOnlySpan<PossibleValue<TPuzzle>?> AllPossibleValues => new ReadOnlySpan<PossibleValue<TPuzzle>?>(_possibleValues);
+        internal ReadOnlySpan<PossibleValue?> AllPossibleValues => new ReadOnlySpan<PossibleValue?>(_possibleValues);
 
         /// <summary>
         /// Gets the <see cref="Coordinate"/> of this square.
@@ -32,46 +32,46 @@ namespace SudokuSpice.ConstraintBased
         {
             Coordinate = c;
             NumPossibleValues = numPossibleValues;
-            _possibleValues = new PossibleValue<TPuzzle>[numPossibleValues];
+            _possibleValues = new PossibleValue[numPossibleValues];
             for (int i = 0; i < NumPossibleValues; i++)
             {
-                _possibleValues[i] = new PossibleValue<TPuzzle>(this, i);
+                _possibleValues[i] = new PossibleValue(this, i);
             }
-            _valuesDroppedOnSelect = new Stack<PossibleValue<TPuzzle>>(NumPossibleValues);
+            _valuesDroppedOnSelect = new Stack<PossibleValue>(NumPossibleValues);
         }
 
-        private Square(Square<TPuzzle> other)
+        private Square(Square other)
         {
             Coordinate = other.Coordinate;
             NumPossibleValues = other.NumPossibleValues;
-            _possibleValues = new PossibleValue<TPuzzle>[other._possibleValues.Length];
+            _possibleValues = new PossibleValue[other._possibleValues.Length];
             for (int i = 0; i < _possibleValues.Length; i++)
             {
-                PossibleValue<TPuzzle>? otherPossibleValue = other._possibleValues[i];
+                PossibleValue? otherPossibleValue = other._possibleValues[i];
                 if (otherPossibleValue is null || otherPossibleValue.State != PossibleSquareState.UNKNOWN)
                 {
                     continue;
                 }
-                _possibleValues[i] = new PossibleValue<TPuzzle>(this, i);
+                _possibleValues[i] = new PossibleValue(this, i);
             }
-            _valuesDroppedOnSelect = new Stack<PossibleValue<TPuzzle>>(NumPossibleValues);
+            _valuesDroppedOnSelect = new Stack<PossibleValue>(NumPossibleValues);
         }
 
-        internal Square<TPuzzle> CopyWithPossibleValues() => new Square<TPuzzle>(this);
+        internal Square CopyWithPossibleValues() => new Square(this);
 
         /// <summary>
         /// Gets the possible value with the given value-index.
         /// </summary>
-        public PossibleValue<TPuzzle>? GetPossibleValue(int index) => _possibleValues[index];
+        public PossibleValue? GetPossibleValue(int index) => _possibleValues[index];
 
-        internal PossibleValue<TPuzzle>[] GetStillPossibleValues()
+        internal PossibleValue[] GetStillPossibleValues()
         {
             Debug.Assert(
                 _selectedValueIndex is null,
                 $"Can't retrieve possible values from Square at {Coordinate} when the index {_selectedValueIndex} is already selected.");
-            var possibleValues = new PossibleValue<TPuzzle>[NumPossibleValues];
+            var possibleValues = new PossibleValue[NumPossibleValues];
             int i = 0;
-            foreach (PossibleValue<TPuzzle>? possibleValue in _possibleValues)
+            foreach (PossibleValue? possibleValue in _possibleValues)
             {
                 if (possibleValue != null && possibleValue.State == PossibleSquareState.UNKNOWN)
                 {
@@ -89,13 +89,13 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(_selectedValueIndex is null, $"Tried to set Square {Coordinate} to index {index} when value already set to index {_selectedValueIndex}.");
             Debug.Assert(_valuesDroppedOnSelect.Count == 0, $"Tried to set Square {Coordinate} to index {index} when {nameof(_valuesDroppedOnSelect)} was non-empty.");
-            PossibleValue<TPuzzle>? possibleValue = _possibleValues[index];
+            PossibleValue? possibleValue = _possibleValues[index];
             Debug.Assert(possibleValue != null, $"Tried to set square {Coordinate} to null possible value at index {index}.");
             if (!possibleValue.TrySelect())
             {
                 return false;
             }
-            foreach (PossibleValue<TPuzzle>? valueToDrop in _possibleValues)
+            foreach (PossibleValue? valueToDrop in _possibleValues)
             {
                 if (valueToDrop is null || valueToDrop.State != PossibleSquareState.UNKNOWN)
                 {
@@ -117,7 +117,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(_selectedValueIndex.HasValue, $"Tried to unset Square {Coordinate} when value was not set.");
             _ReturnDroppedValues();
-            PossibleValue<TPuzzle>? valueToUnset = _possibleValues[_selectedValueIndex.Value];
+            PossibleValue? valueToUnset = _possibleValues[_selectedValueIndex.Value];
             Debug.Assert(valueToUnset != null, $"Tried to unset square {Coordinate} but the possible value was null.");
             valueToUnset.Deselect();
             _selectedValueIndex = null;
@@ -127,7 +127,7 @@ namespace SudokuSpice.ConstraintBased
         {
             while (_valuesDroppedOnSelect.Count > 0)
             {
-                PossibleValue<TPuzzle>? modifiedValue = _valuesDroppedOnSelect.Pop();
+                PossibleValue? modifiedValue = _valuesDroppedOnSelect.Pop();
                 modifiedValue.Return();
             }
         }

@@ -3,7 +3,7 @@
 Let's continue the [custom rules example](custom-rules.md), where we want to solve a puzzle that also enforces
 that the diagonals contain all unique values. In this case, however, we'll solve this by adding a
 new constraint: the
-[`DiagonalUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint`1).
+[`DiagonalUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint).
 
 If you haven't yet read the [constraints summary](framework.md#important-concepts), read that first!
 
@@ -15,10 +15,10 @@ no work needs to be done in the constructor.
 ### The `Constrain` method
 
 The `IConstraint.Constrain` operation adds new
-[`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader`1) (and corresponding
+[`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader) (and corresponding
 `SquareLink`s) to the given
-[`ExactCoverMatrix`](xref:SudokuSpice.ConstraintBased.ExactCoverMatrix`1). It must also drop any
-[`PossibleValue`s](xref:SudokuSpice.ConstraintBased.PossibleValue`1) that are now impossible based
+[`ExactCoverMatrix`](xref:SudokuSpice.ConstraintBased.ExactCoverMatrix). It must also drop any
+[`PossibleValue`s](xref:SudokuSpice.ConstraintBased.PossibleValue) that are now impossible based
 on applying this constraint to the puzzle's preset values.
 
 #### Define your headers
@@ -36,7 +36,7 @@ The unique coordinates here are those on the forward diagonal, and those on the 
 We can find all the coordinates on the forward diagonal as follows:
 
 ```csharp
-public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     var forwardDiagonalCoordinates = new Coordinate[puzzle.Size];
     for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
@@ -56,7 +56,7 @@ based on the order they are returne when we first call `puzzle.AllPossibleValues
 handled by the `ExactCoverMatrix`.
 
 ```csharp
-public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     ...
 
@@ -83,7 +83,7 @@ Now we can iterate through each possible value on each diagonal, drop possible s
 are no longer possible, and add constraint headers for the rest.
 
 ```csharp
-public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     ...
     var squares = new Square?[forwardDiagonalCoordinates.Length];

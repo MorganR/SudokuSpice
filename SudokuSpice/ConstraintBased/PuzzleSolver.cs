@@ -5,21 +5,21 @@ using System.Collections.Generic;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Solves <see cref="IPuzzle"/>s using an <see cref="ExactCoverMatrix{TPuzzle}"/>.
+    /// Solves <see cref="IPuzzle"/>s using an <see cref="ExactCoverMatrix"/>.
     /// </summary>
     /// <remarks>
     /// This class is thread-safe.
     /// </remarks>
     public class PuzzleSolver<TPuzzle> where TPuzzle : IPuzzle
     {
-        private readonly IReadOnlyList<IConstraint<TPuzzle>> _constraints;
+        private readonly IReadOnlyList<IConstraint> _constraints;
 
         /// <summary>
         /// Creates a solver that can solve <see cref="IPuzzle"/>s using the given
-        /// <see cref="IConstraint{TPuzzle}"/>s. The same solver can be reused for multiple puzzles.
+        /// <see cref="IConstraint"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>
-        public PuzzleSolver(IReadOnlyList<IConstraint<TPuzzle>> constraints)
+        public PuzzleSolver(IReadOnlyList<IConstraint> constraints)
         {
             _constraints = constraints;
         }
@@ -46,8 +46,8 @@ namespace SudokuSpice.ConstraintBased
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
-            var matrix = new ExactCoverMatrix<TPuzzle>(puzzle);
-            foreach (IConstraint<TPuzzle>? constraint in _constraints)
+            var matrix = new ExactCoverMatrix(puzzle);
+            foreach (IConstraint? constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
             }
@@ -64,8 +64,8 @@ namespace SudokuSpice.ConstraintBased
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
-            var matrix = new ExactCoverMatrix<TPuzzle>(puzzle);
-            foreach (IConstraint<TPuzzle>? constraint in _constraints)
+            var matrix = new ExactCoverMatrix(puzzle);
+            foreach (IConstraint? constraint in _constraints)
             {
                 constraint.Constrain(puzzle, matrix);
             }
@@ -83,8 +83,8 @@ namespace SudokuSpice.ConstraintBased
                     $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
             }
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
-            var matrix = new ExactCoverMatrix<TPuzzle>(puzzleCopy);
-            foreach (IConstraint<TPuzzle>? constraint in _constraints)
+            var matrix = new ExactCoverMatrix(puzzleCopy);
+            foreach (IConstraint? constraint in _constraints)
             {
                 constraint.Constrain(puzzleCopy, matrix);
             }

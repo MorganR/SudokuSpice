@@ -1,40 +1,40 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.Constraints.RowUniquenessConstraint
-  commentId: T:SudokuSpice.Constraints.RowUniquenessConstraint
-  id: RowUniquenessConstraint
-  parent: SudokuSpice.Constraints
+- uid: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint
+  id: DiagonalUniquenessConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
   children:
-  - SudokuSpice.Constraints.RowUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  - SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
   langs:
   - csharp
   - vb
-  name: RowUniquenessConstraint
-  nameWithType: RowUniquenessConstraint
-  fullName: SudokuSpice.Constraints.RowUniquenessConstraint
+  name: DiagonalUniquenessConstraint
+  nameWithType: DiagonalUniquenessConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint
   type: Class
   source:
     remote:
-      path: SudokuSpice/Constraints/RowUniquenessConstraint.cs
+      path: SudokuSpice/ConstraintBased/Constraints/DiagonalUniquenessConstraint.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: RowUniquenessConstraint
-    path: ../SudokuSpice/Constraints/RowUniquenessConstraint.cs
-    startLine: 8
+    id: DiagonalUniquenessConstraint
+    path: ../SudokuSpice/ConstraintBased/Constraints/DiagonalUniquenessConstraint.cs
+    startLine: 7
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Constraints
-  summary: "\nEnforces the constraint that all values in a row must be unique.\n"
+  namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nEnforces the constraint that all values in on each diagonal must be unique.\n"
   example: []
   syntax:
-    content: 'public class RowUniquenessConstraint : IConstraint'
+    content: 'public class DiagonalUniquenessConstraint : IConstraint'
     content.vb: >-
-      Public Class RowUniquenessConstraint
+      Public Class DiagonalUniquenessConstraint
           Implements IConstraint
   inheritance:
   - System.Object
   implements:
-  - SudokuSpice.Constraints.IConstraint
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -49,30 +49,30 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.Constraints.RowUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
-  commentId: M:SudokuSpice.Constraints.RowUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
-  id: Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
-  parent: SudokuSpice.Constraints.RowUniquenessConstraint
+- uid: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  id: Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  parent: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint
   langs:
   - csharp
   - vb
   name: Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  nameWithType: RowUniquenessConstraint.Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.Constraints.RowUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ExactCoverMatrix)
+  nameWithType: DiagonalUniquenessConstraint.Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  fullName: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
   type: Method
   source:
     remote:
-      path: SudokuSpice/Constraints/RowUniquenessConstraint.cs
+      path: SudokuSpice/ConstraintBased/Constraints/DiagonalUniquenessConstraint.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: Constrain
-    path: ../SudokuSpice/Constraints/RowUniquenessConstraint.cs
-    startLine: 11
+    path: ../SudokuSpice/ConstraintBased/Constraints/DiagonalUniquenessConstraint.cs
+    startLine: 10
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.Constraints
+  namespace: SudokuSpice.ConstraintBased.Constraints
   summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code>.\n"
-  remarks: "\nThis skips adding <code>ConstraintHeaders that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
+  remarks: "\nThis skips adding <code>ConstraintHeaders</code> that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it drops the corresponding\n<xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these headers.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
   example: []
   syntax:
     content: public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -81,22 +81,22 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to solve.
     - id: matrix
-      type: SudokuSpice.ExactCoverMatrix
+      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
       description: The exact-cover matrix to constrain.
     content.vb: Public Sub Constrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix)
-  overload: SudokuSpice.Constraints.RowUniquenessConstraint.Constrain*
+  overload: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain*
   implements:
-  - SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: SudokuSpice.Constraints
-  commentId: N:SudokuSpice.Constraints
-  name: SudokuSpice.Constraints
-  nameWithType: SudokuSpice.Constraints
-  fullName: SudokuSpice.Constraints
+- uid: SudokuSpice.ConstraintBased.Constraints
+  commentId: N:SudokuSpice.ConstraintBased.Constraints
+  name: SudokuSpice.ConstraintBased.Constraints
+  nameWithType: SudokuSpice.ConstraintBased.Constraints
+  fullName: SudokuSpice.ConstraintBased.Constraints
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -104,12 +104,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.Constraints.IConstraint
-  commentId: T:SudokuSpice.Constraints.IConstraint
-  parent: SudokuSpice.Constraints
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
   name: IConstraint
   nameWithType: IConstraint
-  fullName: SudokuSpice.Constraints.IConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -395,22 +395,22 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.Constraints.RowUniquenessConstraint.Constrain*
-  commentId: Overload:SudokuSpice.Constraints.RowUniquenessConstraint.Constrain
+- uid: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain
   name: Constrain
-  nameWithType: RowUniquenessConstraint.Constrain
-  fullName: SudokuSpice.Constraints.RowUniquenessConstraint.Constrain
-- uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
-  commentId: M:SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
-  parent: SudokuSpice.Constraints.IConstraint
+  nameWithType: DiagonalUniquenessConstraint.Constrain
+  fullName: SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.Constrain
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  parent: SudokuSpice.ConstraintBased.Constraints.IConstraint
   name: Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
   nameWithType: IConstraint.Constrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ExactCoverMatrix)
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
   spec.csharp:
-  - uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
     name: Constrain
     nameWithType: IConstraint.Constrain
-    fullName: SudokuSpice.Constraints.IConstraint.Constrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain
   - name: (
     nameWithType: (
     fullName: (
@@ -421,18 +421,18 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.ExactCoverMatrix
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
     name: ExactCoverMatrix
     nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ExactCoverMatrix)
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
     name: Constrain
     nameWithType: IConstraint.Constrain
-    fullName: SudokuSpice.Constraints.IConstraint.Constrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.Constrain
   - name: (
     nameWithType: (
     fullName: (
@@ -443,10 +443,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.ExactCoverMatrix
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
     name: ExactCoverMatrix
     nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
   - name: )
     nameWithType: )
     fullName: )
@@ -456,19 +456,19 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.ExactCoverMatrix
-  commentId: T:SudokuSpice.ExactCoverMatrix
-  parent: SudokuSpice
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ExactCoverMatrix
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased

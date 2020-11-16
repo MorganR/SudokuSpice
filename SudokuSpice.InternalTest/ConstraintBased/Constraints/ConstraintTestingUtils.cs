@@ -4,11 +4,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 {
     internal class ConstraintTestingUtils
     {
-        public static void AssertPossibleValueIsOnConstraint<TPuzzle>(
-            PossibleValue<TPuzzle> possibleValue, ConstraintHeader<TPuzzle> constraint)
-            where TPuzzle : IReadOnlyPuzzle
+        public static void AssertPossibleValueIsOnConstraint(
+            PossibleValue possibleValue, ConstraintHeader constraint)
         {
-            Link<TPuzzle> link = constraint.FirstLink;
+            Link link = constraint.FirstLink;
             do
             {
                 if (link.PossibleSquare == possibleValue)

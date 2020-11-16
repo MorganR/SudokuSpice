@@ -5,16 +5,16 @@ namespace SudokuSpice.ConstraintBased.Constraints
     /// <summary>
     /// Enforces the constraint that all values in a row must be unique.
     /// </summary>
-    public class RowUniquenessConstraint<TPuzzle> : IConstraint<TPuzzle> where TPuzzle : IReadOnlyPuzzle
+    public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public void Constrain(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Span<bool> isConstraintSatisfiedAtIndex =
                    stackalloc bool[matrix.AllPossibleValues.Length];
             for (int row = 0; row < puzzle.Size; row++)
             {
-                ReadOnlySpan<Square<TPuzzle>?> rowSquares = matrix.GetSquaresOnRow(row);
+                ReadOnlySpan<Square?> rowSquares = matrix.GetSquaresOnRow(row);
                 isConstraintSatisfiedAtIndex.Clear();
                 for (int col = 0; col < puzzle.Size; col++)
                 {

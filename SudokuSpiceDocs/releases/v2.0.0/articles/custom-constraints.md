@@ -15,7 +15,7 @@ no work needs to be done in the constructor.
 ### The `Constrain` method
 
 The `IConstraint.Constrain` operation adds new
-[`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}) (and corresponding
+[`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader) (and corresponding
 `SquareLink`s) to the given
 [`ExactCoverMatrix`](xref:SudokuSpice.ExactCoverMatrix). It must also drop any
 [`PossibleValue`s](xref:SudokuSpice.PossibleValue) that are now impossible based

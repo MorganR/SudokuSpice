@@ -7,12 +7,12 @@ namespace SudokuSpice.ConstraintBased
     internal class SquareTracker<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly TPuzzle _puzzle;
-        private readonly ExactCoverMatrix<TPuzzle> _matrix;
+        private readonly ExactCoverMatrix _matrix;
         private readonly Stack<Coordinate> _setCoords;
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
-        internal SquareTracker(TPuzzle puzzle, ExactCoverMatrix<TPuzzle> matrix)
+        internal SquareTracker(TPuzzle puzzle, ExactCoverMatrix matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;
@@ -33,10 +33,10 @@ namespace SudokuSpice.ConstraintBased
         internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
-            Square<TPuzzle>? bestSquare = null;
+            Square? bestSquare = null;
             foreach (Coordinate coord in _puzzle.GetUnsetCoords())
             {
-                Square<TPuzzle>? square = _matrix.GetSquare(in coord);
+                Square? square = _matrix.GetSquare(in coord);
                 Debug.Assert(square != null, $"Square was null at unset coord {coord}.");
                 if (square.NumPossibleValues < maxPossibleValues)
                 {
@@ -49,14 +49,14 @@ namespace SudokuSpice.ConstraintBased
                     bestSquare = square;
                 }
             }
-            foreach (ConstraintHeader<TPuzzle>? constraint in _matrix.GetUnsatisfiedConstraintHeaders())
+            foreach (ConstraintHeader? constraint in _matrix.GetUnsatisfiedConstraintHeaders())
             {
                 if (constraint.Count == 1)
                 {
                     Debug.Assert(
                         constraint.FirstLink != null,
                         "Unsatisfied constraint had a null first link.");
-                    PossibleValue<TPuzzle>? possibleSquare = constraint.FirstLink.PossibleSquare;
+                    PossibleValue? possibleSquare = constraint.FirstLink.PossibleSquare;
                     return (possibleSquare.Square.Coordinate,
                         new int[] { possibleSquare.ValueIndex });
                 }
@@ -70,7 +70,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal bool TrySet(in Coordinate c, int valueIndex)
         {
-            Square<TPuzzle>? square = _matrix.GetSquare(in c);
+            Square? square = _matrix.GetSquare(in c);
             Debug.Assert(
                 square != null,
                 $"Tried to set {c} to value at {valueIndex}, but square was null.");
@@ -90,7 +90,7 @@ namespace SudokuSpice.ConstraintBased
                 "Tried to call UnsetLast when no squares had been set.");
             Coordinate c = _setCoords.Pop();
             _puzzle[in c] = null;
-            Square<TPuzzle>? square = _matrix.GetSquare(in c);
+            Square? square = _matrix.GetSquare(in c);
             Debug.Assert(
                 square != null,
                 $"Tried to unset the last update to a null square at {c}.");
@@ -99,11 +99,11 @@ namespace SudokuSpice.ConstraintBased
 
         private int[] _OrderPossibleValuesByProbability(in Coordinate c)
         {
-            Square<TPuzzle>? square = _matrix.GetSquare(in c);
+            Square? square = _matrix.GetSquare(in c);
             Debug.Assert(
                 square != null,
                 $"Tried to order possible values at {c}, but square was null.");
-            PossibleValue<TPuzzle>[]? possibleSquares = square.GetStillPossibleValues();
+            PossibleValue[]? possibleSquares = square.GetStillPossibleValues();
             return possibleSquares.OrderBy(
                 ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
         }

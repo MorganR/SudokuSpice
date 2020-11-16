@@ -30,7 +30,7 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
+  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
     content: public class ExactCoverMatrix
@@ -267,12 +267,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
   example: []
   syntax:
     content: public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
     return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
     content.vb: Public Function GetUnsatisfiedConstraintHeaders As IEnumerable(Of ConstraintHeader)
   overload: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
   modifiers.csharp:
@@ -298,12 +298,12 @@ references:
   name: IConstraint
   nameWithType: IConstraint
   fullName: SudokuSpice.Constraints.IConstraint
-- uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
-  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+- uid: SudokuSpice.ConstraintBased.ConstraintHeader
+  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader
   parent: SudokuSpice
   name: ConstraintHeader
   nameWithType: ConstraintHeader
-  fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+  fullName: SudokuSpice.ConstraintBased.ConstraintHeader
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
@@ -975,15 +975,15 @@ references:
   name: GetUnsatisfiedConstraintHeaders
   nameWithType: ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
   fullName: SudokuSpice.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}}
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<ConstraintHeader>
   nameWithType: IEnumerable<ConstraintHeader>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.ConstraintHeader>
   nameWithType.vb: IEnumerable(Of ConstraintHeader)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle})
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.ConstraintHeader)
   name.vb: IEnumerable(Of ConstraintHeader)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
@@ -994,10 +994,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader
     name: ConstraintHeader
     nameWithType: ConstraintHeader
-    fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1010,10 +1010,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+  - uid: SudokuSpice.ConstraintBased.ConstraintHeader
     name: ConstraintHeader
     nameWithType: ConstraintHeader
-    fullName: SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}
+    fullName: SudokuSpice.ConstraintBased.ConstraintHeader
   - name: )
     nameWithType: )
     fullName: )

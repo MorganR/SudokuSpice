@@ -96,7 +96,7 @@ SudokuSpice uses four main interfaces:
   the `RxCxVx` cells in the first column) are represented by
   [`PossibleValue`s](xref:SudokuSpice.PossibleValue). Column headers (i.e. the
   cells in the first row) are represented by
-  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader{TPuzzle}). Rows and columns are connected by
+  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader). Rows and columns are connected by
   `SquareLink`s, which represent the 1s in the matrix. Each `SquareLink` is connected up and down
   to the other '1s' that satisfy that constraint header, and connected left and right to the other
   '1s' that are present for that possible square value.

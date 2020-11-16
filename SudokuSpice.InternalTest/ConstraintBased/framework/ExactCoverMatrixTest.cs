@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Test
@@ -9,7 +11,7 @@ namespace SudokuSpice.ConstraintBased.Test
         public void GetSquare_ReturnsSquareWithCorrectCoordinates()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix<Puzzle> matrix = new(puzzle);
+            ExactCoverMatrix matrix = new(puzzle);
 
             Assert.Equal(new Coordinate(0, 0), matrix.GetSquare(new Coordinate(0, 0)).Coordinate);
             Assert.Equal(new Coordinate(1, 2), matrix.GetSquare(new Coordinate(1, 2)).Coordinate);
@@ -21,9 +23,9 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             int[] expectedPossibleValues = new int[] { 0, 2, 4, 5 };
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix<Puzzle> matrix = new(puzzle);
+            ExactCoverMatrix matrix = new(puzzle);
 
-            Square<Puzzle> square = matrix.GetSquare(new Coordinate(0, 0));
+            Square square = matrix.GetSquare(new Coordinate(0, 0));
             Assert.Equal(expectedPossibleValues.Length, square.NumPossibleValues);
             Assert.Equal(square.AllPossibleValues.ToArray(), square.GetStillPossibleValues());
             Assert.Equal(new int[] { 0, 1, 2, 3 }, square.AllPossibleValues.ToArray().Select(pv => pv.ValueIndex).ToArray());
@@ -34,10 +36,10 @@ namespace SudokuSpice.ConstraintBased.Test
         public void GetSquaresOnRow_ReturnsExpectedSquares()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix<Puzzle> matrix = new(puzzle);
+            ExactCoverMatrix matrix = new(puzzle);
 
             int row = 1;
-            System.ReadOnlySpan<Square<Puzzle>> squares = matrix.GetSquaresOnRow(row);
+            ReadOnlySpan<Square> squares = matrix.GetSquaresOnRow(row);
             Assert.Equal(4, squares.Length);
             Assert.Equal(new Coordinate(row, 0), squares[0].Coordinate);
             Assert.Equal(new Coordinate(row, 1), squares[1].Coordinate);
@@ -49,10 +51,10 @@ namespace SudokuSpice.ConstraintBased.Test
         public void GetSquaresOnColumn_ReturnsExpectedSquares()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix<Puzzle> matrix = new(puzzle);
+            ExactCoverMatrix matrix = new(puzzle);
 
             int column = 1;
-            System.Collections.Generic.List<Square<Puzzle>> squares = matrix.GetSquaresOnColumn(column);
+            List<Square> squares = matrix.GetSquaresOnColumn(column);
             Assert.Equal(4, squares.Count);
             Assert.Equal(new Coordinate(0, column), squares[0].Coordinate);
             Assert.Equal(new Coordinate(1, column), squares[1].Coordinate);

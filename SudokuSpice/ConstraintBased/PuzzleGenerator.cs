@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
-        private readonly IReadOnlyList<IConstraint<TPuzzle>> _constraints;
+        private readonly IReadOnlyList<IConstraint> _constraints;
 
         /// <summary>
         /// Creates a puzzle generator to create puzzles with custom rules and type.
@@ -22,7 +22,7 @@ namespace SudokuSpice.ConstraintBased
         /// A function that constructs a <see cref="SquareTracker{TPuzzle}"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
-        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint<TPuzzle>> constraints)
+        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint> constraints)
         {
             _puzzleFactory = puzzleFactory;
             _constraints = constraints;

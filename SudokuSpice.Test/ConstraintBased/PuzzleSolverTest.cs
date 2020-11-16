@@ -11,7 +11,7 @@ namespace SudokuSpice.ConstraintBased.Test
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             solver.Solve(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
@@ -38,7 +38,7 @@ namespace SudokuSpice.ConstraintBased.Test
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>(), new DiagonalUniquenessConstraint<Puzzle>() });
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint(), new DiagonalUniquenessConstraint() });
 
             solver.Solve(puzzle);
 
@@ -50,7 +50,7 @@ namespace SudokuSpice.ConstraintBased.Test
         public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             solver.SolveRandomly(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
@@ -60,7 +60,7 @@ namespace SudokuSpice.ConstraintBased.Test
         public void GetStatsForAllSolutions_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
         {
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint<Puzzle>> { new RowUniquenessConstraint<Puzzle>(), new ColumnUniquenessConstraint<Puzzle>(), new BoxUniquenessConstraint<Puzzle>() });
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 

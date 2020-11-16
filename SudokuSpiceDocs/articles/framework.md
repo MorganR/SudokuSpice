@@ -4,7 +4,7 @@
 
 *SudokuSpice* provides two different solvers: the
 [`PuzzleSolver`](xref:SudokuSpice.ConstraintBased.PuzzleSolver`1) or the original
-[`Solver`](xref:SudokuSpice.RuleBased.Solver).
+[`PuzzleSolver`](xref:SudokuSpice.RuleBased.PuzzleSolver).
 
 Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
@@ -63,10 +63,10 @@ SudokuSpice uses four main interfaces:
 	heuristics. This pattern is demonstrated by the
 	[`StandardHeuristic`](xref:SudokuSpice.RuleBased.Heuristics.StandardHeuristic).
 
-4.  The [`IConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.IConstraint`1)
+4.  The [`IConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.IConstraint)
 
   Constraints represent rules that the puzzle needs to satisfy. For example, the
-  [`RowUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint`1) enforces the
+  [`RowUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint) enforces the
   constraint that "each row must contain all possible values."
 
   Constraints are implemented using an
@@ -94,9 +94,9 @@ SudokuSpice uses four main interfaces:
 
   SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
   the `RxCxVx` cells in the first column) are represented by
-  [`PossibleValue`s](xref:SudokuSpice.ConstraintBased.PossibleValue`1). Column headers (i.e. the
+  [`PossibleValue`s](xref:SudokuSpice.ConstraintBased.PossibleValue). Column headers (i.e. the
   cells in the first row) are represented by
-  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader`1). Rows and columns are connected by
+  [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader). Rows and columns are connected by
   `SquareLink`s, which represent the 1s in the matrix. Each `SquareLink` is connected up and down
   to the other '1s' that satisfy that constraint header, and connected left and right to the other
   '1s' that are present for that possible square value.
