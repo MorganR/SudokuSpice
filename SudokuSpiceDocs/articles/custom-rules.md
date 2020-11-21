@@ -12,7 +12,7 @@ implementing and using the
 
 The new rule needs to extend the [`ISudokuRule`](xref:SudokuSpice.RuleBased.Rules.ISudokuRule), and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the [`BitVector`](xref:SudokuSpice.BitVector) struct, which provides an efficient
+we'll use the [`BitVector`](xref:SudokuSpice.RuleBased.BitVector) struct, which provides an efficient
 set-like struct using the bits of a `uint`.
 
 ```csharp

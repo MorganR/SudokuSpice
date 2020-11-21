@@ -5,7 +5,7 @@ items:
   id: DiagonalUniquenessRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
@@ -54,16 +54,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)'
+- uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)'
   parent: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule
   langs:
   - csharp
   - vb
   name: DiagonalUniquenessRule(IReadOnlyPuzzle, BitVector)
   nameWithType: DiagonalUniquenessRule.DiagonalUniquenessRule(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.DiagonalUniquenessRule(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.DiagonalUniquenessRule(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
   type: Constructor
   source:
     remote:
@@ -82,7 +82,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
     - id: allUniqueValues
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, allUniqueValues As BitVector)
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor*
   modifiers.csharp:
@@ -160,8 +160,8 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.RuleBased.BitVector
+      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.GetPossibleValues*
   implements:
@@ -629,17 +629,22 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.BitVector
-  commentId: T:SudokuSpice.BitVector
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
 - uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.CopyWithNewReference
   name: CopyWithNewReference

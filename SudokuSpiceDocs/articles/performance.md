@@ -17,32 +17,32 @@ Sudoku rules and no heuristics. *SudokuSpice* demonstrates considerably more spe
 stability regardless of the number of guesses. These benchmarks use the Core CLR on 64 bit Window
 or Linux. Values are roughly consistent for each OS.
 
-|                 Method | sampleCollection |         Mean |        Error |        StdDev |  Ratio | RatioSD |
-|----------------------- |----------------- |-------------:|-------------:|--------------:|-------:|--------:|
-|            SudokuSpice |       Guesses: 0 |     25.04 us |     0.127 us |      0.113 us |   1.00 |    0.00 |
-| SudokuSpiceConstraints |       Guesses: 0 |     64.97 us |     0.424 us |      0.396 us |   2.60 |    0.02 |
-|            SudokuSharp |       Guesses: 0 |    681.14 us |    23.825 us |     70.249 us |  26.63 |    3.30 |
-|       SudokuSolverLite |       Guesses: 0 |  1,111.28 us |    24.414 us |     70.439 us |  44.74 |    2.25 |
-|                        |                  |              |              |               |        |         |
-|            SudokuSpice |       Guesses: 1 |     38.81 us |     0.162 us |      0.152 us |   1.00 |    0.00 |
-| SudokuSpiceConstraints |       Guesses: 1 |     68.30 us |     0.637 us |      0.596 us |   1.76 |    0.01 |
-|            SudokuSharp |       Guesses: 1 |  1,338.74 us |    47.750 us |    139.288 us |  35.30 |    2.89 |
-|       SudokuSolverLite |       Guesses: 1 |  3,409.05 us |   268.490 us |    783.196 us |  86.41 |   21.76 |
-|                        |                  |              |              |               |        |         |
-|            SudokuSpice |     Guesses: 2-3 |     51.43 us |     0.626 us |      0.555 us |   1.00 |    0.00 |
-| SudokuSpiceConstraints |     Guesses: 2-3 |     71.73 us |     0.370 us |      0.346 us |   1.39 |    0.02 |
-|            SudokuSharp |     Guesses: 2-3 |  2,157.02 us |   184.473 us |    538.116 us |  41.06 |    9.49 |
-|       SudokuSolverLite |     Guesses: 2-3 |  3,444.09 us |   206.460 us |    605.510 us |  66.52 |   12.67 |
-|                        |                  |              |              |               |        |         |
-|            SudokuSpice |     Guesses: 4-7 |     69.31 us |     0.406 us |      0.380 us |   1.00 |    0.00 |
-| SudokuSpiceConstraints |     Guesses: 4-7 |     77.77 us |     0.858 us |      0.803 us |   1.12 |    0.01 |
-|            SudokuSharp |     Guesses: 4-7 |  3,143.91 us |   205.063 us |    601.414 us |  42.29 |    6.56 |
-|       SudokuSolverLite |     Guesses: 4-7 |  9,612.51 us |   977.259 us |  2,866.131 us | 135.65 |   41.54 |
-|                        |                  |              |              |               |        |         |
-|            SudokuSpice |      Guesses: 8+ |     90.70 us |     0.978 us |      0.915 us |   1.00 |    0.00 |
-| SudokuSpiceConstraints |      Guesses: 8+ |     82.60 us |     0.924 us |      0.864 us |   0.91 |    0.01 |
-|            SudokuSharp |      Guesses: 8+ |  4,857.91 us |   316.244 us |    927.490 us |  53.37 |    7.16 |
-|       SudokuSolverLite |      Guesses: 8+ | 18,894.30 us | 4,341.194 us | 12,731.970 us | 167.12 |  119.39 |
+|                 Method | sampleCollection |         Mean |        Error |       StdDev |       Median |  Ratio | RatioSD |
+|----------------------- |----------------- |-------------:|-------------:|-------------:|-------------:|-------:|--------:|
+|            SudokuSpice |       Guesses: 0 |     24.50 us |     0.084 us |     0.079 us |     24.51 us |   1.00 |    0.00 |
+| SudokuSpiceConstraints |       Guesses: 0 |     65.12 us |     0.476 us |     0.445 us |     65.14 us |   2.66 |    0.02 |
+|            SudokuSharp |       Guesses: 0 |    649.59 us |    19.143 us |    55.841 us |    648.23 us |  27.80 |    1.58 |
+|       SudokuSolverLite |       Guesses: 0 |  1,118.10 us |    23.346 us |    68.471 us |  1,117.15 us |  44.96 |    2.71 |
+|                        |                  |              |              |              |              |        |         |
+|            SudokuSpice |       Guesses: 1 |     38.49 us |     0.148 us |     0.139 us |     38.47 us |   1.00 |    0.00 |
+| SudokuSpiceConstraints |       Guesses: 1 |     69.49 us |     0.523 us |     0.490 us |     69.59 us |   1.81 |    0.01 |
+|            SudokuSharp |       Guesses: 1 |  1,412.60 us |    50.334 us |   147.620 us |  1,436.72 us |  36.53 |    4.66 |
+|       SudokuSolverLite |       Guesses: 1 |  3,250.69 us |   536.551 us | 1,548.073 us |  2,878.31 us |  87.55 |   42.56 |
+|                        |                  |              |              |              |              |        |         |
+|            SudokuSpice |     Guesses: 2-3 |     50.98 us |     0.545 us |     0.510 us |     51.04 us |   1.00 |    0.00 |
+| SudokuSpiceConstraints |     Guesses: 2-3 |     73.35 us |     0.924 us |     0.864 us |     73.47 us |   1.44 |    0.03 |
+|            SudokuSharp |     Guesses: 2-3 |  2,188.83 us |   184.415 us |   543.752 us |  2,126.51 us |  39.84 |    9.79 |
+|       SudokuSolverLite |     Guesses: 2-3 |  3,632.43 us |   337.702 us |   958.005 us |  3,407.57 us |  64.46 |   13.79 |
+|                        |                  |              |              |              |              |        |         |
+|            SudokuSpice |     Guesses: 4-7 |     70.55 us |     0.516 us |     0.483 us |     70.42 us |   1.00 |    0.00 |
+| SudokuSpiceConstraints |     Guesses: 4-7 |     79.73 us |     0.751 us |     0.702 us |     79.82 us |   1.13 |    0.01 |
+|            SudokuSharp |     Guesses: 4-7 |  3,278.92 us |   217.052 us |   629.707 us |  3,218.28 us |  48.73 |   10.29 |
+|       SudokuSolverLite |     Guesses: 4-7 |  7,799.89 us | 1,262.808 us | 3,602.863 us |  6,490.84 us | 105.81 |   64.68 |
+|                        |                  |              |              |              |              |        |         |
+|            SudokuSpice |      Guesses: 8+ |     90.41 us |     1.101 us |     1.030 us |     90.26 us |   1.00 |    0.00 |
+| SudokuSpiceConstraints |      Guesses: 8+ |     86.19 us |     0.645 us |     0.603 us |     86.00 us |   0.95 |    0.02 |
+|            SudokuSharp |      Guesses: 8+ |  5,503.43 us |   388.132 us | 1,132.200 us |  5,353.07 us |  58.23 |   11.68 |
+|       SudokuSolverLite |      Guesses: 8+ | 19,137.99 us | 3,092.328 us | 9,069.263 us | 18,285.43 us | 232.26 |  103.63 |
 
 Each library was also compared with a select set of examples, most of which require more advanced
 techniques. These demonstrate that *SudokuSharp* can take the lead in some very simple cases, when
@@ -51,47 +51,47 @@ effective performance enhancements for more complicated examples.
 
 |                     Method | puzzle |           Mean |         Error |        StdDev |    Ratio | RatioSD |
 |--------------------------- |------- |---------------:|--------------:|--------------:|---------:|--------:|
-|                SudokuSpice |   Easy |       9.991 us |     0.0311 us |     0.0276 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |   Easy |      16.083 us |     0.0578 us |     0.0541 us |     1.61 |    0.01 |
-| SudokuSpiceDynamicMultiple |   Easy |      19.975 us |     0.0991 us |     0.0927 us |     2.00 |    0.01 |
-|     SudokuSpiceConstraints |   Easy |      19.511 us |     0.0380 us |     0.0337 us |     1.95 |    0.01 |
-|                SudokuSharp |   Easy |       6.458 us |     0.0231 us |     0.0204 us |     0.65 |    0.00 |
-|           SudokuSolverLite |   Easy |     129.364 us |     0.5537 us |     0.5179 us |    12.95 |    0.06 |
+|                SudokuSpice |   Easy |       9.667 us |     0.0378 us |     0.0354 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |   Easy |      15.690 us |     0.1058 us |     0.0826 us |     1.62 |    0.01 |
+| SudokuSpiceDynamicMultiple |   Easy |      19.809 us |     0.0693 us |     0.0648 us |     2.05 |    0.01 |
+|     SudokuSpiceConstraints |   Easy |      20.027 us |     0.1032 us |     0.0914 us |     2.07 |    0.01 |
+|                SudokuSharp |   Easy |       6.529 us |     0.0222 us |     0.0197 us |     0.68 |    0.00 |
+|           SudokuSolverLite |   Easy |     130.636 us |     0.4642 us |     0.3876 us |    13.51 |    0.05 |
 |                            |        |                |               |               |          |         |
-|                SudokuSpice | Medium |      62.753 us |     0.5545 us |     0.5186 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle | Medium |      91.042 us |     0.4123 us |     0.3655 us |     1.45 |    0.02 |
-| SudokuSpiceDynamicMultiple | Medium |     110.849 us |     0.5091 us |     0.4762 us |     1.77 |    0.02 |
-|     SudokuSpiceConstraints | Medium |      60.653 us |     0.3009 us |     0.2667 us |     0.97 |    0.01 |
-|                SudokuSharp | Medium |   2,647.528 us |    25.1095 us |    22.2589 us |    42.18 |    0.45 |
-|           SudokuSolverLite | Medium |   1,981.383 us |     8.9298 us |     8.3529 us |    31.58 |    0.35 |
+|                SudokuSpice | Medium |      62.741 us |     0.4592 us |     0.4071 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle | Medium |      91.801 us |     0.4732 us |     0.4426 us |     1.46 |    0.01 |
+| SudokuSpiceDynamicMultiple | Medium |     111.043 us |     1.0482 us |     0.9805 us |     1.77 |    0.01 |
+|     SudokuSpiceConstraints | Medium |      62.202 us |     0.4050 us |     0.3382 us |     0.99 |    0.01 |
+|                SudokuSharp | Medium |   2,764.116 us |    19.2357 us |    17.9931 us |    44.09 |    0.37 |
+|           SudokuSolverLite | Medium |   2,024.932 us |    13.3828 us |    12.5183 us |    32.28 |    0.31 |
 |                            |        |                |               |               |          |         |
-|                SudokuSpice |  HardA |      49.369 us |     0.2087 us |     0.1743 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  HardA |      72.099 us |     0.1758 us |     0.1644 us |     1.46 |    0.01 |
-| SudokuSpiceDynamicMultiple |  HardA |      89.037 us |     0.3842 us |     0.3594 us |     1.80 |    0.01 |
-|     SudokuSpiceConstraints |  HardA |      68.114 us |     0.5162 us |     0.4576 us |     1.38 |    0.01 |
-|                SudokuSharp |  HardA |   2,847.504 us |    56.6714 us |   119.5392 us |    58.19 |    2.75 |
-|           SudokuSolverLite |  HardA |  20,890.090 us |    53.2175 us |    44.4390 us |   423.15 |    1.67 |
+|                SudokuSpice |  HardA |      48.406 us |     0.3009 us |     0.2815 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  HardA |      70.641 us |     0.3577 us |     0.3346 us |     1.46 |    0.01 |
+| SudokuSpiceDynamicMultiple |  HardA |      87.777 us |     0.3337 us |     0.3122 us |     1.81 |    0.01 |
+|     SudokuSpiceConstraints |  HardA |      68.456 us |     0.5569 us |     0.4936 us |     1.42 |    0.01 |
+|                SudokuSharp |  HardA |   2,876.129 us |    55.7731 us |    86.8319 us |    59.50 |    1.43 |
+|           SudokuSolverLite |  HardA |  21,344.045 us |    97.6579 us |    86.5712 us |   441.21 |    2.25 |
 |                            |        |                |               |               |          |         |
-|                SudokuSpice |  HardB |     158.491 us |     0.5278 us |     0.4678 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  HardB |     206.616 us |     1.0005 us |     0.8354 us |     1.30 |    0.01 |
-| SudokuSpiceDynamicMultiple |  HardB |     243.297 us |     1.2317 us |     1.1521 us |     1.54 |    0.01 |
-|     SudokuSpiceConstraints |  HardB |      78.302 us |     0.5768 us |     0.5113 us |     0.49 |    0.00 |
-|                SudokuSharp |  HardB |  19,500.330 us |   662.5145 us | 1,943.0403 us |   121.37 |   11.85 |
-|           SudokuSolverLite |  HardB |   4,130.864 us |    13.3249 us |    11.8122 us |    26.06 |    0.08 |
+|                SudokuSpice |  HardB |     153.111 us |     0.7620 us |     0.6755 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  HardB |     197.242 us |     0.7350 us |     0.6875 us |     1.29 |    0.01 |
+| SudokuSpiceDynamicMultiple |  HardB |     236.189 us |     1.0204 us |     0.9544 us |     1.54 |    0.01 |
+|     SudokuSpiceConstraints |  HardB |      77.891 us |     1.0864 us |     1.0162 us |     0.51 |    0.01 |
+|                SudokuSharp |  HardB |  20,609.562 us |   745.6312 us | 2,163.2114 us |   139.73 |   10.63 |
+|           SudokuSolverLite |  HardB |   4,155.032 us |    28.6461 us |    26.7956 us |    27.15 |    0.21 |
 |                            |        |                |               |               |          |         |
-|                SudokuSpice |  EvilA |      85.699 us |     0.3429 us |     0.3208 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  EvilA |     113.659 us |     0.3067 us |     0.2869 us |     1.33 |    0.01 |
-| SudokuSpiceDynamicMultiple |  EvilA |     132.951 us |     2.2771 us |     1.9015 us |     1.55 |    0.02 |
-|     SudokuSpiceConstraints |  EvilA |      73.884 us |     0.4000 us |     0.3546 us |     0.86 |    0.01 |
-|                SudokuSharp |  EvilA |  38,778.530 us | 2,105.1332 us | 6,207.0329 us |   474.08 |   90.41 |
-|           SudokuSolverLite |  EvilA | 333,729.867 us | 1,830.4236 us | 1,712.1794 us | 3,894.25 |   23.19 |
+|                SudokuSpice |  EvilA |      85.396 us |     0.5135 us |     0.4552 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  EvilA |     111.505 us |     0.2771 us |     0.2457 us |     1.31 |    0.01 |
+| SudokuSpiceDynamicMultiple |  EvilA |     133.045 us |     0.7118 us |     0.6659 us |     1.56 |    0.01 |
+|     SudokuSpiceConstraints |  EvilA |      74.053 us |     0.3297 us |     0.3084 us |     0.87 |    0.01 |
+|                SudokuSharp |  EvilA |  39,455.551 us | 2,425.7143 us | 7,114.2002 us |   451.03 |   97.33 |
+|           SudokuSolverLite |  EvilA | 345,270.840 us | 2,220.8510 us | 2,077.3854 us | 4,043.42 |   27.93 |
 |                            |        |                |               |               |          |         |
-|                SudokuSpice |  EvilB |   1,057.129 us |    21.1208 us |    20.7435 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  EvilB |   1,492.508 us |    25.4986 us |    23.8514 us |     1.41 |    0.04 |
-| SudokuSpiceDynamicMultiple |  EvilB |   1,738.625 us |    33.7519 us |    38.8687 us |     1.64 |    0.06 |
-|     SudokuSpiceConstraints |  EvilB |     212.272 us |     0.5421 us |     0.5071 us |     0.20 |    0.00 |
-|                SudokuSharp |  EvilB |  41,243.563 us |   810.1264 us |   994.9080 us |    38.98 |    1.30 |
-|           SudokuSolverLite |  EvilB |  43,548.482 us |   233.7968 us |   218.6937 us |    41.21 |    0.91 |
+|                SudokuSpice |  EvilB |   1,047.117 us |    20.2780 us |    21.6972 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  EvilB |   1,450.411 us |    23.9683 us |    21.2472 us |     1.38 |    0.03 |
+| SudokuSpiceDynamicMultiple |  EvilB |   1,734.834 us |    30.2263 us |    31.0401 us |     1.66 |    0.05 |
+|     SudokuSpiceConstraints |  EvilB |     214.599 us |     0.6782 us |     0.6344 us |     0.20 |    0.00 |
+|                SudokuSharp |  EvilB |  41,830.073 us |   827.1366 us | 1,015.7980 us |    40.00 |    1.07 |
+|           SudokuSolverLite |  EvilB |  43,415.176 us |   394.0568 us |   349.3211 us |    41.27 |    0.85 |
 
 ### WASM
 
@@ -100,49 +100,49 @@ currently supported in this environment. Once again, `SudokuSharp` performs bett
 puzzles, but `SudokuSpice` is still considerably faster in more complicated scenarios. In WASM, the
 constraint-based solver is *much* faster than the rule-based solver.
 
-|                     Method | puzzle |            Mean |          Error |         StdDev |    Ratio | RatioSD |
-|--------------------------- |------- |----------------:|---------------:|---------------:|---------:|--------:|
-|                SudokuSpice |   Easy |       353.51 us |       3.877 us |       2.565 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |   Easy |       534.20 us |       8.286 us |       5.481 us |     1.51 |    0.02 |
-| SudokuSpiceDynamicMultiple |   Easy |       627.48 us |       4.401 us |       2.911 us |     1.78 |    0.02 |
-|     SudokuSpiceConstraints |   Easy |       427.24 us |       2.348 us |       1.553 us |     1.21 |    0.01 |
-|                SudokuSharp |   Easy |        94.86 us |       0.764 us |       0.506 us |     0.27 |    0.00 |
-|           SudokuSolverLite |   Easy |     3,795.17 us |       7.419 us |       4.415 us |    10.73 |    0.08 |
-|                            |        |                 |                |                |          |         |
-|                SudokuSpice | Medium |     4,288.34 us |     169.506 us |     112.118 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle | Medium |     5,273.86 us |     181.371 us |     119.966 us |     1.23 |    0.04 |
-| SudokuSpiceDynamicMultiple | Medium |     5,603.11 us |     193.468 us |     127.967 us |     1.31 |    0.04 |
-|     SudokuSpiceConstraints | Medium |       961.21 us |       6.712 us |       4.439 us |     0.22 |    0.01 |
-|                SudokuSharp | Medium |    45,790.04 us |   1,527.092 us |   1,010.077 us |    10.69 |    0.39 |
-|           SudokuSolverLite | Medium |    58,111.42 us |     251.639 us |     149.746 us |    13.56 |    0.39 |
-|                            |        |                 |                |                |          |         |
-|                SudokuSpice |  HardA |     4,063.99 us |      81.394 us |      53.837 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  HardA |     4,751.29 us |      98.789 us |      65.343 us |     1.17 |    0.03 |
-| SudokuSpiceDynamicMultiple |  HardA |     4,852.39 us |     153.426 us |     101.482 us |     1.19 |    0.03 |
-|     SudokuSpiceConstraints |  HardA |     1,193.89 us |       7.044 us |       4.659 us |     0.29 |    0.00 |
-|                SudokuSharp |  HardA |    60,010.92 us |  10,768.628 us |   7,122.781 us |    14.76 |    1.71 |
-|           SudokuSolverLite |  HardA |   637,410.44 us |  17,688.875 us |  10,526.366 us |   156.59 |    3.56 |
-|                            |        |                 |                |                |          |         |
-|                SudokuSpice |  HardB |     7,992.06 us |     252.936 us |     167.301 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  HardB |     9,552.31 us |     493.516 us |     326.430 us |     1.20 |    0.05 |
-| SudokuSpiceDynamicMultiple |  HardB |     9,838.13 us |     470.949 us |     311.503 us |     1.23 |    0.05 |
-|     SudokuSpiceConstraints |  HardB |     1,334.53 us |       9.509 us |       6.290 us |     0.17 |    0.00 |
-|                SudokuSharp |  HardB |   374,972.55 us | 184,426.902 us | 121,986.977 us |    47.01 |   15.53 |
-|           SudokuSolverLite |  HardB |   116,320.10 us |   1,111.512 us |     735.196 us |    14.56 |    0.30 |
-|                            |        |                 |                |                |          |         |
-|                SudokuSpice |  EvilA |     5,269.70 us |     111.297 us |      58.211 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  EvilA |     6,380.24 us |     142.128 us |      94.009 us |     1.21 |    0.02 |
-| SudokuSpiceDynamicMultiple |  EvilA |     6,525.09 us |     152.696 us |     100.999 us |     1.24 |    0.03 |
-|     SudokuSpiceConstraints |  EvilA |     1,140.16 us |       6.494 us |       3.865 us |     0.22 |    0.00 |
-|                SudokuSharp |  EvilA |   569,713.11 us | 404,622.377 us | 240,784.286 us |   106.53 |   47.91 |
-|           SudokuSolverLite |  EvilA | 9,917,203.38 us | 438,649.148 us | 229,421.986 us | 1,882.12 |   48.06 |
-|                            |        |                 |                |                |          |         |
-|                SudokuSpice |  EvilB |    52,369.23 us |  11,599.336 us |   7,672.243 us |     1.00 |    0.00 |
-|   SudokuSpiceDynamicSingle |  EvilB |    65,216.41 us |  10,143.237 us |   6,709.123 us |     1.27 |    0.25 |
-| SudokuSpiceDynamicMultiple |  EvilB |    61,580.92 us |  21,043.088 us |  13,918.700 us |     1.20 |    0.35 |
-|     SudokuSpiceConstraints |  EvilB |     4,077.54 us |     248.147 us |     129.785 us |     0.08 |    0.01 |
-|                SudokuSharp |  EvilB |   875,963.20 us |  81,252.799 us |  53,743.696 us |    17.09 |    2.84 |
-|           SudokuSolverLite |  EvilB | 1,329,407.25 us |  34,802.563 us |  18,202.413 us |    26.36 |    4.28 |
+|                     Method | puzzle |           Mean |         Error |        StdDev |    Ratio | RatioSD |
+|--------------------------- |------- |---------------:|--------------:|--------------:|---------:|--------:|
+|                SudokuSpice |   Easy |       340.4 us |       5.66 us |       3.37 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |   Easy |       536.9 us |       3.61 us |       2.39 us |     1.58 |    0.02 |
+| SudokuSpiceDynamicMultiple |   Easy |       598.9 us |       3.21 us |       2.13 us |     1.76 |    0.02 |
+|     SudokuSpiceConstraints |   Easy |       457.6 us |       1.74 us |       1.04 us |     1.34 |    0.02 |
+|                SudokuSharp |   Easy |       103.0 us |       0.35 us |       0.23 us |     0.30 |    0.00 |
+|           SudokuSolverLite |   Easy |     3,737.0 us |      12.72 us |       7.57 us |    10.98 |    0.12 |
+|                            |        |                |               |               |          |         |
+|                SudokuSpice | Medium |     4,158.8 us |     122.18 us |      72.70 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle | Medium |     5,015.4 us |     172.59 us |     102.71 us |     1.21 |    0.03 |
+| SudokuSpiceDynamicMultiple | Medium |     5,766.3 us |     199.48 us |     131.94 us |     1.39 |    0.03 |
+|     SudokuSpiceConstraints | Medium |       946.8 us |       2.12 us |       1.11 us |     0.23 |    0.00 |
+|                SudokuSharp | Medium |    49,088.2 us |   2,335.05 us |   1,544.49 us |    11.74 |    0.45 |
+|           SudokuSolverLite | Medium |    58,481.2 us |     372.58 us |     221.72 us |    14.07 |    0.23 |
+|                            |        |                |               |               |          |         |
+|                SudokuSpice |  HardA |     3,451.6 us |      38.86 us |      23.13 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  HardA |     4,236.4 us |     100.99 us |      60.10 us |     1.23 |    0.02 |
+| SudokuSpiceDynamicMultiple |  HardA |     4,486.6 us |      60.04 us |      31.40 us |     1.30 |    0.01 |
+|     SudokuSpiceConstraints |  HardA |     1,124.6 us |       7.07 us |       4.67 us |     0.33 |    0.00 |
+|                SudokuSharp |  HardA |    58,302.5 us |  14,566.55 us |   9,634.87 us |    16.75 |    2.92 |
+|           SudokuSolverLite |  HardA |   607,741.0 us |   4,474.94 us |   2,662.96 us |   176.08 |    1.45 |
+|                            |        |                |               |               |          |         |
+|                SudokuSpice |  HardB |     7,229.4 us |     216.70 us |     113.34 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  HardB |     9,338.4 us |     426.45 us |     282.07 us |     1.29 |    0.04 |
+| SudokuSpiceDynamicMultiple |  HardB |     9,471.4 us |     385.02 us |     254.66 us |     1.31 |    0.05 |
+|     SudokuSpiceConstraints |  HardB |     1,287.4 us |       8.45 us |       5.59 us |     0.18 |    0.00 |
+|                SudokuSharp |  HardB |   450,902.8 us | 221,649.35 us | 146,607.32 us |    60.30 |   17.68 |
+|           SudokuSolverLite |  HardB |   118,479.1 us |   1,020.40 us |     674.93 us |    16.40 |    0.28 |
+|                            |        |                |               |               |          |         |
+|                SudokuSpice |  EvilA |     5,080.8 us |      61.39 us |      40.60 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  EvilA |     5,946.1 us |      79.40 us |      52.52 us |     1.17 |    0.01 |
+| SudokuSpiceDynamicMultiple |  EvilA |     6,361.0 us |     149.54 us |      98.91 us |     1.25 |    0.02 |
+|     SudokuSpiceConstraints |  EvilA |     1,152.5 us |       7.92 us |       5.24 us |     0.23 |    0.00 |
+|                SudokuSharp |  EvilA |   854,732.1 us | 712,365.33 us | 471,185.56 us |   168.21 |   92.39 |
+|           SudokuSolverLite |  EvilA | 9,755,034.5 us |  50,749.49 us |  26,542.97 us | 1,923.48 |   17.20 |
+|                            |        |                |               |               |          |         |
+|                SudokuSpice |  EvilB |    48,818.3 us |  11,700.69 us |   7,739.28 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  EvilB |    64,101.1 us |  19,887.11 us |  11,834.50 us |     1.35 |    0.28 |
+| SudokuSpiceDynamicMultiple |  EvilB |    74,448.4 us |  21,047.40 us |  13,921.55 us |     1.57 |    0.44 |
+|     SudokuSpiceConstraints |  EvilB |     3,738.6 us |      18.17 us |       9.50 us |     0.08 |    0.01 |
+|                SudokuSharp |  EvilB |   885,933.6 us |  85,754.81 us |  56,721.50 us |    18.60 |    3.39 |
+|           SudokuSolverLite |  EvilB | 1,248,090.4 us |  10,984.17 us |   5,744.93 us |    26.02 |    4.42 |
 
 ## Puzzle generating performance
 
@@ -154,16 +154,16 @@ single, double, and quadruple square clearings.
 
 |                 Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
 |----------------------- |----------:|----------:|----------:|------:|--------:|
-|            SudokuSpice |  1.327 ms | 0.0205 ms | 0.0192 ms |  1.00 |    0.00 |
-| SudokuSpiceConstraints |  2.039 ms | 0.0405 ms | 0.0434 ms |  1.53 |    0.04 |
-|     SudokuSharpSingles | 12.757 ms | 0.5837 ms | 1.7211 ms |  9.50 |    1.10 |
-|       SudokuSharpMixed |  6.206 ms | 0.1652 ms | 0.4870 ms |  4.64 |    0.49 |
+|            SudokuSpice |  1.331 ms | 0.0178 ms | 0.0158 ms |  1.00 |    0.00 |
+| SudokuSpiceConstraints |  2.148 ms | 0.0348 ms | 0.0325 ms |  1.61 |    0.03 |
+|     SudokuSharpSingles | 12.926 ms | 0.7183 ms | 2.0953 ms |  9.51 |    1.47 |
+|       SudokuSharpMixed |  6.617 ms | 0.1979 ms | 0.5773 ms |  4.84 |    0.39 |
 
 ### WASM
 
-|                 Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
-|----------------------- |----------:|----------:|----------:|------:|--------:|
-|            SudokuSpice |  48.16 ms |  5.237 ms |  3.464 ms |  1.00 |    0.00 |
-| SudokuSpiceConstraints |  30.90 ms |  2.579 ms |  1.535 ms |  0.65 |    0.06 |
-|     SudokuSharpSingles | 199.59 ms | 93.857 ms | 62.081 ms |  4.19 |    1.41 |
-|       SudokuSharpMixed | 106.95 ms | 22.039 ms | 14.578 ms |  2.23 |    0.32 |
+|                 Method |      Mean |      Error |    StdDev | Ratio | RatioSD |
+|----------------------- |----------:|-----------:|----------:|------:|--------:|
+|            SudokuSpice |  45.14 ms |   4.410 ms |  2.307 ms |  1.00 |    0.00 |
+| SudokuSpiceConstraints |  32.67 ms |   1.250 ms |  0.744 ms |  0.72 |    0.03 |
+|     SudokuSharpSingles | 218.70 ms | 111.379 ms | 66.280 ms |  5.08 |    1.52 |
+|       SudokuSharpMixed | 133.19 ms |  83.359 ms | 55.136 ms |  3.04 |    1.31 |

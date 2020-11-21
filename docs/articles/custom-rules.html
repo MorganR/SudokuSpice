@@ -78,7 +78,7 @@ implementing and using the
 <h3 id="constructor">Constructor</h3>
 <p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ISudokuRule.html"><code>ISudokuRule</code></a>, and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the <a class="xref" href="../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
+we'll use the <a class="xref" href="../api/SudokuSpice.RuleBased.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
 set-like struct using the bits of a <code>uint</code>.</p>
 <pre><code class="lang-csharp">public class DiagonalUniquenessRule : ISudokuRule
 {

@@ -256,7 +256,7 @@ items:
     - id: row
       type: System.Int32
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetMissingValuesForRow(row As Integer) As BitVector
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForRow*
   implements:
@@ -295,7 +295,7 @@ items:
     - id: column
       type: System.Int32
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetMissingValuesForColumn(column As Integer) As BitVector
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForColumn*
   implements:
@@ -334,7 +334,7 @@ items:
     - id: box
       type: System.Int32
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetMissingValuesForBox(box As Integer) As BitVector
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForBox*
   implements:
@@ -417,7 +417,7 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.GetPossibleValues*
   exceptions:
@@ -1276,12 +1276,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.BitVector
-  commentId: T:SudokuSpice.BitVector
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForColumn*
   commentId: Overload:SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForColumn
   name: GetMissingValuesForColumn

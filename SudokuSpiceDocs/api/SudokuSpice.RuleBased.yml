@@ -4,6 +4,7 @@ items:
   commentId: N:SudokuSpice.RuleBased
   id: SudokuSpice.RuleBased
   children:
+  - SudokuSpice.RuleBased.BitVector
   - SudokuSpice.RuleBased.DynamicRuleKeeper
   - SudokuSpice.RuleBased.ISudokuRuleKeeper
   - SudokuSpice.RuleBased.PossibleValues
@@ -21,6 +22,12 @@ items:
   assemblies:
   - SudokuSpice
 references:
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice.RuleBased.DynamicRuleKeeper
   commentId: T:SudokuSpice.RuleBased.DynamicRuleKeeper
   name: DynamicRuleKeeper

@@ -94,8 +94,11 @@ namespace SudokuSpice.RuleBased.Heuristics
 
         private void _UpdateBox(int box, IDictionary<Coordinate, BitVector> previousPossibles)
         {
-            foreach (int possible in _possiblesToCheckInBox[box].GetSetBits())
+            Span<int> possibleValues = stackalloc int[_puzzle.Size];
+            int numPossible = _possiblesToCheckInBox[box].PopulateSetBits(possibleValues);
+            for (int i = 0; i < numPossible; ++i)
             {
+                int possible = possibleValues[i];
                 Coordinate? uniqueCoord = null;
                 foreach (Coordinate c in _puzzle.YieldUnsetCoordsForBox(box))
                 {

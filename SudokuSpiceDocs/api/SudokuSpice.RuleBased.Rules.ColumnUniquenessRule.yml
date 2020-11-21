@@ -5,7 +5,7 @@ items:
   id: ColumnUniquenessRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetMissingValuesForColumn(System.Int32)
   - SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
@@ -56,16 +56,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)'
+- uid: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)'
   parent: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule
   langs:
   - csharp
   - vb
   name: ColumnUniquenessRule(IReadOnlyPuzzle, BitVector)
   nameWithType: ColumnUniquenessRule.ColumnUniquenessRule(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.ColumnUniquenessRule(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.ColumnUniquenessRule(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
   type: Constructor
   source:
     remote:
@@ -84,7 +84,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
     - id: allUniqueValues
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, allUniqueValues As BitVector)
   overload: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.#ctor*
   modifiers.csharp:
@@ -162,8 +162,8 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.RuleBased.BitVector
+      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetPossibleValues*
   implements:
@@ -205,7 +205,7 @@ items:
     - id: col
       type: System.Int32
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetMissingValuesForColumn(col As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetMissingValuesForColumn*
   implements:
@@ -676,17 +676,22 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.BitVector
-  commentId: T:SudokuSpice.BitVector
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
 - uid: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference
   name: CopyWithNewReference

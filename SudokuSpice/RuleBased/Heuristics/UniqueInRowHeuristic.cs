@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.RuleBased.Rules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -83,8 +84,11 @@ namespace SudokuSpice.RuleBased.Heuristics
 
         private void _UpdateRow(int row, IDictionary<Coordinate, BitVector> previousPossibles)
         {
-            foreach (int possible in _possiblesToCheckInRow[row].GetSetBits())
+            Span<int> possibleValues = stackalloc int[_puzzle.Size];
+            int numPossible = _possiblesToCheckInRow[row].PopulateSetBits(possibleValues);
+            for (int i = 0; i < numPossible; ++i)
             {
+                int possible = possibleValues[i];
                 bool isUniqueCoordForPossible = false;
                 int uniqueCol = -1;
                 for (int col = 0; col < _puzzle.Size; col++)

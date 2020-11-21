@@ -70,8 +70,11 @@ namespace SudokuSpice.RuleBased
                 return true;
             }
             Coordinate c = _tracker.GetBestCoordinateToGuess();
-            foreach (int possibleValue in _tracker.GetPossibleValues(in c))
+            Span<int> possibleValues = stackalloc int[_tracker.Puzzle.Size];
+            int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
+            for (int i = 0; i < numPossible; ++i)
             {
+                int possibleValue = possibleValues[i];
                 if (_tracker.TrySet(in c, possibleValue))
                 {
                     if (_TrySolve())
@@ -91,10 +94,12 @@ namespace SudokuSpice.RuleBased
                 return true;
             }
             Coordinate c = _tracker.GetBestCoordinateToGuess();
-            List<int>? possibleValues = _tracker.GetPossibleValues(in c);
-            while (possibleValues.Count > 0)
+            Span<int> possibleValues = stackalloc int[_tracker.Puzzle.Size];
+            int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
+            while (numPossible > 0)
             {
-                int possibleValue = possibleValues[random.Next(0, possibleValues.Count)];
+                int index = random.Next(0, numPossible);
+                int possibleValue = possibleValues[index];
                 if (_tracker.TrySet(in c, possibleValue))
                 {
                     if (_TrySolveRandomly(random))
@@ -103,7 +108,11 @@ namespace SudokuSpice.RuleBased
                     }
                     _tracker.UnsetLast();
                 }
-                possibleValues.Remove(possibleValue);
+                for (int i = index; i < numPossible - 1; ++i)
+                {
+                    possibleValues[i] = possibleValues[i + 1];
+                }
+                --numPossible;
             }
             return false;
         }
@@ -117,8 +126,9 @@ namespace SudokuSpice.RuleBased
                 };
             }
             Coordinate c = tracker.GetBestCoordinateToGuess();
-            List<int>? possibleValues = tracker.GetPossibleValues(in c);
-            if (possibleValues.Count == 1)
+            Span<int> possibleValues = stackalloc int[tracker.Puzzle.Size];
+            int numPossible = tracker.PopulatePossibleValues(in c, possibleValues);
+            if (numPossible == 1)
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
                 {
@@ -126,16 +136,16 @@ namespace SudokuSpice.RuleBased
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(tracker, c, possibleValues);
+            return _TryAllSolutionsWithGuess(tracker, c, possibleValues[0..numPossible]);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
             SquareTracker tracker,
             Coordinate c,
-            List<int> valuesToGuess)
+            ReadOnlySpan<int> valuesToGuess)
         {
             var solveStats = new SolveStats();
-            for (int i = 0; i < valuesToGuess.Count - 1; i++)
+            for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
                 var trackerCopy = new SquareTracker(tracker);
                 if (trackerCopy.TrySet(in c, valuesToGuess[i]))
@@ -158,7 +168,7 @@ namespace SudokuSpice.RuleBased
                 return new SolveStats();
             }
             solveStats.NumSquaresGuessed++;
-            solveStats.NumTotalGuesses += valuesToGuess.Count;
+            solveStats.NumTotalGuesses += valuesToGuess.Length;
             return solveStats;
         }
     }

@@ -78,7 +78,7 @@ namespace SudokuSpice.Test
             yield return new object[]
             {
                 new SolveStats(),
-                new BitVector(),
+                new Coordinate(),
                 false,
             };
             yield return new object[]

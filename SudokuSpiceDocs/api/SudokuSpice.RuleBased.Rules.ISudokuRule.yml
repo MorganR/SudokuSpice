@@ -70,8 +70,8 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.RuleBased.BitVector
+      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues*
   nameWithType.vb: ISudokuRule.GetPossibleValues(ByRef Coordinate)
@@ -385,12 +385,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.BitVector
-  commentId: T:SudokuSpice.BitVector
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues*
   commentId: Overload:SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues
   name: GetPossibleValues

@@ -5,7 +5,7 @@ items:
   id: BoxUniquenessRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.BitVector,System.Boolean)
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.RuleBased.BitVector,System.Boolean)
   - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox(System.Int32)
   - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
@@ -56,16 +56,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.BitVector,System.Boolean)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.BitVector,System.Boolean)
-  id: '#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.BitVector,System.Boolean)'
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.RuleBased.BitVector,System.Boolean)
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.RuleBased.BitVector,System.Boolean)
+  id: '#ctor(SudokuSpice.IReadOnlyBoxPuzzle,SudokuSpice.RuleBased.BitVector,System.Boolean)'
   parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
   langs:
   - csharp
   - vb
   name: BoxUniquenessRule(IReadOnlyBoxPuzzle, BitVector, Boolean)
   nameWithType: BoxUniquenessRule.BoxUniquenessRule(IReadOnlyBoxPuzzle, BitVector, Boolean)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.BoxUniquenessRule(SudokuSpice.IReadOnlyBoxPuzzle, SudokuSpice.BitVector, System.Boolean)
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.BoxUniquenessRule(SudokuSpice.IReadOnlyBoxPuzzle, SudokuSpice.RuleBased.BitVector, System.Boolean)
   type: Constructor
   source:
     remote:
@@ -84,7 +84,7 @@ items:
     - id: puzzle
       type: SudokuSpice.IReadOnlyBoxPuzzle
     - id: allUniqueValues
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     - id: skipMatchingRowAndCol
       type: System.Boolean
     content.vb: Public Sub New(puzzle As IReadOnlyBoxPuzzle, allUniqueValues As BitVector, skipMatchingRowAndCol As Boolean)
@@ -164,8 +164,8 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.RuleBased.BitVector
+      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues*
   implements:
@@ -207,7 +207,7 @@ items:
     - id: box
       type: System.Int32
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetMissingValuesForBox(box As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox*
   implements:
@@ -678,12 +678,12 @@ references:
   name: IReadOnlyBoxPuzzle
   nameWithType: IReadOnlyBoxPuzzle
   fullName: SudokuSpice.IReadOnlyBoxPuzzle
-- uid: SudokuSpice.BitVector
-  commentId: T:SudokuSpice.BitVector
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -696,6 +696,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
 - uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference
   name: CopyWithNewReference

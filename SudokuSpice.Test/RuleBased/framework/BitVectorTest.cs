@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
-namespace SudokuSpice.Test
+namespace SudokuSpice.RuleBased.Test
 {
     public class BitVectorTest
     {
@@ -141,6 +142,45 @@ namespace SudokuSpice.Test
         {
             var vector = new BitVector(data);
             Assert.Equal(setBits, vector.GetSetBits());
+        }
+
+        [Theory]
+        [InlineData(0, new int[] { })]
+        [InlineData(0b100, new int[] { 2 })]
+        [InlineData(0b0011_1101, new int[] { 0, 2, 3, 4, 5 })]
+        public void PopulateSetBits_Succeeds(uint data, int[] expectedSetBits)
+        {
+            var vector = new BitVector(data);
+            Span<int> setBits = stackalloc int[32];
+
+            var numSetBits = vector.PopulateSetBits(setBits);
+
+            Assert.Equal(expectedSetBits.Length, numSetBits);
+            Assert.Equal(expectedSetBits, setBits[0..numSetBits].ToArray());
+        }
+
+        [Fact]
+        public void PopulateSetBits_WithSpanLongerThanBitVector_Succeeds()
+        {
+            var vector = new BitVector(uint.MaxValue);
+            Span<int> setBits = stackalloc int[64];
+
+            var numSetBits = vector.PopulateSetBits(setBits);
+
+            Assert.Equal(32, numSetBits);
+            Assert.Equal(Enumerable.Range(0, 32), setBits[0..numSetBits].ToArray());
+        }
+
+        [Fact]
+        public void PopulateSetBits_WithSpanShorterThanNumSet_Succeeds()
+        {
+            var vector = new BitVector(uint.MaxValue);
+            Span<int> setBits = stackalloc int[5];
+
+            var numSetBits = vector.PopulateSetBits(setBits);
+
+            Assert.Equal(5, numSetBits);
+            Assert.Equal(Enumerable.Range(0, 5), setBits[0..numSetBits].ToArray());
         }
 
         [Theory]

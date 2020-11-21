@@ -1,5 +1,6 @@
 ﻿using SudokuSpice.RuleBased.Heuristics;
 using SudokuSpice.RuleBased.Rules;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -113,6 +114,26 @@ namespace SudokuSpice.RuleBased
         /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
         /// <returns>A list of those possible values.</returns>
         public List<int> GetPossibleValues(in Coordinate c) => _possibleValues[in c].GetSetBits();
+
+        /// <summary>
+        /// Populates a provided Span with the possible values at the given coordinate, and returns
+        /// the number of possible values that were populated.
+        ///
+        /// If there are fewer possible values than the length of the
+        /// <paramref name="possibleValues"/> span, the remaining values in the span are left
+        /// unchanged.
+        /// </summary>
+        /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
+        /// <param name="possibleValues">
+        /// A span to populate with the possible values. Should be at least as large as the size of
+        /// the puzzle.
+        /// </param>
+        /// <returns>
+        /// The number of possible values that were set in the <paramref name="possibleValues"/> span.
+        /// </returns>
+
+        public int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) => 
+            _possibleValues[in c].PopulateSetBits(possibleValues);
 
         /// <summary>
         /// Tries to set the square at the given coordinate to the given possible value. This also 

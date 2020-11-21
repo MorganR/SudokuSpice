@@ -6,10 +6,10 @@ items:
   parent: SudokuSpice.RuleBased
   children:
   - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.RuleBased.PossibleValues)
   - SudokuSpice.RuleBased.PossibleValues.AllPossible
-  - SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
   langs:
@@ -73,13 +73,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nReturns a <xref href=\"SudokuSpice.BitVector\" data-throw-if-not-resolved=\"false\"></xref> for the complete set of possible values for any given\nsquare in the puzzle represented by this <code>PossibleValues</code> object.\n"
+  summary: "\nReturns a <xref href=\"SudokuSpice.RuleBased.BitVector\" data-throw-if-not-resolved=\"false\"></xref> for the complete set of possible values for any given\nsquare in the puzzle represented by this <code>PossibleValues</code> object.\n"
   example: []
   syntax:
     content: public BitVector AllPossible { get; }
     parameters: []
     return:
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
     content.vb: Public ReadOnly Property AllPossible As BitVector
   overload: SudokuSpice.RuleBased.PossibleValues.AllPossible*
   modifiers.csharp:
@@ -124,16 +124,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)'
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)'
   parent: SudokuSpice.RuleBased.PossibleValues
   langs:
   - csharp
   - vb
   name: PossibleValues(IReadOnlyPuzzle, BitVector)
   nameWithType: PossibleValues.PossibleValues(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
   type: Constructor
   source:
     remote:
@@ -155,7 +155,7 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle for which we want to track possible values.
     - id: allPossible
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
       description: "\nThe full set of possible values for any given square in this puzzle.\n"
     content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, allPossible As BitVector)
   overload: SudokuSpice.RuleBased.PossibleValues.#ctor*
@@ -230,8 +230,8 @@ items:
       type: SudokuSpice.Coordinate
       description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> of the square.
     return:
-      type: SudokuSpice.BitVector
-      description: The possible values for that square as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.RuleBased.BitVector
+      description: The possible values for that square as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Property Item(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.PossibleValues.Item*
   nameWithType.vb: PossibleValues.Item(ByRef Coordinate)
@@ -243,16 +243,16 @@ items:
   - Public
   fullName.vb: SudokuSpice.RuleBased.PossibleValues.Item(ByRef SudokuSpice.Coordinate)
   name.vb: Item(ByRef Coordinate)
-- uid: SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
-  commentId: M:SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
-  id: Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+- uid: SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  id: Intersect(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
   parent: SudokuSpice.RuleBased.PossibleValues
   langs:
   - csharp
   - vb
   name: Intersect(Coordinate, BitVector)
   nameWithType: PossibleValues.Intersect(Coordinate, BitVector)
-  fullName: SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate, SudokuSpice.BitVector)
+  fullName: SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
   type: Method
   source:
     remote:
@@ -274,7 +274,7 @@ items:
       type: SudokuSpice.Coordinate
       description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> of the square to update.
     - id: possibleValues
-      type: SudokuSpice.BitVector
+      type: SudokuSpice.RuleBased.BitVector
       description: The possible values to intersect with.
     content.vb: Public Sub Intersect(ByRef c As Coordinate, possibleValues As BitVector)
   overload: SudokuSpice.RuleBased.PossibleValues.Intersect*
@@ -283,7 +283,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PossibleValues.Intersect(ByRef SudokuSpice.Coordinate, SudokuSpice.BitVector)
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.Intersect(ByRef SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
   name.vb: Intersect(ByRef Coordinate, BitVector)
 - uid: SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
@@ -622,22 +622,17 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.BitVector
-  commentId: T:SudokuSpice.BitVector
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice.RuleBased.PossibleValues.AllPossible*
   commentId: Overload:SudokuSpice.RuleBased.PossibleValues.AllPossible
   name: AllPossible
   nameWithType: PossibleValues.AllPossible
   fullName: SudokuSpice.RuleBased.PossibleValues.AllPossible
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.PossibleValues.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.PossibleValues.#ctor
   name: PossibleValues
@@ -649,6 +644,11 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.PossibleValues
   commentId: T:SudokuSpice.RuleBased.PossibleValues
   parent: SudokuSpice.RuleBased

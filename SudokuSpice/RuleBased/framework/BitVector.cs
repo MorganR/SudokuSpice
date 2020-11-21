@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Intrinsics.X86;
 
-namespace SudokuSpice
+namespace SudokuSpice.RuleBased
 {
     /// <summary>
     /// A 32-bit vector with simple operations for getting and setting bits.
@@ -153,6 +153,48 @@ namespace SudokuSpice
                 }
             }
             return bits;
+        }
+
+        /// <summary>
+        /// Populates a provided Span with the indices of set bits, and returns the number of set 
+        /// bits it populated.
+        ///
+        /// This method will return if it reaches the end of the provided
+        /// <paramref name="setIndices"/> span, so if <paramref name="setIndices"/> has size N,
+        /// then this will only populate the indices for the first N set bits, and will return N.
+        /// If there are less setBits than N, say M, the values of <paramref name="setIndices"/>
+        /// from setIndices[M] to setIndices[N-1] are left unchanged.
+        /// </summary>
+        /// <remarks>
+        /// This operation is slightly more efficient on average when <see cref="Popcnt"/> is
+        /// supported. Worst case performance is roughly the same.
+        /// </remarks>
+        /// <param name="setIndices">
+        /// A span to fill with the indices of set bits. All values will be written to 
+        /// </param>
+        /// <returns>
+        /// The number of set bits that have been populated into <paramref name="setIndices"/>
+        /// </returns>
+        public readonly int PopulateSetBits(Span<int> setIndices)
+        {
+            int numRecordedSetBits = 0;
+            int maxIndex = _masks.Length;
+            int maxSetBits = setIndices.Length;
+            if (Popcnt.IsSupported)
+            {
+                int numSetBits = Count;
+                maxSetBits = Math.Min(numSetBits, maxSetBits);
+            }
+            for (int i = 0;
+                i < maxIndex && numRecordedSetBits < maxSetBits;
+                ++i)
+            {
+                if ((Data & _masks[i]) != 0)
+                {
+                    setIndices[numRecordedSetBits++] = i;
+                }
+            }
+            return numRecordedSetBits;
         }
 
         public readonly bool Equals(BitVector other) => Data == other.Data;
