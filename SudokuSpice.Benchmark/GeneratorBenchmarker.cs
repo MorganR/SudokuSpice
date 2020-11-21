@@ -1,6 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
 using SudokuSharp;
-using SudokuSpice.ConstraintBased;
 using SudokuSpice.ConstraintBased.Constraints;
 using SudokuSpice.RuleBased;
 using System;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
-    [SimpleJob]
     public class GeneratorBenchmarker
     {
         [Benchmark(Baseline = true)]

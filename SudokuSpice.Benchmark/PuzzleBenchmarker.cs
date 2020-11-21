@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
-    [SimpleJob]
     public class PuzzleBenchmarker
     {
         public IEnumerable<object> NineByNinePuzzles => Puzzles.NineByNinePuzzles();
