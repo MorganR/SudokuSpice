@@ -64,7 +64,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             ReadOnlySpan<Coordinate> squareCoordinates,
             Span<bool> isValueIndexPresentInSquares)
         {
-            isValueIndexPresentInSquares.Fill(false);
+            isValueIndexPresentInSquares.Clear();
             for (int i = 0; i < squareCoordinates.Length; i++)
             {
                 int? puzzleValue = puzzle[squareCoordinates[i]];

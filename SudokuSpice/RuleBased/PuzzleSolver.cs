@@ -1,6 +1,5 @@
 using SudokuSpice.RuleBased.Heuristics;
 using System;
-using System.Collections.Generic;
 
 namespace SudokuSpice.RuleBased
 {
