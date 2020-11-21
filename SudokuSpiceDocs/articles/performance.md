@@ -13,8 +13,9 @@ The performance of this library has been compared to other .NET sudoku libraries
 
 These were compared using a set of 1750 generated puzzles, with 24 - 30 preset squares, grouped
 by the number of squares that needed to be guessed to solve the puzzle if using just the basic
-Sudoku constraints and no heuristics. *SudokuSpice* demonstrates considerably more speed and
-stability regardless of the number of guesses.
+Sudoku rules and no heuristics. *SudokuSpice* demonstrates considerably more speed and
+stability regardless of the number of guesses. These benchmarks use the Core CLR on 64 bit Window
+or Linux. Values are roughly consistent for each OS.
 
 |                 Method | sampleCollection |         Mean |        Error |        StdDev |  Ratio | RatioSD |
 |----------------------- |----------------- |-------------:|-------------:|--------------:|-------:|--------:|
@@ -45,7 +46,7 @@ stability regardless of the number of guesses.
 
 Each library was also compared with a select set of examples, most of which require more advanced
 techniques. These demonstrate that *SudokuSharp* can take the lead in some very simple cases, when
-the slight overhead needed by *SudokuSpice* dominates, but that this overhead leads to very
+the slight overhead needed by *SudokuSpice* dominates, but that this overhead leads to 
 effective performance enhancements for more complicated examples.
 
 |                     Method | puzzle |           Mean |         Error |        StdDev |    Ratio | RatioSD |
@@ -92,6 +93,57 @@ effective performance enhancements for more complicated examples.
 |                SudokuSharp |  EvilB |  41,243.563 us |   810.1264 us |   994.9080 us |    38.98 |    1.30 |
 |           SudokuSolverLite |  EvilB |  43,548.482 us |   233.7968 us |   218.6937 us |    41.21 |    0.91 |
 
+### WASM
+
+Performance is considerably different in a Mono WASM environment. The CSV benchmarks are not 
+currently supported in this environment. Once again, `SudokuSharp` performs better on very simple
+puzzles, but `SudokuSpice` is still considerably faster in more complicated scenarios. In WASM, the
+constraint-based solver is *much* faster than the rule-based solver.
+
+|                     Method | puzzle |            Mean |          Error |         StdDev |    Ratio | RatioSD |
+|--------------------------- |------- |----------------:|---------------:|---------------:|---------:|--------:|
+|                SudokuSpice |   Easy |       353.51 us |       3.877 us |       2.565 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |   Easy |       534.20 us |       8.286 us |       5.481 us |     1.51 |    0.02 |
+| SudokuSpiceDynamicMultiple |   Easy |       627.48 us |       4.401 us |       2.911 us |     1.78 |    0.02 |
+|     SudokuSpiceConstraints |   Easy |       427.24 us |       2.348 us |       1.553 us |     1.21 |    0.01 |
+|                SudokuSharp |   Easy |        94.86 us |       0.764 us |       0.506 us |     0.27 |    0.00 |
+|           SudokuSolverLite |   Easy |     3,795.17 us |       7.419 us |       4.415 us |    10.73 |    0.08 |
+|                            |        |                 |                |                |          |         |
+|                SudokuSpice | Medium |     4,288.34 us |     169.506 us |     112.118 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle | Medium |     5,273.86 us |     181.371 us |     119.966 us |     1.23 |    0.04 |
+| SudokuSpiceDynamicMultiple | Medium |     5,603.11 us |     193.468 us |     127.967 us |     1.31 |    0.04 |
+|     SudokuSpiceConstraints | Medium |       961.21 us |       6.712 us |       4.439 us |     0.22 |    0.01 |
+|                SudokuSharp | Medium |    45,790.04 us |   1,527.092 us |   1,010.077 us |    10.69 |    0.39 |
+|           SudokuSolverLite | Medium |    58,111.42 us |     251.639 us |     149.746 us |    13.56 |    0.39 |
+|                            |        |                 |                |                |          |         |
+|                SudokuSpice |  HardA |     4,063.99 us |      81.394 us |      53.837 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  HardA |     4,751.29 us |      98.789 us |      65.343 us |     1.17 |    0.03 |
+| SudokuSpiceDynamicMultiple |  HardA |     4,852.39 us |     153.426 us |     101.482 us |     1.19 |    0.03 |
+|     SudokuSpiceConstraints |  HardA |     1,193.89 us |       7.044 us |       4.659 us |     0.29 |    0.00 |
+|                SudokuSharp |  HardA |    60,010.92 us |  10,768.628 us |   7,122.781 us |    14.76 |    1.71 |
+|           SudokuSolverLite |  HardA |   637,410.44 us |  17,688.875 us |  10,526.366 us |   156.59 |    3.56 |
+|                            |        |                 |                |                |          |         |
+|                SudokuSpice |  HardB |     7,992.06 us |     252.936 us |     167.301 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  HardB |     9,552.31 us |     493.516 us |     326.430 us |     1.20 |    0.05 |
+| SudokuSpiceDynamicMultiple |  HardB |     9,838.13 us |     470.949 us |     311.503 us |     1.23 |    0.05 |
+|     SudokuSpiceConstraints |  HardB |     1,334.53 us |       9.509 us |       6.290 us |     0.17 |    0.00 |
+|                SudokuSharp |  HardB |   374,972.55 us | 184,426.902 us | 121,986.977 us |    47.01 |   15.53 |
+|           SudokuSolverLite |  HardB |   116,320.10 us |   1,111.512 us |     735.196 us |    14.56 |    0.30 |
+|                            |        |                 |                |                |          |         |
+|                SudokuSpice |  EvilA |     5,269.70 us |     111.297 us |      58.211 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  EvilA |     6,380.24 us |     142.128 us |      94.009 us |     1.21 |    0.02 |
+| SudokuSpiceDynamicMultiple |  EvilA |     6,525.09 us |     152.696 us |     100.999 us |     1.24 |    0.03 |
+|     SudokuSpiceConstraints |  EvilA |     1,140.16 us |       6.494 us |       3.865 us |     0.22 |    0.00 |
+|                SudokuSharp |  EvilA |   569,713.11 us | 404,622.377 us | 240,784.286 us |   106.53 |   47.91 |
+|           SudokuSolverLite |  EvilA | 9,917,203.38 us | 438,649.148 us | 229,421.986 us | 1,882.12 |   48.06 |
+|                            |        |                 |                |                |          |         |
+|                SudokuSpice |  EvilB |    52,369.23 us |  11,599.336 us |   7,672.243 us |     1.00 |    0.00 |
+|   SudokuSpiceDynamicSingle |  EvilB |    65,216.41 us |  10,143.237 us |   6,709.123 us |     1.27 |    0.25 |
+| SudokuSpiceDynamicMultiple |  EvilB |    61,580.92 us |  21,043.088 us |  13,918.700 us |     1.20 |    0.35 |
+|     SudokuSpiceConstraints |  EvilB |     4,077.54 us |     248.147 us |     129.785 us |     0.08 |    0.01 |
+|                SudokuSharp |  EvilB |   875,963.20 us |  81,252.799 us |  53,743.696 us |    17.09 |    2.84 |
+|           SudokuSolverLite |  EvilB | 1,329,407.25 us |  34,802.563 us |  18,202.413 us |    26.36 |    4.28 |
+
 ## Puzzle generating performance
 
 To compare puzzle generation, *SudokuSpice* and *SudokuSharp* were used to generate puzzles with 30
@@ -106,3 +158,12 @@ single, double, and quadruple square clearings.
 | SudokuSpiceConstraints |  2.039 ms | 0.0405 ms | 0.0434 ms |  1.53 |    0.04 |
 |     SudokuSharpSingles | 12.757 ms | 0.5837 ms | 1.7211 ms |  9.50 |    1.10 |
 |       SudokuSharpMixed |  6.206 ms | 0.1652 ms | 0.4870 ms |  4.64 |    0.49 |
+
+### WASM
+
+|                 Method |      Mean |     Error |    StdDev | Ratio | RatioSD |
+|----------------------- |----------:|----------:|----------:|------:|--------:|
+|            SudokuSpice |  48.16 ms |  5.237 ms |  3.464 ms |  1.00 |    0.00 |
+| SudokuSpiceConstraints |  30.90 ms |  2.579 ms |  1.535 ms |  0.65 |    0.06 |
+|     SudokuSharpSingles | 199.59 ms | 93.857 ms | 62.081 ms |  4.19 |    1.41 |
+|       SudokuSharpMixed | 106.95 ms | 22.039 ms | 14.578 ms |  2.23 |    0.32 |
