@@ -19,8 +19,8 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpice(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var solver = new PuzzleSolver(p);
-            solver.SolveRandomly();
+            PuzzleSolver solver = StandardPuzzles.CreateSolver(p.Size);
+            solver.SolveRandomly(p);
             return p.NumEmptySquares == 0;
         }
 
@@ -29,15 +29,15 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpiceDynamicSingle(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var possibleValues = new PossibleValues(p);
-            var standardRules = new StandardRules(p, possibleValues.AllPossible);
+            var possibleValues = new PossibleValues(p.Size);
+            var standardRules = new StandardRules(possibleValues.AllPossible);
             var ruleKeeper = new DynamicRuleKeeper(
-                p, possibleValues,
+                possibleValues,
                 new List<ISudokuRule> { standardRules });
             var heuristic = new StandardHeuristic(
-                p, possibleValues, standardRules, standardRules, standardRules);
-            var solver = new PuzzleSolver(p, possibleValues, ruleKeeper, heuristic);
-            solver.SolveRandomly();
+                possibleValues, standardRules, standardRules, standardRules);
+            var solver = new PuzzleSolver(possibleValues, ruleKeeper, heuristic);
+            solver.SolveRandomly(p);
             return p.NumEmptySquares == 0;
         }
 
@@ -46,17 +46,17 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var possibleValues = new PossibleValues(p);
-            var rowRule = new RowUniquenessRule(p, possibleValues.AllPossible);
-            var columnRule = new ColumnUniquenessRule(p, possibleValues.AllPossible);
-            var boxRule = new BoxUniquenessRule(p, possibleValues.AllPossible, true);
+            var possibleValues = new PossibleValues(p.Size);
+            var rowRule = new RowUniquenessRule(possibleValues.AllPossible);
+            var columnRule = new ColumnUniquenessRule(possibleValues.AllPossible);
+            var boxRule = new BoxUniquenessRule(possibleValues.AllPossible);
             var ruleKeeper = new DynamicRuleKeeper(
-                p, possibleValues,
+                possibleValues,
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
-                p, possibleValues, rowRule, columnRule, boxRule);
-            var solver = new PuzzleSolver(p, possibleValues, ruleKeeper, heuristic);
-            solver.SolveRandomly();
+                possibleValues, rowRule, columnRule, boxRule);
+            var solver = new PuzzleSolver(possibleValues, ruleKeeper, heuristic);
+            solver.SolveRandomly(p);
             return p.NumEmptySquares == 0;
         }
 

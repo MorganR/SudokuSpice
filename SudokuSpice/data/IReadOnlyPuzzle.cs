@@ -8,6 +8,7 @@ namespace SudokuSpice
     /// </summary>
     public interface IReadOnlyPuzzle
     {
+        /// <summary>The side-length of the puzzle (puzzles must be square).</summary>
         public int Size { get; }
         /// <summary>The total number of squares in the puzzle.</summary>
         public int NumSquares { get; }
@@ -16,11 +17,11 @@ namespace SudokuSpice
         /// <summary>The number of set/known squares in the puzzle.</summary>
         public int NumSetSquares { get; }
         /// <summary>Gets all the possible values for this puzzle.</summary>
+        // TODO: Revisit this.
         public ReadOnlySpan<int> AllPossibleValues { get; }
 
         /// <summary>
-        /// Gets the current value of a given square. A square can be 'unset' by setting its value
-        /// to <c>null</c>.
+        /// Gets the current value of a given square.
         /// </summary>
         public int? this[int row, int col] { get; }
 

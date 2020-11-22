@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace SudokuSpice.RuleBased.Rules
 {
@@ -8,53 +7,63 @@ namespace SudokuSpice.RuleBased.Rules
     /// </summary>
     public class DiagonalUniquenessRule : ISudokuRule
     {
-        private readonly IReadOnlyPuzzle _puzzle;
+        private readonly int _size;
         private readonly BitVector _allUnset;
         private BitVector _unsetBackwardDiag;
         private BitVector _unsetForwardDiag;
+        private IReadOnlyPuzzle? _puzzle;
 
-        public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
+        public DiagonalUniquenessRule(BitVector allUniqueValues)
         {
-            Debug.Assert(puzzle.Size == allUniqueValues.Count,
-                $"Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}");
-            _puzzle = puzzle;
-            _allUnset = _unsetForwardDiag = _unsetBackwardDiag = allUniqueValues;
+            _size = allUniqueValues.Count;
+            _allUnset = allUniqueValues;
+        }
+
+        public bool TryInitFor(IReadOnlyPuzzle puzzle)
+        {
+            // This should be enforced by the rule keeper.
+            Debug.Assert(puzzle.Size == _size,
+                $"Puzzle size ({puzzle.Size}) did not match expected size ({_size}).");
+            _unsetForwardDiag = _unsetBackwardDiag = _allUnset;
             // Iterate through the backward diagonal (like a backslash '\')
-            for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
+            for (int row = 0, col = 0; row < _size; row++, col++)
             {
                 int? val = puzzle[row, col];
                 if (val.HasValue)
                 {
                     if (!_unsetBackwardDiag.IsBitSet(val.Value))
                     {
-                        throw new ArgumentException(
-                            $"Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).");
+                        // Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).
+                        return false;
                     }
                     _unsetBackwardDiag.UnsetBit(val.Value);
                 }
             }
             // Iterate through the forward diagonal (like a forward slash '/')
-            for (int row = 0, col = puzzle.Size - 1; row < puzzle.Size; row++, col--)
+            for (int row = 0, col = puzzle.Size - 1; row < _size; row++, col--)
             {
                 int? val = puzzle[row, col];
                 if (val.HasValue)
                 {
                     if (!_unsetForwardDiag.IsBitSet(val.Value))
                     {
-                        throw new ArgumentException(
-                            $"Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).");
+                        // Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).
+                        return false;
                     }
                     _unsetForwardDiag.UnsetBit(val.Value);
                 }
             }
+            _puzzle = puzzle;
+            return true;
         }
 
         private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle puzzle)
         {
-            _puzzle = puzzle;
+            _size = existing._size;
+            _allUnset = existing._allUnset;
             _unsetBackwardDiag = existing._unsetBackwardDiag;
             _unsetForwardDiag = existing._unsetForwardDiag;
-            _allUnset = existing._allUnset;
+            _puzzle = puzzle;
         }
 
         /// <inheritdoc/>
@@ -78,6 +87,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public void Revert(in Coordinate c, int val)
         {
+            Debug.Assert(_puzzle is not null, $"Can't call {nameof(Revert)} with a null puzzle.");
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
@@ -92,6 +102,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
+            Debug.Assert(_puzzle is not null, $"Can't call {nameof(Revert)} with a null puzzle.");
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
@@ -108,6 +119,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
+            Debug.Assert(_puzzle is not null, $"Can't call {nameof(Update)} with a null puzzle.");
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
@@ -123,11 +135,12 @@ namespace SudokuSpice.RuleBased.Rules
 
         private static bool _IsOnBackwardDiag(in Coordinate c) => c.Row == c.Column;
 
-        private bool _IsOnForwardDiag(in Coordinate c) => c.Column == _puzzle.Size - c.Row - 1;
+        private bool _IsOnForwardDiag(in Coordinate c) => c.Column == _size - c.Row - 1;
 
         private void _AddUnsetFromBackwardDiag(in Coordinate c, CoordinateTracker coordTracker)
         {
-            for (int row = 0, col = 0; row < _puzzle.Size; row++, col++)
+            Debug.Assert(_puzzle is not null, $"Can't call {nameof(_AddUnsetFromBackwardDiag)} with a null puzzle.");
+            for (int row = 0, col = 0; row < _size; row++, col++)
             {
                 if ((row == c.Row && col == c.Column) || _puzzle[row, col].HasValue)
                 {
@@ -139,7 +152,8 @@ namespace SudokuSpice.RuleBased.Rules
 
         private void _AddUnsetFromForwardDiag(in Coordinate c, CoordinateTracker coordTracker)
         {
-            for (int row = 0, col = _puzzle.Size - 1; row < _puzzle.Size; row++, col--)
+            Debug.Assert(_puzzle is not null, $"Can't call {nameof(_AddUnsetFromForwardDiag)} with a null puzzle.");
+            for (int row = 0, col = _size - 1; row < _size; row++, col--)
             {
                 if ((row == c.Row && col == c.Column) || _puzzle[row, col].HasValue)
                 {

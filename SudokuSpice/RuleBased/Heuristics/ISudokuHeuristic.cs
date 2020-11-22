@@ -11,6 +11,20 @@ namespace SudokuSpice.RuleBased.Heuristics
     public interface ISudokuHeuristic
     {
         /// <summary>
+        /// Tries to initialize this heuristic for solving the given puzzle.
+        /// </summary>
+        /// <remarks>
+        /// In general, it doesn't make sense to want to maintain the previous state if this method
+        /// fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+        /// on failure.
+        /// </remarks>
+        /// <param name="puzzle">The puzzle to solve.</param>
+        /// <returns>
+        /// False if this heuristic cannot be initialized for the given puzzle, else true.
+        /// </returns>
+        bool TryInitFor(IReadOnlyPuzzle puzzle);
+
+        /// <summary>
         /// Updates all the current possible values.
         /// </summary>
         /// <returns>Returns true if any modifications were made.</returns>

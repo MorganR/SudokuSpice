@@ -15,17 +15,17 @@ namespace SudokuSpice
         private readonly CoordinateTracker _unsetCoordsTracker;
         private readonly int[] _allPossibleValues;
 
-        /// <summary>The length of one side of the puzzle.</summary>
+        /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int Size { get; }
-        /// <summary>The length of one side of a mini box within the puzzle.</summary>
-        /// <para>A mini box is a square region that must contain each possible value exactly once.</para>
+        /// <inheritdoc cref="IReadOnlyBoxPuzzle"/>
         public int BoxSize { get; }
-        /// <summary>The total number of squares in the puzzle.</summary>
+        /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int NumSquares { get; }
-        /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
+        /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int NumEmptySquares => _unsetCoordsTracker.NumTracked;
-        /// <summary>The number of set/known squares in the puzzle.</summary>
+        /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int NumSetSquares => NumSquares - NumEmptySquares;
+        /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public ReadOnlySpan<int> AllPossibleValues => _allPossibleValues;
 
         /// <summary>

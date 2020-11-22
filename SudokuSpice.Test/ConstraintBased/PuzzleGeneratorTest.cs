@@ -1,5 +1,4 @@
 ﻿using SudokuSpice.ConstraintBased.Constraints;
-using SudokuSpice.RuleBased;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -32,8 +31,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            var solver = new PuzzleSolver(puzzle);
-            SolveStats stats = solver.GetStatsForAllSolutions();
+            var solver = RuleBased.StandardPuzzles.CreateSolver(puzzle.Size);
+            SolveStats stats = solver.GetStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 

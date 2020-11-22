@@ -125,18 +125,19 @@ to <code>[3]</code>.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_Rules_IMissingRowValuesTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.%23ctor(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.RuleBased.PossibleValues%2CSudokuSpice.RuleBased.Rules.IMissingRowValuesTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic__ctor_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_Rules_IMissingRowValuesTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.%23ctor(SudokuSpice.RuleBased.PossibleValues%2CSudokuSpice.RuleBased.Rules.IMissingRowValuesTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L25">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L37">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic__ctor_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic__ctor_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_Rules_IMissingRowValuesTracker_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker)">UniqueInRowHeuristic(IReadOnlyPuzzle, PossibleValues, IMissingRowValuesTracker)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic__ctor_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_Rules_IMissingRowValuesTracker_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker)">UniqueInRowHeuristic(PossibleValues, IMissingRowValuesTracker)</h4>
+  <div class="markdown level1 summary"><p>Creates the heuristic.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public UniqueInRowHeuristic(IReadOnlyPuzzle puzzle, PossibleValues possibleValues, IMissingRowValuesTracker rule)</code></pre>
+    <pre><code class="lang-csharp hljs">public UniqueInRowHeuristic(PossibleValues possibleValues, IMissingRowValuesTracker rowValuesTracker)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -149,19 +150,17 @@ to <code>[3]</code>.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
-        <td><span class="parametername">puzzle</span></td>
-        <td></td>
-      </tr>
-      <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.PossibleValues.html">PossibleValues</a></td>
         <td><span class="parametername">possibleValues</span></td>
-        <td></td>
+        <td><p>The shared possible values instance to use when solving.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.html">IMissingRowValuesTracker</a></td>
-        <td><span class="parametername">rule</span></td>
-        <td></td>
+        <td><span class="parametername">rowValuesTracker</span></td>
+        <td><p>Something that tracks the possible values for each row. Rules often do this already,
+for example.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -172,7 +171,7 @@ to <code>[3]</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.RuleBased.PossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L52">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L64">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
@@ -228,10 +227,65 @@ to <code>[3]</code>.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L79">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)">TryInitFor(IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Tries to initialize this heuristic for solving the given puzzle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryInitFor(IReadOnlyPuzzle puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td><p>The puzzle to solve.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>False if this heuristic cannot be initialized for the given puzzle, else true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+on failure.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L76">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L103">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UndoLastUpdate" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
@@ -247,7 +301,7 @@ to <code>[3]</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UpdateAll.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UpdateAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L63">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L89">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UpdateAll_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UpdateAll*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UpdateAll" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UpdateAll">UpdateAll()</h4>
@@ -289,7 +343,7 @@ to <code>[3]</code>.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs/#L18" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

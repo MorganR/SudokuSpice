@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased
     {
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
-        private readonly Func<TPuzzle, PuzzleSolver> _solverFactory;
+        private readonly PuzzleSolver _solver;
 
         /// <summary>
         /// Creates a puzzle generator to create puzzles with custom rules and type.
@@ -20,10 +20,10 @@ namespace SudokuSpice.RuleBased
         /// A function that constructs a <see cref="SquareTracker"/> for the desired puzzle type.
         /// This allows callers to use non-standard rules and heuristics.
         /// </param>
-        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, Func<TPuzzle, PuzzleSolver> solverFactory)
+        public PuzzleGenerator(Func<TPuzzle> puzzleFactory, PuzzleSolver solver)
         {
             _puzzleFactory = puzzleFactory;
-            _solverFactory = solverFactory;
+            _solver = solver;
         }
 
         /// <summary>
@@ -126,11 +126,7 @@ namespace SudokuSpice.RuleBased
 
         private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
 
-        private void _FillPuzzle(TPuzzle puzzle)
-        {
-            PuzzleSolver? solver = _solverFactory.Invoke(puzzle);
-            solver.SolveRandomly();
-        }
+        private void _FillPuzzle(TPuzzle puzzle) => _solver.SolveRandomly(puzzle);
 
         private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle)
         {
@@ -142,9 +138,7 @@ namespace SudokuSpice.RuleBased
             }
             int? previousValue = puzzle[in c];
             puzzle[in c] = null;
-            var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
-            PuzzleSolver? solver = _solverFactory.Invoke(puzzleCopy);
-            SolveStats solveStats = solver.GetStatsForAllSolutions();
+            SolveStats solveStats = _solver.GetStatsForAllSolutions(puzzle);
             if (solveStats.NumSolutionsFound == 1)
             {
                 return true;

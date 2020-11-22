@@ -24,8 +24,8 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpice(PuzzleSampleCollection sampleCollection)
         {
             var puzzle = new Puzzle(sampleCollection.Random().NullableMatrix);
-            var solver = new PuzzleSolver(puzzle);
-            solver.Solve();
+            var solver = StandardPuzzles.CreateSolver(puzzle.Size);
+            solver.Solve(puzzle);
             return puzzle.NumEmptySquares == 0;
         }
 

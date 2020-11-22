@@ -9,6 +9,16 @@ namespace SudokuSpice.RuleBased.Rules
     public interface ISudokuRule
     {
         /// <summary>
+        /// Creates a deep copy of this ISudokuRule, with any internal <c>IReadOnlyPuzzle</c>
+        /// references updated to the given puzzle.
+        /// </summary>
+        /// <param name="puzzle">
+        /// The new puzzle reference to use. To ensure this rule's internal state is correct, this
+        /// puzzle should contain the same data as the current puzzle referenced by this rule.
+        /// </param>
+        ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle);
+
+        /// <summary>
         /// Gets the possible values for the given coordinate based on this rule.
         /// </summary>
         /// <remarks>
@@ -21,6 +31,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// </remarks>
         /// <returns>The possible values represented as a <see cref="BitVector"/>.</returns>
         BitVector GetPossibleValues(in Coordinate c);
+
         /// <summary>
         /// Undoes an update for the given value at the specified coordinate.
         /// <para>
@@ -36,6 +47,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <param name="c">The coordinate where a value is being unset.</param>
         /// <param name="val">The value being unset.</param>
         void Revert(in Coordinate c, int val);
+
         /// <summary>
         /// Undoes an update for the given value at the specified coordinate. Tracks affected
         /// coordinates in the given tracker.
@@ -50,6 +62,21 @@ namespace SudokuSpice.RuleBased.Rules
         /// tracker.
         /// </param>
         void Revert(in Coordinate c, int val, CoordinateTracker coordTracker);
+
+        /// <summary>
+        /// Tries to initialize this rule to prepare to solve the given puzzle.
+        /// </summary>
+        /// <remarks>
+        /// In general, it doesn't make sense to want to maintain the previous state if this method
+        /// fails. Therefore, it is <em>not</em> guaranteed that the rule's state is unchanged on 
+        /// failure.
+        /// </remarks>
+        /// <param name="puzzle">The puzzle to be solved.</param>
+        /// <returns>
+        /// False if the puzzle violates this rule and initialization fails, else true.
+        /// </returns>
+        bool TryInitFor(IReadOnlyPuzzle puzzle);
+
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value.
         /// Tracks affected coordinates in the given tracker.
@@ -64,14 +91,5 @@ namespace SudokuSpice.RuleBased.Rules
         /// tracker.
         /// </param>
         void Update(in Coordinate c, int val, CoordinateTracker coordTracker);
-        /// <summary>
-        /// Creates a deep copy of this ISudokuRule, with any internal <c>IReadOnlyPuzzle</c>
-        /// references updated to the given puzzle.
-        /// </summary>
-        /// <param name="puzzle">
-        /// The new puzzle reference to use. To ensure this rule's internal state is correct, this
-        /// puzzle should contain the same data as the current puzzle referenced by this rule.
-        /// </param>
-        ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle);
     }
 }

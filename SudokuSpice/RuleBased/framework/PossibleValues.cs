@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.RuleBased
 {
@@ -16,22 +17,23 @@ namespace SudokuSpice.RuleBased
         public BitVector AllPossible { get; }
 
         /// <summary>
+        /// The size of the PossibleValues; equivalent to <see cref="IReadOnlyPuzzle.Size"/>.
+        /// </summary>
+        public int Size => _possibleValues.GetLength(0);
+
+        /// <summary>
         /// Constructs a <c>PossibleValues</c> object to track possible values for the given
         /// puzzle. Assumes that the possible values are 1 to <c>puzzle.Size</c>.
         /// </summary>
         /// <param name="puzzle">The puzzle for which we want to track possible values.</param>
 
         [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "This is a square, so no space is wasted")]
-        public PossibleValues(IReadOnlyPuzzle puzzle)
+        public PossibleValues(int size)
         {
-            _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
-            var allPossible = BitVector.CreateWithSize(puzzle.Size + 1);
+            _possibleValues = new BitVector[size, size];
+            var allPossible = BitVector.CreateWithSize(size + 1);
             allPossible.UnsetBit(0);
             AllPossible = allPossible;
-            foreach (Coordinate c in puzzle.GetUnsetCoords())
-            {
-                _possibleValues[c.Row, c.Column] = AllPossible;
-            }
         }
 
         /// <summary>
@@ -41,16 +43,11 @@ namespace SudokuSpice.RuleBased
         /// <param name="allPossible">
         /// The full set of possible values for any given square in this puzzle.
         /// </param>
-
         [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "This is a square, so no space is wasted")]
-        public PossibleValues(IReadOnlyPuzzle puzzle, BitVector allPossible)
+        public PossibleValues(int size, BitVector allPossible)
         {
-            _possibleValues = new BitVector[puzzle.Size, puzzle.Size];
+            _possibleValues = new BitVector[size, size];
             AllPossible = allPossible;
-            foreach (Coordinate c in puzzle.GetUnsetCoords())
-            {
-                _possibleValues[c.Row, c.Column] = AllPossible;
-            }
         }
 
         /// <summary>
@@ -65,6 +62,17 @@ namespace SudokuSpice.RuleBased
             AllPossible = existing.AllPossible;
         }
 
+        /// <summary>
+        /// Resets the possible values to <see cref="AllPossible"/> at the given coordinates.
+        /// </summary>
+        public void ResetAt(ReadOnlySpan<Coordinate> coordinates)
+        {
+            foreach (Coordinate c in coordinates)
+            {
+                _possibleValues[c.Row, c.Column] = AllPossible;
+            }
+        }
+       
         /// <summary>
         /// Provides read and write access to the possible values for the given square.
         /// </summary>

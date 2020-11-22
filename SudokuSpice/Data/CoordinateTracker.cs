@@ -107,12 +107,12 @@ namespace SudokuSpice
         /// <returns>The action that was taken.</returns>
         public AddOrTrackResult AddOrTrackIfUntracked(in Coordinate c)
         {
-            if (_coordToIdx[c.Row, c.Column] == -1)
+            int idx = _coordToIdx[c.Row, c.Column];
+            if (idx == -1)
             {
                 Add(in c);
                 return AddOrTrackResult.AddedAndTracked;
             }
-            int idx = _coordToIdx[c.Row, c.Column];
             if (idx < NumTracked)
             {
                 return AddOrTrackResult.Unchanged;

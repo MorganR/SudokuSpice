@@ -44,8 +44,8 @@ namespace SudokuSpice.RuleBased.Test
             Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            var solver = new PuzzleSolver(puzzle);
-            SolveStats stats = solver.GetStatsForAllSolutions();
+            var solver = StandardPuzzles.CreateSolver(size);
+            SolveStats stats = solver.GetStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 

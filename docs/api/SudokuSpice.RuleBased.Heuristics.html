@@ -83,6 +83,9 @@
       <h4><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.html">UniqueInBoxHeuristic</a></h4>
       <section><p>Checks for any squares that are the unique provider of a given possible value within a box.
 Sets the possible values for those squares to just their unique value.</p>
+<p>For example, if a box had three unset squares with possible values: <code>A: [1, 2]</code>,
+<code>B: [1, 2]</code>, and <code>C: [1, 2, 3]</code>, then this would set <code>C</code>'s possible values
+to <code>[3]</code>.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.html">UniqueInColumnHeuristic</a></h4>
       <section><p>Checks for any squares that are the unique provider of a given possible value within a

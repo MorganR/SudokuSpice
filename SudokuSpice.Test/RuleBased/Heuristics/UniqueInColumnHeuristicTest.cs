@@ -14,10 +14,13 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */,            3},
                 {           3,            2, null /* 4 */,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
-            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var possibleValues =new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            Assert.True(ruleKeeper.TryInitFor(puzzle));
             var heuristic = new UniqueInColumnHeuristic(
-                puzzle, possibleValues, (IMissingColumnValuesTracker)ruleKeeper.GetRules()[0]);
+                possibleValues, (IMissingColumnValuesTracker)ruleKeeper.GetRules()[0]);
+            Assert.True(heuristic.TryInitFor(puzzle));
 
             Assert.Equal(new BitVector(0b11000), possibleValues[new Coordinate(0, 1)]); // Pre-modified
             Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(2, 1)]); // Pre-modified
@@ -46,10 +49,13 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */,            3},
                 {           3,            2, null /* 4 */,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
-            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var possibleValues =new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            Assert.True(ruleKeeper.TryInitFor(puzzle));
             var heuristic = new UniqueInColumnHeuristic(
-                puzzle, possibleValues, (IMissingColumnValuesTracker)ruleKeeper.GetRules()[0]);
+                possibleValues, (IMissingColumnValuesTracker)ruleKeeper.GetRules()[0]);
+            Assert.True(heuristic.TryInitFor(puzzle));
             var puzzleCopy = new Puzzle(puzzle);
 
             var possibleValuesCopy = new PossibleValues(possibleValues);

@@ -5,8 +5,9 @@ items:
   id: UniqueInColumnHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
   children:
-  - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
+  - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
   - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UndoLastUpdate
   - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll
   langs:
@@ -23,7 +24,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UniqueInColumnHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -53,16 +54,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)'
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
+  id: '#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)'
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic
   langs:
   - csharp
   - vb
-  name: UniqueInColumnHeuristic(IReadOnlyPuzzle, PossibleValues, IMissingColumnValuesTracker)
-  nameWithType: UniqueInColumnHeuristic.UniqueInColumnHeuristic(IReadOnlyPuzzle, PossibleValues, IMissingColumnValuesTracker)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UniqueInColumnHeuristic(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.PossibleValues, SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
+  name: UniqueInColumnHeuristic(PossibleValues, IMissingColumnValuesTracker)
+  nameWithType: UniqueInColumnHeuristic.UniqueInColumnHeuristic(PossibleValues, IMissingColumnValuesTracker)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UniqueInColumnHeuristic(SudokuSpice.RuleBased.PossibleValues, SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)
   type: Constructor
   source:
     remote:
@@ -71,20 +72,22 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
-    startLine: 24
+    startLine: 35
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nCreates the heuristic.\n"
+  example: []
   syntax:
-    content: public UniqueInColumnHeuristic(IReadOnlyPuzzle puzzle, PossibleValues possibleValues, IMissingColumnValuesTracker rule)
+    content: public UniqueInColumnHeuristic(PossibleValues possibleValues, IMissingColumnValuesTracker columnValuesTracker)
     parameters:
-    - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
     - id: possibleValues
       type: SudokuSpice.RuleBased.PossibleValues
-    - id: rule
+      description: "\nThe shared possible values instance to use when solving.\n"
+    - id: columnValuesTracker
       type: SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker
-    content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues, rule As IMissingColumnValuesTracker)
+      description: "\nSomething that tracks the possible values for each column. Rules often do this already,\nfor example.\n"
+    content.vb: Public Sub New(possibleValues As PossibleValues, columnValuesTracker As IMissingColumnValuesTracker)
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor*
   modifiers.csharp:
   - public
@@ -108,7 +111,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
-    startLine: 51
+    startLine: 62
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -136,6 +139,48 @@ items:
   - Public
   fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList(Of ISudokuRule))
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic
+  langs:
+  - csharp
+  - vb
+  name: TryInitFor(IReadOnlyPuzzle)
+  nameWithType: UniqueInColumnHeuristic.TryInitFor(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TryInitFor
+    path: ../SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
+    startLine: 77
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nTries to initialize this heuristic for solving the given puzzle.\n"
+  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
+  example: []
+  syntax:
+    content: public bool TryInitFor(IReadOnlyPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
+    return:
+      type: System.Boolean
+      description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
+    content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor*
+  implements:
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll
   commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll
   id: UpdateAll
@@ -154,7 +199,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
-    startLine: 62
+    startLine: 87
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -191,7 +236,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs
-    startLine: 75
+    startLine: 101
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -516,12 +561,6 @@ references:
   name: UniqueInColumnHeuristic
   nameWithType: UniqueInColumnHeuristic.UniqueInColumnHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UniqueInColumnHeuristic
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: SudokuSpice.RuleBased.PossibleValues
   commentId: T:SudokuSpice.RuleBased.PossibleValues
   parent: SudokuSpice.RuleBased
@@ -534,11 +573,6 @@ references:
   name: IMissingColumnValuesTracker
   nameWithType: IMissingColumnValuesTracker
   fullName: SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
@@ -644,6 +678,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
   commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
   parent: System.Collections.Generic
@@ -686,6 +726,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Collections.Generic.IReadOnlyList`1
   commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
@@ -731,6 +776,54 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor
+  name: TryInitFor
+  nameWithType: UniqueInColumnHeuristic.TryInitFor
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+  name: TryInitFor(IReadOnlyPuzzle)
+  nameWithType: ISudokuHeuristic.TryInitFor(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+    name: TryInitFor
+    nameWithType: ISudokuHeuristic.TryInitFor
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+    name: TryInitFor
+    nameWithType: ISudokuHeuristic.TryInitFor
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll
   name: UpdateAll
@@ -764,13 +857,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UndoLastUpdate*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UndoLastUpdate
   name: UndoLastUpdate

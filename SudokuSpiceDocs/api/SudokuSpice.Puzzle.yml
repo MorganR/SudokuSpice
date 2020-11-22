@@ -88,7 +88,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The length of one side of the puzzle.
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int Size { get; }
@@ -123,11 +123,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: BoxSize
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 21
+    startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The length of one side of a mini box within the puzzle.
+  summary: "\nExpands IReadOnlyPuzzle to provide box-related functionality. A &apos;box&apos; is a square region\nwithin the puzzle. \n"
   example: []
   syntax:
     content: public int BoxSize { get; }
@@ -162,11 +162,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumSquares
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 23
+    startLine: 22
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The total number of squares in the puzzle.
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -201,11 +201,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumEmptySquares
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The current number of empty/unknown squares in the puzzle.
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -240,11 +240,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumSetSquares
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 27
+    startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The number of set/known squares in the puzzle.
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -283,6 +283,8 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValues { get; }
     parameters: []

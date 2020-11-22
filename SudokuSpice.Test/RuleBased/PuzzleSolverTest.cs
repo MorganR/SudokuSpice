@@ -17,10 +17,10 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
-        public void Solve_WithPuzzleConstructor_SolvesPuzzle(Puzzle puzzle)
+        public void Solve_WithStandardConstructor_SolvesPuzzle(Puzzle puzzle)
         {
-            var solver = new PuzzleSolver(puzzle);
-            solver.Solve();
+            var solver = StandardPuzzles.CreateSolver(puzzle.Size);
+            solver.Solve(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
 
@@ -28,17 +28,17 @@ namespace SudokuSpice.RuleBased.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var possibleValues = new PossibleValues(puzzle);
-            var rowRule = new RowUniquenessRule(puzzle, possibleValues.AllPossible);
-            var columnRule = new ColumnUniquenessRule(puzzle, possibleValues.AllPossible);
-            var boxRule = new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true);
+            var possibleValues =new PossibleValues(puzzle.Size);
+            var rowRule = new RowUniquenessRule(possibleValues.AllPossible);
+            var columnRule = new ColumnUniquenessRule(possibleValues.AllPossible);
+            var boxRule = new BoxUniquenessRule(possibleValues.AllPossible);
             var ruleKeeper = new DynamicRuleKeeper(
-                puzzle, possibleValues,
+                possibleValues,
                 new List<ISudokuRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
-                puzzle, possibleValues, rowRule, columnRule, boxRule);
-            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper, heuristic);
-            solver.Solve();
+                possibleValues, rowRule, columnRule, boxRule);
+            var solver = new PuzzleSolver(possibleValues, ruleKeeper, heuristic);
+            solver.Solve(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
 
@@ -63,18 +63,18 @@ namespace SudokuSpice.RuleBased.Test
                 {null, null, 16,   null, null, 7,    8,    null, null, 4,    10,   null, null, 14,   null, 5},
                 {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
-            var possibleValues = new PossibleValues(puzzle);
-            var rowRule = new RowUniquenessRule(puzzle, possibleValues.AllPossible);
-            var columnRule = new ColumnUniquenessRule(puzzle, possibleValues.AllPossible);
-            var boxRule = new BoxUniquenessRule(puzzle, possibleValues.AllPossible, true);
-            var diagonalRule = new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible);
+            var possibleValues =new PossibleValues(puzzle.Size);
+            var rowRule = new RowUniquenessRule(possibleValues.AllPossible);
+            var columnRule = new ColumnUniquenessRule(possibleValues.AllPossible);
+            var boxRule = new BoxUniquenessRule(possibleValues.AllPossible);
+            var diagonalRule = new DiagonalUniquenessRule(possibleValues.AllPossible);
             var ruleKeeper = new DynamicRuleKeeper(
-                puzzle, possibleValues,
+                possibleValues,
                 new List<ISudokuRule> { rowRule, columnRule, boxRule, diagonalRule });
             var heuristic = new StandardHeuristic(
-                puzzle, possibleValues, rowRule, columnRule, boxRule);
-            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper, heuristic);
-            solver.Solve();
+                possibleValues, rowRule, columnRule, boxRule);
+            var solver = new PuzzleSolver(possibleValues, ruleKeeper, heuristic);
+            solver.Solve(puzzle);
             _AssertMegaPuzzleSolved(puzzle);
         }
 
@@ -82,8 +82,8 @@ namespace SudokuSpice.RuleBased.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
         {
-            var solver = new PuzzleSolver(puzzle);
-            solver.SolveRandomly();
+            var solver = StandardPuzzles.CreateSolver(puzzle.Size);
+            solver.SolveRandomly(puzzle);
             _AssertPuzzleSolved(puzzle);
         }
 
@@ -92,24 +92,24 @@ namespace SudokuSpice.RuleBased.Test
         public void GetStatsForAllSolutions_WithoutHeuristics_ReturnsExpectedResults(Puzzle puzzle, SolveStats expectedStats)
         {
             // Skip heuristics so the stats are easy to fully define.
-            var possibleValues = new PossibleValues(puzzle);
-            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
-            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper);
-            Assert.Equal(expectedStats, solver.GetStatsForAllSolutions());
+            var possibleValues =new PossibleValues(puzzle.Size);
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            var solver = new PuzzleSolver(possibleValues, ruleKeeper);
+            Assert.Equal(expectedStats, solver.GetStatsForAllSolutions(puzzle));
         }
 
         [Theory]
         [MemberData(nameof(PuzzlesWithStats))]
         public void GetStatsForAllSolutions_WithHeuristics_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
         {
-            var possibleValues = new PossibleValues(puzzle);
-            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var possibleValues =new PossibleValues(puzzle.Size);
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
             ISudokuRule rule = ruleKeeper.GetRules()[0];
             var heuristics = new StandardHeuristic(
-                puzzle, possibleValues, (IMissingRowValuesTracker)rule,
+                possibleValues, (IMissingRowValuesTracker)rule,
                 (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);
-            var solver = new PuzzleSolver(puzzle, possibleValues, ruleKeeper, heuristics);
-            Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions().NumSolutionsFound);
+            var solver = new PuzzleSolver(possibleValues, ruleKeeper, heuristics);
+            Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 
         public static IEnumerable<object[]> ValidPuzzleGenerator()

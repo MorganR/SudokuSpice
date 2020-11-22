@@ -91,7 +91,7 @@ the currently set values.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.RuleBased.PossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L29">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L43">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
@@ -148,10 +148,65 @@ implementation of the heuristic.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L25">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_TryInitFor_" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)">TryInitFor(IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Tries to initialize this heuristic for solving the given puzzle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryInitFor(IReadOnlyPuzzle puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td><p>The puzzle to solve.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>False if this heuristic cannot be initialized for the given puzzle, else true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+on failure.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L22">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L36">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_UndoLastUpdate" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
@@ -167,7 +222,7 @@ implementation of the heuristic.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_UpdateAll.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L17">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs/#L31">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_UpdateAll_" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_UpdateAll" data-uid="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll">UpdateAll()</h4>

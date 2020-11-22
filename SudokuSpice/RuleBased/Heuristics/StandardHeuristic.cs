@@ -13,13 +13,58 @@ namespace SudokuSpice.RuleBased.Heuristics
         private readonly UniqueInBoxHeuristic _boxHeuristic;
         private readonly Stack<int> _numHeuristicsRan;
 
-        public StandardHeuristic(IReadOnlyBoxPuzzle puzzle, PossibleValues possibleValues,
-            IMissingRowValuesTracker rowRule, IMissingColumnValuesTracker columnRule, IMissingBoxValuesTracker boxRule)
+        /// <summary>
+        /// Creates a standard heuristic that combines the <see cref="UniqueInRowHeuristic"/>,
+        /// <see cref="UniqueInColumnHeuristic"/>, and <see cref="UniqueInBoxHeuristic"/>.
+        /// </summary>
+        /// <param name="possibleValues">
+        /// The shared possible values instance to use when solving.
+        /// </param>
+        /// <param name="rowValuesTracker">
+        /// Something that tracks the possible values for each row.
+        /// </param>
+        /// <param name="columnValuesTracker">
+        /// Something that tracks the possible values for each column.
+        /// </param>
+        /// <param name="boxValuesTracker">
+        /// Something that tracks the possible values for each box.
+        /// </param>
+        public StandardHeuristic(
+            PossibleValues possibleValues,
+            IMissingRowValuesTracker rowValuesTracker,
+            IMissingColumnValuesTracker columnValuesTracker,
+            IMissingBoxValuesTracker boxValuesTracker)
         {
-            _rowHeuristic = new UniqueInRowHeuristic(puzzle, possibleValues, rowRule);
-            _columnHeuristic = new UniqueInColumnHeuristic(puzzle, possibleValues, columnRule);
-            _boxHeuristic = new UniqueInBoxHeuristic(puzzle, possibleValues, boxRule);
-            _numHeuristicsRan = new Stack<int>(puzzle.NumEmptySquares);
+            _rowHeuristic = new UniqueInRowHeuristic(possibleValues, rowValuesTracker);
+            _columnHeuristic = new UniqueInColumnHeuristic(possibleValues, columnValuesTracker);
+            _boxHeuristic = new UniqueInBoxHeuristic(possibleValues, boxValuesTracker);
+            _numHeuristicsRan = new Stack<int>();
+        }
+
+        /// <summary>
+        /// Tries to initialize this heuristic for solving the given puzzle.
+        /// </summary>
+        /// <remarks>
+        /// In general, it doesn't make sense to want to maintain the previous state if this method
+        /// fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+        /// on failure.
+        /// </remarks>
+        /// <param name="puzzle">
+        /// The puzzle to solve. This must implement <see cref="IReadOnlyBoxPuzzle"/>.
+        /// </param>
+        /// <returns>
+        /// False if this heuristic cannot be initialized for the given puzzle, else true.
+        /// </returns>
+        public bool TryInitFor(IReadOnlyPuzzle puzzle)
+        {
+            if (!_rowHeuristic.TryInitFor(puzzle)
+                || !_columnHeuristic.TryInitFor(puzzle)
+                || !_boxHeuristic.TryInitFor(puzzle))
+            {
+                return false;
+            }
+            _numHeuristicsRan.Clear();
+            return true;
         }
 
         private StandardHeuristic(

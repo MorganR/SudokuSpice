@@ -7,7 +7,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
     public class StandardRulesTest
     {
         [Fact]
-        public void Constructor_FiltersCorrectly()
+        public void TryInitFor_FiltersCorrectly()
         {
             var puzzle = new Puzzle(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
@@ -15,7 +15,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+
+            Assert.True(rule.TryInitFor(puzzle));
+
             Assert.Equal(new BitVector(0b11000), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b01000), rule.GetPossibleValues(new Coordinate(0, 2)));
             Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(1, 0)));
@@ -28,56 +31,47 @@ namespace SudokuSpice.RuleBased.Rules.Test
         }
 
         [Fact]
-        public void Constructor_WithDuplicateValueInRow_Throws()
+        public void TryInitFor_WithDuplicateValueInRow_Fails()
         {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
-            {
-                var rule = new StandardRules(
-                    new Puzzle(new int?[,] {
+            var puzzle = new Puzzle(new int?[,] {
                         {           1, null /* 4 */, null /* 3 */,            2},
                         {null /* 2 */,            3,            3, null /* 4 */},
                         {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                         {           3,            2,            4,            1}
-                    }),
-                    BitVector.CreateWithSize(4));
-            });
-            Assert.Contains("Puzzle does not satisfy rule", ex.Message);
+                });
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+
+            Assert.False(rule.TryInitFor(puzzle));
         }
 
         [Fact]
-        public void Constructor_WithDuplicateValueInColumn_Throws()
+        public void TryInitFor_WithDuplicateValueInColumn_Fails()
         {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
-            {
-                var rule = new StandardRules(
-                    new Puzzle(
-                        new int?[,] {
-                            {1,            null /* 4 */, null /* 3 */, 2},
-                            {1, null /* 3 */, null /* 1 */, 4},
-                            {null /* 4 */, 1,            null /* 2 */, 3},
-                            {3,            null /* 2 */, null /* 4 */, 1}
-                        }),
-                    BitVector.CreateWithSize(4));
-            });
-            Assert.Contains("Puzzle does not satisfy rule", ex.Message);
+            var puzzle = new Puzzle(
+                    new int?[,] {
+                        {           1, null /* 4 */, null /* 3 */, 2},
+                        {           1, null /* 3 */, null /* 1 */, 4},
+                        {null /* 4 */,            1, null /* 2 */, 3},
+                        {           3, null /* 2 */, null /* 4 */, 1}
+                    });
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+
+            Assert.False(rule.TryInitFor(puzzle));
         }
 
         [Fact]
-        public void Constructor_WithDuplicateValueInBox_Throws()
+        public void TryInitFor_WithDuplicateValueInBox_Fails()
         {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
-            {
-                var rule = new StandardRules(
-                    new Puzzle(
-                        new int?[,] {
+            var puzzle = new Puzzle(
+                new int?[,] {
                             {           1,      null /* 4 */, null /* 3 */, 2},
                             {null /* 2 */, 1 /* INCORRECT */, null /* 1 */, null /* 4 */},
                             {null /* 4 */,      null /* 1 */,            2, 3},
                             {null /* 3 */,      null /* 2 */,            4, 1}
-                        }),
-                    BitVector.CreateWithSize(4));
-            });
-            Assert.Contains("Puzzle does not satisfy rule", ex.Message);
+                });
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+
+            Assert.False(rule.TryInitFor(puzzle));
         }
 
         [Fact]
@@ -89,7 +83,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            Assert.True(rule.TryInitFor(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
             ISudokuRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -122,11 +117,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            Assert.True(rule.TryInitFor(puzzle));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             int val = 3;
+
             rule.Update(coord, val, coordTracker);
+
             Assert.Equal(
                 new HashSet<Coordinate> {
                     new Coordinate(1, 0), new Coordinate(1, 3), new Coordinate(0, 1), new Coordinate(2, 1)
@@ -147,7 +145,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(puzzle, _GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            Assert.True(rule.TryInitFor(puzzle));
             BitVector[,] initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);

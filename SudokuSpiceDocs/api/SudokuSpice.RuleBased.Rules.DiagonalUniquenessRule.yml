@@ -5,11 +5,12 @@ items:
   id: DiagonalUniquenessRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   langs:
   - csharp
@@ -25,7 +26,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: DiagonalUniquenessRule
     path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
-    startLine: 8
+    startLine: 7
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -54,16 +55,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)'
+- uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor(SudokuSpice.RuleBased.BitVector)
+  id: '#ctor(SudokuSpice.RuleBased.BitVector)'
   parent: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule
   langs:
   - csharp
   - vb
-  name: DiagonalUniquenessRule(IReadOnlyPuzzle, BitVector)
-  nameWithType: DiagonalUniquenessRule.DiagonalUniquenessRule(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.DiagonalUniquenessRule(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
+  name: DiagonalUniquenessRule(BitVector)
+  nameWithType: DiagonalUniquenessRule.DiagonalUniquenessRule(BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.DiagonalUniquenessRule(SudokuSpice.RuleBased.BitVector)
   type: Constructor
   source:
     remote:
@@ -77,14 +78,49 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   syntax:
-    content: public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
+    content: public DiagonalUniquenessRule(BitVector allUniqueValues)
+    parameters:
+    - id: allUniqueValues
+      type: SudokuSpice.RuleBased.BitVector
+    content.vb: Public Sub New(allUniqueValues As BitVector)
+  overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule
+  langs:
+  - csharp
+  - vb
+  name: TryInitFor(IReadOnlyPuzzle)
+  nameWithType: DiagonalUniquenessRule.TryInitFor(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TryInitFor
+    path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
+    startLine: 21
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Rules
+  syntax:
+    content: public bool TryInitFor(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-    - id: allUniqueValues
-      type: SudokuSpice.RuleBased.BitVector
-    content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, allUniqueValues As BitVector)
-  overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.#ctor*
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor*
+  implements:
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -107,7 +143,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
-    startLine: 60
+    startLine: 69
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -147,7 +183,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
-    startLine: 63
+    startLine: 72
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -191,7 +227,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
-    startLine: 78
+    startLine: 87
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -236,7 +272,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
-    startLine: 92
+    startLine: 102
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -284,7 +320,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Update
     path: ../SudokuSpice/RuleBased/Rules/DiagonalUniquenessRule.cs
-    startLine: 108
+    startLine: 119
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -623,28 +659,76 @@ references:
   name: DiagonalUniquenessRule
   nameWithType: DiagonalUniquenessRule.DiagonalUniquenessRule
   fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.DiagonalUniquenessRule
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: SudokuSpice.RuleBased.BitVector
   commentId: T:SudokuSpice.RuleBased.BitVector
   parent: SudokuSpice.RuleBased
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor
+  name: TryInitFor
+  nameWithType: DiagonalUniquenessRule.TryInitFor
+  fullName: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInitFor
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+  name: TryInitFor(IReadOnlyPuzzle)
+  nameWithType: ISudokuRule.TryInitFor(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+    name: TryInitFor
+    nameWithType: ISudokuRule.TryInitFor
+    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+    name: TryInitFor
+    nameWithType: ISudokuRule.TryInitFor
+    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.CopyWithNewReference
   name: CopyWithNewReference

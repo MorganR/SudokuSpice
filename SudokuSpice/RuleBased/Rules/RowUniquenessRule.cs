@@ -8,19 +8,39 @@ namespace SudokuSpice.RuleBased.Rules
     /// </summary>
     public class RowUniquenessRule : ISudokuRule, IMissingRowValuesTracker
     {
-        private readonly IReadOnlyPuzzle _puzzle;
+        private readonly int _size;
+        private readonly BitVector _allUniqueValues;
         private readonly BitVector[] _unsetRowValues;
+        private IReadOnlyPuzzle? _puzzle;
 
-        public RowUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
+        public RowUniquenessRule(BitVector allUniqueValues)
         {
-            Debug.Assert(puzzle.Size == allUniqueValues.Count,
-                $"Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}");
+            _size = allUniqueValues.Count;
+            _allUniqueValues = allUniqueValues;
+            _unsetRowValues = new BitVector[_size];
+        }
+
+        private RowUniquenessRule(RowUniquenessRule existing, IReadOnlyPuzzle puzzle)
+        {
+            _size = existing._size;
+            _allUniqueValues = existing._allUniqueValues;
+            _unsetRowValues = existing._unsetRowValues.AsSpan().ToArray();
             _puzzle = puzzle;
-            _unsetRowValues = new BitVector[puzzle.Size];
-            _unsetRowValues.AsSpan().Fill(allUniqueValues);
-            for (int row = 0; row < puzzle.Size; row++)
+        }
+
+        /// <inheritdoc/>
+        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle) => new RowUniquenessRule(this, puzzle);
+
+        /// <inheritdoc/>
+        public bool TryInitFor(IReadOnlyPuzzle puzzle)
+        {
+            // This should be enforced by the rule keeper.
+            Debug.Assert(puzzle.Size == _size,
+                $"Puzzle size ({puzzle.Size}) did not match expected size ({_size}).");
+            _unsetRowValues.AsSpan().Fill(_allUniqueValues);
+            for (int row = 0; row < _size; row++)
             {
-                for (int col = 0; col < puzzle.Size; col++)
+                for (int col = 0; col < _size; col++)
                 {
                     int? val = puzzle[row, col];
                     if (!val.HasValue)
@@ -29,21 +49,15 @@ namespace SudokuSpice.RuleBased.Rules
                     }
                     if (!_unsetRowValues[row].IsBitSet(val.Value))
                     {
-                        throw new ArgumentException($"Puzzle has duplicate value in row at ({row}, {col}).");
+                        // Puzzle has duplicate value in this row.
+                        return false;
                     }
                     _unsetRowValues[row].UnsetBit(val.Value);
                 }
             }
-        }
-
-        private RowUniquenessRule(RowUniquenessRule existing, IReadOnlyPuzzle puzzle)
-        {
             _puzzle = puzzle;
-            _unsetRowValues = existing._unsetRowValues.AsSpan().ToArray();
+            return true;
         }
-
-        /// <inheritdoc/>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle) => new RowUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c) => _unsetRowValues[c.Row];
@@ -54,6 +68,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public void Revert(in Coordinate c, int val)
         {
+            Debug.Assert(_puzzle is not null, $"Cannot call {nameof(Revert)} when puzzle is null.");
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
             _unsetRowValues[c.Row].SetBit(val);
         }
@@ -68,6 +83,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
+            Debug.Assert(_puzzle is not null, $"Cannot call {nameof(Update)} when puzzle is null.");
             Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
             _unsetRowValues[c.Row].UnsetBit(val);
             _AddUnsetFromRow(in c, coordTracker);
@@ -75,7 +91,8 @@ namespace SudokuSpice.RuleBased.Rules
 
         private void _AddUnsetFromRow(in Coordinate c, CoordinateTracker coordTracker)
         {
-            for (int col = 0; col < _puzzle.Size; col++)
+            Debug.Assert(_puzzle is not null, "Cannot call RowUniquenessRule._AddUnsetFromRow when puzzle is null.");
+            for (int col = 0; col < _size; col++)
             {
                 if (col != c.Column && !_puzzle[c.Row, col].HasValue)
                 {

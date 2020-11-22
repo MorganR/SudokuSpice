@@ -5,13 +5,15 @@ items:
   id: PossibleValues
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.RuleBased.PossibleValues)
+  - SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32)
+  - SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.PossibleValues.AllPossible
   - SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
   - SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.PossibleValues.ResetAt(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  - SudokuSpice.RuleBased.PossibleValues.Size
   langs:
   - csharp
   - vb
@@ -26,7 +28,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: PossibleValues
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -69,7 +71,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: AllPossible
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -88,16 +90,53 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle)'
+- uid: SudokuSpice.RuleBased.PossibleValues.Size
+  commentId: P:SudokuSpice.RuleBased.PossibleValues.Size
+  id: Size
   parent: SudokuSpice.RuleBased.PossibleValues
   langs:
   - csharp
   - vb
-  name: PossibleValues(IReadOnlyPuzzle)
-  nameWithType: PossibleValues.PossibleValues(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle)
+  name: Size
+  nameWithType: PossibleValues.Size
+  fullName: SudokuSpice.RuleBased.PossibleValues.Size
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/framework/PossibleValues.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Size
+    path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
+    startLine: 21
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nThe size of the PossibleValues; equivalent to <xref href=\"SudokuSpice.IReadOnlyPuzzle.Size\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Size As Integer
+  overload: SudokuSpice.RuleBased.PossibleValues.Size*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: PossibleValues(Int32)
+  nameWithType: PossibleValues.PossibleValues(Int32)
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(System.Int32)
   type: Constructor
   source:
     remote:
@@ -106,34 +145,33 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 23
+    startLine: 29
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nConstructs a <code>PossibleValues</code> object to track possible values for the given\npuzzle. Assumes that the possible values are 1 to <code>puzzle.Size</code>.\n"
   example: []
   syntax:
-    content: public PossibleValues(IReadOnlyPuzzle puzzle)
+    content: public PossibleValues(int size)
     parameters:
-    - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
-      description: The puzzle for which we want to track possible values.
-    content.vb: Public Sub New(puzzle As IReadOnlyPuzzle)
+    - id: size
+      type: System.Int32
+    content.vb: Public Sub New(size As Integer)
   overload: SudokuSpice.RuleBased.PossibleValues.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  id: '#ctor(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)'
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.RuleBased.BitVector)
+  id: '#ctor(System.Int32,SudokuSpice.RuleBased.BitVector)'
   parent: SudokuSpice.RuleBased.PossibleValues
   langs:
   - csharp
   - vb
-  name: PossibleValues(IReadOnlyPuzzle, BitVector)
-  nameWithType: PossibleValues.PossibleValues(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
+  name: PossibleValues(Int32, BitVector)
+  nameWithType: PossibleValues.PossibleValues(Int32, BitVector)
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(System.Int32, SudokuSpice.RuleBased.BitVector)
   type: Constructor
   source:
     remote:
@@ -142,22 +180,21 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nConstructs a <code>PossibleValues</code> object to track possible values for the given puzzle.\n"
   example: []
   syntax:
-    content: public PossibleValues(IReadOnlyPuzzle puzzle, BitVector allPossible)
+    content: public PossibleValues(int size, BitVector allPossible)
     parameters:
-    - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
-      description: The puzzle for which we want to track possible values.
+    - id: size
+      type: System.Int32
     - id: allPossible
       type: SudokuSpice.RuleBased.BitVector
       description: "\nThe full set of possible values for any given square in this puzzle.\n"
-    content.vb: Public Sub New(puzzle As IReadOnlyPuzzle, allPossible As BitVector)
+    content.vb: Public Sub New(size As Integer, allPossible As BitVector)
   overload: SudokuSpice.RuleBased.PossibleValues.#ctor*
   modifiers.csharp:
   - public
@@ -181,7 +218,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 61
+    startLine: 58
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -199,6 +236,44 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: SudokuSpice.RuleBased.PossibleValues.ResetAt(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.ResetAt(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  id: ResetAt(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: ResetAt(ReadOnlySpan<Coordinate>)
+  nameWithType: PossibleValues.ResetAt(ReadOnlySpan<Coordinate>)
+  fullName: SudokuSpice.RuleBased.PossibleValues.ResetAt(System.ReadOnlySpan<SudokuSpice.Coordinate>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/framework/PossibleValues.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ResetAt
+    path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
+    startLine: 67
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nResets the possible values to <xref href=\"SudokuSpice.RuleBased.PossibleValues.AllPossible\" data-throw-if-not-resolved=\"false\"></xref> at the given coordinates.\n"
+  example: []
+  syntax:
+    content: public void ResetAt(ReadOnlySpan<Coordinate> coordinates)
+    parameters:
+    - id: coordinates
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
+    content.vb: Public Sub ResetAt(coordinates As ReadOnlySpan(Of Coordinate))
+  overload: SudokuSpice.RuleBased.PossibleValues.ResetAt*
+  nameWithType.vb: PossibleValues.ResetAt(ReadOnlySpan(Of Coordinate))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.ResetAt(System.ReadOnlySpan(Of SudokuSpice.Coordinate))
+  name.vb: ResetAt(ReadOnlySpan(Of Coordinate))
 - uid: SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
   commentId: P:SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
   id: Item(SudokuSpice.Coordinate@)
@@ -217,7 +292,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 72
+    startLine: 80
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -261,7 +336,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Intersect
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 85
+    startLine: 93
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -303,7 +378,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Reset
     path: ../SudokuSpice/RuleBased/framework/PossibleValues.cs
-    startLine: 96
+    startLine: 104
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -633,11 +708,24 @@ references:
   name: AllPossible
   nameWithType: PossibleValues.AllPossible
   fullName: SudokuSpice.RuleBased.PossibleValues.AllPossible
-- uid: SudokuSpice.RuleBased.PossibleValues.#ctor*
-  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.#ctor
-  name: PossibleValues
-  nameWithType: PossibleValues.PossibleValues
-  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues
+- uid: SudokuSpice.IReadOnlyPuzzle.Size
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Size
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: Size
+  nameWithType: IReadOnlyPuzzle.Size
+  fullName: SudokuSpice.IReadOnlyPuzzle.Size
+- uid: SudokuSpice.RuleBased.PossibleValues.Size*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.Size
+  name: Size
+  nameWithType: PossibleValues.Size
+  fullName: SudokuSpice.RuleBased.PossibleValues.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
@@ -649,12 +737,106 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.#ctor
+  name: PossibleValues
+  nameWithType: PossibleValues.PossibleValues
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues
 - uid: SudokuSpice.RuleBased.PossibleValues
   commentId: T:SudokuSpice.RuleBased.PossibleValues
   parent: SudokuSpice.RuleBased
   name: PossibleValues
   nameWithType: PossibleValues
   fullName: SudokuSpice.RuleBased.PossibleValues
+- uid: SudokuSpice.RuleBased.PossibleValues.AllPossible
+  commentId: P:SudokuSpice.RuleBased.PossibleValues.AllPossible
+  isExternal: true
+- uid: SudokuSpice.RuleBased.PossibleValues.ResetAt*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.ResetAt
+  name: ResetAt
+  nameWithType: PossibleValues.ResetAt
+  fullName: SudokuSpice.RuleBased.PossibleValues.ResetAt
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Coordinate>
+  nameWithType: ReadOnlySpan<Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
+  nameWithType.vb: ReadOnlySpan(Of Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
+  name.vb: ReadOnlySpan(Of Coordinate)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice

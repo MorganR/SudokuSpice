@@ -1,5 +1,4 @@
 ﻿using SudokuSpice.RuleBased.Heuristics;
-using SudokuSpice.RuleBased.Rules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,31 +10,14 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     internal class SquareTracker
     {
-        private readonly IPuzzle _puzzle;
         private readonly PossibleValues _possibleValues;
         private readonly ISudokuRuleKeeper _ruleKeeper;
         private readonly ISudokuHeuristic? _heuristic;
         private readonly Stack<Coordinate> _setCoords;
         private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
+        private IPuzzle? _puzzle;
 
-        public IReadOnlyPuzzle Puzzle => _puzzle;
-
-        /// <summary>
-        /// Constructs a square tracker with a <see cref="StandardRuleKeeper"/> and a
-        /// <see cref="StandardHeuristic"/>. Provided as a shortcut for standard Sudoku puzzles.
-        /// </summary>
-        /// <param name="puzzle">The puzzle to track.</param>
-        public SquareTracker(Puzzle puzzle)
-        {
-            _puzzle = puzzle;
-            _possibleValues = new PossibleValues(puzzle);
-            _ruleKeeper = new StandardRuleKeeper(puzzle, _possibleValues);
-            _heuristic = new StandardHeuristic(
-                puzzle, _possibleValues, (IMissingRowValuesTracker)_ruleKeeper,
-                (IMissingColumnValuesTracker)_ruleKeeper, (IMissingBoxValuesTracker)_ruleKeeper);
-            _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
-            _coordsThatUsedHeuristics = new Stack<Coordinate>(puzzle.NumEmptySquares);
-        }
+        public IReadOnlyPuzzle? Puzzle => _puzzle;
 
         /// <summary>
         /// Constructs a square tracker to track the given puzzle using the given possible values,
@@ -53,31 +35,59 @@ namespace SudokuSpice.RuleBased
         /// </para>
         /// </param>
         public SquareTracker(
-            IPuzzle puzzle,
             PossibleValues possibleValues,
             ISudokuRuleKeeper ruleKeeper,
             ISudokuHeuristic? heuristic = null)
         {
-            _puzzle = puzzle;
             _possibleValues = possibleValues;
             _ruleKeeper = ruleKeeper;
             _heuristic = heuristic;
-            _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
-            _coordsThatUsedHeuristics = new Stack<Coordinate>(puzzle.NumEmptySquares);
+            _setCoords = new Stack<Coordinate>();
+            _coordsThatUsedHeuristics = new Stack<Coordinate>(_possibleValues.Size*_possibleValues.Size);
         }
 
         /// <summary>
-        /// Creates a deep copy of this ISquareTracker in its current state.
+        /// Creates a deep copy of this tracker in its current state.
         /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the given tracker has a null puzzle (i.e. hasn't been initialized). In that
+        /// case, construct the tracker using the other constructor.
+        /// </exception>
         public SquareTracker(SquareTracker existing)
         {
-            _puzzle = existing._puzzle.DeepCopy();
+            _puzzle = existing._puzzle?.DeepCopy();
+            if (_puzzle is null)
+            {
+                // TODO: Review this API. It should be possible to copy a tracker without a puzzle.
+                throw new InvalidOperationException($"Can only copy SquareTracker with non-null puzzle.");
+            }
             _possibleValues = new PossibleValues(existing._possibleValues);
+            _setCoords = new Stack<Coordinate>(existing._setCoords);
+            _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
             _ruleKeeper = existing._ruleKeeper.CopyWithNewReferences(_puzzle, _possibleValues);
             _heuristic = existing._heuristic?.CopyWithNewReferences(
                 _puzzle, _possibleValues, _ruleKeeper.GetRules());
-            _setCoords = new Stack<Coordinate>(existing._setCoords);
-            _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
+        }
+
+        /// <summary>
+        /// Tries to initialize this tracker for the given puzzle.
+        /// </summary>
+        /// <param name="puzzle">The puzzle to solve.</param>
+        /// <returns>
+        /// False if initialization fails, for example if the puzzle violates a rule, else true.
+        /// </returns>
+        public bool TryInit(IPuzzle puzzle)
+        {
+            _possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            if (!_ruleKeeper.TryInitFor(puzzle)
+                || (!_heuristic?.TryInitFor(puzzle) ?? false))
+            {
+                return false;
+            }
+            _setCoords.Clear();
+            _coordsThatUsedHeuristics.Clear();
+            _puzzle = puzzle;
+            return true;
         }
 
         /// <summary>

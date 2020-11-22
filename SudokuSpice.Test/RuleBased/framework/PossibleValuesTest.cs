@@ -13,7 +13,8 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
+            var possibleValues = new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
 
             var allPossibleValues = new BitVector(0b11110);
             var noPossibleValues = new BitVector(0);
@@ -47,7 +48,8 @@ namespace SudokuSpice.RuleBased.Test
             });
 
             var allPossibleValues = new BitVector(0b01100110);
-            var possibleValues = new PossibleValues(puzzle, allPossibleValues);
+            var possibleValues = new PossibleValues(puzzle.Size, allPossibleValues);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
 
             var noPossibleValues = new BitVector(0);
             Assert.Equal(noPossibleValues, possibleValues[new Coordinate(0, 0)]);
@@ -71,21 +73,16 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void CopyConstructor_PerformsDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
-            });
-            var possibleValues = new PossibleValues(puzzle);
+            int size = 4;
+            var possibleValues = new PossibleValues(size);
             var coord = new Coordinate(1, 1);
             possibleValues[coord] = new BitVector(0b0010);
 
             var possibleValuesCopy = new PossibleValues(possibleValues);
 
-            for (int row = 0; row < puzzle.Size; row++)
+            for (int row = 0; row < size; row++)
             {
-                for (int col = 0; col < puzzle.Size; col++)
+                for (int col = 0; col < size; col++)
                 {
                     var c = new Coordinate(row, col);
                     Assert.Equal(possibleValues[c], possibleValuesCopy[c]);
@@ -105,7 +102,8 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
+            var possibleValues = new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
 
             var coord = new Coordinate(1, 1);
             possibleValues.Intersect(coord, new BitVector(0b1010));
@@ -124,7 +122,8 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
+            var possibleValues = new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
 
             var coord = new Coordinate(1, 1);
             possibleValues[coord] = new BitVector(0b1010);
@@ -141,7 +140,8 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
+            var possibleValues = new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
 
             var coord = new Coordinate(1, 1);
             possibleValues[coord] = new BitVector(0b1010);

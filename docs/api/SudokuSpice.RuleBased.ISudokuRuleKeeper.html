@@ -88,7 +88,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_ISudokuRuleKeeper_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.RuleBased.PossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L44">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L20">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_ISudokuRuleKeeper_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_RuleBased_ISudokuRuleKeeper_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)</h4>
@@ -146,7 +146,7 @@ values instance.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_ISudokuRuleKeeper_GetRules.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L30">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L26">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_ISudokuRuleKeeper_GetRules_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules*"></a>
   <h4 id="SudokuSpice_RuleBased_ISudokuRuleKeeper_GetRules" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules">GetRules()</h4>
@@ -174,10 +174,68 @@ values instance.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_ISudokuRuleKeeper_TryInitFor_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L44">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_ISudokuRuleKeeper_TryInitFor_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor*"></a>
+  <h4 id="SudokuSpice_RuleBased_ISudokuRuleKeeper_TryInitFor_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)">TryInitFor(IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Tries to initialize this rule keeper to solve the given puzzle.</p>
+<p>When reusing a rule keeper to solve multiple puzzles, this must be called with each new
+puzzle to be solved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryInitFor(IReadOnlyPuzzle puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td><p>The puzzle to be solved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>False if the rule keeper couldn't be initialized, for example if the puzzle already
+violates one of the rules. Else returns true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SudokuSpice_RuleBased_ISudokuRuleKeeper_TryInitFor_SudokuSpice_IReadOnlyPuzzle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the rule keeper's state is
+unchanged on failure.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_ISudokuRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L18">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L56">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_ISudokuRuleKeeper_TrySet_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet*"></a>
   <h4 id="SudokuSpice_RuleBased_ISudokuRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)">TrySet(Coordinate, Int32)</h4>
@@ -235,7 +293,7 @@ returns false and leaves the possible values unchanged.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_ISudokuRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L25">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs/#L63">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_ISudokuRuleKeeper_Unset_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset*"></a>
   <h4 id="SudokuSpice_RuleBased_ISudokuRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)">Unset(Coordinate, Int32)</h4>

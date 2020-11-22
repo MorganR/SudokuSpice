@@ -7,6 +7,7 @@ items:
   children:
   - SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
   - SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+  - SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
   langs:
@@ -36,6 +37,109 @@ items:
   modifiers.vb:
   - Public
   - Interface
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+  langs:
+  - csharp
+  - vb
+  name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
+  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.PossibleValues)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: CopyWithNewReferences
+    path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
+  example: []
+  syntax:
+    content: ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
+    - id: possibleValues
+      type: SudokuSpice.RuleBased.PossibleValues
+      description: "\nThe new possible values reference. Should contain the same data as the current possible\nvalues instance.\n"
+    return:
+      type: SudokuSpice.RuleBased.ISudokuRuleKeeper
+    content.vb: Function CopyWithNewReferences(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues) As ISudokuRuleKeeper
+  overload: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences*
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+  id: GetRules
+  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+  langs:
+  - csharp
+  - vb
+  name: GetRules()
+  nameWithType: ISudokuRuleKeeper.GetRules()
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetRules
+    path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
+    startLine: 25
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nGets the <xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s enforced by this rule keeper.\n"
+  example: []
+  syntax:
+    content: IReadOnlyList<ISudokuRule> GetRules()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+    content.vb: Function GetRules As IReadOnlyList(Of ISudokuRule)
+  overload: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules*
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+  langs:
+  - csharp
+  - vb
+  name: TryInitFor(IReadOnlyPuzzle)
+  nameWithType: ISudokuRuleKeeper.TryInitFor(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TryInitFor
+    path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
+    startLine: 43
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nTries to initialize this rule keeper to solve the given puzzle.\n\nWhen reusing a rule keeper to solve multiple puzzles, this must be called with each new\npuzzle to be solved.\n"
+  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule keeper&apos;s state is\nunchanged on failure.\n"
+  example: []
+  syntax:
+    content: bool TryInitFor(IReadOnlyPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to be solved.
+    return:
+      type: System.Boolean
+      description: "\nFalse if the rule keeper couldn&apos;t be initialized, for example if the puzzle already\nviolates one of the rules. Else returns true.\n"
+    content.vb: Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor*
 - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   id: TrySet(SudokuSpice.Coordinate@,System.Int32)
@@ -54,7 +158,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TrySet
     path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
-    startLine: 17
+    startLine: 55
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -95,7 +199,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Unset
     path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
-    startLine: 24
+    startLine: 62
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -115,126 +219,51 @@ items:
   nameWithType.vb: ISudokuRuleKeeper.Unset(ByRef Coordinate, Int32)
   fullName.vb: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(ByRef SudokuSpice.Coordinate, System.Int32)
   name.vb: Unset(ByRef Coordinate, Int32)
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
-  id: GetRules
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
-  langs:
-  - csharp
-  - vb
-  name: GetRules()
-  nameWithType: ISudokuRuleKeeper.GetRules()
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules()
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
-    id: GetRules
-    path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
-    startLine: 29
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.RuleBased
-  summary: "\nGets the <xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s enforced by this rule keeper.\n"
-  example: []
-  syntax:
-    content: IReadOnlyList<ISudokuRule> GetRules()
-    return:
-      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-    content.vb: Function GetRules As IReadOnlyList(Of ISudokuRule)
-  overload: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules*
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
-  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
-  langs:
-  - csharp
-  - vb
-  name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.PossibleValues)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
-    id: CopyWithNewReferences
-    path: ../SudokuSpice/RuleBased/framework/ISudokuRuleKeeper.cs
-    startLine: 43
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
-  example: []
-  syntax:
-    content: ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
-    parameters:
-    - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
-    - id: possibleValues
-      type: SudokuSpice.RuleBased.PossibleValues
-      description: "\nThe new possible values reference. Should contain the same data as the current possible\nvalues instance.\n"
-    return:
-      type: SudokuSpice.RuleBased.ISudokuRuleKeeper
-    content.vb: Function CopyWithNewReferences(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues) As ISudokuRuleKeeper
-  overload: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences*
 references:
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet*
-  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
-  name: TrySet
-  nameWithType: ISudokuRuleKeeper.TrySet
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
-- uid: SudokuSpice.Coordinate
-  commentId: T:SudokuSpice.Coordinate
-  parent: SudokuSpice
-  name: Coordinate
-  nameWithType: Coordinate
-  fullName: SudokuSpice.Coordinate
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset*
-  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset
-  name: Unset
-  nameWithType: ISudokuRuleKeeper.Unset
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset
 - uid: SudokuSpice.RuleBased.Rules.ISudokuRule
   commentId: T:SudokuSpice.RuleBased.Rules.ISudokuRule
   parent: SudokuSpice.RuleBased.Rules
   name: ISudokuRule
   nameWithType: ISudokuRule
   fullName: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.RuleBased.PossibleValues
+  commentId: T:SudokuSpice.RuleBased.PossibleValues
+  parent: SudokuSpice.RuleBased
+  name: PossibleValues
+  nameWithType: PossibleValues
+  fullName: SudokuSpice.RuleBased.PossibleValues
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences*
+  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
+  name: CopyWithNewReferences
+  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper
+  commentId: T:SudokuSpice.RuleBased.ISudokuRuleKeeper
+  parent: SudokuSpice.RuleBased
+  name: ISudokuRuleKeeper
+  nameWithType: ISudokuRuleKeeper
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: SudokuSpice.RuleBased.Rules
+  commentId: N:SudokuSpice.RuleBased.Rules
+  name: SudokuSpice.RuleBased.Rules
+  nameWithType: SudokuSpice.RuleBased.Rules
+  fullName: SudokuSpice.RuleBased.Rules
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules*
   commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
   name: GetRules
@@ -282,11 +311,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Rules
-  commentId: N:SudokuSpice.RuleBased.Rules
-  name: SudokuSpice.RuleBased.Rules
-  nameWithType: SudokuSpice.RuleBased.Rules
-  fullName: SudokuSpice.RuleBased.Rules
 - uid: System.Collections.Generic.IReadOnlyList`1
   commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
@@ -332,26 +356,44 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor*
+  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor
+  name: TryInitFor
+  nameWithType: ISudokuRuleKeeper.TryInitFor
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet*
+  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
+  name: TrySet
+  nameWithType: ISudokuRuleKeeper.TrySet
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.RuleBased.PossibleValues
-  commentId: T:SudokuSpice.RuleBased.PossibleValues
-  parent: SudokuSpice.RuleBased
-  name: PossibleValues
-  nameWithType: PossibleValues
-  fullName: SudokuSpice.RuleBased.PossibleValues
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences*
-  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
-  name: CopyWithNewReferences
-  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper
-  commentId: T:SudokuSpice.RuleBased.ISudokuRuleKeeper
-  parent: SudokuSpice.RuleBased
-  name: ISudokuRuleKeeper
-  nameWithType: ISudokuRuleKeeper
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset*
+  commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset
+  name: Unset
+  nameWithType: ISudokuRuleKeeper.Unset
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset

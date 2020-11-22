@@ -1,5 +1,6 @@
 using SudokuSpice.RuleBased.Heuristics;
 using System;
+using System.Diagnostics;
 
 namespace SudokuSpice.RuleBased
 {
@@ -11,60 +12,93 @@ namespace SudokuSpice.RuleBased
         private readonly SquareTracker _tracker;
 
         /// <summary>
-        /// Constructs a solver for a standard Sudoku puzzle that uses a standard heuristic and
-        /// standard rule keeper. Provided for convenience.
-        /// </summary>
-        public PuzzleSolver(Puzzle puzzle)
-        {
-            _tracker = new SquareTracker(puzzle);
-        }
-
-        /// <summary>
         /// Constructs a solver for the given square tracker.
         /// </summary>
         /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
         public PuzzleSolver(
-            IPuzzle puzzle,
             PossibleValues possibleValues,
             ISudokuRuleKeeper ruleKeeper,
             ISudokuHeuristic? heuristic = null)
         {
-            _tracker = new SquareTracker(puzzle, possibleValues, ruleKeeper, heuristic);
+            _tracker = new SquareTracker(possibleValues, ruleKeeper, heuristic);
         }
 
         /// <summary>
-        /// Solves the internal puzzle reference.
+        /// Attempts to solve the given puzzle. Unlike <see cref="TrySolveRandomly(IPuzzle)"/>,
+        /// when it has to guess, this will try values in guaranteed order.
         /// </summary>
-        public void Solve()
+        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
+        /// <return>
+        /// True if solved, or false if it couldn't be solved within this solver's rules.
+        /// </return>
+        public bool TrySolve(IPuzzle puzzle)
         {
-            if (!_TrySolve())
-            {
-                throw new ArgumentException($"Failed to solve the given puzzle.");
-            }
+            return _tracker.TryInit(puzzle) && _TrySolve();
         }
 
         /// <summary>
-        /// Solves the internal puzzle reference, choosing randomly when it has to guess a square's
-        /// value.
+        /// Attempts to solve the given puzzle. Unlike <see cref="TrySolve(IPuzzle)"/>, this will
+        /// try values in a random order when it has to guess the value for a square.
         /// </summary>
-        public void SolveRandomly()
+        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
+        /// <return>
+        /// True if solved, or false if it couldn't be solved within this solver's rules.
+        /// </return>
+        public bool TrySolveRandomly(IPuzzle puzzle)
         {
             var random = new Random();
-            if (!_TrySolveRandomly(random))
+            return _tracker.TryInit(puzzle) && _TrySolveRandomly(random);
+        }
+
+        /// <summary>
+        /// Solves the given puzzle in place. Unlike <see cref="SolveRandomly(IPuzzle)"/>,
+        /// when it has to guess, this will try values in the order they are given.
+        /// </summary>
+        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
+        /// </exception>
+        public void Solve(IPuzzle puzzle)
+        {
+            if (!TrySolve(puzzle))
             {
                 throw new ArgumentException($"Failed to solve the given puzzle.");
             }
         }
 
         /// <summary>
-        /// Finds stats for all the solutions to the internal puzzle reference. The internal puzzle
-        /// is left unchanged.
+        /// Solves the given puzzle in place. Unlike <see cref="Solve(IPuzzle)"/>, this will
+        /// try values in a random order when it has to guess the value for a square.
         /// </summary>
-        public SolveStats GetStatsForAllSolutions() => _TryAllSolutions(new SquareTracker(_tracker));
+        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
+        /// </exception>
+        public void SolveRandomly(IPuzzle puzzle)
+        {
+            if (!TrySolveRandomly(puzzle))
+            {
+                throw new ArgumentException($"Failed to solve the given puzzle.");
+            }
+        }
+
+        /// <summary>
+        /// Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
+        /// </summary>
+        public SolveStats GetStatsForAllSolutions(IPuzzle puzzle)
+        {
+            if (!_tracker.TryInit(puzzle.DeepCopy()))
+            {
+                // No solutions.
+                return new SolveStats();
+            }
+            return _TryAllSolutions(_tracker);
+        }
 
         private bool _TrySolve()
         {
-            if (_tracker.Puzzle.NumEmptySquares == 0)
+            Debug.Assert(_tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
+            if (_tracker.Puzzle!.NumEmptySquares == 0)
             {
                 return true;
             }
@@ -88,7 +122,8 @@ namespace SudokuSpice.RuleBased
 
         private bool _TrySolveRandomly(Random random)
         {
-            if (_tracker.Puzzle.NumEmptySquares == 0)
+            Debug.Assert(_tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
+            if (_tracker.Puzzle!.NumEmptySquares == 0)
             {
                 return true;
             }
@@ -118,7 +153,8 @@ namespace SudokuSpice.RuleBased
 
         private static SolveStats _TryAllSolutions(SquareTracker tracker)
         {
-            if (tracker.Puzzle.NumEmptySquares == 0)
+            Debug.Assert(tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
+            if (tracker.Puzzle!.NumEmptySquares == 0)
             {
                 return new SolveStats() {
                     NumSolutionsFound = 1,

@@ -5,11 +5,12 @@ items:
   id: PuzzleSolver
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  - SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.Puzzle)
-  - SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
-  - SudokuSpice.RuleBased.PuzzleSolver.Solve
-  - SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
+  - SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+  - SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.IPuzzle)
+  - SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)
+  - SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)
+  - SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)
+  - SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)
   langs:
   - csharp
   - vb
@@ -49,16 +50,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.Puzzle)
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.Puzzle)
-  id: '#ctor(SudokuSpice.Puzzle)'
+- uid: SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
+  id: '#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)'
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: PuzzleSolver(Puzzle)
-  nameWithType: PuzzleSolver.PuzzleSolver(Puzzle)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver(SudokuSpice.Puzzle)
+  name: PuzzleSolver(PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
+  nameWithType: PuzzleSolver.PuzzleSolver(PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver(SudokuSpice.RuleBased.PossibleValues, SudokuSpice.RuleBased.ISudokuRuleKeeper, SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
   type: Constructor
   source:
     remote:
@@ -71,70 +72,109 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nConstructs a solver for a standard Sudoku puzzle that uses a standard heuristic and\nstandard rule keeper. Provided for convenience.\n"
-  example: []
-  syntax:
-    content: public PuzzleSolver(Puzzle puzzle)
-    parameters:
-    - id: puzzle
-      type: SudokuSpice.Puzzle
-    content.vb: Public Sub New(puzzle As Puzzle)
-  overload: SudokuSpice.RuleBased.PuzzleSolver.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  id: '#ctor(SudokuSpice.IPuzzle,SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)'
-  parent: SudokuSpice.RuleBased.PuzzleSolver
-  langs:
-  - csharp
-  - vb
-  name: PuzzleSolver(IPuzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
-  nameWithType: PuzzleSolver.PuzzleSolver(IPuzzle, PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver(SudokuSpice.IPuzzle, SudokuSpice.RuleBased.PossibleValues, SudokuSpice.RuleBased.ISudokuRuleKeeper, SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  type: Constructor
-  source:
-    remote:
-      path: SudokuSpice/RuleBased/PuzzleSolver.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
-    id: .ctor
-    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 26
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.RuleBased
   summary: "\nConstructs a solver for the given square tracker.\n"
   example: []
   syntax:
-    content: public PuzzleSolver(IPuzzle puzzle, PossibleValues possibleValues, ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)
+    content: public PuzzleSolver(PossibleValues possibleValues, ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)
     parameters:
-    - id: puzzle
-      type: SudokuSpice.IPuzzle
     - id: possibleValues
       type: SudokuSpice.RuleBased.PossibleValues
     - id: ruleKeeper
       type: SudokuSpice.RuleBased.ISudokuRuleKeeper
     - id: heuristic
       type: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-    content.vb: Public Sub New(puzzle As IPuzzle, possibleValues As PossibleValues, ruleKeeper As ISudokuRuleKeeper, heuristic As ISudokuHeuristic = Nothing)
+    content.vb: Public Sub New(possibleValues As PossibleValues, ruleKeeper As ISudokuRuleKeeper, heuristic As ISudokuHeuristic = Nothing)
   overload: SudokuSpice.RuleBased.PuzzleSolver.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.Solve
-  id: Solve
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)
+  id: TrySolve(SudokuSpice.IPuzzle)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: Solve()
-  nameWithType: PuzzleSolver.Solve()
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve()
+  name: TrySolve(IPuzzle)
+  nameWithType: PuzzleSolver.TrySolve(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TrySolve
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 33
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nAttempts to solve the given puzzle. Unlike <xref href=\"SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)\" data-throw-if-not-resolved=\"false\"></xref>,\nwhen it has to guess, this will try values in guaranteed order.\n"
+  example: []
+  syntax:
+    content: public bool TrySolve(IPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IPuzzle
+      description: The puzzle to solve. This will be solved in place.
+    return:
+      type: System.Boolean
+    content.vb: Public Function TrySolve(puzzle As IPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.PuzzleSolver.TrySolve*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)
+  id: TrySolveRandomly(SudokuSpice.IPuzzle)
+  parent: SudokuSpice.RuleBased.PuzzleSolver
+  langs:
+  - csharp
+  - vb
+  name: TrySolveRandomly(IPuzzle)
+  nameWithType: PuzzleSolver.TrySolveRandomly(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TrySolveRandomly
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nAttempts to solve the given puzzle. Unlike <xref href=\"SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)\" data-throw-if-not-resolved=\"false\"></xref>, this will\ntry values in a random order when it has to guess the value for a square.\n"
+  example: []
+  syntax:
+    content: public bool TrySolveRandomly(IPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IPuzzle
+      description: The puzzle to solve. This will be solved in place.
+    return:
+      type: System.Boolean
+    content.vb: Public Function TrySolveRandomly(puzzle As IPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)
+  id: Solve(SudokuSpice.IPuzzle)
+  parent: SudokuSpice.RuleBased.PuzzleSolver
+  langs:
+  - csharp
+  - vb
+  name: Solve(IPuzzle)
+  nameWithType: PuzzleSolver.Solve(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)
   type: Method
   source:
     remote:
@@ -143,30 +183,38 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Solve
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 38
+    startLine: 60
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSolves the internal puzzle reference.\n"
+  summary: "\nSolves the given puzzle in place. Unlike <xref href=\"SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)\" data-throw-if-not-resolved=\"false\"></xref>,\nwhen it has to guess, this will try values in the order they are given.\n"
   example: []
   syntax:
-    content: public void Solve()
-    content.vb: Public Sub Solve
+    content: public void Solve(IPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IPuzzle
+      description: The puzzle to solve. This will be solved in place.
+    content.vb: Public Sub Solve(puzzle As IPuzzle)
   overload: SudokuSpice.RuleBased.PuzzleSolver.Solve*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if this puzzle can&apos;t be solved within the bounds of this solver&apos;s rules.\n"
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
-  id: SolveRandomly
+- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)
+  id: SolveRandomly(SudokuSpice.IPuzzle)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: SolveRandomly()
-  nameWithType: PuzzleSolver.SolveRandomly()
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly()
+  name: SolveRandomly(IPuzzle)
+  nameWithType: PuzzleSolver.SolveRandomly(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)
   type: Method
   source:
     remote:
@@ -175,30 +223,38 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: SolveRandomly
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 50
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSolves the internal puzzle reference, choosing randomly when it has to guess a square&apos;s\nvalue.\n"
+  summary: "\nSolves the given puzzle in place. Unlike <xref href=\"SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)\" data-throw-if-not-resolved=\"false\"></xref>, this will\ntry values in a random order when it has to guess the value for a square.\n"
   example: []
   syntax:
-    content: public void SolveRandomly()
-    content.vb: Public Sub SolveRandomly
+    content: public void SolveRandomly(IPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IPuzzle
+      description: The puzzle to solve. This will be solved in place.
+    content.vb: Public Sub SolveRandomly(puzzle As IPuzzle)
   overload: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if this puzzle can&apos;t be solved within the bounds of this solver&apos;s rules.\n"
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions
-  id: GetStatsForAllSolutions
+- uid: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.IPuzzle)
+  id: GetStatsForAllSolutions(SudokuSpice.IPuzzle)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: GetStatsForAllSolutions()
-  nameWithType: PuzzleSolver.GetStatsForAllSolutions()
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions()
+  name: GetStatsForAllSolutions(IPuzzle)
+  nameWithType: PuzzleSolver.GetStatsForAllSolutions(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.IPuzzle)
   type: Method
   source:
     remote:
@@ -207,17 +263,20 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetStatsForAllSolutions
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 63
+    startLine: 87
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nFinds stats for all the solutions to the internal puzzle reference. The internal puzzle\nis left unchanged.\n"
+  summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
   example: []
   syntax:
-    content: public SolveStats GetStatsForAllSolutions()
+    content: public SolveStats GetStatsForAllSolutions(IPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IPuzzle
     return:
       type: SudokuSpice.SolveStats
-    content.vb: Public Function GetStatsForAllSolutions As SolveStats
+    content.vb: Public Function GetStatsForAllSolutions(puzzle As IPuzzle) As SolveStats
   overload: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions*
   modifiers.csharp:
   - public
@@ -540,12 +599,6 @@ references:
   name: PuzzleSolver
   nameWithType: PuzzleSolver.PuzzleSolver
   fullName: SudokuSpice.RuleBased.PuzzleSolver.PuzzleSolver
-- uid: SudokuSpice.Puzzle
-  commentId: T:SudokuSpice.Puzzle
-  parent: SudokuSpice
-  name: Puzzle
-  nameWithType: Puzzle
-  fullName: SudokuSpice.Puzzle
 - uid: SudokuSpice.RuleBased.PossibleValues
   commentId: T:SudokuSpice.RuleBased.PossibleValues
   parent: SudokuSpice.RuleBased
@@ -569,11 +622,43 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)
+  isExternal: true
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.TrySolve
+  name: TrySolve
+  nameWithType: PuzzleSolver.TrySolve
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolve
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)
+  isExternal: true
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly
+  name: TrySolveRandomly
+  nameWithType: PuzzleSolver.TrySolveRandomly
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly
+- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.RuleBased.PuzzleSolver.Solve*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.Solve
   name: Solve
   nameWithType: PuzzleSolver.Solve
   fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve
+- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)
+  isExternal: true
 - uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
   name: SolveRandomly

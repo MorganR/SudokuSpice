@@ -6,6 +6,7 @@ items:
   parent: SudokuSpice.RuleBased.Heuristics
   children:
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   langs:
@@ -37,6 +38,42 @@ items:
   modifiers.vb:
   - Public
   - Interface
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+  langs:
+  - csharp
+  - vb
+  name: TryInitFor(IReadOnlyPuzzle)
+  nameWithType: ISudokuHeuristic.TryInitFor(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TryInitFor
+    path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
+    startLine: 24
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nTries to initialize this heuristic for solving the given puzzle.\n"
+  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
+  example: []
+  syntax:
+    content: bool TryInitFor(IReadOnlyPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
+    return:
+      type: System.Boolean
+      description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
+    content.vb: Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor*
 - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   id: UpdateAll
@@ -55,7 +92,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
-    startLine: 16
+    startLine: 30
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -86,7 +123,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
-    startLine: 21
+    startLine: 35
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -114,7 +151,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
-    startLine: 28
+    startLine: 42
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -142,11 +179,17 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
-- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll*
-  commentId: Overload:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
-  name: UpdateAll
-  nameWithType: ISudokuHeuristic.UpdateAll
-  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor
+  name: TryInitFor
+  nameWithType: ISudokuHeuristic.TryInitFor
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -154,12 +197,22 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
+  name: UpdateAll
+  nameWithType: ISudokuHeuristic.UpdateAll
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
 - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
   name: UndoLastUpdate
@@ -170,12 +223,6 @@ references:
   name: CopyWithNewReferences
   nameWithType: ISudokuHeuristic.CopyWithNewReferences
   fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: SudokuSpice.RuleBased.PossibleValues
   commentId: T:SudokuSpice.RuleBased.PossibleValues
   parent: SudokuSpice.RuleBased
@@ -230,11 +277,6 @@ references:
   name: ISudokuHeuristic
   nameWithType: ISudokuHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased

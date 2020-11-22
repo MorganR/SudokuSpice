@@ -8,11 +8,12 @@ namespace SudokuSpice
     /// </summary>
     public interface IReadOnlyBoxPuzzle : IReadOnlyPuzzle
     {
-        /// <summary>The length of one side of a mini box within the puzzle.</summary>
-        /// <para>
-        /// A mini box is a square region within the puzzle, such as the 3x3 squares on a standard
-        /// Sudoku board.
-        /// </para>
+        /// <summary>
+        /// The length of one side of a square region within the puzzle with special rules.
+        ///
+        /// For example, with a standard Sudoku puzzle, each 3x3 box enforces uniqueness of the
+        /// values inside.
+        /// </summary>
         public int BoxSize { get; }
         /// <summary>Returns the index of the box that the given coordinates are in.</summary>
         public int GetBoxIndex(int row, int col);

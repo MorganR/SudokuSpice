@@ -16,10 +16,13 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
-            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var possibleValues = new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            Assert.True(ruleKeeper.TryInitFor(puzzle));
             var heuristic = new UniqueInBoxHeuristic(
-                puzzle, possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+                possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+            Assert.True(heuristic.TryInitFor(puzzle));
 
             Assert.Equal(new BitVector(0b01110), possibleValues[new Coordinate(1, 1)]); // Pre-modified
 
@@ -46,10 +49,13 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
-            var ruleKeeper = new StandardRuleKeeper(puzzle, possibleValues);
+            var possibleValues =new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            Assert.True(ruleKeeper.TryInitFor(puzzle));
             var heuristic = new UniqueInBoxHeuristic(
-                puzzle, possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+                possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+            Assert.True(heuristic.TryInitFor(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
             var possibleValuesCopy = new PossibleValues(possibleValues);
@@ -75,17 +81,19 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle);
-            var boxRule = new BoxUniquenessRule(puzzle, possibleValues.AllPossible, false);
-            var ruleKeeper = new DynamicRuleKeeper(puzzle, possibleValues, new List<ISudokuRule> { boxRule });
+            var possibleValues =new PossibleValues(puzzle.Size);
+            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            Assert.True(ruleKeeper.TryInitFor(puzzle));
             var heuristic = new UniqueInBoxHeuristic(
-                puzzle, possibleValues, boxRule);
+                possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+            Assert.True(heuristic.TryInitFor(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
             var possibleValuesCopy = new PossibleValues(possibleValues);
-            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(puzzleCopy, possibleValuesCopy,
+            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(possibleValuesCopy,
                 new List<ISudokuRule> {
-                    new ColumnUniquenessRule(puzzleCopy, possibleValues.AllPossible),
+                    new ColumnUniquenessRule(possibleValues.AllPossible),
                 });
             Assert.Throws<ArgumentException>(() => heuristic.CopyWithNewReferences(
                 puzzleCopy, possibleValuesCopy, ruleKeeperWithoutBoxTracker.GetRules()));
