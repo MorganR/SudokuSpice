@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Heuristics
     public class UniqueInBoxHeuristic : UniqueInXHeuristic
     {
         private readonly IMissingBoxValuesTracker _boxTracker;
-        private IReadOnlyBoxPuzzle? _boxPuzzle;
+        private int _boxSize;
 
         /// <summary>
         /// Creates the heuristic.
@@ -33,12 +33,11 @@ namespace SudokuSpice.RuleBased.Heuristics
         private UniqueInBoxHeuristic(
             UniqueInBoxHeuristic existing,
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyBoxPuzzle? boxPuzzle,
             IMissingBoxValuesTracker boxTracker)
             : base(existing, puzzle)
         {
-            _boxPuzzle = boxPuzzle;
             _boxTracker = boxTracker;
+            _boxSize = existing._boxSize;
         }
 
         /// <summary>
@@ -57,16 +56,7 @@ namespace SudokuSpice.RuleBased.Heuristics
             {
                 throw new ArgumentException($"{nameof(rules)} must include an {nameof(IMissingBoxValuesTracker)}.");
             }
-            if (puzzle is null)
-            {
-                return new UniqueInBoxHeuristic(this, null, null, boxTracker);
-            }
-            if (puzzle is not IReadOnlyBoxPuzzle boxPuzzle)
-            {
-                throw new ArgumentException(
-                    $"An {nameof(IReadOnlyBoxPuzzle)} is required to copy {nameof(BoxUniquenessRule)}.");
-            }
-            return new UniqueInBoxHeuristic(this, puzzle, boxPuzzle, boxTracker);
+            return new UniqueInBoxHeuristic(this, puzzle, boxTracker);
         }
 
         /// <summary>
@@ -85,20 +75,15 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </returns>
         public override bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
-            if (puzzle is not IReadOnlyBoxPuzzle boxPuzzle
-                || !base.TryInitFor(puzzle))
-            {
-                return false;
-            }
-            _boxPuzzle = boxPuzzle;
-            return true;
+            _boxSize = Boxes.CalculateBoxSize(puzzle.Size);
+            return base.TryInitFor(puzzle);
         }
 
         protected override int GetNumDimensions(IReadOnlyPuzzle puzzle) => puzzle.Size;
         protected override BitVector GetMissingValuesForDimension(int dimension, IReadOnlyPuzzle _) => _boxTracker.GetMissingValuesForBox(dimension);
         protected override IEnumerable<Coordinate> GetUnsetCoordinatesOnDimension(int dimension, IReadOnlyPuzzle puzzle)
         {
-            return _boxPuzzle!.YieldUnsetCoordsForBox(dimension);
+            return Boxes.YieldUnsetCoordsForBox(dimension, _boxSize, puzzle);
         }
     }
 }

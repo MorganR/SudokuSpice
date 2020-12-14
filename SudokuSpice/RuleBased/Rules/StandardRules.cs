@@ -9,10 +9,11 @@ namespace SudokuSpice.RuleBased.Rules
     /// </summary>
     public class StandardRules : ISudokuRule, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
+        private int _boxSize;
         private BitVector[]? _unsetRowValues;
         private BitVector[]? _unsetColValues;
         private BitVector[]? _unsetBoxValues;
-        private IReadOnlyBoxPuzzle? _puzzle;
+        private IReadOnlyPuzzle? _puzzle;
 
         /// <summary>
         /// Constructs a single rule that enforces all the standard rules. This instance can be
@@ -26,8 +27,9 @@ namespace SudokuSpice.RuleBased.Rules
         /// 
         public StandardRules() { }
 
-        private StandardRules(StandardRules existing, IReadOnlyBoxPuzzle? puzzle)
+        private StandardRules(StandardRules existing, IReadOnlyPuzzle? puzzle)
         {
+            _boxSize = existing._boxSize;
             _unsetRowValues = existing._unsetRowValues?.AsSpan().ToArray();
             _unsetColValues = existing._unsetColValues?.AsSpan().ToArray();
             _unsetBoxValues = existing._unsetBoxValues?.AsSpan().ToArray();
@@ -37,34 +39,14 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
         {
-            if (puzzle is IReadOnlyBoxPuzzle boxPuzzle)
-            {
-                return new StandardRules(this, boxPuzzle);
-            }
-            if (puzzle is null)
-            {
-                return new StandardRules(this, null);
-            }
-            throw new ArgumentException($"An {nameof(IReadOnlyBoxPuzzle)} is required to copy {nameof(StandardRules)}.");
+            return new StandardRules(this, puzzle);
         }
 
-        /// <summary>
-        /// Tries to initialize this rule to prepare to solve the given puzzle.
-        /// </summary>
-        /// <param name="puzzle">
-        /// The puzzle to be solved. Must implement <see cref="IReadOnlyBoxPuzzle"/>, else this
-        /// fails and returns false.
-        /// </param>
-        /// <returns>
-        /// False if the puzzle violates this rule and initialization fails, else true.
-        /// </returns>
+        /// <inheritdoc/>
         public bool TryInit(IReadOnlyPuzzle puzzle)
         {
-            if (puzzle is not IReadOnlyBoxPuzzle boxPuzzle)
-            {
-                throw new ArgumentException($"An {nameof(IReadOnlyBoxPuzzle)} is required by {nameof(StandardRules)}.");
-            }
             int size = puzzle.Size;
+            _boxSize = Boxes.CalculateBoxSize(size);
             if (size != _unsetRowValues?.Length)
             {
                 _unsetRowValues = new BitVector[size];
@@ -84,8 +66,8 @@ namespace SudokuSpice.RuleBased.Rules
                 {
                     if (col == 0)
                     {
-                        boxIdx = (row / boxPuzzle.BoxSize) * boxPuzzle.BoxSize;
-                    } else if (col % boxPuzzle.BoxSize == 0)
+                        boxIdx = (row / _boxSize) * _boxSize;
+                    } else if (col % _boxSize == 0)
                     {
                         boxIdx++;
                     }
@@ -105,7 +87,7 @@ namespace SudokuSpice.RuleBased.Rules
                     _unsetBoxValues[boxIdx].UnsetBit(val.Value);
                 }
             }
-            _puzzle = boxPuzzle;
+            _puzzle = puzzle;
             return true;
         }
 
@@ -126,7 +108,7 @@ namespace SudokuSpice.RuleBased.Rules
                 _unsetRowValues![c.Row],
                 BitVector.FindIntersect(
                     _unsetColValues![c.Column],
-                    _unsetBoxValues![_puzzle.GetBoxIndex(c.Row, c.Column)]));
+                    _unsetBoxValues![Boxes.CalculateBoxIndex(in c, _boxSize)]));
         }
 
         /// <inheritdoc/>
@@ -134,7 +116,7 @@ namespace SudokuSpice.RuleBased.Rules
         {
             _unsetRowValues![c.Row].SetBit(val);
             _unsetColValues![c.Column].SetBit(val);
-            _unsetBoxValues![_puzzle!.GetBoxIndex(c.Row, c.Column)].SetBit(val);
+            _unsetBoxValues![Boxes.CalculateBoxIndex(in c, _boxSize)].SetBit(val);
         }
 
         /// <inheritdoc/>
@@ -142,7 +124,7 @@ namespace SudokuSpice.RuleBased.Rules
         {
             _unsetRowValues![c.Row].SetBit(val);
             _unsetColValues![c.Column].SetBit(val);
-            int boxIdx = _puzzle!.GetBoxIndex(c.Row, c.Column);
+            int boxIdx = Boxes.CalculateBoxIndex(in c, _boxSize);
             _unsetBoxValues![boxIdx].SetBit(val);
             _AddUnset(in c, boxIdx, coordTracker);
         }
@@ -152,7 +134,7 @@ namespace SudokuSpice.RuleBased.Rules
         {
             _unsetRowValues![c.Row].UnsetBit(val);
             _unsetColValues![c.Column].UnsetBit(val);
-            int boxIdx = _puzzle!.GetBoxIndex(c.Row, c.Column);
+            int boxIdx = Boxes.CalculateBoxIndex(in c, _boxSize);
             _unsetBoxValues![boxIdx].UnsetBit(val);
             _AddUnset(in c, boxIdx, coordTracker);
         }
@@ -175,7 +157,7 @@ namespace SudokuSpice.RuleBased.Rules
                     coordTracker.AddOrTrackIfUntracked(new Coordinate(row, c.Column));
                 }
             }
-            foreach (Coordinate inBoxCoord in _puzzle.YieldUnsetCoordsForBox(boxIdx))
+            foreach (Coordinate inBoxCoord in Boxes.YieldUnsetCoordsForBox(boxIdx, _boxSize, _puzzle))
             {
                 if (inBoxCoord.Row == c.Row || inBoxCoord.Column == c.Column)
                 {

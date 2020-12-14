@@ -9,7 +9,7 @@ namespace SudokuSpice.RuleBased
 {
     /// <summary>Manages underlying puzzle data.</summary>.
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class Puzzle : IPuzzle, IReadOnlyBoxPuzzle
+    public class Puzzle : IPuzzle
     {
         private readonly int?[,] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
@@ -17,8 +17,6 @@ namespace SudokuSpice.RuleBased
 
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int Size { get; }
-        /// <inheritdoc cref="IReadOnlyBoxPuzzle"/>
-        public int BoxSize { get; }
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int NumSquares { get; }
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
@@ -44,23 +42,18 @@ namespace SudokuSpice.RuleBased
             {
                 case 1:
                     NumSquares = 1;
-                    BoxSize = 1;
                     break;
                 case 4:
                     NumSquares = 4 * 4;
-                    BoxSize = 2;
                     break;
                 case 9:
                     NumSquares = 9 * 9;
-                    BoxSize = 3;
                     break;
                 case 16:
                     NumSquares = 16 * 16;
-                    BoxSize = 4;
                     break;
                 case 25:
                     NumSquares = 25 * 25;
-                    BoxSize = 5;
                     break;
                 default:
                     throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
@@ -97,15 +90,6 @@ namespace SudokuSpice.RuleBased
             {
                 throw new ArgumentException("Puzzle must be square.");
             }
-            BoxSize = Size switch
-            {
-                1 => 1,
-                4 => 2,
-                9 => 3,
-                16 => 4,
-                25 => 5,
-                _ => throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25]."),
-            };
 
             _squares = (int?[,])puzzleMatrix.Clone();
             _unsetCoordsTracker = new CoordinateTracker(Size);
@@ -130,7 +114,6 @@ namespace SudokuSpice.RuleBased
         public Puzzle(Puzzle existing)
         {
             Size = existing.Size;
-            BoxSize = existing.BoxSize;
             NumSquares = existing.NumSquares;
             _squares = (int?[,])existing._squares.Clone();
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
@@ -163,35 +146,9 @@ namespace SudokuSpice.RuleBased
             set => this[c.Row, c.Column] = value;
         }
 
-        /// <summary>Returns the index of the box that the given coordinates are in.</summary>
-        public int GetBoxIndex(int row, int col) => (row / BoxSize) * BoxSize + col / BoxSize;
-
-        /// <summary>Returns the top-left coordinate for the given box.</summary>
-        public Coordinate GetStartingBoxCoordinate(int box) => new Coordinate((box / BoxSize) * BoxSize, (box % BoxSize) * BoxSize);
 
         /// <summary>Gets a span of coordinates for all the unset squares.</summary>
         public ReadOnlySpan<Coordinate> GetUnsetCoords() => _unsetCoordsTracker.GetTrackedCoords();
-
-        /// <summary>
-        /// Yields an enumerable of coordinates for all the unset squares in the given box.
-        /// </summary>
-        public IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box)
-        {
-            (int startRow, int startCol) = GetStartingBoxCoordinate(box);
-            int endRow = startRow + BoxSize;
-            int endCol = startCol + BoxSize;
-            for (int row = startRow; row < endRow; row++)
-            {
-                for (int col = startCol; col < endCol; col++)
-                {
-                    if (_squares[row, col].HasValue)
-                    {
-                        continue;
-                    }
-                    yield return new Coordinate(row, col);
-                }
-            }
-        }
 
         /// <summary>
         /// Returns the puzzle in a pretty string format, with boxes and rows separated by pipes
@@ -201,9 +158,10 @@ namespace SudokuSpice.RuleBased
         {
             int maxDigitLength = Size.ToString(NumberFormatInfo.InvariantInfo).Length;
             var strBuild = new StringBuilder();
+            int boxSize = Boxes.CalculateBoxSize(Size);
             for (int row = 0; row < Size; row++)
             {
-                if (row % BoxSize == 0)
+                if (row % boxSize == 0)
                 {
                     _AppendBoxDividerRow(strBuild);
                 }
@@ -222,7 +180,7 @@ namespace SudokuSpice.RuleBased
                         strBuild.Append(' ');
                     }
                     strBuild.Append(numberString);
-                    if (col % BoxSize == BoxSize - 1)
+                    if (col % boxSize == boxSize - 1)
                     {
                         strBuild.Append('|');
                     } else
@@ -256,9 +214,10 @@ namespace SudokuSpice.RuleBased
         private void _AppendBoxDividerRow(StringBuilder strBuild)
         {
             int maxDigitLength = Size.ToString(NumberFormatInfo.InvariantInfo).Length;
+            int boxSize = Boxes.CalculateBoxSize(Size);
             for (int col = 0; col < Size; col++)
             {
-                if (col % BoxSize == 0)
+                if (col % boxSize == 0)
                 {
                     strBuild.Append('+');
                 } else

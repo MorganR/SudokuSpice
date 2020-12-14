@@ -276,7 +276,7 @@ namespace SudokuSpice.RuleBased.Test
 
         }
 
-        private void _AssertPuzzleSolved(Puzzle puzzle)
+        private static void _AssertPuzzleSolved(Puzzle puzzle)
         {
             Assert.Equal(0, puzzle.NumEmptySquares);
             var alreadyFound = new HashSet<int>(puzzle.Size);
@@ -296,13 +296,14 @@ namespace SudokuSpice.RuleBased.Test
                     Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that col!");
                 }
             }
+            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
             for (int box = 0; box < puzzle.Size; box++)
             {
                 alreadyFound.Clear();
-                (int startRow, int startCol) = puzzle.GetStartingBoxCoordinate(box);
-                for (int row = startRow; row < startRow + puzzle.BoxSize; row++)
+                (int startRow, int startCol) = Boxes.GetStartingBoxCoordinate(box, boxSize);
+                for (int row = startRow; row < startRow + boxSize; row++)
                 {
-                    for (int col = startCol; col < startCol + puzzle.BoxSize; col++)
+                    for (int col = startCol; col < startCol + boxSize; col++)
                     {
                         Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that box!");
                     }
@@ -310,7 +311,7 @@ namespace SudokuSpice.RuleBased.Test
             }
         }
 
-        private void _AssertMegaPuzzleSolved(Puzzle puzzle)
+        private static void _AssertMegaPuzzleSolved(Puzzle puzzle)
         {
             _AssertPuzzleSolved(puzzle);
             var alreadyFound = new HashSet<int>(puzzle.Size);

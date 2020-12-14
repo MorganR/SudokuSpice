@@ -37,20 +37,7 @@ namespace SudokuSpice.RuleBased.Heuristics
             _numHeuristicsRan = new Stack<int>();
         }
 
-        /// <summary>
-        /// Tries to initialize this heuristic for solving the given puzzle.
-        /// </summary>
-        /// <remarks>
-        /// In general, it doesn't make sense to want to maintain the previous state if this method
-        /// fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
-        /// on failure.
-        /// </remarks>
-        /// <param name="puzzle">
-        /// The puzzle to solve. This must implement <see cref="IReadOnlyBoxPuzzle"/>.
-        /// </param>
-        /// <returns>
-        /// False if this heuristic cannot be initialized for the given puzzle, else true.
-        /// </returns>
+        /// <inheritdoc/> 
         public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
             if (!_rowHeuristic.TryInitFor(puzzle)
