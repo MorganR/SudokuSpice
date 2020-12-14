@@ -50,7 +50,8 @@ namespace SudokuSpice.RuleBased.Heuristics
             IReadOnlyList<ISudokuRule> rules)
         {
             IMissingBoxValuesTracker? boxTracker;
-            try {
+            try
+            {
                 boxTracker = (IMissingBoxValuesTracker)rules.First(r => r is IMissingBoxValuesTracker);
             } catch (InvalidOperationException)
             {

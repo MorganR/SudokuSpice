@@ -100,7 +100,7 @@ namespace SudokuSpice.RuleBased
             }
 
             // Try heuristics if there isn't a definite square value.
-            Debug.Assert(_coordsThatUsedHeuristics is not null, 
+            Debug.Assert(_coordsThatUsedHeuristics is not null,
                 $"{nameof(_coordsThatUsedHeuristics)} must not be null if {nameof(_heuristic)} is non-null.");
             if (_setCoords.Count > 0)
             {
@@ -138,7 +138,7 @@ namespace SudokuSpice.RuleBased
         /// The number of possible values that were set in the <paramref name="possibleValues"/> span.
         /// </returns>
 
-        public int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) => 
+        public int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) =>
             _puzzle!.GetPossibleValues(in c).PopulateSetBits(possibleValues);
 
         /// <summary>

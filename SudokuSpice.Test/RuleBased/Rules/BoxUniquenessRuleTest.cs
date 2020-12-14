@@ -15,7 +15,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 3 */, null /* 2 */,            4,            1}
             });
             var rule = new BoxUniquenessRule();
-            
+
             Assert.True(rule.TryInit(puzzle));
 
             Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 0)));

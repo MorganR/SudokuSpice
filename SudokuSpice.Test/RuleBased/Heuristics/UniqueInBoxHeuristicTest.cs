@@ -21,20 +21,20 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
             var heuristic = new UniqueInBoxHeuristic((IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
             Assert.True(heuristic.TryInitFor(puzzle));
 
-            Assert.Equal(new BitVector(0b01110), puzzle.GetPossibleValues(new (1, 1))); // Pre-modified
+            Assert.Equal(new BitVector(0b01110), puzzle.GetPossibleValues(new(1, 1))); // Pre-modified
 
             heuristic.UpdateAll();
 
-            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (0, 0)));
-            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (0, 1)));
-            Assert.Equal(new BitVector(0b00110), puzzle.GetPossibleValues(new (1, 0)));
-            Assert.Equal(new BitVector(0b01000), puzzle.GetPossibleValues(new (1, 1))); // Modified
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new(0, 0)));
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new(0, 1)));
+            Assert.Equal(new BitVector(0b00110), puzzle.GetPossibleValues(new(1, 0)));
+            Assert.Equal(new BitVector(0b01000), puzzle.GetPossibleValues(new(1, 1))); // Modified
 
-            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (2, 0)));
-            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (2, 1)));
-            Assert.Equal(new BitVector(0b00100), puzzle.GetPossibleValues(new (3, 1)));
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new(2, 0)));
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new(2, 1)));
+            Assert.Equal(new BitVector(0b00100), puzzle.GetPossibleValues(new(3, 1)));
 
-            Assert.Equal(new BitVector(0b00010), puzzle.GetPossibleValues(new (1, 2)));
+            Assert.Equal(new BitVector(0b00010), puzzle.GetPossibleValues(new(1, 2)));
         }
 
         [Fact]

@@ -11,7 +11,7 @@ namespace SudokuSpice.RuleBased.Rules
         private BitVector _unsetForwardDiag;
         private IReadOnlyPuzzle? _puzzle;
 
-        public DiagonalUniquenessRule() {}
+        public DiagonalUniquenessRule() { }
 
         /// <inheritdoc/>
         public bool TryInit(IReadOnlyPuzzle puzzle)

@@ -9,7 +9,7 @@ namespace SudokuSpice.RuleBased.Rules
     {
         private IReadOnlyPuzzle? _puzzle;
 
-        public RowUniquenessRule() : base() {}
+        public RowUniquenessRule() : base() { }
 
         private RowUniquenessRule(RowUniquenessRule existing, IReadOnlyPuzzle? puzzle)
             : base(existing)

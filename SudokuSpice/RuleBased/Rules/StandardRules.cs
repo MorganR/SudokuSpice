@@ -24,7 +24,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// puzzle).
         /// </param>
         /// 
-        public StandardRules() {}
+        public StandardRules() { }
 
         private StandardRules(StandardRules existing, IReadOnlyBoxPuzzle? puzzle)
         {

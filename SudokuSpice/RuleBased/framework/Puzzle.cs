@@ -97,7 +97,8 @@ namespace SudokuSpice.RuleBased
             {
                 throw new ArgumentException("Puzzle must be square.");
             }
-            BoxSize = Size switch {
+            BoxSize = Size switch
+            {
                 1 => 1,
                 4 => 2,
                 9 => 3,

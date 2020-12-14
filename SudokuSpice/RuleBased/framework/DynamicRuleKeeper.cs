@@ -59,7 +59,7 @@ namespace SudokuSpice.RuleBased
                 }
                 if (puzzle.GetPossibleValues(in c).IsEmpty())
                 {
-                    return false;    
+                    return false;
                 }
             }
             if (_coordTracker is null || _coordTracker.Size != puzzle.Size)

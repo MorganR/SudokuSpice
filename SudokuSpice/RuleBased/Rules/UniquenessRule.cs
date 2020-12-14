@@ -11,7 +11,7 @@ namespace SudokuSpice.RuleBased.Rules
     {
         private BitVector[]? _dimensions;
 
-        protected UniquenessRule() {}
+        protected UniquenessRule() { }
 
         protected UniquenessRule(UniquenessRule existing)
         {
@@ -35,7 +35,7 @@ namespace SudokuSpice.RuleBased.Rules
             {
                 for (int col = 0; col < size; ++col)
                 {
-                    int dimension = GetDimension(new (row, col));
+                    int dimension = GetDimension(new(row, col));
                     int? val = puzzle[row, col];
                     if (!val.HasValue)
                     {
@@ -57,7 +57,7 @@ namespace SudokuSpice.RuleBased.Rules
         {
             Debug.Assert(_dimensions is not null, $"Must initialize before calling {nameof(GetPossibleValues)}.");
             return _dimensions[GetDimension(in c)];
-        } 
+        }
 
         /// <inheritdoc/>
         public void Revert(in Coordinate c, int val)

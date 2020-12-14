@@ -58,7 +58,7 @@ namespace SudokuSpice.RuleBased
             }
             AllPossible = existing.AllPossible;
         }
-       
+
         /// <summary>
         /// Provides read and write access to the possible values for the given square.
         /// </summary>

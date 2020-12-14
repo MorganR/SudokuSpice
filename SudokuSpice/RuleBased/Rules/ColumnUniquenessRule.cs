@@ -9,7 +9,7 @@ namespace SudokuSpice.RuleBased.Rules
     {
         private IReadOnlyPuzzle? _puzzle;
 
-        public ColumnUniquenessRule() : base() {}
+        public ColumnUniquenessRule() : base() { }
 
         private ColumnUniquenessRule(ColumnUniquenessRule existing, IReadOnlyPuzzle? puzzle)
             : base(existing)
@@ -34,7 +34,7 @@ namespace SudokuSpice.RuleBased.Rules
 
         /// <inheritdoc/>
         public BitVector GetMissingValuesForColumn(int col) => GetPossibleValues(col);
-       
+
         /// <inheritdoc/>
         protected override int GetNumDimensions(IReadOnlyPuzzle puzzle) => puzzle.Size;
         /// <inheritdoc/>

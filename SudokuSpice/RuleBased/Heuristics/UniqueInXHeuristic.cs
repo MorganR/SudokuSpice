@@ -14,7 +14,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         private Stack<IReadOnlyDictionary<Coordinate, BitVector>>? _previousPossiblesStack;
         private IReadOnlyPuzzleWithMutablePossibleValues? _puzzle;
 
-        public UniqueInXHeuristic() {}
+        public UniqueInXHeuristic() { }
 
         /// <summary>
         /// Copy constructor for providing a deep copy with new references.
@@ -24,7 +24,8 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// The puzzle reference being solved. May reference a new object from the one in the
         /// existing heuristic, but the puzzle's data must be the same.
         /// </param>
-        protected UniqueInXHeuristic(UniqueInXHeuristic existing, IReadOnlyPuzzleWithMutablePossibleValues? puzzle) {
+        protected UniqueInXHeuristic(UniqueInXHeuristic existing, IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
+        {
             _possiblesToCheckOnDimension = existing._possiblesToCheckOnDimension;
             _previousPossiblesStack = existing._previousPossiblesStack;
             _puzzle = puzzle;
@@ -41,7 +42,7 @@ namespace SudokuSpice.RuleBased.Heuristics
             if (_possiblesToCheckOnDimension is null
                 || _possiblesToCheckOnDimension.Length != numDimensions)
             {
-                _possiblesToCheckOnDimension = new BitVector[numDimensions]; 
+                _possiblesToCheckOnDimension = new BitVector[numDimensions];
             }
             _previousPossiblesStack = new();
             _puzzle = puzzle;
@@ -114,7 +115,7 @@ namespace SudokuSpice.RuleBased.Heuristics
             {
                 int possible = possibleValues[i];
                 Coordinate? uniqueCoord = null;
-                foreach (Coordinate c in GetUnsetCoordinatesOnDimension(dimension, _puzzle))
+                foreach (Coordinate c in GetUnsetCoordinatesOnDimension(dimension, _puzzle!))
                 {
                     if (_puzzle!.GetPossibleValues(in c).IsBitSet(possible))
                     {
