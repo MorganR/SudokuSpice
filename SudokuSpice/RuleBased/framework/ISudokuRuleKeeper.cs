@@ -18,7 +18,7 @@ namespace SudokuSpice.RuleBased
         /// values instance.
         /// </param>
         ISudokuRuleKeeper CopyWithNewReferences(
-            IReadOnlyPuzzle puzzle, PossibleValues possibleValues);
+            IReadOnlyPuzzleWithMutablePossibleValues? puzzle);
 
         /// <summary>
         /// Gets the <see cref="ISudokuRule"/>s enforced by this rule keeper.
@@ -41,7 +41,7 @@ namespace SudokuSpice.RuleBased
         /// False if the rule keeper couldn't be initialized, for example if the puzzle already
         /// violates one of the rules. Else returns true.
         /// </returns>
-        bool TryInitFor(IReadOnlyPuzzle puzzle);
+        bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle);
 
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value. If

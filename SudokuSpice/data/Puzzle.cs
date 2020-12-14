@@ -26,7 +26,7 @@ namespace SudokuSpice
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int NumSetSquares => NumSquares - NumEmptySquares;
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
-        public ReadOnlySpan<int> AllPossibleValues => _allPossibleValues;
+        public ReadOnlySpan<int> AllPossibleValuesSpan => _allPossibleValues;
 
         /// <summary>
         /// Constructs a new puzzle of the given side length.
@@ -77,8 +77,8 @@ namespace SudokuSpice
                     }
                 }
             }
-            _allPossibleValues = new int[size];
-            for (int i = 0; i < size; i++)
+            _allPossibleValues = new int[Size];
+            for (int i = 0; i < Size; ++i)
             {
                 _allPossibleValues[i] = i + 1;
             }
@@ -121,7 +121,7 @@ namespace SudokuSpice
                 }
             }
             _allPossibleValues = new int[Size];
-            for (int i = 0; i < Size; i++)
+            for (int i = 0; i < Size; ++i)
             {
                 _allPossibleValues[i] = i + 1;
             }
@@ -137,7 +137,7 @@ namespace SudokuSpice
             NumSquares = existing.NumSquares;
             _squares = (int?[,])existing._squares.Clone();
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
-            _allPossibleValues = existing.AllPossibleValues.ToArray();
+            _allPossibleValues = existing._allPossibleValues;
         }
 
         /// <inheritdoc cref="IPuzzle"/>

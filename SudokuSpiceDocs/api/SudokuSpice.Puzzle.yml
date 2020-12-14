@@ -8,7 +8,7 @@ items:
   - SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   - SudokuSpice.Puzzle.#ctor(System.Int32)
   - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])
-  - SudokuSpice.Puzzle.AllPossibleValues
+  - SudokuSpice.Puzzle.AllPossibleValuesSpan
   - SudokuSpice.Puzzle.BoxSize
   - SudokuSpice.Puzzle.DeepCopy
   - SudokuSpice.Puzzle.GetBoxIndex(System.Int32,System.Int32)
@@ -261,23 +261,23 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.Puzzle.AllPossibleValues
-  commentId: P:SudokuSpice.Puzzle.AllPossibleValues
-  id: AllPossibleValues
+- uid: SudokuSpice.Puzzle.AllPossibleValuesSpan
+  commentId: P:SudokuSpice.Puzzle.AllPossibleValuesSpan
+  id: AllPossibleValuesSpan
   parent: SudokuSpice.Puzzle
   langs:
   - csharp
   - vb
-  name: AllPossibleValues
-  nameWithType: Puzzle.AllPossibleValues
-  fullName: SudokuSpice.Puzzle.AllPossibleValues
+  name: AllPossibleValuesSpan
+  nameWithType: Puzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.Puzzle.AllPossibleValuesSpan
   type: Property
   source:
     remote:
       path: SudokuSpice/data/Puzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: AllPossibleValues
+    id: AllPossibleValuesSpan
     path: ../SudokuSpice/data/Puzzle.cs
     startLine: 28
   assemblies:
@@ -286,14 +286,14 @@ items:
   summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
-    content: public ReadOnlySpan<int> AllPossibleValues { get; }
+    content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
     parameters: []
     return:
       type: System.ReadOnlySpan{System.Int32}
-    content.vb: Public ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
-  overload: SudokuSpice.Puzzle.AllPossibleValues*
+    content.vb: Public ReadOnly Property AllPossibleValuesSpan As ReadOnlySpan(Of Integer)
+  overload: SudokuSpice.Puzzle.AllPossibleValuesSpan*
   implements:
-  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   modifiers.csharp:
   - public
   - get
@@ -1083,17 +1083,17 @@ references:
   name: NumSetSquares
   nameWithType: IReadOnlyPuzzle.NumSetSquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
-- uid: SudokuSpice.Puzzle.AllPossibleValues*
-  commentId: Overload:SudokuSpice.Puzzle.AllPossibleValues
-  name: AllPossibleValues
-  nameWithType: Puzzle.AllPossibleValues
-  fullName: SudokuSpice.Puzzle.AllPossibleValues
-- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
-  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+- uid: SudokuSpice.Puzzle.AllPossibleValuesSpan*
+  commentId: Overload:SudokuSpice.Puzzle.AllPossibleValuesSpan
+  name: AllPossibleValuesSpan
+  nameWithType: Puzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.Puzzle.AllPossibleValuesSpan
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   parent: SudokuSpice.IReadOnlyPuzzle
-  name: AllPossibleValues
-  nameWithType: IReadOnlyPuzzle.AllPossibleValues
-  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  name: AllPossibleValuesSpan
+  nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
 - uid: System.ReadOnlySpan{System.Int32}
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System

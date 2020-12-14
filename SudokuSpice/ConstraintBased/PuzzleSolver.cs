@@ -41,10 +41,10 @@ namespace SudokuSpice.ConstraintBased
         /// </exception>
         public void Solve(TPuzzle puzzle)
         {
-            if (!_AreValuesUnique(puzzle.AllPossibleValues))
+            if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
                 throw new ArgumentException(
-                    $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
+                    $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
             var matrix = new ExactCoverMatrix(puzzle);
             foreach (IConstraint? constraint in _constraints)
@@ -59,10 +59,10 @@ namespace SudokuSpice.ConstraintBased
 
         public void SolveRandomly(TPuzzle puzzle)
         {
-            if (!_AreValuesUnique(puzzle.AllPossibleValues))
+            if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
                 throw new ArgumentException(
-                    $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
+                    $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
             var matrix = new ExactCoverMatrix(puzzle);
             foreach (IConstraint? constraint in _constraints)
@@ -77,10 +77,10 @@ namespace SudokuSpice.ConstraintBased
 
         public SolveStats GetStatsForAllSolutions(TPuzzle puzzle)
         {
-            if (!_AreValuesUnique(puzzle.AllPossibleValues))
+            if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
                 throw new ArgumentException(
-                    $"{nameof(puzzle.AllPossibleValues)} must all be unique. Received values: {puzzle.AllPossibleValues.ToString()}.");
+                    $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
             var matrix = new ExactCoverMatrix(puzzleCopy);

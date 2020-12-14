@@ -34,7 +34,7 @@ namespace SudokuSpice.ConstraintBased
         internal ExactCoverMatrix(IPuzzle puzzle)
         {
             _matrix = new Square[puzzle.Size][];
-            _allPossibleValues = puzzle.AllPossibleValues.ToArray();
+            _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
             var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {

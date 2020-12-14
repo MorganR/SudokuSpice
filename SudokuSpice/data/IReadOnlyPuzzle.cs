@@ -17,8 +17,7 @@ namespace SudokuSpice
         /// <summary>The number of set/known squares in the puzzle.</summary>
         public int NumSetSquares { get; }
         /// <summary>Gets all the possible values for this puzzle.</summary>
-        // TODO: Revisit this.
-        public ReadOnlySpan<int> AllPossibleValues { get; }
+        public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
 
         /// <summary>
         /// Gets the current value of a given square.

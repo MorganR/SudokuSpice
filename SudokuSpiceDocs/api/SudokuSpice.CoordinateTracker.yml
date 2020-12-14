@@ -11,6 +11,7 @@ items:
   - SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
   - SudokuSpice.CoordinateTracker.GetTrackedCoords
   - SudokuSpice.CoordinateTracker.NumTracked
+  - SudokuSpice.CoordinateTracker.Size
   - SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate@)
   - SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate@)
   - SudokuSpice.CoordinateTracker.UntrackAll
@@ -91,6 +92,41 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: SudokuSpice.CoordinateTracker.Size
+  commentId: P:SudokuSpice.CoordinateTracker.Size
+  id: Size
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: CoordinateTracker.Size
+  fullName: SudokuSpice.CoordinateTracker.Size
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/data/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Size
+    path: ../SudokuSpice/data/CoordinateTracker.cs
+    startLine: 23
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Size As Integer
+  overload: SudokuSpice.CoordinateTracker.Size*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: SudokuSpice.CoordinateTracker.#ctor(System.Int32)
   commentId: M:SudokuSpice.CoordinateTracker.#ctor(System.Int32)
   id: '#ctor(System.Int32)'
@@ -109,19 +145,19 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 51
+    startLine: 53
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nConstructs a <code>CoordinateTracker</code> to track coordinates within a\n<code>sideLength</code>-by-<code>sideLength</code> square.\n"
+  summary: "\nConstructs a <code>CoordinateTracker</code> to track coordinates within a\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code>-by-<code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code> square.\n"
   example: []
   syntax:
-    content: public CoordinateTracker(int sideLength)
+    content: public CoordinateTracker(int size)
     parameters:
-    - id: sideLength
+    - id: size
       type: System.Int32
       description: The side length of a square of valid coordinates.
-    content.vb: Public Sub New(sideLength As Integer)
+    content.vb: Public Sub New(size As Integer)
   overload: SudokuSpice.CoordinateTracker.#ctor*
   modifiers.csharp:
   - public
@@ -145,7 +181,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 68
+    startLine: 71
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -181,7 +217,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Add
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 81
+    startLine: 84
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -220,7 +256,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Track
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 94
+    startLine: 97
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -259,7 +295,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: AddOrTrackIfUntracked
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 107
+    startLine: 110
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -301,7 +337,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Untrack
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 128
+    startLine: 131
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -340,7 +376,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UntrackAll
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 145
+    startLine: 148
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -372,7 +408,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetTrackedCoords
     path: ../SudokuSpice/data/CoordinateTracker.cs
-    startLine: 150
+    startLine: 153
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -704,6 +740,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: SudokuSpice.CoordinateTracker.Size*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Size
+  name: Size
+  nameWithType: CoordinateTracker.Size
+  fullName: SudokuSpice.CoordinateTracker.Size
 - uid: SudokuSpice.CoordinateTracker.#ctor*
   commentId: Overload:SudokuSpice.CoordinateTracker.#ctor
   name: CoordinateTracker

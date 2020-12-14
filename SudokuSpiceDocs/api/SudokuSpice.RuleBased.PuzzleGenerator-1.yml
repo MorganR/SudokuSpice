@@ -82,7 +82,7 @@ items:
     parameters:
     - id: puzzleFactory
       type: System.Func{{TPuzzle}}
-      description: "\nA function that constructs an empty <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> of the desired type and shape.\n"
+      description: "\nA function that constructs an empty <xref href=\"SudokuSpice.RuleBased.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> of the desired type and shape.\n"
     - id: solver
       type: SudokuSpice.RuleBased.PuzzleSolver
     content.vb: Public Sub New(puzzleFactory As Func(Of TPuzzle), solver As PuzzleSolver)
@@ -441,12 +441,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.IPuzzle
-  commentId: T:SudokuSpice.IPuzzle
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.IPuzzle
+  commentId: T:SudokuSpice.RuleBased.IPuzzle
+  parent: SudokuSpice.RuleBased
   name: IPuzzle
   nameWithType: IPuzzle
-  fullName: SudokuSpice.IPuzzle
+  fullName: SudokuSpice.RuleBased.IPuzzle
 - uid: SudokuSpice.RuleBased.SquareTracker
   commentId: T:SudokuSpice.RuleBased.SquareTracker
   isExternal: true
@@ -503,11 +503,6 @@ references:
   name: PuzzleSolver
   nameWithType: PuzzleSolver
   fullName: SudokuSpice.RuleBased.PuzzleSolver
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
 - uid: System.Func`1
   commentId: T:System.Func`1
   isExternal: true

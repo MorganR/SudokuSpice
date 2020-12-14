@@ -1,5 +1,4 @@
 ﻿using SudokuSpice.RuleBased.Heuristics;
-using SudokuSpice.RuleBased.Rules;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -11,16 +10,9 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Constructor_Works()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
-            });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            var ruleKeeper = new StandardRuleKeeper(possibleValues);
-            var heuristic = new StandardHeuristic(possibleValues, ruleKeeper, ruleKeeper, ruleKeeper);
-            var tracker = new SquareTracker(possibleValues, ruleKeeper, heuristic);
+            var ruleKeeper = new StandardRuleKeeper();
+            var heuristic = new StandardHeuristic(ruleKeeper, ruleKeeper, ruleKeeper);
+            var tracker = new SquareTracker(ruleKeeper, heuristic);
             Assert.NotNull(tracker);
         }
 
@@ -112,16 +104,15 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            var ruleKeeper = new StandardRuleKeeper(possibleValues);
-            var heuristic = new StandardHeuristic(possibleValues, ruleKeeper, ruleKeeper, ruleKeeper);
-            var tracker = new SquareTracker(possibleValues, ruleKeeper, heuristic);
+            var ruleKeeper = new StandardRuleKeeper();
+            var heuristic = new StandardHeuristic(ruleKeeper, ruleKeeper, ruleKeeper);
+            var tracker = new SquareTracker(ruleKeeper, heuristic);
             Assert.True(tracker.TryInit(puzzle));
             Assert.True(tracker.TrySet(new Coordinate(0, 1), 4));
 
             foreach (Coordinate coord in puzzle.GetUnsetCoords())
             {
-                Assert.Equal(possibleValues[in coord].GetSetBits(), tracker.GetPossibleValues(in coord));
+                Assert.Equal(puzzle.GetPossibleValues(in coord).GetSetBits(), tracker.GetPossibleValues(in coord));
             }
         }
 
@@ -178,13 +169,10 @@ namespace SudokuSpice.RuleBased.Test
 
         private static SquareTracker _CreateStandardTracker(int size)
         {
-            var possibleValues = new PossibleValues(size);
-            var ruleKeeper = new StandardRuleKeeper(possibleValues);
+            var ruleKeeper = new StandardRuleKeeper();
             return new SquareTracker(
-                possibleValues,
                 ruleKeeper,
                 new StandardHeuristic(
-                    possibleValues,
                     ruleKeeper,
                     ruleKeeper,
                     ruleKeeper));

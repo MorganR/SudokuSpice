@@ -21,6 +21,8 @@ namespace SudokuSpice
         /// </summary>
         public int NumTracked { get; private set; }
 
+        public int Size { get; }
+
         /// <summary>
         /// Indicates the action taken during an
         /// <see cref="AddOrTrackIfUntracked(in Coordinate)">AddOrTrackIfUntracked</see>
@@ -46,20 +48,21 @@ namespace SudokuSpice
 
         /// <summary>
         /// Constructs a <c>CoordinateTracker</c> to track coordinates within a
-        /// <c>sideLength</c>-by-<c>sideLength</c> square.
+        /// <paramref name="size"/>-by-<paramref name="size"/> square.
         /// </summary>
-        /// <param name="sideLength">The side length of a square of valid coordinates.</param>
-        public CoordinateTracker(int sideLength)
+        /// <param name="size">The side length of a square of valid coordinates.</param>
+        public CoordinateTracker(int size)
         {
-            _coordToIdx = new int[sideLength, sideLength];
-            for (int row = 0; row < sideLength; row++)
+            _coordToIdx = new int[size, size];
+            for (int row = 0; row < size; row++)
             {
-                for (int col = 0; col < sideLength; col++)
+                for (int col = 0; col < size; col++)
                 {
                     _coordToIdx[row, col] = -1;
                 }
             }
-            _coords = new Coordinate[sideLength * sideLength];
+            _coords = new Coordinate[size * size];
+            Size = size;
         }
 
         /// <summary>

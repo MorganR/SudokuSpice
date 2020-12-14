@@ -123,7 +123,7 @@ operations. It also provides immediate, copy-free access to tracked coordinates 
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker__ctor_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.%23ctor(SudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L69">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L72">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker__ctor_" data-uid="SudokuSpice.CoordinateTracker.#ctor*"></a>
   <h4 id="SudokuSpice_CoordinateTracker__ctor_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.CoordinateTracker.#ctor(SudokuSpice.CoordinateTracker)">CoordinateTracker(CoordinateTracker)</h4>
@@ -156,17 +156,17 @@ operations. It also provides immediate, copy-free access to tracked coordinates 
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L52">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L54">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker__ctor_" data-uid="SudokuSpice.CoordinateTracker.#ctor*"></a>
   <h4 id="SudokuSpice_CoordinateTracker__ctor_System_Int32_" data-uid="SudokuSpice.CoordinateTracker.#ctor(System.Int32)">CoordinateTracker(Int32)</h4>
   <div class="markdown level1 summary"><p>Constructs a <code>CoordinateTracker</code> to track coordinates within a
-<code>sideLength</code>-by-<code>sideLength</code> square.</p>
+<code data-dev-comment-type="paramref" class="paramref">size</code>-by-<code data-dev-comment-type="paramref" class="paramref">size</code> square.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CoordinateTracker(int sideLength)</code></pre>
+    <pre><code class="lang-csharp hljs">public CoordinateTracker(int size)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -180,7 +180,7 @@ operations. It also provides immediate, copy-free access to tracked coordinates 
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">sideLength</span></td>
+        <td><span class="parametername">size</span></td>
         <td><p>The side length of a square of valid coordinates.</p>
 </td>
       </tr>
@@ -219,6 +219,36 @@ operations. It also provides immediate, copy-free access to tracked coordinates 
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_Size.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L24">View Source</a>
+  </span>
+  <a id="SudokuSpice_CoordinateTracker_Size_" data-uid="SudokuSpice.CoordinateTracker.Size*"></a>
+  <h4 id="SudokuSpice_CoordinateTracker_Size" data-uid="SudokuSpice.CoordinateTracker.Size">Size</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Size { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -226,7 +256,7 @@ operations. It also provides immediate, copy-free access to tracked coordinates 
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_Add_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L82">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L85">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker_Add_" data-uid="SudokuSpice.CoordinateTracker.Add*"></a>
   <h4 id="SudokuSpice_CoordinateTracker_Add_SudokuSpice_Coordinate__" data-uid="SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate@)">Add(Coordinate)</h4>
@@ -261,7 +291,7 @@ once for any given Coordinate.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_AddOrTrackIfUntracked_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L108">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L111">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker_AddOrTrackIfUntracked_" data-uid="SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked*"></a>
   <h4 id="SudokuSpice_CoordinateTracker_AddOrTrackIfUntracked_SudokuSpice_Coordinate__" data-uid="SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)">AddOrTrackIfUntracked(Coordinate)</h4>
@@ -312,7 +342,7 @@ are not certain of the status of the given <code>Coordinate</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_GetTrackedCoords.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.GetTrackedCoords%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L151">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L154">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker_GetTrackedCoords_" data-uid="SudokuSpice.CoordinateTracker.GetTrackedCoords*"></a>
   <h4 id="SudokuSpice_CoordinateTracker_GetTrackedCoords" data-uid="SudokuSpice.CoordinateTracker.GetTrackedCoords">GetTrackedCoords()</h4>
@@ -343,7 +373,7 @@ are not certain of the status of the given <code>Coordinate</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_Track_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L95">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L98">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker_Track_" data-uid="SudokuSpice.CoordinateTracker.Track*"></a>
   <h4 id="SudokuSpice_CoordinateTracker_Track_SudokuSpice_Coordinate__" data-uid="SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate@)">Track(Coordinate)</h4>
@@ -378,7 +408,7 @@ tracked already.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_Untrack_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L129">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L132">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker_Untrack_" data-uid="SudokuSpice.CoordinateTracker.Untrack*"></a>
   <h4 id="SudokuSpice_CoordinateTracker_Untrack_SudokuSpice_Coordinate__" data-uid="SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate@)">Untrack(Coordinate)</h4>
@@ -413,7 +443,7 @@ tracked.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_CoordinateTracker_UntrackAll.md&amp;value=---%0Auid%3A%20SudokuSpice.CoordinateTracker.UntrackAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L146">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/data/CoordinateTracker.cs/#L149">View Source</a>
   </span>
   <a id="SudokuSpice_CoordinateTracker_UntrackAll_" data-uid="SudokuSpice.CoordinateTracker.UntrackAll*"></a>
   <h4 id="SudokuSpice_CoordinateTracker_UntrackAll" data-uid="SudokuSpice.CoordinateTracker.UntrackAll">UntrackAll()</h4>

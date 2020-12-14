@@ -5,15 +5,15 @@ items:
   id: StandardRules
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.StandardRules.#ctor(SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.StandardRules.#ctor
+  - SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForBox(System.Int32)
   - SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn(System.Int32)
   - SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow(System.Int32)
   - SudokuSpice.RuleBased.Rules.StandardRules.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.StandardRules.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   langs:
   - csharp
@@ -61,16 +61,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.StandardRules.#ctor(SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.#ctor(SudokuSpice.RuleBased.BitVector)
-  id: '#ctor(SudokuSpice.RuleBased.BitVector)'
+- uid: SudokuSpice.RuleBased.Rules.StandardRules.#ctor
+  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.#ctor
+  id: '#ctor'
   parent: SudokuSpice.RuleBased.Rules.StandardRules
   langs:
   - csharp
   - vb
-  name: StandardRules(BitVector)
-  nameWithType: StandardRules.StandardRules(BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.StandardRules.StandardRules(SudokuSpice.RuleBased.BitVector)
+  name: StandardRules()
+  nameWithType: StandardRules.StandardRules()
+  fullName: SudokuSpice.RuleBased.Rules.StandardRules.StandardRules()
   type: Constructor
   source:
     remote:
@@ -79,34 +79,30 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Rules/StandardRules.cs
-    startLine: 28
+    startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   summary: "\nConstructs a single rule that enforces all the standard rules. This instance can be\nreused to solve multiple puzzles with the same <code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code> and\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">allUniqueValues</code>.\n"
   example: []
   syntax:
-    content: public StandardRules(BitVector allUniqueValues)
-    parameters:
-    - id: allUniqueValues
-      type: SudokuSpice.RuleBased.BitVector
-      description: "\nThe unique values to satisfy for each row, column, and box (eg. 1-9 for a standard\npuzzle).\n"
-    content.vb: Public Sub New(allUniqueValues As BitVector)
+    content: public StandardRules()
+    content.vb: Public Sub New
   overload: SudokuSpice.RuleBased.Rules.StandardRules.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.StandardRules
   langs:
   - csharp
   - vb
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: StandardRules.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
@@ -115,7 +111,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/Rules/StandardRules.cs
-    startLine: 48
+    startLine: 37
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -125,55 +121,55 @@ items:
     content: public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
       description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
     return:
       type: SudokuSpice.RuleBased.Rules.ISudokuRule
     content.vb: Public Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As ISudokuRule
   overload: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference*
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.StandardRules
   langs:
   - csharp
   - vb
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: StandardRules.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  name: TryInit(IReadOnlyPuzzle)
+  nameWithType: StandardRules.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/StandardRules.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: TryInitFor
+    id: TryInit
     path: ../SudokuSpice/RuleBased/Rules/StandardRules.cs
-    startLine: 67
+    startLine: 60
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   summary: "\nTries to initialize this rule to prepare to solve the given puzzle.\n"
   example: []
   syntax:
-    content: public bool TryInitFor(IReadOnlyPuzzle puzzle)
+    content: public bool TryInit(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe puzzle to be solved. Must implement <xref href=\"SudokuSpice.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>, else this\nfails and returns false.\n"
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
+      description: "\nThe puzzle to be solved. Must implement <xref href=\"SudokuSpice.RuleBased.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>, else this\nfails and returns false.\n"
     return:
       type: System.Boolean
       description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
-    content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
-  overload: SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor*
+    content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.Rules.StandardRules.TryInit*
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -402,7 +398,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/Rules/StandardRules.cs
-    startLine: 142
+    startLine: 140
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -450,7 +446,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Update
     path: ../SudokuSpice/RuleBased/Rules/StandardRules.cs
-    startLine: 154
+    startLine: 150
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -807,113 +803,102 @@ references:
   name: StandardRules
   nameWithType: StandardRules.StandardRules
   fullName: SudokuSpice.RuleBased.Rules.StandardRules.StandardRules
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
-  name: BitVector
-  nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice.RuleBased
-  commentId: N:SudokuSpice.RuleBased
-  name: SudokuSpice.RuleBased
-  nameWithType: SudokuSpice.RuleBased
-  fullName: SudokuSpice.RuleBased
 - uid: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference
   name: CopyWithNewReference
   nameWithType: StandardRules.CopyWithNewReference
   fullName: SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.ISudokuRule
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: ISudokuRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: CopyWithNewReference
     nameWithType: ISudokuRule.CopyWithNewReference
     fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: CopyWithNewReference
     nameWithType: ISudokuRule.CopyWithNewReference
     fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
+  parent: SudokuSpice.RuleBased
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: SudokuSpice.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.IReadOnlyBoxPuzzle
-  parent: SudokuSpice
+  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+  parent: SudokuSpice.RuleBased
   name: IReadOnlyBoxPuzzle
   nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle
-- uid: SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor
-  name: TryInitFor
-  nameWithType: StandardRules.TryInitFor
-  fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInitFor
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+- uid: SudokuSpice.RuleBased.Rules.StandardRules.TryInit*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.StandardRules.TryInit
+  name: TryInit
+  nameWithType: StandardRules.TryInit
+  fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInit
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.ISudokuRule
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: ISudokuRule.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  name: TryInit(IReadOnlyPuzzle)
+  nameWithType: ISudokuRule.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-    name: TryInitFor
-    nameWithType: ISudokuRule.TryInitFor
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: TryInit
+    nameWithType: ISudokuRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-    name: TryInitFor
-    nameWithType: ISudokuRule.TryInitFor
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: TryInit
+    nameWithType: ISudokuRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
@@ -975,6 +960,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
 - uid: SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn*
   commentId: Overload:SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn
   name: GetMissingValuesForColumn
@@ -1110,6 +1101,11 @@ references:
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Rules.StandardRules.Revert*
   commentId: Overload:SudokuSpice.RuleBased.Rules.StandardRules.Revert
   name: Revert

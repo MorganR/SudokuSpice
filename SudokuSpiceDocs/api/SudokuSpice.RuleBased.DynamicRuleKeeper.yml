@@ -5,10 +5,10 @@ items:
   id: DynamicRuleKeeper
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  - SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  - SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules
-  - SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
   langs:
@@ -54,16 +54,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  id: '#ctor(SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})'
+- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  id: '#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})'
   parent: SudokuSpice.RuleBased.DynamicRuleKeeper
   langs:
   - csharp
   - vb
-  name: DynamicRuleKeeper(PossibleValues, IReadOnlyList<ISudokuRule>)
-  nameWithType: DynamicRuleKeeper.DynamicRuleKeeper(PossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.RuleBased.PossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
+  name: DynamicRuleKeeper(IReadOnlyList<ISudokuRule>)
+  nameWithType: DynamicRuleKeeper.DynamicRuleKeeper(IReadOnlyList<ISudokuRule>)
+  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
   type: Constructor
   source:
     remote:
@@ -72,40 +72,37 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
-    startLine: 23
+    startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nConstructs a rule keeper that will enforce all the given rules.\n"
   example: []
   syntax:
-    content: public DynamicRuleKeeper(PossibleValues possibleValues, IReadOnlyList<ISudokuRule> rules)
+    content: public DynamicRuleKeeper(IReadOnlyList<ISudokuRule> rules)
     parameters:
-    - id: possibleValues
-      type: SudokuSpice.RuleBased.PossibleValues
-      description: "\nThe shared possible values instance to use when solving.\n"
     - id: rules
       type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
       description: The rules to enforce.
-    content.vb: Public Sub New(possibleValues As PossibleValues, rules As IReadOnlyList(Of ISudokuRule))
+    content.vb: Public Sub New(rules As IReadOnlyList(Of ISudokuRule))
   overload: SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor*
-  nameWithType.vb: DynamicRuleKeeper.DynamicRuleKeeper(PossibleValues, IReadOnlyList(Of ISudokuRule))
+  nameWithType.vb: DynamicRuleKeeper.DynamicRuleKeeper(IReadOnlyList(Of ISudokuRule))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.RuleBased.PossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
-  name.vb: DynamicRuleKeeper(PossibleValues, IReadOnlyList(Of ISudokuRule))
-- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
-  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
-  id: CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  fullName.vb: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
+  name.vb: DynamicRuleKeeper(IReadOnlyList(Of ISudokuRule))
+- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   parent: SudokuSpice.RuleBased.DynamicRuleKeeper
   langs:
   - csharp
   - vb
-  name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  nameWithType: DynamicRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.PossibleValues)
+  name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: DynamicRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   type: Method
   source:
     remote:
@@ -114,50 +111,47 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
-    startLine: 43
+    startLine: 38
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
   example: []
   syntax:
-    content: public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
+    content: public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
       description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
-    - id: possibleValues
-      type: SudokuSpice.RuleBased.PossibleValues
-      description: "\nThe new possible values reference. Should contain the same data as the current possible\nvalues instance.\n"
     return:
       type: SudokuSpice.RuleBased.ISudokuRuleKeeper
-    content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzle, possibleValues As PossibleValues) As ISudokuRuleKeeper
+    content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As ISudokuRuleKeeper
   overload: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  - SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  id: TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   parent: SudokuSpice.RuleBased.DynamicRuleKeeper
   langs:
   - csharp
   - vb
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: DynamicRuleKeeper.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  name: TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: DynamicRuleKeeper.TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: TryInitFor
+    id: TryInit
     path: ../SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
-    startLine: 53
+    startLine: 44
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -165,18 +159,18 @@ items:
   remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule keeper&apos;s state is\nunchanged on failure.\n"
   example: []
   syntax:
-    content: public bool TryInitFor(IReadOnlyPuzzle puzzle)
+    content: public bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
       description: The puzzle to be solved.
     return:
       type: System.Boolean
       description: "\nFalse if the rule keeper couldn&apos;t be initialized, for example if the puzzle already\nviolates one of the rules. Else returns true.\n"
-    content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
-  overload: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor*
+    content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
+  overload: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -199,7 +193,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetRules
     path: ../SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
-    startLine: 81
+    startLine: 73
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -235,7 +229,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TrySet
     path: ../SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
-    startLine: 84
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -282,7 +276,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Unset
     path: ../SudokuSpice/RuleBased/framework/DynamicRuleKeeper.cs
-    startLine: 125
+    startLine: 120
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -617,12 +611,6 @@ references:
   name: DynamicRuleKeeper
   nameWithType: DynamicRuleKeeper.DynamicRuleKeeper
   fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper
-- uid: SudokuSpice.RuleBased.PossibleValues
-  commentId: T:SudokuSpice.RuleBased.PossibleValues
-  parent: SudokuSpice.RuleBased
-  name: PossibleValues
-  nameWithType: PossibleValues
-  fullName: SudokuSpice.RuleBased.PossibleValues
 - uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
   commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
   parent: System.Collections.Generic
@@ -715,105 +703,86 @@ references:
   name: CopyWithNewReferences
   nameWithType: DynamicRuleKeeper.CopyWithNewReferences
   fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
-  name: CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.PossibleValues)
+  name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: CopyWithNewReferences
     nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
     fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.RuleBased.PossibleValues
-    name: PossibleValues
-    nameWithType: PossibleValues
-    fullName: SudokuSpice.RuleBased.PossibleValues
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+    name: IReadOnlyPuzzleWithMutablePossibleValues
+    nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues)
+  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: CopyWithNewReferences
     nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
     fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.RuleBased.PossibleValues
-    name: PossibleValues
-    nameWithType: PossibleValues
-    fullName: SudokuSpice.RuleBased.PossibleValues
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+    name: IReadOnlyPuzzleWithMutablePossibleValues
+    nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor*
-  commentId: Overload:SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor
-  name: TryInitFor
-  nameWithType: DynamicRuleKeeper.TryInitFor
-  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInitFor
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IReadOnlyPuzzleWithMutablePossibleValues
+  nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit*
+  commentId: Overload:SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit
+  name: TryInit
+  nameWithType: DynamicRuleKeeper.TryInit
+  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit
+- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: ISudokuRuleKeeper.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  name: TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: ISudokuRuleKeeper.TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-    name: TryInitFor
-    nameWithType: ISudokuRuleKeeper.TryInitFor
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor
+  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+    name: TryInit
+    nameWithType: ISudokuRuleKeeper.TryInit
+    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+    name: IReadOnlyPuzzleWithMutablePossibleValues
+    nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-    name: TryInitFor
-    nameWithType: ISudokuRuleKeeper.TryInitFor
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInitFor
+  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+    name: TryInit
+    nameWithType: ISudokuRuleKeeper.TryInit
+    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+    name: IReadOnlyPuzzleWithMutablePossibleValues
+    nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   - name: )
     nameWithType: )
     fullName: )
@@ -928,6 +897,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.DynamicRuleKeeper.Unset*
   commentId: Overload:SudokuSpice.RuleBased.DynamicRuleKeeper.Unset
   name: Unset

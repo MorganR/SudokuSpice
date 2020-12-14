@@ -5,16 +5,6 @@ namespace SudokuSpice.RuleBased.Rules.Test
 {
     public class ColumnUniquenessRuleTest
     {
-        [Theory]
-        [InlineData(1)]
-        [InlineData(9)]
-        [InlineData(25)]
-        public void Constructor_AcceptsValidPuzzleSizes(int size)
-        {
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(size));
-            Assert.NotNull(rule);
-        }
-
         [Fact]
         public void TryInitFor_FiltersCorrectly()
         {
@@ -24,9 +14,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
+            var rule = new ColumnUniquenessRule();
 
-            Assert.True(rule.TryInitFor(puzzle));
+            Assert.True(rule.TryInit(puzzle));
 
             Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b11100), rule.GetPossibleValues(new Coordinate(0, 1)));
@@ -44,9 +34,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                             {     null /* 4 */,            1, null /* 2 */, 3},
                             {                3, null /* 2 */, null /* 4 */, 1}
                     });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
+            var rule = new ColumnUniquenessRule();
 
-            Assert.False(rule.TryInitFor(puzzle));
+            Assert.False(rule.TryInit(puzzle));
         }
 
         [Fact]
@@ -58,8 +48,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new ColumnUniquenessRule();
+            Assert.True(rule.TryInit(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
             ISudokuRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -92,8 +82,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new ColumnUniquenessRule();
+            Assert.True(rule.TryInit(puzzle));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             int val = 3;
@@ -118,8 +108,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new ColumnUniquenessRule();
+            Assert.True(rule.TryInit(puzzle));
             IList<BitVector> initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
             var coord = new Coordinate(1, 1);
             int val = 3;
@@ -144,8 +134,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new ColumnUniquenessRule();
+            Assert.True(rule.TryInit(puzzle));
             IList<BitVector> initialPossibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
@@ -175,8 +165,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */,            1, null /* 2 */, 3},
                 {           3, null /* 2 */, null /* 4 */, 1}
             });
-            var rule = new ColumnUniquenessRule(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new ColumnUniquenessRule();
+            Assert.True(rule.TryInit(puzzle));
             IList<BitVector> possibleValuesByColumn = _GetPossibleValuesByColumn(puzzle.Size, rule);
 
             for (int column = 0; column < possibleValuesByColumn.Count; column++)
@@ -198,13 +188,6 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 possibleColumnValues.Add(rule.GetMissingValuesForColumn(column));
             }
             return possibleColumnValues;
-        }
-
-        private BitVector _GetAllPossibleValues(int size)
-        {
-            var possibleValues = BitVector.CreateWithSize(size + 1);
-            possibleValues.UnsetBit(0);
-            return possibleValues;
         }
     }
 }

@@ -92,7 +92,7 @@ instead of the normal square box regions.</p>
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.BoxUniquenessRule.html"><code>BoxUniquenessRule</code></a>. For convenience and
 efficiency, these come prepackaged in the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.StandardRules.html"><code>StandardRules</code></a> class. Rules do not directly modify the
-<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or <a class="xref" href="../api/SudokuSpice.RuleBased.PossibleValues.html"><code>PossibleValues</code></a>
+<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a>
 themselves. They should use an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
 enough internal state to efficiently provide the possible values of any given square according to
 <em>only</em> that rule.</p>
@@ -102,7 +102,7 @@ that works with any number of rules. Custom implementations can provide even mor
 are generally messier and more complex than simply creating custom rules.
 <a class="xref" href="../api/SudokuSpice.RuleBased.StandardRuleKeeper.html"><code>StandardRuleKeeper</code></a> is an example of this. Check out
 the <a href="performance.html">benchmarks</a> for performance comparisons. The rule keeper actually
-updates the <a class="xref" href="../api/SudokuSpice.RuleBased.PossibleValues.html"><code>PossibleValues</code></a> based on all the rules while
+updates the <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a> based on all the rules while
 ensuring that no rules are broken by a given update.</p>
 </li>
 <li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.html"><code>ISudokuHeuristic</code></a></p>
@@ -111,7 +111,7 @@ given square. These are only used in solving when the framework would otherwise 
 (i.e. all unset squares have at least two possible values), so they can be relatively expensive
 and still improve solving times.</p>
 <p>Heuristics depend on an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and directly modify
-the <a class="xref" href="../api/SudokuSpice.RuleBased.PossibleValues.html"><code>PossibleValues</code></a>. They can alo optionally depend on one or
+the <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a>. They can alo optionally depend on one or
 more rules, as is demonstrated by the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.html"><code>UniqueInRowHeuristic</code></a>. Heuristics can either
 be <em>perfect</em> heuristics, i.e. they reduce squares to only one possible value (like the <code>UniqueIn*</code>

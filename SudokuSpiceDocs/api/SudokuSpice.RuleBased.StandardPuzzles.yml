@@ -5,7 +5,7 @@ items:
   id: StandardPuzzles
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.StandardPuzzles.CreateSolver(System.Int32)
+  - SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
   langs:
   - csharp
   - vb
@@ -20,7 +20,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: StandardPuzzles
     path: ../SudokuSpice/RuleBased/StandardPuzzles.cs
-    startLine: 5
+    startLine: 4
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -44,16 +44,16 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.StandardPuzzles.CreateSolver(System.Int32)
-  id: CreateSolver(System.Int32)
+- uid: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+  commentId: M:SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+  id: CreateSolver
   parent: SudokuSpice.RuleBased.StandardPuzzles
   langs:
   - csharp
   - vb
-  name: CreateSolver(Int32)
-  nameWithType: StandardPuzzles.CreateSolver(Int32)
-  fullName: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver(System.Int32)
+  name: CreateSolver()
+  nameWithType: StandardPuzzles.CreateSolver()
+  fullName: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver()
   type: Method
   source:
     remote:
@@ -62,18 +62,15 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CreateSolver
     path: ../SudokuSpice/RuleBased/StandardPuzzles.cs
-    startLine: 7
+    startLine: 6
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   syntax:
-    content: public static PuzzleSolver CreateSolver(int size)
-    parameters:
-    - id: size
-      type: System.Int32
+    content: public static PuzzleSolver CreateSolver()
     return:
       type: SudokuSpice.RuleBased.PuzzleSolver
-    content.vb: Public Shared Function CreateSolver(size As Integer) As PuzzleSolver
+    content.vb: Public Shared Function CreateSolver As PuzzleSolver
   overload: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver*
   modifiers.csharp:
   - public
@@ -384,13 +381,6 @@ references:
   name: CreateSolver
   nameWithType: StandardPuzzles.CreateSolver
   fullName: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: SudokuSpice.RuleBased.PuzzleSolver
   commentId: T:SudokuSpice.RuleBased.PuzzleSolver
   parent: SudokuSpice.RuleBased

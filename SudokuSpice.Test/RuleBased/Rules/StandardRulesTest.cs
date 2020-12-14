@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace SudokuSpice.RuleBased.Rules.Test
@@ -15,9 +14,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules();
 
-            Assert.True(rule.TryInitFor(puzzle));
+            Assert.True(rule.TryInit(puzzle));
 
             Assert.Equal(new BitVector(0b11000), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b01000), rule.GetPossibleValues(new Coordinate(0, 2)));
@@ -39,9 +38,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                         {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                         {           3,            2,            4,            1}
                 });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules();
 
-            Assert.False(rule.TryInitFor(puzzle));
+            Assert.False(rule.TryInit(puzzle));
         }
 
         [Fact]
@@ -54,9 +53,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                         {null /* 4 */,            1, null /* 2 */, 3},
                         {           3, null /* 2 */, null /* 4 */, 1}
                     });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules();
 
-            Assert.False(rule.TryInitFor(puzzle));
+            Assert.False(rule.TryInit(puzzle));
         }
 
         [Fact]
@@ -69,9 +68,9 @@ namespace SudokuSpice.RuleBased.Rules.Test
                             {null /* 4 */,      null /* 1 */,            2, 3},
                             {null /* 3 */,      null /* 2 */,            4, 1}
                 });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
+            var rule = new StandardRules();
 
-            Assert.False(rule.TryInitFor(puzzle));
+            Assert.False(rule.TryInit(puzzle));
         }
 
         [Fact]
@@ -83,8 +82,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new StandardRules();
+            Assert.True(rule.TryInit(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
             ISudokuRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -117,8 +116,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new StandardRules();
+            Assert.True(rule.TryInit(puzzle));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             int val = 3;
@@ -145,8 +144,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var rule = new StandardRules(_GetAllPossibleValues(puzzle.Size));
-            Assert.True(rule.TryInitFor(puzzle));
+            var rule = new StandardRules();
+            Assert.True(rule.TryInit(puzzle));
             BitVector[,] initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
@@ -180,13 +179,6 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     possibleValues[row, column] = rule.GetPossibleValues(new Coordinate(row, column));
                 }
             }
-            return possibleValues;
-        }
-
-        private BitVector _GetAllPossibleValues(int size)
-        {
-            var possibleValues = BitVector.CreateWithSize(size + 1);
-            possibleValues.UnsetBit(0);
             return possibleValues;
         }
     }

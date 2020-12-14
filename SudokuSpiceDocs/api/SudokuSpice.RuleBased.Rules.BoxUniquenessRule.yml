@@ -5,14 +5,13 @@ items:
   id: BoxUniquenessRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox(System.Int32)
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   langs:
   - csharp
   - vb
@@ -34,16 +33,23 @@ items:
   summary: "\nRestricts that each &apos;box&apos; contains all unique values.\n"
   example: []
   syntax:
-    content: 'public class BoxUniquenessRule : IMissingBoxValuesTracker, ISudokuRule'
+    content: 'public class BoxUniquenessRule : UniquenessRule, IMissingBoxValuesTracker, ISudokuRule'
     content.vb: >-
       Public Class BoxUniquenessRule
+          Inherits UniquenessRule
           Implements IMissingBoxValuesTracker, ISudokuRule
   inheritance:
   - System.Object
+  - SudokuSpice.RuleBased.Rules.UniquenessRule
   implements:
   - SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
   - SudokuSpice.RuleBased.Rules.ISudokuRule
   inheritedMembers:
+  - SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -57,16 +63,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor(SudokuSpice.RuleBased.BitVector)
-  id: '#ctor(SudokuSpice.RuleBased.BitVector)'
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor
+  id: '#ctor'
   parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
   langs:
   - csharp
   - vb
-  name: BoxUniquenessRule(BitVector)
-  nameWithType: BoxUniquenessRule.BoxUniquenessRule(BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.BoxUniquenessRule(SudokuSpice.RuleBased.BitVector)
+  name: BoxUniquenessRule()
+  nameWithType: BoxUniquenessRule.BoxUniquenessRule()
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.BoxUniquenessRule()
   type: Constructor
   source:
     remote:
@@ -75,31 +81,28 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 15
+    startLine: 12
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   syntax:
-    content: public BoxUniquenessRule(BitVector allUniqueValues)
-    parameters:
-    - id: allUniqueValues
-      type: SudokuSpice.RuleBased.BitVector
-    content.vb: Public Sub New(allUniqueValues As BitVector)
+    content: public BoxUniquenessRule()
+    content.vb: Public Sub New
   overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
   langs:
   - csharp
   - vb
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: BoxUniquenessRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
@@ -108,113 +111,75 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 31
+    startLine: 21
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   summary: "\nCreates a deep copy of this ISudokuRule, with any internal <code>IReadOnlyPuzzle</code>\nreferences updated to the given puzzle.\n"
   example: []
   syntax:
-    content: public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
+    content: public override ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
       description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
     return:
       type: SudokuSpice.RuleBased.Rules.ISudokuRule
-    content.vb: Public Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As ISudokuRule
+    content.vb: Public Overrides Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As ISudokuRule
+  overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference*
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - Overrides
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
   langs:
   - csharp
   - vb
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: BoxUniquenessRule.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  name: TryInit(IReadOnlyPuzzle)
+  nameWithType: BoxUniquenessRule.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: TryInitFor
+    id: TryInit
     path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 50
+    startLine: 40
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   summary: "\nTries to initialize this rule to prepare to solve the given puzzle.\n"
   example: []
   syntax:
-    content: public bool TryInitFor(IReadOnlyPuzzle puzzle)
+    content: public override bool TryInit(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe puzzle to be solved. Must implement <xref href=\"SudokuSpice.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>, else this\nfails and returns false.\n"
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
+      description: "\nThe puzzle to be solved. Must implement <xref href=\"SudokuSpice.RuleBased.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>, else this\nfails and returns false.\n"
     return:
       type: System.Boolean
       description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
-    content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
-  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor*
+    content.vb: Public Overrides Function TryInit(puzzle As IReadOnlyPuzzle) As Boolean
+  overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit*
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  id: GetPossibleValues(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
-  langs:
-  - csharp
-  - vb
-  name: GetPossibleValues(Coordinate)
-  nameWithType: BoxUniquenessRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues(SudokuSpice.Coordinate)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
-    id: GetPossibleValues
-    path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 91
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nGets the possible values for the given coordinate based on this rule.\n"
-  remarks: "\nWhen implementing this method, avoid depending on dynamic information in the current\npuzzle being solved, such as the currently set values. This method must return\ninformation that reflects the most recent calls to\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>\nor <xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>, as it can\nbe called before or after modifying the underlying puzzle&apos;s data.\n"
-  example: []
-  syntax:
-    content: public BitVector GetPossibleValues(in Coordinate c)
-    parameters:
-    - id: c
-      type: SudokuSpice.Coordinate
-    return:
-      type: SudokuSpice.RuleBased.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
-  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues*
-  implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  nameWithType.vb: BoxUniquenessRule.GetPossibleValues(ByRef Coordinate)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues(ByRef SudokuSpice.Coordinate)
-  name.vb: GetPossibleValues(ByRef Coordinate)
+  - Overrides
 - uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox(System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox(System.Int32)
   id: GetMissingValuesForBox(System.Int32)
@@ -233,7 +198,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetMissingValuesForBox
     path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 98
+    startLine: 56
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -254,147 +219,138 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  id: Revert(SudokuSpice.Coordinate@,System.Int32)
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
   langs:
   - csharp
   - vb
-  name: Revert(Coordinate, Int32)
-  nameWithType: BoxUniquenessRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  name: GetNumDimensions(IReadOnlyPuzzle)
+  nameWithType: BoxUniquenessRule.GetNumDimensions(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: Revert
+    id: GetNumDimensions
     path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 101
+    startLine: 59
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUndoes an update for the given value at the specified coordinate.\n<p>\nThis performs the same internal updates as\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>, but without passing\naffected coordinates back to the caller. Therefore this is more efficient in cases\nwhere the caller already knows all the possible coordinates that could be affected.\n</p>\n"
-  remarks: "\nThis method will always be called before reverting the value on the underlying puzzle.\n"
+  summary: "\nReturns the number of dimensions that will be enforced to contain unique values.\n"
   example: []
   syntax:
-    content: public void Revert(in Coordinate c, int val)
+    content: protected override int GetNumDimensions(IReadOnlyPuzzle puzzle)
     parameters:
-    - id: c
-      type: SudokuSpice.Coordinate
-      description: The coordinate where a value is being unset.
-    - id: val
+    - id: puzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
+      description: The puzzle for which to determine the number of dimensions.
+    return:
       type: System.Int32
-      description: The value being unset.
-    content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer)
-  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert*
-  implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  nameWithType.vb: BoxUniquenessRule.Revert(ByRef Coordinate, Int32)
+    content.vb: Protected Overrides Function GetNumDimensions(puzzle As IReadOnlyPuzzle) As Integer
+  overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions*
   modifiers.csharp:
-  - public
+  - protected
+  - override
   modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32)
-  name.vb: Revert(ByRef Coordinate, Int32)
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  id: Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - Protected
+  - Overrides
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+  id: GetDimension(SudokuSpice.Coordinate@)
   parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
   langs:
   - csharp
   - vb
-  name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: BoxUniquenessRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  name: GetDimension(Coordinate)
+  nameWithType: BoxUniquenessRule.GetDimension(Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: Revert
+    id: GetDimension
     path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 109
+    startLine: 61
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUndoes an update for the given value at the specified coordinate. Tracks affected\ncoordinates in the given tracker.\n"
-  remarks: "\nThis method will always be called before reverting the value on the underlying puzzle.\n"
+  summary: "\nGets the dimension for a coordinate.\n"
   example: []
   syntax:
-    content: public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
+    content: protected override int GetDimension(in Coordinate c)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The coordinate where a value is being unset.
-    - id: val
+    return:
       type: System.Int32
-      description: The value being unset.
-    - id: coordTracker
+    content.vb: Protected Overrides Function GetDimension(ByRef c As Coordinate) As Integer
+  overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension*
+  nameWithType.vb: BoxUniquenessRule.GetDimension(ByRef Coordinate)
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+  fullName.vb: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension(ByRef SudokuSpice.Coordinate)
+  name.vb: GetDimension(ByRef Coordinate)
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  id: TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
+  langs:
+  - csharp
+  - vb
+  name: TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
+  nameWithType: BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TrackUnsetCoordinatesOnSameDimension
+    path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
+    startLine: 63
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Rules
+  summary: "\nAdds the coordinates of unset values on the given dimension to the given tracker.\n"
+  example: []
+  syntax:
+    content: protected override void TrackUnsetCoordinatesOnSameDimension(int dimension, in Coordinate source, CoordinateTracker tracker)
+    parameters:
+    - id: dimension
+      type: System.Int32
+      description: The dimension to search.
+    - id: source
+      type: SudokuSpice.Coordinate
+      description: The source coordinate for the change; should be skipped.
+    - id: tracker
       type: SudokuSpice.CoordinateTracker
-      description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
-    content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
-  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert*
-  implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  nameWithType.vb: BoxUniquenessRule.Revert(ByRef Coordinate, Int32, CoordinateTracker)
+      description: The tracker to add coordiantes to.
+    content.vb: Protected Overrides Sub TrackUnsetCoordinatesOnSameDimension(dimension As Integer, ByRef source As Coordinate, tracker As CoordinateTracker)
+  overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension*
+  nameWithType.vb: BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
   modifiers.csharp:
-  - public
+  - protected
+  - override
   modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  name.vb: Revert(ByRef Coordinate, Int32, CoordinateTracker)
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  id: Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.BoxUniquenessRule
-  langs:
-  - csharp
-  - vb
-  name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: BoxUniquenessRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
-    id: Update
-    path: ../SudokuSpice/RuleBased/Rules/BoxUniquenessRule.cs
-    startLine: 119
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUpdates possible values based on setting the given coordinate to the given value.\nTracks affected coordinates in the given tracker.\n"
-  remarks: "\nThis method will always be called before setting the value on the underlying puzzle.\n"
-  example: []
-  syntax:
-    content: public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
-    parameters:
-    - id: c
-      type: SudokuSpice.Coordinate
-      description: The coordinate to update.
-    - id: val
-      type: System.Int32
-      description: The value to set <code>c</code> to.
-    - id: coordTracker
-      type: SudokuSpice.CoordinateTracker
-      description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
-    content.vb: Public Sub Update(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
-  overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update*
-  implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  nameWithType.vb: BoxUniquenessRule.Update(ByRef Coordinate, Int32, CoordinateTracker)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  name.vb: Update(ByRef Coordinate, Int32, CoordinateTracker)
+  - Protected
+  - Overrides
+  fullName.vb: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, ByRef SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  name.vb: TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
 references:
 - uid: SudokuSpice.RuleBased.Rules
   commentId: N:SudokuSpice.RuleBased.Rules
@@ -408,6 +364,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule
+  commentId: T:SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules
+  name: UniquenessRule
+  nameWithType: UniquenessRule
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule
 - uid: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
   commentId: T:SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
   parent: SudokuSpice.RuleBased.Rules
@@ -420,6 +382,268 @@ references:
   name: ISudokuRule
   nameWithType: ISudokuRule
   fullName: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  name: GetPossibleValues(Coordinate)
+  nameWithType: UniquenessRule.GetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: UniquenessRule.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: UniquenessRule.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  isExternal: true
+  name: Revert(Coordinate, Int32)
+  nameWithType: UniquenessRule.Revert(Coordinate, Int32)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+    name: Revert
+    nameWithType: UniquenessRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+    name: Revert
+    nameWithType: UniquenessRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  isExternal: true
+  name: Revert(Coordinate, Int32, CoordinateTracker)
+  nameWithType: UniquenessRule.Revert(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Revert
+    nameWithType: UniquenessRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Revert
+    nameWithType: UniquenessRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  isExternal: true
+  name: Update(Coordinate, Int32, CoordinateTracker)
+  nameWithType: UniquenessRule.Update(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Update
+    nameWithType: UniquenessRule.Update
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Update
+    nameWithType: UniquenessRule.Update
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    nameWithType: CoordinateTracker
+    fullName: SudokuSpice.CoordinateTracker
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  isExternal: true
+  name: GetPossibleValues(Int32)
+  nameWithType: UniquenessRule.GetPossibleValues(Int32)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+    name: GetPossibleValues
+    nameWithType: UniquenessRule.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+    name: GetPossibleValues
+    nameWithType: UniquenessRule.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -710,113 +934,174 @@ references:
   name: BoxUniquenessRule
   nameWithType: BoxUniquenessRule.BoxUniquenessRule
   fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.BoxUniquenessRule
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
-  name: BitVector
-  nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice.RuleBased
-  commentId: N:SudokuSpice.RuleBased
-  name: SudokuSpice.RuleBased
-  nameWithType: SudokuSpice.RuleBased
-  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  name: CopyWithNewReference(IReadOnlyPuzzle)
+  nameWithType: UniquenessRule.CopyWithNewReference(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: CopyWithNewReference
+    nameWithType: UniquenessRule.CopyWithNewReference
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: CopyWithNewReference
+    nameWithType: UniquenessRule.CopyWithNewReference
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference
   name: CopyWithNewReference
   nameWithType: BoxUniquenessRule.CopyWithNewReference
   fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.CopyWithNewReference
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.ISudokuRule
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: ISudokuRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: CopyWithNewReference
     nameWithType: ISudokuRule.CopyWithNewReference
     fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: CopyWithNewReference
     nameWithType: ISudokuRule.CopyWithNewReference
     fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
+  parent: SudokuSpice.RuleBased
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: SudokuSpice.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.IReadOnlyBoxPuzzle
-  parent: SudokuSpice
+  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+  parent: SudokuSpice.RuleBased
   name: IReadOnlyBoxPuzzle
   nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor
-  name: TryInitFor
-  nameWithType: BoxUniquenessRule.TryInitFor
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInitFor
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: ISudokuRule.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  name: TryInit(IReadOnlyPuzzle)
+  nameWithType: UniquenessRule.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-    name: TryInitFor
-    nameWithType: ISudokuRule.TryInitFor
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: TryInit
+    nameWithType: UniquenessRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-    name: TryInitFor
-    nameWithType: ISudokuRule.TryInitFor
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: TryInit
+    nameWithType: UniquenessRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
     nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit
+  name: TryInit
+  nameWithType: BoxUniquenessRule.TryInit
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+  name: TryInit(IReadOnlyPuzzle)
+  nameWithType: ISudokuRule.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: TryInit
+    nameWithType: ISudokuRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: TryInit
+    nameWithType: ISudokuRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
@@ -827,53 +1112,6 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues
-  name: GetPossibleValues
-  nameWithType: BoxUniquenessRule.GetPossibleValues
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetPossibleValues
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
-  name: GetPossibleValues(Coordinate)
-  nameWithType: ISudokuRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate)
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-    name: GetPossibleValues
-    nameWithType: ISudokuRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-    name: GetPossibleValues
-    nameWithType: ISudokuRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.Coordinate
-  commentId: T:SudokuSpice.Coordinate
-  parent: SudokuSpice
-  name: Coordinate
-  nameWithType: Coordinate
-  fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox*
   commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetMissingValuesForBox
   name: GetMissingValuesForBox
@@ -925,76 +1163,64 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert
-  name: Revert
-  nameWithType: BoxUniquenessRule.Revert
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Revert
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
-  isExternal: true
-  name: Revert(Coordinate, Int32)
-  nameWithType: ISudokuRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate, System.Int32)
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  name: GetNumDimensions(IReadOnlyPuzzle)
+  nameWithType: UniquenessRule.GetNumDimensions(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-    name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: GetNumDimensions
+    nameWithType: UniquenessRule.GetNumDimensions
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-    name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+    name: GetNumDimensions
+    nameWithType: UniquenessRule.GetNumDimensions
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
-  isExternal: true
-  name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: ISudokuRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions
+  name: GetNumDimensions
+  nameWithType: BoxUniquenessRule.GetNumDimensions
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetNumDimensions
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  name: GetDimension(Coordinate)
+  nameWithType: UniquenessRule.GetDimension(Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+    name: GetDimension
+    nameWithType: UniquenessRule.GetDimension
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension
   - name: (
     nameWithType: (
     fullName: (
@@ -1002,14 +1228,67 @@ references:
     name: Coordinate
     nameWithType: Coordinate
     fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+    name: GetDimension
+    nameWithType: UniquenessRule.GetDimension
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension
+  name: GetDimension
+  nameWithType: BoxUniquenessRule.GetDimension
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.GetDimension
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  isExternal: true
+  name: TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
+  nameWithType: UniquenessRule.TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+    name: TrackUnsetCoordinatesOnSameDimension
+    nameWithType: UniquenessRule.TrackUnsetCoordinatesOnSameDimension
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension
+  - name: (
+    nameWithType: (
+    fullName: (
   - uid: System.Int32
     name: Int32
     nameWithType: Int32
     fullName: System.Int32
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1021,25 +1300,25 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+    name: TrackUnsetCoordinatesOnSameDimension
+    nameWithType: UniquenessRule.TrackUnsetCoordinatesOnSameDimension
+    fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
   - uid: System.Int32
     name: Int32
     nameWithType: Int32
     fullName: System.Int32
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1050,81 +1329,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension
+  name: TrackUnsetCoordinatesOnSameDimension
+  nameWithType: BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension
+  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension
 - uid: SudokuSpice.CoordinateTracker
   commentId: T:SudokuSpice.CoordinateTracker
   parent: SudokuSpice
   name: CoordinateTracker
   nameWithType: CoordinateTracker
   fullName: SudokuSpice.CoordinateTracker
-- uid: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update
-  name: Update
-  nameWithType: BoxUniquenessRule.Update
-  fullName: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.Update
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
-  isExternal: true
-  name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: ISudokuRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Update
-    nameWithType: ISudokuRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Update
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.CoordinateTracker
-    name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Update
-    nameWithType: ISudokuRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Update
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.CoordinateTracker
-    name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
-  - name: )
-    nameWithType: )
-    fullName: )

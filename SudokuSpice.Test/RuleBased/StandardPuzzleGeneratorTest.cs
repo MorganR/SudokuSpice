@@ -44,7 +44,7 @@ namespace SudokuSpice.RuleBased.Test
             Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            var solver = StandardPuzzles.CreateSolver(size);
+            var solver = StandardPuzzles.CreateSolver();
             SolveStats stats = solver.GetStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
@@ -52,10 +52,10 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Generate_WithShortTimeout_ThrowsTimeoutException()
         {
-            var generator = new StandardPuzzleGenerator(9);
+            var generator = new StandardPuzzleGenerator(25);
 
             Assert.Throws<TimeoutException>(
-                () => generator.Generate(17, TimeSpan.FromMilliseconds(1)));
+                () => generator.Generate(185, TimeSpan.FromMilliseconds(1)));
         }
     }
 }

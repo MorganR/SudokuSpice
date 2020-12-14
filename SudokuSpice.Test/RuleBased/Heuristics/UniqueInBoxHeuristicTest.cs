@@ -16,28 +16,25 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
-            var ruleKeeper = new StandardRuleKeeper(possibleValues);
-            Assert.True(ruleKeeper.TryInitFor(puzzle));
-            var heuristic = new UniqueInBoxHeuristic(
-                possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+            var ruleKeeper = new StandardRuleKeeper();
+            Assert.True(ruleKeeper.TryInit(puzzle));
+            var heuristic = new UniqueInBoxHeuristic((IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
             Assert.True(heuristic.TryInitFor(puzzle));
 
-            Assert.Equal(new BitVector(0b01110), possibleValues[new Coordinate(1, 1)]); // Pre-modified
+            Assert.Equal(new BitVector(0b01110), puzzle.GetPossibleValues(new (1, 1))); // Pre-modified
 
             heuristic.UpdateAll();
 
-            Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(0, 0)]);
-            Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(0, 1)]);
-            Assert.Equal(new BitVector(0b00110), possibleValues[new Coordinate(1, 0)]);
-            Assert.Equal(new BitVector(0b01000), possibleValues[new Coordinate(1, 1)]); // Modified
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (0, 0)));
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (0, 1)));
+            Assert.Equal(new BitVector(0b00110), puzzle.GetPossibleValues(new (1, 0)));
+            Assert.Equal(new BitVector(0b01000), puzzle.GetPossibleValues(new (1, 1))); // Modified
 
-            Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(2, 0)]);
-            Assert.Equal(new BitVector(0b10010), possibleValues[new Coordinate(2, 1)]);
-            Assert.Equal(new BitVector(0b00100), possibleValues[new Coordinate(3, 1)]);
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (2, 0)));
+            Assert.Equal(new BitVector(0b10010), puzzle.GetPossibleValues(new (2, 1)));
+            Assert.Equal(new BitVector(0b00100), puzzle.GetPossibleValues(new (3, 1)));
 
-            Assert.Equal(new BitVector(0b00010), possibleValues[new Coordinate(1, 2)]);
+            Assert.Equal(new BitVector(0b00010), puzzle.GetPossibleValues(new (1, 2)));
         }
 
         [Fact]
@@ -49,27 +46,24 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var possibleValues =new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
-            var ruleKeeper = new StandardRuleKeeper(possibleValues);
-            Assert.True(ruleKeeper.TryInitFor(puzzle));
+            var ruleKeeper = new StandardRuleKeeper();
+            Assert.True(ruleKeeper.TryInit(puzzle));
             var heuristic = new UniqueInBoxHeuristic(
-                possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+                (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
             Assert.True(heuristic.TryInitFor(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
-            var possibleValuesCopy = new PossibleValues(possibleValues);
             var ruleKeeperCopy = (StandardRuleKeeper)ruleKeeper.CopyWithNewReferences(
-                puzzleCopy, possibleValuesCopy);
+                puzzleCopy);
             ISudokuHeuristic heuristicCopy = heuristic.CopyWithNewReferences(
-                puzzleCopy, possibleValuesCopy, ruleKeeperCopy.GetRules());
+                puzzleCopy, ruleKeeperCopy.GetRules());
 
             var coord = new Coordinate(1, 1);
-            BitVector originalPossibleValues = possibleValues[coord];
-            Assert.Equal(originalPossibleValues, possibleValuesCopy[coord]);
+            BitVector originalPossibleValues = puzzle.GetPossibleValues(coord);
+            Assert.Equal(originalPossibleValues, puzzleCopy.GetPossibleValues(coord));
             heuristicCopy.UpdateAll();
-            Assert.Equal(originalPossibleValues, possibleValues[coord]);
-            Assert.NotEqual(originalPossibleValues, possibleValuesCopy[coord]);
+            Assert.Equal(originalPossibleValues, puzzle.GetPossibleValues(coord));
+            Assert.NotEqual(originalPossibleValues, puzzleCopy.GetPossibleValues(coord));
         }
 
         [Fact]
@@ -81,22 +75,18 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
                 {null /* 4 */, null /* 1 */,            2,            3},
                 {           3, null /* 2 */,            4,            1}
             });
-            var possibleValues =new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
-            var ruleKeeper = new StandardRuleKeeper(possibleValues);
-            Assert.True(ruleKeeper.TryInitFor(puzzle));
+            var ruleKeeper = new StandardRuleKeeper();
+            Assert.True(ruleKeeper.TryInit(puzzle));
             var heuristic = new UniqueInBoxHeuristic(
-                possibleValues, (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
+                (IMissingBoxValuesTracker)ruleKeeper.GetRules()[0]);
             Assert.True(heuristic.TryInitFor(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
-            var possibleValuesCopy = new PossibleValues(possibleValues);
-            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(possibleValuesCopy,
-                new List<ISudokuRule> {
-                    new ColumnUniquenessRule(possibleValues.AllPossible),
+            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(new List<ISudokuRule> {
+                    new ColumnUniquenessRule(),
                 });
             Assert.Throws<ArgumentException>(() => heuristic.CopyWithNewReferences(
-                puzzleCopy, possibleValuesCopy, ruleKeeperWithoutBoxTracker.GetRules()));
+                puzzleCopy, ruleKeeperWithoutBoxTracker.GetRules()));
         }
     }
 }

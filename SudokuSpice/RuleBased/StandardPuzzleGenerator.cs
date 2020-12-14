@@ -21,8 +21,8 @@ namespace SudokuSpice.RuleBased
         /// </exception>
         public StandardPuzzleGenerator(int size)
             : base(() => 
-                new Puzzle(_ValidatePuzzleSize(size)),
-                StandardPuzzles.CreateSolver(_ValidatePuzzleSize(size)))
+                new Puzzle(size),
+                StandardPuzzles.CreateSolver())
         {
             _size = size;
             _boxSize = size switch {
@@ -109,19 +109,6 @@ namespace SudokuSpice.RuleBased
                 throw new ArgumentOutOfRangeException(nameof(numToSet),
                     $"Must be in the range [{lowerBound}, {upperBound}] for puzzles of size {_size}.");
             }
-        }
-
-        private static int _ValidatePuzzleSize(int size)
-        {
-            if (!(size == 1
-                  || size == 4
-                  || size == 9
-                  || size == 16
-                  || size == 25))
-            {
-                throw new ArgumentException($"{nameof(size)} must be one of [1, 4, 9, 16, 25].");
-            };
-            return size;
         }
     }
 }

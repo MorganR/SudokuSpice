@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// The new puzzle reference to use. To ensure this rule's internal state is correct, this
         /// puzzle should contain the same data as the current puzzle referenced by this rule.
         /// </param>
-        ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle);
+        ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle);
 
         /// <summary>
         /// Gets the possible values for the given coordinate based on this rule.
@@ -75,7 +75,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <returns>
         /// False if the puzzle violates this rule and initialization fails, else true.
         /// </returns>
-        bool TryInitFor(IReadOnlyPuzzle puzzle);
+        bool TryInit(IReadOnlyPuzzle puzzle);
 
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value.

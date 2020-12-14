@@ -5,76 +5,34 @@ namespace SudokuSpice.RuleBased.Test
     public class PossibleValuesTest
     {
         [Fact]
-        public void Constructor_SetsAllUnsetToAllPossible()
+        public void Constructor_SetsAllCoordinatesToAllPossible()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
-            });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
-
-            var allPossibleValues = new BitVector(0b11110);
-            var noPossibleValues = new BitVector(0);
-
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(0, 0)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(0, 1)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(0, 2)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(0, 3)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 0)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 1)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(1, 2)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 3)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 0)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 1)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 2)]);
-            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 3)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 0)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 1)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 2)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 3)]);
-        }
-
-        [Fact]
-        public void Constructor_AcceptingAllPossibleValues_SetsAllUnsetWithThatValue()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
-            });
-
             var allPossibleValues = new BitVector(0b01100110);
-            var possibleValues = new PossibleValues(puzzle.Size, allPossibleValues);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var possibleValues = new PossibleValues(4, allPossibleValues);
 
-            var noPossibleValues = new BitVector(0);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(0, 0)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(0, 0)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(0, 1)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(0, 2)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(0, 3)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(0, 3)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 0)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 1)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(1, 2)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 2)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(1, 3)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 0)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 1)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 2)]);
             Assert.Equal(allPossibleValues, possibleValues[new Coordinate(2, 3)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 0)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 1)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 2)]);
-            Assert.Equal(noPossibleValues, possibleValues[new Coordinate(3, 3)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(3, 0)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(3, 1)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(3, 2)]);
+            Assert.Equal(allPossibleValues, possibleValues[new Coordinate(3, 3)]);
         }
 
         [Fact]
         public void CopyConstructor_PerformsDeepCopy()
         {
             int size = 4;
-            var possibleValues = new PossibleValues(size);
+            var possibleValues = new PossibleValues(size, _DefaultPossibleValuesForSize(size));
             var coord = new Coordinate(1, 1);
             possibleValues[coord] = new BitVector(0b0010);
 
@@ -102,8 +60,8 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var possibleValues = new PossibleValues(puzzle.Size, _DefaultPossibleValuesForSize(puzzle.Size));
+            possibleValues.Reset(puzzle.GetUnsetCoords());
 
             var coord = new Coordinate(1, 1);
             possibleValues.Intersect(coord, new BitVector(0b1010));
@@ -122,8 +80,8 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var possibleValues = new PossibleValues(puzzle.Size, _DefaultPossibleValuesForSize(puzzle.Size));
+            possibleValues.Reset(puzzle.GetUnsetCoords());
 
             var coord = new Coordinate(1, 1);
             possibleValues[coord] = new BitVector(0b1010);
@@ -140,14 +98,21 @@ namespace SudokuSpice.RuleBased.Test
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
-            var possibleValues = new PossibleValues(puzzle.Size);
-            possibleValues.ResetAt(puzzle.GetUnsetCoords());
+            var possibleValues = new PossibleValues(puzzle.Size, _DefaultPossibleValuesForSize(puzzle.Size));
+            possibleValues.Reset(puzzle.GetUnsetCoords());
 
             var coord = new Coordinate(1, 1);
             possibleValues[coord] = new BitVector(0b1010);
 
             possibleValues.Reset(coord);
             Assert.Equal(new BitVector(0b11110), possibleValues[coord]);
+        }
+
+        BitVector _DefaultPossibleValuesForSize(int size)
+        {
+            var allPossibles = BitVector.CreateWithSize(size + 1);
+            allPossibles.UnsetBit(0);
+            return allPossibles;
         }
     }
 }

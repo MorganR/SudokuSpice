@@ -5,7 +5,7 @@ items:
   id: IReadOnlyPuzzle
   parent: SudokuSpice
   children:
-  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   - SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
   - SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
@@ -182,37 +182,37 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
-  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
-  id: AllPossibleValues
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  id: AllPossibleValuesSpan
   parent: SudokuSpice.IReadOnlyPuzzle
   langs:
   - csharp
   - vb
-  name: AllPossibleValues
-  nameWithType: IReadOnlyPuzzle.AllPossibleValues
-  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+  name: AllPossibleValuesSpan
+  nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   type: Property
   source:
     remote:
       path: SudokuSpice/data/IReadOnlyPuzzle.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: AllPossibleValues
+    id: AllPossibleValuesSpan
     path: ../SudokuSpice/data/IReadOnlyPuzzle.cs
-    startLine: 20
+    startLine: 19
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
   summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
-    content: ReadOnlySpan<int> AllPossibleValues { get; }
+    content: ReadOnlySpan<int> AllPossibleValuesSpan { get; }
     parameters: []
     return:
       type: System.ReadOnlySpan{System.Int32}
-    content.vb: ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
-  overload: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues*
+    content.vb: ReadOnly Property AllPossibleValuesSpan As ReadOnlySpan(Of Integer)
+  overload: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -235,7 +235,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/data/IReadOnlyPuzzle.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -277,7 +277,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/data/IReadOnlyPuzzle.cs
-    startLine: 27
+    startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -315,7 +315,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetUnsetCoords
     path: ../SudokuSpice/data/IReadOnlyPuzzle.cs
-    startLine: 34
+    startLine: 33
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -366,11 +366,11 @@ references:
   name: NumSetSquares
   nameWithType: IReadOnlyPuzzle.NumSetSquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
-- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues*
-  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
-  name: AllPossibleValues
-  nameWithType: IReadOnlyPuzzle.AllPossibleValues
-  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValues
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan*
+  commentId: Overload:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  name: AllPossibleValuesSpan
+  nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
 - uid: System.ReadOnlySpan{System.Int32}
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System

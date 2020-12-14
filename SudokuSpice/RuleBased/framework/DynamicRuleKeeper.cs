@@ -10,56 +10,43 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     public class DynamicRuleKeeper : ISudokuRuleKeeper
     {
-        private readonly PossibleValues _possibleValues;
-        private readonly CoordinateTracker _coordTracker;
         private readonly IReadOnlyList<ISudokuRule> _rules;
+        private IReadOnlyPuzzleWithMutablePossibleValues? _puzzle;
+        private CoordinateTracker? _coordTracker;
 
         /// <summary>
         /// Constructs a rule keeper that will enforce all the given rules.
         /// </summary>
-        /// <param name="possibleValues">
-        /// The shared possible values instance to use when solving.
-        /// </param>
         /// <param name="rules">The rules to enforce.</param>
-        public DynamicRuleKeeper(PossibleValues possibleValues, IReadOnlyList<ISudokuRule> rules)
+        public DynamicRuleKeeper(IReadOnlyList<ISudokuRule> rules)
         {
-            _possibleValues = possibleValues;
-            _coordTracker = new CoordinateTracker(_possibleValues.Size);
             _rules = rules;
         }
 
-        private DynamicRuleKeeper(DynamicRuleKeeper existing, IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
+        private DynamicRuleKeeper(DynamicRuleKeeper existing, IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
         {
-            _coordTracker = new CoordinateTracker(puzzle.Size);
             var rules = new List<ISudokuRule>(existing._rules.Count);
             foreach (ISudokuRule? rule in existing._rules)
             {
                 rules.Add(rule.CopyWithNewReference(puzzle));
             }
             _rules = rules;
-            _possibleValues = possibleValues;
+            _puzzle = puzzle;
+            _coordTracker = puzzle is null ? null : new CoordinateTracker(puzzle.Size);
         }
 
         /// <inheritdoc/>
-        public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues)
+        public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
         {
-            Debug.Assert(puzzle.Size == _possibleValues.Size,
-                $"Puzzle size ({puzzle.Size}) must match current rule keeper size ({_possibleValues.Size})");
-            Debug.Assert(puzzle.Size == possibleValues.Size,
-                $"Puzzle size ({puzzle.Size}) must match possible values size ({possibleValues.Size})");
-            return new DynamicRuleKeeper(this, puzzle, possibleValues);
+            return new DynamicRuleKeeper(this, puzzle);
         }
 
         /// <inheritdoc/>
-        public bool TryInitFor(IReadOnlyPuzzle puzzle)
+        public bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
-            if (puzzle.Size != _possibleValues.Size)
-            {
-                return false;
-            }
             foreach (ISudokuRule r in _rules)
             {
-                if (!r.TryInitFor(puzzle))
+                if (!r.TryInit(puzzle))
                 {
                     return false;
                 }
@@ -68,13 +55,18 @@ namespace SudokuSpice.RuleBased
             {
                 foreach (ISudokuRule r in _rules)
                 {
-                    _possibleValues.Intersect(in c, r.GetPossibleValues(in c));
+                    puzzle.IntersectPossibleValues(in c, r.GetPossibleValues(in c));
                 }
-                if (_possibleValues[in c].IsEmpty())
+                if (puzzle.GetPossibleValues(in c).IsEmpty())
                 {
                     return false;    
                 }
             }
+            if (_coordTracker is null || _coordTracker.Size != puzzle.Size)
+            {
+                _coordTracker = new CoordinateTracker(puzzle.Size);
+            }
+            _puzzle = puzzle;
             return true;
         }
 
@@ -84,7 +76,10 @@ namespace SudokuSpice.RuleBased
         /// <inheritdoc/>
         public bool TrySet(in Coordinate c, int value)
         {
-            if (!_possibleValues[in c].IsBitSet(value))
+            Debug.Assert(_puzzle is not null
+                         && _coordTracker is not null,
+                         $"Rule keeper must be initialized before calling {nameof(TrySet)}.");
+            if (!_puzzle.GetPossibleValues(in c).IsBitSet(value))
             {
                 return false;
             }
@@ -99,9 +94,9 @@ namespace SudokuSpice.RuleBased
                 Coordinate affectedCoord = trackedCoords[i];
                 foreach (ISudokuRule? r in _rules)
                 {
-                    _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
+                    _puzzle.IntersectPossibleValues(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }
-                if (_possibleValues[in affectedCoord].IsEmpty())
+                if (_puzzle.GetPossibleValues(in affectedCoord).IsEmpty())
                 {
                     foreach (ISudokuRule? r in _rules)
                     {
@@ -110,10 +105,10 @@ namespace SudokuSpice.RuleBased
                     for (; i >= 0; i--)
                     {
                         affectedCoord = trackedCoords[i];
-                        _possibleValues.Reset(in affectedCoord);
+                        _puzzle.ResetPossibleValues(in affectedCoord);
                         foreach (ISudokuRule? r in _rules)
                         {
-                            _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
+                            _puzzle.IntersectPossibleValues(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                         }
                     }
                     return false;
@@ -125,6 +120,9 @@ namespace SudokuSpice.RuleBased
         /// <inheritdoc/>
         public void Unset(in Coordinate c, int value)
         {
+            Debug.Assert(_puzzle is not null
+                         && _coordTracker is not null,
+                         $"Rule keeper must be initialized before calling {nameof(Unset)}.");
             _coordTracker.UntrackAll();
             foreach (ISudokuRule? r in _rules)
             {
@@ -132,10 +130,10 @@ namespace SudokuSpice.RuleBased
             }
             foreach (Coordinate affectedCoord in _coordTracker.GetTrackedCoords())
             {
-                _possibleValues.Reset(in affectedCoord);
+                _puzzle.ResetPossibleValues(in affectedCoord);
                 foreach (ISudokuRule? r in _rules)
                 {
-                    _possibleValues.Intersect(in affectedCoord, r.GetPossibleValues(in affectedCoord));
+                    _puzzle.IntersectPossibleValues(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }
             }
         }

@@ -10,11 +10,10 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     internal class SquareTracker
     {
-        private readonly PossibleValues _possibleValues;
         private readonly ISudokuRuleKeeper _ruleKeeper;
         private readonly ISudokuHeuristic? _heuristic;
-        private readonly Stack<Coordinate> _setCoords;
-        private readonly Stack<Coordinate> _coordsThatUsedHeuristics;
+        private Stack<Coordinate>? _setCoords;
+        private Stack<Coordinate>? _coordsThatUsedHeuristics;
         private IPuzzle? _puzzle;
 
         public IReadOnlyPuzzle? Puzzle => _puzzle;
@@ -23,8 +22,6 @@ namespace SudokuSpice.RuleBased
         /// Constructs a square tracker to track the given puzzle using the given possible values,
         /// rule keeper, and heuristic.
         /// </summary>
-        /// <param name="puzzle">The puzzle to track.</param>
-        /// <param name="possibleValues">A possible values tracker for the given puzzle.</param>
         /// <param name="ruleKeeper">The rule keeper to satisfy when modifying this puzzle.</param>
         /// <param name="heuristic">
         /// A heuristic to use to solve this puzzle efficiently. Can be set to null to skip using
@@ -35,15 +32,11 @@ namespace SudokuSpice.RuleBased
         /// </para>
         /// </param>
         public SquareTracker(
-            PossibleValues possibleValues,
             ISudokuRuleKeeper ruleKeeper,
             ISudokuHeuristic? heuristic = null)
         {
-            _possibleValues = possibleValues;
             _ruleKeeper = ruleKeeper;
             _heuristic = heuristic;
-            _setCoords = new Stack<Coordinate>();
-            _coordsThatUsedHeuristics = new Stack<Coordinate>(_possibleValues.Size*_possibleValues.Size);
         }
 
         /// <summary>
@@ -56,17 +49,17 @@ namespace SudokuSpice.RuleBased
         public SquareTracker(SquareTracker existing)
         {
             _puzzle = existing._puzzle?.DeepCopy();
-            if (_puzzle is null)
+            if (existing._setCoords is not null)
             {
-                // TODO: Review this API. It should be possible to copy a tracker without a puzzle.
-                throw new InvalidOperationException($"Can only copy SquareTracker with non-null puzzle.");
+                _setCoords = new Stack<Coordinate>(existing._setCoords!);
             }
-            _possibleValues = new PossibleValues(existing._possibleValues);
-            _setCoords = new Stack<Coordinate>(existing._setCoords);
-            _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics);
-            _ruleKeeper = existing._ruleKeeper.CopyWithNewReferences(_puzzle, _possibleValues);
+            if (existing._coordsThatUsedHeuristics is not null)
+            {
+                _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics!);
+            }
+            _ruleKeeper = existing._ruleKeeper.CopyWithNewReferences(_puzzle);
             _heuristic = existing._heuristic?.CopyWithNewReferences(
-                _puzzle, _possibleValues, _ruleKeeper.GetRules());
+                _puzzle, _ruleKeeper.GetRules());
         }
 
         /// <summary>
@@ -78,14 +71,13 @@ namespace SudokuSpice.RuleBased
         /// </returns>
         public bool TryInit(IPuzzle puzzle)
         {
-            _possibleValues.ResetAt(puzzle.GetUnsetCoords());
-            if (!_ruleKeeper.TryInitFor(puzzle)
+            if (!_ruleKeeper.TryInit(puzzle)
                 || (!_heuristic?.TryInitFor(puzzle) ?? false))
             {
                 return false;
             }
-            _setCoords.Clear();
-            _coordsThatUsedHeuristics.Clear();
+            _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
+            _coordsThatUsedHeuristics = _heuristic is null ? null : new Stack<Coordinate>(puzzle.NumEmptySquares);
             _puzzle = puzzle;
             return true;
         }
@@ -96,6 +88,8 @@ namespace SudokuSpice.RuleBased
         /// <returns>The coordinate for the unset square with the least possible values.</returns>
         public Coordinate GetBestCoordinateToGuess()
         {
+            Debug.Assert(_puzzle is not null
+                         && _setCoords is not null, "Must initialize tracker.");
             Debug.Assert(_puzzle.NumEmptySquares > 0, "No unset squares left to guess!");
             Coordinate bestCoord;
             int numPossibles;
@@ -106,6 +100,8 @@ namespace SudokuSpice.RuleBased
             }
 
             // Try heuristics if there isn't a definite square value.
+            Debug.Assert(_coordsThatUsedHeuristics is not null, 
+                $"{nameof(_coordsThatUsedHeuristics)} must not be null if {nameof(_heuristic)} is non-null.");
             if (_setCoords.Count > 0)
             {
                 _coordsThatUsedHeuristics.Push(_setCoords.Peek());
@@ -123,7 +119,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
         /// <returns>A list of those possible values.</returns>
-        public List<int> GetPossibleValues(in Coordinate c) => _possibleValues[in c].GetSetBits();
+        public List<int> GetPossibleValues(in Coordinate c) => _puzzle!.GetPossibleValues(in c).GetSetBits();
 
         /// <summary>
         /// Populates a provided Span with the possible values at the given coordinate, and returns
@@ -143,7 +139,7 @@ namespace SudokuSpice.RuleBased
         /// </returns>
 
         public int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) => 
-            _possibleValues[in c].PopulateSetBits(possibleValues);
+            _puzzle!.GetPossibleValues(in c).PopulateSetBits(possibleValues);
 
         /// <summary>
         /// Tries to set the square at the given coordinate to the given possible value. This also 
@@ -155,6 +151,8 @@ namespace SudokuSpice.RuleBased
         /// <returns>True if the set succeeded.</returns>
         public bool TrySet(in Coordinate coord, int value)
         {
+            Debug.Assert(_puzzle is not null
+                         && _setCoords is not null, "Must initialize tracker.");
             bool isValid = _ruleKeeper.TrySet(in coord, value);
             if (!isValid)
             {
@@ -170,13 +168,15 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         public void UnsetLast()
         {
+            Debug.Assert(_puzzle is not null
+                         && _setCoords is not null, "Must initialize tracker.");
             Coordinate lastCoord = _setCoords.Pop();
 #pragma warning disable CS8629 // Nullable value type may be null.
             // If this is null, then we want to throw because this method is being misused.
             int value = _puzzle[in lastCoord].Value;
 #pragma warning restore CS8629 // Nullable value type may be null.
             _puzzle[in lastCoord] = null;
-            if (_coordsThatUsedHeuristics.Count > 0
+            if (_coordsThatUsedHeuristics?.Count > 0
                 && _coordsThatUsedHeuristics.Peek().Equals(lastCoord))
             {
                 _coordsThatUsedHeuristics.Pop();
@@ -190,11 +190,11 @@ namespace SudokuSpice.RuleBased
 
         private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()
         {
-            int minNumPossibles = _puzzle.Size + 1;
+            int minNumPossibles = _puzzle!.Size + 1;
             var bestCoord = new Coordinate(0, 0);
             foreach (Coordinate c in _puzzle.GetUnsetCoords())
             {
-                int numPossibles = _possibleValues[in c].Count;
+                int numPossibles = _puzzle.GetPossibleValues(in c).Count;
                 if (numPossibles == 1)
                 {
                     return (c, 1);

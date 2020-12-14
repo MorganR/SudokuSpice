@@ -80,7 +80,8 @@ column. Sets the possible values for those squares to just their unique value.</
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UniqueInColumnHeuristic</span></div>
+    <div class="level1"><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html">UniqueInXHeuristic</a></div>
+    <div class="level2"><span class="xref">UniqueInColumnHeuristic</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -88,6 +89,15 @@ column. Sets the possible values for those squares to just their unique value.</
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_">UniqueInXHeuristic.TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UndoLastUpdate">UniqueInXHeuristic.UndoLastUpdate()</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UpdateAll">UniqueInXHeuristic.UpdateAll()</a>
+    </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
@@ -114,7 +124,7 @@ column. Sets the possible values for those squares to just their unique value.</
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class UniqueInColumnHeuristic : ISudokuHeuristic</code></pre>
+    <pre><code class="lang-csharp hljs">public class UniqueInColumnHeuristic : UniqueInXHeuristic, ISudokuHeuristic</code></pre>
   </div>
   <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>For example, if a column had three unset squares with possible values: <code>A: [1, 2]</code>,
@@ -125,19 +135,19 @@ to <code>[3]</code>.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic__ctor_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_Rules_IMissingColumnValuesTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.%23ctor(SudokuSpice.RuleBased.PossibleValues%2CSudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic__ctor_SudokuSpice_RuleBased_Rules_IMissingColumnValuesTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.%23ctor(SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L36">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L28">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic__ctor_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic__ctor_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_Rules_IMissingColumnValuesTracker_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)">UniqueInColumnHeuristic(PossibleValues, IMissingColumnValuesTracker)</h4>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic__ctor_SudokuSpice_RuleBased_Rules_IMissingColumnValuesTracker_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.#ctor(SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker)">UniqueInColumnHeuristic(IMissingColumnValuesTracker)</h4>
   <div class="markdown level1 summary"><p>Creates the heuristic.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public UniqueInColumnHeuristic(PossibleValues possibleValues, IMissingColumnValuesTracker columnValuesTracker)</code></pre>
+    <pre><code class="lang-csharp hljs">public UniqueInColumnHeuristic(IMissingColumnValuesTracker columnValuesTracker)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -149,12 +159,6 @@ to <code>[3]</code>.</p>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.PossibleValues.html">PossibleValues</a></td>
-        <td><span class="parametername">possibleValues</span></td>
-        <td><p>The shared possible values instance to use when solving.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.html">IMissingColumnValuesTracker</a></td>
         <td><span class="parametername">columnValuesTracker</span></td>
@@ -168,20 +172,20 @@ for example.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.RuleBased.PossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L63">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L46">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_CopyWithNewReferences_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_PossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.PossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzle, PossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a deep copy of this heuristic. Requires <code>rules</code> to contain an
 <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.html">IMissingColumnValuesTracker</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ISudokuHeuristic CopyWithNewReferences(IReadOnlyPuzzle puzzle, PossibleValues possibleValues, IReadOnlyList&lt;ISudokuRule&gt; rules)</code></pre>
+    <pre><code class="lang-csharp hljs">public override ISudokuHeuristic CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle, IReadOnlyList&lt;ISudokuRule&gt; rules)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -194,13 +198,8 @@ for example.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.PossibleValues.html">PossibleValues</a></td>
-        <td><span class="parametername">possibleValues</span></td>
         <td></td>
       </tr>
       <tr>
@@ -225,21 +224,22 @@ for example.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__">UniqueInXHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetMissingValuesForDimension_System_Int32_SudokuSpice_RuleBased_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetMissingValuesForDimension(System.Int32%2CSudokuSpice.RuleBased.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L78">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L57">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_TryInitFor_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.TryInitFor(SudokuSpice.IReadOnlyPuzzle)">TryInitFor(IReadOnlyPuzzle)</h4>
-  <div class="markdown level1 summary"><p>Tries to initialize this heuristic for solving the given puzzle.</p>
-</div>
+  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetMissingValuesForDimension_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetMissingValuesForDimension*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetMissingValuesForDimension_System_Int32_SudokuSpice_RuleBased_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)">GetMissingValuesForDimension(Int32, IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TryInitFor(IReadOnlyPuzzle puzzle)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override BitVector GetMissingValuesForDimension(int dimension, IReadOnlyPuzzle _)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -252,10 +252,63 @@ for example.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">dimension</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">_</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_GetMissingValuesForDimension_System_Int32_SudokuSpice_RuleBased_IReadOnlyPuzzle_">UniqueInXHeuristic.GetMissingValuesForDimension(Int32, IReadOnlyPuzzle)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetNumDimensions_SudokuSpice_RuleBased_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L55">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetNumDimensions_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetNumDimensions*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetNumDimensions_SudokuSpice_RuleBased_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)">GetNumDimensions(IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override int GetNumDimensions(IReadOnlyPuzzle puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td><p>The puzzle to solve.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -269,49 +322,50 @@ for example.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><p>False if this heuristic cannot be initialized for the given puzzle, else true.</p>
-</td>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_TryInitFor_SudokuSpice_IReadOnlyPuzzle__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
-fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
-on failure.</p>
-</div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_GetNumDimensions_SudokuSpice_RuleBased_IReadOnlyPuzzle_">UniqueInXHeuristic.GetNumDimensions(IReadOnlyPuzzle)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetUnsetCoordinatesOnDimension_System_Int32_SudokuSpice_RuleBased_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetUnsetCoordinatesOnDimension(System.Int32%2CSudokuSpice.RuleBased.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L102">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L59">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UndoLastUpdate*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_UndoLastUpdate" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
-  <div class="markdown level1 summary"><p>Undoes the last modifications made by this heuristic.</p>
-</div>
+  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetUnsetCoordinatesOnDimension_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetUnsetCoordinatesOnDimension*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_GetUnsetCoordinatesOnDimension_System_Int32_SudokuSpice_RuleBased_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)">GetUnsetCoordinatesOnDimension(Int32, IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void UndoLastUpdate()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override IEnumerable&lt;Coordinate&gt; GetUnsetCoordinatesOnDimension(int dimension, IReadOnlyPuzzle puzzle)</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_UpdateAll.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L88">View Source</a>
-  </span>
-  <a id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_UpdateAll_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic_UpdateAll" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic.UpdateAll">UpdateAll()</h4>
-  <div class="markdown level1 summary"><p>Updates all the current possible values.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool UpdateAll()</code></pre>
-  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">dimension</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -322,12 +376,13 @@ on failure.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><p>Returns true if any modifications were made.</p>
-</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.html#SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_GetUnsetCoordinatesOnDimension_System_Int32_SudokuSpice_RuleBased_IReadOnlyPuzzle_">UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(Int32, IReadOnlyPuzzle)</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.html">ISudokuHeuristic</a>
@@ -343,7 +398,7 @@ on failure.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInColumnHeuristic.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L18" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/UniqueInColumnHeuristic.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

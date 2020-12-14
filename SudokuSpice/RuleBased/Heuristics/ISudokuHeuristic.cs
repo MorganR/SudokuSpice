@@ -22,7 +22,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <returns>
         /// False if this heuristic cannot be initialized for the given puzzle, else true.
         /// </returns>
-        bool TryInitFor(IReadOnlyPuzzle puzzle);
+        bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle);
 
         /// <summary>
         /// Updates all the current possible values.
@@ -41,8 +41,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// implementation of the heuristic.
         /// </summary>
         ISudokuHeuristic CopyWithNewReferences(
-            IReadOnlyPuzzle puzzle,
-            PossibleValues possibleValues,
+            IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IReadOnlyList<ISudokuRule> rules);
     }
 }

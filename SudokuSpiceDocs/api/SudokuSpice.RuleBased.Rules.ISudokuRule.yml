@@ -5,11 +5,11 @@ items:
   id: ISudokuRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   langs:
   - csharp
@@ -40,16 +40,16 @@ items:
   modifiers.vb:
   - Public
   - Interface
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.ISudokuRule
   langs:
   - csharp
   - vb
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: ISudokuRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
@@ -68,7 +68,7 @@ items:
     content: ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
       description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
     return:
       type: SudokuSpice.RuleBased.Rules.ISudokuRule
@@ -193,23 +193,23 @@ items:
   nameWithType.vb: ISudokuRule.Revert(ByRef Coordinate, Int32, CoordinateTracker)
   fullName.vb: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   name.vb: Revert(ByRef Coordinate, Int32, CoordinateTracker)
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
-  id: TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  id: TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.ISudokuRule
   langs:
   - csharp
   - vb
-  name: TryInitFor(IReadOnlyPuzzle)
-  nameWithType: ISudokuRule.TryInitFor(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor(SudokuSpice.IReadOnlyPuzzle)
+  name: TryInit(IReadOnlyPuzzle)
+  nameWithType: ISudokuRule.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ISudokuRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: TryInitFor
+    id: TryInit
     path: ../SudokuSpice/RuleBased/Rules/ISudokuRule.cs
     startLine: 77
   assemblies:
@@ -219,16 +219,16 @@ items:
   remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
   example: []
   syntax:
-    content: bool TryInitFor(IReadOnlyPuzzle puzzle)
+    content: bool TryInit(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
       description: The puzzle to be solved.
     return:
       type: System.Boolean
       description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
-    content.vb: Function TryInitFor(puzzle As IReadOnlyPuzzle) As Boolean
-  overload: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor*
+    content.vb: Function TryInit(puzzle As IReadOnlyPuzzle) As Boolean
+  overload: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit*
 - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   id: Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
@@ -293,23 +293,18 @@ references:
   name: CopyWithNewReference
   nameWithType: ISudokuRule.CopyWithNewReference
   fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
+  parent: SudokuSpice.RuleBased
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
+  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
 - uid: SudokuSpice.RuleBased.Rules.ISudokuRule
   commentId: T:SudokuSpice.RuleBased.Rules.ISudokuRule
   parent: SudokuSpice.RuleBased.Rules
   name: ISudokuRule
   nameWithType: ISudokuRule
   fullName: SudokuSpice.RuleBased.Rules.ISudokuRule
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.ISudokuRule
@@ -461,6 +456,11 @@ references:
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert*
   commentId: Overload:SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
   name: Revert
@@ -485,11 +485,11 @@ references:
   name: CoordinateTracker
   nameWithType: CoordinateTracker
   fullName: SudokuSpice.CoordinateTracker
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
-  name: TryInitFor
-  nameWithType: ISudokuRule.TryInitFor
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInitFor
+- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
+  name: TryInit
+  nameWithType: ISudokuRule.TryInit
+  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System

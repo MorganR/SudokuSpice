@@ -59,10 +59,18 @@
     name: BitVector
   - uid: SudokuSpice.RuleBased.DynamicRuleKeeper
     name: DynamicRuleKeeper
+  - uid: SudokuSpice.RuleBased.IPuzzle
+    name: IPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+    name: IReadOnlyBoxPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+    name: IReadOnlyPuzzleWithMutablePossibleValues
   - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper
     name: ISudokuRuleKeeper
-  - uid: SudokuSpice.RuleBased.PossibleValues
-    name: PossibleValues
+  - uid: SudokuSpice.RuleBased.Puzzle
+    name: Puzzle
   - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
     name: PuzzleGenerator<TPuzzle>
     name.vb: PuzzleGenerator(Of TPuzzle)
@@ -87,6 +95,8 @@
     name: UniqueInColumnHeuristic
   - uid: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic
     name: UniqueInRowHeuristic
+  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
+    name: UniqueInXHeuristic
 - uid: SudokuSpice.RuleBased.Rules
   name: SudokuSpice.RuleBased.Rules
   items:
@@ -108,3 +118,5 @@
     name: RowUniquenessRule
   - uid: SudokuSpice.RuleBased.Rules.StandardRules
     name: StandardRules
+  - uid: SudokuSpice.RuleBased.Rules.UniquenessRule
+    name: UniquenessRule

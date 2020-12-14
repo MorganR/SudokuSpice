@@ -9,7 +9,7 @@ namespace SudokuSpice.RuleBased.Test
         public void Constructor_WithValidArgs_Works()
         {
             var generator = new PuzzleGenerator<Puzzle>(
-                () => new Puzzle(9), StandardPuzzles.CreateSolver(9));
+                () => new Puzzle(9), StandardPuzzles.CreateSolver());
         }
 
         [Theory]
@@ -19,12 +19,12 @@ namespace SudokuSpice.RuleBased.Test
         public void Generate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
         {
             var generator = new PuzzleGenerator<Puzzle>(
-                () => new Puzzle(size), StandardPuzzles.CreateSolver(size));
+                () => new Puzzle(size), StandardPuzzles.CreateSolver());
 
             Puzzle puzzle = generator.Generate(numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            PuzzleSolver solver = StandardPuzzles.CreateSolver(size);
+            PuzzleSolver solver = StandardPuzzles.CreateSolver();
             SolveStats stats = solver.GetStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
@@ -33,10 +33,10 @@ namespace SudokuSpice.RuleBased.Test
         public void Generate_WithShortTimeout_ThrowsTimeoutException()
         {
             var generator = new PuzzleGenerator<Puzzle>(
-                () => new Puzzle(9), StandardPuzzles.CreateSolver(9));
+                () => new Puzzle(25), StandardPuzzles.CreateSolver());
 
             Assert.Throws<TimeoutException>(
-                () => generator.Generate(17, TimeSpan.FromMilliseconds(1)));
+                () => generator.Generate(185, TimeSpan.FromMilliseconds(1)));
         }
     }
 }

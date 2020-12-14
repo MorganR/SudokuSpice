@@ -34,7 +34,7 @@ items:
           Inherits PuzzleGenerator(Of Puzzle)
   inheritance:
   - System.Object
-  - SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.Puzzle}
+  - SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.RuleBased.Puzzle}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -124,7 +124,7 @@ items:
       type: System.TimeSpan
       description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
     return:
-      type: SudokuSpice.Puzzle
+      type: SudokuSpice.RuleBased.Puzzle
       description: "\nA standard Sudoku puzzle with a unique solution and <code>numSquaresToSet</code> preset\nsquares.\n"
     content.vb: Public Function Generate(numSquaresToSet As Integer, timeout As TimeSpan) As Puzzle
   overload: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate*
@@ -152,15 +152,15 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.Puzzle}
-  commentId: T:SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.Puzzle}
+- uid: SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.RuleBased.Puzzle}
+  commentId: T:SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.RuleBased.Puzzle}
   parent: SudokuSpice.RuleBased
   definition: SudokuSpice.RuleBased.PuzzleGenerator`1
   name: PuzzleGenerator<Puzzle>
   nameWithType: PuzzleGenerator<Puzzle>
-  fullName: SudokuSpice.RuleBased.PuzzleGenerator<SudokuSpice.Puzzle>
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<SudokuSpice.RuleBased.Puzzle>
   nameWithType.vb: PuzzleGenerator(Of Puzzle)
-  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of SudokuSpice.Puzzle)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of SudokuSpice.RuleBased.Puzzle)
   name.vb: PuzzleGenerator(Of Puzzle)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
@@ -170,10 +170,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Puzzle
+  - uid: SudokuSpice.RuleBased.Puzzle
     name: Puzzle
     nameWithType: Puzzle
-    fullName: SudokuSpice.Puzzle
+    fullName: SudokuSpice.RuleBased.Puzzle
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -185,10 +185,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Puzzle
+  - uid: SudokuSpice.RuleBased.Puzzle
     name: Puzzle
     nameWithType: Puzzle
-    fullName: SudokuSpice.Puzzle
+    fullName: SudokuSpice.RuleBased.Puzzle
   - name: )
     nameWithType: )
     fullName: )
@@ -546,14 +546,9 @@ references:
   name: TimeSpan
   nameWithType: TimeSpan
   fullName: System.TimeSpan
-- uid: SudokuSpice.Puzzle
-  commentId: T:SudokuSpice.Puzzle
-  parent: SudokuSpice
+- uid: SudokuSpice.RuleBased.Puzzle
+  commentId: T:SudokuSpice.RuleBased.Puzzle
+  parent: SudokuSpice.RuleBased
   name: Puzzle
   nameWithType: Puzzle
-  fullName: SudokuSpice.Puzzle
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
+  fullName: SudokuSpice.RuleBased.Puzzle

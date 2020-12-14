@@ -17,9 +17,6 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// Creates a standard heuristic that combines the <see cref="UniqueInRowHeuristic"/>,
         /// <see cref="UniqueInColumnHeuristic"/>, and <see cref="UniqueInBoxHeuristic"/>.
         /// </summary>
-        /// <param name="possibleValues">
-        /// The shared possible values instance to use when solving.
-        /// </param>
         /// <param name="rowValuesTracker">
         /// Something that tracks the possible values for each row.
         /// </param>
@@ -30,14 +27,13 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// Something that tracks the possible values for each box.
         /// </param>
         public StandardHeuristic(
-            PossibleValues possibleValues,
             IMissingRowValuesTracker rowValuesTracker,
             IMissingColumnValuesTracker columnValuesTracker,
             IMissingBoxValuesTracker boxValuesTracker)
         {
-            _rowHeuristic = new UniqueInRowHeuristic(possibleValues, rowValuesTracker);
-            _columnHeuristic = new UniqueInColumnHeuristic(possibleValues, columnValuesTracker);
-            _boxHeuristic = new UniqueInBoxHeuristic(possibleValues, boxValuesTracker);
+            _rowHeuristic = new UniqueInRowHeuristic(rowValuesTracker);
+            _columnHeuristic = new UniqueInColumnHeuristic(columnValuesTracker);
+            _boxHeuristic = new UniqueInBoxHeuristic(boxValuesTracker);
             _numHeuristicsRan = new Stack<int>();
         }
 
@@ -55,7 +51,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <returns>
         /// False if this heuristic cannot be initialized for the given puzzle, else true.
         /// </returns>
-        public bool TryInitFor(IReadOnlyPuzzle puzzle)
+        public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
             if (!_rowHeuristic.TryInitFor(puzzle)
                 || !_columnHeuristic.TryInitFor(puzzle)
@@ -69,16 +65,15 @@ namespace SudokuSpice.RuleBased.Heuristics
 
         private StandardHeuristic(
             StandardHeuristic existing,
-            IReadOnlyPuzzle puzzle,
-            PossibleValues possibleValues,
+            IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IReadOnlyList<ISudokuRule> rules)
         {
             _rowHeuristic = (UniqueInRowHeuristic)existing._rowHeuristic.CopyWithNewReferences(
-                puzzle, possibleValues, rules);
+                puzzle, rules);
             _columnHeuristic = (UniqueInColumnHeuristic)existing._columnHeuristic
-                .CopyWithNewReferences(puzzle, possibleValues, rules);
+                .CopyWithNewReferences(puzzle, rules);
             _boxHeuristic = (UniqueInBoxHeuristic)existing._boxHeuristic.CopyWithNewReferences(
-                puzzle, possibleValues, rules);
+                puzzle, rules);
             _numHeuristicsRan = new Stack<int>(existing._numHeuristicsRan);
         }
 
@@ -88,9 +83,8 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// and an <see cref="IMissingRowValuesTracker"/>.
         /// </summary>
         public ISudokuHeuristic CopyWithNewReferences(
-            IReadOnlyPuzzle puzzle,
-            PossibleValues possibleValues,
-            IReadOnlyList<ISudokuRule> rules) => new StandardHeuristic(this, puzzle, possibleValues, rules);
+            IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
+            IReadOnlyList<ISudokuRule> rules) => new StandardHeuristic(this, puzzle, rules);
 
         /// <inheritdoc/>
         public void UndoLastUpdate()

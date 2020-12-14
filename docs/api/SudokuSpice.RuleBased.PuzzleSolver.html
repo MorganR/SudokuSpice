@@ -73,7 +73,7 @@
   
   <h1 id="SudokuSpice_RuleBased_PuzzleSolver" data-uid="SudokuSpice.RuleBased.PuzzleSolver" class="text-break">Class PuzzleSolver
   </h1>
-  <div class="markdown level0 summary"><p>Solves a single <a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a> using a <span class="xref">SudokuSpice.RuleBased.SquareTracker</span>.</p>
+  <div class="markdown level0 summary"><p>Solves a single <a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a> using a <span class="xref">SudokuSpice.RuleBased.SquareTracker</span>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -115,19 +115,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver__ctor_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_ISudokuRuleKeeper_SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.%23ctor(SudokuSpice.RuleBased.PossibleValues%2CSudokuSpice.RuleBased.ISudokuRuleKeeper%2CSudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver__ctor_SudokuSpice_RuleBased_ISudokuRuleKeeper_SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.%23ctor(SudokuSpice.RuleBased.ISudokuRuleKeeper%2CSudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L18">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleSolver__ctor_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_PuzzleSolver__ctor_SudokuSpice_RuleBased_PossibleValues_SudokuSpice_RuleBased_ISudokuRuleKeeper_SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.RuleBased.PossibleValues,SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)">PuzzleSolver(PossibleValues, ISudokuRuleKeeper, ISudokuHeuristic)</h4>
+  <h4 id="SudokuSpice_RuleBased_PuzzleSolver__ctor_SudokuSpice_RuleBased_ISudokuRuleKeeper_SudokuSpice_RuleBased_Heuristics_ISudokuHeuristic_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)">PuzzleSolver(ISudokuRuleKeeper, ISudokuHeuristic)</h4>
   <div class="markdown level1 summary"><p>Constructs a solver for the given square tracker.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PuzzleSolver(PossibleValues possibleValues, ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public PuzzleSolver(ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -139,11 +139,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.PossibleValues.html">PossibleValues</a></td>
-        <td><span class="parametername">possibleValues</span></td>
-        <td></td>
-      </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.ISudokuRuleKeeper.html">ISudokuRuleKeeper</a></td>
         <td><span class="parametername">ruleKeeper</span></td>
@@ -160,13 +155,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions_SudokuSpice_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions_SudokuSpice_RuleBased_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L88">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L87">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions*"></a>
-  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions_SudokuSpice_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.IPuzzle)">GetStatsForAllSolutions(IPuzzle)</h4>
+  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions_SudokuSpice_RuleBased_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle)">GetStatsForAllSolutions(IPuzzle)</h4>
   <div class="markdown level1 summary"><p>Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -185,7 +180,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
         <td></td>
       </tr>
@@ -208,14 +203,14 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_Solve_SudokuSpice_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_Solve_SudokuSpice_RuleBased_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.RuleBased.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L61">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L60">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleSolver_Solve_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.Solve*"></a>
-  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_Solve_SudokuSpice_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.IPuzzle)">Solve(IPuzzle)</h4>
-  <div class="markdown level1 summary"><p>Solves the given puzzle in place. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_SudokuSpice_IPuzzle_">SolveRandomly(IPuzzle)</a>,
+  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_Solve_SudokuSpice_RuleBased_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.Solve(SudokuSpice.RuleBased.IPuzzle)">Solve(IPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Solves the given puzzle in place. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_SudokuSpice_RuleBased_IPuzzle_">SolveRandomly(IPuzzle)</a>,
 when it has to guess, this will try values in the order they are given.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -234,7 +229,7 @@ when it has to guess, this will try values in the order they are given.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
         <td><p>The puzzle to solve. This will be solved in place.</p>
 </td>
@@ -259,14 +254,14 @@ when it has to guess, this will try values in the order they are given.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_SudokuSpice_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_SudokuSpice_RuleBased_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.RuleBased.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L77">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L76">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*"></a>
-  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_SudokuSpice_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.IPuzzle)">SolveRandomly(IPuzzle)</h4>
-  <div class="markdown level1 summary"><p>Solves the given puzzle in place. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_Solve_SudokuSpice_IPuzzle_">Solve(IPuzzle)</a>, this will
+  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_SolveRandomly_SudokuSpice_RuleBased_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(SudokuSpice.RuleBased.IPuzzle)">SolveRandomly(IPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Solves the given puzzle in place. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_Solve_SudokuSpice_RuleBased_IPuzzle_">Solve(IPuzzle)</a>, this will
 try values in a random order when it has to guess the value for a square.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -285,7 +280,7 @@ try values in a random order when it has to guess the value for a square.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
         <td><p>The puzzle to solve. This will be solved in place.</p>
 </td>
@@ -310,14 +305,14 @@ try values in a random order when it has to guess the value for a square.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_TrySolve_SudokuSpice_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_TrySolve_SudokuSpice_RuleBased_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L34">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L33">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleSolver_TrySolve_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.TrySolve*"></a>
-  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_TrySolve_SudokuSpice_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.IPuzzle)">TrySolve(IPuzzle)</h4>
-  <div class="markdown level1 summary"><p>Attempts to solve the given puzzle. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_SudokuSpice_IPuzzle_">TrySolveRandomly(IPuzzle)</a>,
+  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_TrySolve_SudokuSpice_RuleBased_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)">TrySolve(IPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Attempts to solve the given puzzle. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_SudokuSpice_RuleBased_IPuzzle_">TrySolveRandomly(IPuzzle)</a>,
 when it has to guess, this will try values in guaranteed order.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -336,7 +331,7 @@ when it has to guess, this will try values in guaranteed order.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
         <td><p>The puzzle to solve. This will be solved in place.</p>
 </td>
@@ -360,14 +355,14 @@ when it has to guess, this will try values in guaranteed order.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_SudokuSpice_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_SudokuSpice_RuleBased_IPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L47">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PuzzleSolver.cs/#L46">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly*"></a>
-  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_SudokuSpice_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.IPuzzle)">TrySolveRandomly(IPuzzle)</h4>
-  <div class="markdown level1 summary"><p>Attempts to solve the given puzzle. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_TrySolve_SudokuSpice_IPuzzle_">TrySolve(IPuzzle)</a>, this will
+  <h4 id="SudokuSpice_RuleBased_PuzzleSolver_TrySolveRandomly_SudokuSpice_RuleBased_IPuzzle_" data-uid="SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)">TrySolveRandomly(IPuzzle)</h4>
+  <div class="markdown level1 summary"><p>Attempts to solve the given puzzle. Unlike <a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html#SudokuSpice_RuleBased_PuzzleSolver_TrySolve_SudokuSpice_RuleBased_IPuzzle_">TrySolve(IPuzzle)</a>, this will
 try values in a random order when it has to guess the value for a square.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -386,7 +381,7 @@ try values in a random order when it has to guess the value for a square.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
         <td><p>The puzzle to solve. This will be solved in place.</p>
 </td>
