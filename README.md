@@ -18,6 +18,19 @@ behavior, such as by adding new heuristics, or by introducing modified rules.
 
 ## Releases
 
+### In-progress: 3.0.0
+
+The goals of this release are to:
+
+* Update to .NET 5
+* Simplify the API, eg:
+  * Enable solver reuse instead of constructing a brand new solver for every puzzle
+  * Rethink/possibly remove Puzzle as a public class
+* Invest in WASM performance
+* General tidying and clean-up
+
+Warning: This release *will* introduce large-scale breaking changes.
+
 ### 2.0.0 - 2020-05-12
 
 *  Adds ConstraintBasedSolver and ConstraintBasedGenerator.
