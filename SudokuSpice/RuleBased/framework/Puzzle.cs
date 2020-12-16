@@ -71,6 +71,11 @@ namespace SudokuSpice.RuleBased
             _possibleValues = new PossibleValues(existing._possibleValues);
         }
 
+        public static Puzzle CopyFrom(int?[,] matrix)
+        {
+            return new Puzzle((int?[,])matrix.Clone());
+        }
+
         /// <summary>
         /// Gets or sets the current value of a given square. A square can be 'unset' by setting
         /// its value to <c>null</c>.
@@ -161,7 +166,7 @@ namespace SudokuSpice.RuleBased
         {
             Debug.Assert(_squares[row, col].HasValue,
                 $"Square ({row}, {col}) doesn't have a value, so can't be unset.");
-            _unsetCoordsTracker.AddOrTrackIfUntracked(new Coordinate(row, col));
+            _unsetCoordsTracker.Track(new Coordinate(row, col));
             _squares[row, col] = null;
         }
 
