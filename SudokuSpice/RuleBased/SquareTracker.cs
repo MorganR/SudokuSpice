@@ -14,7 +14,7 @@ namespace SudokuSpice.RuleBased
         private readonly ISudokuHeuristic? _heuristic;
         private Stack<Coordinate>? _setCoords;
         private Stack<Coordinate>? _coordsThatUsedHeuristics;
-        private IPuzzle? _puzzle;
+        private Puzzle? _puzzle;
 
         public IReadOnlyPuzzle? Puzzle => _puzzle;
 
@@ -48,7 +48,7 @@ namespace SudokuSpice.RuleBased
         /// </exception>
         public SquareTracker(SquareTracker existing)
         {
-            _puzzle = existing._puzzle?.DeepCopy();
+            _puzzle = existing._puzzle is null ? null : new Puzzle(existing._puzzle);
             if (existing._setCoords is not null)
             {
                 _setCoords = new Stack<Coordinate>(existing._setCoords!);
@@ -69,7 +69,7 @@ namespace SudokuSpice.RuleBased
         /// <returns>
         /// False if initialization fails, for example if the puzzle violates a rule, else true.
         /// </returns>
-        public bool TryInit(IPuzzle puzzle)
+        public bool TryInit(Puzzle puzzle)
         {
             if (!_ruleKeeper.TryInit(puzzle)
                 || (!_heuristic?.TryInitFor(puzzle) ?? false))

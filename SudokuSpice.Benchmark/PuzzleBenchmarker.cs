@@ -16,19 +16,19 @@ namespace SudokuSpice.Benchmark
 
         [Benchmark(Baseline = true)]
         [ArgumentsSource(nameof(NineByNinePuzzles))]
-        public bool SudokuSpice(PuzzleSample puzzle)
+        public int?[,] SudokuSpice(PuzzleSample puzzle)
         {
-            var p = new RuleBased.Puzzle(puzzle.NullableMatrix);
+            var p = (int?[,])puzzle.NullableMatrix.Clone();
             PuzzleSolver solver = StandardPuzzles.CreateSolver();
             solver.SolveRandomly(p);
-            return p.NumEmptySquares == 0;
+            return p;
         }
 
         [Benchmark]
         [ArgumentsSource(nameof(NineByNinePuzzles))]
-        public bool SudokuSpiceDynamicSingle(PuzzleSample puzzle)
+        public int?[,] SudokuSpiceDynamicSingle(PuzzleSample puzzle)
         {
-            var p = new RuleBased.Puzzle(puzzle.NullableMatrix);
+            var p = (int?[,])puzzle.NullableMatrix.Clone();
             var standardRules = new StandardRules();
             var ruleKeeper = new DynamicRuleKeeper(
                 new List<ISudokuRule> { standardRules });
@@ -36,14 +36,14 @@ namespace SudokuSpice.Benchmark
                 standardRules, standardRules, standardRules);
             var solver = new PuzzleSolver(ruleKeeper, heuristic);
             solver.SolveRandomly(p);
-            return p.NumEmptySquares == 0;
+            return p;
         }
 
         [Benchmark]
         [ArgumentsSource(nameof(NineByNinePuzzles))]
-        public bool SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
+        public int?[,] SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
         {
-            var p = new RuleBased.Puzzle(puzzle.NullableMatrix);
+            var p = (int?[,])puzzle.NullableMatrix.Clone();
             var rowRule = new RowUniquenessRule();
             var columnRule = new ColumnUniquenessRule();
             var boxRule = new BoxUniquenessRule();
@@ -53,7 +53,7 @@ namespace SudokuSpice.Benchmark
                 rowRule, columnRule, boxRule);
             var solver = new PuzzleSolver(ruleKeeper, heuristic);
             solver.SolveRandomly(p);
-            return p.NumEmptySquares == 0;
+            return p;
         }
 
         [Benchmark]

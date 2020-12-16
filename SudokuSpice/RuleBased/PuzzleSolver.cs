@@ -5,16 +5,17 @@ using System.Diagnostics;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>
-    /// Solves a single <see cref="IPuzzle"/> using a <see cref="SquareTracker"/>.
+    /// Solves puzzles according to a set of rules and heuristics.
     /// </summary>
     public class PuzzleSolver
     {
         private readonly SquareTracker _tracker;
 
         /// <summary>
-        /// Constructs a solver for the given square tracker.
+        /// Constructs a solver based on the given rules and heuristics.
         /// </summary>
-        /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
+        /// <param name="ruleKeeper">The rule keeper that will enforce the puzzle's rules.</param>
+        /// <param name="heuristic">An optional heuristic to assist in solving the puzzle.</param>
         public PuzzleSolver(
             ISudokuRuleKeeper ruleKeeper,
             ISudokuHeuristic? heuristic = null)
@@ -30,9 +31,9 @@ namespace SudokuSpice.RuleBased
         /// <return>
         /// True if solved, or false if it couldn't be solved within this solver's rules.
         /// </return>
-        public bool TrySolve(IPuzzle puzzle)
+        public bool TrySolve(int?[,] puzzle)
         {
-            return _tracker.TryInit(puzzle) && _TrySolve();
+            return _tracker.TryInit(new Puzzle(puzzle)) && _TrySolve();
         }
 
         /// <summary>
@@ -43,10 +44,9 @@ namespace SudokuSpice.RuleBased
         /// <return>
         /// True if solved, or false if it couldn't be solved within this solver's rules.
         /// </return>
-        public bool TrySolveRandomly(IPuzzle puzzle)
+        public bool TrySolveRandomly(int?[,] puzzle)
         {
-            var random = new Random();
-            return _tracker.TryInit(puzzle) && _TrySolveRandomly(random);
+            return _tracker.TryInit(new Puzzle(puzzle)) && _TrySolveRandomly(new Random());
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
-        public void Solve(IPuzzle puzzle)
+        public void Solve(int?[,] puzzle)
         {
             if (!TrySolve(puzzle))
             {
@@ -73,7 +73,7 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
-        public void SolveRandomly(IPuzzle puzzle)
+        public void SolveRandomly(int?[,] puzzle)
         {
             if (!TrySolveRandomly(puzzle))
             {
@@ -84,9 +84,15 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
         /// </summary>
-        public SolveStats GetStatsForAllSolutions(IPuzzle puzzle)
+        public SolveStats GetStatsForAllSolutions(int?[,] puzzle)
         {
-            if (!_tracker.TryInit(puzzle.DeepCopy()))
+            return GetStatsForAllSolutions(new Puzzle(puzzle));
+        }
+
+        internal SolveStats GetStatsForAllSolutions(Puzzle puzzle)
+        {
+            // Copy the puzzle so that the given puzzle is not modified.
+            if (!_tracker.TryInit(new Puzzle(puzzle)))
             {
                 // No solutions.
                 return new SolveStats();
@@ -121,13 +127,14 @@ namespace SudokuSpice.RuleBased
 
         private bool _TrySolveRandomly(Random random)
         {
-            Debug.Assert(_tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
-            if (_tracker.Puzzle!.NumEmptySquares == 0)
+            var puzzle = _tracker.Puzzle;
+            Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
+            if (puzzle!.NumEmptySquares == 0)
             {
                 return true;
             }
             Coordinate c = _tracker.GetBestCoordinateToGuess();
-            Span<int> possibleValues = stackalloc int[_tracker.Puzzle.Size];
+            Span<int> possibleValues = stackalloc int[puzzle.Size];
             int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
             while (numPossible > 0)
             {
@@ -152,15 +159,16 @@ namespace SudokuSpice.RuleBased
 
         private static SolveStats _TryAllSolutions(SquareTracker tracker)
         {
-            Debug.Assert(tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
-            if (tracker.Puzzle!.NumEmptySquares == 0)
+            var puzzle = tracker.Puzzle;
+            Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
+            if (puzzle.NumEmptySquares == 0)
             {
                 return new SolveStats() {
                     NumSolutionsFound = 1,
                 };
             }
             Coordinate c = tracker.GetBestCoordinateToGuess();
-            Span<int> possibleValues = stackalloc int[tracker.Puzzle.Size];
+            Span<int> possibleValues = stackalloc int[puzzle.Size];
             int numPossible = tracker.PopulatePossibleValues(in c, possibleValues);
             if (numPossible == 1)
             {
