@@ -9,7 +9,7 @@ namespace SudokuSpice.RuleBased
 {
     /// <summary>Manages underlying puzzle data.</summary>.
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
-    public class Puzzle : IReadOnlyPuzzleWithMutablePossibleValues
+    public class Puzzle : IPuzzle
     {
         private readonly int?[,] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
@@ -27,11 +27,60 @@ namespace SudokuSpice.RuleBased
         public BitVector AllPossibleValues => _possibleValues.AllPossible;
 
         /// <summary>
-        /// Constructs a new puzzle backed by the given matrix.
+        /// Constructs a new puzzle of the given side length.
+        /// </summary>
+        /// <param name="size">
+        /// The side-length for this Sudoku puzzle. Must be a square of a whole number in the range [1, 25].
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if size is not the square of a whole number, or is outside the range [1, 25].
+        /// </exception>
+        public Puzzle(int size)
+        {
+            Size = size;
+            switch (size)
+            {
+                case 1:
+                    NumSquares = 1;
+                    break;
+                case 4:
+                    NumSquares = 4 * 4;
+                    break;
+                case 9:
+                    NumSquares = 9 * 9;
+                    break;
+                case 16:
+                    NumSquares = 16 * 16;
+                    break;
+                case 25:
+                    NumSquares = 25 * 25;
+                    break;
+                default:
+                    throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
+            }
+            _squares = new int?[size, size];
+            _unsetCoordsTracker = new CoordinateTracker(size);
+            for (int row = 0; row < Size; row++)
+            {
+                for (int col = 0; col < Size; col++)
+                {
+                    if (!_squares[row, col].HasValue)
+                    {
+                        _unsetCoordsTracker.Add(new Coordinate(row, col));
+                    }
+                }
+            }
+            var possibleValues = BitVector.CreateWithSize(Size + 1);
+            possibleValues.UnsetBit(0);
+            _possibleValues = new PossibleValues(Size, possibleValues);
+        }
+
+        /// <summary>
+        /// Constructs a new puzzle whose data matches the given array.
         /// </summary>
         /// <param name="puzzleMatrix">
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
-        /// be null. Changes to this <c>Puzzle</c> will be reflected in this matrix.
+        /// be null. A copy of this data is stored in this <c>Puzzle</c>.
         /// </param>
         public Puzzle(int?[,] puzzleMatrix)
         {
@@ -42,7 +91,7 @@ namespace SudokuSpice.RuleBased
                 throw new ArgumentException("Puzzle must be square.");
             }
 
-            _squares = puzzleMatrix;
+            _squares = (int?[,])puzzleMatrix.Clone();
             _unsetCoordsTracker = new CoordinateTracker(Size);
             for (int row = 0; row < Size; row++)
             {
@@ -71,10 +120,7 @@ namespace SudokuSpice.RuleBased
             _possibleValues = new PossibleValues(existing._possibleValues);
         }
 
-        /// <summary>
-        /// Gets or sets the current value of a given square. A square can be 'unset' by setting
-        /// its value to <c>null</c>.
-        /// </summary>
+        /// <inheritdoc cref="IPuzzle"/>
         public int? this[int row, int col]
         {
             get => _squares[row, col];
@@ -89,12 +135,10 @@ namespace SudokuSpice.RuleBased
             }
         }
 
-        /// <summary>
-        /// Gets or sets the value of the given square, like <see cref="this[int, int]"/>, but
-        /// using a <see cref="Coordinate"/> instead of <see langword="int"/> accessors.
-        /// </summary>
-        /// <param name="c">The location of the square to get/set the value of.</param>
-        /// <returns>The value of the square at <paramref name="c"/></returns>
+        /// <inheritdoc cref="IPuzzle"/>
+        public IPuzzle DeepCopy() => new Puzzle(this);
+
+        /// <inheritdoc cref="IPuzzle"/>
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {
@@ -150,6 +194,7 @@ namespace SudokuSpice.RuleBased
             return strBuild.ToString();
         }
 
+        /// <summary>Sets the value of a square.</summary>
         private void _Set(int row, int col, int val)
         {
             Debug.Assert(!_squares[row, col].HasValue, $"Square ({row}, {col}) already has a value.");
@@ -157,11 +202,12 @@ namespace SudokuSpice.RuleBased
             _unsetCoordsTracker.Untrack(new Coordinate(row, col));
         }
 
+        /// <summary>Unsets the specified square.</summary>
         private void _Unset(int row, int col)
         {
             Debug.Assert(_squares[row, col].HasValue,
                 $"Square ({row}, {col}) doesn't have a value, so can't be unset.");
-            _unsetCoordsTracker.AddOrTrackIfUntracked(new Coordinate(row, col));
+            _unsetCoordsTracker.Track(new Coordinate(row, col));
             _squares[row, col] = null;
         }
 

@@ -10,11 +10,11 @@ namespace SudokuSpice.Benchmark
     public class GeneratorBenchmarker
     {
         [Benchmark(Baseline = true)]
-        public int?[,] SudokuSpice()
+        public int SudokuSpice()
         {
-            var generator = new StandardPuzzleGenerator();
-            int?[,] puzzle = generator.Generate(9, 30, TimeSpan.FromSeconds(10));
-            return puzzle;
+            var generator = new StandardPuzzleGenerator(9);
+            RuleBased.Puzzle puzzle = generator.Generate(30, TimeSpan.FromSeconds(10));
+            return puzzle.NumEmptySquares;
         }
 
         [Benchmark]
