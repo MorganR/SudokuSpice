@@ -82,24 +82,23 @@ namespace SudokuSpice.RuleBased
         private int?[,] _Generate(CancellationToken cancellationToken)
         {
             bool foundValidPuzzle = false;
-            int?[,] puzzleMatrix = null;
+            int?[,] puzzle = null;
             while (!foundValidPuzzle)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                puzzleMatrix = new int?[_size, _size];
-                _FillPuzzle(puzzleMatrix);
-                var puzzle = new Puzzle(puzzleMatrix);
+                puzzle = new int?[_size, _size];
+                _FillPuzzle(puzzle);
                 var setCoordinates = new CoordinateTracker(_size);
                 _TrackAllCoordinates(setCoordinates, _size);
                 foundValidPuzzle = _TryUnsetSquaresWhileSolvable(
-                        puzzle.NumSetSquares, setCoordinates, puzzle, cancellationToken);
+                        _size*_size, setCoordinates, puzzle, cancellationToken);
             }
-            return puzzleMatrix;
+            return puzzle;
         }
 
         private bool _TryUnsetSquaresWhileSolvable(
             int currentNumSet, CoordinateTracker setCoordinatesToTry,
-            Puzzle puzzle, CancellationToken cancellationToken)
+            int?[,] puzzle, CancellationToken cancellationToken)
         {
             if (currentNumSet == _numSquaresToSet)
             {
@@ -109,9 +108,9 @@ namespace SudokuSpice.RuleBased
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 Coordinate randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
-                int? previousValue = puzzle[in randomCoord];
+                int? previousValue = puzzle[randomCoord.Row, randomCoord.Column];
                 setCoordinatesToTry.Untrack(in randomCoord);
-                if (!_TryUnsetSquareAt(randomCoord, puzzle))
+                if (!_TryUnsetSquareAt(randomCoord, _size*_size - currentNumSet, puzzle))
                 {
                     continue;
                 }
@@ -122,7 +121,7 @@ namespace SudokuSpice.RuleBased
                     return true;
                 }
                 // Child update failed :( replace value and try a different coordinate.
-                puzzle[in randomCoord] = previousValue;
+                puzzle[randomCoord.Row, randomCoord.Column] = previousValue;
             }
             return false;
         }
@@ -131,22 +130,21 @@ namespace SudokuSpice.RuleBased
 
         private void _FillPuzzle(int?[,] puzzle) => _solver.SolveRandomly(puzzle);
 
-        private bool _TryUnsetSquareAt(in Coordinate c, Puzzle puzzle)
+        private bool _TryUnsetSquareAt(in Coordinate c, int numEmptySquares, int?[,] puzzle)
         {
             // Set without checks when there can't be conflicts.
-            if (puzzle.NumEmptySquares < 3)
+            if (numEmptySquares < 3)
             {
-                puzzle[in c] = null;
+                puzzle[c.Row, c.Column] = null;
                 return true;
             }
-            int? previousValue = puzzle[in c];
-            puzzle[in c] = null;
-            SolveStats solveStats = _solver.GetStatsForAllSolutions(puzzle);
-            if (solveStats.NumSolutionsFound == 1)
+            int? previousValue = puzzle[c.Row, c.Column];
+            puzzle[c.Row, c.Column] = null;
+            if (_solver.HasUniqueSolution(puzzle))
             {
                 return true;
             }
-            puzzle[in c] = previousValue;
+            puzzle[c.Row, c.Column] = previousValue;
             return false;
         }
 

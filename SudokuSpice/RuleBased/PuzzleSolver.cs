@@ -86,18 +86,23 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         public SolveStats GetStatsForAllSolutions(int?[,] puzzle)
         {
-            return GetStatsForAllSolutions(new Puzzle(puzzle));
-        }
-
-        internal SolveStats GetStatsForAllSolutions(Puzzle puzzle)
-        {
             // Copy the puzzle so that the given puzzle is not modified.
-            if (!_tracker.TryInit(new Puzzle(puzzle)))
+            if (!_tracker.TryInit(Puzzle.CopyFrom(puzzle)))
             {
                 // No solutions.
                 return new SolveStats();
             }
-            return _TryAllSolutions(_tracker);
+            return _TryAllSolutions(_tracker, validateUniquenessOnly: false);
+        }
+
+        public bool HasUniqueSolution(int?[,] puzzle)
+        {
+            if (!_tracker.TryInit(Puzzle.CopyFrom(puzzle)))
+            {
+                // No solutions.
+                return false;
+            }
+            return _TryAllSolutions(_tracker, validateUniquenessOnly: true).NumSolutionsFound == 1;
         }
 
         private bool _TrySolve()
@@ -157,7 +162,7 @@ namespace SudokuSpice.RuleBased
             return false;
         }
 
-        private static SolveStats _TryAllSolutions(SquareTracker tracker)
+        private static SolveStats _TryAllSolutions(SquareTracker tracker, bool validateUniquenessOnly)
         {
             var puzzle = tracker.Puzzle;
             Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
@@ -174,17 +179,18 @@ namespace SudokuSpice.RuleBased
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
                 {
-                    return _TryAllSolutions(tracker);
+                    return _TryAllSolutions(tracker, validateUniquenessOnly);
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(tracker, c, possibleValues[0..numPossible]);
+            return _TryAllSolutionsWithGuess(tracker, c, possibleValues[0..numPossible], validateUniquenessOnly);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
             SquareTracker tracker,
             Coordinate c,
-            ReadOnlySpan<int> valuesToGuess)
+            ReadOnlySpan<int> valuesToGuess,
+            bool validateUniquenessOnly)
         {
             var solveStats = new SolveStats();
             for (int i = 0; i < valuesToGuess.Length - 1; i++)
@@ -192,18 +198,26 @@ namespace SudokuSpice.RuleBased
                 var trackerCopy = new SquareTracker(tracker);
                 if (trackerCopy.TrySet(in c, valuesToGuess[i]))
                 {
-                    SolveStats guessStats = _TryAllSolutions(trackerCopy);
+                    SolveStats guessStats = _TryAllSolutions(trackerCopy, validateUniquenessOnly);
                     solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                     solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                     solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
+                    if (validateUniquenessOnly && solveStats.NumSolutionsFound > 1)
+                    {
+                        return solveStats;
+                    }
                 }
             }
             if (tracker.TrySet(in c, valuesToGuess[^1]))
             {
-                SolveStats guessStats = _TryAllSolutions(tracker);
+                SolveStats guessStats = _TryAllSolutions(tracker, validateUniquenessOnly);
                 solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                 solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                 solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
+                if (validateUniquenessOnly && solveStats.NumSolutionsFound > 1)
+                {
+                    return solveStats;
+                }
             }
             if (solveStats.NumSolutionsFound == 0)
             {
