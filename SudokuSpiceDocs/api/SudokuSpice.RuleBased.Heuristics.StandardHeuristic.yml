@@ -20,8 +20,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: StandardHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
     startLine: 8
@@ -34,6 +34,7 @@ items:
     content: 'public class StandardHeuristic : ISudokuHeuristic'
     content.vb: >-
       Public Class StandardHeuristic
+
           Implements ISudokuHeuristic
   inheritance:
   - System.Object
@@ -67,8 +68,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
     startLine: 28
@@ -109,26 +110,22 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInitFor
     path: ../SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-    startLine: 53
+    startLine: 40
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nTries to initialize this heuristic for solving the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
   example: []
   syntax:
     content: public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: "\nThe puzzle to solve. This must implement <xref href=\"SudokuSpice.RuleBased.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>.\n"
     return:
       type: System.Boolean
-      description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
     content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.StandardHeuristic.TryInitFor*
   implements:
@@ -151,11 +148,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-    startLine: 84
+    startLine: 71
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -195,15 +192,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-    startLine: 89
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUndoes the last modifications made by this heuristic.\n"
   example: []
   syntax:
     content: public void UndoLastUpdate()
@@ -229,21 +225,19 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs
-    startLine: 104
+    startLine: 91
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUpdates all the current possible values.\n"
   example: []
   syntax:
     content: public bool UpdateAll()
     return:
       type: System.Boolean
-      description: Returns true if any modifications were made.
     content.vb: Public Function UpdateAll As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.StandardHeuristic.UpdateAll*
   implements:
@@ -599,12 +593,6 @@ references:
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
-- uid: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
-  parent: SudokuSpice.RuleBased
-  name: IReadOnlyBoxPuzzle
-  nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
 - uid: SudokuSpice.RuleBased.Heuristics.StandardHeuristic.TryInitFor*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.StandardHeuristic.TryInitFor
   name: TryInitFor

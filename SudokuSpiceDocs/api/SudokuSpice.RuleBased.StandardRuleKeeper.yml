@@ -30,8 +30,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: StandardRuleKeeper
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
     startLine: 10
@@ -44,6 +44,7 @@ items:
     content: 'public class StandardRuleKeeper : ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, ISudokuRule'
     content.vb: >-
       Public Class StandardRuleKeeper
+
           Implements ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, ISudokuRule
   inheritance:
   - System.Object
@@ -81,8 +82,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
     startLine: 24
@@ -113,26 +114,22 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInit
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 48
+    startLine: 27
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nTries to initialize this rule keeper to solve the given puzzle.\n\nWhen reusing a rule keeper to solve multiple puzzles, this must be called with each new\npuzzle to be solved.\n\nThe <xref href=\"SudokuSpice.RuleBased.StandardRuleKeeper\" data-throw-if-not-resolved=\"false\"></xref> also requires that the puzzle implements\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>. It will return false if it doesn&apos;t.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule keeper&apos;s state is\nunchanged on failure.\n"
   example: []
   syntax:
     content: public bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: "\nThe puzzle to be solved. Must implement <xref href=\"SudokuSpice.RuleBased.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>\n"
     return:
       type: System.Boolean
-      description: "\nFalse if the rule keeper couldn&apos;t be initialized, for example if the puzzle already\nviolates one of the rules. Else returns true.\n"
     content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.TryInit*
   implements:
@@ -155,22 +152,20 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 113
+    startLine: 88
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
   example: []
   syntax:
     content: public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
     return:
       type: SudokuSpice.RuleBased.ISudokuRuleKeeper
     content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As ISudokuRuleKeeper
@@ -195,28 +190,24 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySet
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 130
+    startLine: 97
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nUpdates possible values based on setting the given coordinate to the given value. If\nthis update fails (i.e. it leads to an unset square with no possible values), then it\nreturns false and leaves the possible values unchanged.\n"
   example: []
   syntax:
     content: public bool TrySet(in Coordinate c, int value)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The coordinate to update.
     - id: value
       type: System.Int32
-      description: The value to set <code>c</code> to.
     return:
       type: System.Boolean
-      description: "\nTrue if the possible values have been updated and the rules are still satisfied.\n"
     content.vb: Public Function TrySet(ByRef c As Coordinate, value As Integer) As Boolean
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.TrySet*
   implements:
@@ -242,15 +233,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetRules
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 215
+    startLine: 181
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nGets the <xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s enforced by this rule keeper.\n"
   example: []
   syntax:
     content: public IReadOnlyList<ISudokuRule> GetRules()
@@ -278,15 +268,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForRow
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 218
+    startLine: 184
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: Returns all the values that still need to be set in the given row.
   example: []
   syntax:
     content: public BitVector GetMissingValuesForRow(int row)
@@ -317,15 +306,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForColumn
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 221
+    startLine: 187
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nReturns all the values that still need to be set in the given column.\n"
   example: []
   syntax:
     content: public BitVector GetMissingValuesForColumn(int column)
@@ -356,15 +344,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForBox
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 224
+    startLine: 190
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: Returns all the values that still need to be set in the given box.
   example: []
   syntax:
     content: public BitVector GetMissingValuesForBox(int box)
@@ -395,25 +382,22 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Unset
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 227
+    startLine: 193
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nUndoes an update for the given value at the specified coordinate.\n"
   example: []
   syntax:
     content: public void Unset(in Coordinate c, int value)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The coordinate where a value is being unset.
     - id: value
       type: System.Int32
-      description: The value being unset.
     content.vb: Public Sub Unset(ByRef c As Coordinate, value As Integer)
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.Unset*
   implements:
@@ -439,11 +423,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 301
+    startLine: 266
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -485,11 +469,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Revert
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 307
+    startLine: 272
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -531,11 +515,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Revert
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 313
+    startLine: 278
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -579,11 +563,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Update
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 319
+    startLine: 284
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -627,11 +611,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 325
+    startLine: 290
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -670,11 +654,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInit
     path: ../SudokuSpice/RuleBased/framework/StandardRuleKeeper.cs
-    startLine: 331
+    startLine: 296
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -1037,17 +1021,6 @@ references:
   name: StandardRuleKeeper
   nameWithType: StandardRuleKeeper.StandardRuleKeeper
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.StandardRuleKeeper
-- uid: SudokuSpice.RuleBased.StandardRuleKeeper
-  commentId: T:SudokuSpice.RuleBased.StandardRuleKeeper
-  name: StandardRuleKeeper
-  nameWithType: StandardRuleKeeper
-  fullName: SudokuSpice.RuleBased.StandardRuleKeeper
-- uid: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
-  parent: SudokuSpice.RuleBased
-  name: IReadOnlyBoxPuzzle
-  nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
 - uid: SudokuSpice.RuleBased.StandardRuleKeeper.TryInit*
   commentId: Overload:SudokuSpice.RuleBased.StandardRuleKeeper.TryInit
   name: TryInit

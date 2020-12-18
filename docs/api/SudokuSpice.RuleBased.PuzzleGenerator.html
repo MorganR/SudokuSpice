@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class PuzzleGenerator&lt;TPuzzle&gt;
+    <title>Class PuzzleGenerator
    | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class PuzzleGenerator&lt;TPuzzle&gt;
+    <meta name="title" content="Class PuzzleGenerator
    | SudokuSpice ">
     <meta name="generator" content="docfx 2.56.5.0">
     
@@ -68,17 +68,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SudokuSpice.ConstraintBased.PuzzleGenerator`1">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.PuzzleGenerator">
   
   
-  <h1 id="SudokuSpice_ConstraintBased_PuzzleGenerator_1" data-uid="SudokuSpice.ConstraintBased.PuzzleGenerator`1" class="text-break">Class PuzzleGenerator&lt;TPuzzle&gt;
+  <h1 id="SudokuSpice_RuleBased_PuzzleGenerator" data-uid="SudokuSpice.RuleBased.PuzzleGenerator" class="text-break">Class PuzzleGenerator
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PuzzleGenerator&lt;TPuzzle&gt;</span></div>
+    <div class="level1"><span class="xref">PuzzleGenerator</span></div>
+      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.StandardPuzzleGenerator.html">StandardPuzzleGenerator</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -104,46 +105,29 @@
       <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
-  <h5 id="SudokuSpice_ConstraintBased_PuzzleGenerator_1_syntax">Syntax</h5>
+  <h5 id="SudokuSpice_RuleBased_PuzzleGenerator_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PuzzleGenerator&lt;TPuzzle&gt;
-
-    where TPuzzle : IPuzzle</code></pre>
+    <pre><code class="lang-csharp hljs">public class PuzzleGenerator</code></pre>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TPuzzle</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleGenerator_1__ctor_System_Func__0__System_Collections_Generic_IReadOnlyList_SudokuSpice_ConstraintBased_Constraints_IConstraint__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleGenerator%601.%23ctor(System.Func%7B%600%7D%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.ConstraintBased.Constraints.IConstraint%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleGenerator__ctor_SudokuSpice_RuleBased_PuzzleSolver_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleGenerator.%23ctor(SudokuSpice.RuleBased.PuzzleSolver)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleGenerator.cs/#L25">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/PuzzleGenerator.cs/#L21">View Source</a>
   </span>
-  <a id="SudokuSpice_ConstraintBased_PuzzleGenerator_1__ctor_" data-uid="SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PuzzleGenerator_1__ctor_System_Func__0__System_Collections_Generic_IReadOnlyList_SudokuSpice_ConstraintBased_Constraints_IConstraint__" data-uid="SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})">PuzzleGenerator(Func&lt;TPuzzle&gt;, IReadOnlyList&lt;IConstraint&gt;)</h4>
+  <a id="SudokuSpice_RuleBased_PuzzleGenerator__ctor_" data-uid="SudokuSpice.RuleBased.PuzzleGenerator.#ctor*"></a>
+  <h4 id="SudokuSpice_RuleBased_PuzzleGenerator__ctor_SudokuSpice_RuleBased_PuzzleSolver_" data-uid="SudokuSpice.RuleBased.PuzzleGenerator.#ctor(SudokuSpice.RuleBased.PuzzleSolver)">PuzzleGenerator(PuzzleSolver)</h4>
   <div class="markdown level1 summary"><p>Creates a puzzle generator to create puzzles with custom rules and type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PuzzleGenerator(Func&lt;TPuzzle&gt; puzzleFactory, IReadOnlyList&lt;IConstraint&gt; constraints)</code></pre>
+    <pre><code class="lang-csharp hljs">public PuzzleGenerator(PuzzleSolver solver)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -156,15 +140,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Func</span>&lt;TPuzzle&gt;</td>
-        <td><span class="parametername">puzzleFactory</span></td>
-        <td><p>A function that constructs an empty <a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a> of the desired type and shape.</p>
+        <td><a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html">PuzzleSolver</a></td>
+        <td><span class="parametername">solver</span></td>
+        <td><p>The solver to use to complete puzzles and enforce the appropriate rules.</p>
 </td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstraint.html">IConstraint</a>&gt;</td>
-        <td><span class="parametername">constraints</span></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
@@ -172,19 +151,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleGenerator_1_Generate_System_Int32_System_TimeSpan_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleGenerator%601.Generate(System.Int32%2CSystem.TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleGenerator_Generate_System_Int32_System_Int32_System_TimeSpan_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32%2CSystem.Int32%2CSystem.TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleGenerator.cs/#L55">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/PuzzleGenerator.cs/#L53">View Source</a>
   </span>
-  <a id="SudokuSpice_ConstraintBased_PuzzleGenerator_1_Generate_" data-uid="SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PuzzleGenerator_1_Generate_System_Int32_System_TimeSpan_" data-uid="SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)">Generate(Int32, TimeSpan)</h4>
+  <a id="SudokuSpice_RuleBased_PuzzleGenerator_Generate_" data-uid="SudokuSpice.RuleBased.PuzzleGenerator.Generate*"></a>
+  <h4 id="SudokuSpice_RuleBased_PuzzleGenerator_Generate_System_Int32_System_Int32_System_TimeSpan_" data-uid="SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)">Generate(Int32, Int32, TimeSpan)</h4>
   <div class="markdown level1 summary"><p>Generates a puzzle that has a unique solution with the given number of squares set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TPuzzle Generate(int numSquaresToSet, TimeSpan timeout)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual int? [, ] Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -196,6 +175,12 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">puzzleSize</span></td>
+        <td><p>The size (i.e. side length) of the puzzle to generate.</p>
+</td>
+      </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">numSquaresToSet</span></td>
@@ -222,17 +207,17 @@ Especially useful when trying to generate puzzles with low
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TPuzzle</span></td>
-        <td><p>A puzzle of type <code>TPuzzle</code> with a unique solution and
-<code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code> preset squares.</p>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;[,]</td>
+        <td><p>A <code data-dev-comment-type="paramref" class="paramref">puzzleSize</code>-x-<code data-dev-comment-type="paramref" class="paramref">puzzleSize</code> puzzle with a unique
+solution and <code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code> preset squares.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_ConstraintBased_PuzzleGenerator_1_Generate_System_Int32_System_TimeSpan__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Be careful calling this with low values, as it can take a very long time to generate
-unique puzzles as numSquaresToSet approaches the minimum number of clues necessary to
-provide a unique puzzle for this generator's size.</p>
+  <h5 id="SudokuSpice_RuleBased_PuzzleGenerator_Generate_System_Int32_System_Int32_System_TimeSpan__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Be careful calling this with low <code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code>. It can take a
+very long time to generate unique puzzles as numSquaresToSet approaches the minimum
+number of clues necessary to provide a unique puzzle with the requested size.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -259,10 +244,10 @@ provide a unique puzzle for this generator's size.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleGenerator_1.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleGenerator%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleGenerator.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleGenerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleGenerator.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/PuzzleGenerator.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

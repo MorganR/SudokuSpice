@@ -24,8 +24,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UniqueInXHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
     startLine: 10
@@ -38,6 +38,7 @@ items:
     content: 'public abstract class UniqueInXHeuristic : ISudokuHeuristic'
     content.vb: >-
       Public MustInherit Class UniqueInXHeuristic
+
           Implements ISudokuHeuristic
   inheritance:
   - System.Object
@@ -77,8 +78,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
     startLine: 16
@@ -107,8 +108,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
     startLine: 26
@@ -146,15 +147,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 33
+    startLine: 34
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nCreates a deep copy of this heuristic, replacing internal references with the ones\nprovided. These references may or may not be used during the copy, depending on the\nimplementation of the heuristic.\n"
   example: []
   syntax:
     content: public abstract ISudokuHeuristic CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle, IReadOnlyList<ISudokuRule> rules)
@@ -192,26 +192,22 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInitFor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nTries to initialize this heuristic for solving the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
   example: []
   syntax:
     content: public virtual bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: The puzzle to solve.
     return:
       type: System.Boolean
-      description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
     content.vb: Public Overridable Function TryInitFor(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor*
   implements:
@@ -236,15 +232,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 51
+    startLine: 52
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUndoes the last modifications made by this heuristic.\n"
   example: []
   syntax:
     content: public void UndoLastUpdate()
@@ -270,21 +265,19 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUpdates all the current possible values.\n"
   example: []
   syntax:
     content: public bool UpdateAll()
     return:
       type: System.Boolean
-      description: Returns true if any modifications were made.
     content.vb: Public Function UpdateAll As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll*
   implements:
@@ -307,11 +300,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetNumDimensions
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 92
+    startLine: 93
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -348,11 +341,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForDimension
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 101
+    startLine: 102
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -391,11 +384,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoordinatesOnDimension
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs
-    startLine: 106
+    startLine: 107
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics

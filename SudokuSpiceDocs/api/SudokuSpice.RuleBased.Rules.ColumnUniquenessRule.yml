@@ -22,8 +22,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: ColumnUniquenessRule
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 7
@@ -36,7 +36,9 @@ items:
     content: 'public class ColumnUniquenessRule : UniquenessRule, IMissingColumnValuesTracker, ISudokuRule'
     content.vb: >-
       Public Class ColumnUniquenessRule
+
           Inherits UniquenessRule
+
           Implements IMissingColumnValuesTracker, ISudokuRule
   inheritance:
   - System.Object
@@ -77,8 +79,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 11
@@ -107,22 +109,20 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nCreates a deep copy of this ISudokuRule, with any internal <code>IReadOnlyPuzzle</code>\nreferences updated to the given puzzle.\n"
   example: []
   syntax:
     content: public override ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzle
-      description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
     return:
       type: SudokuSpice.RuleBased.Rules.ISudokuRule
     content.vb: Public Overrides Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As ISudokuRule
@@ -150,26 +150,22 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInit
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 24
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nTries to initialize this rule to prepare to solve the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
   example: []
   syntax:
     content: public override bool TryInit(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzle
-      description: The puzzle to be solved.
     return:
       type: System.Boolean
-      description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
     content.vb: Public Overrides Function TryInit(puzzle As IReadOnlyPuzzle) As Boolean
   overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   overload: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.TryInit*
@@ -195,15 +191,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForColumn
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 35
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nReturns all the values that still need to be set in the given column.\n"
   example: []
   syntax:
     content: public BitVector GetMissingValuesForColumn(int col)
@@ -234,22 +229,20 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetNumDimensions
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 38
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nReturns the number of dimensions that will be enforced to contain unique values.\n"
   example: []
   syntax:
     content: protected override int GetNumDimensions(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzle
-      description: The puzzle for which to determine the number of dimensions.
     return:
       type: System.Int32
     content.vb: Protected Overrides Function GetNumDimensions(puzzle As IReadOnlyPuzzle) As Integer
@@ -275,15 +268,14 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetDimension
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 40
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nGets the dimension for a coordinate.\n"
   example: []
   syntax:
     content: protected override int GetDimension(in Coordinate c)
@@ -318,28 +310,24 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TrackUnsetCoordinatesOnSameDimension
     path: ../SudokuSpice/RuleBased/Rules/ColumnUniquenessRule.cs
     startLine: 42
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nAdds the coordinates of unset values on the given dimension to the given tracker.\n"
   example: []
   syntax:
     content: protected override void TrackUnsetCoordinatesOnSameDimension(int dimension, in Coordinate source, CoordinateTracker tracker)
     parameters:
     - id: dimension
       type: System.Int32
-      description: The dimension to search.
     - id: source
       type: SudokuSpice.Coordinate
-      description: The source coordinate for the change; should be skipped.
     - id: tracker
       type: SudokuSpice.CoordinateTracker
-      description: The tracker to add coordiantes to.
     content.vb: Protected Overrides Sub TrackUnsetCoordinatesOnSameDimension(dimension As Integer, ByRef source As Coordinate, tracker As CoordinateTracker)
   overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.TrackUnsetCoordinatesOnSameDimension*

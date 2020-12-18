@@ -21,8 +21,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UniqueInBoxHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
     startLine: 15
@@ -35,7 +35,9 @@ items:
     content: 'public class UniqueInBoxHeuristic : UniqueInXHeuristic, ISudokuHeuristic'
     content.vb: >-
       Public Class UniqueInBoxHeuristic
+
           Inherits UniqueInXHeuristic
+
           Implements ISudokuHeuristic
   inheritance:
   - System.Object
@@ -72,8 +74,8 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
     startLine: 27
@@ -108,11 +110,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 47
+    startLine: 46
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -153,11 +155,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInitFor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 84
+    startLine: 75
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -169,7 +171,7 @@ items:
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: "\nThe puzzle to solve. This must implement <xref href=\"SudokuSpice.RuleBased.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+      description: "\nThe puzzle to solve. This must implement <xref href=\"SudokuSpice.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>.\n"
     return:
       type: System.Boolean
       description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
@@ -196,11 +198,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetNumDimensions
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 95
+    startLine: 81
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -234,11 +236,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForDimension
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 96
+    startLine: 82
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -274,11 +276,11 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoordinatesOnDimension
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 97
+    startLine: 83
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -861,12 +863,12 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
-  parent: SudokuSpice.RuleBased
+- uid: SudokuSpice.IReadOnlyBoxPuzzle
+  commentId: T:SudokuSpice.IReadOnlyBoxPuzzle
+  parent: SudokuSpice
   name: IReadOnlyBoxPuzzle
   nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyBoxPuzzle
+  fullName: SudokuSpice.IReadOnlyBoxPuzzle
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
@@ -915,6 +917,11 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic

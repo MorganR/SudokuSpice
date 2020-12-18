@@ -31,11 +31,11 @@ items:
   type: Class
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Puzzle
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 10
   assemblies:
   - SudokuSpice
@@ -46,6 +46,7 @@ items:
     content: 'public class Puzzle : IPuzzle, IReadOnlyBoxPuzzle, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
+
           Implements IPuzzle, IReadOnlyBoxPuzzle, IReadOnlyPuzzle
   inheritance:
   - System.Object
@@ -79,16 +80,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Size
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 18
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int Size { get; }
@@ -118,16 +118,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: BoxSize
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nExpands IReadOnlyPuzzle to provide box-related functionality. A &apos;box&apos; is a square region\nwithin the puzzle. \n"
   example: []
   syntax:
     content: public int BoxSize { get; }
@@ -157,16 +156,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: NumSquares
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 22
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -196,16 +194,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: NumEmptySquares
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 24
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -235,16 +232,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: NumSetSquares
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -274,16 +270,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: AllPossibleValuesSpan
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 28
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -313,11 +308,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 39
   assemblies:
   - SudokuSpice
@@ -353,11 +348,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
-    path: ../SudokuSpice/data/Puzzle.cs
+    path: ../SudokuSpice/Data/Puzzle.cs
     startLine: 93
   assemblies:
   - SudokuSpice
@@ -392,12 +387,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 132
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 133
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -427,16 +422,15 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 143
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 144
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -474,16 +468,15 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 158
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 159
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public IPuzzle DeepCopy()
@@ -510,26 +503,23 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 161
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 162
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
-      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.Puzzle.Item*
   implements:
@@ -557,12 +547,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetBoxIndex
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 169
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 170
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -598,12 +588,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetStartingBoxCoordinate
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 172
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 173
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -637,12 +627,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 175
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 176
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -673,12 +663,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: YieldUnsetCoordsForBox
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 180
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 181
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -712,12 +702,12 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice
+      path: SudokuSpice/Data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 202
+    path: ../SudokuSpice/Data/Puzzle.cs
+    startLine: 203
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
