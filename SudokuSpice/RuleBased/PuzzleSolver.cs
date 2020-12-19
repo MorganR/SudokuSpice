@@ -1,5 +1,6 @@
 using SudokuSpice.RuleBased.Heuristics;
 using System;
+using System.Threading;
 using System.Diagnostics;
 
 namespace SudokuSpice.RuleBased
@@ -84,25 +85,37 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
         /// </summary>
-        public SolveStats GetStatsForAllSolutions(int?[,] puzzle)
+        /// <exception cref="OperationCanceledException">
+        /// May be thrown if the given cancellation token is canceled.
+        /// </exception>
+        public SolveStats GetStatsForAllSolutions(int?[,] puzzle, CancellationToken? token = null)
         {
+            return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
+        }
+
+        /// <summary>
+        /// Determines if the given puzzle has a unique solution.
+        /// </summary>
+        /// <exception cref="OperationCanceledException">
+        /// May be thrown if the given cancellation token is canceled.
+        /// </exception>
+        public bool HasUniqueSolution(int?[,] puzzle, CancellationToken? token = null)
+        {
+            return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
+                .NumSolutionsFound == 1;
+        }
+
+        private SolveStats _GetStatsForAllSolutions(
+            int?[,] puzzle, bool validateUniquenessOnly, CancellationToken? cancellationToken)
+        {
+            cancellationToken?.ThrowIfCancellationRequested();
             // Copy the puzzle so that the given puzzle is not modified.
             if (!_tracker.TryInit(Puzzle.CopyFrom(puzzle)))
             {
                 // No solutions.
                 return new SolveStats();
             }
-            return _TryAllSolutions(_tracker, validateUniquenessOnly: false);
-        }
-
-        public bool HasUniqueSolution(int?[,] puzzle)
-        {
-            if (!_tracker.TryInit(Puzzle.CopyFrom(puzzle)))
-            {
-                // No solutions.
-                return false;
-            }
-            return _TryAllSolutions(_tracker, validateUniquenessOnly: true).NumSolutionsFound == 1;
+            return _TryAllSolutions(_tracker, validateUniquenessOnly, cancellationToken);
         }
 
         private bool _TrySolve()
@@ -162,8 +175,12 @@ namespace SudokuSpice.RuleBased
             return false;
         }
 
-        private static SolveStats _TryAllSolutions(SquareTracker tracker, bool validateUniquenessOnly)
+        private static SolveStats _TryAllSolutions(
+            SquareTracker tracker,
+            bool validateUniquenessOnly,
+            CancellationToken? cancellationToken)
         {
+            cancellationToken?.ThrowIfCancellationRequested();
             var puzzle = tracker.Puzzle;
             Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
             if (puzzle.NumEmptySquares == 0)
@@ -179,26 +196,28 @@ namespace SudokuSpice.RuleBased
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
                 {
-                    return _TryAllSolutions(tracker, validateUniquenessOnly);
+                    return _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(tracker, c, possibleValues[0..numPossible], validateUniquenessOnly);
+            return _TryAllSolutionsWithGuess(tracker, c, possibleValues[0..numPossible], validateUniquenessOnly, cancellationToken);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
             SquareTracker tracker,
             Coordinate c,
             ReadOnlySpan<int> valuesToGuess,
-            bool validateUniquenessOnly)
+            bool validateUniquenessOnly,
+            CancellationToken? cancellationToken)
         {
+            cancellationToken?.ThrowIfCancellationRequested();
             var solveStats = new SolveStats();
             for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
                 var trackerCopy = new SquareTracker(tracker);
                 if (trackerCopy.TrySet(in c, valuesToGuess[i]))
                 {
-                    SolveStats guessStats = _TryAllSolutions(trackerCopy, validateUniquenessOnly);
+                    SolveStats guessStats = _TryAllSolutions(trackerCopy, validateUniquenessOnly, cancellationToken);
                     solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                     solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                     solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
@@ -210,7 +229,7 @@ namespace SudokuSpice.RuleBased
             }
             if (tracker.TrySet(in c, valuesToGuess[^1]))
             {
-                SolveStats guessStats = _TryAllSolutions(tracker, validateUniquenessOnly);
+                SolveStats guessStats = _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);
                 solveStats.NumSolutionsFound += guessStats.NumSolutionsFound;
                 solveStats.NumSquaresGuessed += guessStats.NumSquaresGuessed;
                 solveStats.NumTotalGuesses += guessStats.NumTotalGuesses;
