@@ -6,7 +6,7 @@ items:
   parent: SudokuSpice.RuleBased.Heuristics
   children:
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.#ctor(SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker)
-  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
@@ -35,9 +35,7 @@ items:
     content: 'public class UniqueInBoxHeuristic : UniqueInXHeuristic, ISudokuHeuristic'
     content.vb: >-
       Public Class UniqueInBoxHeuristic
-
           Inherits UniqueInXHeuristic
-
           Implements ISudokuHeuristic
   inheritance:
   - System.Object
@@ -47,13 +45,6 @@ items:
   inheritedMembers:
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -96,16 +87,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic
   langs:
   - csharp
   - vb
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
   nameWithType: UniqueInBoxHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
   type: Method
   source:
     remote:
@@ -126,11 +117,11 @@ items:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
     - id: rules
-      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+      type: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
     return:
       type: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
     content.vb: Public Overrides Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues, rules As IReadOnlyList(Of ISudokuRule)) As ISudokuHeuristic
-  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences*
   nameWithType.vb: UniqueInBoxHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
   modifiers.csharp:
@@ -139,7 +130,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -292,7 +283,7 @@ items:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzle
     return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
+      type: IEnumerable{SudokuSpice.Coordinate}
     content.vb: Protected Overrides Function GetUnsetCoordinatesOnDimension(dimension As Integer, puzzle As IReadOnlyPuzzle) As IEnumerable(Of Coordinate)
   overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension*
@@ -308,13 +299,6 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
-- uid: System.Object
-  commentId: T:System.Object
-  parent: System
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
   commentId: T:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
@@ -383,291 +367,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.#ctor
   name: UniqueInBoxHeuristic
@@ -684,18 +383,18 @@ references:
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
   isExternal: true
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
   nameWithType: UniqueInXHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
   nameWithType.vb: UniqueInXHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
     name: CopyWithNewReferences
     nameWithType: UniqueInXHeuristic.CopyWithNewReferences
     fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences
@@ -709,10 +408,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
@@ -728,7 +427,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
     name: CopyWithNewReferences
     nameWithType: UniqueInXHeuristic.CopyWithNewReferences
     fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences
@@ -742,10 +441,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -771,21 +470,20 @@ references:
   name: IReadOnlyPuzzleWithMutablePossibleValues
   nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyList`1
+- uid: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+  commentId: '!:IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}'
+  definition: IReadOnlyList`1
   name: IReadOnlyList<ISudokuRule>
   nameWithType: IReadOnlyList<ISudokuRule>
-  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
+  fullName: IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
   nameWithType.vb: IReadOnlyList(Of ISudokuRule)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
+  fullName.vb: IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
   name.vb: IReadOnlyList(Of ISudokuRule)
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
@@ -798,10 +496,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -818,51 +516,44 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
-- uid: System.Collections.Generic.IReadOnlyList`1
-  commentId: T:System.Collections.Generic.IReadOnlyList`1
+- uid: IReadOnlyList`1
   isExternal: true
-  name: IReadOnlyList<T>
-  nameWithType: IReadOnlyList<T>
-  fullName: System.Collections.Generic.IReadOnlyList<T>
-  nameWithType.vb: IReadOnlyList(Of T)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
-  name.vb: IReadOnlyList(Of T)
+  name: IReadOnlyList<>
+  nameWithType: IReadOnlyList<>
+  fullName: IReadOnlyList<>
+  nameWithType.vb: IReadOnlyList(Of )
+  fullName.vb: IReadOnlyList(Of )
+  name.vb: IReadOnlyList(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: SudokuSpice.IReadOnlyBoxPuzzle
   commentId: T:SudokuSpice.IReadOnlyBoxPuzzle
   parent: SudokuSpice
@@ -911,8 +602,6 @@ references:
   nameWithType: UniqueInBoxHeuristic.TryInitFor
   fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor
 - uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -970,8 +659,6 @@ references:
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -1098,21 +785,20 @@ references:
   name: GetUnsetCoordinatesOnDimension
   nameWithType: UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension
   fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
+- uid: IEnumerable{SudokuSpice.Coordinate}
+  commentId: '!:IEnumerable{SudokuSpice.Coordinate}'
+  definition: IEnumerable`1
   name: IEnumerable<Coordinate>
   nameWithType: IEnumerable<Coordinate>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Coordinate>
+  fullName: IEnumerable<SudokuSpice.Coordinate>
   nameWithType.vb: IEnumerable(Of Coordinate)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Coordinate)
+  fullName.vb: IEnumerable(Of SudokuSpice.Coordinate)
   name.vb: IEnumerable(Of Coordinate)
   spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -1125,10 +811,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1140,42 +826,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
+- uid: IEnumerable`1
   isExternal: true
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
+  name: IEnumerable<>
+  nameWithType: IEnumerable<>
+  fullName: IEnumerable<>
+  nameWithType.vb: IEnumerable(Of )
+  fullName.vb: IEnumerable(Of )
+  name.vb: IEnumerable(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

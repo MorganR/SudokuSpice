@@ -88,35 +88,11 @@
     <h5>Implements</h5>
     <div><a class="xref" href="SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.html">ISudokuHeuristic</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Heuristics.html">SudokuSpice.RuleBased.Heuristics</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class UniqueInXHeuristic : ISudokuHeuristic</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class UniqueInXHeuristic : object, ISudokuHeuristic</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -180,14 +156,17 @@ existing heuristic, but the puzzle's data must be the same.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues%2CIReadOnlyList%7BSudokuSpice.RuleBased.Rules.ISudokuRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Heuristics/UniqueInXHeuristic.cs/#L35">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IReadOnlyList_SudokuSpice_RuleBased_Rules_ISudokuRule__" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList&lt;ISudokuRule&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this heuristic, replacing internal references with the ones
+provided. These references may or may not be used during the copy, depending on the
+implementation of the heuristic.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -209,7 +188,7 @@ existing heuristic, but the puzzle's data must be the same.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>&gt;</td>
         <td><span class="parametername">rules</span></td>
         <td></td>
       </tr>
@@ -385,7 +364,7 @@ puzzle.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -399,7 +378,8 @@ puzzle.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_TryInitFor_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to initialize this heuristic for solving the given puzzle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -418,7 +398,8 @@ puzzle.</p>
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to solve.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -433,10 +414,16 @@ puzzle.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>False if this heuristic cannot be initialized for the given puzzle, else true.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+on failure.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -446,7 +433,8 @@ puzzle.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UndoLastUpdate" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Undoes the last modifications made by this heuristic.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -461,7 +449,8 @@ puzzle.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UpdateAll_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInXHeuristic_UpdateAll" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll">UpdateAll()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates all the current possible values.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -478,7 +467,8 @@ puzzle.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Returns true if any modifications were made.</p>
+</td>
       </tr>
     </tbody>
   </table>

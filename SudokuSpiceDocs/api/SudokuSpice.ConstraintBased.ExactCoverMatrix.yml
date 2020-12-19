@@ -33,22 +33,16 @@ items:
   remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.ConstraintHeader\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
-    content: public class ExactCoverMatrix
-    content.vb: Public Class ExactCoverMatrix
+    content: 'public class ExactCoverMatrix : object'
+    content.vb: >-
+      Public Class ExactCoverMatrix
+          Inherits Object
   seealso:
   - linkType: HRef
     linkId: https://en.wikipedia.org/wiki/Exact_cover
     altText: https://en.wikipedia.org/wiki/Exact_cover
   inheritance:
   - System.Object
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -83,7 +77,7 @@ items:
     content: public ReadOnlySpan<int> AllPossibleValues { get; }
     parameters: []
     return:
-      type: System.ReadOnlySpan{System.Int32}
+      type: ReadOnlySpan{System.Int32}
     content.vb: Public ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
   overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*
   modifiers.csharp:
@@ -120,7 +114,7 @@ items:
     content: public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+      type: IReadOnlyDictionary{System.Int32,System.Int32}
     content.vb: Public ReadOnly Property ValuesToIndices As IReadOnlyDictionary(Of Integer, Integer)
   overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices*
   modifiers.csharp:
@@ -200,7 +194,7 @@ items:
       type: System.Int32
       description: A zero-based row index.
     return:
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
+      type: ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
     content.vb: Public Function GetSquaresOnRow(row As Integer) As ReadOnlySpan(Of Square)
   overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow*
   modifiers.csharp:
@@ -238,7 +232,7 @@ items:
       type: System.Int32
       description: A zero-based column index.
     return:
-      type: System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square}
+      type: List{SudokuSpice.ConstraintBased.Square}
     content.vb: Public Function GetSquaresOnColumn(column As Integer) As List(Of Square)
   overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn*
   modifiers.csharp:
@@ -272,7 +266,7 @@ items:
   syntax:
     content: public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
     return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
+      type: IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
     content.vb: Public Function GetUnsatisfiedConstraintHeaders As IEnumerable(Of ConstraintHeader)
   overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*
   modifiers.csharp:
@@ -309,323 +303,30 @@ references:
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
-- uid: System.Object
-  commentId: T:System.Object
-  parent: System
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.ConstraintBased.Constraints
   commentId: N:SudokuSpice.ConstraintBased.Constraints
   name: SudokuSpice.ConstraintBased.Constraints
   nameWithType: SudokuSpice.ConstraintBased.Constraints
   fullName: SudokuSpice.ConstraintBased.Constraints
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*
   commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
   name: AllPossibleValues
   nameWithType: ExactCoverMatrix.AllPossibleValues
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-- uid: System.ReadOnlySpan{System.Int32}
-  commentId: T:System.ReadOnlySpan{System.Int32}
-  parent: System
-  definition: System.ReadOnlySpan`1
+- uid: ReadOnlySpan{System.Int32}
+  commentId: '!:ReadOnlySpan{System.Int32}'
+  definition: ReadOnlySpan`1
   name: ReadOnlySpan<Int32>
   nameWithType: ReadOnlySpan<Int32>
-  fullName: System.ReadOnlySpan<System.Int32>
+  fullName: ReadOnlySpan<System.Int32>
   nameWithType.vb: ReadOnlySpan(Of Int32)
-  fullName.vb: System.ReadOnlySpan(Of System.Int32)
+  fullName.vb: ReadOnlySpan(Of System.Int32)
   name.vb: ReadOnlySpan(Of Int32)
   spec.csharp:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -639,10 +340,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -655,42 +356,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ReadOnlySpan`1
-  commentId: T:System.ReadOnlySpan`1
+- uid: ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<T>
-  nameWithType: ReadOnlySpan<T>
-  fullName: System.ReadOnlySpan<T>
-  nameWithType.vb: ReadOnlySpan(Of T)
-  fullName.vb: System.ReadOnlySpan(Of T)
-  name.vb: ReadOnlySpan(Of T)
+  name: ReadOnlySpan<>
+  nameWithType: ReadOnlySpan<>
+  fullName: ReadOnlySpan<>
+  nameWithType.vb: ReadOnlySpan(Of )
+  fullName.vb: ReadOnlySpan(Of )
+  name.vb: ReadOnlySpan(Of )
   spec.csharp:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
@@ -702,21 +402,20 @@ references:
   name: ValuesToIndices
   nameWithType: ExactCoverMatrix.ValuesToIndices
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
-- uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
-  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyDictionary`2
+- uid: IReadOnlyDictionary{System.Int32,System.Int32}
+  commentId: '!:IReadOnlyDictionary{System.Int32,System.Int32}'
+  definition: IReadOnlyDictionary`2
   name: IReadOnlyDictionary<Int32, Int32>
   nameWithType: IReadOnlyDictionary<Int32, Int32>
-  fullName: System.Collections.Generic.IReadOnlyDictionary<System.Int32, System.Int32>
+  fullName: IReadOnlyDictionary<System.Int32, System.Int32>
   nameWithType.vb: IReadOnlyDictionary(Of Int32, Int32)
-  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.Int32, System.Int32)
+  fullName.vb: IReadOnlyDictionary(Of System.Int32, System.Int32)
   name.vb: IReadOnlyDictionary(Of Int32, Int32)
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+  - uid: IReadOnlyDictionary`2
     name: IReadOnlyDictionary
     nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
+    fullName: IReadOnlyDictionary
     isExternal: true
   - name: <
     nameWithType: <
@@ -738,10 +437,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+  - uid: IReadOnlyDictionary`2
     name: IReadOnlyDictionary
     nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
+    fullName: IReadOnlyDictionary
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -762,63 +461,57 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IReadOnlyDictionary`2
-  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+- uid: IReadOnlyDictionary`2
+  commentId: '!:IReadOnlyDictionary`2'
   isExternal: true
-  name: IReadOnlyDictionary<TKey, TValue>
-  nameWithType: IReadOnlyDictionary<TKey, TValue>
-  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
-  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
-  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
-  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  name: IReadOnlyDictionary<, >
+  nameWithType: IReadOnlyDictionary<, >
+  fullName: IReadOnlyDictionary<, >
+  nameWithType.vb: IReadOnlyDictionary(Of , )
+  fullName.vb: IReadOnlyDictionary(Of , )
+  name.vb: IReadOnlyDictionary(Of , )
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+  - uid: IReadOnlyDictionary`2
     name: IReadOnlyDictionary
     nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
+    fullName: IReadOnlyDictionary
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+  - uid: IReadOnlyDictionary`2
     name: IReadOnlyDictionary
     nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
+    fullName: IReadOnlyDictionary
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
@@ -841,27 +534,24 @@ references:
   nameWithType: ExactCoverMatrix.GetSquaresOnRow
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
-  parent: System
-  definition: System.ReadOnlySpan`1
+- uid: ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
+  commentId: '!:ReadOnlySpan{SudokuSpice.ConstraintBased.Square}'
+  definition: ReadOnlySpan`1
   name: ReadOnlySpan<Square>
   nameWithType: ReadOnlySpan<Square>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square>
+  fullName: ReadOnlySpan<SudokuSpice.ConstraintBased.Square>
   nameWithType.vb: ReadOnlySpan(Of Square)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square)
+  fullName.vb: ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square)
   name.vb: ReadOnlySpan(Of Square)
   spec.csharp:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -874,10 +564,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -894,21 +584,20 @@ references:
   name: GetSquaresOnColumn
   nameWithType: ExactCoverMatrix.GetSquaresOnColumn
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn
-- uid: System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square}
-  commentId: T:System.Collections.Generic.List{SudokuSpice.ConstraintBased.Square}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
+- uid: List{SudokuSpice.ConstraintBased.Square}
+  commentId: '!:List{SudokuSpice.ConstraintBased.Square}'
+  definition: List`1
   name: List<Square>
   nameWithType: List<Square>
-  fullName: System.Collections.Generic.List<SudokuSpice.ConstraintBased.Square>
+  fullName: List<SudokuSpice.ConstraintBased.Square>
   nameWithType.vb: List(Of Square)
-  fullName.vb: System.Collections.Generic.List(Of SudokuSpice.ConstraintBased.Square)
+  fullName.vb: List(Of SudokuSpice.ConstraintBased.Square)
   name.vb: List(Of Square)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
@@ -921,10 +610,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -936,42 +625,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
+- uid: List`1
   isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
@@ -980,21 +668,20 @@ references:
   name: GetUnsatisfiedConstraintHeaders
   nameWithType: ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
+- uid: IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}
+  commentId: '!:IEnumerable{SudokuSpice.ConstraintBased.ConstraintHeader}'
+  definition: IEnumerable`1
   name: IEnumerable<ConstraintHeader>
   nameWithType: IEnumerable<ConstraintHeader>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.ConstraintHeader>
+  fullName: IEnumerable<SudokuSpice.ConstraintBased.ConstraintHeader>
   nameWithType.vb: IEnumerable(Of ConstraintHeader)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.ConstraintHeader)
+  fullName.vb: IEnumerable(Of SudokuSpice.ConstraintBased.ConstraintHeader)
   name.vb: IEnumerable(Of ConstraintHeader)
   spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -1007,10 +694,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1022,42 +709,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
+- uid: IEnumerable`1
   isExternal: true
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
+  name: IEnumerable<>
+  nameWithType: IEnumerable<>
+  fullName: IEnumerable<>
+  nameWithType.vb: IEnumerable(Of )
+  fullName.vb: IEnumerable(Of )
+  name.vb: IEnumerable(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
+  - uid: IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

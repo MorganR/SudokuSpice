@@ -89,35 +89,11 @@
     <div><a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html">IMissingBoxValuesTracker</a></div>
     <div><a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_StandardRuleKeeper_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StandardRuleKeeper : ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, ISudokuRule</code></pre>
+    <pre><code class="lang-csharp hljs">public class StandardRuleKeeper : object, ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, ISudokuRule</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -187,22 +163,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotImplementedException</span></td>
-        <td><p>Always</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_StandardRuleKeeper_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -212,7 +172,10 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this rule keeper, including copies of any
+<a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>s it contains, with updated internal
+<a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a> and <span class="xref">SudokuSpice.RuleBased.PossibleValues</span> references.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -231,7 +194,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The new puzzle reference. Should contain the same data as the current puzzle instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -259,7 +223,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_GetMissingValuesForBox_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForBox*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_GetMissingValuesForBox_System_Int32_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForBox(System.Int32)">GetMissingValuesForBox(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns all the values that still need to be set in the given box.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -306,7 +271,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_GetMissingValuesForColumn_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForColumn*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_GetMissingValuesForColumn_System_Int32_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForColumn(System.Int32)">GetMissingValuesForColumn(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns all the values that still need to be set in the given column.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -353,7 +319,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_GetMissingValuesForRow_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForRow*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_GetMissingValuesForRow_System_Int32_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForRow(System.Int32)">GetMissingValuesForRow(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns all the values that still need to be set in the given row.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -439,22 +406,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotImplementedException</span></td>
-        <td><p>Always</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_StandardRuleKeeper_GetRules.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.StandardRuleKeeper.GetRules%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -464,7 +415,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_GetRules_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetRules*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_GetRules" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.GetRules">GetRules()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>s enforced by this rule keeper.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -480,7 +432,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -520,22 +472,6 @@
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">val</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotImplementedException</span></td>
-        <td><p>Always</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -579,22 +515,6 @@
         <td><a class="xref" href="SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></td>
         <td><span class="parametername">coordTracker</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotImplementedException</span></td>
-        <td><p>Always</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -646,22 +566,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotImplementedException</span></td>
-        <td><p>Always</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_StandardRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.StandardRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -671,7 +575,10 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_TryInit_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.TryInit*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">TryInit(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to initialize this rule keeper to solve the given puzzle.</p>
+<p>When reusing a rule keeper to solve multiple puzzles, this must be called with each new
+puzzle to be solved.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -690,7 +597,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to be solved.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -705,10 +613,17 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>False if the rule keeper couldn't be initialized, for example if the puzzle already
+violates one of the rules. Else returns true.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SudokuSpice_RuleBased_StandardRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the rule keeper's state is
+unchanged on failure.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_StandardRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.StandardRuleKeeper.TrySet(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -718,7 +633,10 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_TrySet_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.TrySet*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)">TrySet(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates possible values based on setting the given coordinate to the given value. If
+this update fails (i.e. it leads to an unset square with no possible values), then it
+returns false and leaves the possible values unchanged.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -737,12 +655,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate to update.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value to set <code>c</code> to.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -757,7 +677,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>True if the possible values have been updated and the rules are still satisfied.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -770,7 +691,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_StandardRuleKeeper_Unset_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.Unset*"></a>
   <h4 id="SudokuSpice_RuleBased_StandardRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.StandardRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)">Unset(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -789,12 +711,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate where a value is being unset.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value being unset.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -838,22 +762,6 @@
         <td><a class="xref" href="SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></td>
         <td><span class="parametername">coordTracker</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotImplementedException</span></td>
-        <td><p>Always</p>
-</td>
       </tr>
     </tbody>
   </table>

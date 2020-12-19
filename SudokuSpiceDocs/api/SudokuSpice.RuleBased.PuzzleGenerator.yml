@@ -6,7 +6,7 @@ items:
   parent: SudokuSpice.RuleBased
   children:
   - SudokuSpice.RuleBased.PuzzleGenerator.#ctor(SudokuSpice.RuleBased.PuzzleSolver)
-  - SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)
+  - SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,TimeSpan)
   langs:
   - csharp
   - vb
@@ -26,20 +26,14 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   syntax:
-    content: public class PuzzleGenerator
-    content.vb: Public Class PuzzleGenerator
+    content: 'public class PuzzleGenerator : object'
+    content.vb: >-
+      Public Class PuzzleGenerator
+          Inherits Object
   inheritance:
   - System.Object
   derivedClasses:
   - SudokuSpice.RuleBased.StandardPuzzleGenerator
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -82,16 +76,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)
-  commentId: M:SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)
-  id: Generate(System.Int32,System.Int32,System.TimeSpan)
+- uid: SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,TimeSpan)
+  commentId: M:SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,TimeSpan)
+  id: Generate(System.Int32,System.Int32,TimeSpan)
   parent: SudokuSpice.RuleBased.PuzzleGenerator
   langs:
   - csharp
   - vb
   name: Generate(Int32, Int32, TimeSpan)
   nameWithType: PuzzleGenerator.Generate(Int32, Int32, TimeSpan)
-  fullName: SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32, System.Int32, System.TimeSpan)
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32, System.Int32, TimeSpan)
   type: Method
   source:
     remote:
@@ -117,17 +111,13 @@ items:
       type: System.Int32
       description: "\nThe number of squares that will be preset in the generated puzzle.\n"
     - id: timeout
-      type: System.TimeSpan
+      type: TimeSpan
       description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
     return:
       type: System.Nullable{System.Int32}[,]
       description: "\nA <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code>-x-<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code> puzzle with a unique\nsolution and <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> preset squares.\n"
     content.vb: Public Overridable Function Generate(puzzleSize As Integer, numSquaresToSet As Integer, timeout As TimeSpan) As Integer?(,)
   overload: SudokuSpice.RuleBased.PuzzleGenerator.Generate*
-  exceptions:
-  - type: System.TimeoutException
-    commentId: T:System.TimeoutException
-    description: "\nThrown if no valid unique puzzle is found within the specified\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">timeout</code>.\n"
   modifiers.csharp:
   - public
   - virtual
@@ -140,298 +130,6 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
-- uid: System.Object
-  commentId: T:System.Object
-  parent: System
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: SudokuSpice.RuleBased.PuzzleGenerator.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleGenerator.#ctor
   name: PuzzleGenerator
@@ -443,28 +141,21 @@ references:
   name: PuzzleSolver
   nameWithType: PuzzleSolver
   fullName: SudokuSpice.RuleBased.PuzzleSolver
-- uid: System.TimeoutException
-  commentId: T:System.TimeoutException
-  isExternal: true
 - uid: SudokuSpice.RuleBased.PuzzleGenerator.Generate*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleGenerator.Generate
   name: Generate
   nameWithType: PuzzleGenerator.Generate
   fullName: SudokuSpice.RuleBased.PuzzleGenerator.Generate
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: System.TimeSpan
-  commentId: T:System.TimeSpan
-  parent: System
+- uid: TimeSpan
   isExternal: true
   name: TimeSpan
   nameWithType: TimeSpan
-  fullName: System.TimeSpan
+  fullName: TimeSpan
 - uid: System.Nullable{System.Int32}[,]
   isExternal: true
   name: Nullable<Int32>[,]

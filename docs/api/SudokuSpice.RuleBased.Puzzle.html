@@ -86,32 +86,11 @@
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></div>
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Puzzle_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Puzzle : IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle</code></pre>
+    <pre><code class="lang-csharp hljs">public class Puzzle : object, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -194,7 +173,8 @@ be null. Changes to this <code>Puzzle</code> will be reflected in this matrix.</
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_AllPossibleValues_" data-uid="SudokuSpice.RuleBased.Puzzle.AllPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_AllPossibleValues" data-uid="SudokuSpice.RuleBased.Puzzle.AllPossibleValues">AllPossibleValues</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides read-only access to a puzzle's data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -329,7 +309,8 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_NumEmptySquares_" data-uid="SudokuSpice.RuleBased.Puzzle.NumEmptySquares*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_NumEmptySquares" data-uid="SudokuSpice.RuleBased.Puzzle.NumEmptySquares">NumEmptySquares</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides read-only access to a puzzle's data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -359,7 +340,8 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_NumSetSquares_" data-uid="SudokuSpice.RuleBased.Puzzle.NumSetSquares*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_NumSetSquares" data-uid="SudokuSpice.RuleBased.Puzzle.NumSetSquares">NumSetSquares</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides read-only access to a puzzle's data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -389,7 +371,8 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_NumSquares_" data-uid="SudokuSpice.RuleBased.Puzzle.NumSquares*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_NumSquares" data-uid="SudokuSpice.RuleBased.Puzzle.NumSquares">NumSquares</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides read-only access to a puzzle's data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -419,7 +402,8 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_Size_" data-uid="SudokuSpice.RuleBased.Puzzle.Size*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_Size" data-uid="SudokuSpice.RuleBased.Puzzle.Size">Size</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides read-only access to a puzzle's data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -562,7 +546,7 @@ its value to <code>null</code>.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -705,8 +689,6 @@ and dashes.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.Object.ToString()</span></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a>
