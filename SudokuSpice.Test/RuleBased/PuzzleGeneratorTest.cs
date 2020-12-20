@@ -44,7 +44,7 @@ namespace SudokuSpice.RuleBased.Test
             var generator = new PuzzleGenerator(StandardPuzzles.CreateSolver());
 
             Assert.Throws<TimeoutException>(
-                () => generator.Generate(25, 185, TimeSpan.FromMilliseconds(1)));
+                () => generator.Generate(16, 150, TimeSpan.FromMilliseconds(1)));
         }
     }
 }

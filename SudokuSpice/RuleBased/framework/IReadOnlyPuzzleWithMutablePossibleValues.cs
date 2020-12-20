@@ -2,10 +2,10 @@
 {
     public interface IReadOnlyPuzzleWithMutablePossibleValues : IReadOnlyPuzzle
     {
-        public void SetPossibleValues(in Coordinate c, BitVector possibleValues);
+        void SetPossibleValues(in Coordinate c, BitVector possibleValues);
 
-        public void IntersectPossibleValues(in Coordinate c, BitVector possibleValues);
+        void IntersectPossibleValues(in Coordinate c, BitVector possibleValues);
 
-        public void ResetPossibleValues(in Coordinate c);
+        void ResetPossibleValues(in Coordinate c);
     }
 }

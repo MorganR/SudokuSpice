@@ -42,10 +42,6 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Creates a deep copy of this tracker in its current state.
         /// </summary>
-        /// <exception cref="InvalidOperationException">
-        /// Thrown if the given tracker has a null puzzle (i.e. hasn't been initialized). In that
-        /// case, construct the tracker using the other constructor.
-        /// </exception>
         public SquareTracker(SquareTracker existing)
         {
             _puzzle = existing._puzzle is null ? null : new Puzzle(existing._puzzle);
@@ -171,19 +167,15 @@ namespace SudokuSpice.RuleBased
             Debug.Assert(_puzzle is not null
                          && _setCoords is not null, "Must initialize tracker.");
             Coordinate lastCoord = _setCoords.Pop();
-#pragma warning disable CS8629 // Nullable value type may be null.
             // If this is null, then we want to throw because this method is being misused.
-            int value = _puzzle[in lastCoord].Value;
-#pragma warning restore CS8629 // Nullable value type may be null.
+            int value = _puzzle[in lastCoord]!.Value;
             _puzzle[in lastCoord] = null;
             if (_coordsThatUsedHeuristics?.Count > 0
                 && _coordsThatUsedHeuristics.Peek().Equals(lastCoord))
             {
                 _coordsThatUsedHeuristics.Pop();
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 // Protected by _coordsThatUsedHeuristics.
-                _heuristic.UndoLastUpdate();
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                _heuristic!.UndoLastUpdate();
             }
             _ruleKeeper.Unset(in lastCoord, value);
         }

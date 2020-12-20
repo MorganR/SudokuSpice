@@ -1,7 +1,7 @@
 using SudokuSpice.RuleBased.Heuristics;
 using System;
-using System.Threading;
 using System.Diagnostics;
+using System.Threading;
 
 namespace SudokuSpice.RuleBased
 {
@@ -86,7 +86,7 @@ namespace SudokuSpice.RuleBased
         /// Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
         /// </summary>
         /// <exception cref="OperationCanceledException">
-        /// May be thrown if the given cancellation token is canceled.
+        /// May be thrown if the given cancellation token is canceled during the operation.
         /// </exception>
         public SolveStats GetStatsForAllSolutions(int?[,] puzzle, CancellationToken? token = null)
         {
@@ -94,10 +94,10 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>
-        /// Determines if the given puzzle has a unique solution.
+        /// Determines if the given puzzle has a unique solution. The puzzle is left unchanged.
         /// </summary>
         /// <exception cref="OperationCanceledException">
-        /// May be thrown if the given cancellation token is canceled.
+        /// May be thrown if the given cancellation token is canceled during the operation.
         /// </exception>
         public bool HasUniqueSolution(int?[,] puzzle, CancellationToken? token = null)
         {
@@ -120,13 +120,14 @@ namespace SudokuSpice.RuleBased
 
         private bool _TrySolve()
         {
-            Debug.Assert(_tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
-            if (_tracker.Puzzle!.NumEmptySquares == 0)
+            var puzzle = _tracker.Puzzle;
+            Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
+            if (puzzle!.NumEmptySquares == 0)
             {
                 return true;
             }
             Coordinate c = _tracker.GetBestCoordinateToGuess();
-            Span<int> possibleValues = stackalloc int[_tracker.Puzzle.Size];
+            Span<int> possibleValues = stackalloc int[puzzle.Size];
             int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
             for (int i = 0; i < numPossible; ++i)
             {

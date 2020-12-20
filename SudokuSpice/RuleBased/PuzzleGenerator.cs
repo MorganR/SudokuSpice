@@ -27,9 +27,10 @@ namespace SudokuSpice.RuleBased
         /// Generates a puzzle that has a unique solution with the given number of squares set.
         /// </summary>
         /// <remarks>
-        /// Be careful calling this with low <paramref name="numSquaresToSet"/>. It can take a
-        /// very long time to generate unique puzzles as numSquaresToSet approaches the minimum
-        /// number of clues necessary to provide a unique puzzle with the requested size.
+        /// Be careful calling this with low values, as it can take a very long time to generate
+        /// unique puzzles as the value of <paramref name="numSquaresToSet"/> approaches the
+        /// minimum number of clues necessary to provide a unique puzzle of the given
+        /// <paramref name="puzzleSize"/>.
         /// </remarks>
         /// <param name="puzzleSize">
         /// The size (i.e. side length) of the puzzle to generate.
@@ -40,7 +41,7 @@ namespace SudokuSpice.RuleBased
         /// <param name="timeout">
         /// The maximum timeout during which this function can search for a unique puzzle.
         /// Especially useful when trying to generate puzzles with low
-        /// <paramref name="numSquaresToSet"/>.
+        /// <paramref name="numSquaresToSet"/>. Use <c>TimeSpan.Zero</c> to disable the timeout.
         /// </param>
         /// <returns>
         /// A <paramref name="puzzleSize"/>-x-<paramref name="puzzleSize"/> puzzle with a unique
@@ -54,12 +55,18 @@ namespace SudokuSpice.RuleBased
         {
             _size = puzzleSize;
             _numSquaresToSet = numSquaresToSet;
+            if (timeout == TimeSpan.Zero)
+            {
+                return _Generate(null);
+            }
             using var timeoutCancellationSource = new CancellationTokenSource(timeout);
             var timeoutToken = timeoutCancellationSource.Token;
             var puzzleTask = new Task<int?[,]>(() => _Generate(timeoutToken), timeoutToken);
-            try {
+            try
+            {
                 puzzleTask.RunSynchronously();
-            } catch (InvalidOperationException ex) {
+            } catch (InvalidOperationException ex)
+            {
                 if (ex.Message == "RunSynchronously may not be called on a task that has already completed.")
                 {
                     throw new TimeoutException(
@@ -84,21 +91,22 @@ namespace SudokuSpice.RuleBased
             throw puzzleTask.Exception;
         }
 
-        private int?[,] _Generate(CancellationToken cancellationToken)
+        private int?[,] _Generate(CancellationToken? cancellationToken)
         {
             bool foundValidPuzzle = false;
             int?[,] puzzle;
             CoordinateTracker setCoordinates;
             while (true)
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                cancellationToken?.ThrowIfCancellationRequested();
                 puzzle = new int?[_size, _size];
                 _FillPuzzle(puzzle);
                 setCoordinates = new CoordinateTracker(_size);
                 _TrackAllCoordinates(setCoordinates, _size);
                 foundValidPuzzle = _TryUnsetSquaresWhileSolvable(
-                        _size*_size, setCoordinates, puzzle, cancellationToken);
-                if (foundValidPuzzle) {
+                        _size * _size, setCoordinates, puzzle, cancellationToken);
+                if (foundValidPuzzle)
+                {
                     return puzzle;
                 }
             }
@@ -106,7 +114,7 @@ namespace SudokuSpice.RuleBased
 
         private bool _TryUnsetSquaresWhileSolvable(
             int currentNumSet, CoordinateTracker setCoordinatesToTry,
-            int?[,] puzzle, CancellationToken cancellationToken)
+            int?[,] puzzle, CancellationToken? cancellationToken)
         {
             if (currentNumSet == _numSquaresToSet)
             {
@@ -114,11 +122,11 @@ namespace SudokuSpice.RuleBased
             }
             while (setCoordinatesToTry.NumTracked > 0)
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                cancellationToken?.ThrowIfCancellationRequested();
                 Coordinate randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
                 int? previousValue = puzzle[randomCoord.Row, randomCoord.Column];
                 setCoordinatesToTry.Untrack(in randomCoord);
-                if (!_TryUnsetSquareAt(randomCoord, _size*_size - currentNumSet, puzzle, cancellationToken))
+                if (!_TryUnsetSquareAt(randomCoord, _size * _size - currentNumSet, puzzle, cancellationToken))
                 {
                     continue;
                 }
@@ -142,7 +150,7 @@ namespace SudokuSpice.RuleBased
             in Coordinate c,
             int numEmptySquares,
             int?[,] puzzle,
-            CancellationToken cancellationToken)
+            CancellationToken? cancellationToken)
         {
             // Set without checks when there can't be conflicts.
             if (numEmptySquares < 3)

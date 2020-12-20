@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Test
         {
             var generator = new StandardPuzzleGenerator();
             Assert.Throws<ArgumentException>(() => generator.Generate(size, 1, TimeSpan.FromSeconds(60)));
-        } 
+        }
 
         [Theory]
         [InlineData(1, -1)]

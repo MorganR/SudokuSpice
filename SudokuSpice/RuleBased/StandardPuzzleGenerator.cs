@@ -17,8 +17,9 @@ namespace SudokuSpice.RuleBased
         /// Generates a puzzle that has a unique solution with the given number of squares set.
         ///
         /// Be careful calling this with low values, as it can take a very long time to generate
-        /// unique puzzles as numSquaresToSet approaches the minimum number of clues necessary to
-        /// provide a unique puzzle for this generator's size.
+        /// unique puzzles as the value of <paramref name="numSquaresToSet"/> approaches the
+        /// minimum number of clues necessary to provide a unique puzzle of the given
+        /// <paramref name="puzzleSize"/>.
         /// </remarks>
         /// <param name="puzzleSize">
         /// The size (i.e. side-length) of the puzzle to generate.

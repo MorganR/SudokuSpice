@@ -1,6 +1,8 @@
 ﻿using SudokuSpice.RuleBased.Heuristics;
 using SudokuSpice.RuleBased.Rules;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -104,6 +106,50 @@ namespace SudokuSpice.RuleBased.Test
                 (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);
             var solver = new PuzzleSolver(ruleKeeper, heuristics);
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
+        }
+
+        [Fact]
+        public void GetStatsForAllSolutions_WithCanceledToken_Throws()
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            var cancellationSource = new CancellationTokenSource();
+            cancellationSource.Cancel();
+            Assert.Throws<OperationCanceledException>(() => solver.GetStatsForAllSolutions(new int?[9, 9], cancellationSource.Token));
+        }
+
+        [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void HasUniqueSolution_WithUniqueSolution_ReturnsTrue(int?[,] puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.True(solver.HasUniqueSolution(puzzle));
+        }
+
+        [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void HasUniqueSolution_LeavesPuzzleUnchanged(int?[,] puzzle)
+        {
+            var puzzleCopy = (int?[,])puzzle.Clone();
+            var solver = StandardPuzzles.CreateSolver();
+
+            solver.HasUniqueSolution(puzzle);
+
+            for (int row = 0; row < puzzleCopy.GetLength(0); ++row)
+            {
+                for (int col = 0; col < puzzleCopy.GetLength(1); ++col)
+                {
+                    Assert.Equal(puzzleCopy[row, col], puzzle[row, col]);
+                }
+            }
+        }
+
+        [Fact]
+        public void HasUniqueSolution_WithCanceledToken_Throws()
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            var cancellationSource = new CancellationTokenSource();
+            cancellationSource.Cancel();
+            Assert.Throws<OperationCanceledException>(() => solver.HasUniqueSolution(new int?[9, 9], cancellationSource.Token));
         }
 
         public static IEnumerable<object[]> ValidPuzzleGenerator()
