@@ -94,12 +94,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Generate
     path: ../SudokuSpice/RuleBased/PuzzleGenerator.cs
-    startLine: 52
+    startLine: 53
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nGenerates a puzzle that has a unique solution with the given number of squares set.\n"
-  remarks: "\nBe careful calling this with low <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>. It can take a\nvery long time to generate unique puzzles as numSquaresToSet approaches the minimum\nnumber of clues necessary to provide a unique puzzle with the requested size.\n"
+  remarks: "\nBe careful calling this with low values, as it can take a very long time to generate\nunique puzzles as the value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> approaches the\nminimum number of clues necessary to provide a unique puzzle of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code>.\n"
   example: []
   syntax:
     content: public virtual int? [, ] Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
@@ -112,7 +112,7 @@ items:
       description: "\nThe number of squares that will be preset in the generated puzzle.\n"
     - id: timeout
       type: TimeSpan
-      description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
+      description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>. Use <code>TimeSpan.Zero</code> to disable the timeout.\n"
     return:
       type: System.Nullable{System.Int32}[,]
       description: "\nA <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code>-x-<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code> puzzle with a unique\nsolution and <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> preset squares.\n"

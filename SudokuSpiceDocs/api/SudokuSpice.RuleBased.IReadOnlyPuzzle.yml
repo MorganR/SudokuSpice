@@ -205,6 +205,8 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: All the possible values any square can be set to.
+  example: []
   syntax:
     content: BitVector AllPossibleValues { get; }
     parameters: []
@@ -234,10 +236,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/framework/IReadOnlyPuzzle.cs
-    startLine: 20
+    startLine: 25
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nGets the current possible values for a given coordinate.\n\nIf the value is already set for the given coordinate, the result is undefined.\n"
+  example: []
   syntax:
     content: BitVector GetPossibleValues(in Coordinate c)
     parameters:
@@ -268,7 +272,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/framework/IReadOnlyPuzzle.cs
-    startLine: 25
+    startLine: 30
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -310,10 +314,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/framework/IReadOnlyPuzzle.cs
-    startLine: 27
+    startLine: 35
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nGets the current value of a given square.\n"
+  example: []
   syntax:
     content: int? this[in Coordinate c] { get; }
     parameters:
@@ -348,7 +354,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
     path: ../SudokuSpice/RuleBased/framework/IReadOnlyPuzzle.cs
-    startLine: 34
+    startLine: 42
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased

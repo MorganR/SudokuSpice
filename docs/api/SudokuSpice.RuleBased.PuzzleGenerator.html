@@ -130,7 +130,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleGenerator_Generate_System_Int32_System_Int32_TimeSpan_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32%2CSystem.Int32%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/PuzzleGenerator.cs/#L53">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/PuzzleGenerator.cs/#L54">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PuzzleGenerator_Generate_" data-uid="SudokuSpice.RuleBased.PuzzleGenerator.Generate*"></a>
   <h4 id="SudokuSpice_RuleBased_PuzzleGenerator_Generate_System_Int32_System_Int32_TimeSpan_" data-uid="SudokuSpice.RuleBased.PuzzleGenerator.Generate(System.Int32,System.Int32,TimeSpan)">Generate(Int32, Int32, TimeSpan)</h4>
@@ -168,7 +168,7 @@
         <td><span class="parametername">timeout</span></td>
         <td><p>The maximum timeout during which this function can search for a unique puzzle.
 Especially useful when trying to generate puzzles with low
-<code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code>.</p>
+<code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code>. Use <code>TimeSpan.Zero</code> to disable the timeout.</p>
 </td>
       </tr>
     </tbody>
@@ -191,9 +191,10 @@ solution and <code data-dev-comment-type="paramref" class="paramref">numSquaresT
     </tbody>
   </table>
   <h5 id="SudokuSpice_RuleBased_PuzzleGenerator_Generate_System_Int32_System_Int32_TimeSpan__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Be careful calling this with low <code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code>. It can take a
-very long time to generate unique puzzles as numSquaresToSet approaches the minimum
-number of clues necessary to provide a unique puzzle with the requested size.</p>
+  <div class="markdown level1 remarks"><p>Be careful calling this with low values, as it can take a very long time to generate
+unique puzzles as the value of <code data-dev-comment-type="paramref" class="paramref">numSquaresToSet</code> approaches the
+minimum number of clues necessary to provide a unique puzzle of the given
+<code data-dev-comment-type="paramref" class="paramref">puzzleSize</code>.</p>
 </div>
 </article>
           </div>
