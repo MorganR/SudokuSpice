@@ -8,7 +8,6 @@ using System.Text;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>Manages underlying puzzle data.</summary>.
-    [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Puzzle : IReadOnlyPuzzleWithMutablePossibleValues
     {
         private readonly int?[,] _squares;
