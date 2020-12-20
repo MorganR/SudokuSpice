@@ -6,6 +6,6 @@
     public interface IMissingBoxValuesTracker : ISudokuRule
     {
         /// <summary>Returns all the values that still need to be set in the given box.</summary>
-        public BitVector GetMissingValuesForBox(int box);
+        BitVector GetMissingValuesForBox(int box);
     }
 }

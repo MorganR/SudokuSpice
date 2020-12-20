@@ -8,6 +8,6 @@
         /// <summary>
         /// Returns all the values that still need to be set in the given column.
         /// </summary>
-        public BitVector GetMissingValuesForColumn(int column);
+        BitVector GetMissingValuesForColumn(int column);
     }
 }

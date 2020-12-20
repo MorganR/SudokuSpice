@@ -6,6 +6,6 @@
     public interface IMissingRowValuesTracker : ISudokuRule
     {
         /// <summary>Returns all the values that still need to be set in the given row.</summary>
-        public BitVector GetMissingValuesForRow(int row);
+        BitVector GetMissingValuesForRow(int row);
     }
 }
