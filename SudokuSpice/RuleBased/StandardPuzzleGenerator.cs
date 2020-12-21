@@ -14,7 +14,8 @@ namespace SudokuSpice.RuleBased
         public StandardPuzzleGenerator()
             : base(
                 size => new Puzzle(size),
-                StandardPuzzles.CreateSolver()) {} 
+                StandardPuzzles.CreateSolver())
+        { }
 
         /// <summary>
         /// Generates a puzzle that has a unique solution with the given number of squares set.
@@ -55,9 +56,9 @@ namespace SudokuSpice.RuleBased
         {
             _ValidateUniqueSolutionExists(puzzleSize, numSquaresToSet);
             return base.Generate(puzzleSize, numSquaresToSet, timeout);
-        } 
+        }
 
-       private static void _ValidateUniqueSolutionExists(int puzzleSize, int numToSet)
+        private static void _ValidateUniqueSolutionExists(int puzzleSize, int numToSet)
         {
             int boxSize = puzzleSize switch
             {
