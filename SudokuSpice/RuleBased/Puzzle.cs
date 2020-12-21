@@ -60,13 +60,16 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>
-        /// Constructs a new puzzle whose data matches the given array.
+        /// Constructs a new puzzle backed by the given array.
+        ///
+        /// The puzzle is backed directly by this array (i.e. modifying the array
+        /// modifies the puzzle, and vice-versa). If this is not what you want, see
+        /// <see cref="Puzzle.CopyFrom(int?[,])"/>.
         /// </summary>
         /// <param name="puzzleMatrix">
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
-        /// be null. A copy of this data is stored in this <c>Puzzle</c>.
+        /// be null. The puzzle maintains a reference to this array.
         /// </param>
-        // TODO: Possibly keep the reference instead of cloning the puzzle.
         public Puzzle(int?[,] puzzleMatrix)
         {
             NumSquares = puzzleMatrix.Length;
@@ -76,7 +79,7 @@ namespace SudokuSpice.RuleBased
                 throw new ArgumentException("Puzzle must be square.");
             }
 
-            _squares = (int?[,])puzzleMatrix.Clone();
+            _squares = puzzleMatrix;
             _unsetCoordsTracker = new CoordinateTracker(Size);
             for (int row = 0; row < Size; row++)
             {
@@ -94,7 +97,7 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>
-        /// A copy constructor for an existing <c>Puzzle</c>.
+        /// A deep copy constructor for an existing <c>Puzzle</c>.
         /// </summary>
         public Puzzle(Puzzle existing)
         {

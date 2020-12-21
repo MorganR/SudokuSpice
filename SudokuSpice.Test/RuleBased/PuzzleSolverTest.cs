@@ -129,7 +129,7 @@ namespace SudokuSpice.RuleBased.Test
         [MemberData(nameof(ValidPuzzleGenerator))]
         public void HasUniqueSolution_LeavesPuzzleUnchanged(Puzzle puzzle)
         {
-            var puzzleCopy = (Puzzle)puzzle.DeepCopy();
+            var puzzleCopy = new Puzzle(puzzle);
             var solver = StandardPuzzles.CreateSolver();
 
             solver.HasUniqueSolution(puzzle);

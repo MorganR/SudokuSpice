@@ -23,7 +23,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(SampleCollections))]
         public bool SudokuSpice(PuzzleSampleCollection sampleCollection)
         {
-            var puzzle = new RuleBased.Puzzle(sampleCollection.Random().NullableMatrix);
+            var puzzle = RuleBased.Puzzle.CopyFrom(sampleCollection.Random().NullableMatrix);
             var solver = StandardPuzzles.CreateSolver();
             solver.Solve(puzzle);
             return puzzle.NumEmptySquares == 0;

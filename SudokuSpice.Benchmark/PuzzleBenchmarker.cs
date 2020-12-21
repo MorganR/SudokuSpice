@@ -18,7 +18,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpice(PuzzleSample puzzle)
         {
-            var p = new RuleBased.Puzzle(puzzle.NullableMatrix);
+            var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
             PuzzleSolver solver = StandardPuzzles.CreateSolver();
             solver.SolveRandomly(p);
             return p.NumEmptySquares == 0;
@@ -28,7 +28,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceDynamicSingle(PuzzleSample puzzle)
         {
-            var p = new RuleBased.Puzzle(puzzle.NullableMatrix);
+            var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
             var standardRules = new StandardRules();
             var ruleKeeper = new DynamicRuleKeeper(
                 new List<ISudokuRule> { standardRules });
@@ -43,7 +43,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
         {
-            var p = new RuleBased.Puzzle(puzzle.NullableMatrix);
+            var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
             var rowRule = new RowUniquenessRule();
             var columnRule = new ColumnUniquenessRule();
             var boxRule = new BoxUniquenessRule();
