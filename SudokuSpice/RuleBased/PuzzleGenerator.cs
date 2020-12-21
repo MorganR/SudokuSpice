@@ -146,7 +146,7 @@ namespace SudokuSpice.RuleBased
 
         private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
 
-        private void _FillPuzzle(TPuzzle puzzle) => _solver.SolveRandomly(puzzle);
+        private void _FillPuzzle(TPuzzle puzzle) => _solver.TrySolveRandomly(puzzle);
 
         private bool _TryUnsetSquareAt(
             in Coordinate c,

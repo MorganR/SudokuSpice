@@ -64,7 +64,7 @@ namespace SudokuSpice.RuleBased
         ///
         /// The puzzle is backed directly by this array (i.e. modifying the array
         /// modifies the puzzle, and vice-versa). If this is not what you want, see
-        /// <see cref="Puzzle.CopyFrom(int?[,])"/>.
+        /// <see cref="CopyFrom(int?[,])"/>.
         /// </summary>
         /// <param name="puzzleMatrix">
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should

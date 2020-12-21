@@ -19,31 +19,56 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
-        public void Solve_WithStandardConstructor_SolvesPuzzle(Puzzle puzzle)
+        public void Solve_ValidPuzzle_SolvesPuzzleCopy(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
-            solver.Solve(puzzle);
-            _AssertPuzzleSolved(puzzle);
+            var solved = solver.Solve(puzzle);
+            _AssertPuzzleSolved(solved);
+        }
+
+        [Theory]
+        [MemberData(nameof(InvalidStandardPuzzles))]
+        public void Solve_WithInvalidPuzzle_Throws(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.Throws<ArgumentException>(() => solver.Solve(puzzle));
+        }
+
+        [Fact]
+        public void Solve_LeavesPuzzleUnchanged()
+        {
+            var puzzle = new Puzzle(9);
+            var solver = StandardPuzzles.CreateSolver();
+            var solved = solver.Solve(puzzle);
+            for (int row = 0; row < puzzle.Size; ++row)
+            {
+                for (int col = 0; col < puzzle.Size; ++col)
+                {
+                    Assert.False(puzzle[row, col].HasValue);
+                    Assert.True(solved[row, col].HasValue);
+                }
+            }
         }
 
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
-        public void Solve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
+        public void TrySolve_ValidPuzzle_SolvesPuzzleInPlace(Puzzle puzzle)
         {
-            var rowRule = new RowUniquenessRule();
-            var columnRule = new ColumnUniquenessRule();
-            var boxRule = new BoxUniquenessRule();
-            var ruleKeeper = new DynamicRuleKeeper(
-                new List<ISudokuRule> { rowRule, columnRule, boxRule });
-            var heuristic = new StandardHeuristic(
-                rowRule, columnRule, boxRule);
-            var solver = new PuzzleSolver(ruleKeeper, heuristic);
-            solver.Solve(puzzle);
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.True(solver.TrySolve(puzzle));
             _AssertPuzzleSolved(puzzle);
         }
 
+        [Theory]
+        [MemberData(nameof(InvalidStandardPuzzles))]
+        public void TrySolve_WithInvalidPuzzle_ReturnsFalse(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.False(solver.TrySolve(puzzle));
+        }
+
         [Fact]
-        public void Solve_MegaPuzzle_Solves()
+        public void TrySolve_MegaPuzzle_Solves()
         {
             var puzzle = new Puzzle(new int?[,] {
                 {null, null, null, null, 10,   1,    null, 8,    null, 15,   3,    11,   null, 2,    16,   null},
@@ -72,17 +97,59 @@ namespace SudokuSpice.RuleBased.Test
             var heuristic = new StandardHeuristic(
                 rowRule, columnRule, boxRule);
             var solver = new PuzzleSolver(ruleKeeper, heuristic);
-            solver.Solve(puzzle);
+
+            Assert.True(solver.TrySolve(puzzle));
             _AssertMegaPuzzleSolved(puzzle);
         }
 
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
-        public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
+        public void SolveRandomly_ValidPuzzle_SolvesPuzzleInPlace(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
-            solver.SolveRandomly(puzzle);
+            var solved = solver.SolveRandomly(puzzle);
+            _AssertPuzzleSolved(solved);
+        }
+
+        [Theory]
+        [MemberData(nameof(InvalidStandardPuzzles))]
+        public void SolveRandomly_WithInvalidPuzzle_Throws(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.Throws<ArgumentException>(() => solver.SolveRandomly(puzzle));
+        }
+
+        [Fact]
+        public void SolveRandomly_LeavesPuzzleUnchanged()
+        {
+            var puzzle = new Puzzle(9);
+            var solver = StandardPuzzles.CreateSolver();
+            var solved = solver.SolveRandomly(puzzle);
+            for (int row = 0; row < puzzle.Size; ++row)
+            {
+                for (int col = 0; col < puzzle.Size; ++col)
+                {
+                    Assert.False(puzzle[row, col].HasValue);
+                    Assert.True(solved[row, col].HasValue);
+                }
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void TrySolveRandomly_ValidPuzzle_SolvesPuzzleInPlace(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.True(solver.TrySolveRandomly(puzzle));
             _AssertPuzzleSolved(puzzle);
+        }
+
+        [Theory]
+        [MemberData(nameof(InvalidStandardPuzzles))]
+        public void TrySolveRandomly_WithInvalidPuzzle_ReturnsFalse(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.False(solver.TrySolveRandomly(puzzle));
         }
 
         [Theory]
@@ -108,6 +175,17 @@ namespace SudokuSpice.RuleBased.Test
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 
+        [Theory]
+        [MemberData(nameof(InvalidStandardPuzzles))]
+        public void GetStatsForAllSolutions_WithInvalidPuzzle_ReturnsNoSolutions(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+
+            var stats = solver.GetStatsForAllSolutions(puzzle);
+
+            Assert.Equal(0, stats.NumSolutionsFound);
+        }
+
         [Fact]
         public void GetStatsForAllSolutions_WithCanceledToken_Throws()
         {
@@ -123,6 +201,14 @@ namespace SudokuSpice.RuleBased.Test
         {
             var solver = StandardPuzzles.CreateSolver();
             Assert.True(solver.HasUniqueSolution(puzzle));
+        }
+
+        [Theory]
+        [MemberData(nameof(InvalidStandardPuzzles))]
+        public void HasUniqueSolution_WithInvalidPuzzle_ReturnsFalse(Puzzle puzzle)
+        {
+            var solver = StandardPuzzles.CreateSolver();
+            Assert.False(solver.HasUniqueSolution(puzzle));
         }
 
         [Theory]
@@ -320,6 +406,46 @@ namespace SudokuSpice.RuleBased.Test
                 new SolveStats() { NumSolutionsFound = 3, NumSquaresGuessed = 2, NumTotalGuesses = 4 },
             };
 
+        }
+
+        public static IEnumerable<object[]> InvalidStandardPuzzles()
+        {
+            // Duplicate in row.
+            yield return new object[] {
+                new Puzzle(
+                    new int?[,] {
+                        {    1, null,    1, null},
+                        {    2, null, null, null},
+                        {    3, null, null, null},
+                        {    4, null, null, null},
+                    })};
+            // Duplicate in column.
+            yield return new object[] {
+                new Puzzle(
+                    new int?[,] {
+                        {    1,    2,    3,    4},
+                        { null, null, null, null},
+                        {    3, null, null, null},
+                        {    1, null, null, null},
+                    })};
+            // Duplicate in box.
+            yield return new object[] {
+                new Puzzle(
+                    new int?[,] {
+                        {    1,    2,    3,    4},
+                        {    2, null, null, null},
+                        {    3, null, null, null},
+                        {    4, null, null, null},
+                    })};
+            // Unsolvable.
+            yield return new object[] {
+                new Puzzle(
+                    new int?[,] {
+                        {    1, null,    3,    4},
+                        { null, null,    1,    2},
+                        {    3, null,    2, null},
+                        {    4, null, null, null},
+                    })};
         }
 
         private static void _AssertPuzzleSolved(Puzzle puzzle)
