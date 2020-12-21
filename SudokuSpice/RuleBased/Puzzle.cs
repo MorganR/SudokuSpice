@@ -8,7 +8,6 @@ using System.Text;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>Manages underlying puzzle data.</summary>.
-    [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class Puzzle : IPuzzle
     {
         private readonly int?[,] _squares;
@@ -30,34 +29,19 @@ namespace SudokuSpice.RuleBased
         /// Constructs a new puzzle of the given side length.
         /// </summary>
         /// <param name="size">
-        /// The side-length for this Sudoku puzzle. Must be a square of a whole number in the range [1, 25].
+        /// The side-length for this Sudoku puzzle. Must be in the inclusive range [1, 31].
         /// </param>
         /// <exception cref="ArgumentException">
-        /// Thrown if size is not the square of a whole number, or is outside the range [1, 25].
+        /// Thrown if size is not the square of a whole number, or is outside the range [1, 31].
         /// </exception>
         public Puzzle(int size)
         {
-            Size = size;
-            switch (size)
+            if (size < 1 || size > 31)
             {
-                case 1:
-                    NumSquares = 1;
-                    break;
-                case 4:
-                    NumSquares = 4 * 4;
-                    break;
-                case 9:
-                    NumSquares = 9 * 9;
-                    break;
-                case 16:
-                    NumSquares = 16 * 16;
-                    break;
-                case 25:
-                    NumSquares = 25 * 25;
-                    break;
-                default:
-                    throw new ArgumentException("Size must be one of [1, 4, 9, 16, 25].");
+                throw new ArgumentException("Puzzle size must be in the range [1, 31].");
             }
+            Size = size;
+            NumSquares = size * size;
             _squares = new int?[size, size];
             _unsetCoordsTracker = new CoordinateTracker(size);
             for (int row = 0; row < Size; row++)
@@ -82,6 +66,7 @@ namespace SudokuSpice.RuleBased
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
         /// be null. A copy of this data is stored in this <c>Puzzle</c>.
         /// </param>
+        // TODO: Possibly keep the reference instead of cloning the puzzle.
         public Puzzle(int?[,] puzzleMatrix)
         {
             NumSquares = puzzleMatrix.Length;
@@ -200,7 +185,6 @@ namespace SudokuSpice.RuleBased
             return strBuild.ToString();
         }
 
-        /// <summary>Sets the value of a square.</summary>
         private void _Set(int row, int col, int val)
         {
             Debug.Assert(!_squares[row, col].HasValue, $"Square ({row}, {col}) already has a value.");
@@ -208,7 +192,6 @@ namespace SudokuSpice.RuleBased
             _unsetCoordsTracker.Untrack(new Coordinate(row, col));
         }
 
-        /// <summary>Unsets the specified square.</summary>
         private void _Unset(int row, int col)
         {
             Debug.Assert(_squares[row, col].HasValue,

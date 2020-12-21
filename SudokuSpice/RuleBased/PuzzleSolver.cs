@@ -58,6 +58,7 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
+        // TODO: Return the puzzle
         public void Solve(IPuzzle puzzle)
         {
             if (!TrySolve(puzzle))
@@ -74,6 +75,7 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
+        // TODO: Return the puzzle
         public void SolveRandomly(IPuzzle puzzle)
         {
             if (!TrySolveRandomly(puzzle))
