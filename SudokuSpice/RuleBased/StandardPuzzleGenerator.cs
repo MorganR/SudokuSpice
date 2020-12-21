@@ -5,13 +5,16 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Generates standard Sudoku puzzles.
     /// </summary>
-    public class StandardPuzzleGenerator : PuzzleGenerator
+    public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>
     {
-        /// <summary>
-        /// Creates a puzzle generator to create standard Sudoku puzzles.
-        /// </summary>
+        private readonly int _size;
+        private readonly int _boxSize;
+
+        /// <inheritdoc/>
         public StandardPuzzleGenerator()
-            : base(StandardPuzzles.CreateSolver()) { }
+            : base(
+                size => new Puzzle(size),
+                StandardPuzzles.CreateSolver()) {} 
 
         /// <summary>
         /// Generates a puzzle that has a unique solution with the given number of squares set.
@@ -48,15 +51,14 @@ namespace SudokuSpice.RuleBased
         /// Thrown if no valid unique puzzle is found within the specified
         /// <paramref name="timeout"/>.
         /// </exception>
-        public override int?[,] Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
+        public new Puzzle Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
         {
-            _ValidateSizeAndNumSquaresToSet(puzzleSize, numSquaresToSet);
+            _ValidateUniqueSolutionExists(puzzleSize, numSquaresToSet);
             return base.Generate(puzzleSize, numSquaresToSet, timeout);
-        }
+        } 
 
-        private static void _ValidateSizeAndNumSquaresToSet(int puzzleSize, int numToSet)
+       private static void _ValidateUniqueSolutionExists(int puzzleSize, int numToSet)
         {
-            // Inclusive bounds
             int boxSize = puzzleSize switch
             {
                 1 => 1,
@@ -66,6 +68,7 @@ namespace SudokuSpice.RuleBased
                 25 => 5,
                 _ => throw new ArgumentException($"{nameof(puzzleSize)} must be one of [1, 4, 9, 16, 25]."),
             };
+            // Inclusive bounds
             int lowerBound = 0;
             int upperBound = 1;
             switch (boxSize)

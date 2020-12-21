@@ -21,12 +21,12 @@ namespace SudokuSpice.Benchmark
 
         [Benchmark(Baseline = true)]
         [ArgumentsSource(nameof(SampleCollections))]
-        public int?[,] SudokuSpice(PuzzleSampleCollection sampleCollection)
+        public bool SudokuSpice(PuzzleSampleCollection sampleCollection)
         {
-            var puzzle = (int?[,])sampleCollection.Random().NullableMatrix.Clone();
+            var puzzle = new RuleBased.Puzzle(sampleCollection.Random().NullableMatrix);
             var solver = StandardPuzzles.CreateSolver();
             solver.Solve(puzzle);
-            return puzzle;
+            return puzzle.NumEmptySquares == 0;
         }
 
         [Benchmark]

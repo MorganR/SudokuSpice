@@ -6,17 +6,16 @@ using System.Threading;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>
-    /// Solves puzzles according to a set of rules and heuristics.
+    /// Solves a single <see cref="IPuzzle"/> using a <see cref="SquareTracker"/>.
     /// </summary>
     public class PuzzleSolver
     {
         private readonly SquareTracker _tracker;
 
         /// <summary>
-        /// Constructs a solver based on the given rules and heuristics.
+        /// Constructs a solver for the given square tracker.
         /// </summary>
-        /// <param name="ruleKeeper">The rule keeper that will enforce the puzzle's rules.</param>
-        /// <param name="heuristic">An optional heuristic to assist in solving the puzzle.</param>
+        /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
         public PuzzleSolver(
             ISudokuRuleKeeper ruleKeeper,
             ISudokuHeuristic? heuristic = null)
@@ -32,9 +31,9 @@ namespace SudokuSpice.RuleBased
         /// <return>
         /// True if solved, or false if it couldn't be solved within this solver's rules.
         /// </return>
-        public bool TrySolve(int?[,] puzzle)
+        public bool TrySolve(IPuzzle puzzle)
         {
-            return _tracker.TryInit(new Puzzle(puzzle)) && _TrySolve();
+            return _tracker.TryInit(puzzle) && _TrySolve();
         }
 
         /// <summary>
@@ -45,9 +44,10 @@ namespace SudokuSpice.RuleBased
         /// <return>
         /// True if solved, or false if it couldn't be solved within this solver's rules.
         /// </return>
-        public bool TrySolveRandomly(int?[,] puzzle)
+        public bool TrySolveRandomly(IPuzzle puzzle)
         {
-            return _tracker.TryInit(new Puzzle(puzzle)) && _TrySolveRandomly(new Random());
+            var random = new Random();
+            return _tracker.TryInit(puzzle) && _TrySolveRandomly(random);
         }
 
         /// <summary>
@@ -58,11 +58,11 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
-        public void Solve(int?[,] puzzle)
+        public void Solve(IPuzzle puzzle)
         {
             if (!TrySolve(puzzle))
             {
-                throw new ArgumentException($"Failed to solve the given puzzle.");
+                throw new ArgumentException("Failed to solve the given puzzle.");
             }
         }
 
@@ -74,11 +74,11 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
-        public void SolveRandomly(int?[,] puzzle)
+        public void SolveRandomly(IPuzzle puzzle)
         {
             if (!TrySolveRandomly(puzzle))
             {
-                throw new ArgumentException($"Failed to solve the given puzzle.");
+                throw new ArgumentException("Failed to solve the given puzzle.");
             }
         }
 
@@ -88,7 +88,7 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="OperationCanceledException">
         /// May be thrown if the given cancellation token is canceled during the operation.
         /// </exception>
-        public SolveStats GetStatsForAllSolutions(int?[,] puzzle, CancellationToken? token = null)
+        public SolveStats GetStatsForAllSolutions(IPuzzle puzzle, CancellationToken? token = null)
         {
             return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
         }
@@ -99,18 +99,18 @@ namespace SudokuSpice.RuleBased
         /// <exception cref="OperationCanceledException">
         /// May be thrown if the given cancellation token is canceled during the operation.
         /// </exception>
-        public bool HasUniqueSolution(int?[,] puzzle, CancellationToken? token = null)
+        public bool HasUniqueSolution(IPuzzle puzzle, CancellationToken? token = null)
         {
             return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
                 .NumSolutionsFound == 1;
         }
 
         private SolveStats _GetStatsForAllSolutions(
-            int?[,] puzzle, bool validateUniquenessOnly, CancellationToken? cancellationToken)
+            IPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? cancellationToken)
         {
             cancellationToken?.ThrowIfCancellationRequested();
             // Copy the puzzle so that the given puzzle is not modified.
-            if (!_tracker.TryInit(Puzzle.CopyFrom(puzzle)))
+            if (!_tracker.TryInit(puzzle.DeepCopy()))
             {
                 // No solutions.
                 return new SolveStats();
@@ -146,14 +146,13 @@ namespace SudokuSpice.RuleBased
 
         private bool _TrySolveRandomly(Random random)
         {
-            var puzzle = _tracker.Puzzle;
-            Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
-            if (puzzle!.NumEmptySquares == 0)
+            Debug.Assert(_tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
+            if (_tracker.Puzzle!.NumEmptySquares == 0)
             {
                 return true;
             }
             Coordinate c = _tracker.GetBestCoordinateToGuess();
-            Span<int> possibleValues = stackalloc int[puzzle.Size];
+            Span<int> possibleValues = stackalloc int[_tracker.Puzzle.Size];
             int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
             while (numPossible > 0)
             {
