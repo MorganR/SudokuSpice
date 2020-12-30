@@ -90,55 +90,73 @@ or Linux. Values are roughly consistent for each OS.</p>
 <th style="text-align: right;">Mean</th>
 <th style="text-align: right;">Error</th>
 <th style="text-align: right;">StdDev</th>
-<th style="text-align: right;">Median</th>
 <th style="text-align: right;">Ratio</th>
 <th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SudokuSpice</td>
 <td>Guesses: 0</td>
-<td style="text-align: right;">23.25 us</td>
-<td style="text-align: right;">0.028 us</td>
-<td style="text-align: right;">0.026 us</td>
-<td style="text-align: right;">23.25 us</td>
+<td style="text-align: right;">24.28 us</td>
+<td style="text-align: right;">0.040 us</td>
+<td style="text-align: right;">0.037 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.8005</td>
+<td style="text-align: right;">0.0305</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">11 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Guesses: 0</td>
-<td style="text-align: right;">68.47 us</td>
-<td style="text-align: right;">0.096 us</td>
-<td style="text-align: right;">0.085 us</td>
-<td style="text-align: right;">68.50 us</td>
-<td style="text-align: right;">2.94</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">69.92 us</td>
+<td style="text-align: right;">0.168 us</td>
+<td style="text-align: right;">0.157 us</td>
+<td style="text-align: right;">2.88</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">17.8223</td>
+<td style="text-align: right;">3.6621</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">109 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Guesses: 0</td>
-<td style="text-align: right;">771.99 us</td>
-<td style="text-align: right;">34.656 us</td>
-<td style="text-align: right;">101.093 us</td>
-<td style="text-align: right;">771.36 us</td>
-<td style="text-align: right;">33.11</td>
-<td style="text-align: right;">3.51</td>
+<td style="text-align: right;">798.20 us</td>
+<td style="text-align: right;">28.738 us</td>
+<td style="text-align: right;">84.285 us</td>
+<td style="text-align: right;">33.69</td>
+<td style="text-align: right;">3.07</td>
+<td style="text-align: right;">132.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">819 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Guesses: 0</td>
-<td style="text-align: right;">1,249.14 us</td>
-<td style="text-align: right;">28.469 us</td>
-<td style="text-align: right;">83.495 us</td>
-<td style="text-align: right;">1,244.73 us</td>
-<td style="text-align: right;">54.31</td>
-<td style="text-align: right;">3.78</td>
+<td style="text-align: right;">1,259.47 us</td>
+<td style="text-align: right;">31.795 us</td>
+<td style="text-align: right;">93.747 us</td>
+<td style="text-align: right;">53.68</td>
+<td style="text-align: right;">3.82</td>
+<td style="text-align: right;">320.3125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,971 KB</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -149,46 +167,61 @@ or Linux. Values are roughly consistent for each OS.</p>
 <tr>
 <td>SudokuSpice</td>
 <td>Guesses: 1</td>
-<td style="text-align: right;">42.52 us</td>
-<td style="text-align: right;">0.181 us</td>
-<td style="text-align: right;">0.169 us</td>
-<td style="text-align: right;">42.52 us</td>
+<td style="text-align: right;">43.82 us</td>
+<td style="text-align: right;">0.129 us</td>
+<td style="text-align: right;">0.120 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3.6011</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">22 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Guesses: 1</td>
-<td style="text-align: right;">72.39 us</td>
-<td style="text-align: right;">0.101 us</td>
-<td style="text-align: right;">0.095 us</td>
-<td style="text-align: right;">72.40 us</td>
-<td style="text-align: right;">1.70</td>
+<td style="text-align: right;">73.40 us</td>
+<td style="text-align: right;">0.119 us</td>
+<td style="text-align: right;">0.111 us</td>
+<td style="text-align: right;">1.68</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">18.1885</td>
+<td style="text-align: right;">3.7842</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">112 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Guesses: 1</td>
-<td style="text-align: right;">1,596.24 us</td>
-<td style="text-align: right;">62.533 us</td>
-<td style="text-align: right;">181.419 us</td>
-<td style="text-align: right;">1,586.84 us</td>
-<td style="text-align: right;">36.91</td>
-<td style="text-align: right;">3.62</td>
+<td style="text-align: right;">1,591.48 us</td>
+<td style="text-align: right;">94.568 us</td>
+<td style="text-align: right;">278.837 us</td>
+<td style="text-align: right;">35.45</td>
+<td style="text-align: right;">6.85</td>
+<td style="text-align: right;">234.3750</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,447 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Guesses: 1</td>
-<td style="text-align: right;">4,062.56 us</td>
-<td style="text-align: right;">388.657 us</td>
-<td style="text-align: right;">1,139.863 us</td>
-<td style="text-align: right;">4,033.73 us</td>
-<td style="text-align: right;">92.85</td>
-<td style="text-align: right;">25.25</td>
+<td style="text-align: right;">4,001.32 us</td>
+<td style="text-align: right;">535.945 us</td>
+<td style="text-align: right;">1,563.378 us</td>
+<td style="text-align: right;">84.79</td>
+<td style="text-align: right;">33.92</td>
+<td style="text-align: right;">1398.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">8,581 KB</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -199,46 +232,61 @@ or Linux. Values are roughly consistent for each OS.</p>
 <tr>
 <td>SudokuSpice</td>
 <td>Guesses: 2-3</td>
-<td style="text-align: right;">59.63 us</td>
-<td style="text-align: right;">0.385 us</td>
-<td style="text-align: right;">0.360 us</td>
-<td style="text-align: right;">59.57 us</td>
+<td style="text-align: right;">62.42 us</td>
+<td style="text-align: right;">0.450 us</td>
+<td style="text-align: right;">0.421 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">5.2490</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">33 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Guesses: 2-3</td>
-<td style="text-align: right;">76.26 us</td>
-<td style="text-align: right;">0.150 us</td>
-<td style="text-align: right;">0.140 us</td>
-<td style="text-align: right;">76.30 us</td>
-<td style="text-align: right;">1.28</td>
+<td style="text-align: right;">76.18 us</td>
+<td style="text-align: right;">0.179 us</td>
+<td style="text-align: right;">0.167 us</td>
+<td style="text-align: right;">1.22</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">18.5547</td>
+<td style="text-align: right;">3.9063</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">114 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Guesses: 2-3</td>
-<td style="text-align: right;">2,575.15 us</td>
-<td style="text-align: right;">196.271 us</td>
-<td style="text-align: right;">578.711 us</td>
-<td style="text-align: right;">2,598.56 us</td>
-<td style="text-align: right;">42.67</td>
-<td style="text-align: right;">10.79</td>
+<td style="text-align: right;">2,660.63 us</td>
+<td style="text-align: right;">224.426 us</td>
+<td style="text-align: right;">658.203 us</td>
+<td style="text-align: right;">38.41</td>
+<td style="text-align: right;">10.52</td>
+<td style="text-align: right;">289.0625</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,774 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Guesses: 2-3</td>
-<td style="text-align: right;">3,924.51 us</td>
-<td style="text-align: right;">365.106 us</td>
-<td style="text-align: right;">1,076.525 us</td>
-<td style="text-align: right;">3,578.97 us</td>
-<td style="text-align: right;">58.75</td>
-<td style="text-align: right;">18.94</td>
+<td style="text-align: right;">3,951.34 us</td>
+<td style="text-align: right;">176.672 us</td>
+<td style="text-align: right;">506.906 us</td>
+<td style="text-align: right;">64.61</td>
+<td style="text-align: right;">9.36</td>
+<td style="text-align: right;">1085.9375</td>
+<td style="text-align: right;">3.9063</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6,656 KB</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -249,46 +297,61 @@ or Linux. Values are roughly consistent for each OS.</p>
 <tr>
 <td>SudokuSpice</td>
 <td>Guesses: 4-7</td>
-<td style="text-align: right;">87.14 us</td>
-<td style="text-align: right;">0.591 us</td>
-<td style="text-align: right;">0.553 us</td>
-<td style="text-align: right;">87.07 us</td>
+<td style="text-align: right;">90.56 us</td>
+<td style="text-align: right;">0.502 us</td>
+<td style="text-align: right;">0.445 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">8.0566</td>
+<td style="text-align: right;">0.2441</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">50 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Guesses: 4-7</td>
-<td style="text-align: right;">80.60 us</td>
-<td style="text-align: right;">0.335 us</td>
-<td style="text-align: right;">0.297 us</td>
-<td style="text-align: right;">80.64 us</td>
-<td style="text-align: right;">0.93</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">82.40 us</td>
+<td style="text-align: right;">0.058 us</td>
+<td style="text-align: right;">0.045 us</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">19.1650</td>
+<td style="text-align: right;">4.0283</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">118 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Guesses: 4-7</td>
-<td style="text-align: right;">3,830.27 us</td>
-<td style="text-align: right;">261.527 us</td>
-<td style="text-align: right;">767.013 us</td>
-<td style="text-align: right;">3,750.82 us</td>
-<td style="text-align: right;">42.13</td>
-<td style="text-align: right;">6.44</td>
+<td style="text-align: right;">3,698.49 us</td>
+<td style="text-align: right;">325.882 us</td>
+<td style="text-align: right;">940.244 us</td>
+<td style="text-align: right;">42.53</td>
+<td style="text-align: right;">8.35</td>
+<td style="text-align: right;">828.1250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">5,112 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Guesses: 4-7</td>
-<td style="text-align: right;">9,875.07 us</td>
-<td style="text-align: right;">1,190.382 us</td>
-<td style="text-align: right;">3,453.513 us</td>
-<td style="text-align: right;">9,368.89 us</td>
-<td style="text-align: right;">119.77</td>
-<td style="text-align: right;">43.88</td>
+<td style="text-align: right;">10,273.96 us</td>
+<td style="text-align: right;">850.701 us</td>
+<td style="text-align: right;">2,494.959 us</td>
+<td style="text-align: right;">111.19</td>
+<td style="text-align: right;">26.97</td>
+<td style="text-align: right;">3593.7500</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">22,017 KB</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -299,42 +362,54 @@ or Linux. Values are roughly consistent for each OS.</p>
 <tr>
 <td>SudokuSpice</td>
 <td>Guesses: 8+</td>
-<td style="text-align: right;">117.20 us</td>
-<td style="text-align: right;">0.956 us</td>
-<td style="text-align: right;">0.847 us</td>
-<td style="text-align: right;">117.19 us</td>
+<td style="text-align: right;">119.13 us</td>
+<td style="text-align: right;">0.733 us</td>
+<td style="text-align: right;">0.650 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">10.9863</td>
+<td style="text-align: right;">0.3662</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">68 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Guesses: 8+</td>
-<td style="text-align: right;">85.82 us</td>
-<td style="text-align: right;">0.281 us</td>
-<td style="text-align: right;">0.263 us</td>
-<td style="text-align: right;">85.77 us</td>
+<td style="text-align: right;">87.17 us</td>
+<td style="text-align: right;">0.195 us</td>
+<td style="text-align: right;">0.182 us</td>
 <td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">19.6533</td>
+<td style="text-align: right;">4.2725</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">121 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Guesses: 8+</td>
-<td style="text-align: right;">6,220.00 us</td>
-<td style="text-align: right;">445.927 us</td>
-<td style="text-align: right;">1,314.825 us</td>
-<td style="text-align: right;">6,218.49 us</td>
-<td style="text-align: right;">59.04</td>
-<td style="text-align: right;">14.16</td>
+<td style="text-align: right;">6,131.07 us</td>
+<td style="text-align: right;">384.919 us</td>
+<td style="text-align: right;">1,128.902 us</td>
+<td style="text-align: right;">54.07</td>
+<td style="text-align: right;">11.15</td>
+<td style="text-align: right;">1195.3125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">7,359 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Guesses: 8+</td>
-<td style="text-align: right;">23,332.16 us</td>
-<td style="text-align: right;">3,846.482 us</td>
-<td style="text-align: right;">11,281.066 us</td>
-<td style="text-align: right;">23,359.23 us</td>
-<td style="text-align: right;">217.03</td>
-<td style="text-align: right;">112.68</td>
+<td style="text-align: right;">22,331.85 us</td>
+<td style="text-align: right;">5,328.091 us</td>
+<td style="text-align: right;">15,626.369 us</td>
+<td style="text-align: right;">187.63</td>
+<td style="text-align: right;">117.26</td>
+<td style="text-align: right;">23769.2308</td>
+<td style="text-align: right;">76.9231</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">145,928 KB</td>
 </tr>
 </tbody>
 </table>
@@ -352,318 +427,98 @@ effective performance enhancements for more complicated examples.</p>
 <th style="text-align: right;">StdDev</th>
 <th style="text-align: right;">Ratio</th>
 <th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SudokuSpice</td>
 <td>Easy</td>
-<td style="text-align: right;">9.738 us</td>
-<td style="text-align: right;">0.0157 us</td>
-<td style="text-align: right;">0.0147 us</td>
+<td style="text-align: right;">10.144 us</td>
+<td style="text-align: right;">0.0518 us</td>
+<td style="text-align: right;">0.0484 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.4496</td>
+<td style="text-align: right;">0.0153</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">9 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicSingle</td>
 <td>Easy</td>
-<td style="text-align: right;">15.645 us</td>
-<td style="text-align: right;">0.0515 us</td>
-<td style="text-align: right;">0.0430 us</td>
-<td style="text-align: right;">1.61</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>Easy</td>
-<td style="text-align: right;">21.309 us</td>
-<td style="text-align: right;">0.0292 us</td>
-<td style="text-align: right;">0.0273 us</td>
-<td style="text-align: right;">2.19</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>Easy</td>
-<td style="text-align: right;">24.737 us</td>
-<td style="text-align: right;">0.0376 us</td>
-<td style="text-align: right;">0.0314 us</td>
-<td style="text-align: right;">2.54</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>Easy</td>
-<td style="text-align: right;">6.525 us</td>
-<td style="text-align: right;">0.0262 us</td>
-<td style="text-align: right;">0.0233 us</td>
-<td style="text-align: right;">0.67</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>Easy</td>
-<td style="text-align: right;">154.804 us</td>
-<td style="text-align: right;">0.2326 us</td>
-<td style="text-align: right;">0.2176 us</td>
-<td style="text-align: right;">15.90</td>
-<td style="text-align: right;">0.03</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>EvilA</td>
-<td style="text-align: right;">174.951 us</td>
-<td style="text-align: right;">0.3573 us</td>
-<td style="text-align: right;">0.3342 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>EvilA</td>
-<td style="text-align: right;">204.572 us</td>
-<td style="text-align: right;">0.4628 us</td>
-<td style="text-align: right;">0.4103 us</td>
-<td style="text-align: right;">1.17</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>EvilA</td>
-<td style="text-align: right;">225.805 us</td>
-<td style="text-align: right;">0.4514 us</td>
-<td style="text-align: right;">0.4002 us</td>
-<td style="text-align: right;">1.29</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>EvilA</td>
-<td style="text-align: right;">89.962 us</td>
-<td style="text-align: right;">0.2205 us</td>
-<td style="text-align: right;">0.2063 us</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>EvilA</td>
-<td style="text-align: right;">44,732.794 us</td>
-<td style="text-align: right;">2,633.8616 us</td>
-<td style="text-align: right;">7,766.0004 us</td>
-<td style="text-align: right;">255.09</td>
-<td style="text-align: right;">55.34</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>EvilA</td>
-<td style="text-align: right;">397,042.040 us</td>
-<td style="text-align: right;">497.2516 us</td>
-<td style="text-align: right;">415.2276 us</td>
-<td style="text-align: right;">2,269.22</td>
-<td style="text-align: right;">5.65</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>EvilB</td>
-<td style="text-align: right;">1,562.112 us</td>
-<td style="text-align: right;">31.0545 us</td>
-<td style="text-align: right;">41.4569 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>EvilB</td>
-<td style="text-align: right;">2,024.354 us</td>
-<td style="text-align: right;">39.6313 us</td>
-<td style="text-align: right;">58.0911 us</td>
-<td style="text-align: right;">1.29</td>
-<td style="text-align: right;">0.05</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>EvilB</td>
-<td style="text-align: right;">2,358.166 us</td>
-<td style="text-align: right;">46.1520 us</td>
-<td style="text-align: right;">90.0160 us</td>
-<td style="text-align: right;">1.51</td>
-<td style="text-align: right;">0.08</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>EvilB</td>
-<td style="text-align: right;">230.307 us</td>
-<td style="text-align: right;">0.5521 us</td>
-<td style="text-align: right;">0.5165 us</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>EvilB</td>
-<td style="text-align: right;">47,739.047 us</td>
-<td style="text-align: right;">824.5815 us</td>
-<td style="text-align: right;">730.9700 us</td>
-<td style="text-align: right;">30.54</td>
-<td style="text-align: right;">0.70</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>EvilB</td>
-<td style="text-align: right;">49,896.945 us</td>
-<td style="text-align: right;">39.5962 us</td>
-<td style="text-align: right;">33.0646 us</td>
-<td style="text-align: right;">31.93</td>
-<td style="text-align: right;">0.76</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>HardA</td>
-<td style="text-align: right;">92.035 us</td>
-<td style="text-align: right;">0.1796 us</td>
-<td style="text-align: right;">0.1680 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>HardA</td>
-<td style="text-align: right;">115.486 us</td>
-<td style="text-align: right;">0.2381 us</td>
-<td style="text-align: right;">0.2227 us</td>
-<td style="text-align: right;">1.25</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>HardA</td>
-<td style="text-align: right;">133.753 us</td>
-<td style="text-align: right;">0.3009 us</td>
-<td style="text-align: right;">0.2815 us</td>
-<td style="text-align: right;">1.45</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>HardA</td>
-<td style="text-align: right;">78.637 us</td>
-<td style="text-align: right;">0.0713 us</td>
-<td style="text-align: right;">0.0632 us</td>
-<td style="text-align: right;">0.85</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>HardA</td>
-<td style="text-align: right;">3,277.716 us</td>
-<td style="text-align: right;">63.4024 us</td>
-<td style="text-align: right;">90.9298 us</td>
-<td style="text-align: right;">35.42</td>
-<td style="text-align: right;">0.69</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>HardA</td>
-<td style="text-align: right;">24,858.170 us</td>
-<td style="text-align: right;">21.4029 us</td>
-<td style="text-align: right;">18.9731 us</td>
-<td style="text-align: right;">270.09</td>
-<td style="text-align: right;">0.52</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>HardB</td>
-<td style="text-align: right;">249.422 us</td>
-<td style="text-align: right;">1.0243 us</td>
-<td style="text-align: right;">0.9080 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>HardB</td>
-<td style="text-align: right;">296.551 us</td>
-<td style="text-align: right;">1.3921 us</td>
-<td style="text-align: right;">1.3021 us</td>
-<td style="text-align: right;">1.19</td>
+<td style="text-align: right;">16.536 us</td>
+<td style="text-align: right;">0.0627 us</td>
+<td style="text-align: right;">0.0556 us</td>
+<td style="text-align: right;">1.63</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.5940</td>
+<td style="text-align: right;">0.0305</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">16 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicMultiple</td>
-<td>HardB</td>
-<td style="text-align: right;">338.985 us</td>
-<td style="text-align: right;">1.1642 us</td>
-<td style="text-align: right;">1.0320 us</td>
-<td style="text-align: right;">1.36</td>
+<td>Easy</td>
+<td style="text-align: right;">21.345 us</td>
+<td style="text-align: right;">0.0189 us</td>
+<td style="text-align: right;">0.0158 us</td>
+<td style="text-align: right;">2.10</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.5940</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">16 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
-<td>HardB</td>
-<td style="text-align: right;">90.328 us</td>
-<td style="text-align: right;">0.1294 us</td>
-<td style="text-align: right;">0.1147 us</td>
-<td style="text-align: right;">0.36</td>
-<td style="text-align: right;">0.00</td>
+<td>Easy</td>
+<td style="text-align: right;">26.771 us</td>
+<td style="text-align: right;">0.1255 us</td>
+<td style="text-align: right;">0.1048 us</td>
+<td style="text-align: right;">2.64</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">7.8735</td>
+<td style="text-align: right;">0.8240</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">48 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
-<td>HardB</td>
-<td style="text-align: right;">23,074.344 us</td>
-<td style="text-align: right;">832.1748 us</td>
-<td style="text-align: right;">2,453.6863 us</td>
-<td style="text-align: right;">90.11</td>
-<td style="text-align: right;">11.27</td>
+<td>Easy</td>
+<td style="text-align: right;">6.558 us</td>
+<td style="text-align: right;">0.0166 us</td>
+<td style="text-align: right;">0.0138 us</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.1063</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">7 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
-<td>HardB</td>
-<td style="text-align: right;">4,699.454 us</td>
-<td style="text-align: right;">4.9523 us</td>
-<td style="text-align: right;">4.6324 us</td>
-<td style="text-align: right;">18.84</td>
-<td style="text-align: right;">0.08</td>
+<td>Easy</td>
+<td style="text-align: right;">156.196 us</td>
+<td style="text-align: right;">0.3448 us</td>
+<td style="text-align: right;">0.3057 us</td>
+<td style="text-align: right;">15.40</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">44.4336</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">273 KB</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -673,56 +528,444 @@ effective performance enhancements for more complicated examples.</p>
 <tr>
 <td>SudokuSpice</td>
 <td>Medium</td>
-<td style="text-align: right;">116.475 us</td>
-<td style="text-align: right;">0.4609 us</td>
-<td style="text-align: right;">0.4311 us</td>
+<td style="text-align: right;">119.489 us</td>
+<td style="text-align: right;">0.2577 us</td>
+<td style="text-align: right;">0.2285 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">11.7188</td>
+<td style="text-align: right;">0.3662</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">72 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicSingle</td>
 <td>Medium</td>
-<td style="text-align: right;">145.478 us</td>
-<td style="text-align: right;">0.6171 us</td>
-<td style="text-align: right;">0.5773 us</td>
+<td style="text-align: right;">149.275 us</td>
+<td style="text-align: right;">0.7980 us</td>
+<td style="text-align: right;">0.7464 us</td>
 <td style="text-align: right;">1.25</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">16.6016</td>
+<td style="text-align: right;">0.4883</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">103 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicMultiple</td>
 <td>Medium</td>
-<td style="text-align: right;">172.492 us</td>
-<td style="text-align: right;">0.7044 us</td>
-<td style="text-align: right;">0.6589 us</td>
-<td style="text-align: right;">1.48</td>
+<td style="text-align: right;">174.992 us</td>
+<td style="text-align: right;">1.1995 us</td>
+<td style="text-align: right;">1.1220 us</td>
+<td style="text-align: right;">1.46</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">16.6016</td>
+<td style="text-align: right;">0.4883</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">102 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Medium</td>
-<td style="text-align: right;">75.000 us</td>
-<td style="text-align: right;">0.2579 us</td>
-<td style="text-align: right;">0.2286 us</td>
+<td style="text-align: right;">76.135 us</td>
+<td style="text-align: right;">0.3509 us</td>
+<td style="text-align: right;">0.3282 us</td>
 <td style="text-align: right;">0.64</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">20.0195</td>
+<td style="text-align: right;">5.0049</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">123 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Medium</td>
-<td style="text-align: right;">2,998.381 us</td>
-<td style="text-align: right;">16.0284 us</td>
-<td style="text-align: right;">14.9930 us</td>
-<td style="text-align: right;">25.74</td>
-<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">3,012.929 us</td>
+<td style="text-align: right;">21.9526 us</td>
+<td style="text-align: right;">20.5344 us</td>
+<td style="text-align: right;">25.23</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">156.2500</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">978 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Medium</td>
-<td style="text-align: right;">2,300.428 us</td>
-<td style="text-align: right;">1.8287 us</td>
-<td style="text-align: right;">1.7106 us</td>
-<td style="text-align: right;">19.75</td>
-<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2,357.128 us</td>
+<td style="text-align: right;">2.5399 us</td>
+<td style="text-align: right;">2.3758 us</td>
+<td style="text-align: right;">19.73</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">664.0625</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">4,088 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardA</td>
+<td style="text-align: right;">93.180 us</td>
+<td style="text-align: right;">0.2672 us</td>
+<td style="text-align: right;">0.2368 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">9.0332</td>
+<td style="text-align: right;">0.2441</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">56 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardA</td>
+<td style="text-align: right;">117.100 us</td>
+<td style="text-align: right;">0.2777 us</td>
+<td style="text-align: right;">0.2597 us</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">13.1836</td>
+<td style="text-align: right;">0.4883</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">81 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardA</td>
+<td style="text-align: right;">138.822 us</td>
+<td style="text-align: right;">0.3354 us</td>
+<td style="text-align: right;">0.3137 us</td>
+<td style="text-align: right;">1.49</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">13.1836</td>
+<td style="text-align: right;">0.4883</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">81 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardA</td>
+<td style="text-align: right;">79.756 us</td>
+<td style="text-align: right;">0.0853 us</td>
+<td style="text-align: right;">0.0756 us</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">19.2871</td>
+<td style="text-align: right;">4.6387</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">118 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardA</td>
+<td style="text-align: right;">3,316.124 us</td>
+<td style="text-align: right;">64.9645 us</td>
+<td style="text-align: right;">106.7385 us</td>
+<td style="text-align: right;">35.81</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">187.5000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,167 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardA</td>
+<td style="text-align: right;">24,410.339 us</td>
+<td style="text-align: right;">51.0266 us</td>
+<td style="text-align: right;">47.7303 us</td>
+<td style="text-align: right;">262.00</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">6937.5000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">42,554 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardB</td>
+<td style="text-align: right;">250.846 us</td>
+<td style="text-align: right;">1.1820 us</td>
+<td style="text-align: right;">1.1057 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">24.4141</td>
+<td style="text-align: right;">0.9766</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">151 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardB</td>
+<td style="text-align: right;">303.386 us</td>
+<td style="text-align: right;">1.4885 us</td>
+<td style="text-align: right;">1.3924 us</td>
+<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">33.2031</td>
+<td style="text-align: right;">1.4648</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">204 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardB</td>
+<td style="text-align: right;">342.778 us</td>
+<td style="text-align: right;">1.0247 us</td>
+<td style="text-align: right;">0.9585 us</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">33.2031</td>
+<td style="text-align: right;">1.4648</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">205 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardB</td>
+<td style="text-align: right;">90.961 us</td>
+<td style="text-align: right;">0.1886 us</td>
+<td style="text-align: right;">0.1764 us</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">19.8975</td>
+<td style="text-align: right;">4.6387</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">122 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardB</td>
+<td style="text-align: right;">24,085.411 us</td>
+<td style="text-align: right;">815.6484 us</td>
+<td style="text-align: right;">2,392.1555 us</td>
+<td style="text-align: right;">95.41</td>
+<td style="text-align: right;">10.53</td>
+<td style="text-align: right;">1656.2500</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">10,213 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardB</td>
+<td style="text-align: right;">4,820.488 us</td>
+<td style="text-align: right;">8.2582 us</td>
+<td style="text-align: right;">7.7247 us</td>
+<td style="text-align: right;">19.22</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">1335.9375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">8,220 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilA</td>
+<td style="text-align: right;">178.525 us</td>
+<td style="text-align: right;">0.5461 us</td>
+<td style="text-align: right;">0.5108 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">19.0430</td>
+<td style="text-align: right;">0.7324</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">117 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilA</td>
+<td style="text-align: right;">206.766 us</td>
+<td style="text-align: right;">0.4541 us</td>
+<td style="text-align: right;">0.4026 us</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">23.6816</td>
+<td style="text-align: right;">0.9766</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">146 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilA</td>
+<td style="text-align: right;">229.984 us</td>
+<td style="text-align: right;">0.6850 us</td>
+<td style="text-align: right;">0.6072 us</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">23.6816</td>
+<td style="text-align: right;">0.9766</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">145 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilA</td>
+<td style="text-align: right;">91.099 us</td>
+<td style="text-align: right;">0.3025 us</td>
+<td style="text-align: right;">0.2829 us</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">20.9961</td>
+<td style="text-align: right;">5.3711</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">129 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilA</td>
+<td style="text-align: right;">42,811.765 us</td>
+<td style="text-align: right;">2,920.4357 us</td>
+<td style="text-align: right;">8,610.9705 us</td>
+<td style="text-align: right;">240.51</td>
+<td style="text-align: right;">39.32</td>
+<td style="text-align: right;">2500.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">15,632 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilA</td>
+<td style="text-align: right;">399,166.091 us</td>
+<td style="text-align: right;">1,605.5283 us</td>
+<td style="text-align: right;">1,423.2591 us</td>
+<td style="text-align: right;">2,236.02</td>
+<td style="text-align: right;">10.20</td>
+<td style="text-align: right;">113000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">693,267 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilB</td>
+<td style="text-align: right;">1,611.554 us</td>
+<td style="text-align: right;">30.6582 us</td>
+<td style="text-align: right;">37.6510 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">140.6250</td>
+<td style="text-align: right;">5.8594</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">873 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilB</td>
+<td style="text-align: right;">2,007.245 us</td>
+<td style="text-align: right;">39.7054 us</td>
+<td style="text-align: right;">64.1169 us</td>
+<td style="text-align: right;">1.25</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">222.6563</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,371 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilB</td>
+<td style="text-align: right;">2,363.939 us</td>
+<td style="text-align: right;">46.4601 us</td>
+<td style="text-align: right;">68.1006 us</td>
+<td style="text-align: right;">1.47</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">203.1250</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,265 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilB</td>
+<td style="text-align: right;">231.756 us</td>
+<td style="text-align: right;">0.8416 us</td>
+<td style="text-align: right;">0.7461 us</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">26.1230</td>
+<td style="text-align: right;">6.3477</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">161 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilB</td>
+<td style="text-align: right;">47,907.768 us</td>
+<td style="text-align: right;">901.9639 us</td>
+<td style="text-align: right;">843.6976 us</td>
+<td style="text-align: right;">29.71</td>
+<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">3181.8182</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">19,736 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilB</td>
+<td style="text-align: right;">49,722.898 us</td>
+<td style="text-align: right;">127.0537 us</td>
+<td style="text-align: right;">112.6298 us</td>
+<td style="text-align: right;">30.92</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">14181.8182</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">86,909 KB</td>
 </tr>
 </tbody>
 </table>
@@ -739,285 +982,99 @@ constraint-based solver is <em>much</em> faster than the rule-based solver.</p>
 <th style="text-align: right;">Mean</th>
 <th style="text-align: right;">Error</th>
 <th style="text-align: right;">StdDev</th>
-<th style="text-align: right;">Median</th>
 <th style="text-align: right;">Ratio</th>
 <th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SudokuSpice</td>
 <td>Easy</td>
-<td style="text-align: right;">369.2 us</td>
-<td style="text-align: right;">6.90 us</td>
-<td style="text-align: right;">6.45 us</td>
-<td style="text-align: right;">365.3 us</td>
+<td style="text-align: right;">378.9 us</td>
+<td style="text-align: right;">0.46 us</td>
+<td style="text-align: right;">0.38 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">8 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicSingle</td>
 <td>Easy</td>
-<td style="text-align: right;">546.0 us</td>
-<td style="text-align: right;">0.47 us</td>
-<td style="text-align: right;">0.42 us</td>
-<td style="text-align: right;">545.9 us</td>
-<td style="text-align: right;">1.48</td>
-<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">546.5 us</td>
+<td style="text-align: right;">0.37 us</td>
+<td style="text-align: right;">0.33 us</td>
+<td style="text-align: right;">1.44</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.9297</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">12 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicMultiple</td>
 <td>Easy</td>
-<td style="text-align: right;">670.1 us</td>
-<td style="text-align: right;">0.80 us</td>
-<td style="text-align: right;">0.67 us</td>
-<td style="text-align: right;">669.9 us</td>
-<td style="text-align: right;">1.81</td>
-<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">688.7 us</td>
+<td style="text-align: right;">0.93 us</td>
+<td style="text-align: right;">0.87 us</td>
+<td style="text-align: right;">1.82</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.9297</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">12 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Easy</td>
-<td style="text-align: right;">469.1 us</td>
-<td style="text-align: right;">0.72 us</td>
-<td style="text-align: right;">0.56 us</td>
-<td style="text-align: right;">469.0 us</td>
-<td style="text-align: right;">1.27</td>
-<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">471.6 us</td>
+<td style="text-align: right;">0.35 us</td>
+<td style="text-align: right;">0.33 us</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">8.7891</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">37 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Easy</td>
-<td style="text-align: right;">104.5 us</td>
-<td style="text-align: right;">0.08 us</td>
-<td style="text-align: right;">0.07 us</td>
-<td style="text-align: right;">104.5 us</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>Easy</td>
-<td style="text-align: right;">3,620.3 us</td>
-<td style="text-align: right;">2.52 us</td>
-<td style="text-align: right;">2.36 us</td>
-<td style="text-align: right;">3,619.9 us</td>
-<td style="text-align: right;">9.81</td>
-<td style="text-align: right;">0.17</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>EvilA</td>
-<td style="text-align: right;">6,939.4 us</td>
-<td style="text-align: right;">72.90 us</td>
-<td style="text-align: right;">68.19 us</td>
-<td style="text-align: right;">6,939.1 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>EvilA</td>
-<td style="text-align: right;">7,713.9 us</td>
-<td style="text-align: right;">112.73 us</td>
-<td style="text-align: right;">105.45 us</td>
-<td style="text-align: right;">7,719.0 us</td>
-<td style="text-align: right;">1.11</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>EvilA</td>
-<td style="text-align: right;">8,248.0 us</td>
-<td style="text-align: right;">145.08 us</td>
-<td style="text-align: right;">135.70 us</td>
-<td style="text-align: right;">8,211.9 us</td>
-<td style="text-align: right;">1.19</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>EvilA</td>
-<td style="text-align: right;">1,245.1 us</td>
-<td style="text-align: right;">1.10 us</td>
-<td style="text-align: right;">0.92 us</td>
-<td style="text-align: right;">1,245.0 us</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>EvilA</td>
-<td style="text-align: right;">746,066.9 us</td>
-<td style="text-align: right;">412,939.70 us</td>
-<td style="text-align: right;">386,264.05 us</td>
-<td style="text-align: right;">771,445.5 us</td>
-<td style="text-align: right;">107.59</td>
-<td style="text-align: right;">55.68</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>EvilA</td>
-<td style="text-align: right;">9,265,339.0 us</td>
-<td style="text-align: right;">14,037.94 us</td>
-<td style="text-align: right;">12,444.27 us</td>
-<td style="text-align: right;">9,261,697.5 us</td>
-<td style="text-align: right;">1,335.31</td>
-<td style="text-align: right;">13.63</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>EvilB</td>
-<td style="text-align: right;">62,365.9 us</td>
-<td style="text-align: right;">9,799.40 us</td>
-<td style="text-align: right;">8,686.92 us</td>
-<td style="text-align: right;">63,030.3 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>EvilB</td>
-<td style="text-align: right;">68,877.0 us</td>
-<td style="text-align: right;">16,259.51 us</td>
-<td style="text-align: right;">15,209.15 us</td>
-<td style="text-align: right;">73,634.2 us</td>
-<td style="text-align: right;">1.12</td>
-<td style="text-align: right;">0.32</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>EvilB</td>
-<td style="text-align: right;">78,072.4 us</td>
-<td style="text-align: right;">8,805.23 us</td>
-<td style="text-align: right;">7,805.61 us</td>
-<td style="text-align: right;">78,640.7 us</td>
-<td style="text-align: right;">1.27</td>
-<td style="text-align: right;">0.22</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>EvilB</td>
-<td style="text-align: right;">4,006.6 us</td>
-<td style="text-align: right;">3.71 us</td>
-<td style="text-align: right;">3.29 us</td>
-<td style="text-align: right;">4,007.1 us</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0.01</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>EvilB</td>
-<td style="text-align: right;">910,343.2 us</td>
-<td style="text-align: right;">72,916.34 us</td>
-<td style="text-align: right;">68,205.99 us</td>
-<td style="text-align: right;">892,070.0 us</td>
-<td style="text-align: right;">14.79</td>
-<td style="text-align: right;">2.33</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>EvilB</td>
-<td style="text-align: right;">1,155,378.9 us</td>
-<td style="text-align: right;">859.16 us</td>
-<td style="text-align: right;">761.62 us</td>
-<td style="text-align: right;">1,155,628.5 us</td>
-<td style="text-align: right;">18.86</td>
-<td style="text-align: right;">2.63</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>HardA</td>
-<td style="text-align: right;">4,376.9 us</td>
-<td style="text-align: right;">34.59 us</td>
-<td style="text-align: right;">32.36 us</td>
-<td style="text-align: right;">4,377.4 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>HardA</td>
-<td style="text-align: right;">5,033.1 us</td>
-<td style="text-align: right;">78.73 us</td>
-<td style="text-align: right;">65.74 us</td>
-<td style="text-align: right;">5,018.5 us</td>
-<td style="text-align: right;">1.15</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicMultiple</td>
-<td>HardA</td>
-<td style="text-align: right;">5,527.3 us</td>
-<td style="text-align: right;">101.70 us</td>
-<td style="text-align: right;">95.13 us</td>
-<td style="text-align: right;">5,483.2 us</td>
-<td style="text-align: right;">1.26</td>
-<td style="text-align: right;">0.02</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>HardA</td>
-<td style="text-align: right;">1,173.1 us</td>
-<td style="text-align: right;">6.58 us</td>
-<td style="text-align: right;">5.84 us</td>
-<td style="text-align: right;">1,170.7 us</td>
+<td style="text-align: right;">104.0 us</td>
+<td style="text-align: right;">0.51 us</td>
+<td style="text-align: right;">0.43 us</td>
 <td style="text-align: right;">0.27</td>
 <td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>HardA</td>
-<td style="text-align: right;">59,207.3 us</td>
-<td style="text-align: right;">10,501.21 us</td>
-<td style="text-align: right;">9,822.84 us</td>
-<td style="text-align: right;">62,909.4 us</td>
-<td style="text-align: right;">13.53</td>
-<td style="text-align: right;">2.24</td>
+<td style="text-align: right;">1.2207</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">5 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
-<td>HardA</td>
-<td style="text-align: right;">568,887.5 us</td>
-<td style="text-align: right;">455.87 us</td>
-<td style="text-align: right;">426.42 us</td>
-<td style="text-align: right;">568,919.0 us</td>
-<td style="text-align: right;">129.98</td>
-<td style="text-align: right;">0.99</td>
+<td>Easy</td>
+<td style="text-align: right;">3,605.1 us</td>
+<td style="text-align: right;">2.54 us</td>
+<td style="text-align: right;">2.38 us</td>
+<td style="text-align: right;">9.51</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">62.5000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">261 KB</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -1027,133 +1084,445 @@ constraint-based solver is <em>much</em> faster than the rule-based solver.</p>
 </tr>
 <tr>
 <td>SudokuSpice</td>
-<td>HardB</td>
-<td style="text-align: right;">9,534.3 us</td>
-<td style="text-align: right;">291.35 us</td>
-<td style="text-align: right;">272.53 us</td>
-<td style="text-align: right;">9,489.6 us</td>
+<td>EvilA</td>
+<td style="text-align: right;">7,020.7 us</td>
+<td style="text-align: right;">54.41 us</td>
+<td style="text-align: right;">48.23 us</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">91 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicSingle</td>
-<td>HardB</td>
-<td style="text-align: right;">10,997.8 us</td>
-<td style="text-align: right;">233.63 us</td>
-<td style="text-align: right;">218.54 us</td>
-<td style="text-align: right;">11,002.1 us</td>
-<td style="text-align: right;">1.15</td>
-<td style="text-align: right;">0.04</td>
+<td>EvilA</td>
+<td style="text-align: right;">7,731.4 us</td>
+<td style="text-align: right;">111.02 us</td>
+<td style="text-align: right;">103.85 us</td>
+<td style="text-align: right;">1.10</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">109 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicMultiple</td>
-<td>HardB</td>
-<td style="text-align: right;">12,188.5 us</td>
-<td style="text-align: right;">293.74 us</td>
-<td style="text-align: right;">274.76 us</td>
-<td style="text-align: right;">12,162.7 us</td>
-<td style="text-align: right;">1.28</td>
-<td style="text-align: right;">0.05</td>
-</tr>
-<tr>
-<td>SudokuSpiceConstraints</td>
-<td>HardB</td>
-<td style="text-align: right;">1,395.6 us</td>
-<td style="text-align: right;">0.66 us</td>
-<td style="text-align: right;">0.55 us</td>
-<td style="text-align: right;">1,395.8 us</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSharp</td>
-<td>HardB</td>
-<td style="text-align: right;">448,291.9 us</td>
-<td style="text-align: right;">236,477.41 us</td>
-<td style="text-align: right;">221,201.11 us</td>
-<td style="text-align: right;">545,884.5 us</td>
-<td style="text-align: right;">46.93</td>
-<td style="text-align: right;">23.29</td>
-</tr>
-<tr>
-<td>SudokuSolverLite</td>
-<td>HardB</td>
-<td style="text-align: right;">107,924.6 us</td>
-<td style="text-align: right;">79.85 us</td>
-<td style="text-align: right;">70.79 us</td>
-<td style="text-align: right;">107,922.2 us</td>
-<td style="text-align: right;">11.37</td>
-<td style="text-align: right;">0.29</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr>
-<td>SudokuSpice</td>
-<td>Medium</td>
-<td style="text-align: right;">5,196.0 us</td>
-<td style="text-align: right;">119.93 us</td>
-<td style="text-align: right;">106.31 us</td>
-<td style="text-align: right;">5,205.0 us</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr>
-<td>SudokuSpiceDynamicSingle</td>
-<td>Medium</td>
-<td style="text-align: right;">6,154.2 us</td>
-<td style="text-align: right;">144.55 us</td>
-<td style="text-align: right;">135.21 us</td>
-<td style="text-align: right;">6,188.1 us</td>
+<td>EvilA</td>
+<td style="text-align: right;">8,328.0 us</td>
+<td style="text-align: right;">133.80 us</td>
+<td style="text-align: right;">125.15 us</td>
 <td style="text-align: right;">1.19</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">107 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilA</td>
+<td style="text-align: right;">1,258.2 us</td>
+<td style="text-align: right;">1.65 us</td>
+<td style="text-align: right;">1.46 us</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">17.5781</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">77 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilA</td>
+<td style="text-align: right;">668,224.6 us</td>
+<td style="text-align: right;">486,544.29 us</td>
+<td style="text-align: right;">455,113.83 us</td>
+<td style="text-align: right;">99.79</td>
+<td style="text-align: right;">64.53</td>
+<td style="text-align: right;">2000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">11,817 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilA</td>
+<td style="text-align: right;">9,146,246.5 us</td>
+<td style="text-align: right;">19,692.14 us</td>
+<td style="text-align: right;">18,420.04 us</td>
+<td style="text-align: right;">1,302.92</td>
+<td style="text-align: right;">10.27</td>
+<td style="text-align: right;">166000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">674,507 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilB</td>
+<td style="text-align: right;">67,052.8 us</td>
+<td style="text-align: right;">12,364.57 us</td>
+<td style="text-align: right;">11,565.83 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">142.8571</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">590 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilB</td>
+<td style="text-align: right;">75,828.5 us</td>
+<td style="text-align: right;">16,284.98 us</td>
+<td style="text-align: right;">15,232.98 us</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">142.8571</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,055 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilB</td>
+<td style="text-align: right;">90,022.3 us</td>
+<td style="text-align: right;">18,858.26 us</td>
+<td style="text-align: right;">17,640.03 us</td>
+<td style="text-align: right;">1.36</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">250.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1,095 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilB</td>
+<td style="text-align: right;">4,041.1 us</td>
+<td style="text-align: right;">4.25 us</td>
+<td style="text-align: right;">3.32 us</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">98 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilB</td>
+<td style="text-align: right;">879,457.4 us</td>
+<td style="text-align: right;">46,076.23 us</td>
+<td style="text-align: right;">43,099.73 us</td>
+<td style="text-align: right;">13.52</td>
+<td style="text-align: right;">2.62</td>
+<td style="text-align: right;">3000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">13,071 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilB</td>
+<td style="text-align: right;">1,171,986.7 us</td>
+<td style="text-align: right;">1,524.47 us</td>
+<td style="text-align: right;">1,190.20 us</td>
+<td style="text-align: right;">18.37</td>
+<td style="text-align: right;">3.35</td>
+<td style="text-align: right;">20000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">83,411 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardA</td>
+<td style="text-align: right;">4,389.8 us</td>
+<td style="text-align: right;">55.10 us</td>
+<td style="text-align: right;">51.54 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">44 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardA</td>
+<td style="text-align: right;">5,156.1 us</td>
+<td style="text-align: right;">73.48 us</td>
+<td style="text-align: right;">65.14 us</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">59 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardA</td>
+<td style="text-align: right;">5,571.6 us</td>
+<td style="text-align: right;">48.14 us</td>
+<td style="text-align: right;">45.03 us</td>
+<td style="text-align: right;">1.27</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">59 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardA</td>
+<td style="text-align: right;">1,160.8 us</td>
+<td style="text-align: right;">1.15 us</td>
+<td style="text-align: right;">0.96 us</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">17.5781</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">71 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardA</td>
+<td style="text-align: right;">61,062.6 us</td>
+<td style="text-align: right;">11,757.50 us</td>
+<td style="text-align: right;">10,997.97 us</td>
+<td style="text-align: right;">13.91</td>
+<td style="text-align: right;">2.51</td>
+<td style="text-align: right;">111.1111</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">747 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardA</td>
+<td style="text-align: right;">587,434.4 us</td>
+<td style="text-align: right;">504.29 us</td>
+<td style="text-align: right;">447.04 us</td>
+<td style="text-align: right;">133.93</td>
+<td style="text-align: right;">1.53</td>
+<td style="text-align: right;">10000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">41,347 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardB</td>
+<td style="text-align: right;">9,722.1 us</td>
+<td style="text-align: right;">245.50 us</td>
+<td style="text-align: right;">229.64 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">116 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardB</td>
+<td style="text-align: right;">11,235.0 us</td>
+<td style="text-align: right;">252.73 us</td>
+<td style="text-align: right;">236.40 us</td>
+<td style="text-align: right;">1.16</td>
 <td style="text-align: right;">0.04</td>
+<td style="text-align: right;">31.2500</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">151 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardB</td>
+<td style="text-align: right;">12,174.5 us</td>
+<td style="text-align: right;">283.77 us</td>
+<td style="text-align: right;">265.44 us</td>
+<td style="text-align: right;">1.25</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">31.2500</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">146 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardB</td>
+<td style="text-align: right;">1,396.9 us</td>
+<td style="text-align: right;">0.87 us</td>
+<td style="text-align: right;">0.77 us</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">17.5781</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">74 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardB</td>
+<td style="text-align: right;">528,057.1 us</td>
+<td style="text-align: right;">213,391.94 us</td>
+<td style="text-align: right;">199,606.96 us</td>
+<td style="text-align: right;">54.59</td>
+<td style="text-align: right;">21.36</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">3,868 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardB</td>
+<td style="text-align: right;">108,765.9 us</td>
+<td style="text-align: right;">112.72 us</td>
+<td style="text-align: right;">105.44 us</td>
+<td style="text-align: right;">11.19</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">1800.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">7,757 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Medium</td>
+<td style="text-align: right;">5,325.0 us</td>
+<td style="text-align: right;">158.89 us</td>
+<td style="text-align: right;">148.63 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">58 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Medium</td>
+<td style="text-align: right;">6,210.5 us</td>
+<td style="text-align: right;">166.93 us</td>
+<td style="text-align: right;">156.14 us</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">78 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceDynamicMultiple</td>
 <td>Medium</td>
-<td style="text-align: right;">6,606.2 us</td>
-<td style="text-align: right;">144.09 us</td>
-<td style="text-align: right;">134.78 us</td>
-<td style="text-align: right;">6,649.7 us</td>
-<td style="text-align: right;">1.27</td>
-<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">6,718.9 us</td>
+<td style="text-align: right;">140.90 us</td>
+<td style="text-align: right;">131.79 us</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">76 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
 <td>Medium</td>
-<td style="text-align: right;">1,025.7 us</td>
-<td style="text-align: right;">1.25 us</td>
-<td style="text-align: right;">1.10 us</td>
-<td style="text-align: right;">1,025.7 us</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1,024.7 us</td>
+<td style="text-align: right;">0.87 us</td>
+<td style="text-align: right;">0.81 us</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">17.5781</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">74 KB</td>
 </tr>
 <tr>
 <td>SudokuSharp</td>
 <td>Medium</td>
-<td style="text-align: right;">49,233.5 us</td>
-<td style="text-align: right;">1,025.02 us</td>
-<td style="text-align: right;">958.80 us</td>
-<td style="text-align: right;">49,027.6 us</td>
-<td style="text-align: right;">9.49</td>
-<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">50,638.8 us</td>
+<td style="text-align: right;">1,738.09 us</td>
+<td style="text-align: right;">1,625.81 us</td>
+<td style="text-align: right;">9.52</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">90.9091</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">666 KB</td>
 </tr>
 <tr>
 <td>SudokuSolverLite</td>
 <td>Medium</td>
-<td style="text-align: right;">53,074.8 us</td>
-<td style="text-align: right;">52.19 us</td>
-<td style="text-align: right;">48.82 us</td>
-<td style="text-align: right;">53,072.6 us</td>
-<td style="text-align: right;">10.22</td>
-<td style="text-align: right;">0.21</td>
+<td style="text-align: right;">53,482.6 us</td>
+<td style="text-align: right;">76.75 us</td>
+<td style="text-align: right;">68.03 us</td>
+<td style="text-align: right;">10.06</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">900.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">3,769 KB</td>
 </tr>
 </tbody>
 </table>
@@ -1172,40 +1541,60 @@ single, double, and quadruple square clearings.</p>
 <th style="text-align: right;">StdDev</th>
 <th style="text-align: right;">Ratio</th>
 <th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SudokuSpice</td>
-<td style="text-align: right;">1.414 ms</td>
-<td style="text-align: right;">0.0093 ms</td>
-<td style="text-align: right;">0.0087 ms</td>
+<td style="text-align: right;">1.037 ms</td>
+<td style="text-align: right;">0.0022 ms</td>
+<td style="text-align: right;">0.0020 ms</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">142.5781</td>
+<td style="text-align: right;">13.6719</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">876 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
-<td style="text-align: right;">2.311 ms</td>
-<td style="text-align: right;">0.0431 ms</td>
-<td style="text-align: right;">0.0442 ms</td>
-<td style="text-align: right;">1.63</td>
-<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">2.306 ms</td>
+<td style="text-align: right;">0.0376 ms</td>
+<td style="text-align: right;">0.0352 ms</td>
+<td style="text-align: right;">2.22</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">605.4688</td>
+<td style="text-align: right;">3.9063</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">3,713 KB</td>
 </tr>
 <tr>
 <td>SudokuSharpSingles</td>
-<td style="text-align: right;">15.104 ms</td>
-<td style="text-align: right;">0.5700 ms</td>
-<td style="text-align: right;">1.6537 ms</td>
-<td style="text-align: right;">10.99</td>
-<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">14.898 ms</td>
+<td style="text-align: right;">0.7992 ms</td>
+<td style="text-align: right;">2.3186 ms</td>
+<td style="text-align: right;">14.25</td>
+<td style="text-align: right;">1.83</td>
+<td style="text-align: right;">3250.0000</td>
+<td style="text-align: right;">31.2500</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">19,950 KB</td>
 </tr>
 <tr>
 <td>SudokuSharpMixed</td>
-<td style="text-align: right;">7.331 ms</td>
-<td style="text-align: right;">0.3585 ms</td>
-<td style="text-align: right;">1.0402 ms</td>
-<td style="text-align: right;">5.10</td>
-<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">7.115 ms</td>
+<td style="text-align: right;">0.2195 ms</td>
+<td style="text-align: right;">0.6369 ms</td>
+<td style="text-align: right;">7.08</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">1546.8750</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">9,484 KB</td>
 </tr>
 </tbody>
 </table>
@@ -1219,40 +1608,60 @@ single, double, and quadruple square clearings.</p>
 <th style="text-align: right;">StdDev</th>
 <th style="text-align: right;">Ratio</th>
 <th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SudokuSpice</td>
-<td style="text-align: right;">54.87 ms</td>
-<td style="text-align: right;">3.710 ms</td>
-<td style="text-align: right;">3.289 ms</td>
+<td style="text-align: right;">38.64 ms</td>
+<td style="text-align: right;">0.180 ms</td>
+<td style="text-align: right;">0.169 ms</td>
 <td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">142.8571</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">716 KB</td>
 </tr>
 <tr>
 <td>SudokuSpiceConstraints</td>
-<td style="text-align: right;">34.21 ms</td>
-<td style="text-align: right;">1.828 ms</td>
-<td style="text-align: right;">1.710 ms</td>
-<td style="text-align: right;">0.62</td>
-<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">33.63 ms</td>
+<td style="text-align: right;">1.543 ms</td>
+<td style="text-align: right;">1.368 ms</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">642.8571</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">2,636 KB</td>
 </tr>
 <tr>
 <td>SudokuSharpSingles</td>
-<td style="text-align: right;">229.49 ms</td>
-<td style="text-align: right;">62.372 ms</td>
-<td style="text-align: right;">52.083 ms</td>
-<td style="text-align: right;">4.22</td>
-<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">213.91 ms</td>
+<td style="text-align: right;">100.035 ms</td>
+<td style="text-align: right;">88.678 ms</td>
+<td style="text-align: right;">5.54</td>
+<td style="text-align: right;">2.30</td>
+<td style="text-align: right;">1333.3333</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">5,933 KB</td>
 </tr>
 <tr>
 <td>SudokuSharpMixed</td>
-<td style="text-align: right;">114.18 ms</td>
-<td style="text-align: right;">34.683 ms</td>
-<td style="text-align: right;">30.745 ms</td>
-<td style="text-align: right;">2.09</td>
-<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">129.24 ms</td>
+<td style="text-align: right;">55.592 ms</td>
+<td style="text-align: right;">52.001 ms</td>
+<td style="text-align: right;">3.35</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">1400.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6,463 KB</td>
 </tr>
 </tbody>
 </table>

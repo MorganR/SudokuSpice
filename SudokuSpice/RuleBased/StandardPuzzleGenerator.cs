@@ -7,9 +7,6 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>
     {
-        private readonly int _size;
-        private readonly int _boxSize;
-
         /// <inheritdoc/>
         public StandardPuzzleGenerator()
             : base(
@@ -24,7 +21,7 @@ namespace SudokuSpice.RuleBased
         /// unique puzzles as the value of <paramref name="numSquaresToSet"/> approaches the
         /// minimum number of clues necessary to provide a unique puzzle of the given
         /// <paramref name="puzzleSize"/>.
-        /// </remarks>
+        /// </summary>
         /// <param name="puzzleSize">
         /// The size (i.e. side-length) of the puzzle to generate.
         /// </param>

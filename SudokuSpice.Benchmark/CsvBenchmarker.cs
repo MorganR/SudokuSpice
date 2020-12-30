@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
+    [MemoryDiagnoser]
     public class CsvBenchmarker
     {
         private static IReadOnlyList<SudokuSample> _samples => SudokuCsvParser.ParseCsv();

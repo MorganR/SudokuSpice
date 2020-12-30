@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
+    [MemoryDiagnoser]
     public class PuzzleBenchmarker
     {
         public IEnumerable<object> NineByNinePuzzles => Puzzles.NineByNinePuzzles();

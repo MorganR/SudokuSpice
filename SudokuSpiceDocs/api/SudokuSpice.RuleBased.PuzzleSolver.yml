@@ -6,12 +6,12 @@ items:
   parent: SudokuSpice.RuleBased
   children:
   - SudokuSpice.RuleBased.PuzzleSolver.#ctor(SudokuSpice.RuleBased.ISudokuRuleKeeper,SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic)
-  - SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
-  - SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
-  - SudokuSpice.RuleBased.PuzzleSolver.Solve(System.Nullable{System.Int32}[0:,0:])
-  - SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(System.Nullable{System.Int32}[0:,0:])
-  - SudokuSpice.RuleBased.PuzzleSolver.TrySolve(System.Nullable{System.Int32}[0:,0:])
-  - SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(System.Nullable{System.Int32}[0:,0:])
+  - SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
+  - SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
+  - SudokuSpice.RuleBased.PuzzleSolver.Solve``1(``0)
+  - SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly``1(``0)
+  - SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)
+  - SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
   langs:
   - csharp
   - vb
@@ -30,7 +30,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSolves puzzles according to a set of rules and heuristics.\n"
+  summary: "\nSolves a single <xref href=\"SudokuSpice.RuleBased.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> using a <xref href=\"SudokuSpice.RuleBased.SquareTracker\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: 'public class PuzzleSolver : object'
@@ -63,37 +63,35 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 19
+    startLine: 18
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nConstructs a solver based on the given rules and heuristics.\n"
+  summary: "\nConstructs a solver for the given square tracker.\n"
   example: []
   syntax:
     content: public PuzzleSolver(ISudokuRuleKeeper ruleKeeper, ISudokuHeuristic heuristic = null)
     parameters:
     - id: ruleKeeper
       type: SudokuSpice.RuleBased.ISudokuRuleKeeper
-      description: The rule keeper that will enforce the puzzle&apos;s rules.
     - id: heuristic
       type: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-      description: An optional heuristic to assist in solving the puzzle.
     content.vb: Public Sub New(ruleKeeper As ISudokuRuleKeeper, heuristic As ISudokuHeuristic = Nothing)
   overload: SudokuSpice.RuleBased.PuzzleSolver.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(System.Nullable{System.Int32}[0:,0:])
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolve(System.Nullable{System.Int32}[0:,0:])
-  id: TrySolve(System.Nullable{System.Int32}[0:,0:])
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)
+  id: TrySolve(SudokuSpice.RuleBased.IPuzzle)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: TrySolve(Nullable<Int32>[,])
-  nameWithType: PuzzleSolver.TrySolve(Nullable<Int32>[,])
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(System.Nullable<System.Int32>[,])
+  name: TrySolve(IPuzzle)
+  nameWithType: PuzzleSolver.TrySolve(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)
   type: Method
   source:
     remote:
@@ -102,39 +100,36 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySolve
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 34
+    startLine: 33
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nAttempts to solve the given puzzle. Unlike <see cref=\"!:TrySolveRandomly(IPuzzle)\"></see>,\nwhen it has to guess, this will try values in guaranteed order.\n"
+  summary: "\nAttempts to solve the given puzzle. Unlike <xref href=\"SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)\" data-throw-if-not-resolved=\"false\"></xref>,\nwhen it has to guess, this will try values in guaranteed order.\n"
   example: []
   syntax:
-    content: public bool TrySolve(int? [, ] puzzle)
+    content: public bool TrySolve(IPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: System.Nullable{System.Int32}[,]
+      type: SudokuSpice.RuleBased.IPuzzle
       description: The puzzle to solve. This will be solved in place.
     return:
       type: System.Boolean
-    content.vb: Public Function TrySolve(puzzle As Integer?(,)) As Boolean
+    content.vb: Public Function TrySolve(puzzle As IPuzzle) As Boolean
   overload: SudokuSpice.RuleBased.PuzzleSolver.TrySolve*
-  nameWithType.vb: PuzzleSolver.TrySolve(Nullable(Of Int32)(,))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(System.Nullable(Of System.Int32)(,))
-  name.vb: TrySolve(Nullable(Of Int32)(,))
-- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(System.Nullable{System.Int32}[0:,0:])
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(System.Nullable{System.Int32}[0:,0:])
-  id: TrySolveRandomly(System.Nullable{System.Int32}[0:,0:])
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
+  id: TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: TrySolveRandomly(Nullable<Int32>[,])
-  nameWithType: PuzzleSolver.TrySolveRandomly(Nullable<Int32>[,])
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(System.Nullable<System.Int32>[,])
+  name: TrySolveRandomly(IPuzzle)
+  nameWithType: PuzzleSolver.TrySolveRandomly(IPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
   type: Method
   source:
     remote:
@@ -143,39 +138,36 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySolveRandomly
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 47
+    startLine: 46
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nAttempts to solve the given puzzle. Unlike <see cref=\"!:TrySolve(IPuzzle)\"></see>, this will\ntry values in a random order when it has to guess the value for a square.\n"
+  summary: "\nAttempts to solve the given puzzle. Unlike <xref href=\"SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)\" data-throw-if-not-resolved=\"false\"></xref>, this will\ntry values in a random order when it has to guess the value for a square.\n"
   example: []
   syntax:
-    content: public bool TrySolveRandomly(int? [, ] puzzle)
+    content: public bool TrySolveRandomly(IPuzzle puzzle)
     parameters:
     - id: puzzle
-      type: System.Nullable{System.Int32}[,]
+      type: SudokuSpice.RuleBased.IPuzzle
       description: The puzzle to solve. This will be solved in place.
     return:
       type: System.Boolean
-    content.vb: Public Function TrySolveRandomly(puzzle As Integer?(,)) As Boolean
+    content.vb: Public Function TrySolveRandomly(puzzle As IPuzzle) As Boolean
   overload: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly*
-  nameWithType.vb: PuzzleSolver.TrySolveRandomly(Nullable(Of Int32)(,))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(System.Nullable(Of System.Int32)(,))
-  name.vb: TrySolveRandomly(Nullable(Of Int32)(,))
-- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve(System.Nullable{System.Int32}[0:,0:])
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.Solve(System.Nullable{System.Int32}[0:,0:])
-  id: Solve(System.Nullable{System.Int32}[0:,0:])
+- uid: SudokuSpice.RuleBased.PuzzleSolver.Solve``1(``0)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.Solve``1(``0)
+  id: Solve``1(``0)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: Solve(Nullable<Int32>[,])
-  nameWithType: PuzzleSolver.Solve(Nullable<Int32>[,])
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve(System.Nullable<System.Int32>[,])
+  name: Solve<TPuzzle>(TPuzzle)
+  nameWithType: PuzzleSolver.Solve<TPuzzle>(TPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve<TPuzzle>(TPuzzle)
   type: Method
   source:
     remote:
@@ -184,37 +176,44 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Solve
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 60
+    startLine: 61
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nSolves the given puzzle in place. Unlike <see cref=\"!:SolveRandomly(IPuzzle)\"></see>,\nwhen it has to guess, this will try values in the order they are given.\n"
   example: []
   syntax:
-    content: public void Solve(int? [, ] puzzle)
+    content: >-
+      public TPuzzle Solve<TPuzzle>(TPuzzle puzzle)
+          where TPuzzle : IPuzzle
     parameters:
     - id: puzzle
-      type: System.Nullable{System.Int32}[,]
-      description: The puzzle to solve. This will be solved in place.
-    content.vb: Public Sub Solve(puzzle As Integer?(,))
+      type: '{TPuzzle}'
+      description: The puzzle to solve. This will be copied instead of solved in-place.
+    typeParameters:
+    - id: TPuzzle
+    return:
+      type: '{TPuzzle}'
+      description: A solved copy of the given puzzle.
+    content.vb: Public Function Solve(Of TPuzzle As IPuzzle)(puzzle As TPuzzle) As TPuzzle
   overload: SudokuSpice.RuleBased.PuzzleSolver.Solve*
-  nameWithType.vb: PuzzleSolver.Solve(Nullable(Of Int32)(,))
+  nameWithType.vb: PuzzleSolver.Solve(Of TPuzzle)(TPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.Solve(System.Nullable(Of System.Int32)(,))
-  name.vb: Solve(Nullable(Of Int32)(,))
-- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(System.Nullable{System.Int32}[0:,0:])
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(System.Nullable{System.Int32}[0:,0:])
-  id: SolveRandomly(System.Nullable{System.Int32}[0:,0:])
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.Solve(Of TPuzzle)(TPuzzle)
+  name.vb: Solve(Of TPuzzle)(TPuzzle)
+- uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly``1(``0)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly``1(``0)
+  id: SolveRandomly``1(``0)
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: SolveRandomly(Nullable<Int32>[,])
-  nameWithType: PuzzleSolver.SolveRandomly(Nullable<Int32>[,])
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(System.Nullable<System.Int32>[,])
+  name: SolveRandomly<TPuzzle>(TPuzzle)
+  nameWithType: PuzzleSolver.SolveRandomly<TPuzzle>(TPuzzle)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly<TPuzzle>(TPuzzle)
   type: Method
   source:
     remote:
@@ -223,37 +222,44 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: SolveRandomly
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 76
+    startLine: 80
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nSolves the given puzzle in place. Unlike <see cref=\"!:Solve(IPuzzle)\"></see>, this will\ntry values in a random order when it has to guess the value for a square.\n"
   example: []
   syntax:
-    content: public void SolveRandomly(int? [, ] puzzle)
+    content: >-
+      public TPuzzle SolveRandomly<TPuzzle>(TPuzzle puzzle)
+          where TPuzzle : IPuzzle
     parameters:
     - id: puzzle
-      type: System.Nullable{System.Int32}[,]
-      description: The puzzle to solve. This will be solved in place.
-    content.vb: Public Sub SolveRandomly(puzzle As Integer?(,))
+      type: '{TPuzzle}'
+      description: The puzzle to solve. This will be copied instead of solved in-place.
+    typeParameters:
+    - id: TPuzzle
+    return:
+      type: '{TPuzzle}'
+      description: A solved copy of the given puzzle.
+    content.vb: Public Function SolveRandomly(Of TPuzzle As IPuzzle)(puzzle As TPuzzle) As TPuzzle
   overload: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*
-  nameWithType.vb: PuzzleSolver.SolveRandomly(Nullable(Of Int32)(,))
+  nameWithType.vb: PuzzleSolver.SolveRandomly(Of TPuzzle)(TPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(System.Nullable(Of System.Int32)(,))
-  name.vb: SolveRandomly(Nullable(Of Int32)(,))
-- uid: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
-  id: GetStatsForAllSolutions(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly(Of TPuzzle)(TPuzzle)
+  name.vb: SolveRandomly(Of TPuzzle)(TPuzzle)
+- uid: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
+  id: GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: GetStatsForAllSolutions(Nullable<Int32>[,], Nullable<CancellationToken>)
-  nameWithType: PuzzleSolver.GetStatsForAllSolutions(Nullable<Int32>[,], Nullable<CancellationToken>)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(System.Nullable<System.Int32>[,], System.Nullable<CancellationToken>)
+  name: GetStatsForAllSolutions(IPuzzle, Nullable<CancellationToken>)
+  nameWithType: PuzzleSolver.GetStatsForAllSolutions(IPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle, System.Nullable<CancellationToken>)
   type: Method
   source:
     remote:
@@ -262,40 +268,40 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetStatsForAllSolutions
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 90
+    startLine: 96
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
   example: []
   syntax:
-    content: public SolveStats GetStatsForAllSolutions(int? [, ] puzzle, CancellationToken? token = null)
+    content: public SolveStats GetStatsForAllSolutions(IPuzzle puzzle, CancellationToken? token = null)
     parameters:
     - id: puzzle
-      type: System.Nullable{System.Int32}[,]
+      type: SudokuSpice.RuleBased.IPuzzle
     - id: token
       type: System.Nullable{CancellationToken}
     return:
       type: SudokuSpice.SolveStats
-    content.vb: Public Function GetStatsForAllSolutions(puzzle As Integer?(,), token As CancellationToken? = Nothing) As SolveStats
+    content.vb: Public Function GetStatsForAllSolutions(puzzle As IPuzzle, token As CancellationToken? = Nothing) As SolveStats
   overload: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions*
-  nameWithType.vb: PuzzleSolver.GetStatsForAllSolutions(Nullable(Of Int32)(,), Nullable(Of CancellationToken))
+  nameWithType.vb: PuzzleSolver.GetStatsForAllSolutions(IPuzzle, Nullable(Of CancellationToken))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(System.Nullable(Of System.Int32)(,), System.Nullable(Of CancellationToken))
-  name.vb: GetStatsForAllSolutions(Nullable(Of Int32)(,), Nullable(Of CancellationToken))
-- uid: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
-  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
-  id: HasUniqueSolution(System.Nullable{System.Int32}[0:,0:],System.Nullable{CancellationToken})
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.GetStatsForAllSolutions(SudokuSpice.RuleBased.IPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: GetStatsForAllSolutions(IPuzzle, Nullable(Of CancellationToken))
+- uid: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
+  id: HasUniqueSolution(SudokuSpice.RuleBased.IPuzzle,System.Nullable{CancellationToken})
   parent: SudokuSpice.RuleBased.PuzzleSolver
   langs:
   - csharp
   - vb
-  name: HasUniqueSolution(Nullable<Int32>[,], Nullable<CancellationToken>)
-  nameWithType: PuzzleSolver.HasUniqueSolution(Nullable<Int32>[,], Nullable<CancellationToken>)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(System.Nullable<System.Int32>[,], System.Nullable<CancellationToken>)
+  name: HasUniqueSolution(IPuzzle, Nullable<CancellationToken>)
+  nameWithType: PuzzleSolver.HasUniqueSolution(IPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(SudokuSpice.RuleBased.IPuzzle, System.Nullable<CancellationToken>)
   type: Method
   source:
     remote:
@@ -304,31 +310,40 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: HasUniqueSolution
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 101
+    startLine: 107
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
   summary: "\nDetermines if the given puzzle has a unique solution. The puzzle is left unchanged.\n"
   example: []
   syntax:
-    content: public bool HasUniqueSolution(int? [, ] puzzle, CancellationToken? token = null)
+    content: public bool HasUniqueSolution(IPuzzle puzzle, CancellationToken? token = null)
     parameters:
     - id: puzzle
-      type: System.Nullable{System.Int32}[,]
+      type: SudokuSpice.RuleBased.IPuzzle
     - id: token
       type: System.Nullable{CancellationToken}
     return:
       type: System.Boolean
-    content.vb: Public Function HasUniqueSolution(puzzle As Integer?(,), token As CancellationToken? = Nothing) As Boolean
+    content.vb: Public Function HasUniqueSolution(puzzle As IPuzzle, token As CancellationToken? = Nothing) As Boolean
   overload: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution*
-  nameWithType.vb: PuzzleSolver.HasUniqueSolution(Nullable(Of Int32)(,), Nullable(Of CancellationToken))
+  nameWithType.vb: PuzzleSolver.HasUniqueSolution(IPuzzle, Nullable(Of CancellationToken))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(System.Nullable(Of System.Int32)(,), System.Nullable(Of CancellationToken))
-  name.vb: HasUniqueSolution(Nullable(Of Int32)(,), Nullable(Of CancellationToken))
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver.HasUniqueSolution(SudokuSpice.RuleBased.IPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: HasUniqueSolution(IPuzzle, Nullable(Of CancellationToken))
 references:
+- uid: SudokuSpice.RuleBased.IPuzzle
+  commentId: T:SudokuSpice.RuleBased.IPuzzle
+  parent: SudokuSpice.RuleBased
+  name: IPuzzle
+  nameWithType: IPuzzle
+  fullName: SudokuSpice.RuleBased.IPuzzle
+- uid: SudokuSpice.RuleBased.SquareTracker
+  commentId: T:SudokuSpice.RuleBased.SquareTracker
+  isExternal: true
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
@@ -356,64 +371,22 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly(SudokuSpice.RuleBased.IPuzzle)
+  isExternal: true
 - uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.TrySolve
   name: TrySolve
   nameWithType: PuzzleSolver.TrySolve
   fullName: SudokuSpice.RuleBased.PuzzleSolver.TrySolve
-- uid: System.Nullable{System.Int32}[,]
-  isExternal: true
-  name: Nullable<Int32>[,]
-  nameWithType: Nullable<Int32>[,]
-  fullName: System.Nullable<System.Int32>[,]
-  nameWithType.vb: Nullable(Of Int32)(,)
-  fullName.vb: System.Nullable(Of System.Int32)(,)
-  name.vb: Nullable(Of Int32)(,)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: '[,]'
-    nameWithType: '[,]'
-    fullName: '[,]'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: (,)
-    nameWithType: (,)
-    fullName: (,)
 - uid: System.Boolean
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver.TrySolve(SudokuSpice.RuleBased.IPuzzle)
+  isExternal: true
 - uid: SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.TrySolveRandomly
   name: TrySolveRandomly
@@ -424,6 +397,16 @@ references:
   name: Solve
   nameWithType: PuzzleSolver.Solve
   fullName: SudokuSpice.RuleBased.PuzzleSolver.Solve
+- uid: '{TPuzzle}'
+  commentId: '!:TPuzzle'
+  definition: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
 - uid: SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver.SolveRandomly
   name: SolveRandomly

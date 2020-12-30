@@ -55,7 +55,7 @@ namespace SudokuSpice.RuleBased
         /// when it has to guess, this will try values in the order they are given.
         /// </summary>
         /// <param name="puzzle">The puzzle to solve. This will be copied instead of solved in-place.</param>
-        /// <returns>A solved copy of the given puzzle.</param>
+        /// <returns>A solved copy of the given puzzle.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
@@ -74,7 +74,7 @@ namespace SudokuSpice.RuleBased
         /// try values in a random order when it has to guess the value for a square.
         /// </summary>
         /// <param name="puzzle">The puzzle to solve. This will be copied instead of solved in-place.</param>
-        /// <returns>A solved copy of the given puzzle.</param>
+        /// <returns>A solved copy of the given puzzle.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>

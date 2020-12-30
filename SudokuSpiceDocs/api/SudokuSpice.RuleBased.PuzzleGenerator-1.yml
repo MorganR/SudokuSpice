@@ -1,0 +1,297 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.PuzzleGenerator`1
+  commentId: T:SudokuSpice.RuleBased.PuzzleGenerator`1
+  id: PuzzleGenerator`1
+  parent: SudokuSpice.RuleBased
+  children:
+  - SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(Func{System.Int32,`0},SudokuSpice.RuleBased.PuzzleSolver)
+  - SudokuSpice.RuleBased.PuzzleGenerator`1.Generate(System.Int32,System.Int32,TimeSpan)
+  langs:
+  - csharp
+  - vb
+  name: PuzzleGenerator<TPuzzle>
+  nameWithType: PuzzleGenerator<TPuzzle>
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleGenerator.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: PuzzleGenerator
+    path: ../SudokuSpice/RuleBased/PuzzleGenerator.cs
+    startLine: 6
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  syntax:
+    content: 'public class PuzzleGenerator<TPuzzle> : object where TPuzzle : IPuzzle'
+    typeParameters:
+    - id: TPuzzle
+    content.vb: >-
+      Public Class PuzzleGenerator(Of TPuzzle As IPuzzle)
+          Inherits Object
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - SudokuSpice.RuleBased.StandardPuzzleGenerator
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle)
+  name.vb: PuzzleGenerator(Of TPuzzle)
+- uid: SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(Func{System.Int32,`0},SudokuSpice.RuleBased.PuzzleSolver)
+  commentId: M:SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor(Func{System.Int32,`0},SudokuSpice.RuleBased.PuzzleSolver)
+  id: '#ctor(Func{System.Int32,`0},SudokuSpice.RuleBased.PuzzleSolver)'
+  parent: SudokuSpice.RuleBased.PuzzleGenerator`1
+  langs:
+  - csharp
+  - vb
+  name: PuzzleGenerator(Func<Int32, TPuzzle>, PuzzleSolver)
+  nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<Int32, TPuzzle>, PuzzleSolver)
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<System.Int32, TPuzzle>, SudokuSpice.RuleBased.PuzzleSolver)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleGenerator.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/RuleBased/PuzzleGenerator.cs
+    startLine: 23
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nCreates a puzzle generator for generating puzzles.\n"
+  example: []
+  syntax:
+    content: public PuzzleGenerator(Func<int, TPuzzle> puzzleFromSize, PuzzleSolver solver)
+    parameters:
+    - id: puzzleFromSize
+      type: Func{System.Int32,{TPuzzle}}
+      description: "\nA function that constructs an empty <xref href=\"SudokuSpice.RuleBased.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> of the desired type and shape.\nThe requested puzzle size (i.e. side-length) is provided as an argument.\n"
+    - id: solver
+      type: SudokuSpice.RuleBased.PuzzleSolver
+    content.vb: Public Sub New(puzzleFromSize As Func(Of Integer, TPuzzle), solver As PuzzleSolver)
+  overload: SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor*
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).PuzzleGenerator(Func(Of Int32, TPuzzle), PuzzleSolver)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator(Func(Of System.Int32, TPuzzle), SudokuSpice.RuleBased.PuzzleSolver)
+  name.vb: PuzzleGenerator(Func(Of Int32, TPuzzle), PuzzleSolver)
+- uid: SudokuSpice.RuleBased.PuzzleGenerator`1.Generate(System.Int32,System.Int32,TimeSpan)
+  commentId: M:SudokuSpice.RuleBased.PuzzleGenerator`1.Generate(System.Int32,System.Int32,TimeSpan)
+  id: Generate(System.Int32,System.Int32,TimeSpan)
+  parent: SudokuSpice.RuleBased.PuzzleGenerator`1
+  langs:
+  - csharp
+  - vb
+  name: Generate(Int32, Int32, TimeSpan)
+  nameWithType: PuzzleGenerator<TPuzzle>.Generate(Int32, Int32, TimeSpan)
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>.Generate(System.Int32, System.Int32, TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleGenerator.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Generate
+    path: ../SudokuSpice/RuleBased/PuzzleGenerator.cs
+    startLine: 57
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nGenerates a puzzle that has a unique solution with the given number of squares set.\n"
+  remarks: "\nBe careful calling this with low values, as it can take a very long time to generate\nunique puzzles as the value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> approaches the\nminimum number of clues necessary to provide a unique puzzle of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code>.\n"
+  example: []
+  syntax:
+    content: public TPuzzle Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
+    parameters:
+    - id: puzzleSize
+      type: System.Int32
+      description: "\nThe size (i.e. side-length) of the puzzle to generate.\n"
+    - id: numSquaresToSet
+      type: System.Int32
+      description: "\nThe number of squares that will be preset in the generated puzzle.\n"
+    - id: timeout
+      type: TimeSpan
+      description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>. Use <code>TimeSpan.Zero</code> to disable the timeout.\n"
+    return:
+      type: '{TPuzzle}'
+      description: "\nA puzzle of type <code>TPuzzle</code> with a unique solution and\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> preset squares.\n"
+    content.vb: Public Function Generate(puzzleSize As Integer, numSquaresToSet As Integer, timeout As TimeSpan) As TPuzzle
+  overload: SudokuSpice.RuleBased.PuzzleGenerator`1.Generate*
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).Generate(Int32, Int32, TimeSpan)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle).Generate(System.Int32, System.Int32, TimeSpan)
+references:
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.IPuzzle
+  commentId: T:SudokuSpice.RuleBased.IPuzzle
+  parent: SudokuSpice.RuleBased
+  name: IPuzzle
+  nameWithType: IPuzzle
+  fullName: SudokuSpice.RuleBased.IPuzzle
+- uid: SudokuSpice.RuleBased.SquareTracker
+  commentId: T:SudokuSpice.RuleBased.SquareTracker
+  isExternal: true
+- uid: SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleGenerator`1.#ctor
+  name: PuzzleGenerator
+  nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).PuzzleGenerator
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator
+- uid: Func{System.Int32,{TPuzzle}}
+  commentId: '!:Func{System.Int32,`0}'
+  definition: Func`2
+  name: Func<Int32, TPuzzle>
+  nameWithType: Func<Int32, TPuzzle>
+  fullName: Func<System.Int32, TPuzzle>
+  nameWithType.vb: Func(Of Int32, TPuzzle)
+  fullName.vb: Func(Of System.Int32, TPuzzle)
+  name.vb: Func(Of Int32, TPuzzle)
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleSolver
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver
+  parent: SudokuSpice.RuleBased
+  name: PuzzleSolver
+  nameWithType: PuzzleSolver
+  fullName: SudokuSpice.RuleBased.PuzzleSolver
+- uid: Func`2
+  commentId: '!:Func`2'
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleGenerator`1.Generate*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleGenerator`1.Generate
+  name: Generate
+  nameWithType: PuzzleGenerator<TPuzzle>.Generate
+  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>.Generate
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).Generate
+  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle).Generate
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: TimeSpan
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: TimeSpan
+- uid: '{TPuzzle}'
+  commentId: '!:TPuzzle'
+  definition: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
