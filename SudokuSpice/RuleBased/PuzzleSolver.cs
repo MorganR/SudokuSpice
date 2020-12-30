@@ -54,32 +54,38 @@ namespace SudokuSpice.RuleBased
         /// Solves the given puzzle in place. Unlike <see cref="SolveRandomly(IPuzzle)"/>,
         /// when it has to guess, this will try values in the order they are given.
         /// </summary>
-        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
+        /// <param name="puzzle">The puzzle to solve. This will be copied instead of solved in-place.</param>
+        /// <returns>A solved copy of the given puzzle.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
-        public void Solve(IPuzzle puzzle)
+        public TPuzzle Solve<TPuzzle>(TPuzzle puzzle) where TPuzzle : IPuzzle
         {
-            if (!TrySolve(puzzle))
+            var copy = (TPuzzle)puzzle.DeepCopy();
+            if (!TrySolve(copy))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
+            return copy;
         }
 
         /// <summary>
         /// Solves the given puzzle in place. Unlike <see cref="Solve(IPuzzle)"/>, this will
         /// try values in a random order when it has to guess the value for a square.
         /// </summary>
-        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
+        /// <param name="puzzle">The puzzle to solve. This will be copied instead of solved in-place.</param>
+        /// <returns>A solved copy of the given puzzle.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
         /// </exception>
-        public void SolveRandomly(IPuzzle puzzle)
+        public TPuzzle SolveRandomly<TPuzzle>(TPuzzle puzzle) where TPuzzle : IPuzzle
         {
-            if (!TrySolveRandomly(puzzle))
+            var copy = (TPuzzle)puzzle.DeepCopy();
+            if (!TrySolveRandomly(copy))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
+            return copy;
         }
 
         /// <summary>

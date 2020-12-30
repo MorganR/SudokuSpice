@@ -7,14 +7,12 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>
     {
-        private readonly int _size;
-        private readonly int _boxSize;
-
         /// <inheritdoc/>
         public StandardPuzzleGenerator()
             : base(
                 size => new Puzzle(size),
-                StandardPuzzles.CreateSolver()) {} 
+                StandardPuzzles.CreateSolver())
+        { }
 
         /// <summary>
         /// Generates a puzzle that has a unique solution with the given number of squares set.
@@ -23,7 +21,7 @@ namespace SudokuSpice.RuleBased
         /// unique puzzles as the value of <paramref name="numSquaresToSet"/> approaches the
         /// minimum number of clues necessary to provide a unique puzzle of the given
         /// <paramref name="puzzleSize"/>.
-        /// </remarks>
+        /// </summary>
         /// <param name="puzzleSize">
         /// The size (i.e. side-length) of the puzzle to generate.
         /// </param>
@@ -55,9 +53,9 @@ namespace SudokuSpice.RuleBased
         {
             _ValidateUniqueSolutionExists(puzzleSize, numSquaresToSet);
             return base.Generate(puzzleSize, numSquaresToSet, timeout);
-        } 
+        }
 
-       private static void _ValidateUniqueSolutionExists(int puzzleSize, int numToSet)
+        private static void _ValidateUniqueSolutionExists(int puzzleSize, int numToSet)
         {
             int boxSize = puzzleSize switch
             {

@@ -72,7 +72,7 @@ namespace SudokuSpice.RuleBased
                 if (ex.Message == "RunSynchronously may not be called on a task that has already completed.")
                 {
                     throw new TimeoutException(
-                        $"Failed to generate a puzzle of size {puzzleSize} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
+                        $"Failed to generate a puzzle of size {puzzleSize} with {numSquaresToSet} set squares within {timeout}.");
                 }
                 throw;
             }
@@ -84,7 +84,7 @@ namespace SudokuSpice.RuleBased
             if (puzzleTask.IsCanceled)
             {
                 throw new TimeoutException(
-                    $"Failed to generate a puzzle of type {typeof(TPuzzle).Name} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
+                    $"Failed to generate a puzzle of size {puzzleSize} with {numSquaresToSet} set squares within {timeout}.");
             }
             if (puzzleTask.Exception is null)
             {
@@ -145,7 +145,7 @@ namespace SudokuSpice.RuleBased
 
         private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
 
-        private void _FillPuzzle(TPuzzle puzzle) => _solver.SolveRandomly(puzzle);
+        private void _FillPuzzle(TPuzzle puzzle) => _solver.TrySolveRandomly(puzzle);
 
         private bool _TryUnsetSquareAt(
             in Coordinate c,

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.Benchmark
 {
+    [MemoryDiagnoser]
     public class GeneratorBenchmarker
     {
         [Benchmark(Baseline = true)]
