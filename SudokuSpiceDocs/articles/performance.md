@@ -154,16 +154,16 @@ single, double, and quadruple square clearings.
 
 |                 Method |      Mean |     Error |    StdDev | Ratio | RatioSD |     Gen 0 |   Gen 1 | Gen 2 | Allocated |
 |----------------------- |----------:|----------:|----------:|------:|--------:|----------:|--------:|------:|----------:|
-|            SudokuSpice |  1.037 ms | 0.0022 ms | 0.0020 ms |  1.00 |    0.00 |  142.5781 | 13.6719 |     - |    876 KB |
-| SudokuSpiceConstraints |  2.306 ms | 0.0376 ms | 0.0352 ms |  2.22 |    0.03 |  605.4688 |  3.9063 |     - |  3,713 KB |
-|     SudokuSharpSingles | 14.898 ms | 0.7992 ms | 2.3186 ms | 14.25 |    1.83 | 3250.0000 | 31.2500 |     - | 19,950 KB |
-|       SudokuSharpMixed |  7.115 ms | 0.2195 ms | 0.6369 ms |  7.08 |    0.50 | 1546.8750 | 15.6250 |     - |  9,484 KB |
+|            SudokuSpice |  1.413 ms | 0.0094 ms | 0.0083 ms |  1.00 |    0.00 |  175.7813 | 19.5313 |     - |      1 MB |
+| SudokuSpiceConstraints |  2.266 ms | 0.0235 ms | 0.0196 ms |  1.60 |    0.02 |  589.8438 | 39.0625 |     - |      4 MB |
+|     SudokuSharpSingles | 15.598 ms | 0.5903 ms | 1.7218 ms | 11.43 |    1.24 | 2968.7500 | 15.6250 |     - |     18 MB |
+|       SudokuSharpMixed |  7.567 ms | 0.3313 ms | 0.9717 ms |  5.39 |    0.81 | 1359.3750 |       - |     - |      8 MB |
 
 ### WASM
 
-|                 Method |      Mean |      Error |    StdDev | Ratio | RatioSD |     Gen 0 | Gen 1 | Gen 2 | Allocated |
-|----------------------- |----------:|-----------:|----------:|------:|--------:|----------:|------:|------:|----------:|
-|            SudokuSpice |  38.64 ms |   0.180 ms |  0.169 ms |  1.00 |    0.00 |  142.8571 |     - |     - |    716 KB |
-| SudokuSpiceConstraints |  33.63 ms |   1.543 ms |  1.368 ms |  0.87 |    0.04 |  642.8571 |     - |     - |  2,636 KB |
-|     SudokuSharpSingles | 213.91 ms | 100.035 ms | 88.678 ms |  5.54 |    2.30 | 1333.3333 |     - |     - |  5,933 KB |
-|       SudokuSharpMixed | 129.24 ms |  55.592 ms | 52.001 ms |  3.35 |    1.35 | 1400.0000 |     - |     - |  6,463 KB |
+|                 Method |      Mean |      Error |     StdDev | Ratio | RatioSD |     Gen 0 | Gen 1 | Gen 2 | Allocated |
+|----------------------- |----------:|-----------:|-----------:|------:|--------:|----------:|------:|------:|----------:|
+|            SudokuSpice |  56.21 ms |   2.392 ms |   1.868 ms |  1.00 |    0.00 |  125.0000 |     - |     - |    877 KB |
+| SudokuSpiceConstraints |  35.14 ms |   2.108 ms |   1.972 ms |  0.63 |    0.05 |  562.5000 |     - |     - |  2,486 KB |
+|     SudokuSharpSingles | 261.84 ms | 126.667 ms | 118.484 ms |  4.84 |    2.26 | 1666.6667 |     - |     - |  7,464 KB |
+|       SudokuSharpMixed |  99.28 ms |  22.246 ms |  19.720 ms |  1.85 |    0.35 | 1000.0000 |     - |     - |  4,738 KB |
