@@ -102,7 +102,6 @@ namespace SudokuSpice.RuleBased
                 cancellationToken?.ThrowIfCancellationRequested();
                 TPuzzle puzzle = _puzzleFactory.Invoke(puzzleSize);
                 _FillPuzzle(puzzle);
-                // TODO: Fix possible bug here due-to possible values already limited
                 setCoordinates = new CoordinateTracker(puzzleSize);
                 _TrackAllCoordinates(setCoordinates, puzzleSize);
                 foundValidPuzzle = _TryUnsetSquaresWhileSolvable(
@@ -158,10 +157,12 @@ namespace SudokuSpice.RuleBased
             if (numEmptySquares < 3)
             {
                 puzzle[c.Row, c.Column] = null;
+                puzzle.ResetPossibleValues(in c);
                 return true;
             }
             int? previousValue = puzzle[c.Row, c.Column];
             puzzle[c.Row, c.Column] = null;
+            puzzle.ResetPossibleValues(in c);
             if (_solver.HasUniqueSolution(puzzle, cancellationToken))
             {
                 return true;
