@@ -19,18 +19,18 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: PossibleSquareState
     path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
     startLine: 5
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nIndicates if a <xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible, selected, or dropped.\n"
+  summary: "\nIndicates if a <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible, selected, or dropped.\n"
   example: []
   syntax:
-    content: 'public enum PossibleSquareState : int'
-    content.vb: Public Enum PossibleSquareState As Integer
+    content: public enum PossibleSquareState
+    content.vb: Public Enum PossibleSquareState
   modifiers.csharp:
   - public
   - enum
@@ -52,14 +52,14 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UNKNOWN
     path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
     startLine: 10
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible.\n"
+  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> is still possible.\n"
   example: []
   syntax:
     content: UNKNOWN = 0
@@ -86,14 +86,14 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: SELECTED
     path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
     startLine: 14
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref> has been selected.\n"
+  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> has been selected.\n"
   example: []
   syntax:
     content: SELECTED = 1
@@ -120,14 +120,14 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: DROPPED
     path: ../SudokuSpice/ConstraintBased/framework/PossibleSquareState.cs
     startLine: 19
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.PossibleValue\" data-throw-if-not-resolved=\"false\"></xref> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
+  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
   example: []
   syntax:
     content: DROPPED = 2
@@ -140,12 +140,12 @@ items:
   - Public
   - Const
 references:
-- uid: SudokuSpice.ConstraintBased.PossibleValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleValue
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
+  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
   parent: SudokuSpice.ConstraintBased
-  name: PossibleValue
-  nameWithType: PossibleValue
-  fullName: SudokuSpice.ConstraintBased.PossibleValue
+  name: PossibleSquareValue
+  nameWithType: PossibleSquareValue
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased

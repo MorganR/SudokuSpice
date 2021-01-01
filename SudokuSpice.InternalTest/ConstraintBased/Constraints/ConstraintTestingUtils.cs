@@ -5,12 +5,12 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
     internal class ConstraintTestingUtils
     {
         public static void AssertPossibleValueIsOnConstraint(
-            PossibleValue possibleValue, ConstraintHeader constraint)
+            PossibleSquareValue possibleValue, ConstraintHeader constraint)
         {
             Link link = constraint.FirstLink;
             do
             {
-                if (link.PossibleSquare == possibleValue)
+                if (link.PossibleSquareValue == possibleValue)
                 {
                     return;
                 }

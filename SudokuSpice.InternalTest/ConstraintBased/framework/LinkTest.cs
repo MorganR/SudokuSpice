@@ -4,7 +4,7 @@ using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Test
 {
-    public class LinktTest
+    public class LinkTest
     {
         [Fact]
         public void CreateConnectedLink_ConnectsCorrectly()
@@ -12,7 +12,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleValue(square, 1);
+            var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader(matrix);
 
             var link = Link.CreateConnectedLink(possibleSquare, constraintHeader);
@@ -21,7 +21,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(link, link.Down);
             Assert.Same(link, link.Right);
             Assert.Same(link, link.Left);
-            Assert.Same(possibleSquare, link.PossibleSquare);
+            Assert.Same(possibleSquare, link.PossibleSquareValue);
             Assert.Same(constraintHeader, link.Constraint);
             Assert.Equal(1, constraintHeader.Count);
             Assert.Same(link, constraintHeader.FirstLink);
@@ -34,7 +34,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleValue(square, 1);
+            var possibleSquare = new PossibleSquareValue(square, 1);
             var constraintHeader = new ConstraintHeader(matrix);
 
             var firstLink = Link.CreateConnectedLink(possibleSquare, constraintHeader);
@@ -48,7 +48,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(link, firstLink.Down);
             Assert.Same(link, firstLink.Right);
             Assert.Same(link, firstLink.Left);
-            Assert.Same(possibleSquare, link.PossibleSquare);
+            Assert.Same(possibleSquare, link.PossibleSquareValue);
             Assert.Same(constraintHeader, link.Constraint);
             Assert.Equal(2, constraintHeader.Count);
             Assert.Same(firstLink, constraintHeader.FirstLink);
@@ -144,8 +144,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(link, link.Right.Left);
             Assert.Same(link, link.Left.Right);
             // Vertically connected links are dropped form possible values.
-            Assert.Equal(PossibleSquareState.DROPPED, link.Up.PossibleSquare.State);
-            Assert.Equal(3, link.Up.PossibleSquare.Square.NumPossibleValues);
+            Assert.Equal(PossibleValueState.DROPPED, link.Up.PossibleSquareValue.State);
+            Assert.Equal(3, link.Up.PossibleSquareValue.Square.NumPossibleValues);
             // Still connected vertically.
             Assert.Contains(link, link.Constraint.GetLinks());
         }
@@ -170,8 +170,8 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Assert.False(header.IsSatisfied);
             Assert.Equal(1, square.NumPossibleValues);
-            Assert.Same(lastLink.PossibleSquare, square.GetStillPossibleValues().Single());
-            Assert.Equal(PossibleSquareState.UNKNOWN, lastLink.PossibleSquare.State);
+            Assert.Same(lastLink.PossibleSquareValue, square.GetStillPossibleValues().Single());
+            Assert.Equal(PossibleValueState.UNKNOWN, lastLink.PossibleSquareValue.State);
         }
     }
 }

@@ -20,7 +20,7 @@ items:
     remote:
       path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: IReadOnlyBoxPuzzle
     path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
     startLine: 8
@@ -64,7 +64,7 @@ items:
     remote:
       path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: BoxSize
     path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
     startLine: 16
@@ -99,7 +99,7 @@ items:
     remote:
       path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetBoxIndex
     path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
     startLine: 18
@@ -134,7 +134,7 @@ items:
     remote:
       path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetStartingBoxCoordinate
     path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
     startLine: 21
@@ -167,7 +167,7 @@ items:
     remote:
       path: SudokuSpice/data/IReadOnlyBoxPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: YieldUnsetCoordsForBox
     path: ../SudokuSpice/data/IReadOnlyBoxPuzzle.cs
     startLine: 26
@@ -182,7 +182,7 @@ items:
     - id: box
       type: System.Int32
     return:
-      type: IEnumerable{SudokuSpice.Coordinate}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
     content.vb: Function YieldUnsetCoordsForBox(box As Integer) As IEnumerable(Of Coordinate)
   overload: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox*
 references:
@@ -358,10 +358,18 @@ references:
   nameWithType: IReadOnlyBoxPuzzle.BoxSize
   fullName: SudokuSpice.IReadOnlyBoxPuzzle.BoxSize
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex*
   commentId: Overload:SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex
   name: GetBoxIndex
@@ -383,20 +391,21 @@ references:
   name: YieldUnsetCoordsForBox
   nameWithType: IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
   fullName: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
-- uid: IEnumerable{SudokuSpice.Coordinate}
-  commentId: '!:IEnumerable{SudokuSpice.Coordinate}'
-  definition: IEnumerable`1
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<Coordinate>
   nameWithType: IEnumerable<Coordinate>
-  fullName: IEnumerable<SudokuSpice.Coordinate>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Coordinate>
   nameWithType.vb: IEnumerable(Of Coordinate)
-  fullName.vb: IEnumerable(Of SudokuSpice.Coordinate)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Coordinate)
   name.vb: IEnumerable(Of Coordinate)
   spec.csharp:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -409,10 +418,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -424,41 +433,48 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEnumerable`1
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: IEnumerable<>
-  nameWithType: IEnumerable<>
-  fullName: IEnumerable<>
-  nameWithType.vb: IEnumerable(Of )
-  fullName.vb: IEnumerable(Of )
-  name.vb: IEnumerable(Of )
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
   spec.csharp:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

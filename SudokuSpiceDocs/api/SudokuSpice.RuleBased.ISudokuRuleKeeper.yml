@@ -21,7 +21,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: ISudokuRuleKeeper
     path: ../SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
     startLine: 5
@@ -52,7 +52,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
     startLine: 19
@@ -86,7 +86,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetRules
     path: ../SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
     startLine: 25
@@ -98,7 +98,7 @@ items:
   syntax:
     content: IReadOnlyList<ISudokuRule> GetRules()
     return:
-      type: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
     content.vb: Function GetRules As IReadOnlyList(Of ISudokuRule)
   overload: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules*
 - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -116,7 +116,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TryInit
     path: ../SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
     startLine: 43
@@ -152,7 +152,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TrySet
     path: ../SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
     startLine: 55
@@ -193,7 +193,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Unset
     path: ../SudokuSpice/RuleBased/ISudokuRuleKeeper.cs
     startLine: 62
@@ -264,20 +264,21 @@ references:
   name: GetRules
   nameWithType: ISudokuRuleKeeper.GetRules
   fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
-- uid: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-  commentId: '!:IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}'
-  definition: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
   name: IReadOnlyList<ISudokuRule>
   nameWithType: IReadOnlyList<ISudokuRule>
-  fullName: IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
   nameWithType.vb: IReadOnlyList(Of ISudokuRule)
-  fullName.vb: IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
   name.vb: IReadOnlyList(Of ISudokuRule)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
@@ -290,10 +291,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -305,54 +306,69 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
-  name: IReadOnlyList<>
-  nameWithType: IReadOnlyList<>
-  fullName: IReadOnlyList<>
-  nameWithType.vb: IReadOnlyList(Of )
-  fullName.vb: IReadOnlyList(Of )
-  name.vb: IReadOnlyList(Of )
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit*
   commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit
   name: TryInit
   nameWithType: ISudokuRuleKeeper.TryInit
   fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet*
   commentId: Overload:SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
   name: TrySet
@@ -365,6 +381,8 @@ references:
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32

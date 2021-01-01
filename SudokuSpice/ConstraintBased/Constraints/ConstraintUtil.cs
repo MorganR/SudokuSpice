@@ -11,7 +11,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// Enforces uniqueness of the values at the given coordinates.
         /// </summary>
         /// <remarks>
-        /// This drops any <see cref="PossibleValue"/>s that are no longer possible, and
+        /// This drops any <see cref="PossibleSquareValue"/>s that are no longer possible, and
         /// adds <see cref="ConstraintHeader"/>s and links to enforce this constraint for the ones
         /// that are still possible.
         /// </remarks>
@@ -65,18 +65,18 @@ namespace SudokuSpice.ConstraintBased.Constraints
             Span<bool> isValueIndexPresentInSquares)
         {
             isValueIndexPresentInSquares.Clear();
-            for (int i = 0; i < squareCoordinates.Length; i++)
+            foreach (Coordinate coordinate in squareCoordinates)
             {
-                int? puzzleValue = puzzle[squareCoordinates[i]];
-                if (puzzleValue.HasValue)
+                int? square = puzzle[in coordinate];
+                if (square.HasValue)
                 {
-                    isValueIndexPresentInSquares[matrix.ValuesToIndices[puzzleValue.Value]] = true;
+                    isValueIndexPresentInSquares[matrix.ValuesToIndices[square.Value]] = true;
                 }
             }
         }
 
         /// <summary>
-        /// Drops <see cref="PossibleValue"/>s with the given <paramref name="valueIndex"/>
+        /// Drops <see cref="PossibleSquareValue"/>s with the given <paramref name="valueIndex"/>
         /// from the given set of <paramref name="squares"/>. Null squares and possible values are
         /// ignored.
         /// </summary>
@@ -98,12 +98,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleValue? possibleValue = square.GetPossibleValue(valueIndex);
+                PossibleSquareValue? possibleValue = square.GetPossibleValue(valueIndex);
                 if (possibleValue is null)
                 {
                     continue;
                 }
-                if (possibleValue.State != PossibleSquareState.DROPPED && !possibleValue.TryDrop())
+                if (possibleValue.State != PossibleValueState.DROPPED && !possibleValue.TryDrop())
                 {
                     throw new ArgumentException(
                         $"Puzzle violated constraints for value {matrix.AllPossibleValues[valueIndex]} at square {square.Coordinate}.");
@@ -113,7 +113,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
 
         /// <summary>
         /// Add a <see cref="ConstraintHeader"/> connecting all the
-        /// <see cref="PossibleValue"/>s at the given <paramref name="valueIndex"/> on the
+        /// <see cref="PossibleSquareValue"/>s at the given <paramref name="valueIndex"/> on the
         /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
         /// possible values in a known state (i.e. dropped or selected).
         /// </summary>
@@ -125,7 +125,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         public static void AddConstraintHeadersForValueIndex(
             ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
         {
-            var possibleSquares = new PossibleValue[squares.Length];
+            var possibleSquares = new PossibleSquareValue[squares.Length];
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
             {
@@ -134,9 +134,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleValue? possibleSquare = square.GetPossibleValue(valueIndex);
+                PossibleSquareValue? possibleSquare = square.GetPossibleValue(valueIndex);
                 if (possibleSquare is null
-                    || possibleSquare.State != PossibleSquareState.UNKNOWN)
+                    || possibleSquare.State != PossibleValueState.UNKNOWN)
                 {
                     continue;
                 }
@@ -144,7 +144,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             ConstraintHeader.CreateConnectedHeader(
                 matrix,
-                new ReadOnlySpan<PossibleValue>(possibleSquares, 0, numPossibleSquares));
+                new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
         }
     }
 }

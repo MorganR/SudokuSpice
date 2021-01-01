@@ -87,11 +87,32 @@
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></div>
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Puzzle_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Puzzle : object, IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle</code></pre>
+    <pre><code class="lang-csharp hljs">public class Puzzle : IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -100,7 +121,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle__ctor_SudokuSpice_RuleBased_Puzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.%23ctor(SudokuSpice.RuleBased.Puzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L102">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L102">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle__ctor_" data-uid="SudokuSpice.RuleBased.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle__ctor_SudokuSpice_RuleBased_Puzzle_" data-uid="SudokuSpice.RuleBased.Puzzle.#ctor(SudokuSpice.RuleBased.Puzzle)">Puzzle(Puzzle)</h4>
@@ -133,7 +154,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L37">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L37">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle__ctor_" data-uid="SudokuSpice.RuleBased.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle__ctor_System_Int32_" data-uid="SudokuSpice.RuleBased.Puzzle.#ctor(System.Int32)">Puzzle(Int32)</h4>
@@ -162,12 +183,28 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if size is not the square of a whole number, or is outside the range [1, 31].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle__ctor_System_Nullable_System_Int32__0__0___.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.%23ctor(System.Nullable%7BSystem.Int32%7D%5B0%3A%2C0%3A%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L73">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L73">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle__ctor_" data-uid="SudokuSpice.RuleBased.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle__ctor_System_Nullable_System_Int32__0__0___" data-uid="SudokuSpice.RuleBased.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])">Puzzle(Nullable&lt;Int32&gt;[,])</h4>
@@ -207,7 +244,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_AllPossibleValues.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.AllPossibleValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L26">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L26">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_AllPossibleValues_" data-uid="SudokuSpice.RuleBased.Puzzle.AllPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_AllPossibleValues" data-uid="SudokuSpice.RuleBased.Puzzle.AllPossibleValues">AllPossibleValues</h4>
@@ -238,7 +275,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_Item_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.Item(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L136">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L136">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_Item_" data-uid="SudokuSpice.RuleBased.Puzzle.Item*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_Item_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Puzzle.Item(SudokuSpice.Coordinate@)">Item[Coordinate]</h4>
@@ -288,7 +325,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_Item_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.Item(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L118">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L118">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_Item_" data-uid="SudokuSpice.RuleBased.Puzzle.Item*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_Item_System_Int32_System_Int32_" data-uid="SudokuSpice.RuleBased.Puzzle.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
@@ -341,7 +378,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_NumEmptySquares.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.NumEmptySquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L22">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L22">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_NumEmptySquares_" data-uid="SudokuSpice.RuleBased.Puzzle.NumEmptySquares*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_NumEmptySquares" data-uid="SudokuSpice.RuleBased.Puzzle.NumEmptySquares">NumEmptySquares</h4>
@@ -372,7 +409,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_NumSetSquares.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.NumSetSquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L24">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L24">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_NumSetSquares_" data-uid="SudokuSpice.RuleBased.Puzzle.NumSetSquares*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_NumSetSquares" data-uid="SudokuSpice.RuleBased.Puzzle.NumSetSquares">NumSetSquares</h4>
@@ -403,7 +440,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_NumSquares.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.NumSquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L20">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L20">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_NumSquares_" data-uid="SudokuSpice.RuleBased.Puzzle.NumSquares*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_NumSquares" data-uid="SudokuSpice.RuleBased.Puzzle.NumSquares">NumSquares</h4>
@@ -434,7 +471,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_Size.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L18">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L18">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_Size_" data-uid="SudokuSpice.RuleBased.Puzzle.Size*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_Size" data-uid="SudokuSpice.RuleBased.Puzzle.Size">Size</h4>
@@ -467,7 +504,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_CopyFrom_System_Nullable_System_Int32__0__0___.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.CopyFrom(System.Nullable%7BSystem.Int32%7D%5B0%3A%2C0%3A%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L112">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L112">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_CopyFrom_" data-uid="SudokuSpice.RuleBased.Puzzle.CopyFrom*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_CopyFrom_System_Nullable_System_Int32__0__0___" data-uid="SudokuSpice.RuleBased.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])">CopyFrom(Nullable&lt;Int32&gt;[,])</h4>
@@ -515,7 +552,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_DeepCopy.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.DeepCopy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L133">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L133">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_DeepCopy_" data-uid="SudokuSpice.RuleBased.Puzzle.DeepCopy*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_DeepCopy" data-uid="SudokuSpice.RuleBased.Puzzle.DeepCopy">DeepCopy()</h4>
@@ -546,7 +583,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L230">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L230">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Puzzle.GetPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_GetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Puzzle.GetPossibleValues(SudokuSpice.Coordinate@)">GetPossibleValues(Coordinate)</h4>
@@ -593,7 +630,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_GetUnsetCoords.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.GetUnsetCoords%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L145">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L145">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_GetUnsetCoords_" data-uid="SudokuSpice.RuleBased.Puzzle.GetUnsetCoords*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_GetUnsetCoords" data-uid="SudokuSpice.RuleBased.Puzzle.GetUnsetCoords">GetUnsetCoords()</h4>
@@ -614,7 +651,7 @@ be null. The puzzle maintains a reference to this array.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -624,7 +661,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_IntersectPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.IntersectPossibleValues(SudokuSpice.Coordinate%40%2CSudokuSpice.RuleBased.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L227">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L227">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_IntersectPossibleValues_" data-uid="SudokuSpice.RuleBased.Puzzle.IntersectPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_IntersectPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_" data-uid="SudokuSpice.RuleBased.Puzzle.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)">IntersectPossibleValues(Coordinate, BitVector)</h4>
@@ -661,7 +698,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_ResetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.ResetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L229">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L229">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_ResetPossibleValues_" data-uid="SudokuSpice.RuleBased.Puzzle.ResetPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_ResetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Puzzle.ResetPossibleValues(SudokuSpice.Coordinate@)">ResetPossibleValues(Coordinate)</h4>
@@ -693,7 +730,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_SetPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.SetPossibleValues(SudokuSpice.Coordinate%40%2CSudokuSpice.RuleBased.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L231">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L231">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_SetPossibleValues_" data-uid="SudokuSpice.RuleBased.Puzzle.SetPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_SetPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_" data-uid="SudokuSpice.RuleBased.Puzzle.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)">SetPossibleValues(Coordinate, BitVector)</h4>
@@ -730,7 +767,7 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle_ToString.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L151">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L151">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Puzzle_ToString_" data-uid="SudokuSpice.RuleBased.Puzzle.ToString*"></a>
   <h4 id="SudokuSpice_RuleBased_Puzzle_ToString" data-uid="SudokuSpice.RuleBased.Puzzle.ToString">ToString()</h4>
@@ -757,6 +794,8 @@ and dashes.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a>
@@ -778,7 +817,7 @@ and dashes.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Puzzle.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Puzzle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Puzzle.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/Puzzle.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -56,7 +56,7 @@ namespace SudokuSpice.ConstraintBased
                     Debug.Assert(
                         constraint.FirstLink != null,
                         "Unsatisfied constraint had a null first link.");
-                    PossibleValue? possibleSquare = constraint.FirstLink.PossibleSquare;
+                    PossibleSquareValue? possibleSquare = constraint.FirstLink.PossibleSquareValue;
                     return (possibleSquare.Square.Coordinate,
                         new int[] { possibleSquare.ValueIndex });
                 }
@@ -103,7 +103,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 square != null,
                 $"Tried to order possible values at {c}, but square was null.");
-            PossibleValue[]? possibleSquares = square.GetStillPossibleValues();
+            PossibleSquareValue[]? possibleSquares = square.GetStillPossibleValues();
             return possibleSquares.OrderBy(
                 ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
         }

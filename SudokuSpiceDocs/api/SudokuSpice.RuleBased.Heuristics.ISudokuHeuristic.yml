@@ -5,7 +5,7 @@ items:
   id: ISudokuHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
   children:
-  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
@@ -20,7 +20,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: ISudokuHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
     startLine: 10
@@ -53,7 +53,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TryInitFor
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
     startLine: 24
@@ -89,7 +89,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
     startLine: 30
@@ -120,7 +120,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
     startLine: 35
@@ -133,22 +133,22 @@ items:
     content: void UndoLastUpdate()
     content.vb: Sub UndoLastUpdate
   overload: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate*
-- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
   langs:
   - csharp
   - vb
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
   nameWithType: ISudokuHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/ISudokuHeuristic.cs
     startLine: 42
@@ -163,13 +163,13 @@ items:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
     - id: rules
-      type: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
     return:
       type: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
     content.vb: Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues, rules As IReadOnlyList(Of ISudokuRule)) As ISudokuHeuristic
   overload: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences*
   nameWithType.vb: ISudokuHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
 references:
 - uid: SudokuSpice.RuleBased.Heuristics
@@ -189,6 +189,8 @@ references:
   nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -198,6 +200,12 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   name: UpdateAll
@@ -213,20 +221,21 @@ references:
   name: CopyWithNewReferences
   nameWithType: ISudokuHeuristic.CopyWithNewReferences
   fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences
-- uid: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-  commentId: '!:IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}'
-  definition: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
   name: IReadOnlyList<ISudokuRule>
   nameWithType: IReadOnlyList<ISudokuRule>
-  fullName: IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
   nameWithType.vb: IReadOnlyList(Of ISudokuRule)
-  fullName.vb: IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
   name.vb: IReadOnlyList(Of ISudokuRule)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
@@ -239,10 +248,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -260,41 +269,48 @@ references:
   name: ISudokuHeuristic
   nameWithType: ISudokuHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-- uid: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
-  name: IReadOnlyList<>
-  nameWithType: IReadOnlyList<>
-  fullName: IReadOnlyList<>
-  nameWithType.vb: IReadOnlyList(Of )
-  fullName.vb: IReadOnlyList(Of )
-  name.vb: IReadOnlyList(Of )
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

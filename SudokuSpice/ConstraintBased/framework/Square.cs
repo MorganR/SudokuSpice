@@ -10,10 +10,10 @@ namespace SudokuSpice.ConstraintBased
     /// </summary>
     public class Square
     {
-        private readonly PossibleValue?[] _possibleValues;
-        private readonly Stack<PossibleValue> _valuesDroppedOnSelect;
+        private readonly PossibleSquareValue?[] _possibleValues;
+        private readonly Stack<PossibleSquareValue> _valuesDroppedOnSelect;
         private int? _selectedValueIndex;
-        internal ReadOnlySpan<PossibleValue?> AllPossibleValues => new ReadOnlySpan<PossibleValue?>(_possibleValues);
+        internal ReadOnlySpan<PossibleSquareValue?> AllPossibleValues => new ReadOnlySpan<PossibleSquareValue?>(_possibleValues);
 
         /// <summary>
         /// Gets the <see cref="Coordinate"/> of this square.
@@ -32,29 +32,29 @@ namespace SudokuSpice.ConstraintBased
         {
             Coordinate = c;
             NumPossibleValues = numPossibleValues;
-            _possibleValues = new PossibleValue[numPossibleValues];
+            _possibleValues = new PossibleSquareValue[numPossibleValues];
             for (int i = 0; i < NumPossibleValues; i++)
             {
-                _possibleValues[i] = new PossibleValue(this, i);
+                _possibleValues[i] = new PossibleSquareValue(this, i);
             }
-            _valuesDroppedOnSelect = new Stack<PossibleValue>(NumPossibleValues);
+            _valuesDroppedOnSelect = new Stack<PossibleSquareValue>(NumPossibleValues);
         }
 
         private Square(Square other)
         {
             Coordinate = other.Coordinate;
             NumPossibleValues = other.NumPossibleValues;
-            _possibleValues = new PossibleValue[other._possibleValues.Length];
+            _possibleValues = new PossibleSquareValue[other._possibleValues.Length];
             for (int i = 0; i < _possibleValues.Length; i++)
             {
-                PossibleValue? otherPossibleValue = other._possibleValues[i];
-                if (otherPossibleValue is null || otherPossibleValue.State != PossibleSquareState.UNKNOWN)
+                PossibleSquareValue? otherPossibleValue = other._possibleValues[i];
+                if (otherPossibleValue is null || otherPossibleValue.State != PossibleValueState.UNKNOWN)
                 {
                     continue;
                 }
-                _possibleValues[i] = new PossibleValue(this, i);
+                _possibleValues[i] = new PossibleSquareValue(this, i);
             }
-            _valuesDroppedOnSelect = new Stack<PossibleValue>(NumPossibleValues);
+            _valuesDroppedOnSelect = new Stack<PossibleSquareValue>(NumPossibleValues);
         }
 
         internal Square CopyWithPossibleValues() => new Square(this);
@@ -62,18 +62,18 @@ namespace SudokuSpice.ConstraintBased
         /// <summary>
         /// Gets the possible value with the given value-index.
         /// </summary>
-        public PossibleValue? GetPossibleValue(int index) => _possibleValues[index];
+        public PossibleSquareValue? GetPossibleValue(int index) => _possibleValues[index];
 
-        internal PossibleValue[] GetStillPossibleValues()
+        internal PossibleSquareValue[] GetStillPossibleValues()
         {
             Debug.Assert(
                 _selectedValueIndex is null,
                 $"Can't retrieve possible values from Square at {Coordinate} when the index {_selectedValueIndex} is already selected.");
-            var possibleValues = new PossibleValue[NumPossibleValues];
+            var possibleValues = new PossibleSquareValue[NumPossibleValues];
             int i = 0;
-            foreach (PossibleValue? possibleValue in _possibleValues)
+            foreach (PossibleSquareValue? possibleValue in _possibleValues)
             {
-                if (possibleValue != null && possibleValue.State == PossibleSquareState.UNKNOWN)
+                if (possibleValue is not null && possibleValue.State == PossibleValueState.UNKNOWN)
                 {
                     possibleValues[i] = possibleValue;
                     if (++i == NumPossibleValues)
@@ -87,17 +87,21 @@ namespace SudokuSpice.ConstraintBased
 
         internal bool TrySet(int index)
         {
-            Debug.Assert(_selectedValueIndex is null, $"Tried to set Square {Coordinate} to index {index} when value already set to index {_selectedValueIndex}.");
-            Debug.Assert(_valuesDroppedOnSelect.Count == 0, $"Tried to set Square {Coordinate} to index {index} when {nameof(_valuesDroppedOnSelect)} was non-empty.");
-            PossibleValue? possibleValue = _possibleValues[index];
+            Debug.Assert(
+                _selectedValueIndex is null,
+                $"Tried to set Square {Coordinate} to index {index} when value already set to index {_selectedValueIndex}.");
+            Debug.Assert(
+                _valuesDroppedOnSelect.Count == 0,
+                $"Tried to set Square {Coordinate} to index {index} when {nameof(_valuesDroppedOnSelect)} was non-empty.");
+            PossibleSquareValue? possibleValue = _possibleValues[index];
             Debug.Assert(possibleValue != null, $"Tried to set square {Coordinate} to null possible value at index {index}.");
             if (!possibleValue.TrySelect())
             {
                 return false;
             }
-            foreach (PossibleValue? valueToDrop in _possibleValues)
+            foreach (PossibleSquareValue? valueToDrop in _possibleValues)
             {
-                if (valueToDrop is null || valueToDrop.State != PossibleSquareState.UNKNOWN)
+                if (valueToDrop is null || valueToDrop.State != PossibleValueState.UNKNOWN)
                 {
                     continue;
                 }
@@ -117,7 +121,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(_selectedValueIndex.HasValue, $"Tried to unset Square {Coordinate} when value was not set.");
             _ReturnDroppedValues();
-            PossibleValue? valueToUnset = _possibleValues[_selectedValueIndex.Value];
+            PossibleSquareValue? valueToUnset = _possibleValues[_selectedValueIndex.Value];
             Debug.Assert(valueToUnset != null, $"Tried to unset square {Coordinate} but the possible value was null.");
             valueToUnset.Deselect();
             _selectedValueIndex = null;
@@ -127,8 +131,8 @@ namespace SudokuSpice.ConstraintBased
         {
             while (_valuesDroppedOnSelect.Count > 0)
             {
-                PossibleValue? modifiedValue = _valuesDroppedOnSelect.Pop();
-                modifiedValue.Return();
+                PossibleSquareValue? valueToReturn = _valuesDroppedOnSelect.Pop();
+                valueToReturn.Return();
             }
         }
     }

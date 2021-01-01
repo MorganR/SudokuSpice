@@ -25,7 +25,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: IReadOnlyPuzzle
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 8
@@ -58,7 +58,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Size
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 11
@@ -93,7 +93,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: NumSquares
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 13
@@ -128,7 +128,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: NumEmptySquares
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 15
@@ -163,7 +163,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: NumSetSquares
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 17
@@ -198,7 +198,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: AllPossibleValues
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 19
@@ -233,7 +233,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 25
@@ -269,7 +269,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 30
@@ -311,7 +311,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 35
@@ -351,7 +351,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetUnsetCoords
     path: ../SudokuSpice/RuleBased/IReadOnlyPuzzle.cs
     startLine: 42
@@ -363,7 +363,7 @@ items:
   syntax:
     content: ReadOnlySpan<Coordinate> GetUnsetCoords()
     return:
-      type: ReadOnlySpan{SudokuSpice.Coordinate}
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
     content.vb: Function GetUnsetCoords As ReadOnlySpan(Of Coordinate)
   overload: SudokuSpice.RuleBased.IReadOnlyPuzzle.GetUnsetCoords*
 references:
@@ -378,10 +378,18 @@ references:
   nameWithType: IReadOnlyPuzzle.Size
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle.Size
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle.NumSquares*
   commentId: Overload:SudokuSpice.RuleBased.IReadOnlyPuzzle.NumSquares
   name: NumSquares
@@ -430,7 +438,8 @@ references:
   nameWithType: IReadOnlyPuzzle.Item
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle.Item
 - uid: System.Nullable{System.Int32}
-  commentId: '!:System.Nullable{System.Int32}'
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
   definition: System.Nullable`1
   name: Nullable<Int32>
   nameWithType: Nullable<Int32>
@@ -473,13 +482,14 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Nullable`1
+  commentId: T:System.Nullable`1
   isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -489,9 +499,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -504,9 +514,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -515,20 +525,21 @@ references:
   name: GetUnsetCoords
   nameWithType: IReadOnlyPuzzle.GetUnsetCoords
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle.GetUnsetCoords
-- uid: ReadOnlySpan{SudokuSpice.Coordinate}
-  commentId: '!:ReadOnlySpan{SudokuSpice.Coordinate}'
-  definition: ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Coordinate>
   nameWithType: ReadOnlySpan<Coordinate>
-  fullName: ReadOnlySpan<SudokuSpice.Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
   nameWithType.vb: ReadOnlySpan(Of Coordinate)
-  fullName.vb: ReadOnlySpan(Of SudokuSpice.Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
   name.vb: ReadOnlySpan(Of Coordinate)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -541,10 +552,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -556,41 +567,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

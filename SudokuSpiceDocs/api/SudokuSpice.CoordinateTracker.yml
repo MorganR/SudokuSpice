@@ -24,11 +24,11 @@ items:
   type: Class
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CoordinateTracker
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 12
   assemblies:
   - SudokuSpice
@@ -37,12 +37,18 @@ items:
   remarks: "\nThis swaps coordinates within an internal array to provide O(1) tracking and untracking\noperations. It also provides immediate, copy-free access to tracked coordinates using a\n<code>ReadOnlySpan</code>.\n"
   example: []
   syntax:
-    content: 'public class CoordinateTracker : object'
-    content.vb: >-
-      Public Class CoordinateTracker
-          Inherits Object
+    content: public class CoordinateTracker
+    content.vb: Public Class CoordinateTracker
   inheritance:
   - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -62,11 +68,11 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: NumTracked
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 21
   assemblies:
   - SudokuSpice
@@ -99,11 +105,11 @@ items:
   type: Property
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Size
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 23
   assemblies:
   - SudokuSpice
@@ -134,11 +140,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 53
   assemblies:
   - SudokuSpice
@@ -170,11 +176,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 71
   assemblies:
   - SudokuSpice
@@ -206,11 +212,11 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Add
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 84
   assemblies:
   - SudokuSpice
@@ -245,11 +251,11 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Track
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 97
   assemblies:
   - SudokuSpice
@@ -284,11 +290,11 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: AddOrTrackIfUntracked
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 110
   assemblies:
   - SudokuSpice
@@ -326,11 +332,11 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Untrack
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 131
   assemblies:
   - SudokuSpice
@@ -365,11 +371,11 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UntrackAll
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 148
   assemblies:
   - SudokuSpice
@@ -397,11 +403,11 @@ items:
   type: Method
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetTrackedCoords
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 153
   assemblies:
   - SudokuSpice
@@ -411,7 +417,7 @@ items:
   syntax:
     content: public ReadOnlySpan<Coordinate> GetTrackedCoords()
     return:
-      type: ReadOnlySpan{SudokuSpice.Coordinate}
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
     content.vb: Public Function GetTrackedCoords As ReadOnlySpan(Of Coordinate)
   overload: SudokuSpice.CoordinateTracker.GetTrackedCoords*
   modifiers.csharp:
@@ -430,12 +436,306 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.CoordinateTracker.NumTracked*
   commentId: Overload:SudokuSpice.CoordinateTracker.NumTracked
   name: NumTracked
   nameWithType: CoordinateTracker.NumTracked
   fullName: SudokuSpice.CoordinateTracker.NumTracked
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -492,20 +792,21 @@ references:
   name: GetTrackedCoords
   nameWithType: CoordinateTracker.GetTrackedCoords
   fullName: SudokuSpice.CoordinateTracker.GetTrackedCoords
-- uid: ReadOnlySpan{SudokuSpice.Coordinate}
-  commentId: '!:ReadOnlySpan{SudokuSpice.Coordinate}'
-  definition: ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Coordinate>
   nameWithType: ReadOnlySpan<Coordinate>
-  fullName: ReadOnlySpan<SudokuSpice.Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
   nameWithType.vb: ReadOnlySpan(Of Coordinate)
-  fullName.vb: ReadOnlySpan(Of SudokuSpice.Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
   name.vb: ReadOnlySpan(Of Coordinate)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -518,10 +819,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -533,41 +834,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

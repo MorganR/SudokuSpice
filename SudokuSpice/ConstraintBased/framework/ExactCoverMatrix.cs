@@ -9,7 +9,7 @@ namespace SudokuSpice.ConstraintBased
     /// </summary>
     /// <remarks>
     /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
-    /// <see cref="PossibleValue"/>s. Each of these represents a row in the exact-cover
+    /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
     /// matrix. <see cref="Constraints.IConstraint"/>s will then add
     /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding links.
     /// </remarks>
@@ -71,7 +71,7 @@ namespace SudokuSpice.ConstraintBased
             var copy = new ExactCoverMatrix(this);
             for (int row = 0; row < copy._matrix.Length; row++)
             {
-                Square?[]? colArray = _matrix[row];
+                Square?[] colArray = _matrix[row];
                 var copyColArray = new Square[colArray.Length];
                 for (int col = 0; col < copyColArray.Length; col++)
                 {
@@ -86,15 +86,12 @@ namespace SudokuSpice.ConstraintBased
                 copy._matrix[row] = copyColArray;
             }
             copy.FirstHeader = FirstHeader.CopyToMatrix(copy);
-            ConstraintHeader? copiedHeader = copy.FirstHeader;
-            for (ConstraintHeader? nextHeader = FirstHeader.NextHeader; nextHeader != FirstHeader; nextHeader = nextHeader.NextHeader)
+            ConstraintHeader copiedHeader = copy.FirstHeader;
+            for (ConstraintHeader nextHeader = FirstHeader.Next; nextHeader != FirstHeader; nextHeader = nextHeader.Next)
             {
-                copiedHeader.NextHeader = nextHeader.CopyToMatrix(copy);
-                copiedHeader.NextHeader.PreviousHeader = copiedHeader;
-                copiedHeader = copiedHeader.NextHeader;
+                copiedHeader.Append(nextHeader.CopyToMatrix(copy));
+                copiedHeader = copiedHeader.Next;
             }
-            copiedHeader.NextHeader = copy.FirstHeader;
-            copy.FirstHeader.PreviousHeader = copiedHeader;
             return copy;
         }
 
@@ -133,11 +130,11 @@ namespace SudokuSpice.ConstraintBased
             {
                 yield break;
             }
-            ConstraintHeader? header = FirstHeader;
+            ConstraintHeader header = FirstHeader;
             do
             {
                 yield return header;
-                header = header.NextHeader;
+                header = header.Next;
             } while (header != FirstHeader);
         }
 
@@ -148,10 +145,7 @@ namespace SudokuSpice.ConstraintBased
                 FirstHeader = header;
             } else
             {
-                header.NextHeader = FirstHeader;
-                header.PreviousHeader = FirstHeader.PreviousHeader;
-                FirstHeader.PreviousHeader = header;
-                header.PreviousHeader.NextHeader = header;
+                FirstHeader.Prepend(header);
             }
         }
     }

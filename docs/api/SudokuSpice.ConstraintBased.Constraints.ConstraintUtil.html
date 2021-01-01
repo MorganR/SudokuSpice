@@ -81,25 +81,49 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">ConstraintUtil</span></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.html">SudokuSpice.ConstraintBased.Constraints</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ConstraintUtil : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class ConstraintUtil</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(ReadOnlySpan%7BSudokuSpice.ConstraintBased.Square%7D%2CSystem.Int32%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.Square%7D%2CSystem.Int32%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L125">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L125">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)">AddConstraintHeadersForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_AddConstraintHeadersForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.AddConstraintHeadersForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)">AddConstraintHeadersForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
   <div class="markdown level1 summary"><p>Add a <a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader.html">ConstraintHeader</a> connecting all the
-<a class="xref" href="SudokuSpice.ConstraintBased.PossibleValue.html">PossibleValue</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
+<a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
 given <code data-dev-comment-type="paramref" class="paramref">squares</code>. Skips null squares, null possible values, and any
 possible values in a known state (i.e. dropped or selected).</p>
 </div>
@@ -119,7 +143,7 @@ possible values in a known state (i.e. dropped or selected).</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
         <td><span class="parametername">squares</span></td>
         <td><p>The squares to add possible square values from.</p>
 </td>
@@ -140,13 +164,13 @@ possible values in a known state (i.e. dropped or selected).</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_CheckForSetValues_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverMatrix_ReadOnlySpan_SudokuSpice_Coordinate__Span_System_Boolean__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.ConstraintBased.ExactCoverMatrix%2CReadOnlySpan%7BSudokuSpice.Coordinate%7D%2CSpan%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_CheckForSetValues_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_ReadOnlySpan_SudokuSpice_Coordinate__System_Span_System_Boolean__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.ConstraintBased.ExactCoverMatrix%2CSystem.ReadOnlySpan%7BSudokuSpice.Coordinate%7D%2CSystem.Span%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L61">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L61">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_CheckForSetValues_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_CheckForSetValues_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverMatrix_ReadOnlySpan_SudokuSpice_Coordinate__Span_System_Boolean__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix,ReadOnlySpan{SudokuSpice.Coordinate},Span{System.Boolean})">CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan&lt;Coordinate&gt;, Span&lt;Boolean&gt;)</h4>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_CheckForSetValues_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_ReadOnlySpan_SudokuSpice_Coordinate__System_Span_System_Boolean__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.Coordinate},System.Span{System.Boolean})">CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan&lt;Coordinate&gt;, Span&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>Fills the <code data-dev-comment-type="paramref" class="paramref">isValueIndexPresentInSquares</code> span according to which
 value indices are already set in the given list of
 <code data-dev-comment-type="paramref" class="paramref">squareCoordinates</code>. Each index is true if that value is already set.</p>
@@ -179,13 +203,13 @@ value indices are already set in the given list of
 </td>
       </tr>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td><span class="parametername">squareCoordinates</span></td>
         <td><p>The coordinates to check.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td><span class="parametername">isValueIndexPresentInSquares</span></td>
         <td><p>An array that will be updated to indicate which values are set.</p>
 </td>
@@ -194,14 +218,14 @@ value indices are already set in the given list of
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(ReadOnlySpan%7BSudokuSpice.ConstraintBased.Square%7D%2CSystem.Int32%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.Square%7D%2CSystem.Int32%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L91">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L91">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)">DropPossibleSquaresForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
-  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.ConstraintBased.PossibleValue.html">PossibleValue</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_DropPossibleSquaresForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.DropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)">DropPossibleSquaresForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
+  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
 from the given set of <code data-dev-comment-type="paramref" class="paramref">squares</code>. Null squares and possible values are
 ignored.</p>
 </div>
@@ -221,7 +245,7 @@ ignored.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
         <td><span class="parametername">squares</span></td>
         <td><p>The squares to drop, if not null.</p>
 </td>
@@ -240,15 +264,31 @@ ignored.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the puzzle violates uniquness for the given coordinates.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle%2CReadOnlySpan%7BSudokuSpice.Coordinate%7D%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_System_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle%2CSystem.ReadOnlySpan%7BSudokuSpice.Coordinate%7D%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L26">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L26">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,ReadOnlySpan{SudokuSpice.Coordinate},SudokuSpice.ConstraintBased.ExactCoverMatrix)">ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle, ReadOnlySpan&lt;Coordinate&gt;, ExactCoverMatrix)</h4>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_System_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.ImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,System.ReadOnlySpan{SudokuSpice.Coordinate},SudokuSpice.ConstraintBased.ExactCoverMatrix)">ImplementUniquenessConstraintForSquares(IReadOnlyPuzzle, ReadOnlySpan&lt;Coordinate&gt;, ExactCoverMatrix)</h4>
   <div class="markdown level1 summary"><p>Enforces uniqueness of the values at the given coordinates.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -273,7 +313,7 @@ ignored.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td><span class="parametername">squareCoordinates</span></td>
         <td><p>The coordinates that must contain unique values.</p>
 </td>
@@ -286,11 +326,27 @@ ignored.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.ConstraintBased.PossibleValue.html">PossibleValue</a>s that are no longer possible, and
+  <h5 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_ImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_System_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s that are no longer possible, and
 adds <a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader.html">ConstraintHeader</a>s and links to enforce this constraint for the ones
 that are still possible.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the puzzle violates uniquness for the given coordinates.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -302,7 +358,7 @@ that are still possible.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
