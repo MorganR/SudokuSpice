@@ -7,6 +7,7 @@ namespace SudokuSpice.RuleBased.Rules
     /// Simplifies the logic needed to implement a uniqueness rule, such as "all values in a row
     /// must be unique."
     /// </summary>
+    // TODO: Consider util-based approach
     public abstract class UniquenessRule : ISudokuRule
     {
         private BitVector[]? _dimensions;

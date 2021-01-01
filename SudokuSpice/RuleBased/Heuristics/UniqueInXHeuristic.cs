@@ -8,6 +8,7 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// <summary>
     /// Abstract base class for implementing generic "Unique in X-dimension" heuristics. 
     /// </summary>
+    // TODO: Consider util-based approach
     public abstract class UniqueInXHeuristic : ISudokuHeuristic
     {
         private BitVector[]? _possiblesToCheckOnDimension;
