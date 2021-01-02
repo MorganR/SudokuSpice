@@ -112,7 +112,8 @@ namespace SudokuSpice.ConstraintBased
             {
                 return true;
             }
-            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
+            (Coordinate c, int[]? possibleValues) =
+                tracker.GetBestGuess(useSmartOrderForPossibleValues: true);
             foreach (int possibleValue in possibleValues)
             {
                 if (tracker.TrySet(in c, possibleValue))
@@ -133,7 +134,8 @@ namespace SudokuSpice.ConstraintBased
             {
                 return true;
             }
-            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
+            (Coordinate c, int[]? possibleValues) =
+                tracker.GetBestGuess(useSmartOrderForPossibleValues: false);
             var possibleValuesList = new List<int>(possibleValues);
             while (possibleValuesList.Count > 0)
             {
@@ -157,7 +159,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 return new SolveStats() { NumSolutionsFound = 1 };
             }
-            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
+            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess(useSmartOrderForPossibleValues: false);
             if (possibleValues.Length == 1)
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
