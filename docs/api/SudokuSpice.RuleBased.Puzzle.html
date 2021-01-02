@@ -87,32 +87,11 @@
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></div>
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Puzzle_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Puzzle : IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle</code></pre>
+    <pre><code class="lang-csharp hljs">public class Puzzle : object, IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -179,22 +158,6 @@
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">size</span></td>
         <td><p>The side-length for this Sudoku puzzle. Must be in the inclusive range [1, 31].</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if size is not the square of a whole number, or is outside the range [1, 31].</p>
 </td>
       </tr>
     </tbody>
@@ -651,7 +614,7 @@ be null. The puzzle maintains a reference to this array.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -794,8 +757,6 @@ and dashes.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.Object.ToString()</span></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a>

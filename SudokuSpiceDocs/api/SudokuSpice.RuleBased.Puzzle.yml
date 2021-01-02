@@ -34,7 +34,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Puzzle
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 10
@@ -44,9 +44,10 @@ items:
   summary: Manages underlying puzzle data.
   example: []
   syntax:
-    content: 'public class Puzzle : IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle'
+    content: 'public class Puzzle : object, IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
+          Inherits Object
           Implements IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzle
   inheritance:
   - System.Object
@@ -54,13 +55,6 @@ items:
   - SudokuSpice.RuleBased.IPuzzle
   - SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   - SudokuSpice.RuleBased.IReadOnlyPuzzle
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
   modifiers.csharp:
   - public
   - class
@@ -82,7 +76,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Size
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 17
@@ -121,7 +115,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: NumSquares
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 19
@@ -160,7 +154,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: NumEmptySquares
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 21
@@ -199,7 +193,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: NumSetSquares
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 23
@@ -238,7 +232,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: AllPossibleValues
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 25
@@ -277,7 +271,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 36
@@ -294,10 +288,6 @@ items:
       description: "\nThe side-length for this Sudoku puzzle. Must be in the inclusive range [1, 31].\n"
     content.vb: Public Sub New(size As Integer)
   overload: SudokuSpice.RuleBased.Puzzle.#ctor*
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\nThrown if size is not the square of a whole number, or is outside the range [1, 31].\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -317,7 +307,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 72
@@ -356,7 +346,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 101
@@ -391,7 +381,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyFrom
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 111
@@ -433,7 +423,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 117
@@ -480,7 +470,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 132
@@ -516,7 +506,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 135
@@ -563,7 +553,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 144
@@ -575,7 +565,7 @@ items:
   syntax:
     content: public ReadOnlySpan<Coordinate> GetUnsetCoords()
     return:
-      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
+      type: ReadOnlySpan{SudokuSpice.Coordinate}
     content.vb: Public Function GetUnsetCoords As ReadOnlySpan(Of Coordinate)
   overload: SudokuSpice.RuleBased.Puzzle.GetUnsetCoords*
   implements:
@@ -599,7 +589,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 150
@@ -613,7 +603,6 @@ items:
     return:
       type: System.String
     content.vb: Public Overrides Function ToString As String
-  overridden: System.Object.ToString
   overload: SudokuSpice.RuleBased.Puzzle.ToString*
   modifiers.csharp:
   - public
@@ -636,7 +625,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: IntersectPossibleValues
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 226
@@ -676,7 +665,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: ResetPossibleValues
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 228
@@ -714,7 +703,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 229
@@ -754,7 +743,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Puzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: SetPossibleValues
     path: ../SudokuSpice/RuleBased/Puzzle.cs
     startLine: 230
@@ -785,13 +774,6 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
-- uid: System.Object
-  commentId: T:System.Object
-  parent: System
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
 - uid: SudokuSpice.RuleBased.IPuzzle
   commentId: T:SudokuSpice.RuleBased.IPuzzle
   parent: SudokuSpice.RuleBased
@@ -810,260 +792,6 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: SudokuSpice.RuleBased.Puzzle.Size*
   commentId: Overload:SudokuSpice.RuleBased.Puzzle.Size
   name: Size
@@ -1076,8 +804,6 @@ references:
   nameWithType: IReadOnlyPuzzle.Size
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle.Size
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -1132,9 +858,6 @@ references:
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.RuleBased.BitVector
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
 - uid: SudokuSpice.RuleBased.Puzzle.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.Puzzle.#ctor
   name: Puzzle
@@ -1324,8 +1047,7 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Nullable{System.Int32}
-  commentId: T:System.Nullable{System.Int32}
-  parent: System
+  commentId: '!:System.Nullable{System.Int32}'
   definition: System.Nullable`1
   name: Nullable<Int32>
   nameWithType: Nullable<Int32>
@@ -1368,14 +1090,13 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Nullable`1
-  commentId: T:System.Nullable`1
   isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
+  name: Nullable<>
+  nameWithType: Nullable<>
+  fullName: System.Nullable<>
+  nameWithType.vb: Nullable(Of )
+  fullName.vb: System.Nullable(Of )
+  name.vb: Nullable(Of )
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -1385,9 +1106,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1400,9 +1121,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
@@ -1561,21 +1282,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
-  parent: System
-  definition: System.ReadOnlySpan`1
+- uid: ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: '!:ReadOnlySpan{SudokuSpice.Coordinate}'
+  definition: ReadOnlySpan`1
   name: ReadOnlySpan<Coordinate>
   nameWithType: ReadOnlySpan<Coordinate>
-  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
+  fullName: ReadOnlySpan<SudokuSpice.Coordinate>
   nameWithType.vb: ReadOnlySpan(Of Coordinate)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
+  fullName.vb: ReadOnlySpan(Of SudokuSpice.Coordinate)
   name.vb: ReadOnlySpan(Of Coordinate)
   spec.csharp:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -1588,10 +1308,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1603,73 +1323,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ReadOnlySpan`1
-  commentId: T:System.ReadOnlySpan`1
+- uid: ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<T>
-  nameWithType: ReadOnlySpan<T>
-  fullName: System.ReadOnlySpan<T>
-  nameWithType.vb: ReadOnlySpan(Of T)
-  fullName.vb: System.ReadOnlySpan(Of T)
-  name.vb: ReadOnlySpan(Of T)
+  name: ReadOnlySpan<>
+  nameWithType: ReadOnlySpan<>
+  fullName: ReadOnlySpan<>
+  nameWithType.vb: ReadOnlySpan(Of )
+  fullName.vb: ReadOnlySpan(Of )
+  name.vb: ReadOnlySpan(Of )
   spec.csharp:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.ReadOnlySpan`1
+  - uid: ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
+    fullName: ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
@@ -1679,8 +1367,6 @@ references:
   nameWithType: Puzzle.ToString
   fullName: SudokuSpice.RuleBased.Puzzle.ToString
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
