@@ -1,6 +1,7 @@
 ﻿using SudokuSpice.RuleBased.Rules;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SudokuSpice.RuleBased.Heuristics
@@ -13,10 +14,12 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// <c>B: [1, 2]</c>, and <c>C: [1, 2, 3]</c>, then this would set <c>C</c>'s possible values
     /// to <c>[3]</c>.
     /// </summary>
-    public class UniqueInBoxHeuristic : UniqueInXHeuristic
+    public class UniqueInBoxHeuristic : ISudokuHeuristic
     {
         private readonly IMissingBoxValuesTracker _boxTracker;
         private int _boxSize;
+        private IReadOnlyPuzzleWithMutablePossibleValues? _puzzle;
+        private UniqueInXHelper? _helper;
 
         /// <summary>
         /// Creates the heuristic.
@@ -34,56 +37,67 @@ namespace SudokuSpice.RuleBased.Heuristics
             UniqueInBoxHeuristic existing,
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IMissingBoxValuesTracker boxTracker)
-            : base(existing, puzzle)
         {
             _boxTracker = boxTracker;
             _boxSize = existing._boxSize;
+            _puzzle = puzzle;
+            if (puzzle is not null && existing._helper is not null)
+            {
+                _helper = existing._helper.CopyWithNewReference(puzzle);
+            }
         }
 
         /// <summary>
         /// Creates a deep copy of this heuristic. Requires <c>rules</c> to contain an
         /// <see cref="IMissingBoxValuesTracker"/>.
         /// </summary>
-        public override ISudokuHeuristic CopyWithNewReferences(
+        public ISudokuHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IReadOnlyList<ISudokuRule> rules)
         {
-            IMissingBoxValuesTracker? boxTracker;
             try
             {
-                boxTracker = (IMissingBoxValuesTracker)rules.First(r => r is IMissingBoxValuesTracker);
+                return new UniqueInBoxHeuristic(
+                    this, puzzle, (IMissingBoxValuesTracker)rules.First(r => r is IMissingBoxValuesTracker));
             } catch (InvalidOperationException)
             {
                 throw new ArgumentException($"{nameof(rules)} must include an {nameof(IMissingBoxValuesTracker)}.");
             }
-            return new UniqueInBoxHeuristic(this, puzzle, boxTracker);
         }
 
-        /// <summary>
-        /// Tries to initialize this heuristic for solving the given puzzle.
-        /// </summary>
-        /// <remarks>
-        /// In general, it doesn't make sense to want to maintain the previous state if this method
-        /// fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
-        /// on failure.
-        /// </remarks>
-        /// <param name="puzzle">
-        /// The puzzle to solve. This must implement <see cref="IReadOnlyBoxPuzzle"/>.
-        /// </param>
-        /// <returns>
-        /// False if this heuristic cannot be initialized for the given puzzle, else true.
-        /// </returns>
-        public override bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
+        /// <inheritdoc/>
+        public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
             _boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            return base.TryInitFor(puzzle);
+            _puzzle = puzzle;
+            _helper = new UniqueInXHelper(puzzle);
+            return true;
         }
 
-        protected override int GetNumDimensions(IReadOnlyPuzzle puzzle) => puzzle.Size;
-        protected override BitVector GetMissingValuesForDimension(int dimension, IReadOnlyPuzzle _) => _boxTracker.GetMissingValuesForBox(dimension);
-        protected override IEnumerable<Coordinate> GetUnsetCoordinatesOnDimension(int dimension, IReadOnlyPuzzle puzzle)
+        /// <inheritdoc/>
+        public bool UpdateAll()
         {
-            return Boxes.YieldUnsetCoordsForBox(dimension, _boxSize, puzzle);
+            Debug.Assert(
+                _puzzle is not null && _helper is not null,
+                $"Must initialize heuristic before calling {nameof(UpdateAll)}.");
+            int size = _puzzle.Size;
+            var possibleValuesToCheck = new BitVector[size];
+            var coordinatesToCheck = new Coordinate[size][];
+            for (int boxIdx = 0; boxIdx < size; ++boxIdx)
+            {
+                possibleValuesToCheck[boxIdx] = _boxTracker.GetMissingValuesForBox(boxIdx);
+                coordinatesToCheck[boxIdx] = Boxes.YieldUnsetCoordsForBox(boxIdx, _boxSize, _puzzle).ToArray();
+            }
+            return _helper.UpdateIfUnique(possibleValuesToCheck, coordinatesToCheck);
+        }
+
+        /// <inheritdoc/>
+        public void UndoLastUpdate()
+        {
+            Debug.Assert(
+                _helper is not null,
+                $"Must initialize heuristic before calling {nameof(UndoLastUpdate)}.");
+            _helper.UndoLastUpdate();
         }
     }
 }

@@ -7,10 +7,9 @@ items:
   children:
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.#ctor(SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker)
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate
+  - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll
   langs:
   - csharp
   - vb
@@ -25,26 +24,22 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: UniqueInBoxHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
   summary: "\nChecks for any squares that are the unique provider of a given possible value within a box.\nSets the possible values for those squares to just their unique value.\n\nFor example, if a box had three unset squares with possible values: <code>A: [1, 2]</code>,\n<code>B: [1, 2]</code>, and <code>C: [1, 2, 3]</code>, then this would set <code>C</code>&apos;s possible values\nto <code>[3]</code>.\n"
   example: []
   syntax:
-    content: 'public class UniqueInBoxHeuristic : UniqueInXHeuristic, ISudokuHeuristic'
+    content: 'public class UniqueInBoxHeuristic : ISudokuHeuristic'
     content.vb: >-
       Public Class UniqueInBoxHeuristic
-          Inherits UniqueInXHeuristic
           Implements ISudokuHeuristic
   inheritance:
   - System.Object
-  - SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
   implements:
   - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
   inheritedMembers:
-  - SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-  - SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -76,7 +71,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 27
+    startLine: 30
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -112,14 +107,14 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 46
+    startLine: 53
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
   summary: "\nCreates a deep copy of this heuristic. Requires <code>rules</code> to contain an\n<xref href=\"SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
-    content: public override ISudokuHeuristic CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle, IReadOnlyList<ISudokuRule> rules)
+    content: public ISudokuHeuristic CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle, IReadOnlyList<ISudokuRule> rules)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
@@ -127,16 +122,15 @@ items:
       type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
     return:
       type: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-    content.vb: Public Overrides Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues, rules As IReadOnlyList(Of ISudokuRule)) As ISudokuHeuristic
-  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+    content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues, rules As IReadOnlyList(Of ISudokuRule)) As ISudokuHeuristic
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences*
+  implements:
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
   nameWithType.vb: UniqueInBoxHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
   modifiers.csharp:
   - public
-  - override
   modifiers.vb:
   - Public
-  - Overrides
   fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -157,7 +151,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TryInitFor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 75
+    startLine: 68
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
@@ -165,141 +159,93 @@ items:
   remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
   example: []
   syntax:
-    content: public override bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
+    content: public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: "\nThe puzzle to solve. This must implement <xref href=\"SudokuSpice.IReadOnlyBoxPuzzle\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+      description: The puzzle to solve.
     return:
       type: System.Boolean
       description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
-    content.vb: Public Overrides Function TryInitFor(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
-  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+    content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor*
+  implements:
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   modifiers.csharp:
   - public
-  - override
   modifiers.vb:
   - Public
-  - Overrides
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  id: GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll
+  id: UpdateAll
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic
   langs:
   - csharp
   - vb
-  name: GetNumDimensions(IReadOnlyPuzzle)
-  nameWithType: UniqueInBoxHeuristic.GetNumDimensions(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  name: UpdateAll()
+  nameWithType: UniqueInBoxHeuristic.UpdateAll()
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll()
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
-    id: GetNumDimensions
+    id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 81
+    startLine: 77
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nUpdates all the current possible values.\n"
+  example: []
   syntax:
-    content: protected override int GetNumDimensions(IReadOnlyPuzzle puzzle)
-    parameters:
-    - id: puzzle
-      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
+    content: public bool UpdateAll()
     return:
-      type: System.Int32
-    content.vb: Protected Overrides Function GetNumDimensions(puzzle As IReadOnlyPuzzle) As Integer
-  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions*
+      type: System.Boolean
+      description: Returns true if any modifications were made.
+    content.vb: Public Function UpdateAll As Boolean
+  overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll*
+  implements:
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   modifiers.csharp:
-  - protected
-  - override
+  - public
   modifiers.vb:
-  - Protected
-  - Overrides
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  id: GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - Public
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate
+  id: UndoLastUpdate
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic
   langs:
   - csharp
   - vb
-  name: GetMissingValuesForDimension(Int32, IReadOnlyPuzzle)
-  nameWithType: UniqueInBoxHeuristic.GetMissingValuesForDimension(Int32, IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension(System.Int32, SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  name: UndoLastUpdate()
+  nameWithType: UniqueInBoxHeuristic.UndoLastUpdate()
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate()
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
-    id: GetMissingValuesForDimension
+    id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 82
+    startLine: 94
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nUndoes the last modifications made by this heuristic.\n"
+  example: []
   syntax:
-    content: protected override BitVector GetMissingValuesForDimension(int dimension, IReadOnlyPuzzle _)
-    parameters:
-    - id: dimension
-      type: System.Int32
-    - id: _
-      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    return:
-      type: SudokuSpice.RuleBased.BitVector
-    content.vb: Protected Overrides Function GetMissingValuesForDimension(dimension As Integer, _ As IReadOnlyPuzzle) As BitVector
-  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension*
+    content: public void UndoLastUpdate()
+    content.vb: Public Sub UndoLastUpdate
+  overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate*
+  implements:
+  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
   modifiers.csharp:
-  - protected
-  - override
+  - public
   modifiers.vb:
-  - Protected
-  - Overrides
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  id: GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic
-  langs:
-  - csharp
-  - vb
-  name: GetUnsetCoordinatesOnDimension(Int32, IReadOnlyPuzzle)
-  nameWithType: UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension(Int32, IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension(System.Int32, SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-      branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
-    id: GetUnsetCoordinatesOnDimension
-    path: ../SudokuSpice/RuleBased/Heuristics/UniqueInBoxHeuristic.cs
-    startLine: 83
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.RuleBased.Heuristics
-  syntax:
-    content: protected override IEnumerable<Coordinate> GetUnsetCoordinatesOnDimension(int dimension, IReadOnlyPuzzle puzzle)
-    parameters:
-    - id: dimension
-      type: System.Int32
-    - id: puzzle
-      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-    content.vb: Protected Overrides Function GetUnsetCoordinatesOnDimension(dimension As Integer, puzzle As IReadOnlyPuzzle) As IEnumerable(Of Coordinate)
-  overridden: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension*
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
+  - Public
 references:
 - uid: SudokuSpice.RuleBased.Heuristics
   commentId: N:SudokuSpice.RuleBased.Heuristics
@@ -313,74 +259,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  commentId: T:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  parent: SudokuSpice.RuleBased.Heuristics
-  name: UniqueInXHeuristic
-  nameWithType: UniqueInXHeuristic
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
 - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
   commentId: T:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
   name: ISudokuHeuristic
   nameWithType: ISudokuHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  name: UndoLastUpdate()
-  nameWithType: UniqueInXHeuristic.UndoLastUpdate()
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate()
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-    name: UndoLastUpdate
-    nameWithType: UniqueInXHeuristic.UndoLastUpdate
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-    name: UndoLastUpdate
-    nameWithType: UniqueInXHeuristic.UndoLastUpdate
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UndoLastUpdate
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  name: UpdateAll()
-  nameWithType: UniqueInXHeuristic.UpdateAll()
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll()
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-    name: UpdateAll
-    nameWithType: UniqueInXHeuristic.UpdateAll
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-    name: UpdateAll
-    nameWithType: UniqueInXHeuristic.UpdateAll
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.UpdateAll
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -682,21 +566,26 @@ references:
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences
+  name: CopyWithNewReferences
+  nameWithType: UniqueInBoxHeuristic.CopyWithNewReferences
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
   isExternal: true
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
-  nameWithType: UniqueInXHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
-  nameWithType.vb: UniqueInXHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
+  nameWithType: ISudokuHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList<ISudokuRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>)
+  nameWithType.vb: ISudokuHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList(Of ISudokuRule))
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
     name: CopyWithNewReferences
-    nameWithType: UniqueInXHeuristic.CopyWithNewReferences
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences
+    nameWithType: ISudokuHeuristic.CopyWithNewReferences
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences
   - name: (
     nameWithType: (
     fullName: (
@@ -726,10 +615,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule})
     name: CopyWithNewReferences
-    nameWithType: UniqueInXHeuristic.CopyWithNewReferences
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.CopyWithNewReferences
+    nameWithType: ISudokuHeuristic.CopyWithNewReferences
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.CopyWithNewReferences
   - name: (
     nameWithType: (
     fullName: (
@@ -758,11 +647,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences*
-  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences
-  name: CopyWithNewReferences
-  nameWithType: UniqueInBoxHeuristic.CopyWithNewReferences
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.CopyWithNewReferences
 - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   parent: SudokuSpice.RuleBased
@@ -861,23 +745,22 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: SudokuSpice.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.IReadOnlyBoxPuzzle
-  parent: SudokuSpice
-  name: IReadOnlyBoxPuzzle
-  nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor
+  name: TryInitFor
+  nameWithType: UniqueInBoxHeuristic.TryInitFor
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
   name: TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)
-  nameWithType: UniqueInXHeuristic.TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: ISudokuHeuristic.TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: TryInitFor
-    nameWithType: UniqueInXHeuristic.TryInitFor
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor
+    nameWithType: ISudokuHeuristic.TryInitFor
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor
   - name: (
     nameWithType: (
     fullName: (
@@ -889,10 +772,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: TryInitFor
-    nameWithType: UniqueInXHeuristic.TryInitFor
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.TryInitFor
+    nameWithType: ISudokuHeuristic.TryInitFor
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.TryInitFor
   - name: (
     nameWithType: (
     fullName: (
@@ -903,11 +786,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor*
-  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor
-  name: TryInitFor
-  nameWithType: UniqueInBoxHeuristic.TryInitFor
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -915,265 +793,69 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  name: GetNumDimensions(IReadOnlyPuzzle)
-  nameWithType: UniqueInXHeuristic.GetNumDimensions(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll
+  name: UpdateAll
+  nameWithType: UniqueInBoxHeuristic.UpdateAll
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
+  parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+  name: UpdateAll()
+  nameWithType: ISudokuHeuristic.UpdateAll()
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll()
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-    name: GetNumDimensions
-    nameWithType: UniqueInXHeuristic.GetNumDimensions
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
+    name: UpdateAll
+    nameWithType: ISudokuHeuristic.UpdateAll
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-    name: GetNumDimensions
-    nameWithType: UniqueInXHeuristic.GetNumDimensions
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetNumDimensions
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
+    name: UpdateAll
+    nameWithType: ISudokuHeuristic.UpdateAll
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UpdateAll
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions*
-  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions
-  name: GetNumDimensions
-  nameWithType: UniqueInBoxHeuristic.GetNumDimensions
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetNumDimensions
-- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
-  parent: SudokuSpice.RuleBased
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  isExternal: true
-  name: GetMissingValuesForDimension(Int32, IReadOnlyPuzzle)
-  nameWithType: UniqueInXHeuristic.GetMissingValuesForDimension(Int32, IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension(System.Int32, SudokuSpice.RuleBased.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate
+  name: UndoLastUpdate
+  nameWithType: UniqueInBoxHeuristic.UndoLastUpdate
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UndoLastUpdate
+- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
+  commentId: M:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
+  parent: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+  name: UndoLastUpdate()
+  nameWithType: ISudokuHeuristic.UndoLastUpdate()
+  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate()
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-    name: GetMissingValuesForDimension
-    nameWithType: UniqueInXHeuristic.GetMissingValuesForDimension
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
+    name: UndoLastUpdate
+    nameWithType: ISudokuHeuristic.UndoLastUpdate
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-    name: GetMissingValuesForDimension
-    nameWithType: UniqueInXHeuristic.GetMissingValuesForDimension
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetMissingValuesForDimension
+  - uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
+    name: UndoLastUpdate
+    nameWithType: ISudokuHeuristic.UndoLastUpdate
+    fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.UndoLastUpdate
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension*
-  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension
-  name: GetMissingValuesForDimension
-  nameWithType: UniqueInBoxHeuristic.GetMissingValuesForDimension
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetMissingValuesForDimension
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
-  name: BitVector
-  nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic
-  isExternal: true
-  name: GetUnsetCoordinatesOnDimension(Int32, IReadOnlyPuzzle)
-  nameWithType: UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(Int32, IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32, SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-    name: GetUnsetCoordinatesOnDimension
-    nameWithType: UniqueInXHeuristic.GetUnsetCoordinatesOnDimension
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension(System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-    name: GetUnsetCoordinatesOnDimension
-    nameWithType: UniqueInXHeuristic.GetUnsetCoordinatesOnDimension
-    fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHeuristic.GetUnsetCoordinatesOnDimension
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension*
-  commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension
-  name: GetUnsetCoordinatesOnDimension
-  nameWithType: UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.GetUnsetCoordinatesOnDimension
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<Coordinate>
-  nameWithType: IEnumerable<Coordinate>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Coordinate>
-  nameWithType.vb: IEnumerable(Of Coordinate)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Coordinate)
-  name.vb: IEnumerable(Of Coordinate)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
   - name: )
     nameWithType: )
     fullName: )

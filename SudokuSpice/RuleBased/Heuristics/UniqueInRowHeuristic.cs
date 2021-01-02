@@ -1,5 +1,7 @@
 ﻿using SudokuSpice.RuleBased.Rules;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SudokuSpice.RuleBased.Heuristics
@@ -13,9 +15,11 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// <c>B: [1, 2]</c>, and <c>C: [1, 2, 3]</c>, then this would set <c>C</c>'s possible values
     /// to <c>[3]</c>.
     /// </remarks>
-    public class UniqueInRowHeuristic : UniqueInXHeuristic
+    public class UniqueInRowHeuristic : ISudokuHeuristic
     {
         private readonly IMissingRowValuesTracker _rowTracker;
+        private IReadOnlyPuzzleWithMutablePossibleValues? _puzzle;
+        private UniqueInXHelper? _helper;
 
         /// <summary>
         /// Creates the heuristic.
@@ -24,7 +28,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// Something that tracks the possible values for each row. Rules often do this already,
         /// for example.
         /// </param>
-        public UniqueInRowHeuristic(IMissingRowValuesTracker rowValuesTracker) : base()
+        public UniqueInRowHeuristic(IMissingRowValuesTracker rowValuesTracker)
         {
             _rowTracker = rowValuesTracker;
         }
@@ -32,32 +36,74 @@ namespace SudokuSpice.RuleBased.Heuristics
         private UniqueInRowHeuristic(
             UniqueInRowHeuristic existing,
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IMissingRowValuesTracker rule)
-            : base(existing, puzzle)
+            IMissingRowValuesTracker tracker)
         {
-            _rowTracker = rule;
+            _rowTracker = tracker;
+            _puzzle = puzzle;
+            if (existing._helper is not null
+                && puzzle is not null)
+            {
+                _helper = existing._helper.CopyWithNewReference(puzzle);
+            }
         }
 
         /// <summary>
         /// Creates a deep copy of this heuristic. Requires <c>rules</c> to contain an
         /// <see cref="IMissingRowValuesTracker"/>.
         /// </summary>
-        public override ISudokuHeuristic CopyWithNewReferences(
+        public ISudokuHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle, IReadOnlyList<ISudokuRule> rules)
         {
-            return new UniqueInRowHeuristic(
-                this, puzzle,
-                (IMissingRowValuesTracker)rules.First(r => r is IMissingRowValuesTracker));
+            try {
+                return new UniqueInRowHeuristic(
+                    this, puzzle,
+                    (IMissingRowValuesTracker)rules.First(r => r is IMissingRowValuesTracker));
+            } catch (InvalidOperationException)
+            {
+                throw new ArgumentException($"{nameof(rules)} must include an {nameof(IMissingRowValuesTracker)}.");
+            }
         }
 
-        protected override int GetNumDimensions(IReadOnlyPuzzle puzzle) => puzzle.Size;
-        protected override BitVector GetMissingValuesForDimension(int row, IReadOnlyPuzzle _) => _rowTracker.GetMissingValuesForRow(row);
-        protected override IEnumerable<Coordinate> GetUnsetCoordinatesOnDimension(int row, IReadOnlyPuzzle puzzle)
+        /// <inheritdoc/>
+        public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
-            int size = puzzle.Size;
+            _puzzle = puzzle;
+            _helper = new UniqueInXHelper(puzzle);
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public bool UpdateAll()
+        {
+            Debug.Assert(
+                _puzzle is not null && _helper is not null,
+                $"Must initialize heuristic before calling {nameof(UpdateAll)}.");
+            int size = _puzzle.Size;
+            var possibleValuesToCheck = new BitVector[size];
+            var coordinatesToCheck = new Coordinate[size][];
+            for (int row = 0; row < size; ++row)
+            {
+                possibleValuesToCheck[row] = _rowTracker.GetMissingValuesForRow(row);
+                coordinatesToCheck[row] = _GetUnsetCoordinatesOn(row).ToArray();
+            }
+            return _helper.UpdateIfUnique(possibleValuesToCheck, coordinatesToCheck);
+        }
+
+        /// <inheritdoc/>
+        public void UndoLastUpdate()
+        {
+            Debug.Assert(
+                _helper is not null,
+                $"Must initialize heuristic before calling {nameof(UndoLastUpdate)}.");
+            _helper.UndoLastUpdate();
+        }
+
+        private IEnumerable<Coordinate> _GetUnsetCoordinatesOn(int row)
+        {
+            int size = _puzzle!.Size;
             for (int col = 0; col < size; ++col)
             {
-                if (!puzzle[row, col].HasValue)
+                if (!_puzzle[row, col].HasValue)
                 {
                     yield return new Coordinate(row, col);
                 }

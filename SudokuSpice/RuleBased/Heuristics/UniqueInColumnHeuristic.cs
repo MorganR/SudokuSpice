@@ -1,5 +1,7 @@
 ﻿using SudokuSpice.RuleBased.Rules;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SudokuSpice.RuleBased.Heuristics
@@ -13,9 +15,11 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// <c>B: [1, 2]</c>, and <c>C: [1, 2, 3]</c>, then this would set <c>C</c>'s possible values
     /// to <c>[3]</c>.
     /// </remarks>
-    public class UniqueInColumnHeuristic : UniqueInXHeuristic
+    public class UniqueInColumnHeuristic : ISudokuHeuristic
     {
         private readonly IMissingColumnValuesTracker _columnTracker;
+        private IReadOnlyPuzzleWithMutablePossibleValues? _puzzle;
+        private UniqueInXHelper? _helper;
 
         /// <summary>
         /// Creates the heuristic.
@@ -34,36 +38,77 @@ namespace SudokuSpice.RuleBased.Heuristics
             UniqueInColumnHeuristic existing,
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IMissingColumnValuesTracker rule)
-            : base(existing, puzzle)
         {
             _columnTracker = rule;
+            _puzzle = puzzle;
+            if (existing._helper is not null
+                && puzzle is not null)
+            {
+                _helper = existing._helper.CopyWithNewReference(puzzle);
+            }
         }
 
         /// <summary>
         /// Creates a deep copy of this heuristic. Requires <c>rules</c> to contain an
         /// <see cref="IMissingColumnValuesTracker"/>.
         /// </summary>
-        public override ISudokuHeuristic CopyWithNewReferences(
+        public ISudokuHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IReadOnlyList<ISudokuRule> rules)
         {
-            return new UniqueInColumnHeuristic(
-                this, puzzle,
-                (IMissingColumnValuesTracker)rules.First(r => r is IMissingColumnValuesTracker));
+            try
+            {
+                return new UniqueInColumnHeuristic(
+                    this, puzzle,
+                    (IMissingColumnValuesTracker)rules.First(r => r is IMissingColumnValuesTracker));
+            } catch (InvalidOperationException)
+            {
+                throw new ArgumentException($"{nameof(rules)} must include an {nameof(IMissingColumnValuesTracker)}.");
+            }
         }
 
-        protected override int GetNumDimensions(IReadOnlyPuzzle puzzle) => puzzle.Size;
-
-        protected override BitVector GetMissingValuesForDimension(int dimension, IReadOnlyPuzzle _) => _columnTracker.GetMissingValuesForColumn(dimension);
-
-        protected override IEnumerable<Coordinate> GetUnsetCoordinatesOnDimension(int dimension, IReadOnlyPuzzle puzzle)
+        /// <inheritdoc/>
+        public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
-            int size = puzzle.Size;
+            _puzzle = puzzle;
+            _helper = new UniqueInXHelper(puzzle);
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public bool UpdateAll()
+        {
+            Debug.Assert(
+                _puzzle is not null && _helper is not null,
+                $"Must initialize heuristic before calling {nameof(UpdateAll)}.");
+            int size = _puzzle.Size;
+            var possibleValuesToCheck = new BitVector[size];
+            var coordinatesToCheck = new Coordinate[size][];
+            for (int column = 0; column < size; ++column)
+            {
+                possibleValuesToCheck[column] = _columnTracker.GetMissingValuesForColumn(column);
+                coordinatesToCheck[column] = _GetUnsetCoordinatesOn(column).ToArray();
+            }
+            return _helper.UpdateIfUnique(possibleValuesToCheck, coordinatesToCheck);
+        }
+
+        /// <inheritdoc/>
+        public void UndoLastUpdate()
+        {
+            Debug.Assert(
+                _helper is not null,
+                $"Must initialize heuristic before calling {nameof(UndoLastUpdate)}.");
+            _helper.UndoLastUpdate();
+        }
+
+        private IEnumerable<Coordinate> _GetUnsetCoordinatesOn(int column)
+        {
+            int size = _puzzle!.Size;
             for (int row = 0; row < size; ++row)
             {
-                if (!puzzle[row, dimension].HasValue)
+                if (!_puzzle[row, column].HasValue)
                 {
-                    yield return new Coordinate(row, dimension);
+                    yield return new Coordinate(row, column);
                 }
             }
         }

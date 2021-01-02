@@ -30,6 +30,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal SquareTracker<TPuzzle> CopyForContinuation() => new SquareTracker<TPuzzle>(this);
 
+        // TODO: Apply this tuple return to rule-based solver
         internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
@@ -64,6 +65,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 bestSquare != null,
                 $"{nameof(bestSquare)} was still null at the end of {nameof(GetBestGuess)}.");
+            // TODO: Skip this if solving randomly
             return (bestSquare.Coordinate,
                 _OrderPossibleValuesByProbability(bestSquare.Coordinate));
         }

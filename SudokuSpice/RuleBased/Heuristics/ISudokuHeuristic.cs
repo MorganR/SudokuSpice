@@ -8,6 +8,7 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// an <c>ISudokuRule</c>, this depends on the current possible values in the puzzle, not just
     /// the currently set values.
     /// </summary>
+    // TODO: Rename
     public interface ISudokuHeuristic
     {
         /// <summary>
