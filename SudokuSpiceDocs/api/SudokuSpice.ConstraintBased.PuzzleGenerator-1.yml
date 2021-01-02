@@ -5,8 +5,8 @@ items:
   id: PuzzleGenerator`1
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(Func{`0},IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
-  - SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,TimeSpan)
+  - SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
+  - SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)
   langs:
   - csharp
   - vb
@@ -18,7 +18,7 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/PuzzleGenerator.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: PuzzleGenerator
     path: ../SudokuSpice/ConstraintBased/PuzzleGenerator.cs
     startLine: 8
@@ -26,14 +26,22 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   syntax:
-    content: 'public class PuzzleGenerator<TPuzzle> : object where TPuzzle : IPuzzle'
+    content: >-
+      public class PuzzleGenerator<TPuzzle>
+          where TPuzzle : IPuzzle
     typeParameters:
     - id: TPuzzle
-    content.vb: >-
-      Public Class PuzzleGenerator(Of TPuzzle As IPuzzle)
-          Inherits Object
+    content.vb: Public Class PuzzleGenerator(Of TPuzzle As IPuzzle)
   inheritance:
   - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   nameWithType.vb: PuzzleGenerator(Of TPuzzle)
   modifiers.csharp:
   - public
@@ -43,22 +51,22 @@ items:
   - Class
   fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle)
   name.vb: PuzzleGenerator(Of TPuzzle)
-- uid: SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(Func{`0},IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
-  commentId: M:SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(Func{`0},IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
-  id: '#ctor(Func{`0},IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})'
+- uid: SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
+  commentId: M:SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
+  id: '#ctor(System.Func{`0},System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})'
   parent: SudokuSpice.ConstraintBased.PuzzleGenerator`1
   langs:
   - csharp
   - vb
   name: PuzzleGenerator(Func<TPuzzle>, IReadOnlyList<IConstraint>)
   nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<TPuzzle>, IReadOnlyList<IConstraint>)
-  fullName: SudokuSpice.ConstraintBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<TPuzzle>, IReadOnlyList<SudokuSpice.ConstraintBased.Constraints.IConstraint>)
+  fullName: SudokuSpice.ConstraintBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator(System.Func<TPuzzle>, System.Collections.Generic.IReadOnlyList<SudokuSpice.ConstraintBased.Constraints.IConstraint>)
   type: Constructor
   source:
     remote:
       path: SudokuSpice/ConstraintBased/PuzzleGenerator.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/ConstraintBased/PuzzleGenerator.cs
     startLine: 24
@@ -71,10 +79,10 @@ items:
     content: public PuzzleGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint> constraints)
     parameters:
     - id: puzzleFactory
-      type: Func{{TPuzzle}}
+      type: System.Func{{TPuzzle}}
       description: "\nA function that constructs an empty <xref href=\"SudokuSpice.IPuzzle\" data-throw-if-not-resolved=\"false\"></xref> of the desired type and shape.\n"
     - id: constraints
-      type: IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint}
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint}
     content.vb: Public Sub New(puzzleFactory As Func(Of TPuzzle), constraints As IReadOnlyList(Of IConstraint))
   overload: SudokuSpice.ConstraintBased.PuzzleGenerator`1.#ctor*
   nameWithType.vb: PuzzleGenerator(Of TPuzzle).PuzzleGenerator(Func(Of TPuzzle), IReadOnlyList(Of IConstraint))
@@ -82,24 +90,24 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator(Func(Of TPuzzle), IReadOnlyList(Of SudokuSpice.ConstraintBased.Constraints.IConstraint))
+  fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator(System.Func(Of TPuzzle), System.Collections.Generic.IReadOnlyList(Of SudokuSpice.ConstraintBased.Constraints.IConstraint))
   name.vb: PuzzleGenerator(Func(Of TPuzzle), IReadOnlyList(Of IConstraint))
-- uid: SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,TimeSpan)
-  commentId: M:SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,TimeSpan)
-  id: Generate(System.Int32,TimeSpan)
+- uid: SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)
+  commentId: M:SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate(System.Int32,System.TimeSpan)
+  id: Generate(System.Int32,System.TimeSpan)
   parent: SudokuSpice.ConstraintBased.PuzzleGenerator`1
   langs:
   - csharp
   - vb
   name: Generate(Int32, TimeSpan)
   nameWithType: PuzzleGenerator<TPuzzle>.Generate(Int32, TimeSpan)
-  fullName: SudokuSpice.ConstraintBased.PuzzleGenerator<TPuzzle>.Generate(System.Int32, TimeSpan)
+  fullName: SudokuSpice.ConstraintBased.PuzzleGenerator<TPuzzle>.Generate(System.Int32, System.TimeSpan)
   type: Method
   source:
     remote:
       path: SudokuSpice/ConstraintBased/PuzzleGenerator.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Generate
     path: ../SudokuSpice/ConstraintBased/PuzzleGenerator.cs
     startLine: 54
@@ -116,25 +124,321 @@ items:
       type: System.Int32
       description: "\nThe number of squares that will be preset in the generated puzzle.\n"
     - id: timeout
-      type: TimeSpan
+      type: System.TimeSpan
       description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
     return:
       type: '{TPuzzle}'
       description: "\nA puzzle of type <code>TPuzzle</code> with a unique solution and\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> preset squares.\n"
     content.vb: Public Function Generate(numSquaresToSet As Integer, timeout As TimeSpan) As TPuzzle
   overload: SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate*
+  exceptions:
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: "\nThrown if no valid unique puzzle is found within the specified\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">timeout</code>.\n"
   nameWithType.vb: PuzzleGenerator(Of TPuzzle).Generate(Int32, TimeSpan)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle).Generate(System.Int32, TimeSpan)
+  fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle).Generate(System.Int32, System.TimeSpan)
 references:
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.IPuzzle
   commentId: T:SudokuSpice.IPuzzle
   parent: SudokuSpice
@@ -151,20 +455,21 @@ references:
   fullName: SudokuSpice.ConstraintBased.PuzzleGenerator<TPuzzle>.PuzzleGenerator
   nameWithType.vb: PuzzleGenerator(Of TPuzzle).PuzzleGenerator
   fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle).PuzzleGenerator
-- uid: Func{{TPuzzle}}
-  commentId: '!:Func{`0}'
-  definition: Func`1
+- uid: System.Func{{TPuzzle}}
+  commentId: T:System.Func{`0}
+  parent: System
+  definition: System.Func`1
   name: Func<TPuzzle>
   nameWithType: Func<TPuzzle>
-  fullName: Func<TPuzzle>
+  fullName: System.Func<TPuzzle>
   nameWithType.vb: Func(Of TPuzzle)
-  fullName.vb: Func(Of TPuzzle)
+  fullName.vb: System.Func(Of TPuzzle)
   name.vb: Func(Of TPuzzle)
   spec.csharp:
-  - uid: Func`1
+  - uid: System.Func`1
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: <
     nameWithType: <
@@ -176,10 +481,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Func`1
+  - uid: System.Func`1
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -190,20 +495,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint}
-  commentId: '!:IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint}'
-  definition: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
   name: IReadOnlyList<IConstraint>
   nameWithType: IReadOnlyList<IConstraint>
-  fullName: IReadOnlyList<SudokuSpice.ConstraintBased.Constraints.IConstraint>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.ConstraintBased.Constraints.IConstraint>
   nameWithType.vb: IReadOnlyList(Of IConstraint)
-  fullName.vb: IReadOnlyList(Of SudokuSpice.ConstraintBased.Constraints.IConstraint)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.ConstraintBased.Constraints.IConstraint)
   name.vb: IReadOnlyList(Of IConstraint)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
@@ -216,10 +522,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -236,83 +542,93 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: Func`1
-  commentId: '!:Func`1'
+- uid: System.Func`1
+  commentId: T:System.Func`1
   isExternal: true
-  name: Func<>
-  nameWithType: Func<>
-  fullName: Func<>
-  nameWithType.vb: Func(Of )
-  fullName.vb: Func(Of )
-  name.vb: Func(Of )
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
   spec.csharp:
-  - uid: Func`1
+  - uid: System.Func`1
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Func`1
+  - uid: System.Func`1
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: )
     nameWithType: )
     fullName: )
-- uid: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
-  name: IReadOnlyList<>
-  nameWithType: IReadOnlyList<>
-  fullName: IReadOnlyList<>
-  nameWithType.vb: IReadOnlyList(Of )
-  fullName.vb: IReadOnlyList(Of )
-  name.vb: IReadOnlyList(Of )
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.TimeoutException
+  commentId: T:System.TimeoutException
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate*
   commentId: Overload:SudokuSpice.ConstraintBased.PuzzleGenerator`1.Generate
   name: Generate
@@ -321,15 +637,19 @@ references:
   nameWithType.vb: PuzzleGenerator(Of TPuzzle).Generate
   fullName.vb: SudokuSpice.ConstraintBased.PuzzleGenerator(Of TPuzzle).Generate
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: TimeSpan
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
   isExternal: true
   name: TimeSpan
   nameWithType: TimeSpan
-  fullName: TimeSpan
+  fullName: System.TimeSpan
 - uid: '{TPuzzle}'
   commentId: '!:TPuzzle'
   definition: TPuzzle

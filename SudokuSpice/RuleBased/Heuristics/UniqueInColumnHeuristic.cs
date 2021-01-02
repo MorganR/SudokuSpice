@@ -54,7 +54,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </summary>
         public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<ISudokuRule> rules)
+            IReadOnlyList<IRule> rules)
         {
             try
             {

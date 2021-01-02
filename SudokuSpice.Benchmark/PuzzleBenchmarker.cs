@@ -32,7 +32,7 @@ namespace SudokuSpice.Benchmark
             var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
             var standardRules = new StandardRules();
             var ruleKeeper = new DynamicRuleKeeper(
-                new List<ISudokuRule> { standardRules });
+                new List<IRule> { standardRules });
             var heuristic = new StandardHeuristic(
                 standardRules, standardRules, standardRules);
             var solver = new PuzzleSolver(ruleKeeper, heuristic);
@@ -49,7 +49,7 @@ namespace SudokuSpice.Benchmark
             var columnRule = new ColumnUniquenessRule();
             var boxRule = new BoxUniquenessRule();
             var ruleKeeper = new DynamicRuleKeeper(
-                new List<ISudokuRule> { rowRule, columnRule, boxRule });
+                new List<IRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 rowRule, columnRule, boxRule);
             var solver = new PuzzleSolver(ruleKeeper, heuristic);

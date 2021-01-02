@@ -17,11 +17,11 @@ items:
   type: Enum
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: AddOrTrackResult
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 30
   assemblies:
   - SudokuSpice
@@ -29,8 +29,8 @@ items:
   summary: "\nIndicates the action taken during an\n<xref href=\"SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate%40)\" data-throw-if-not-resolved=\"false\"></xref>\noperation.\n"
   example: []
   syntax:
-    content: 'public enum AddOrTrackResult : int'
-    content.vb: Public Enum AddOrTrackResult As Integer
+    content: public enum AddOrTrackResult
+    content.vb: Public Enum AddOrTrackResult
   modifiers.csharp:
   - public
   - enum
@@ -50,11 +50,11 @@ items:
   type: Field
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: AddedAndTracked
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 36
   assemblies:
   - SudokuSpice
@@ -62,10 +62,9 @@ items:
   summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was previously unknown, and has been added and\ntracked.\n"
   example: []
   syntax:
-    content: AddedAndTracked = null
+    content: AddedAndTracked = 0
     return:
       type: SudokuSpice.CoordinateTracker.AddOrTrackResult
-    content.vb: AddedAndTracked = Nothing
   modifiers.csharp:
   - public
   - const
@@ -85,11 +84,11 @@ items:
   type: Field
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Tracked
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 41
   assemblies:
   - SudokuSpice
@@ -97,10 +96,9 @@ items:
   summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already added but was untracked, and is now\ntracked.\n"
   example: []
   syntax:
-    content: Tracked = null
+    content: Tracked = 1
     return:
       type: SudokuSpice.CoordinateTracker.AddOrTrackResult
-    content.vb: Tracked = Nothing
   modifiers.csharp:
   - public
   - const
@@ -120,11 +118,11 @@ items:
   type: Field
   source:
     remote:
-      path: SudokuSpice/Data/CoordinateTracker.cs
+      path: SudokuSpice/data/CoordinateTracker.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Unchanged
-    path: ../SudokuSpice/Data/CoordinateTracker.cs
+    path: ../SudokuSpice/data/CoordinateTracker.cs
     startLine: 45
   assemblies:
   - SudokuSpice
@@ -132,10 +130,9 @@ items:
   summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already tracked. No changes were needed.\n"
   example: []
   syntax:
-    content: Unchanged = null
+    content: Unchanged = 2
     return:
       type: SudokuSpice.CoordinateTracker.AddOrTrackResult
-    content.vb: Unchanged = Nothing
   modifiers.csharp:
   - public
   - const

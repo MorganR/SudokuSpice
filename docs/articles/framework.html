@@ -85,7 +85,7 @@ implementing custom rules or constraints.</p>
 you need to do something a little different, like work with a puzzle with jagged regions
 instead of the normal square box regions.</p>
 </li>
-<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ISudokuRule.html"><code>ISudokuRule</code></a></p>
+<li><p>The <a href="xref:SudokuSpice.RuleBased.Rules.ISudokuRule"><code>ISudokuRule</code></a></p>
 <p>Rules define - you guessed it - the rules for a puzzle. For example, standard Sudokus use the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.RowUniquenessRule.html"><code>RowUniquenessRule</code></a>, the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.html"><code>ColumnUniquenessRule</code></a>, and the
@@ -96,7 +96,7 @@ efficiency, these come prepackaged in the
 themselves. They should use an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
 enough internal state to efficiently provide the possible values of any given square according to
 <em>only</em> that rule.</p>
-<p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.RuleBased.ISudokuRuleKeeper.html"><code>ISudokuRuleKeeper</code></a>. The
+<p>Rules are enforced by an <a href="xref:SudokuSpice.RuleBased.ISudokuRuleKeeper"><code>ISudokuRuleKeeper</code></a>. The
 <a class="xref" href="../api/SudokuSpice.RuleBased.DynamicRuleKeeper.html"><code>DynamicRuleKeeper</code></a> provides a general implementation
 that works with any number of rules. Custom implementations can provide even more efficiency, but
 are generally messier and more complex than simply creating custom rules.
@@ -105,7 +105,7 @@ the <a href="performance.html">benchmarks</a> for performance comparisons. The r
 updates the <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a> based on all the rules while
 ensuring that no rules are broken by a given update.</p>
 </li>
-<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic.html"><code>ISudokuHeuristic</code></a></p>
+<li><p>The <a href="xref:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic"><code>ISudokuHeuristic</code></a></p>
 <p>Heuristics are logical tricks that can be used to reduce the number of possible values for any
 given square. These are only used in solving when the framework would otherwise have to guess
 (i.e. all unset squares have at least two possible values), so they can be relatively expensive

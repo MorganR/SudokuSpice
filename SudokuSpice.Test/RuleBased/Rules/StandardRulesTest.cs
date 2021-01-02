@@ -86,7 +86,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             Assert.True(rule.TryInit(puzzle));
 
             var puzzleCopy = new Puzzle(puzzle);
-            ISudokuRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
+            IRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 3;
             var coord = new Coordinate(1, 1);
             ruleCopy.Update(coord, val, new CoordinateTracker(puzzle.Size));

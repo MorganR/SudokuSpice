@@ -52,7 +52,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <see cref="IMissingRowValuesTracker"/>.
         /// </summary>
         public IHeuristic CopyWithNewReferences(
-            IReadOnlyPuzzleWithMutablePossibleValues? puzzle, IReadOnlyList<ISudokuRule> rules)
+            IReadOnlyPuzzleWithMutablePossibleValues? puzzle, IReadOnlyList<IRule> rules)
         {
             try {
                 return new UniqueInRowHeuristic(

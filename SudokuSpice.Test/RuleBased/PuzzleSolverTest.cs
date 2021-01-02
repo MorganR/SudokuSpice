@@ -93,7 +93,7 @@ namespace SudokuSpice.RuleBased.Test
             var boxRule = new BoxUniquenessRule();
             var diagonalRule = new DiagonalUniquenessRule();
             var ruleKeeper = new DynamicRuleKeeper(
-                new List<ISudokuRule> { rowRule, columnRule, boxRule, diagonalRule });
+                new List<IRule> { rowRule, columnRule, boxRule, diagonalRule });
             var heuristic = new StandardHeuristic(
                 rowRule, columnRule, boxRule);
             var solver = new PuzzleSolver(ruleKeeper, heuristic);
@@ -167,7 +167,7 @@ namespace SudokuSpice.RuleBased.Test
         public void GetStatsForAllSolutions_WithHeuristics_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
         {
             var ruleKeeper = new StandardRuleKeeper();
-            ISudokuRule rule = ruleKeeper.GetRules()[0];
+            IRule rule = ruleKeeper.GetRules()[0];
             var heuristics = new StandardHeuristic(
                 (IMissingRowValuesTracker)rule,
                 (IMissingColumnValuesTracker)rule, (IMissingBoxValuesTracker)rule);

@@ -4,19 +4,19 @@ namespace SudokuSpice.RuleBased.Rules
     /// Enforces a rule for a puzzle, such as "all values must be unique within a row." This is
     /// done by tracking possible values for each square specifically as determined by this rule.
     /// These possible values are then enforced along with any other rules by an
-    /// <see cref="ISudokuRuleKeeper"/>.
+    /// <see cref="IRuleKeeper"/>.
     /// </summary>
-    public interface ISudokuRule
+    public interface IRule
     {
         /// <summary>
-        /// Creates a deep copy of this ISudokuRule, with any internal <c>IReadOnlyPuzzle</c>
+        /// Creates a deep copy of this IRule, with any internal <c>IReadOnlyPuzzle</c>
         /// references updated to the given puzzle.
         /// </summary>
         /// <param name="puzzle">
         /// The new puzzle reference to use. To ensure this rule's internal state is correct, this
         /// puzzle should contain the same data as the current puzzle referenced by this rule.
         /// </param>
-        ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle);
+        IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle);
 
         /// <summary>
         /// Gets the possible values for the given coordinate based on this rule.

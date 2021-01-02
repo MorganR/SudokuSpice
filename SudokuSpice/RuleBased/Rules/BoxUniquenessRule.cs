@@ -21,7 +21,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public override ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
+        public override IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
         {
             return new BoxUniquenessRule(this, puzzle);
         }

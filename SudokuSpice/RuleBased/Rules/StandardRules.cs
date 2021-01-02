@@ -7,7 +7,7 @@ namespace SudokuSpice.RuleBased.Rules
     /// Combines the standard rules (row, column, and box uniqueness) for efficiency and
     /// convenience.
     /// </summary>
-    public class StandardRules : ISudokuRule, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
+    public class StandardRules : IRule, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
         private int _boxSize;
         private BitVector[]? _unsetRowValues;
@@ -37,7 +37,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
+        public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
         {
             return new StandardRules(this, puzzle);
         }

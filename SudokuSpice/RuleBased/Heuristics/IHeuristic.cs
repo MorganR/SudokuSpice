@@ -5,7 +5,7 @@ namespace SudokuSpice.RuleBased.Heuristics
 {
     /// <summary>
     /// Performs some logical trickery to reduce the number of possible values for a square. Unlike
-    /// an <see cref="ISudokuRule"/>, this depends on the current possible values in the puzzle, not
+    /// an <see cref="IRule"/>, this depends on the current possible values in the puzzle, not
     /// just the currently set values.
     /// </summary>
     public interface IHeuristic
@@ -42,6 +42,6 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </summary>
         IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<ISudokuRule> rules);
+            IReadOnlyList<IRule> rules);
     }
 }

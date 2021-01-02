@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Enforces the standard rules: uniqueness in each row, column, and box.
     /// </summary>
-    public class StandardRuleKeeper : ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
+    public class StandardRuleKeeper : IRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
         private int _boxSize;
         private BitVector[]? _unsetRowValues;
@@ -86,7 +86,7 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <inheritdoc/>
-        public ISudokuRuleKeeper CopyWithNewReferences(
+        public IRuleKeeper CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
         {
             Debug.Assert((puzzle is null && _puzzle is null) || puzzle?.Size == _puzzle?.Size,
@@ -179,7 +179,7 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <inheritdoc/>
-        public IReadOnlyList<ISudokuRule> GetRules() => new List<ISudokuRule>() { this };
+        public IReadOnlyList<IRule> GetRules() => new List<IRule>() { this };
 
         /// <inheritdoc/>
         public BitVector GetMissingValuesForRow(int row) => _unsetRowValues![row];
@@ -288,7 +288,7 @@ namespace SudokuSpice.RuleBased
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => throw new NotImplementedException();
+        public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => throw new NotImplementedException();
 
         /// <summary>
         /// Not implemented.

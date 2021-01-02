@@ -18,7 +18,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public override ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => new RowUniquenessRule(this, puzzle);
+        public override IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => new RowUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
         public override bool TryInit(IReadOnlyPuzzle puzzle)

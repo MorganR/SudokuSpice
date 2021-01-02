@@ -5,7 +5,7 @@ namespace SudokuSpice.RuleBased.Rules
     /// <summary>
     /// Restricts that the forward and backward diagonals each contain all unique values.
     /// </summary>
-    public class DiagonalUniquenessRule : ISudokuRule
+    public class DiagonalUniquenessRule : IRule
     {
         private BitVector _unsetBackwardDiag;
         private BitVector _unsetForwardDiag;
@@ -58,7 +58,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => new DiagonalUniquenessRule(this, puzzle);
+        public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => new DiagonalUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
         public BitVector GetPossibleValues(in Coordinate c)
@@ -80,7 +80,7 @@ namespace SudokuSpice.RuleBased.Rules
         public void Revert(in Coordinate c, int val)
         {
             Debug.Assert(_puzzle is not null, $"Can't call {nameof(Revert)} with a null puzzle.");
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, $"Cannot call {nameof(IRule.Revert)} for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.SetBit(val);
@@ -95,7 +95,7 @@ namespace SudokuSpice.RuleBased.Rules
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(_puzzle is not null, $"Can't call {nameof(Revert)} with a null puzzle.");
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Revert for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, $"Cannot call {nameof(IRule.Revert)} for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.SetBit(val);
@@ -112,7 +112,7 @@ namespace SudokuSpice.RuleBased.Rules
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             Debug.Assert(_puzzle is not null, $"Can't call {nameof(Update)} with a null puzzle.");
-            Debug.Assert(!_puzzle[in c].HasValue, "Cannot call ISudokuRule.Update for a set puzzle coordinate");
+            Debug.Assert(!_puzzle[in c].HasValue, $"Cannot call {nameof(IRule.Update)} for a set puzzle coordinate");
             if (_IsOnBackwardDiag(in c))
             {
                 _unsetBackwardDiag.UnsetBit(val);

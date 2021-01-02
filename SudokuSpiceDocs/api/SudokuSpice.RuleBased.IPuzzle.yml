@@ -19,7 +19,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: IPuzzle
     path: ../SudokuSpice/RuleBased/IPuzzle.cs
     startLine: 7
@@ -65,7 +65,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/IPuzzle.cs
     startLine: 13
@@ -106,7 +106,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/IPuzzle.cs
     startLine: 21
@@ -147,7 +147,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/IPuzzle.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: DeepCopy
     path: ../SudokuSpice/RuleBased/IPuzzle.cs
     startLine: 27
@@ -416,12 +416,15 @@ references:
   nameWithType: IPuzzle.Item
   fullName: SudokuSpice.RuleBased.IPuzzle.Item
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
 - uid: System.Nullable{System.Int32}
-  commentId: '!:System.Nullable{System.Int32}'
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
   definition: System.Nullable`1
   name: Nullable<Int32>
   nameWithType: Nullable<Int32>
@@ -463,14 +466,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Nullable`1
+- uid: System
+  commentId: N:System
   isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -480,9 +490,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -495,9 +505,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

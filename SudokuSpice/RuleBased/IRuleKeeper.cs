@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace SudokuSpice.RuleBased
 {
-    public interface ISudokuRuleKeeper
+    public interface IRuleKeeper
     {
         /// <summary>
         /// Creates a deep copy of this rule keeper, including copies of any
-        /// <see cref="ISudokuRule"/>s it contains, with updated internal
+        /// <see cref="IRule"/>s it contains, with updated internal
         /// <see cref="IReadOnlyPuzzle"/> and <see cref="PossibleValues"/> references.
         /// </summary>
         /// <param name="puzzle">
@@ -17,13 +17,13 @@ namespace SudokuSpice.RuleBased
         /// The new possible values reference. Should contain the same data as the current possible
         /// values instance.
         /// </param>
-        ISudokuRuleKeeper CopyWithNewReferences(
+        IRuleKeeper CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle);
 
         /// <summary>
-        /// Gets the <see cref="ISudokuRule"/>s enforced by this rule keeper.
+        /// Gets the <see cref="IRule"/>s enforced by this rule keeper.
         /// </summary>
-        IReadOnlyList<ISudokuRule> GetRules();
+        IReadOnlyList<IRule> GetRules();
 
         /// <summary>
         /// Tries to initialize this rule keeper to solve the given puzzle.

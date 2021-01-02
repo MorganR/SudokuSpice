@@ -31,7 +31,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: StandardRuleKeeper
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 10
@@ -41,19 +41,26 @@ items:
   summary: "\nEnforces the standard rules: uniqueness in each row, column, and box.\n"
   example: []
   syntax:
-    content: 'public class StandardRuleKeeper : object, ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, ISudokuRule'
+    content: 'public class StandardRuleKeeper : IRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, IRule'
     content.vb: >-
       Public Class StandardRuleKeeper
-          Inherits Object
-          Implements ISudokuRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, ISudokuRule
+          Implements IRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, IRule
   inheritance:
   - System.Object
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper
+  - SudokuSpice.RuleBased.IRuleKeeper
   - SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker
   - SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker
   - SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
-  - SudokuSpice.RuleBased.Rules.ISudokuRule
+  - SudokuSpice.RuleBased.Rules.IRule
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -75,7 +82,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 24
@@ -107,7 +114,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TryInit
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 27
@@ -129,7 +136,7 @@ items:
     content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.TryInit*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -149,27 +156,27 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 88
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
   example: []
   syntax:
-    content: public ISudokuRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
+    content: public IRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
       description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
     return:
-      type: SudokuSpice.RuleBased.ISudokuRuleKeeper
-    content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As ISudokuRuleKeeper
+      type: SudokuSpice.RuleBased.IRuleKeeper
+    content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As IRuleKeeper
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReferences*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -189,7 +196,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TrySet
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 97
@@ -213,7 +220,7 @@ items:
     content.vb: Public Function TrySet(ByRef c As Coordinate, value As Integer) As Boolean
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.TrySet*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.RuleBased.IRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
   nameWithType.vb: StandardRuleKeeper.TrySet(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
@@ -236,23 +243,23 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetRules
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 181
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nGets the <xref href=\"SudokuSpice.RuleBased.Rules.ISudokuRule\" data-throw-if-not-resolved=\"false\"></xref>s enforced by this rule keeper.\n"
+  summary: "\nGets the <xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s enforced by this rule keeper.\n"
   example: []
   syntax:
-    content: public IReadOnlyList<ISudokuRule> GetRules()
+    content: public IReadOnlyList<IRule> GetRules()
     return:
-      type: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-    content.vb: Public Function GetRules As IReadOnlyList(Of ISudokuRule)
+      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+    content.vb: Public Function GetRules As IReadOnlyList(Of IRule)
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.GetRules*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+  - SudokuSpice.RuleBased.IRuleKeeper.GetRules
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -272,7 +279,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetMissingValuesForRow
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 184
@@ -311,7 +318,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetMissingValuesForColumn
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 187
@@ -350,7 +357,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetMissingValuesForBox
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 190
@@ -389,7 +396,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Unset
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 193
@@ -410,7 +417,7 @@ items:
     content.vb: Public Sub Unset(ByRef c As Coordinate, value As Integer)
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.Unset*
   implements:
-  - SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.RuleBased.IRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
   nameWithType.vb: StandardRuleKeeper.Unset(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
@@ -433,7 +440,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 266
@@ -451,8 +458,12 @@ items:
       type: SudokuSpice.RuleBased.BitVector
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.GetPossibleValues*
+  exceptions:
+  - type: System.NotImplementedException
+    commentId: T:System.NotImplementedException
+    description: Always
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   nameWithType.vb: StandardRuleKeeper.GetPossibleValues(ByRef Coordinate)
   modifiers.csharp:
   - public
@@ -475,7 +486,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 272
@@ -493,8 +504,12 @@ items:
       type: System.Int32
     content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer)
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.Revert*
+  exceptions:
+  - type: System.NotImplementedException
+    commentId: T:System.NotImplementedException
+    description: Always
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   nameWithType.vb: StandardRuleKeeper.Revert(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
@@ -517,7 +532,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 278
@@ -537,8 +552,12 @@ items:
       type: SudokuSpice.CoordinateTracker
     content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.Revert*
+  exceptions:
+  - type: System.NotImplementedException
+    commentId: T:System.NotImplementedException
+    description: Always
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   nameWithType.vb: StandardRuleKeeper.Revert(ByRef Coordinate, Int32, CoordinateTracker)
   modifiers.csharp:
   - public
@@ -561,7 +580,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Update
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 284
@@ -581,8 +600,12 @@ items:
       type: SudokuSpice.CoordinateTracker
     content.vb: Public Sub Update(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.Update*
+  exceptions:
+  - type: System.NotImplementedException
+    commentId: T:System.NotImplementedException
+    description: Always
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   nameWithType.vb: StandardRuleKeeper.Update(ByRef Coordinate, Int32, CoordinateTracker)
   modifiers.csharp:
   - public
@@ -605,7 +628,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 290
@@ -615,16 +638,20 @@ items:
   summary: "\nNot implemented.\n"
   example: []
   syntax:
-    content: public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
+    content: public IRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzle
     return:
-      type: SudokuSpice.RuleBased.Rules.ISudokuRule
-    content.vb: Public Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As ISudokuRule
+      type: SudokuSpice.RuleBased.Rules.IRule
+    content.vb: Public Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As IRule
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReference*
+  exceptions:
+  - type: System.NotImplementedException
+    commentId: T:System.NotImplementedException
+    description: Always
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -644,7 +671,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/StandardRuleKeeper.cs
       branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TryInit
     path: ../SudokuSpice/RuleBased/StandardRuleKeeper.cs
     startLine: 296
@@ -662,8 +689,12 @@ items:
       type: System.Boolean
     content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle) As Boolean
   overload: SudokuSpice.RuleBased.StandardRuleKeeper.TryInit*
+  exceptions:
+  - type: System.NotImplementedException
+    commentId: T:System.NotImplementedException
+    description: Always
   implements:
-  - SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -674,12 +705,19 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper
-  commentId: T:SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: SudokuSpice.RuleBased.IRuleKeeper
+  commentId: T:SudokuSpice.RuleBased.IRuleKeeper
   parent: SudokuSpice.RuleBased
-  name: ISudokuRuleKeeper
-  nameWithType: ISudokuRuleKeeper
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper
+  name: IRuleKeeper
+  nameWithType: IRuleKeeper
+  fullName: SudokuSpice.RuleBased.IRuleKeeper
 - uid: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker
   commentId: T:SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker
   parent: SudokuSpice.RuleBased.Rules
@@ -698,12 +736,297 @@ references:
   name: IMissingBoxValuesTracker
   nameWithType: IMissingBoxValuesTracker
   fullName: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule
-  commentId: T:SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule
+  commentId: T:SudokuSpice.RuleBased.Rules.IRule
   parent: SudokuSpice.RuleBased.Rules
-  name: ISudokuRule
-  nameWithType: ISudokuRule
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule
+  name: IRule
+  nameWithType: IRule
+  fullName: SudokuSpice.RuleBased.Rules.IRule
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.RuleBased.Rules
   commentId: N:SudokuSpice.RuleBased.Rules
   name: SudokuSpice.RuleBased.Rules
@@ -719,17 +1042,17 @@ references:
   name: TryInit
   nameWithType: StandardRuleKeeper.TryInit
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.TryInit
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  parent: SudokuSpice.RuleBased.IRuleKeeper
   name: TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
-  nameWithType: ISudokuRuleKeeper.TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: IRuleKeeper.TryInit(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: TryInit
-    nameWithType: ISudokuRuleKeeper.TryInit
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit
+    nameWithType: IRuleKeeper.TryInit
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.TryInit
   - name: (
     nameWithType: (
     fullName: (
@@ -741,10 +1064,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: TryInit
-    nameWithType: ISudokuRuleKeeper.TryInit
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TryInit
+    nameWithType: IRuleKeeper.TryInit
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.TryInit
   - name: (
     nameWithType: (
     fullName: (
@@ -762,6 +1085,8 @@ references:
   nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -771,17 +1096,17 @@ references:
   name: CopyWithNewReferences
   nameWithType: StandardRuleKeeper.CopyWithNewReferences
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReferences
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  parent: SudokuSpice.RuleBased.IRuleKeeper
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
-  nameWithType: ISudokuRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: IRuleKeeper.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: CopyWithNewReferences
-    nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
+    nameWithType: IRuleKeeper.CopyWithNewReferences
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences
   - name: (
     nameWithType: (
     fullName: (
@@ -793,10 +1118,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
     name: CopyWithNewReferences
-    nameWithType: ISudokuRuleKeeper.CopyWithNewReferences
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.CopyWithNewReferences
+    nameWithType: IRuleKeeper.CopyWithNewReferences
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences
   - name: (
     nameWithType: (
     fullName: (
@@ -812,18 +1137,18 @@ references:
   name: TrySet
   nameWithType: StandardRuleKeeper.TrySet
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.TrySet
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: SudokuSpice.RuleBased.IRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.RuleBased.IRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  parent: SudokuSpice.RuleBased.IRuleKeeper
   isExternal: true
   name: TrySet(Coordinate, Int32)
-  nameWithType: ISudokuRuleKeeper.TrySet(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate, System.Int32)
+  nameWithType: IRuleKeeper.TrySet(Coordinate, Int32)
+  fullName: SudokuSpice.RuleBased.IRuleKeeper.TrySet(SudokuSpice.Coordinate, System.Int32)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
     name: TrySet
-    nameWithType: ISudokuRuleKeeper.TrySet
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
+    nameWithType: IRuleKeeper.TrySet
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.TrySet
   - name: (
     nameWithType: (
     fullName: (
@@ -843,10 +1168,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)
     name: TrySet
-    nameWithType: ISudokuRuleKeeper.TrySet
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.TrySet
+    nameWithType: IRuleKeeper.TrySet
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.TrySet
   - name: (
     nameWithType: (
     fullName: (
@@ -872,6 +1197,8 @@ references:
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -886,17 +1213,17 @@ references:
   name: GetRules
   nameWithType: StandardRuleKeeper.GetRules
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.GetRules
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: SudokuSpice.RuleBased.IRuleKeeper.GetRules
+  commentId: M:SudokuSpice.RuleBased.IRuleKeeper.GetRules
+  parent: SudokuSpice.RuleBased.IRuleKeeper
   name: GetRules()
-  nameWithType: ISudokuRuleKeeper.GetRules()
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules()
+  nameWithType: IRuleKeeper.GetRules()
+  fullName: SudokuSpice.RuleBased.IRuleKeeper.GetRules()
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.GetRules
     name: GetRules
-    nameWithType: ISudokuRuleKeeper.GetRules
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+    nameWithType: IRuleKeeper.GetRules
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.GetRules
   - name: (
     nameWithType: (
     fullName: (
@@ -904,95 +1231,103 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.GetRules
     name: GetRules
-    nameWithType: ISudokuRuleKeeper.GetRules
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.GetRules
+    nameWithType: IRuleKeeper.GetRules
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.GetRules
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}
-  commentId: '!:IReadOnlyList{SudokuSpice.RuleBased.Rules.ISudokuRule}'
-  definition: IReadOnlyList`1
-  name: IReadOnlyList<ISudokuRule>
-  nameWithType: IReadOnlyList<ISudokuRule>
-  fullName: IReadOnlyList<SudokuSpice.RuleBased.Rules.ISudokuRule>
-  nameWithType.vb: IReadOnlyList(Of ISudokuRule)
-  fullName.vb: IReadOnlyList(Of SudokuSpice.RuleBased.Rules.ISudokuRule)
-  name.vb: IReadOnlyList(Of ISudokuRule)
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  name: IReadOnlyList<IRule>
+  nameWithType: IReadOnlyList<IRule>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.IRule>
+  nameWithType.vb: IReadOnlyList(Of IRule)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.IRule)
+  name.vb: IReadOnlyList(Of IRule)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule
-    name: ISudokuRule
-    nameWithType: ISudokuRule
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule
+  - uid: SudokuSpice.RuleBased.Rules.IRule
+    name: IRule
+    nameWithType: IRule
+    fullName: SudokuSpice.RuleBased.Rules.IRule
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule
-    name: ISudokuRule
-    nameWithType: ISudokuRule
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule
+  - uid: SudokuSpice.RuleBased.Rules.IRule
+    name: IRule
+    nameWithType: IRule
+    fullName: SudokuSpice.RuleBased.Rules.IRule
   - name: )
     nameWithType: )
     fullName: )
-- uid: IReadOnlyList`1
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
-  name: IReadOnlyList<>
-  nameWithType: IReadOnlyList<>
-  fullName: IReadOnlyList<>
-  nameWithType.vb: IReadOnlyList(Of )
-  fullName.vb: IReadOnlyList(Of )
-  name.vb: IReadOnlyList(Of )
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
   spec.csharp:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IReadOnlyList`1
+  - uid: System.Collections.Generic.IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForRow*
   commentId: Overload:SudokuSpice.RuleBased.StandardRuleKeeper.GetMissingValuesForRow
   name: GetMissingValuesForRow
@@ -1136,18 +1471,18 @@ references:
   name: Unset
   nameWithType: StandardRuleKeeper.Unset
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.Unset
-- uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
-  parent: SudokuSpice.RuleBased.ISudokuRuleKeeper
+- uid: SudokuSpice.RuleBased.IRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.RuleBased.IRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  parent: SudokuSpice.RuleBased.IRuleKeeper
   isExternal: true
   name: Unset(Coordinate, Int32)
-  nameWithType: ISudokuRuleKeeper.Unset(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate, System.Int32)
+  nameWithType: IRuleKeeper.Unset(Coordinate, Int32)
+  fullName: SudokuSpice.RuleBased.IRuleKeeper.Unset(SudokuSpice.Coordinate, System.Int32)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
     name: Unset
-    nameWithType: ISudokuRuleKeeper.Unset
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset
+    nameWithType: IRuleKeeper.Unset
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.Unset
   - name: (
     nameWithType: (
     fullName: (
@@ -1167,10 +1502,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
+  - uid: SudokuSpice.RuleBased.IRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)
     name: Unset
-    nameWithType: ISudokuRuleKeeper.Unset
-    fullName: SudokuSpice.RuleBased.ISudokuRuleKeeper.Unset
+    nameWithType: IRuleKeeper.Unset
+    fullName: SudokuSpice.RuleBased.IRuleKeeper.Unset
   - name: (
     nameWithType: (
     fullName: (
@@ -1189,22 +1524,25 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.NotImplementedException
+  commentId: T:System.NotImplementedException
+  isExternal: true
 - uid: SudokuSpice.RuleBased.StandardRuleKeeper.GetPossibleValues*
   commentId: Overload:SudokuSpice.RuleBased.StandardRuleKeeper.GetPossibleValues
   name: GetPossibleValues
   nameWithType: StandardRuleKeeper.GetPossibleValues
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.GetPossibleValues
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.Rules.IRule
   name: GetPossibleValues(Coordinate)
-  nameWithType: ISudokuRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate)
+  nameWithType: IRule.GetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: ISudokuRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues
+    nameWithType: IRule.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
   - name: (
     nameWithType: (
     fullName: (
@@ -1216,10 +1554,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: ISudokuRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.GetPossibleValues
+    nameWithType: IRule.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
   - name: (
     nameWithType: (
     fullName: (
@@ -1235,18 +1573,18 @@ references:
   name: Revert
   nameWithType: StandardRuleKeeper.Revert
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.Revert
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
   name: Revert(Coordinate, Int32)
-  nameWithType: ISudokuRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  nameWithType: IRule.Revert(Coordinate, Int32)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, System.Int32)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+    nameWithType: IRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
   - name: (
     nameWithType: (
     fullName: (
@@ -1266,10 +1604,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+    nameWithType: IRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
   - name: (
     nameWithType: (
     fullName: (
@@ -1288,18 +1626,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
   name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: ISudokuRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  nameWithType: IRule.Revert(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+    nameWithType: IRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
   - name: (
     nameWithType: (
     fullName: (
@@ -1326,10 +1664,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Revert
-    nameWithType: ISudokuRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Revert
+    nameWithType: IRule.Revert
+    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
   - name: (
     nameWithType: (
     fullName: (
@@ -1366,18 +1704,18 @@ references:
   name: Update
   nameWithType: StandardRuleKeeper.Update
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.Update
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
   name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: ISudokuRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  nameWithType: IRule.Update(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Update
-    nameWithType: ISudokuRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Update
+    nameWithType: IRule.Update
+    fullName: SudokuSpice.RuleBased.Rules.IRule.Update
   - name: (
     nameWithType: (
     fullName: (
@@ -1404,10 +1742,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Update
-    nameWithType: ISudokuRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.Update
+    nameWithType: IRule.Update
+    fullName: SudokuSpice.RuleBased.Rules.IRule.Update
   - name: (
     nameWithType: (
     fullName: (
@@ -1438,17 +1776,17 @@ references:
   name: CopyWithNewReference
   nameWithType: StandardRuleKeeper.CopyWithNewReference
   fullName: SudokuSpice.RuleBased.StandardRuleKeeper.CopyWithNewReference
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.IRule
   name: CopyWithNewReference(IReadOnlyPuzzle)
-  nameWithType: ISudokuRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  nameWithType: IRule.CopyWithNewReference(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: ISudokuRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
+    nameWithType: IRule.CopyWithNewReference
+    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
   - name: (
     nameWithType: (
     fullName: (
@@ -1460,10 +1798,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: ISudokuRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.CopyWithNewReference
+    nameWithType: IRule.CopyWithNewReference
+    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
   - name: (
     nameWithType: (
     fullName: (
@@ -1480,17 +1818,17 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-- uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Rules.ISudokuRule
+- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  parent: SudokuSpice.RuleBased.Rules.IRule
   name: TryInit(IReadOnlyPuzzle)
-  nameWithType: ISudokuRule.TryInit(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  nameWithType: IRule.TryInit(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: TryInit
-    nameWithType: ISudokuRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
+    nameWithType: IRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
   - name: (
     nameWithType: (
     fullName: (
@@ -1502,10 +1840,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzle)
     name: TryInit
-    nameWithType: ISudokuRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.ISudokuRule.TryInit
+    nameWithType: IRule.TryInit
+    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
   - name: (
     nameWithType: (
     fullName: (

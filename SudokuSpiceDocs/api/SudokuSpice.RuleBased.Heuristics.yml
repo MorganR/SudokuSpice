@@ -4,7 +4,7 @@ items:
   commentId: N:SudokuSpice.RuleBased.Heuristics
   id: SudokuSpice.RuleBased.Heuristics
   children:
-  - SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+  - SudokuSpice.RuleBased.Heuristics.IHeuristic
   - SudokuSpice.RuleBased.Heuristics.StandardHeuristic
   - SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic
   - SudokuSpice.RuleBased.Heuristics.UniqueInColumnHeuristic
@@ -20,12 +20,12 @@ items:
   assemblies:
   - SudokuSpice
 references:
-- uid: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
-  commentId: T:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  commentId: T:SudokuSpice.RuleBased.Heuristics.IHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
-  name: ISudokuHeuristic
-  nameWithType: ISudokuHeuristic
-  fullName: SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic
+  name: IHeuristic
+  nameWithType: IHeuristic
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic
 - uid: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
   commentId: T:SudokuSpice.RuleBased.Heuristics.StandardHeuristic
   name: StandardHeuristic

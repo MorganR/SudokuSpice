@@ -7,7 +7,7 @@ namespace SudokuSpice.RuleBased.Rules
     /// Simplifies the logic needed to implement a uniqueness rule, such as "all values in a row
     /// must be unique."
     /// </summary>
-    public abstract class UniquenessRule : ISudokuRule
+    public abstract class UniquenessRule : IRule
     {
         private BitVector[]? _dimensions;
 
@@ -19,7 +19,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public abstract ISudokuRule CopyWithNewReference(IReadOnlyPuzzle? puzzle);
+        public abstract IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle);
 
         /// <inheritdoc/>
         public virtual bool TryInit(IReadOnlyPuzzle puzzle)

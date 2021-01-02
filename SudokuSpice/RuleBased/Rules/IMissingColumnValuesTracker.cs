@@ -3,7 +3,7 @@
     /// <summary>
     /// Tracks all the required unset values for a given column in the Puzzle.
     /// </summary>
-    public interface IMissingColumnValuesTracker : ISudokuRule
+    public interface IMissingColumnValuesTracker : IRule
     {
         /// <summary>
         /// Returns all the values that still need to be set in the given column.

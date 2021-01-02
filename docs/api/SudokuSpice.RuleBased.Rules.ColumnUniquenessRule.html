@@ -85,7 +85,7 @@
   <div classs="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.html">IMissingColumnValuesTracker</a></div>
-    <div><a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a></div>
+    <div><a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -104,12 +104,33 @@
     <div>
       <a class="xref" href="SudokuSpice.RuleBased.Rules.UniquenessRule.html#SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_System_Int32_">UniquenessRule.GetPossibleValues(Int32)</a>
     </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Rules.html">SudokuSpice.RuleBased.Rules</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ColumnUniquenessRule : UniquenessRule, IMissingColumnValuesTracker, ISudokuRule</code></pre>
+    <pre><code class="lang-csharp hljs">public class ColumnUniquenessRule : UniquenessRule, IMissingColumnValuesTracker, IRule</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -139,13 +160,13 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_CopyWithNewReference_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_CopyWithNewReference_SudokuSpice_RuleBased_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
-  <div class="markdown level1 summary"><p>Creates a deep copy of this ISudokuRule, with any internal <code>IReadOnlyPuzzle</code>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>
 references updated to the given puzzle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)</code></pre>
+    <pre><code class="lang-csharp hljs">public override IRule CopyWithNewReference(IReadOnlyPuzzle puzzle)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -176,7 +197,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -442,7 +463,7 @@ failure.</p>
       <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.html">IMissingColumnValuesTracker</a>
   </div>
   <div>
-      <a class="xref" href="SudokuSpice.RuleBased.Rules.ISudokuRule.html">ISudokuRule</a>
+      <a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>
   </div>
 </article>
           </div>
