@@ -30,7 +30,8 @@ namespace SudokuSpice.ConstraintBased
 
         internal SquareTracker<TPuzzle> CopyForContinuation() => new SquareTracker<TPuzzle>(this);
 
-        internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess(bool useSmartOrderForPossibleValues)
+        // TODO: Apply this tuple return to rule-based solver
+        internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Square? bestSquare = null;
@@ -64,10 +65,9 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 bestSquare != null,
                 $"{nameof(bestSquare)} was still null at the end of {nameof(GetBestGuess)}.");
+            // TODO: Skip this if solving randomly
             return (bestSquare.Coordinate,
-                useSmartOrderForPossibleValues
-                    ? _OrderPossibleValuesByProbability(bestSquare)
-                    : bestSquare.GetStillPossibleValues().Select(pv => pv.ValueIndex).ToArray());
+                _OrderPossibleValuesByProbability(bestSquare.Coordinate));
         }
 
         internal bool TrySet(in Coordinate c, int valueIndex)
@@ -99,8 +99,12 @@ namespace SudokuSpice.ConstraintBased
             square.Unset();
         }
 
-        private int[] _OrderPossibleValuesByProbability(Square square)
+        private int[] _OrderPossibleValuesByProbability(in Coordinate c)
         {
+            Square? square = _matrix.GetSquare(in c);
+            Debug.Assert(
+                square != null,
+                $"Tried to order possible values at {c}, but square was null.");
             PossibleSquareValue[]? possibleSquares = square.GetStillPossibleValues();
             return possibleSquares.OrderBy(
                 ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
