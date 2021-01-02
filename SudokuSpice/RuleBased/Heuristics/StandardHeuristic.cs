@@ -6,7 +6,7 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// <summary>
     /// Provides the standard <c>UniqueIn*</c> heuristics.
     /// </summary>
-    public class StandardHeuristic : ISudokuHeuristic
+    public class StandardHeuristic : IHeuristic
     {
         private readonly UniqueInRowHeuristic _rowHeuristic;
         private readonly UniqueInColumnHeuristic _columnHeuristic;
@@ -69,7 +69,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <see cref="IMissingBoxValuesTracker"/>, an <see cref="IMissingColumnValuesTracker"/>,
         /// and an <see cref="IMissingRowValuesTracker"/>.
         /// </summary>
-        public ISudokuHeuristic CopyWithNewReferences(
+        public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IReadOnlyList<ISudokuRule> rules) => new StandardHeuristic(this, puzzle, rules);
 

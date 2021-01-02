@@ -14,7 +14,7 @@ namespace SudokuSpice.RuleBased.Heuristics
     /// <c>B: [1, 2]</c>, and <c>C: [1, 2, 3]</c>, then this would set <c>C</c>'s possible values
     /// to <c>[3]</c>.
     /// </summary>
-    public class UniqueInBoxHeuristic : ISudokuHeuristic
+    public class UniqueInBoxHeuristic : IHeuristic
     {
         private readonly IMissingBoxValuesTracker _boxTracker;
         private int _boxSize;
@@ -51,7 +51,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// Creates a deep copy of this heuristic. Requires <c>rules</c> to contain an
         /// <see cref="IMissingBoxValuesTracker"/>.
         /// </summary>
-        public ISudokuHeuristic CopyWithNewReferences(
+        public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
             IReadOnlyList<ISudokuRule> rules)
         {

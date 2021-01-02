@@ -11,7 +11,7 @@ namespace SudokuSpice.RuleBased
     internal class SquareTracker
     {
         private readonly ISudokuRuleKeeper _ruleKeeper;
-        private readonly ISudokuHeuristic? _heuristic;
+        private readonly IHeuristic? _heuristic;
         private Stack<Coordinate>? _setCoords;
         private Stack<Coordinate>? _coordsThatUsedHeuristics;
         private IPuzzle? _puzzle;
@@ -33,7 +33,7 @@ namespace SudokuSpice.RuleBased
         /// </param>
         public SquareTracker(
             ISudokuRuleKeeper ruleKeeper,
-            ISudokuHeuristic? heuristic = null)
+            IHeuristic? heuristic = null)
         {
             _ruleKeeper = ruleKeeper;
             _heuristic = heuristic;

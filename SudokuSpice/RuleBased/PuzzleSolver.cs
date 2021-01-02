@@ -18,7 +18,7 @@ namespace SudokuSpice.RuleBased
         /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
         public PuzzleSolver(
             ISudokuRuleKeeper ruleKeeper,
-            ISudokuHeuristic? heuristic = null)
+            IHeuristic? heuristic = null)
         {
             _tracker = new SquareTracker(ruleKeeper, heuristic);
         }
