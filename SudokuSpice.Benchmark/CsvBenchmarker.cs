@@ -24,7 +24,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(SampleCollections))]
         public bool SudokuSpice(PuzzleSampleCollection sampleCollection)
         {
-            var puzzle = RuleBased.Puzzle.CopyFrom(sampleCollection.Random().NullableMatrix);
+            var puzzle = PuzzleWithPossibleValues.CopyFrom(sampleCollection.Random().NullableMatrix);
             var solver = StandardPuzzles.CreateSolver();
             solver.Solve(puzzle);
             return puzzle.NumEmptySquares == 0;
@@ -34,7 +34,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(SampleCollections))]
         public bool SudokuSpiceConstraints(PuzzleSampleCollection sampleCollection)
         {
-            var solver = new PuzzleSolver<Puzzle>(
+            var solver = new ConstraintBased.PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),

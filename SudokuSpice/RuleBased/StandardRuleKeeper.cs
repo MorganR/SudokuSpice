@@ -288,12 +288,22 @@ namespace SudokuSpice.RuleBased
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => throw new NotImplementedException();
+        public IRule CopyWithNewReference(IReadOnlyPossibleValues? puzzle) => throw new NotImplementedException();
 
         /// <summary>
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public bool TryInit(IReadOnlyPuzzle puzzle) => throw new NotImplementedException();
+        public bool TryInit(IReadOnlyPossibleValues puzzle) => throw new NotImplementedException();
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
+        public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => throw new NotImplementedException();
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <exception cref="NotImplementedException">Always</exception>
+        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues) => throw new NotImplementedException();
     }
 }

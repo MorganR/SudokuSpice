@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_ValidPuzzle_FiltersCorrectly()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,   4},
                 {null, null,    3,   2},
                 {   2, null, null, null},
@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             });
             var rule = new DiagonalUniquenessRule();
 
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
             var expectedBackwardPossibles = new BitVector(0b11100);
             var expectedForwardPossibles = new BitVector(0b00110);
@@ -46,7 +46,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_WithDuplicateValueInDiagonal_Fails()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                    {   1, null, null,   4},
                    {null,    1,    3,   2},
                    {   2, null, null, null},
@@ -54,22 +54,22 @@ namespace SudokuSpice.RuleBased.Rules.Test
                });
             var rule = new DiagonalUniquenessRule();
 
-            Assert.False(rule.TryInit(puzzle));
+            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
         }
 
         [Fact]
         public void CopyWithNewReference_CreatesDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,    4},
                 {null, null,    3,    2},
                 {   4, null, null, null},
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
-            var puzzleCopy = new Puzzle(puzzle);
+            var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 4;
             var coord = new Coordinate(1, 1);
@@ -94,14 +94,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_OnDiagonal_UpdatesSpecifiedDiagonal()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,   4},
                 {null, null,    3,   2},
                 {   2, null, null, null},
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
             int val = 4;
@@ -119,14 +119,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_OnNonDiagonal_DoesNothing()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,   4},
                 {null, null,    3,   2},
                 {   2, null, null, null},
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(0, 1);
@@ -149,14 +149,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_WithoutAffectedCoordsList_RevertsSpecifiedDiagonal()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,   4},
                 {null, null,    3,   2},
                 {   2, null, null, null},
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var coord = new Coordinate(2, 1);
             int val = 1;
@@ -178,14 +178,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedDiagonal()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,   4},
                 {null, null,    3,   2},
                 {   2, null, null, null},
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             BitVector[,] initialPossibles = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(2, 2);
@@ -212,14 +212,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_OnNonDiagonal_DoesNothing()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {   1, null, null,   4},
                 {null, null,    3,   2},
                 {   2, null, null, null},
                 {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             BitVector[,] previousPossibles = _GetPossibleValues(puzzle.Size, rule);
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(0, 1);

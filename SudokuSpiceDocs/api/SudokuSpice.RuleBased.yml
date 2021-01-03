@@ -5,15 +5,15 @@ items:
   id: SudokuSpice.RuleBased
   children:
   - SudokuSpice.RuleBased.BitVector
-  - SudokuSpice.RuleBased.Boxes
   - SudokuSpice.RuleBased.DynamicRuleKeeper
-  - SudokuSpice.RuleBased.IPuzzle
-  - SudokuSpice.RuleBased.IReadOnlyPuzzle
+  - SudokuSpice.RuleBased.IPossibleValues
+  - SudokuSpice.RuleBased.IPuzzleWithPossibleValues
+  - SudokuSpice.RuleBased.IReadOnlyPossibleValues
   - SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+  - SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues
   - SudokuSpice.RuleBased.IRuleKeeper
-  - SudokuSpice.RuleBased.Puzzle
-  - SudokuSpice.RuleBased.PuzzleGenerator`1
-  - SudokuSpice.RuleBased.PuzzleSolver
+  - SudokuSpice.RuleBased.PuzzleSolver`1
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues
   - SudokuSpice.RuleBased.StandardPuzzleGenerator
   - SudokuSpice.RuleBased.StandardPuzzles
   - SudokuSpice.RuleBased.StandardRuleKeeper
@@ -33,59 +33,60 @@ references:
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice.RuleBased.Boxes
-  commentId: T:SudokuSpice.RuleBased.Boxes
-  name: Boxes
-  nameWithType: Boxes
-  fullName: SudokuSpice.RuleBased.Boxes
 - uid: SudokuSpice.RuleBased.DynamicRuleKeeper
   commentId: T:SudokuSpice.RuleBased.DynamicRuleKeeper
   name: DynamicRuleKeeper
   nameWithType: DynamicRuleKeeper
   fullName: SudokuSpice.RuleBased.DynamicRuleKeeper
-- uid: SudokuSpice.RuleBased.IPuzzle
-  commentId: T:SudokuSpice.RuleBased.IPuzzle
+- uid: SudokuSpice.RuleBased.IPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IPossibleValues
   parent: SudokuSpice.RuleBased
-  name: IPuzzle
-  nameWithType: IPuzzle
-  fullName: SudokuSpice.RuleBased.IPuzzle
-- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
+  name: IPossibleValues
+  nameWithType: IPossibleValues
+  fullName: SudokuSpice.RuleBased.IPossibleValues
+- uid: SudokuSpice.RuleBased.IPuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IPuzzleWithPossibleValues
   parent: SudokuSpice.RuleBased
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  name: IPuzzleWithPossibleValues
+  nameWithType: IPuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.IPuzzleWithPossibleValues
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IReadOnlyPossibleValues
+  nameWithType: IReadOnlyPossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues
 - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   parent: SudokuSpice.RuleBased
   name: IReadOnlyPuzzleWithMutablePossibleValues
   nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+- uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IReadOnlyPuzzleWithPossibleValues
+  nameWithType: IReadOnlyPuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues
 - uid: SudokuSpice.RuleBased.IRuleKeeper
   commentId: T:SudokuSpice.RuleBased.IRuleKeeper
   parent: SudokuSpice.RuleBased
   name: IRuleKeeper
   nameWithType: IRuleKeeper
   fullName: SudokuSpice.RuleBased.IRuleKeeper
-- uid: SudokuSpice.RuleBased.Puzzle
-  commentId: T:SudokuSpice.RuleBased.Puzzle
-  parent: SudokuSpice.RuleBased
-  name: Puzzle
-  nameWithType: Puzzle
-  fullName: SudokuSpice.RuleBased.Puzzle
-- uid: SudokuSpice.RuleBased.PuzzleGenerator`1
-  commentId: T:SudokuSpice.RuleBased.PuzzleGenerator`1
-  name: PuzzleGenerator<TPuzzle>
-  nameWithType: PuzzleGenerator<TPuzzle>
-  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>
-  nameWithType.vb: PuzzleGenerator(Of TPuzzle)
-  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle)
-  name.vb: PuzzleGenerator(Of TPuzzle)
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver`1
+  name: PuzzleSolver<TPuzzle>
+  nameWithType: PuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>
+  nameWithType.vb: PuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle)
+  name.vb: PuzzleSolver(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
-    name: PuzzleGenerator
-    nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.RuleBased.PuzzleGenerator
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
   - name: <
     nameWithType: <
     fullName: <
@@ -96,10 +97,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
-    name: PuzzleGenerator
-    nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.RuleBased.PuzzleGenerator
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -109,12 +110,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.PuzzleSolver
-  commentId: T:SudokuSpice.RuleBased.PuzzleSolver
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.PuzzleWithPossibleValues
   parent: SudokuSpice.RuleBased
-  name: PuzzleSolver
-  nameWithType: PuzzleSolver
-  fullName: SudokuSpice.RuleBased.PuzzleSolver
+  name: PuzzleWithPossibleValues
+  nameWithType: PuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
 - uid: SudokuSpice.RuleBased.StandardPuzzleGenerator
   commentId: T:SudokuSpice.RuleBased.StandardPuzzleGenerator
   name: StandardPuzzleGenerator

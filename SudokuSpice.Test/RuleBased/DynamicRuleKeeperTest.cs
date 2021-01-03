@@ -10,7 +10,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TryInitFor_UpdatesPossibles()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -40,7 +40,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TryInitFor_WhenSquareHasNoPossibleValues_Fails()
         {
-            var puzzle = new Puzzle(
+            var puzzle = new PuzzleWithPossibleValues(
                 new int?[,] {
                     {           1,    3 /* 4 */, null /* 3 */,            2},
                     {null /* 2 */, null /* 3 */,            1, null /* 4 */},
@@ -60,7 +60,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void CopyWithNewReferences_CreatesDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -75,7 +75,7 @@ namespace SudokuSpice.RuleBased.Test
             var ruleKeeper = new DynamicRuleKeeper(rules);
             Assert.True(ruleKeeper.TryInit(puzzle));
 
-            var puzzleCopy = new Puzzle(puzzle);
+            var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRuleKeeper ruleKeeperCopy = ruleKeeper.CopyWithNewReferences(puzzleCopy);
 
             IReadOnlyList<IRule> rulesCopy = ruleKeeperCopy.GetRules();
@@ -97,7 +97,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithValidValue_Succeeds()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -126,7 +126,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithValueThatCausesNoPossiblesForOtherSquare_FailsAndLeavesUnchanged()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -155,7 +155,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithInvalidValue_FailsAndLeavesUnchanged()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -184,7 +184,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Revert_RevertsSpecifiedCoordinate()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -202,9 +202,7 @@ namespace SudokuSpice.RuleBased.Test
             var coord = new Coordinate(1, 1);
             int val = 3;
             Assert.True(ruleKeeper.TrySet(in coord, val));
-            puzzle[in coord] = val;
 
-            puzzle[in coord] = null;
             ruleKeeper.Unset(in coord, val);
 
             foreach (Coordinate c in puzzle.GetUnsetCoords())
@@ -214,7 +212,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         private static IDictionary<Coordinate, BitVector> _RetrieveAllUnsetPossibleValues(
-            Puzzle puzzle)
+            PuzzleWithPossibleValues puzzle)
         {
             var unsetPossibleValues = new Dictionary<Coordinate, BitVector>();
             foreach (Coordinate c in puzzle.GetUnsetCoords())

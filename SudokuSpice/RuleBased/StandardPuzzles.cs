@@ -6,10 +6,10 @@ namespace SudokuSpice.RuleBased
     public static class StandardPuzzles
     {
         /// <summary>Creates an efficient solver for solving standard Sudoku puzzles.</summary>
-        public static PuzzleSolver CreateSolver()
+        public static PuzzleSolver<PuzzleWithPossibleValues> CreateSolver()
         {
             var ruleKeeper = new StandardRuleKeeper();
-            return new PuzzleSolver(
+            return new PuzzleSolver<PuzzleWithPossibleValues>(
                 ruleKeeper,
                 new StandardHeuristic(
                     ruleKeeper,

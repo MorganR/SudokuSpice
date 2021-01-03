@@ -2,12 +2,12 @@
 
 namespace SudokuSpice.RuleBased.Test
 {
-    public sealed class InvalidStandardPuzzles : TheoryData<Puzzle>
+    public sealed class InvalidStandardPuzzles : TheoryData<PuzzleWithPossibleValues>
     {
         public InvalidStandardPuzzles()
         {
             // Duplicate in row.
-            Add(new Puzzle(
+            Add(new PuzzleWithPossibleValues(
                     new int?[,] {
                         {    1, null,    1, null},
                         {    2, null, null, null},
@@ -15,7 +15,7 @@ namespace SudokuSpice.RuleBased.Test
                         {    4, null, null, null},
                     }));
             // Duplicate in column.
-            Add(new Puzzle(
+            Add(new PuzzleWithPossibleValues(
                     new int?[,] {
                         {    1,    2,    3,    4},
                         { null, null, null, null},
@@ -23,7 +23,7 @@ namespace SudokuSpice.RuleBased.Test
                         {    1, null, null, null},
                     }));
             // Duplicate in box.
-            Add(new Puzzle(
+            Add(new PuzzleWithPossibleValues(
                     new int?[,] {
                         {    1,    2,    3,    4},
                         {    2, null, null, null},
@@ -31,7 +31,7 @@ namespace SudokuSpice.RuleBased.Test
                         {    4, null, null, null},
                     }));
             // Unsolvable.
-            Add(new Puzzle(
+            Add(new PuzzleWithPossibleValues(
                     new int?[,] {
                         {    1, null,    3,    4},
                         { null, null,    1,    2},

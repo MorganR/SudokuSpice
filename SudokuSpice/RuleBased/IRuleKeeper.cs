@@ -8,14 +8,10 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Creates a deep copy of this rule keeper, including copies of any
         /// <see cref="IRule"/>s it contains, with updated internal
-        /// <see cref="IReadOnlyPuzzle"/> and <see cref="PossibleValues"/> references.
+        /// <see cref="IReadOnlyPuzzleWithMutablePossibleValues"/>.
         /// </summary>
         /// <param name="puzzle">
         /// The new puzzle reference. Should contain the same data as the current puzzle instance.
-        /// </param>
-        /// <param name="possibleValues">
-        /// The new possible values reference. Should contain the same data as the current possible
-        /// values instance.
         /// </param>
         IRuleKeeper CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle);

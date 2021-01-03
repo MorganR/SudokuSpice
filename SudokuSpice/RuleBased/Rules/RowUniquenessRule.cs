@@ -21,10 +21,9 @@ namespace SudokuSpice.RuleBased.Rules
         public override IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => new RowUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
-        public override bool TryInit(IReadOnlyPuzzle puzzle)
+        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
         {
-            // This should be enforced by the rule keeper.
-            if (!base.TryInit(puzzle))
+            if (!base.TryInit(puzzle, allPossibleValues))
             {
                 return false;
             }

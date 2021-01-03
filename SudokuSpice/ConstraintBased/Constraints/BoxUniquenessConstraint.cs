@@ -10,9 +10,13 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <inheritdoc/>
         public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
+            if (!Boxes.TryCalculateBoxSize(puzzle.Size, out int boxSize))
+            {
+                return false;
+            }
             for (int box = 0; box < puzzle.Size; box++)
             {
-                if (!_TryAppendConstraintHeadersInBox(box, (IReadOnlyBoxPuzzle)puzzle, matrix))
+                if (!_TryAppendConstraintHeadersInBox(box, boxSize, puzzle, matrix))
                 {
                     return false;
                 }
@@ -21,11 +25,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         private static bool _TryAppendConstraintHeadersInBox(
-            int box, IReadOnlyBoxPuzzle puzzle, ExactCoverMatrix matrix)
+            int box, int boxSize, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
-            Coordinate startCoord = puzzle.GetStartingBoxCoordinate(box);
+            Coordinate startCoord = Boxes.GetStartingBoxCoordinate(box, boxSize);
             var endCoord = new Coordinate(
-                startCoord.Row + puzzle.BoxSize, startCoord.Column + puzzle.BoxSize);
+                startCoord.Row + boxSize, startCoord.Column + boxSize);
             Span<Coordinate> boxCoordinates = stackalloc Coordinate[puzzle.Size];
             int i = 0;
             for (int row = startCoord.Row; row < endCoord.Row; row++)

@@ -9,10 +9,8 @@ items:
   - SudokuSpice.Puzzle.#ctor(System.Int32)
   - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])
   - SudokuSpice.Puzzle.AllPossibleValuesSpan
-  - SudokuSpice.Puzzle.BoxSize
+  - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   - SudokuSpice.Puzzle.DeepCopy
-  - SudokuSpice.Puzzle.GetBoxIndex(System.Int32,System.Int32)
-  - SudokuSpice.Puzzle.GetStartingBoxCoordinate(System.Int32)
   - SudokuSpice.Puzzle.GetUnsetCoords
   - SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)
   - SudokuSpice.Puzzle.Item(System.Int32,System.Int32)
@@ -21,7 +19,6 @@ items:
   - SudokuSpice.Puzzle.NumSquares
   - SudokuSpice.Puzzle.Size
   - SudokuSpice.Puzzle.ToString
-  - SudokuSpice.Puzzle.YieldUnsetCoordsForBox(System.Int32)
   langs:
   - csharp
   - vb
@@ -36,22 +33,21 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Puzzle
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 10
+    startLine: 13
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: Manages underlying puzzle data.
+  summary: "\nRepresents a puzzle with the following assumptions:\n\n* Puzzles must be square, of shape size-by-size.\n* The possible values for any square in the puzzle are the numbers from 1 to size,\ninclusive.\n"
   example: []
   syntax:
-    content: 'public class Puzzle : IPuzzle, IReadOnlyBoxPuzzle, IReadOnlyPuzzle'
+    content: 'public class Puzzle : IPuzzle, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
-          Implements IPuzzle, IReadOnlyBoxPuzzle, IReadOnlyPuzzle
+          Implements IPuzzle, IReadOnlyPuzzle
   inheritance:
   - System.Object
   implements:
   - SudokuSpice.IPuzzle
-  - SudokuSpice.IReadOnlyBoxPuzzle
   - SudokuSpice.IReadOnlyPuzzle
   inheritedMembers:
   - System.Object.Equals(System.Object)
@@ -84,11 +80,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Size
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 18
+    startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  summary: The side-length of the puzzle (puzzles must be square).
   example: []
   syntax:
     content: public int Size { get; }
@@ -99,45 +95,6 @@ items:
   overload: SudokuSpice.Puzzle.Size*
   implements:
   - SudokuSpice.IReadOnlyPuzzle.Size
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: SudokuSpice.Puzzle.BoxSize
-  commentId: P:SudokuSpice.Puzzle.BoxSize
-  id: BoxSize
-  parent: SudokuSpice.Puzzle
-  langs:
-  - csharp
-  - vb
-  name: BoxSize
-  nameWithType: Puzzle.BoxSize
-  fullName: SudokuSpice.Puzzle.BoxSize
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
-    id: BoxSize
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 20
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nExpands IReadOnlyPuzzle to provide box-related functionality. A &apos;box&apos; is a square region\nwithin the puzzle. \n"
-  example: []
-  syntax:
-    content: public int BoxSize { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public ReadOnly Property BoxSize As Integer
-  overload: SudokuSpice.Puzzle.BoxSize*
-  implements:
-  - SudokuSpice.IReadOnlyBoxPuzzle.BoxSize
   modifiers.csharp:
   - public
   - get
@@ -166,7 +123,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  summary: The total number of squares in the puzzle.
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -205,7 +162,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  summary: The current number of empty/unknown squares in the puzzle.
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -244,7 +201,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  summary: The number of set/known squares in the puzzle.
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -283,7 +240,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -358,18 +315,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 93
+    startLine: 78
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nConstructs a new puzzle whose data matches the given array.\n"
+  summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array\nmodifies the puzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all future modifications should be done\nthrough this puzzle object, else this will be in an incorrect state.\n"
   example: []
   syntax:
     content: public Puzzle(int? [, ] puzzleMatrix)
     parameters:
     - id: puzzleMatrix
       type: System.Nullable{System.Int32}[,]
-      description: "\nThe data for this Sudoku puzzle. Preset squares should be set, and unset squares should\nbe null. A copy of this data is stored in this <code>Puzzle</code>.\n"
+      description: "\nThe data for this Sudoku puzzle. Preset squares should be set, and unset squares should\nbe null. The puzzle maintains a reference to this array.\n"
     content.vb: Public Sub New(puzzleMatrix As Integer?(,))
   overload: SudokuSpice.Puzzle.#ctor*
   nameWithType.vb: Puzzle.Puzzle(Nullable(Of Int32)(,))
@@ -397,7 +354,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 133
+    startLine: 109
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -410,6 +367,82 @@ items:
       type: SudokuSpice.Puzzle
     content.vb: Public Sub New(existing As Puzzle)
   overload: SudokuSpice.Puzzle.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  id: CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(Nullable<Int32>[,])
+  nameWithType: Puzzle.CopyFrom(Nullable<Int32>[,])
+  fullName: SudokuSpice.Puzzle.CopyFrom(System.Nullable<System.Int32>[,])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: CopyFrom
+    path: ../SudokuSpice/data/Puzzle.cs
+    startLine: 118
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static Puzzle CopyFrom(int? [, ] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[,]
+    return:
+      type: SudokuSpice.Puzzle
+    content.vb: Public Shared Function CopyFrom(matrix As Integer?(,)) As Puzzle
+  overload: SudokuSpice.Puzzle.CopyFrom*
+  nameWithType.vb: Puzzle.CopyFrom(Nullable(Of Int32)(,))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Puzzle.CopyFrom(System.Nullable(Of System.Int32)(,))
+  name.vb: CopyFrom(Nullable(Of Int32)(,))
+- uid: SudokuSpice.Puzzle.DeepCopy
+  commentId: M:SudokuSpice.Puzzle.DeepCopy
+  id: DeepCopy
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: DeepCopy()
+  nameWithType: Puzzle.DeepCopy()
+  fullName: SudokuSpice.Puzzle.DeepCopy()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/data/Puzzle.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: DeepCopy
+    path: ../SudokuSpice/data/Puzzle.cs
+    startLine: 124
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
+  example: []
+  syntax:
+    content: public IPuzzle DeepCopy()
+    return:
+      type: SudokuSpice.IPuzzle
+    content.vb: Public Function DeepCopy As IPuzzle
+  overload: SudokuSpice.Puzzle.DeepCopy*
+  implements:
+  - SudokuSpice.IPuzzle.DeepCopy
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -432,7 +465,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 144
+    startLine: 127
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -461,42 +494,6 @@ items:
   - Public
   fullName.vb: SudokuSpice.Puzzle.Item(System.Int32, System.Int32)
   name.vb: Item(Int32, Int32)
-- uid: SudokuSpice.Puzzle.DeepCopy
-  commentId: M:SudokuSpice.Puzzle.DeepCopy
-  id: DeepCopy
-  parent: SudokuSpice.Puzzle
-  langs:
-  - csharp
-  - vb
-  name: DeepCopy()
-  nameWithType: Puzzle.DeepCopy()
-  fullName: SudokuSpice.Puzzle.DeepCopy()
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
-    id: DeepCopy
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 159
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
-  example: []
-  syntax:
-    content: public IPuzzle DeepCopy()
-    return:
-      type: SudokuSpice.IPuzzle
-    content.vb: Public Function DeepCopy As IPuzzle
-  overload: SudokuSpice.Puzzle.DeepCopy*
-  implements:
-  - SudokuSpice.IPuzzle.DeepCopy
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)
   commentId: P:SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)
   id: Item(SudokuSpice.Coordinate@)
@@ -515,7 +512,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 162
+    startLine: 142
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -544,86 +541,6 @@ items:
   - Public
   fullName.vb: SudokuSpice.Puzzle.Item(ByRef SudokuSpice.Coordinate)
   name.vb: Item(ByRef Coordinate)
-- uid: SudokuSpice.Puzzle.GetBoxIndex(System.Int32,System.Int32)
-  commentId: M:SudokuSpice.Puzzle.GetBoxIndex(System.Int32,System.Int32)
-  id: GetBoxIndex(System.Int32,System.Int32)
-  parent: SudokuSpice.Puzzle
-  langs:
-  - csharp
-  - vb
-  name: GetBoxIndex(Int32, Int32)
-  nameWithType: Puzzle.GetBoxIndex(Int32, Int32)
-  fullName: SudokuSpice.Puzzle.GetBoxIndex(System.Int32, System.Int32)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
-    id: GetBoxIndex
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 170
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: Returns the index of the box that the given coordinates are in.
-  example: []
-  syntax:
-    content: public int GetBoxIndex(int row, int col)
-    parameters:
-    - id: row
-      type: System.Int32
-    - id: col
-      type: System.Int32
-    return:
-      type: System.Int32
-    content.vb: Public Function GetBoxIndex(row As Integer, col As Integer) As Integer
-  overload: SudokuSpice.Puzzle.GetBoxIndex*
-  implements:
-  - SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex(System.Int32,System.Int32)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.Puzzle.GetStartingBoxCoordinate(System.Int32)
-  commentId: M:SudokuSpice.Puzzle.GetStartingBoxCoordinate(System.Int32)
-  id: GetStartingBoxCoordinate(System.Int32)
-  parent: SudokuSpice.Puzzle
-  langs:
-  - csharp
-  - vb
-  name: GetStartingBoxCoordinate(Int32)
-  nameWithType: Puzzle.GetStartingBoxCoordinate(Int32)
-  fullName: SudokuSpice.Puzzle.GetStartingBoxCoordinate(System.Int32)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
-    id: GetStartingBoxCoordinate
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 173
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: Returns the top-left coordinate for the given box.
-  example: []
-  syntax:
-    content: public Coordinate GetStartingBoxCoordinate(int box)
-    parameters:
-    - id: box
-      type: System.Int32
-    return:
-      type: SudokuSpice.Coordinate
-    content.vb: Public Function GetStartingBoxCoordinate(box As Integer) As Coordinate
-  overload: SudokuSpice.Puzzle.GetStartingBoxCoordinate*
-  implements:
-  - SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(System.Int32)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: SudokuSpice.Puzzle.GetUnsetCoords
   commentId: M:SudokuSpice.Puzzle.GetUnsetCoords
   id: GetUnsetCoords
@@ -642,7 +559,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetUnsetCoords
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 176
+    startLine: 150
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -656,45 +573,6 @@ items:
   overload: SudokuSpice.Puzzle.GetUnsetCoords*
   implements:
   - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.Puzzle.YieldUnsetCoordsForBox(System.Int32)
-  commentId: M:SudokuSpice.Puzzle.YieldUnsetCoordsForBox(System.Int32)
-  id: YieldUnsetCoordsForBox(System.Int32)
-  parent: SudokuSpice.Puzzle
-  langs:
-  - csharp
-  - vb
-  name: YieldUnsetCoordsForBox(Int32)
-  nameWithType: Puzzle.YieldUnsetCoordsForBox(Int32)
-  fullName: SudokuSpice.Puzzle.YieldUnsetCoordsForBox(System.Int32)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/data/Puzzle.cs
-      branch: internal-puzzle
-      repo: https://github.com/MorganR/SudokuSpice
-    id: YieldUnsetCoordsForBox
-    path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 181
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nYields an enumerable of coordinates for all the unset squares in the given box.\n"
-  example: []
-  syntax:
-    content: public IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box)
-    parameters:
-    - id: box
-      type: System.Int32
-    return:
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-    content.vb: Public Function YieldUnsetCoordsForBox(box As Integer) As IEnumerable(Of Coordinate)
-  overload: SudokuSpice.Puzzle.YieldUnsetCoordsForBox*
-  implements:
-  - SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -717,7 +595,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ToString
     path: ../SudokuSpice/data/Puzzle.cs
-    startLine: 203
+    startLine: 156
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -755,12 +633,6 @@ references:
   name: IPuzzle
   nameWithType: IPuzzle
   fullName: SudokuSpice.IPuzzle
-- uid: SudokuSpice.IReadOnlyBoxPuzzle
-  commentId: T:SudokuSpice.IReadOnlyBoxPuzzle
-  parent: SudokuSpice
-  name: IReadOnlyBoxPuzzle
-  nameWithType: IReadOnlyBoxPuzzle
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
@@ -1039,17 +911,6 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.Puzzle.BoxSize*
-  commentId: Overload:SudokuSpice.Puzzle.BoxSize
-  name: BoxSize
-  nameWithType: Puzzle.BoxSize
-  fullName: SudokuSpice.Puzzle.BoxSize
-- uid: SudokuSpice.IReadOnlyBoxPuzzle.BoxSize
-  commentId: P:SudokuSpice.IReadOnlyBoxPuzzle.BoxSize
-  parent: SudokuSpice.IReadOnlyBoxPuzzle
-  name: BoxSize
-  nameWithType: IReadOnlyBoxPuzzle.BoxSize
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle.BoxSize
 - uid: SudokuSpice.Puzzle.NumSquares*
   commentId: Overload:SudokuSpice.Puzzle.NumSquares
   name: NumSquares
@@ -1185,6 +1046,9 @@ references:
   name: Puzzle
   nameWithType: Puzzle.Puzzle
   fullName: SudokuSpice.Puzzle.Puzzle
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  isExternal: true
 - uid: System.Nullable{System.Int32}[,]
   isExternal: true
   name: Nullable<Int32>[,]
@@ -1239,6 +1103,44 @@ references:
   name: Puzzle
   nameWithType: Puzzle
   fullName: SudokuSpice.Puzzle
+- uid: SudokuSpice.Puzzle.CopyFrom*
+  commentId: Overload:SudokuSpice.Puzzle.CopyFrom
+  name: CopyFrom
+  nameWithType: Puzzle.CopyFrom
+  fullName: SudokuSpice.Puzzle.CopyFrom
+- uid: SudokuSpice.Puzzle.DeepCopy*
+  commentId: Overload:SudokuSpice.Puzzle.DeepCopy
+  name: DeepCopy
+  nameWithType: Puzzle.DeepCopy
+  fullName: SudokuSpice.Puzzle.DeepCopy
+- uid: SudokuSpice.IPuzzle.DeepCopy
+  commentId: M:SudokuSpice.IPuzzle.DeepCopy
+  parent: SudokuSpice.IPuzzle
+  name: DeepCopy()
+  nameWithType: IPuzzle.DeepCopy()
+  fullName: SudokuSpice.IPuzzle.DeepCopy()
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle.DeepCopy
+    name: DeepCopy
+    nameWithType: IPuzzle.DeepCopy
+    fullName: SudokuSpice.IPuzzle.DeepCopy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle.DeepCopy
+    name: DeepCopy
+    nameWithType: IPuzzle.DeepCopy
+    fullName: SudokuSpice.IPuzzle.DeepCopy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Puzzle.Item*
   commentId: Overload:SudokuSpice.Puzzle.Item
   name: Item
@@ -1443,39 +1345,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Puzzle.DeepCopy*
-  commentId: Overload:SudokuSpice.Puzzle.DeepCopy
-  name: DeepCopy
-  nameWithType: Puzzle.DeepCopy
-  fullName: SudokuSpice.Puzzle.DeepCopy
-- uid: SudokuSpice.IPuzzle.DeepCopy
-  commentId: M:SudokuSpice.IPuzzle.DeepCopy
-  parent: SudokuSpice.IPuzzle
-  name: DeepCopy()
-  nameWithType: IPuzzle.DeepCopy()
-  fullName: SudokuSpice.IPuzzle.DeepCopy()
-  spec.csharp:
-  - uid: SudokuSpice.IPuzzle.DeepCopy
-    name: DeepCopy
-    nameWithType: IPuzzle.DeepCopy
-    fullName: SudokuSpice.IPuzzle.DeepCopy
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.IPuzzle.DeepCopy
-    name: DeepCopy
-    nameWithType: IPuzzle.DeepCopy
-    fullName: SudokuSpice.IPuzzle.DeepCopy
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
   commentId: P:SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
   parent: SudokuSpice.IPuzzle
@@ -1560,110 +1429,6 @@ references:
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
-- uid: SudokuSpice.Puzzle.GetBoxIndex*
-  commentId: Overload:SudokuSpice.Puzzle.GetBoxIndex
-  name: GetBoxIndex
-  nameWithType: Puzzle.GetBoxIndex
-  fullName: SudokuSpice.Puzzle.GetBoxIndex
-- uid: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex(System.Int32,System.Int32)
-  commentId: M:SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex(System.Int32,System.Int32)
-  parent: SudokuSpice.IReadOnlyBoxPuzzle
-  isExternal: true
-  name: GetBoxIndex(Int32, Int32)
-  nameWithType: IReadOnlyBoxPuzzle.GetBoxIndex(Int32, Int32)
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex(System.Int32, System.Int32)
-  spec.csharp:
-  - uid: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex(System.Int32,System.Int32)
-    name: GetBoxIndex
-    nameWithType: IReadOnlyBoxPuzzle.GetBoxIndex
-    fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex(System.Int32,System.Int32)
-    name: GetBoxIndex
-    nameWithType: IReadOnlyBoxPuzzle.GetBoxIndex
-    fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetBoxIndex
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.Puzzle.GetStartingBoxCoordinate*
-  commentId: Overload:SudokuSpice.Puzzle.GetStartingBoxCoordinate
-  name: GetStartingBoxCoordinate
-  nameWithType: Puzzle.GetStartingBoxCoordinate
-  fullName: SudokuSpice.Puzzle.GetStartingBoxCoordinate
-- uid: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(System.Int32)
-  commentId: M:SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(System.Int32)
-  parent: SudokuSpice.IReadOnlyBoxPuzzle
-  isExternal: true
-  name: GetStartingBoxCoordinate(Int32)
-  nameWithType: IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(Int32)
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(System.Int32)
-  spec.csharp:
-  - uid: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(System.Int32)
-    name: GetStartingBoxCoordinate
-    nameWithType: IReadOnlyBoxPuzzle.GetStartingBoxCoordinate
-    fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate(System.Int32)
-    name: GetStartingBoxCoordinate
-    nameWithType: IReadOnlyBoxPuzzle.GetStartingBoxCoordinate
-    fullName: SudokuSpice.IReadOnlyBoxPuzzle.GetStartingBoxCoordinate
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.Puzzle.GetUnsetCoords*
   commentId: Overload:SudokuSpice.Puzzle.GetUnsetCoords
   name: GetUnsetCoords
@@ -1739,137 +1504,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.Puzzle.YieldUnsetCoordsForBox*
-  commentId: Overload:SudokuSpice.Puzzle.YieldUnsetCoordsForBox
-  name: YieldUnsetCoordsForBox
-  nameWithType: Puzzle.YieldUnsetCoordsForBox
-  fullName: SudokuSpice.Puzzle.YieldUnsetCoordsForBox
-- uid: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
-  commentId: M:SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
-  parent: SudokuSpice.IReadOnlyBoxPuzzle
-  isExternal: true
-  name: YieldUnsetCoordsForBox(Int32)
-  nameWithType: IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(Int32)
-  fullName: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
-  spec.csharp:
-  - uid: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
-    name: YieldUnsetCoordsForBox
-    nameWithType: IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
-    fullName: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox(System.Int32)
-    name: YieldUnsetCoordsForBox
-    nameWithType: IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
-    fullName: SudokuSpice.IReadOnlyBoxPuzzle.YieldUnsetCoordsForBox
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<Coordinate>
-  nameWithType: IEnumerable<Coordinate>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Coordinate>
-  nameWithType.vb: IEnumerable(Of Coordinate)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Coordinate)
-  name.vb: IEnumerable(Of Coordinate)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object

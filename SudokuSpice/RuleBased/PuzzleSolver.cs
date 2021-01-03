@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Solves a single <see cref="IPuzzle"/> using a <see cref="SquareTracker"/>.
     /// </summary>
-    public class PuzzleSolver
+    public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : IPuzzleWithPossibleValues
     {
         private readonly SquareTracker _tracker;
 
@@ -23,100 +23,43 @@ namespace SudokuSpice.RuleBased
             _tracker = new SquareTracker(ruleKeeper, heuristic);
         }
 
-        /// <summary>
-        /// Attempts to solve the given puzzle. Unlike <see cref="TrySolveRandomly(IPuzzle)"/>,
-        /// when it has to guess, this will try values in guaranteed order.
-        /// </summary>
-        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
-        /// <return>
-        /// True if solved, or false if it couldn't be solved within this solver's rules.
-        /// </return>
-        public bool TrySolve(IPuzzle puzzle)
+        /// <inheritdoc/>
+        public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
-            return _tracker.TryInit(puzzle) && _TrySolve();
+            return _tracker.TryInit(puzzle) && 
+                (randomizeGuesses ? _TrySolveRandomly(new Random()) : _TrySolve());
         }
 
-        /// <summary>
-        /// Attempts to solve the given puzzle. Unlike <see cref="TrySolve(IPuzzle)"/>, this will
-        /// try values in a random order when it has to guess the value for a square.
-        /// </summary>
-        /// <param name="puzzle">The puzzle to solve. This will be solved in place.</param>
-        /// <return>
-        /// True if solved, or false if it couldn't be solved within this solver's rules.
-        /// </return>
-        public bool TrySolveRandomly(IPuzzle puzzle)
-        {
-            var random = new Random();
-            return _tracker.TryInit(puzzle) && _TrySolveRandomly(random);
-        }
-
-        /// <summary>
-        /// Solves the given puzzle in place. Unlike <see cref="SolveRandomly(IPuzzle)"/>,
-        /// when it has to guess, this will try values in the order they are given.
-        /// </summary>
-        /// <param name="puzzle">The puzzle to solve. This will be copied instead of solved in-place.</param>
-        /// <returns>A solved copy of the given puzzle.</returns>
-        /// <exception cref="ArgumentException">
-        /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
-        /// </exception>
-        public TPuzzle Solve<TPuzzle>(TPuzzle puzzle) where TPuzzle : IPuzzle
+        /// <inheritdoc/>
+        public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
             var copy = (TPuzzle)puzzle.DeepCopy();
-            if (!TrySolve(copy))
+            if (!TrySolve(copy, randomizeGuesses))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
             return copy;
         }
 
-        /// <summary>
-        /// Solves the given puzzle in place. Unlike <see cref="Solve(IPuzzle)"/>, this will
-        /// try values in a random order when it has to guess the value for a square.
-        /// </summary>
-        /// <param name="puzzle">The puzzle to solve. This will be copied instead of solved in-place.</param>
-        /// <returns>A solved copy of the given puzzle.</returns>
-        /// <exception cref="ArgumentException">
-        /// Thrown if this puzzle can't be solved within the bounds of this solver's rules.
-        /// </exception>
-        public TPuzzle SolveRandomly<TPuzzle>(TPuzzle puzzle) where TPuzzle : IPuzzle
+        /// <inheritdoc/>
+        public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
         {
-            var copy = (TPuzzle)puzzle.DeepCopy();
-            if (!TrySolveRandomly(copy))
-            {
-                throw new ArgumentException("Failed to solve the given puzzle.");
-            }
-            return copy;
+            return _ComputeStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
         }
 
-        /// <summary>
-        /// Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
-        /// </summary>
-        /// <exception cref="OperationCanceledException">
-        /// May be thrown if the given cancellation token is canceled during the operation.
-        /// </exception>
-        public SolveStats GetStatsForAllSolutions(IPuzzle puzzle, CancellationToken? token = null)
+        /// <inheritdoc/>
+        public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)
         {
-            return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
-        }
-
-        /// <summary>
-        /// Determines if the given puzzle has a unique solution. The puzzle is left unchanged.
-        /// </summary>
-        /// <exception cref="OperationCanceledException">
-        /// May be thrown if the given cancellation token is canceled during the operation.
-        /// </exception>
-        public bool HasUniqueSolution(IPuzzle puzzle, CancellationToken? token = null)
-        {
-            return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
+            return _ComputeStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
                 .NumSolutionsFound == 1;
         }
 
-        private SolveStats _GetStatsForAllSolutions(
-            IPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? cancellationToken)
+        private SolveStats _ComputeStatsForAllSolutions(
+            TPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? cancellationToken)
         {
             cancellationToken?.ThrowIfCancellationRequested();
             // Copy the puzzle so that the given puzzle is not modified.
-            if (!_tracker.TryInit(puzzle.DeepCopy()))
+            if (!_tracker.TryInit((TPuzzle)puzzle.DeepCopy()))
             {
                 // No solutions.
                 return new SolveStats();

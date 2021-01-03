@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SudokuSpice.RuleBased
+namespace SudokuSpice
 {
     /// <summary>
     /// Provides utilities for working with "boxes", i.e. square regions within standard Sudokus.
@@ -11,6 +11,9 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Calculates the size of a box within a puzzle (this should be the square root).
         /// </summary>
+        /// <exception cref="ArgumentException">
+        /// Thrown if the <paramref name="puzzleSize"/> is not the square of a whole number.
+        /// </exception>
         public static int CalculateBoxSize(int puzzleSize)
         {
             switch (puzzleSize)
@@ -27,7 +30,7 @@ namespace SudokuSpice.RuleBased
                     return 5;
                 default:
                     int root = (int)Math.Sqrt(puzzleSize);
-                    if (root * root != puzzleSize)
+                    if (root == 0 || root * root != puzzleSize)
                     {
                         throw new ArgumentException($"{nameof(puzzleSize)} must be square.");
                     }
@@ -36,17 +39,55 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>
+        /// Calculates the size of a box within a puzzle (this should be the square root).
+        /// </summary>
+        /// <param name="puzzleSize">The size (i.e. side-length) of the puzzle.</param>
+        /// <param name="boxSize">Out parameter: the size of the box.</param>
+        /// <returns>
+        /// False if <paramref name="puzzleSize"/> is not the square of a whole number.
+        /// </returns>
+        public static bool TryCalculateBoxSize(int puzzleSize, out int boxSize)
+        {
+            switch (puzzleSize)
+            {
+                case 1:
+                    boxSize = 1;
+                    break;
+                case 4:
+                    boxSize = 2;
+                    break;
+                case 9:
+                    boxSize = 3;
+                    break;
+                case 16:
+                    boxSize = 4;
+                    break;
+                case 25:
+                    boxSize = 5;
+                    break;
+                default:
+                    boxSize = (int)Math.Sqrt(puzzleSize);
+                    if (puzzleSize == 0 || boxSize * boxSize != puzzleSize)
+                    {
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Calculate the zero-based box-index of the given coordinate, starting at the top-left.
         /// </summary>
         public static int CalculateBoxIndex(in Coordinate c, int boxSize)
         {
-            return (c.Row / boxSize) * boxSize + c.Column / boxSize;
+            return c.Row / boxSize * boxSize + c.Column / boxSize;
         }
 
         /// <summary>Returns the top-left coordinate for the given box.</summary>
         public static Coordinate GetStartingBoxCoordinate(int box, int boxSize)
         {
-            return new Coordinate((box / boxSize) * boxSize, (box % boxSize) * boxSize);
+            return new Coordinate(box / boxSize * boxSize, box % boxSize * boxSize);
         }
 
         /// <summary>

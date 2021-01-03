@@ -72,10 +72,11 @@ namespace SudokuSpice.RuleBased.Rules
         /// failure.
         /// </remarks>
         /// <param name="puzzle">The puzzle to be solved.</param>
+        /// <param name="allPossibleValues">All the possible values for this puzzle.</param>
         /// <returns>
         /// False if the puzzle violates this rule and initialization fails, else true.
         /// </returns>
-        bool TryInit(IReadOnlyPuzzle puzzle);
+        bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues);
 
         /// <summary>
         /// Updates possible values based on setting the given coordinate to the given value.

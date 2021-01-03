@@ -55,11 +55,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 19
+    startLine: 15
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: IRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
@@ -89,7 +89,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetRules
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 25
+    startLine: 21
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -119,7 +119,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TryInit
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 43
+    startLine: 39
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -155,7 +155,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TrySet
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 55
+    startLine: 51
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -196,7 +196,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Unset
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 62
+    startLine: 58
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -228,26 +228,17 @@ references:
   name: IRule
   nameWithType: IRule
   fullName: SudokuSpice.RuleBased.Rules.IRule
-- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
-  parent: SudokuSpice.RuleBased
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
-- uid: SudokuSpice.RuleBased.PossibleValues
-  commentId: T:SudokuSpice.RuleBased.PossibleValues
-  isExternal: true
-- uid: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences*
-  commentId: Overload:SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences
-  name: CopyWithNewReferences
-  nameWithType: IRuleKeeper.CopyWithNewReferences
-  fullName: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences
 - uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
   parent: SudokuSpice.RuleBased
   name: IReadOnlyPuzzleWithMutablePossibleValues
   nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+- uid: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences*
+  commentId: Overload:SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences
+  name: CopyWithNewReferences
+  nameWithType: IRuleKeeper.CopyWithNewReferences
+  fullName: SudokuSpice.RuleBased.IRuleKeeper.CopyWithNewReferences
 - uid: SudokuSpice.RuleBased.IRuleKeeper
   commentId: T:SudokuSpice.RuleBased.IRuleKeeper
   parent: SudokuSpice.RuleBased

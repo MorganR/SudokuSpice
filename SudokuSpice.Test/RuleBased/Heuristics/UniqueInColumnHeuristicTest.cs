@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
         [Fact]
         public void UpdateAll_ModifiesRelevantPossibles()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */, null /* 1 */,            4},
                 {null /* 4 */, null /* 1 */, null /* 2 */,            3},
@@ -41,7 +41,7 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
         [Fact]
         public void CopyWithNewReferences_CreatesDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */, null /* 1 */,            4},
                 {null /* 4 */, null /* 1 */, null /* 2 */,            3},
@@ -52,7 +52,7 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
             var heuristic = new UniqueInColumnHeuristic(
                 (IMissingColumnValuesTracker)ruleKeeper.GetRules()[0]);
             Assert.True(heuristic.TryInitFor(puzzle));
-            var puzzleCopy = new Puzzle(puzzle);
+            var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
 
             var ruleKeeperCopy = (StandardRuleKeeper)ruleKeeper.CopyWithNewReferences(
                 puzzleCopy);

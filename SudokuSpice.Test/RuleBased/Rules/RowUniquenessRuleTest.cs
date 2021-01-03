@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_FiltersCorrectly()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             });
             var rule = new RowUniquenessRule();
 
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
             Assert.Equal(new BitVector(0b11000), rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b11100), rule.GetPossibleValues(new Coordinate(1, 0)));
@@ -27,7 +27,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_WithDuplicateValueInRow_Fails()
         {
-            var puzzle = new Puzzle(
+            var puzzle = new PuzzleWithPossibleValues(
                     new int?[,] {
                             {           1, /* INCORRECT */ 1, null /* 3 */,            2},
                             {null /* 2 */,      null /* 3 */,            1, null /* 4 */},
@@ -36,22 +36,22 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     });
             var rule = new RowUniquenessRule();
 
-            Assert.False(rule.TryInit(puzzle));
+            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
         }
 
         [Fact]
         public void CopyWithNewReference_CreatesDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
-            var puzzleCopy = new Puzzle(puzzle);
+            var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 2;
             var coord = new Coordinate(2, 2);
@@ -76,14 +76,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_UpdatesSpecifiedRow()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, 1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             int val = 3;
@@ -102,14 +102,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_WithoutAffectedList_RevertsSpecifiedRow()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, 1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             IList<BitVector> initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, rule);
             var coord = new Coordinate(1, 1);
             int val = 3;
@@ -127,14 +127,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedRow()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, 1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             IList<BitVector> initialPossibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var revertedCoordTracker = new CoordinateTracker(puzzle.Size);
@@ -158,14 +158,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void GetPossibleRowValues_IsCorrect()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, 1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
             Assert.Equal(new BitVector(0b11000), rule.GetMissingValuesForRow(0));
             Assert.Equal(new BitVector(0b11100), rule.GetMissingValuesForRow(1));
@@ -176,14 +176,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void GetPossibleValues_MatchesGetPossibleRowValues()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {1, null /* 4 */, null /* 3 */, 2},
                 {null /* 2 */, null /* 3 */, 1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             IList<BitVector> possibleValuesByRow = _GetPossibleValuesByRow(puzzle.Size, rule);
 
             for (int row = 0; row < possibleValuesByRow.Count; row++)

@@ -22,14 +22,14 @@ namespace SudokuSpice.RuleBased.Rules
         public abstract IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle);
 
         /// <inheritdoc/>
-        public virtual bool TryInit(IReadOnlyPuzzle puzzle)
+        public virtual bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
         {
             int numDimensions = GetNumDimensions(puzzle);
             if (numDimensions != _dimensions?.Length)
             {
                 _dimensions = new BitVector[numDimensions];
             }
-            _dimensions.AsSpan().Fill(puzzle.AllPossibleValues);
+            _dimensions.AsSpan().Fill(allPossibleValues);
             int size = puzzle.Size;
             for (int row = 0; row < size; ++row)
             {

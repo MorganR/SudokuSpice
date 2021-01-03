@@ -1,11 +1,6 @@
 ﻿namespace SudokuSpice.RuleBased
 {
-    public interface IReadOnlyPuzzleWithMutablePossibleValues : IReadOnlyPuzzle
+    public interface IReadOnlyPuzzleWithMutablePossibleValues : IReadOnlyPuzzleWithPossibleValues, IPossibleValues
     {
-        void SetPossibleValues(in Coordinate c, BitVector possibleValues);
-
-        void IntersectPossibleValues(in Coordinate c, BitVector possibleValues);
-
-        void ResetPossibleValues(in Coordinate c);
     }
 }

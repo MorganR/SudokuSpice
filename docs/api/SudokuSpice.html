@@ -77,12 +77,22 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="SudokuSpice.Boxes.html">Boxes</a></h4>
+      <section><p>Provides utilities for working with &quot;boxes&quot;, i.e. square regions within standard Sudokus.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></h4>
       <section><p>Efficiently tracks a set of <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>s.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.Puzzle.html">Puzzle</a></h4>
-      <section><p>Manages underlying puzzle data.</p>
+      <section><p>Represents a puzzle with the following assumptions:</p>
+<ul>
+<li>Puzzles must be square, of shape size-by-size.</li>
+<li>The possible values for any square in the puzzle are the numbers from 1 to size,
+inclusive.</li>
+</ul>
 </section>
+      <h4><a class="xref" href="SudokuSpice.PuzzleGenerator-1.html">PuzzleGenerator&lt;TPuzzle&gt;</a></h4>
+      <section></section>
     <h3 id="structs">Structs
   </h3>
       <h4><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></h4>
@@ -96,10 +106,8 @@
       <h4><a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a></h4>
       <section><p>Provides read and write access to a Sudoku puzzle.</p>
 </section>
-      <h4><a class="xref" href="SudokuSpice.IReadOnlyBoxPuzzle.html">IReadOnlyBoxPuzzle</a></h4>
-      <section><p>Expands IReadOnlyPuzzle to provide box-related functionality. A 'box' is a square region
-within the puzzle.</p>
-</section>
+      <h4><a class="xref" href="SudokuSpice.IPuzzleSolver-1.html">IPuzzleSolver&lt;TPuzzle&gt;</a></h4>
+      <section></section>
       <h4><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></h4>
       <section><p>Provides read-only access to a puzzle's data.</p>
 </section>

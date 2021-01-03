@@ -13,8 +13,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            solver.Solve(puzzle);
-            _AssertPuzzleSolved(puzzle);
+            var solved = solver.Solve(puzzle);
+            _AssertPuzzleSolved(solved);
         }
 
         [Fact]
@@ -41,9 +41,9 @@ namespace SudokuSpice.ConstraintBased.Test
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint(), new DiagonalUniquenessConstraint() });
 
-            solver.Solve(puzzle);
+            var solved = solver.Solve(puzzle);
 
-            _AssertPuzzleSolved(puzzle);
+            _AssertPuzzleSolved(solved);
         }
 
         [Theory]
@@ -52,8 +52,10 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            solver.Solve(puzzle, randomizeGuesses: true);
-            _AssertPuzzleSolved(puzzle);
+
+            var solved = solver.Solve(puzzle);
+
+            _AssertPuzzleSolved(solved);
         }
 
         [Theory]
@@ -114,20 +116,20 @@ namespace SudokuSpice.ConstraintBased.Test
 
         [Theory]
         [MemberData(nameof(PuzzlesWithStats))]
-        public void GetStatsForAllSolutions_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
+        public void ComputeStatsForAllSolutions_ReturnsExpectedNumSolutions(Puzzle puzzle, SolveStats expectedStats)
         {
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
+            Assert.Equal(expectedStats.NumSolutionsFound, solver.ComputeStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void GetStatsForAllSolutions_WithInvalidPuzzles_ReturnsNoSolutions(Puzzle puzzle)
+        public void ComputeStatsForAllSolutions_WithInvalidPuzzles_ReturnsNoSolutions(Puzzle puzzle)
         {
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            Assert.Equal(0, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
+            Assert.Equal(0, solver.ComputeStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 
         public static IEnumerable<object[]> ValidPuzzleGenerator()
@@ -319,13 +321,14 @@ namespace SudokuSpice.ConstraintBased.Test
                     Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that col!");
                 }
             }
+            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
             for (int box = 0; box < puzzle.Size; box++)
             {
                 alreadyFound.Clear();
-                (int startRow, int startCol) = puzzle.GetStartingBoxCoordinate(box);
-                for (int row = startRow; row < startRow + puzzle.BoxSize; row++)
+                (int startRow, int startCol) = Boxes.GetStartingBoxCoordinate(box, boxSize);
+                for (int row = startRow; row < startRow + boxSize; row++)
                 {
-                    for (int col = startCol; col < startCol + puzzle.BoxSize; col++)
+                    for (int col = startCol; col < startCol + boxSize; col++)
                     {
                         Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that box!");
                     }
