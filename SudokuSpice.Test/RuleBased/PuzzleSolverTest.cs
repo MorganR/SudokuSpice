@@ -11,13 +11,6 @@ namespace SudokuSpice.RuleBased.Test
 {
     public class PuzzleSolverTest
     {
-        private readonly ITestOutputHelper _output;
-
-        public PuzzleSolverTest(ITestOutputHelper output)
-        {
-            _output = output;
-        }
-
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
         public void Solve_ValidPuzzle_SolvesPuzzleCopy(int?[,] matrix)
@@ -25,7 +18,7 @@ namespace SudokuSpice.RuleBased.Test
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
             var solved = solver.Solve(puzzle);
-            _AssertPuzzleSolved(solved);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(solved);
         }
 
         [Theory]
@@ -60,7 +53,7 @@ namespace SudokuSpice.RuleBased.Test
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
             Assert.True(solver.TrySolve(puzzle));
-            _AssertPuzzleSolved(puzzle);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
         }
 
         [Theory]
@@ -114,7 +107,7 @@ namespace SudokuSpice.RuleBased.Test
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
             var solved = solver.Solve(puzzle, randomizeGuesses: true);
-            _AssertPuzzleSolved(solved);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(solved);
         }
 
         [Theory]
@@ -149,7 +142,7 @@ namespace SudokuSpice.RuleBased.Test
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
             Assert.True(solver.TrySolve(puzzle, randomizeGuesses: true));
-            _AssertPuzzleSolved(puzzle);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
         }
 
         [Theory]
@@ -255,44 +248,11 @@ namespace SudokuSpice.RuleBased.Test
             Assert.Throws<OperationCanceledException>(() => solver.HasUniqueSolution(new PuzzleWithPossibleValues(9), cancellationSource.Token));
         }
 
-        private static void _AssertPuzzleSolved(PuzzleWithPossibleValues puzzle)
-        {
-            Assert.Equal(0, puzzle.NumEmptySquares);
-            var alreadyFound = new HashSet<int>(puzzle.Size);
-            for (int row = 0; row < puzzle.Size; row++)
-            {
-                alreadyFound.Clear();
-                for (int col = 0; col < puzzle.Size; col++)
-                {
-                    Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that row!");
-                }
-            }
-            for (int col = 0; col < puzzle.Size; col++)
-            {
-                alreadyFound.Clear();
-                for (int row = 0; row < puzzle.Size; row++)
-                {
-                    Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that col!");
-                }
-            }
-            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            for (int box = 0; box < puzzle.Size; box++)
-            {
-                alreadyFound.Clear();
-                (int startRow, int startCol) = Boxes.GetStartingBoxCoordinate(box, boxSize);
-                for (int row = startRow; row < startRow + boxSize; row++)
-                {
-                    for (int col = startCol; col < startCol + boxSize; col++)
-                    {
-                        Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that box!");
-                    }
-                }
-            }
-        }
+
 
         private static void _AssertMegaPuzzleSolved(PuzzleWithPossibleValues puzzle)
         {
-            _AssertPuzzleSolved(puzzle);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
             var alreadyFound = new HashSet<int>(puzzle.Size);
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
             {

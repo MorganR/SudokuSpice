@@ -16,7 +16,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             var solved = solver.Solve(puzzle);
-            _AssertPuzzleSolved(solved);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(solved);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace SudokuSpice.ConstraintBased.Test
 
             var solved = solver.Solve(puzzle);
 
-            _AssertPuzzleSolved(solved);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(solved);
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace SudokuSpice.ConstraintBased.Test
 
             var solved = solver.Solve(puzzle);
 
-            _AssertPuzzleSolved(solved);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(solved);
         }
 
         [Theory]
@@ -89,7 +89,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.True(solver.TrySolve(puzzle));
-            _AssertPuzzleSolved(puzzle);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
         }
 
         [Theory]
@@ -100,7 +100,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.True(solver.TrySolve(puzzle, randomizeGuesses: true));
-            _AssertPuzzleSolved(puzzle);
+            PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
         }
 
         [Theory]
@@ -142,41 +142,6 @@ namespace SudokuSpice.ConstraintBased.Test
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Equal(0, solver.ComputeStatsForAllSolutions(puzzle).NumSolutionsFound);
-        }
-
-        private void _AssertPuzzleSolved(Puzzle puzzle)
-        {
-            Assert.Equal(0, puzzle.NumEmptySquares);
-            var alreadyFound = new HashSet<int>(puzzle.Size);
-            for (int row = 0; row < puzzle.Size; row++)
-            {
-                alreadyFound.Clear();
-                for (int col = 0; col < puzzle.Size; col++)
-                {
-                    Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that row!");
-                }
-            }
-            for (int col = 0; col < puzzle.Size; col++)
-            {
-                alreadyFound.Clear();
-                for (int row = 0; row < puzzle.Size; row++)
-                {
-                    Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that col!");
-                }
-            }
-            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            for (int box = 0; box < puzzle.Size; box++)
-            {
-                alreadyFound.Clear();
-                (int startRow, int startCol) = Boxes.GetStartingBoxCoordinate(box, boxSize);
-                for (int row = startRow; row < startRow + boxSize; row++)
-                {
-                    for (int col = startCol; col < startCol + boxSize; col++)
-                    {
-                        Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that box!");
-                    }
-                }
-            }
         }
     }
 }
