@@ -216,10 +216,10 @@ namespace SudokuSpice.RuleBased
             bool validateUniquenessOnly,
             CancellationToken? cancellationToken)
         {
-            cancellationToken?.ThrowIfCancellationRequested();
             var solveStats = new SolveStats();
             for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
+                cancellationToken?.ThrowIfCancellationRequested();
                 var trackerCopy = new SquareTracker(tracker);
                 if (trackerCopy.TrySet(in c, valuesToGuess[i]))
                 {
@@ -233,6 +233,7 @@ namespace SudokuSpice.RuleBased
                     }
                 }
             }
+            cancellationToken?.ThrowIfCancellationRequested();
             if (tracker.TrySet(in c, valuesToGuess[^1]))
             {
                 SolveStats guessStats = _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);

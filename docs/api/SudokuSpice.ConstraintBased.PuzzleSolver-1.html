@@ -137,7 +137,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1__ctor_System_Collections_Generic_IReadOnlyList_SudokuSpice_ConstraintBased_Constraints_IConstraint__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.%23ctor(System.Collections.Generic.IReadOnlyList%7BSudokuSpice.ConstraintBased.Constraints.IConstraint%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L22">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L23">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1__ctor_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.#ctor*"></a>
   <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1__ctor_System_Collections_Generic_IReadOnlyList_SudokuSpice_ConstraintBased_Constraints_IConstraint__" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})">PuzzleSolver(IReadOnlyList&lt;IConstraint&gt;)</h4>
@@ -171,18 +171,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions__0_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.GetStatsForAllSolutions(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.GetStatsForAllSolutions(%600%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L98">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L99">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions__0_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions(`0)">GetStatsForAllSolutions(TPuzzle)</h4>
+  <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})">GetStatsForAllSolutions(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SolveStats GetStatsForAllSolutions(TPuzzle puzzle)</code></pre>
+    <pre><code class="lang-csharp hljs">public SolveStats GetStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -197,6 +197,11 @@
       <tr>
         <td><span class="xref">TPuzzle</span></td>
         <td><span class="parametername">puzzle</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="parametername">token</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -221,7 +226,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve__0_System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.Solve(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L43">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L44">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.Solve*"></a>
   <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve__0_System_Boolean_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.Solve(`0,System.Boolean)">Solve(TPuzzle, Boolean)</h4>
@@ -283,7 +288,7 @@ possible values are not unique.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve__0_System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.TrySolve(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L79">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L80">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.TrySolve*"></a>
   <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve__0_System_Boolean_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)">TrySolve(TPuzzle, Boolean)</h4>
@@ -350,7 +355,7 @@ although note that the given <code data-dev-comment-type="paramref" class="param
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

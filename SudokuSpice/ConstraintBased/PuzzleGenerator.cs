@@ -42,7 +42,7 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="timeout">
         /// The maximum timeout during which this function can search for a unique puzzle.
         /// Especially useful when trying to generate puzzles with low
-        /// <paramref name="numSquaresToSet"/>.
+        /// <paramref name="numSquaresToSet"/>. Use <c>TimeSpan.Zero</c> to disable the timeout.
         /// </param>
         /// <returns>
         /// A puzzle of type <c>TPuzzle</c> with a unique solution and
@@ -54,14 +54,27 @@ namespace SudokuSpice.ConstraintBased
         /// </exception>
         public TPuzzle Generate(int numSquaresToSet, TimeSpan timeout)
         {
-            int timeoutMillis = Math.Max(1, Convert.ToInt32(timeout.TotalMilliseconds));
-            using var timeoutCancellationSource = new CancellationTokenSource();
+            if (timeout == TimeSpan.Zero)
+            {
+                return _Generate(numSquaresToSet, null);
+            }
+            using var timeoutCancellationSource = new CancellationTokenSource(timeout);
             var puzzleTask = new Task<TPuzzle>(() => _Generate(
                 numSquaresToSet, timeoutCancellationSource.Token), timeoutCancellationSource.Token);
-            timeoutCancellationSource.CancelAfter(timeoutMillis);
-            // This throws InvalidOperationException if the task has been canceled already (i.e. the
-            // timeout has finished).
-            puzzleTask.RunSynchronously();
+            try
+            {
+                // This throws InvalidOperationException if the task has been canceled already (i.e. the
+                // timeout has finished).
+                puzzleTask.RunSynchronously();
+            } catch (InvalidOperationException ex)
+            {
+                if (ex.Message == "RunSynchronously may not be called on a task that has already completed.")
+                {
+                    throw new TimeoutException(
+                        $"Failed to generate a puzzle of type {typeof(TPuzzle).Name} with {numSquaresToSet} set squares within {timeout}.");
+                }
+                throw;
+            }
 
             if (puzzleTask.IsCompletedSuccessfully)
             {
@@ -70,7 +83,7 @@ namespace SudokuSpice.ConstraintBased
             if (puzzleTask.IsCanceled)
             {
                 throw new TimeoutException(
-                    $"Failed to generate a puzzle of type {typeof(TPuzzle).Name} and {nameof(numSquaresToSet)} {numSquaresToSet} within {timeout}.");
+                    $"Failed to generate a puzzle of type {typeof(TPuzzle).Name} with {numSquaresToSet}  set squares within {timeout}.");
             }
             if (puzzleTask.Exception is null)
             {
@@ -79,13 +92,13 @@ namespace SudokuSpice.ConstraintBased
             throw puzzleTask.Exception;
         }
 
-        private TPuzzle _Generate(int numSquaresToSet, CancellationToken cancellationToken)
+        private TPuzzle _Generate(int numSquaresToSet, CancellationToken? cancellationToken)
         {
             TPuzzle puzzle = _puzzleFactory.Invoke();
             bool foundValidPuzzle = false;
             while (!foundValidPuzzle)
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                cancellationToken?.ThrowIfCancellationRequested();
                 _FillPuzzle(puzzle);
                 var setCoordinates = new CoordinateTracker(puzzle.Size);
                 _TrackAllCoordinates(setCoordinates, puzzle.Size);
@@ -98,7 +111,7 @@ namespace SudokuSpice.ConstraintBased
 
         private bool _TryUnsetSquaresWhileSolvable(
             int totalNumSquaresToSet, CoordinateTracker setCoordinatesToTry,
-            TPuzzle puzzle, CancellationToken cancellationToken)
+            TPuzzle puzzle, CancellationToken? cancellationToken)
         {
             if (puzzle.NumSetSquares == totalNumSquaresToSet)
             {
@@ -106,11 +119,11 @@ namespace SudokuSpice.ConstraintBased
             }
             while (setCoordinatesToTry.NumTracked > 0)
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                cancellationToken?.ThrowIfCancellationRequested();
                 Coordinate randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
                 int? previousValue = puzzle[in randomCoord];
                 setCoordinatesToTry.Untrack(in randomCoord);
-                if (!_TryUnsetSquareAt(randomCoord, puzzle))
+                if (!_TryUnsetSquareAt(randomCoord, puzzle, cancellationToken))
                 {
                     continue;
                 }
@@ -134,7 +147,7 @@ namespace SudokuSpice.ConstraintBased
             solver.Solve(puzzle, randomizeGuesses: true);
         }
 
-        private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle)
+        private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle, CancellationToken? cancellationToken)
         {
             // Unset without checks when there can't be conflicts.
             if (puzzle.NumEmptySquares < 3)
@@ -145,7 +158,7 @@ namespace SudokuSpice.ConstraintBased
             int? previousValue = puzzle[in c];
             puzzle[in c] = null;
             var solver = new PuzzleSolver<TPuzzle>(_constraints);
-            SolveStats solveStats = solver.GetStatsForAllSolutions(puzzle);
+            SolveStats solveStats = solver.GetStatsForAllSolutions(puzzle, cancellationToken);
             if (solveStats.NumSolutionsFound == 1)
             {
                 return true;

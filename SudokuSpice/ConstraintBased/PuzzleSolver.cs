@@ -1,6 +1,7 @@
 ﻿using SudokuSpice.ConstraintBased.Constraints;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace SudokuSpice.ConstraintBased
 {
@@ -95,12 +96,11 @@ namespace SudokuSpice.ConstraintBased
                 _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix));
         }
 
-        public SolveStats GetStatsForAllSolutions(TPuzzle puzzle)
+        public SolveStats GetStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
-                throw new ArgumentException(
-                    $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
+                return new SolveStats();
             }
             var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
             var matrix = new ExactCoverMatrix(puzzleCopy);
@@ -111,7 +111,7 @@ namespace SudokuSpice.ConstraintBased
                     return new SolveStats();
                 }
             }
-            return _TryAllSolutions(new SquareTracker<TPuzzle>(puzzleCopy, matrix));
+            return _TryAllSolutions(new SquareTracker<TPuzzle>(puzzleCopy, matrix), token);
         }
 
         private static bool _AreValuesUnique(ReadOnlySpan<int> values)
@@ -174,36 +174,39 @@ namespace SudokuSpice.ConstraintBased
             return false;
         }
 
-        private static SolveStats _TryAllSolutions(SquareTracker<TPuzzle> tracker)
+        private static SolveStats _TryAllSolutions(SquareTracker<TPuzzle> tracker, CancellationToken? cancellationToken)
         {
             if (tracker.IsSolved)
             {
                 return new SolveStats() { NumSolutionsFound = 1 };
             }
+            cancellationToken?.ThrowIfCancellationRequested();
             (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
             if (possibleValues.Length == 1)
             {
                 if (tracker.TrySet(in c, possibleValues[0]))
                 {
-                    return _TryAllSolutions(tracker);
+                    return _TryAllSolutions(tracker, cancellationToken);
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(in c, possibleValues, tracker);
+            return _TryAllSolutionsWithGuess(in c, possibleValues, tracker, cancellationToken);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
             in Coordinate guessCoordinate,
             ReadOnlySpan<int> valuesToGuess,
-            SquareTracker<TPuzzle> tracker)
+            SquareTracker<TPuzzle> tracker,
+            CancellationToken? cancellationToken)
         {
             var solveStats = new SolveStats();
             for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
+                cancellationToken?.ThrowIfCancellationRequested();
                 SquareTracker<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
                 if (trackerCopy.TrySet(in guessCoordinate, valuesToGuess[i]))
                 {
-                    SolveStats stats = _TryAllSolutions(trackerCopy);
+                    SolveStats stats = _TryAllSolutions(trackerCopy, cancellationToken);
                     solveStats.NumSolutionsFound += stats.NumSolutionsFound;
                     solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
                     solveStats.NumTotalGuesses += stats.NumTotalGuesses;
@@ -211,7 +214,7 @@ namespace SudokuSpice.ConstraintBased
             }
             if (tracker.TrySet(in guessCoordinate, valuesToGuess[^1]))
             {
-                SolveStats stats = _TryAllSolutions(tracker);
+                SolveStats stats = _TryAllSolutions(tracker, cancellationToken);
                 solveStats.NumSolutionsFound += stats.NumSolutionsFound;
                 solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
                 solveStats.NumTotalGuesses += stats.NumTotalGuesses;

@@ -125,7 +125,7 @@ items:
       description: "\nThe number of squares that will be preset in the generated puzzle.\n"
     - id: timeout
       type: System.TimeSpan
-      description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
+      description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>. Use <code>TimeSpan.Zero</code> to disable the timeout.\n"
     return:
       type: '{TPuzzle}'
       description: "\nA puzzle of type <code>TPuzzle</code> with a unique solution and\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> preset squares.\n"
