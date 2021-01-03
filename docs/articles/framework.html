@@ -72,7 +72,7 @@
 <h2 id="solvers">Solvers</h2>
 <p><em>SudokuSpice</em> provides two different solvers: the
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>ConstraintBased.PuzzleSolver</code></a> or the original
-<a href="xref:SudokuSpice.RuleBased.PuzzleSolver"><code>RuleBased.PuzzleSolver</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html"><code>RuleBased.PuzzleSolver</code></a>.</p>
 <p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
 implementing custom rules or constraints.</p>
@@ -93,18 +93,17 @@ regions.</p>
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.BoxUniquenessRule.html"><code>BoxUniquenessRule</code></a>. For convenience and
 efficiency, these come prepackaged in the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.StandardRules.html"><code>StandardRules</code></a> class. Rules do not directly modify the
-<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a>
-themselves. They should use an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
-enough internal state to efficiently provide the possible values of any given square according to
-<em>only</em> that rule.</p>
+<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or its possible values themselves. They should use an
+<a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just enough internal state to
+efficiently provide the possible values of any given square according to <em>only</em> that rule.</p>
 <p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.RuleBased.IRuleKeeper.html"><code>IRuleKeeper</code></a>. The
 <a class="xref" href="../api/SudokuSpice.RuleBased.DynamicRuleKeeper.html"><code>DynamicRuleKeeper</code></a> provides a general implementation
 that works with any number of rules. Custom implementations can provide even more efficiency, but
 are generally messier and more complex than simply creating custom rules.
 <a class="xref" href="../api/SudokuSpice.RuleBased.StandardRuleKeeper.html"><code>StandardRuleKeeper</code></a> is an example of this. Check out
 the <a href="performance.html">benchmarks</a> for performance comparisons. The rule keeper actually
-updates the <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a> based on all the rules while
-ensuring that no rules are broken by a given update.</p>
+updates the possible values based on all the rules while ensuring that no rules are broken by
+any given update.</p>
 </li>
 <li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.IHeuristic.html"><code>IHeuristic</code></a></p>
 <p>Heuristics are logical tricks that can be used to reduce the number of possible values for any
@@ -125,8 +124,6 @@ heuristics. This pattern is demonstrated by the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.StandardHeuristic.html"><code>StandardHeuristic</code></a>.</p>
 </li>
 <li><p>The <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint.html"><code>IConstraint</code></a></p>
-</li>
-</ol>
 <p>Constraints represent rules that the puzzle needs to satisfy. For example, the
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html"><code>RowUniquenessConstraint</code></a>
 enforces the constraint that &quot;each row must contain <em>all</em> possible values.&quot;</p>
@@ -344,6 +341,8 @@ the other '1s' that satisfy that constraint header, and connected left and right
 heuristics concept because the exact-cover matrix provides the <code>UniqueIn*</code> heuristics by default.
 Adding additional layers of heuristics would add complexity with minimal, if any, performance
 improvement.</p>
+</li>
+</ol>
 <p>For more information on extending SudokuSpice, see:</p>
 <ul>
 <li><a href="custom-rules.html">Custom rule example</a>.</li>

@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>Manages underlying puzzle data.</summary>.
+    // TODO
     public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues
     {
         private readonly Puzzle _puzzle;

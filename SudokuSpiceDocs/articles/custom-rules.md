@@ -47,9 +47,9 @@ public class DiagonalUniquenessRule : IRule
                     // Puzzle has a duplicate value on this diagonal, so it already violates the
                     // rule.
                     return false;
-				}
-				_unsetBackwardDiag.UnsetBit(val.Value);
-			}
+                }
+                _unsetBackwardDiag.UnsetBit(val.Value);
+            }
         }
         
         // TODO: Validate the forward diagonal, and update _unsetForwardDiag accordingly.
@@ -157,7 +157,7 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 
 Lastly, we must implement the `IRule.CopyWithNewReference` method to provide a deep copy for
 the
-[`PuzzleSolver.ComputeStatsForAllSolutions`](xref:SudokuSpice.RuleBased.PuzzleSolver`1#ComputeStatsForAllSolutions*)
+[`PuzzleSolver.ComputeStatsForAllSolutions`](xref:SudokuSpice.RuleBased.PuzzleSolver`1#SudokuSpice_RuleBased_PuzzleSolver_1_ComputeStatsForAllSolutions)
 method and for the [`PuzzleGenerator`](xref:SudokuSpice.PuzzleGenerator`1).
 
 ```csharp

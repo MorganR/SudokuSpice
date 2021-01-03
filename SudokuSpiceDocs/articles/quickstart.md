@@ -5,7 +5,8 @@ For more information, see the [Framework Overview](framework.md).
 ## Solving
 
 If you need to solve a standard Sudoku puzzle, you can simply create a
-[`Puzzle`](xref:SudokuSpice.Puzzle), create a [`PuzzleSolver`](xref:SudokuSpice.RuleBased.PuzzleSolver), and solve it.
+[`PuzzleWithPossibleValues`](xref:SudokuSpice.RuleBased.PuzzleWithPossibleValues), create a
+[`PuzzleSolver`](xref:SudokuSpice.RuleBased.PuzzleSolver`1), and solve it.
 
 ```csharp
 var puzzle = new PuzzleWithPossibleValues(new int?[,]
@@ -64,7 +65,9 @@ and may eventually time out. For quickly generating 9x9 puzzles, it's recommende
 ## Constraint-based
 
 *SudokuSpice* also provides a constraint-based solver that can be better in some scenarios (see
-[benchmarks](performance.md)). This can be used similarly:
+[benchmarks](performance.md)). This can be used similarly: create a
+[`Puzzle`](xref:SudokuSpice.Puzzle), create a
+[`ConstraintBased.PuzzleSolver`](xref:SudokuSpice.ConstraintBased.PuzzleSolver`1), and solve.
 
 ```csharp
 var puzzle = new Puzzle(...);

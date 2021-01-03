@@ -109,9 +109,9 @@ or acted on from multiple threads.</p>
                     // Puzzle has a duplicate value on this diagonal, so it already violates the
                     // rule.
                     return false;
-				}
-				_unsetBackwardDiag.UnsetBit(val.Value);
-			}
+                }
+                _unsetBackwardDiag.UnsetBit(val.Value);
+            }
         }
         
         // TODO: Validate the forward diagonal, and update _unsetForwardDiag accordingly.
@@ -205,7 +205,7 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 <h3 id="copywithnewreference">CopyWithNewReference</h3>
 <p>Lastly, we must implement the <code>IRule.CopyWithNewReference</code> method to provide a deep copy for
 the
-<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html#ComputeStatsForAllSolutions*"><code>PuzzleSolver.ComputeStatsForAllSolutions</code></a>
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1_ComputeStatsForAllSolutions"><code>PuzzleSolver.ComputeStatsForAllSolutions</code></a>
 method and for the <a class="xref" href="../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
 <pre><code class="lang-csharp">public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
 {
