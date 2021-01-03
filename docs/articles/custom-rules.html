@@ -70,29 +70,34 @@
 <h1 id="custom-rules">Custom Rules</h1>
 
 <p>Let's say we want to solve a puzzle that also enforces that the diagonals contain all unique
-values. In this case, we can use the standard <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> to store the
-data, but we need to add a custom rule. In this example, we'll go through the steps for
-implementing and using the
-<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
+values. In this case, we can still use the standard
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleWithPossibleValues.html"><code>PuzzleWithPossibleValues</code></a> to store the data,
+but we need to add a custom rule. In this example, we'll go through the steps for implementing and
+using the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
 <h2 id="creating-a-rule">Creating a rule</h2>
-<h3 id="constructor">Constructor</h3>
-<p>The new rule needs to extend the <a href="xref:SudokuSpice.RuleBased.Rules.ISudokuRule"><code>ISudokuRule</code></a>, and we'll
+<p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a>, and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the <a class="xref" href="../api/SudokuSpice.RuleBased.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
-set-like struct using the bits of a <code>uint</code>.</p>
-<pre><code class="lang-csharp">public class DiagonalUniquenessRule : ISudokuRule
+we'll use the <a class="xref" href="../api/SudokuSpice.RuleBased.BitVector.html"><code>BitVector</code></a> struct, which provides an
+efficient set-like struct using the 32 bits of a <code>uint</code>.</p>
+<h3 id="tryinit">TryInit</h3>
+<p>When starting to solve a puzzle, the rule keeper will call <code>IRule.TryInit</code>. This is where we
+setup our calls and perform initial checks against this rule.</p>
+<p>Note: Rules are stateful, so a given rule should never be used to solve multiple puzzles at once,
+or acted on from multiple threads.</p>
+<pre><code class="lang-csharp">public class DiagonalUniquenessRule : IRule
 {
-    private readonly IReadOnlyPuzzle _puzzle;
-    private readonly BitVector _allUnset;
+    // The puzzle being solved
+    private IReadOnlyPuzzle? _puzzle;
+    // All the possible values for each diagonal
+    private BitVector _allPossibleValues;
+    // The current unset values on each diagonal
     private BitVector _unsetBackwardDiag;
     private BitVector _unsetForwardDiag;
 
-    public DiagonalUniquenessRule(IReadOnlyPuzzle puzzle, BitVector allUniqueValues)
+    public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
     {
-        Debug.Assert(puzzle.Size == allUniqueValues.Count,
-            $&quot;Can't enforce box uniqueness for mismatched puzzle size {puzzle.Size} and number of unique values {allUniqueValues.Count}&quot;);
         _puzzle = puzzle;
-        _allUnset = _unsetForwardDiag = _unsetBackwardDiag = allUniqueValues;
+        _unsetBackwardDiag = _unsetForwardDiag = _allPossibleValues = allPossibleValues;
         // Iterate through the backward diagonal (like a backslash '\')
         for (int row = 0, col = 0; row &lt; puzzle.Size; row++, col++)
         {
@@ -101,12 +106,12 @@ set-like struct using the bits of a <code>uint</code>.</p>
             {
                 if (!_unsetBackwardDiag.IsBitSet(val.Value))
                 {
-                    throw new ArgumentException(
-                            $&quot;Puzzle does not satisfy diagonal uniqueness rule at ({row}, {col}).&quot;);
-                    }
-                    _unsetBackwardDiag.UnsetBit(val.Value);
-                }
-            }
+                    // Puzzle has a duplicate value on this diagonal, so it already violates the
+                    // rule.
+                    return false;
+				}
+				_unsetBackwardDiag.UnsetBit(val.Value);
+			}
         }
         
         // TODO: Validate the forward diagonal, and update _unsetForwardDiag accordingly.
@@ -114,11 +119,11 @@ set-like struct using the bits of a <code>uint</code>.</p>
 }
 </code></pre>
 <h3 id="getpossiblevalues">GetPossibleValues</h3>
-<p>Now we need to implement the <code>ISudokuRule.GetPossibleValues</code> operation, which provides the possible
+<p>Now we need to implement the <code>IRule.GetPossibleValues</code> operation, which provides the possible
 values for any square according to this rule. You might be wondering, what should we return if the
 given coordinate is not on one of the diagonals? In that case, we should return <em>all</em> possible
 values! We definitely don't want to return no possible values, because that would make any puzzle
-with unset squares off the diagonal impossible.</p>
+with unset squares off the diagonal impossible to solve.</p>
 <pre><code class="lang-csharp">public BitVector GetPossibleValues(in Coordinate c)
 {
     if (_IsOnBackwardDiag(in c))
@@ -145,7 +150,7 @@ private bool _IsOnForwardDiag(in Coordinate c)
 </code></pre>
 <h3 id="update">Update</h3>
 <p>Great, now we need to provide a way for the rule keeper to update this rule. When the rule keeper
-wants to set a square's value, it will call <code>ISudokuRule.Update</code> with the location and new value.
+wants to set a square's value, it will call <code>IRule.Update</code> with the location and new value.
 It will also include a <a class="xref" href="../api/SudokuSpice.CoordinateTracker.html"><code>CoordinateTracker</code></a>, with which
 this rule needs to track any coordinates whose possible values have changed.</p>
 <pre><code class="lang-csharp">public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
@@ -175,7 +180,7 @@ private void _AddUnsetFromBackwardDiag(in Coordinate c, CoordinateTracker coordT
 </code></pre>
 <h3 id="revert">Revert</h3>
 <p>Ok, now what if that update needs to be reverted, for example if the solver made a wrong guess?
-Let's implement the <code>ISudokuRule.Revert</code> methods. These should both perform roughly the same
+Let's implement the <code>IRule.Revert</code> methods. These should both perform roughly the same
 changes: reverting the changes made during the <code>Update</code> method. However, in one we can skip
 tracking the affected square's in the <code>CoordinateTracker</code>.</p>
 <pre><code class="lang-csharp">public void Revert(in Coordinate c, int val)
@@ -198,16 +203,16 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 }
 </code></pre>
 <h3 id="copywithnewreference">CopyWithNewReference</h3>
-<p>Lastly, we must implement the <code>ISudokuRule.CopyWithNewReference</code> method to provide a deep copy for
+<p>Lastly, we must implement the <code>IRule.CopyWithNewReference</code> method to provide a deep copy for
 the
-<a href="xref:SudokuSpice.RuleBased.PuzzleSolver#SudokuSpice_RuleBased_PuzzleSolver_GetStatsForAllSolutions"><code>PuzzleSolver.GetStatsForAllSolutions</code></a>
-method and for the <a href="xref:SudokuSpice.RuleBased.PuzzleGenerator%601"><code>PuzzleGenerator</code></a>.</p>
-<pre><code class="lang-csharp">public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html#ComputeStatsForAllSolutions*"><code>PuzzleSolver.ComputeStatsForAllSolutions</code></a>
+method and for the <a class="xref" href="../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
+<pre><code class="lang-csharp">public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
 {
     return new DiagonalUniquenessRule(this, puzzle);
 }
 
-private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle puzzle)
+private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle? puzzle)
 {
     _puzzle = puzzle;
     // BitVectors are structs, so they are copied on assignment.
@@ -219,39 +224,28 @@ private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle 
 <h2 id="using-the-new-rule">Using the new rule</h2>
 <p>Now let's assume we have a <code>puzzle</code> already that we want to solve with this rule. We can solve it
 as follows:</p>
-<pre><code class="lang-csharp">var possibleValues = new PossibleValues(puzzle);
-var solver = new PuzzleSolver(
-    puzzle,
-    possibleValues,
+<pre><code class="lang-csharp">var solver = new PuzzleSolver(
     new DynamicRuleKeeper(
-        puzzle,
-        possibleValues,
-        new List&lt;ISudokuRule&gt;()
+        new List&lt;IRule&gt;()
         {
             new StandardRules(puzzle, possibleValues.AllPossible),
             new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
 		}));
-solver.Solve();
+var solved = solver.Solve(puzzle);
 </code></pre>
 <p>Similarly, we can generate new puzzles that follow this rule as below:</p>
 <pre><code class="lang-csharp">var generator = new PuzzleGenerator&lt;Puzzle&gt;(
-    () =&gt; new Puzzle(/*size=*/16),
-    puzzle =&gt; {
-        var possibleValues = new PossibleValues(puzzle);
-        return new Solver(
-            puzzle,
-            possibleValues,
-            new DynamicRuleKeeper(
-                puzzle,
-                possibleValues,
-                new List&lt;ISudokuRule&gt;()
-                {
-                    new StandardRules(puzzle, possibleValues.AllPossible),
-                    new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
-		        }));
-    });
+    size =&gt; new Puzzle(size),
+    new Solver(
+		new DynamicRuleKeeper(
+			new List&lt;IRule&gt;()
+			{
+				new StandardRules(puzzle, possibleValues.AllPossible),
+				new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
+			})));
+var puzzle = generator.Generate(size, numSetSquares, timeout);
 </code></pre>
-<p>Remember to include heuristics for the fastest performance!</p>
+<p>Remember to include heuristics for best performance!</p>
 </article>
           </div>
           

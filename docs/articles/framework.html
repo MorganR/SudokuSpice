@@ -71,8 +71,8 @@
 
 <h2 id="solvers">Solvers</h2>
 <p><em>SudokuSpice</em> provides two different solvers: the
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>PuzzleSolver</code></a> or the original
-<a href="xref:SudokuSpice.RuleBased.PuzzleSolver"><code>PuzzleSolver</code></a>.</p>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>ConstraintBased.PuzzleSolver</code></a> or the original
+<a href="xref:SudokuSpice.RuleBased.PuzzleSolver"><code>RuleBased.PuzzleSolver</code></a>.</p>
 <p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
 implementing custom rules or constraints.</p>
@@ -80,12 +80,13 @@ implementing custom rules or constraints.</p>
 <p>SudokuSpice uses four main interfaces:</p>
 <ol>
 <li><p>The <a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a></p>
-<p>Puzzles store the underlying Sudoku data. You likely only need the standard
-<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> implementation, but the interface is provided in case
-you need to do something a little different, like work with a puzzle with jagged regions
-instead of the normal square box regions.</p>
+<p>Puzzles store the underlying Sudoku data. You likely only need the standard implementations,
+<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> for constraint-based tools, and [<code>PuzzleWithPossibleValues</code>]
+for rule-based tools. However, the interface is provided in case you need to do something a
+little different, like work with a puzzle with jagged regions instead of the normal square box
+regions.</p>
 </li>
-<li><p>The <a href="xref:SudokuSpice.RuleBased.Rules.ISudokuRule"><code>ISudokuRule</code></a></p>
+<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a></p>
 <p>Rules define - you guessed it - the rules for a puzzle. For example, standard Sudokus use the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.RowUniquenessRule.html"><code>RowUniquenessRule</code></a>, the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.html"><code>ColumnUniquenessRule</code></a>, and the
@@ -96,7 +97,7 @@ efficiency, these come prepackaged in the
 themselves. They should use an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
 enough internal state to efficiently provide the possible values of any given square according to
 <em>only</em> that rule.</p>
-<p>Rules are enforced by an <a href="xref:SudokuSpice.RuleBased.ISudokuRuleKeeper"><code>ISudokuRuleKeeper</code></a>. The
+<p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.RuleBased.IRuleKeeper.html"><code>IRuleKeeper</code></a>. The
 <a class="xref" href="../api/SudokuSpice.RuleBased.DynamicRuleKeeper.html"><code>DynamicRuleKeeper</code></a> provides a general implementation
 that works with any number of rules. Custom implementations can provide even more efficiency, but
 are generally messier and more complex than simply creating custom rules.
@@ -105,18 +106,19 @@ the <a href="performance.html">benchmarks</a> for performance comparisons. The r
 updates the <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a> based on all the rules while
 ensuring that no rules are broken by a given update.</p>
 </li>
-<li><p>The <a href="xref:SudokuSpice.RuleBased.Heuristics.ISudokuHeuristic"><code>ISudokuHeuristic</code></a></p>
+<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.IHeuristic.html"><code>IHeuristic</code></a></p>
 <p>Heuristics are logical tricks that can be used to reduce the number of possible values for any
 given square. These are only used in solving when the framework would otherwise have to guess
 (i.e. all unset squares have at least two possible values), so they can be relatively expensive
 and still improve solving times.</p>
-<p>Heuristics depend on an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and directly modify
-the <a href="xref:SudokuSpice.RuleBased.PossibleValues"><code>PossibleValues</code></a>. They can alo optionally depend on one or
+<p>Heuristics depend on an
+<a class="xref" href="../api/SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html"><code>IReadOnlyPuzzleWithMutablePossibleValues</code></a>.
+They directly modify the possible values during an update. They can alo optionally depend on one or
 more rules, as is demonstrated by the
-<a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.html"><code>UniqueInRowHeuristic</code></a>. Heuristics can either
-be <em>perfect</em> heuristics, i.e. they reduce squares to only one possible value (like the <code>UniqueIn*</code>
-heuristics), or they can be <em>loose</em> heuristics, i.e. they eliminate possible values from squares,
-but don't necessarily reduce them down to a single possible value.</p>
+<a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.html"><code>UniqueInRowHeuristic</code></a>. Heuristics
+can either be <em>perfect</em> heuristics, i.e. they reduce squares to only one possible value (like
+the <code>UniqueIn*</code> heuristics), or they can be <em>loose</em> heuristics, i.e. they eliminate possible
+values from squares, but don't necessarily reduce them down to a single possible value.</p>
 <p>Due to heuristics' complexity and flexibility, no generic class is provided to enforce multiple
 heuristics. To enforce multiple heuristics, define a custom heuristic that implements your desired
 heuristics. This pattern is demonstrated by the
@@ -126,8 +128,8 @@ heuristics. This pattern is demonstrated by the
 </li>
 </ol>
 <p>Constraints represent rules that the puzzle needs to satisfy. For example, the
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html"><code>RowUniquenessConstraint</code></a> enforces the
-constraint that &quot;each row must contain all possible values.&quot;</p>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html"><code>RowUniquenessConstraint</code></a>
+enforces the constraint that &quot;each row must contain <em>all</em> possible values.&quot;</p>
 <p>Constraints are implemented using an
 <a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a>. The exact-cover matrix combines
 two concepts into a single matrix. Each row represents a possible value for a single square, for
@@ -332,11 +334,11 @@ this looks something like the following:</p>
 </table>
 <p>SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
 the <code>RxCxVx</code> cells in the first column) are represented by
-<a href="xref:SudokuSpice.ConstraintBased.PossibleValue"><code>PossibleValue</code>s</a>. Column headers (i.e. the
-cells in the first row) are represented by
-<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader.html"><code>ConstraintHeader</code>s</a>. Rows and columns are connected by
-<code>SquareLink</code>s, which represent the 1s in the matrix. Each <code>SquareLink</code> is connected up and down
-to the other '1s' that satisfy that constraint header, and connected left and right to the other
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleSquareValue.html"><code>PossibleSquareValue</code>s</a>. Column headers
+(i.e. the cells in the first row) are represented by
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader.html"><code>ConstraintHeader</code>s</a>. Rows and columns are
+connected by links, which represent the 1s in the matrix. Each link is connected up and down to
+the other '1s' that satisfy that constraint header, and connected left and right to the other
 '1s' that are present for that possible square value.</p>
 <p>The constraint-based solver uses constraints instead of rules. It does not provide a separate
 heuristics concept because the exact-cover matrix provides the <code>UniqueIn*</code> heuristics by default.
@@ -359,7 +361,7 @@ rules.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a>:</strong> Contains classes for constraint-based puzzle-solving
 and -generating.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.html">SudokuSpice.ConstraintBased.Constraints</a>:</strong> Contains standard constraints and the
-<a href="xref:SudokuSpice.ConstraintBased.Constraints.IConstraint%601"><code>IConstraint</code></a> interface.</li>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint.html"><code>IConstraint</code></a> interface.</li>
 </ul>
 </article>
           </div>

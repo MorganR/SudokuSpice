@@ -9,17 +9,19 @@ If you haven't yet read the [constraints summary](framework.md#important-concept
 
 ## Creating a constraint
 
-Unlike rules, a single constraint object can be used to solve multiple puzzles. Generally speaking,
+A single constraint object can be used to solve multiple puzzles. Generally speaking,
 no work needs to be done in the constructor.
 
-### The `Constrain` method
+### The `TryConstrain` method
 
-The `IConstraint.Constrain` operation adds new
+The `IConstraint.TryConstrain` operation adds new
 [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader) (and corresponding
-`SquareLink`s) to the given
+links) to the given
 [`ExactCoverMatrix`](xref:SudokuSpice.ConstraintBased.ExactCoverMatrix). It must also drop any
-[`PossibleValue`s](xref:SudokuSpice.ConstraintBased.PossibleValue) that are now impossible based
-on applying this constraint to the puzzle's preset values.
+[`PossibleSquareValue`s](xref:SudokuSpice.ConstraintBased.PossibleSquareValue) that are now
+impossible based on applying this constraint to the puzzle's preset values.
+
+It should return false if the given puzzle cannot satisfy this constraint, else true.
 
 #### Define your headers
 
@@ -28,7 +30,7 @@ We could state this constraint as follows:
 
 > Each forward diagonal, and each backward diagonal, needs to contain all possible values.
 
-We could implement this by adding a constraint header for each possible value on each diagonal.
+We can implement this by adding a constraint header for each possible value on each diagonal.
 
 #### Determine unique coordinates
 
@@ -36,7 +38,7 @@ The unique coordinates here are those on the forward diagonal, and those on the 
 We can find all the coordinates on the forward diagonal as follows:
 
 ```csharp
-public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     var forwardDiagonalCoordinates = new Coordinate[puzzle.Size];
     for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
@@ -56,7 +58,7 @@ based on the order they are returne when we first call `puzzle.AllPossibleValues
 handled by the `ExactCoverMatrix`.
 
 ```csharp
-public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     ...
 
@@ -83,9 +85,10 @@ Now we can iterate through each possible value on each diagonal, drop possible s
 are no longer possible, and add constraint headers for the rest.
 
 ```csharp
-public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     ...
+
     var squares = new Square?[forwardDiagonalCoordinates.Length];
     for (int i = 0; i < squares.Length; i++)
     {
@@ -95,15 +98,26 @@ public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
     {
         if (isConstraintSatisfiedAtIndex[valueIndex])
         {
-            ConstraintUtil.DropPossibleSquaresForValueIndex(squares, valueIndex, matrix);
-            continue;
+			if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(squares, valueIndex))
+			{
+				return false;
+			}
+			continue;
         }
-        ConstraintUtil.AddConstraintHeadersForValueIndex(squares, valueIndex, matrix);
+		if (!ConstraintUtil.TryAddConstraintHeadersForValueIndex(squares, valueIndex, matrix))
+		{
+			return false;
+		}
     }
 
     // TODO: Add headers and drop rows for the backward diagonal.
+
+    ...
+
+    return true;
 }
 ```
+
 Note that here we made use of the
 [`ConstraintUtil`](xref:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil) to easily
 add headers and drop rows. This provides a few useful functions for implementing constraints. In 
@@ -115,5 +129,5 @@ for (int row = 0, col = puzzle.Size - 1;  row < puzzle.Size; row++, col--)
 {
     coordinates[row] = new Coordinate(row, col);
 }
-ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
+return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
 ```

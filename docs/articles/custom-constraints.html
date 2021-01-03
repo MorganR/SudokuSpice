@@ -75,26 +75,27 @@ new constraint: the
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.html"><code>DiagonalUniquenessConstraint</code></a>.</p>
 <p>If you haven't yet read the <a href="framework.html#important-concepts">constraints summary</a>, read that first!</p>
 <h2 id="creating-a-constraint">Creating a constraint</h2>
-<p>Unlike rules, a single constraint object can be used to solve multiple puzzles. Generally speaking,
+<p>A single constraint object can be used to solve multiple puzzles. Generally speaking,
 no work needs to be done in the constructor.</p>
-<h3 id="the-constrain-method">The <code>Constrain</code> method</h3>
-<p>The <code>IConstraint.Constrain</code> operation adds new
+<h3 id="the-tryconstrain-method">The <code>TryConstrain</code> method</h3>
+<p>The <code>IConstraint.TryConstrain</code> operation adds new
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.ConstraintHeader.html"><code>ConstraintHeader</code>s</a> (and corresponding
-<code>SquareLink</code>s) to the given
+links) to the given
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.ExactCoverMatrix.html"><code>ExactCoverMatrix</code></a>. It must also drop any
-<a href="xref:SudokuSpice.ConstraintBased.PossibleValue"><code>PossibleValue</code>s</a> that are now impossible based
-on applying this constraint to the puzzle's preset values.</p>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PossibleSquareValue.html"><code>PossibleSquareValue</code>s</a> that are now
+impossible based on applying this constraint to the puzzle's preset values.</p>
+<p>It should return false if the given puzzle cannot satisfy this constraint, else true.</p>
 <h4 id="define-your-headers">Define your headers</h4>
 <p>The first thing we need to identify is what a constraint header looks like for this constraint.
 We could state this constraint as follows:</p>
 <blockquote>
 <p>Each forward diagonal, and each backward diagonal, needs to contain all possible values.</p>
 </blockquote>
-<p>We could implement this by adding a constraint header for each possible value on each diagonal.</p>
+<p>We can implement this by adding a constraint header for each possible value on each diagonal.</p>
 <h4 id="determine-unique-coordinates">Determine unique coordinates</h4>
 <p>The unique coordinates here are those on the forward diagonal, and those on the backward diagonal.
 We can find all the coordinates on the forward diagonal as follows:</p>
-<pre><code class="lang-csharp">public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     var forwardDiagonalCoordinates = new Coordinate[puzzle.Size];
     for (int row = 0, col = puzzle.Size - 1;  row &lt; puzzle.Size; row++, col--)
@@ -110,7 +111,7 @@ We can find all the coordinates on the forward diagonal as follows:</p>
 values. Within the constraint-based solver, we map a puzzle's possible values to zero-based indices
 based on the order they are returne when we first call <code>puzzle.AllPossibleValues</code>. This mapping is
 handled by the <code>ExactCoverMatrix</code>.</p>
-<pre><code class="lang-csharp">public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     ...
 
@@ -133,9 +134,10 @@ handled by the <code>ExactCoverMatrix</code>.</p>
 <h4 id="add-headers-and-drop-impossible-rows">Add headers and drop impossible rows</h4>
 <p>Now we can iterate through each possible value on each diagonal, drop possible square values that
 are no longer possible, and add constraint headers for the rest.</p>
-<pre><code class="lang-csharp">public void Constrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
 {
     ...
+
     var squares = new Square?[forwardDiagonalCoordinates.Length];
     for (int i = 0; i &lt; squares.Length; i++)
     {
@@ -145,13 +147,23 @@ are no longer possible, and add constraint headers for the rest.</p>
     {
         if (isConstraintSatisfiedAtIndex[valueIndex])
         {
-            ConstraintUtil.DropPossibleSquaresForValueIndex(squares, valueIndex, matrix);
-            continue;
+			if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(squares, valueIndex))
+			{
+				return false;
+			}
+			continue;
         }
-        ConstraintUtil.AddConstraintHeadersForValueIndex(squares, valueIndex, matrix);
+		if (!ConstraintUtil.TryAddConstraintHeadersForValueIndex(squares, valueIndex, matrix))
+		{
+			return false;
+		}
     }
 
     // TODO: Add headers and drop rows for the backward diagonal.
+
+    ...
+
+    return true;
 }
 </code></pre>
 <p>Note that here we made use of the
@@ -163,7 +175,7 @@ for (int row = 0, col = puzzle.Size - 1;  row &lt; puzzle.Size; row++, col--)
 {
     coordinates[row] = new Coordinate(row, col);
 }
-ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
+return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
 </code></pre>
 </article>
           </div>
