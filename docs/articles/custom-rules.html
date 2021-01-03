@@ -204,9 +204,8 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 </code></pre>
 <h3 id="copywithnewreference">CopyWithNewReference</h3>
 <p>Lastly, we must implement the <code>IRule.CopyWithNewReference</code> method to provide a deep copy for
-the
-<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1_ComputeStatsForAllSolutions"><code>PuzzleSolver.ComputeStatsForAllSolutions</code></a>
-method and for the <a class="xref" href="../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
+some solver and generator methods. The given puzzle should be a copy of the current puzzle, if any,
+else null.</p>
 <pre><code class="lang-csharp">public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
 {
     return new DiagonalUniquenessRule(this, puzzle);

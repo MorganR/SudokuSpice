@@ -156,9 +156,8 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 ### CopyWithNewReference
 
 Lastly, we must implement the `IRule.CopyWithNewReference` method to provide a deep copy for
-the
-[`PuzzleSolver.ComputeStatsForAllSolutions`](xref:SudokuSpice.RuleBased.PuzzleSolver`1#SudokuSpice_RuleBased_PuzzleSolver_1_ComputeStatsForAllSolutions)
-method and for the [`PuzzleGenerator`](xref:SudokuSpice.PuzzleGenerator`1).
+some solver and generator methods. The given puzzle should be a copy of the current puzzle, if any,
+else null.
 
 ```csharp
 public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
