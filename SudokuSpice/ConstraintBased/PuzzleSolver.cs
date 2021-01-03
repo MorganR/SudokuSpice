@@ -11,7 +11,7 @@ namespace SudokuSpice.ConstraintBased
     /// <remarks>
     /// This class is thread-safe.
     /// </remarks>
-    public class PuzzleSolver<TPuzzle> where TPuzzle : IPuzzle
+    public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly IReadOnlyList<IConstraint> _constraints;
 
@@ -25,58 +25,33 @@ namespace SudokuSpice.ConstraintBased
             _constraints = constraints;
         }
 
-        /// <summary>
-        /// Solves the given <paramref name="puzzle"/>. This modifies the puzzle's data.
-        /// </summary>
-        /// <remarks>
-        /// It is safe to call this method from different threads on the same solver object,
-        /// although note that the given <paramref name="puzzle"/> is modified.
-        /// </remarks>
-        /// <param name="puzzle">The puzzle to solve.</param>
-        /// <param name="randomizeGuesses">
-        /// If true, will guess in a random order when forced to guess. Else, this tries to guess
-        /// in a clever order, which may have better performance.
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the puzzle cannot be solved with this solver's constraints, or if the
-        /// possible values are not unique.
-        /// </exception>
-        public void Solve(TPuzzle puzzle, bool randomizeGuesses = false)
+        /// <inheritdoc/>
+        public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
-            var matrix = new ExactCoverMatrix(puzzle);
+            var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
+            var matrix = new ExactCoverMatrix(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzle, matrix))
+                if (!constraint.TryConstrain(puzzleCopy, matrix))
                 {
                     throw new ArgumentException("Puzzle violates this solver's constraints.");
                 };
             }
             if (!(randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)) :
-                _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix))))
+                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzleCopy, matrix)) :
+                _TrySolve(new SquareTracker<TPuzzle>(puzzleCopy, matrix))))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
+            return puzzleCopy;
         }
 
-        /// <summary>
-        /// Solves the given <paramref name="puzzle"/>. This modifies the puzzle's data.
-        /// </summary>
-        /// <remarks>
-        /// It is safe to call this method from different threads on the same solver object,
-        /// although note that the given <paramref name="puzzle"/> is modified.
-        /// </remarks>
-        /// <param name="puzzle">The puzzle to solve.</param>
-        /// <param name="randomizeGuesses">
-        /// If true, will guess in a random order when forced to guess. Else, this tries to guess
-        /// in a clever order, which may have better performance.
-        /// </param>
-        /// <returns>True if the puzzle was solved successfully.</returns>
+        /// <inheritdoc/>
         public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
@@ -96,30 +71,20 @@ namespace SudokuSpice.ConstraintBased
                 _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix));
         }
 
-        /// <summary>
-        /// Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
-        /// </summary>
-        /// <exception cref="OperationCanceledException">
-        /// May be thrown if the given cancellation token is canceled during the operation.
-        /// </exception>
-        public SolveStats GetStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
+        /// <inheritdoc/>
+        public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
         {
-            return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
+            return _ComputeStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
         }
 
-        /// <summary>
-        /// Determines if the given puzzle has a unique solution. The puzzle is left unchanged.
-        /// </summary>
-        /// <exception cref="OperationCanceledException">
-        /// May be thrown if the given cancellation token is canceled during the operation.
-        /// </exception>
+        /// <inheritdoc/>
         public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)
         {
-            return _GetStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
+            return _ComputeStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
                 .NumSolutionsFound == 1;
         }
 
-        private SolveStats _GetStatsForAllSolutions(TPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? token)
+        private SolveStats _ComputeStatsForAllSolutions(TPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? token)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {

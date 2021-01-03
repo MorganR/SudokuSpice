@@ -9,28 +9,28 @@ namespace SudokuSpice
     public interface IReadOnlyPuzzle
     {
         /// <summary>The side-length of the puzzle (puzzles must be square).</summary>
-        public int Size { get; }
+        int Size { get; }
         /// <summary>The total number of squares in the puzzle.</summary>
-        public int NumSquares { get; }
+        int NumSquares { get; }
         /// <summary>The current number of empty/unknown squares in the puzzle.</summary>
-        public int NumEmptySquares { get; }
+        int NumEmptySquares { get; }
         /// <summary>The number of set/known squares in the puzzle.</summary>
-        public int NumSetSquares { get; }
+        int NumSetSquares { get; }
         /// <summary>Gets all the possible values for this puzzle.</summary>
-        public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
+        ReadOnlySpan<int> AllPossibleValuesSpan { get; }
 
         /// <summary>
         /// Gets the current value of a given square.
         /// </summary>
-        public int? this[int row, int col] { get; }
+        int? this[int row, int col] { get; }
 
         [SuppressMessage(
             "Design",
             "CA1043:Use Integral Or String Argument For Indexers",
             Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
-        public int? this[in Coordinate c] { get; }
+        int? this[in Coordinate c] { get; }
 
         /// <summary>Gets a span of <c>Coordinate</c>s for all the unset squares.</summary>
-        public ReadOnlySpan<Coordinate> GetUnsetCoords();
+        ReadOnlySpan<Coordinate> GetUnsetCoords();
     }
 }

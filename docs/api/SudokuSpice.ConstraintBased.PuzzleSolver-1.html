@@ -81,6 +81,10 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">PuzzleSolver&lt;TPuzzle&gt;</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SudokuSpice.IPuzzleSolver-1.html">IPuzzleSolver</a>&lt;TPuzzle&gt;</div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -109,8 +113,7 @@
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PuzzleSolver&lt;TPuzzle&gt;
-    where TPuzzle : IPuzzle</code></pre>
+    <pre><code class="lang-csharp hljs">public class PuzzleSolver&lt;TPuzzle&gt; : IPuzzleSolver&lt;TPuzzle&gt; where TPuzzle : IPuzzle</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -171,19 +174,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.GetStatsForAllSolutions(%600%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.ComputeStatsForAllSolutions(%600%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L105">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L75">View Source</a>
   </span>
-  <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_GetStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})">GetStatsForAllSolutions(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
+  <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_ComputeStatsForAllSolutions_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.ComputeStatsForAllSolutions*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})">ComputeStatsForAllSolutions(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SolveStats GetStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))</code></pre>
+    <pre><code class="lang-csharp hljs">public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -243,7 +246,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.HasUniqueSolution(%600%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L116">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L81">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_HasUniqueSolution_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution*"></a>
   <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})">HasUniqueSolution(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
@@ -312,16 +315,16 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve__0_System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.Solve(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L44">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L29">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.Solve*"></a>
   <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve__0_System_Boolean_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.Solve(`0,System.Boolean)">Solve(TPuzzle, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Solves the given <code data-dev-comment-type="paramref" class="paramref">puzzle</code>. This modifies the puzzle's data.</p>
+  <div class="markdown level1 summary"><p>Solves the given puzzle in place.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Solve(TPuzzle puzzle, bool randomizeGuesses = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -336,22 +339,34 @@
       <tr>
         <td><span class="xref">TPuzzle</span></td>
         <td><span class="parametername">puzzle</span></td>
-        <td><p>The puzzle to solve.</p>
+        <td><p>The puzzle to solve. This will be copied instead of solved in-place.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">randomizeGuesses</span></td>
-        <td><p>If true, will guess in a random order when forced to guess. Else, this tries to guess
-in a clever order, which may have better performance.</p>
+        <td><p>If true, this will guess in a random order when forced to guess. Else, the guessing
+order is up to the implementation, but it should be stable.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_Solve__0_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It is safe to call this method from different threads on the same solver object,
-although note that the given <code data-dev-comment-type="paramref" class="paramref">puzzle</code> is modified.</p>
-</div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TPuzzle</span></td>
+        <td><p>A solved copy of the given puzzle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -363,8 +378,7 @@ although note that the given <code data-dev-comment-type="paramref" class="param
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if the puzzle cannot be solved with this solver's constraints, or if the
-possible values are not unique.</p>
+        <td><p>Thrown if this puzzle can't be solved by this solver.</p>
 </td>
       </tr>
     </tbody>
@@ -374,11 +388,11 @@ possible values are not unique.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve__0_System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PuzzleSolver%601.TrySolve(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L80">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/ConstraintBased/PuzzleSolver.cs/#L55">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.TrySolve*"></a>
   <h4 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve__0_System_Boolean_" data-uid="SudokuSpice.ConstraintBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)">TrySolve(TPuzzle, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Solves the given <code data-dev-comment-type="paramref" class="paramref">puzzle</code>. This modifies the puzzle's data.</p>
+  <div class="markdown level1 summary"><p>Attempts to solve the given puzzle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -398,14 +412,14 @@ possible values are not unique.</p>
       <tr>
         <td><span class="xref">TPuzzle</span></td>
         <td><span class="parametername">puzzle</span></td>
-        <td><p>The puzzle to solve.</p>
+        <td><p>The puzzle to solve. This will be solved in place.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">randomizeGuesses</span></td>
-        <td><p>If true, will guess in a random order when forced to guess. Else, this tries to guess
-in a clever order, which may have better performance.</p>
+        <td><p>If true, this will guess in a random order when forced to guess. Else, the guessing
+order is up to the implementation, but it should be stable.</p>
 </td>
       </tr>
     </tbody>
@@ -421,15 +435,14 @@ in a clever order, which may have better performance.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p>True if the puzzle was solved successfully.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_ConstraintBased_PuzzleSolver_1_TrySolve__0_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It is safe to call this method from different threads on the same solver object,
-although note that the given <code data-dev-comment-type="paramref" class="paramref">puzzle</code> is modified.</p>
-</div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SudokuSpice.IPuzzleSolver-1.html">IPuzzleSolver&lt;TPuzzle&gt;</a>
+  </div>
 </article>
           </div>
           

@@ -71,10 +71,10 @@ items:
   summary: Creates an efficient solver for solving standard Sudoku puzzles.
   example: []
   syntax:
-    content: public static PuzzleSolver CreateSolver()
+    content: public static PuzzleSolver<PuzzleWithPossibleValues> CreateSolver()
     return:
-      type: SudokuSpice.RuleBased.PuzzleSolver
-    content.vb: Public Shared Function CreateSolver As PuzzleSolver
+      type: SudokuSpice.RuleBased.PuzzleSolver{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+    content.vb: Public Shared Function CreateSolver As PuzzleSolver(Of PuzzleWithPossibleValues)
   overload: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver*
   modifiers.csharp:
   - public
@@ -385,9 +385,79 @@ references:
   name: CreateSolver
   nameWithType: StandardPuzzles.CreateSolver
   fullName: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
-- uid: SudokuSpice.RuleBased.PuzzleSolver
-  commentId: T:SudokuSpice.RuleBased.PuzzleSolver
+- uid: SudokuSpice.RuleBased.PuzzleSolver{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
   parent: SudokuSpice.RuleBased
-  name: PuzzleSolver
-  nameWithType: PuzzleSolver
-  fullName: SudokuSpice.RuleBased.PuzzleSolver
+  definition: SudokuSpice.RuleBased.PuzzleSolver`1
+  name: PuzzleSolver<PuzzleWithPossibleValues>
+  nameWithType: PuzzleSolver<PuzzleWithPossibleValues>
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<SudokuSpice.RuleBased.PuzzleWithPossibleValues>
+  nameWithType.vb: PuzzleSolver(Of PuzzleWithPossibleValues)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of SudokuSpice.RuleBased.PuzzleWithPossibleValues)
+  name.vb: PuzzleSolver(Of PuzzleWithPossibleValues)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver`1
+  name: PuzzleSolver<TPuzzle>
+  nameWithType: PuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>
+  nameWithType.vb: PuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle)
+  name.vb: PuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )

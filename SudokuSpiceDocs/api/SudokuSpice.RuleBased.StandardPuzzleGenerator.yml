@@ -28,13 +28,13 @@ items:
   summary: "\nGenerates standard Sudoku puzzles.\n"
   example: []
   syntax:
-    content: 'public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>'
+    content: 'public class StandardPuzzleGenerator : PuzzleGenerator<PuzzleWithPossibleValues>'
     content.vb: >-
       Public Class StandardPuzzleGenerator
-          Inherits PuzzleGenerator(Of Puzzle)
+          Inherits PuzzleGenerator(Of PuzzleWithPossibleValues)
   inheritance:
   - System.Object
-  - SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.RuleBased.Puzzle}
+  - SudokuSpice.PuzzleGenerator{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -105,7 +105,7 @@ items:
   summary: "\nGenerates a puzzle that has a unique solution with the given number of squares set.\n\nBe careful calling this with low values, as it can take a very long time to generate\nunique puzzles as the value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> approaches the\nminimum number of clues necessary to provide a unique puzzle of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code>.\n"
   example: []
   syntax:
-    content: public Puzzle Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
+    content: public PuzzleWithPossibleValues Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
     parameters:
     - id: puzzleSize
       type: System.Int32
@@ -117,9 +117,9 @@ items:
       type: System.TimeSpan
       description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
     return:
-      type: SudokuSpice.RuleBased.Puzzle
+      type: SudokuSpice.RuleBased.PuzzleWithPossibleValues
       description: "\nA standard Sudoku puzzle with a unique solution and <code>numSquaresToSet</code> preset\nsquares.\n"
-    content.vb: Public Function Generate(puzzleSize As Integer, numSquaresToSet As Integer, timeout As TimeSpan) As Puzzle
+    content.vb: Public Function Generate(puzzleSize As Integer, numSquaresToSet As Integer, timeout As TimeSpan) As PuzzleWithPossibleValues
   overload: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate*
   exceptions:
   - type: System.ArgumentOutOfRangeException
@@ -145,43 +145,43 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.RuleBased.Puzzle}
-  commentId: T:SudokuSpice.RuleBased.PuzzleGenerator{SudokuSpice.RuleBased.Puzzle}
-  parent: SudokuSpice.RuleBased
-  definition: SudokuSpice.RuleBased.PuzzleGenerator`1
-  name: PuzzleGenerator<Puzzle>
-  nameWithType: PuzzleGenerator<Puzzle>
-  fullName: SudokuSpice.RuleBased.PuzzleGenerator<SudokuSpice.RuleBased.Puzzle>
-  nameWithType.vb: PuzzleGenerator(Of Puzzle)
-  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of SudokuSpice.RuleBased.Puzzle)
-  name.vb: PuzzleGenerator(Of Puzzle)
+- uid: SudokuSpice.PuzzleGenerator{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  commentId: T:SudokuSpice.PuzzleGenerator{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  parent: SudokuSpice
+  definition: SudokuSpice.PuzzleGenerator`1
+  name: PuzzleGenerator<PuzzleWithPossibleValues>
+  nameWithType: PuzzleGenerator<PuzzleWithPossibleValues>
+  fullName: SudokuSpice.PuzzleGenerator<SudokuSpice.RuleBased.PuzzleWithPossibleValues>
+  nameWithType.vb: PuzzleGenerator(Of PuzzleWithPossibleValues)
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of SudokuSpice.RuleBased.PuzzleWithPossibleValues)
+  name.vb: PuzzleGenerator(Of PuzzleWithPossibleValues)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
+  - uid: SudokuSpice.PuzzleGenerator`1
     name: PuzzleGenerator
     nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.RuleBased.PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.RuleBased.Puzzle
-    name: Puzzle
-    nameWithType: Puzzle
-    fullName: SudokuSpice.RuleBased.Puzzle
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
+  - uid: SudokuSpice.PuzzleGenerator`1
     name: PuzzleGenerator
     nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.RuleBased.PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.RuleBased.Puzzle
-    name: Puzzle
-    nameWithType: Puzzle
-    fullName: SudokuSpice.RuleBased.Puzzle
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
   - name: )
     nameWithType: )
     fullName: )
@@ -470,19 +470,19 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.RuleBased.PuzzleGenerator`1
-  commentId: T:SudokuSpice.RuleBased.PuzzleGenerator`1
+- uid: SudokuSpice.PuzzleGenerator`1
+  commentId: T:SudokuSpice.PuzzleGenerator`1
   name: PuzzleGenerator<TPuzzle>
   nameWithType: PuzzleGenerator<TPuzzle>
-  fullName: SudokuSpice.RuleBased.PuzzleGenerator<TPuzzle>
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>
   nameWithType.vb: PuzzleGenerator(Of TPuzzle)
-  fullName.vb: SudokuSpice.RuleBased.PuzzleGenerator(Of TPuzzle)
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle)
   name.vb: PuzzleGenerator(Of TPuzzle)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
+  - uid: SudokuSpice.PuzzleGenerator`1
     name: PuzzleGenerator
     nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.RuleBased.PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
   - name: <
     nameWithType: <
     fullName: <
@@ -493,10 +493,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.RuleBased.PuzzleGenerator`1
+  - uid: SudokuSpice.PuzzleGenerator`1
     name: PuzzleGenerator
     nameWithType: PuzzleGenerator
-    fullName: SudokuSpice.RuleBased.PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -506,6 +506,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor
   name: StandardPuzzleGenerator
@@ -536,9 +541,9 @@ references:
   name: TimeSpan
   nameWithType: TimeSpan
   fullName: System.TimeSpan
-- uid: SudokuSpice.RuleBased.Puzzle
-  commentId: T:SudokuSpice.RuleBased.Puzzle
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.PuzzleWithPossibleValues
   parent: SudokuSpice.RuleBased
-  name: Puzzle
-  nameWithType: Puzzle
-  fullName: SudokuSpice.RuleBased.Puzzle
+  name: PuzzleWithPossibleValues
+  nameWithType: PuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues

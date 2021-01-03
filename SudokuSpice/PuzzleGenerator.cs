@@ -2,13 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SudokuSpice.RuleBased
+namespace SudokuSpice
 {
     public class PuzzleGenerator<TPuzzle> where TPuzzle : IPuzzle
     {
         private readonly Random _random = new Random();
         private readonly Func<int, TPuzzle> _puzzleFactory;
-        private readonly PuzzleSolver _solver;
+        private readonly IPuzzleSolver<TPuzzle> _solver;
 
         /// <summary>
         /// Creates a puzzle generator for generating puzzles.
@@ -17,11 +17,11 @@ namespace SudokuSpice.RuleBased
         /// A function that constructs an empty <see cref="IPuzzle"/> of the desired type and shape.
         /// The requested puzzle size (i.e. side-length) is provided as an argument.
         /// </param>
-        /// <param name="solverFactory">
-        /// A function that constructs a <see cref="SquareTracker"/> for the desired puzzle type.
-        /// This allows callers to use non-standard rules and heuristics.
+        /// <param name=solver">
+        /// A solver to be used to generate puzzles. The solver determines the rules or constraints
+        /// a puzzle must satisfy.
         /// </param>
-        public PuzzleGenerator(Func<int, TPuzzle> puzzleFromSize, PuzzleSolver solver)
+        public PuzzleGenerator(Func<int, TPuzzle> puzzleFromSize, IPuzzleSolver<TPuzzle> solver)
         {
             _puzzleFactory = puzzleFromSize;
             _solver = solver;
@@ -145,7 +145,7 @@ namespace SudokuSpice.RuleBased
 
         private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
 
-        private void _FillPuzzle(TPuzzle puzzle) => _solver.TrySolveRandomly(puzzle);
+        private void _FillPuzzle(TPuzzle puzzle) => _solver.TrySolve(puzzle, randomizeGuesses: true);
 
         private bool _TryUnsetSquareAt(
             in Coordinate c,
@@ -157,12 +157,10 @@ namespace SudokuSpice.RuleBased
             if (numEmptySquares < 3)
             {
                 puzzle[c.Row, c.Column] = null;
-                puzzle.ResetPossibleValues(in c);
                 return true;
             }
             int? previousValue = puzzle[c.Row, c.Column];
             puzzle[c.Row, c.Column] = null;
-            puzzle.ResetPossibleValues(in c);
             if (_solver.HasUniqueSolution(puzzle, cancellationToken))
             {
                 return true;

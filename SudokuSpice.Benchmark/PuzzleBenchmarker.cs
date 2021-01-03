@@ -1,5 +1,4 @@
 using BenchmarkDotNet.Attributes;
-using SudokuSpice.ConstraintBased;
 using SudokuSpice.ConstraintBased.Constraints;
 using SudokuSpice.RuleBased;
 using SudokuSpice.RuleBased.Heuristics;
@@ -19,32 +18,32 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpice(PuzzleSample puzzle)
         {
-            var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
-            PuzzleSolver solver = StandardPuzzles.CreateSolver();
-            solver.SolveRandomly(p);
-            return p.NumEmptySquares == 0;
+            var p = new PuzzleWithPossibleValues(puzzle.NullableMatrix);
+            var solver = StandardPuzzles.CreateSolver();
+            var result = solver.Solve(p, randomizeGuesses: true);
+            return result.NumEmptySquares == 0;
         }
 
         [Benchmark]
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceDynamicSingle(PuzzleSample puzzle)
         {
-            var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
+            var p = new PuzzleWithPossibleValues(puzzle.NullableMatrix);
             var standardRules = new StandardRules();
             var ruleKeeper = new DynamicRuleKeeper(
                 new List<IRule> { standardRules });
             var heuristic = new StandardHeuristic(
                 standardRules, standardRules, standardRules);
-            var solver = new PuzzleSolver(ruleKeeper, heuristic);
-            solver.SolveRandomly(p);
-            return p.NumEmptySquares == 0;
+            var solver = new RuleBased.PuzzleSolver<PuzzleWithPossibleValues>(ruleKeeper, heuristic);
+            var result = solver.Solve(p, randomizeGuesses: true);
+            return result.NumEmptySquares == 0;
         }
 
         [Benchmark]
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
         {
-            var p = RuleBased.Puzzle.CopyFrom(puzzle.NullableMatrix);
+            var p = new PuzzleWithPossibleValues(puzzle.NullableMatrix);
             var rowRule = new RowUniquenessRule();
             var columnRule = new ColumnUniquenessRule();
             var boxRule = new BoxUniquenessRule();
@@ -52,9 +51,9 @@ namespace SudokuSpice.Benchmark
                 new List<IRule> { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 rowRule, columnRule, boxRule);
-            var solver = new PuzzleSolver(ruleKeeper, heuristic);
-            solver.SolveRandomly(p);
-            return p.NumEmptySquares == 0;
+            var solver = new RuleBased.PuzzleSolver<PuzzleWithPossibleValues>(ruleKeeper, heuristic);
+            var result = solver.Solve(p, randomizeGuesses: true);
+            return result.NumEmptySquares == 0;
         }
 
         [Benchmark]
@@ -62,14 +61,14 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpiceConstraints(PuzzleSample puzzle)
         {
             var p = new Puzzle(puzzle.NullableMatrix);
-            var solver = new PuzzleSolver<Puzzle>(
+            var solver = new ConstraintBased.PuzzleSolver<Puzzle>(
                 new IConstraint[] {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint()
                 });
-            solver.Solve(p);
-            return p.NumEmptySquares == 0;
+            var result = solver.Solve(p);
+            return result.NumEmptySquares == 0;
         }
 
         [Benchmark]

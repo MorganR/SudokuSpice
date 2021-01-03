@@ -19,7 +19,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithValidValue_SetsAndReturnsTrue()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -37,7 +37,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WhichLeadsToZeroPossibleForOtherSquare_ReturnsFalseWithNoChange()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */,            3},
@@ -57,7 +57,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithInvalidValue_ReturnsFalseWithNoChange()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -77,7 +77,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void GetBestCoordinateToGuess_ReturnsCoordinateWithMinimumNumPossibles()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1,            4},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -98,7 +98,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void GetPossibleValues_MatchesPossibleValues()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1,            4},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -119,7 +119,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void UnsetLast_UndoesPreviousUpdate()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1,            4},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -145,7 +145,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void DeepCopy_Succeeds()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1,            4},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},

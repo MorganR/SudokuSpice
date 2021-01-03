@@ -1,0 +1,234 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.IPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IPossibleValues
+  id: IPossibleValues
+  parent: SudokuSpice.RuleBased
+  children:
+  - SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  langs:
+  - csharp
+  - vb
+  name: IPossibleValues
+  nameWithType: IPossibleValues
+  fullName: SudokuSpice.RuleBased.IPossibleValues
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/IPossibleValues.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: IPossibleValues
+    path: ../SudokuSpice/RuleBased/IPossibleValues.cs
+    startLine: 2
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  syntax:
+    content: 'public interface IPossibleValues : IReadOnlyPossibleValues'
+    content.vb: >-
+      Public Interface IPossibleValues
+          Inherits IReadOnlyPossibleValues
+  inheritedMembers:
+  - SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+  - SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  id: SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  parent: SudokuSpice.RuleBased.IPossibleValues
+  langs:
+  - csharp
+  - vb
+  name: SetPossibleValues(Coordinate, BitVector)
+  nameWithType: IPossibleValues.SetPossibleValues(Coordinate, BitVector)
+  fullName: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/IPossibleValues.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: SetPossibleValues
+    path: ../SudokuSpice/RuleBased/IPossibleValues.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nSets the possible values for a square.\n"
+  example: []
+  syntax:
+    content: void SetPossibleValues(in Coordinate c, BitVector possibleValues)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+    - id: possibleValues
+      type: SudokuSpice.RuleBased.BitVector
+    content.vb: Sub SetPossibleValues(ByRef c As Coordinate, possibleValues As BitVector)
+  overload: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues*
+  nameWithType.vb: IPossibleValues.SetPossibleValues(ByRef Coordinate, BitVector)
+  fullName.vb: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(ByRef SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
+  name.vb: SetPossibleValues(ByRef Coordinate, BitVector)
+- uid: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  id: IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  parent: SudokuSpice.RuleBased.IPossibleValues
+  langs:
+  - csharp
+  - vb
+  name: IntersectPossibleValues(Coordinate, BitVector)
+  nameWithType: IPossibleValues.IntersectPossibleValues(Coordinate, BitVector)
+  fullName: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/IPossibleValues.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: IntersectPossibleValues
+    path: ../SudokuSpice/RuleBased/IPossibleValues.cs
+    startLine: 13
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nModifies the possible values for a square to be the intersect of the current possible\nvalues and the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleValues</code>.\n"
+  example: []
+  syntax:
+    content: void IntersectPossibleValues(in Coordinate c, BitVector possibleValues)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+    - id: possibleValues
+      type: SudokuSpice.RuleBased.BitVector
+    content.vb: Sub IntersectPossibleValues(ByRef c As Coordinate, possibleValues As BitVector)
+  overload: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues*
+  nameWithType.vb: IPossibleValues.IntersectPossibleValues(ByRef Coordinate, BitVector)
+  fullName.vb: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(ByRef SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
+  name.vb: IntersectPossibleValues(ByRef Coordinate, BitVector)
+- uid: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+  id: ResetPossibleValues(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.IPossibleValues
+  langs:
+  - csharp
+  - vb
+  name: ResetPossibleValues(Coordinate)
+  nameWithType: IPossibleValues.ResetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/IPossibleValues.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ResetPossibleValues
+    path: ../SudokuSpice/RuleBased/IPossibleValues.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nResets the possible values at the given location to be all possible values for this\npuzzle.\n"
+  example: []
+  syntax:
+    content: void ResetPossibleValues(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+    content.vb: Sub ResetPossibleValues(ByRef c As Coordinate)
+  overload: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues*
+  nameWithType.vb: IPossibleValues.ResetPossibleValues(ByRef Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(ByRef SudokuSpice.Coordinate)
+  name.vb: ResetPossibleValues(ByRef Coordinate)
+references:
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+  commentId: P:SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+  parent: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  name: AllPossibleValues
+  nameWithType: IReadOnlyPossibleValues.AllPossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  name: GetPossibleValues(Coordinate)
+  nameWithType: IReadOnlyPossibleValues.GetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: IReadOnlyPossibleValues.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: IReadOnlyPossibleValues.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IReadOnlyPossibleValues
+  nameWithType: IReadOnlyPossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+- uid: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues*
+  commentId: Overload:SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues
+  name: SetPossibleValues
+  nameWithType: IPossibleValues.SetPossibleValues
+  fullName: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.RuleBased.BitVector
+  commentId: T:SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.RuleBased
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues*
+  commentId: Overload:SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues
+  name: IntersectPossibleValues
+  nameWithType: IPossibleValues.IntersectPossibleValues
+  fullName: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues
+- uid: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues*
+  commentId: Overload:SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues
+  name: ResetPossibleValues
+  nameWithType: IPossibleValues.ResetPossibleValues
+  fullName: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues

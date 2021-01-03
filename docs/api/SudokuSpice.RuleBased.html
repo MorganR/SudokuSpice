@@ -77,19 +77,14 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SudokuSpice.RuleBased.Boxes.html">Boxes</a></h4>
-      <section><p>Provides utilities for working with &quot;boxes&quot;, i.e. square regions within standard Sudokus.</p>
-</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.DynamicRuleKeeper.html">DynamicRuleKeeper</a></h4>
       <section><p>Enforces an arbitrary injected set of rules.</p>
 </section>
-      <h4><a class="xref" href="SudokuSpice.RuleBased.Puzzle.html">Puzzle</a></h4>
-      <section><p>Manages underlying puzzle data.</p>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver-1.html">PuzzleSolver&lt;TPuzzle&gt;</a></h4>
+      <section><p>Solves a single <a class="xref" href="SudokuSpice.IPuzzle.html">IPuzzle</a> using a <span class="xref">SudokuSpice.RuleBased.SquareTracker</span>.</p>
 </section>
-      <h4><a class="xref" href="SudokuSpice.RuleBased.PuzzleGenerator-1.html">PuzzleGenerator&lt;TPuzzle&gt;</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver.html">PuzzleSolver</a></h4>
-      <section><p>Solves a single <a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a> using a <span class="xref">SudokuSpice.RuleBased.SquareTracker</span>.</p>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.PuzzleWithPossibleValues.html">PuzzleWithPossibleValues</a></h4>
+      <section><p>Manages underlying puzzle data.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.StandardPuzzleGenerator.html">StandardPuzzleGenerator</a></h4>
       <section><p>Generates standard Sudoku puzzles.</p>
@@ -107,13 +102,16 @@
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
-      <h4><a class="xref" href="SudokuSpice.RuleBased.IPuzzle.html">IPuzzle</a></h4>
-      <section><p>Provides read and write access to a Sudoku puzzle.</p>
-</section>
-      <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></h4>
-      <section><p>Provides read-only access to a puzzle's data.</p>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html">IPossibleValues</a></h4>
+      <section></section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.IPuzzleWithPossibleValues.html">IPuzzleWithPossibleValues</a></h4>
+      <section></section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPossibleValues.html">IReadOnlyPossibleValues</a></h4>
+      <section><p>Provides read-only access to possible value data for a puzzle.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></h4>
+      <section></section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues.html">IReadOnlyPuzzleWithPossibleValues</a></h4>
       <section></section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IRuleKeeper.html">IRuleKeeper</a></h4>
       <section></section>

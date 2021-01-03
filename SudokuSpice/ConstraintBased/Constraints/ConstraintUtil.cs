@@ -40,7 +40,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 if (isConstraintSatisfiedAtIndex[valueIndex])
                 {
-                    if (!TryDropPossibleSquaresForValueIndex(squares, valueIndex, matrix))
+                    if (!TryDropPossibleSquaresForValueIndex(squares, valueIndex))
                     {
                         return false;
                     }
@@ -91,14 +91,13 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <param name="valueIndex">
         /// The value index of the possible values within the squares.
         /// </param>
-        /// <param name="matrix">The matrix for the puzzle currently being solved.</param>
         /// <returns>
         /// True if all the <see cref="PossibleSquareValue"/>s were dropped safely (eg. without
         /// resulting in an empty <see cref="ConstraintHeader"/> without any possible square
         /// values, or a <see cref="Square"/> with no more possible values), else false.
         /// </returns>
         public static bool TryDropPossibleSquaresForValueIndex(
-            ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
+            ReadOnlySpan<Square?> squares, int valueIndex)
         {
             for (int i = 0; i < squares.Length; i++)
             {

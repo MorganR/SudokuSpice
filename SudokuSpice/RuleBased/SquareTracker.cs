@@ -14,9 +14,9 @@ namespace SudokuSpice.RuleBased
         private readonly IHeuristic? _heuristic;
         private Stack<Coordinate>? _setCoords;
         private Stack<Coordinate>? _coordsThatUsedHeuristics;
-        private IPuzzle? _puzzle;
+        private IPuzzleWithPossibleValues? _puzzle;
 
-        public IReadOnlyPuzzle? Puzzle => _puzzle;
+        public IReadOnlyPuzzleWithPossibleValues? Puzzle => _puzzle;
 
         /// <summary>
         /// Constructs a square tracker to track the given puzzle using the given possible values,
@@ -44,7 +44,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         public SquareTracker(SquareTracker existing)
         {
-            _puzzle = existing._puzzle?.DeepCopy();
+            _puzzle = existing._puzzle is null ? null : (IPuzzleWithPossibleValues)existing._puzzle.DeepCopy();
             if (existing._setCoords is not null)
             {
                 _setCoords = new Stack<Coordinate>(existing._setCoords!);
@@ -65,7 +65,7 @@ namespace SudokuSpice.RuleBased
         /// <returns>
         /// False if initialization fails, for example if the puzzle violates a rule, else true.
         /// </returns>
-        public bool TryInit(IPuzzle puzzle)
+        public bool TryInit(IPuzzleWithPossibleValues puzzle)
         {
             if (!_ruleKeeper.TryInit(puzzle)
                 || (!_heuristic?.TryInitFor(puzzle) ?? false))
@@ -169,7 +169,9 @@ namespace SudokuSpice.RuleBased
             Coordinate lastCoord = _setCoords.Pop();
             // If this is null, then we want to throw because this method is being misused.
             int value = _puzzle[in lastCoord]!.Value;
+            BitVector possibleValues = _puzzle.GetPossibleValues(in lastCoord);
             _puzzle[in lastCoord] = null;
+            _puzzle.SetPossibleValues(in lastCoord, possibleValues);
             if (_coordsThatUsedHeuristics?.Count > 0
                 && _coordsThatUsedHeuristics.Peek().Equals(lastCoord))
             {

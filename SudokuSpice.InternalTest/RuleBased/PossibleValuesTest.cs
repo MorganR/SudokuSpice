@@ -54,7 +54,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Intersect_ModifiedCurrentValue()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -74,7 +74,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void SettingByIndex_SetsValue()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -92,7 +92,7 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Reset_RevertsToAllPossibles()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},

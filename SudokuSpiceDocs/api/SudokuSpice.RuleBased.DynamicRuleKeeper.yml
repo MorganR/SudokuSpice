@@ -115,7 +115,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PossibleValues\" data-throw-if-not-resolved=\"false\"></xref> references.\n"
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public IRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)

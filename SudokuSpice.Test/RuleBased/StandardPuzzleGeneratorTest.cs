@@ -45,11 +45,11 @@ namespace SudokuSpice.RuleBased.Test
         {
             var generator = new StandardPuzzleGenerator();
 
-            Puzzle puzzle = generator.Generate(size, numToSet, TimeSpan.FromSeconds(60));
+            PuzzleWithPossibleValues puzzle = generator.Generate(size, numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
             var solver = StandardPuzzles.CreateSolver();
-            SolveStats stats = solver.GetStatsForAllSolutions(puzzle);
+            SolveStats stats = solver.ComputeStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 

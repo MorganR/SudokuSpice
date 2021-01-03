@@ -5,12 +5,12 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Generates standard Sudoku puzzles.
     /// </summary>
-    public class StandardPuzzleGenerator : PuzzleGenerator<Puzzle>
+    public class StandardPuzzleGenerator : PuzzleGenerator<PuzzleWithPossibleValues>
     {
         /// <inheritdoc/>
         public StandardPuzzleGenerator()
             : base(
-                size => new Puzzle(size),
+                size => new PuzzleWithPossibleValues(size),
                 StandardPuzzles.CreateSolver())
         { }
 
@@ -49,7 +49,7 @@ namespace SudokuSpice.RuleBased
         /// Thrown if no valid unique puzzle is found within the specified
         /// <paramref name="timeout"/>.
         /// </exception>
-        public new Puzzle Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
+        public new PuzzleWithPossibleValues Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
         {
             _ValidateUniqueSolutionExists(puzzleSize, numSquaresToSet);
             return base.Generate(puzzleSize, numSquaresToSet, timeout);

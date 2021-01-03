@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_FiltersCorrectly()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             });
             var rule = new StandardRules();
 
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
             Assert.Equal(new BitVector(0b11000), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b01000), rule.GetPossibleValues(new Coordinate(0, 2)));
@@ -32,7 +32,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_WithDuplicateValueInRow_Fails()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                         {           1, null /* 4 */, null /* 3 */,            2},
                         {null /* 2 */,            3,            3, null /* 4 */},
                         {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -40,13 +40,13 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 });
             var rule = new StandardRules();
 
-            Assert.False(rule.TryInit(puzzle));
+            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
         }
 
         [Fact]
         public void TryInitFor_WithDuplicateValueInColumn_Fails()
         {
-            var puzzle = new Puzzle(
+            var puzzle = new PuzzleWithPossibleValues(
                     new int?[,] {
                         {           1, null /* 4 */, null /* 3 */, 2},
                         {           1, null /* 3 */, null /* 1 */, 4},
@@ -55,13 +55,13 @@ namespace SudokuSpice.RuleBased.Rules.Test
                     });
             var rule = new StandardRules();
 
-            Assert.False(rule.TryInit(puzzle));
+            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
         }
 
         [Fact]
         public void TryInitFor_WithDuplicateValueInBox_Fails()
         {
-            var puzzle = new Puzzle(
+            var puzzle = new PuzzleWithPossibleValues(
                 new int?[,] {
                             {           1,      null /* 4 */, null /* 3 */, 2},
                             {null /* 2 */, 1 /* INCORRECT */, null /* 1 */, null /* 4 */},
@@ -70,22 +70,22 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 });
             var rule = new StandardRules();
 
-            Assert.False(rule.TryInit(puzzle));
+            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
         }
 
         [Fact]
         public void CopyWithNewReference_CreatesDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
             var rule = new StandardRules();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
 
-            var puzzleCopy = new Puzzle(puzzle);
+            var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
             int val = 3;
             var coord = new Coordinate(1, 1);
@@ -110,14 +110,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_UpdatesSpecifiedCoordinate()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
             var rule = new StandardRules();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);
             int val = 3;
@@ -138,14 +138,14 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedCoordinate()
         {
-            var puzzle = new Puzzle(new int?[,] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
                 {           1, null /* 4 */, null /* 3 */,            2},
                 {null /* 2 */, null /* 3 */,            1, null /* 4 */},
                 {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 {           3,            2,            4,            1}
             });
             var rule = new StandardRules();
-            Assert.True(rule.TryInit(puzzle));
+            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
             BitVector[,] initialPossibleValues = _GetPossibleValues(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 1);

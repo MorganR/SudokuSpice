@@ -28,7 +28,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     if (isConstraintSatisfiedAtIndex[valueIndex])
                     {
-                        if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(rowSquares, valueIndex, matrix))
+                        if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(rowSquares, valueIndex))
                         {
                             return false;
                         }

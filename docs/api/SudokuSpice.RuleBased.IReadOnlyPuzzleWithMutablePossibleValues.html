@@ -78,147 +78,51 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_Size">IReadOnlyPuzzle.Size</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Size">IReadOnlyPuzzle.Size</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_NumSquares">IReadOnlyPuzzle.NumSquares</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSquares">IReadOnlyPuzzle.NumSquares</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_NumEmptySquares">IReadOnlyPuzzle.NumEmptySquares</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumEmptySquares">IReadOnlyPuzzle.NumEmptySquares</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_NumSetSquares">IReadOnlyPuzzle.NumSetSquares</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSetSquares">IReadOnlyPuzzle.NumSetSquares</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_AllPossibleValues">IReadOnlyPuzzle.AllPossibleValues</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_AllPossibleValuesSpan">IReadOnlyPuzzle.AllPossibleValuesSpan</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_GetPossibleValues_SudokuSpice_Coordinate__">IReadOnlyPuzzle.GetPossibleValues(Coordinate)</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_System_Int32_System_Int32_">IReadOnlyPuzzle.Item[Int32, Int32]</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_Item_System_Int32_System_Int32_">IReadOnlyPuzzle.Item[Int32, Int32]</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_SudokuSpice_Coordinate__">IReadOnlyPuzzle.Item[Coordinate]</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_Item_SudokuSpice_Coordinate__">IReadOnlyPuzzle.Item[Coordinate]</a>
+      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords">IReadOnlyPuzzle.GetUnsetCoords()</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzle.html#SudokuSpice_RuleBased_IReadOnlyPuzzle_GetUnsetCoords">IReadOnlyPuzzle.GetUnsetCoords()</a>
+      <a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html#SudokuSpice_RuleBased_IPossibleValues_SetPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_">IPossibleValues.SetPossibleValues(Coordinate, BitVector)</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html#SudokuSpice_RuleBased_IPossibleValues_IntersectPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_">IPossibleValues.IntersectPossibleValues(Coordinate, BitVector)</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html#SudokuSpice_RuleBased_IPossibleValues_ResetPossibleValues_SudokuSpice_Coordinate__">IPossibleValues.ResetPossibleValues(Coordinate)</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPossibleValues.html#SudokuSpice_RuleBased_IReadOnlyPossibleValues_AllPossibleValues">IReadOnlyPossibleValues.AllPossibleValues</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPossibleValues.html#SudokuSpice_RuleBased_IReadOnlyPossibleValues_GetPossibleValues_SudokuSpice_Coordinate__">IReadOnlyPossibleValues.GetPossibleValues(Coordinate)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IReadOnlyPuzzleWithMutablePossibleValues : IReadOnlyPuzzle</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IReadOnlyPuzzleWithMutablePossibleValues : IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues</code></pre>
   </div>
-  <h3 id="methods">Methods
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IntersectPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate%40%2CSudokuSpice.RuleBased.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/IReadOnlyPuzzleWithMutablePossibleValues.cs/#L7">View Source</a>
-  </span>
-  <a id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IntersectPossibleValues_" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.IntersectPossibleValues*"></a>
-  <h4 id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IntersectPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)">IntersectPossibleValues(Coordinate, BitVector)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void IntersectPossibleValues(in Coordinate c, BitVector possibleValues)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
-        <td><span class="parametername">c</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
-        <td><span class="parametername">possibleValues</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_ResetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.ResetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/IReadOnlyPuzzleWithMutablePossibleValues.cs/#L9">View Source</a>
-  </span>
-  <a id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_ResetPossibleValues_" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.ResetPossibleValues*"></a>
-  <h4 id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_ResetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)">ResetPossibleValues(Coordinate)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ResetPossibleValues(in Coordinate c)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
-        <td><span class="parametername">c</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_SetPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.SetPossibleValues(SudokuSpice.Coordinate%40%2CSudokuSpice.RuleBased.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/RuleBased/IReadOnlyPuzzleWithMutablePossibleValues.cs/#L5">View Source</a>
-  </span>
-  <a id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_SetPossibleValues_" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.SetPossibleValues*"></a>
-  <h4 id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_SetPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)">SetPossibleValues(Coordinate, BitVector)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void SetPossibleValues(in Coordinate c, BitVector possibleValues)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
-        <td><span class="parametername">c</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
-        <td><span class="parametername">possibleValues</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 </article>
           </div>
           

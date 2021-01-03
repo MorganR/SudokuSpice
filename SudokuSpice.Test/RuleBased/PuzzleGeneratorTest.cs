@@ -8,8 +8,8 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Constructor_WithValidArgs_Works()
         {
-            var generator = new PuzzleGenerator<Puzzle>(
-                size => new Puzzle(size), StandardPuzzles.CreateSolver());
+            var generator = new PuzzleGenerator<PuzzleWithPossibleValues>(
+                size => new PuzzleWithPossibleValues(size), StandardPuzzles.CreateSolver());
         }
 
         [Theory]
@@ -18,22 +18,22 @@ namespace SudokuSpice.RuleBased.Test
         [InlineData(9, 30)]
         public void Generate_CreatesPuzzleWithUniqueSolution(int size, int numToSet)
         {
-            var generator = new PuzzleGenerator<Puzzle>(
-                size => new Puzzle(size), StandardPuzzles.CreateSolver());
+            var generator = new PuzzleGenerator<PuzzleWithPossibleValues>(
+                size => new PuzzleWithPossibleValues(size), StandardPuzzles.CreateSolver());
 
-            Puzzle puzzle = generator.Generate(size, numToSet, TimeSpan.FromSeconds(60));
+            PuzzleWithPossibleValues puzzle = generator.Generate(size, numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            PuzzleSolver solver = StandardPuzzles.CreateSolver();
-            SolveStats stats = solver.GetStatsForAllSolutions(puzzle);
+            var solver = StandardPuzzles.CreateSolver();
+            SolveStats stats = solver.ComputeStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
 
         [Fact]
         public void Generate_WithShortTimeout_ThrowsTimeoutException()
         {
-            var generator = new PuzzleGenerator<Puzzle>(
-                size => new Puzzle(size), StandardPuzzles.CreateSolver());
+            var generator = new PuzzleGenerator<PuzzleWithPossibleValues>(
+                size => new PuzzleWithPossibleValues(size), StandardPuzzles.CreateSolver());
 
             Assert.Throws<TimeoutException>(
                 () => generator.Generate(16, 150, TimeSpan.FromMilliseconds(1)));

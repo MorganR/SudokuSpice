@@ -1,0 +1,447 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.IPuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IPuzzleWithPossibleValues
+  id: IPuzzleWithPossibleValues
+  parent: SudokuSpice.RuleBased
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IPuzzleWithPossibleValues
+  nameWithType: IPuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.IPuzzleWithPossibleValues
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/IPuzzleWithPossibleValues.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: IPuzzleWithPossibleValues
+    path: ../SudokuSpice/RuleBased/IPuzzleWithPossibleValues.cs
+    startLine: 2
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  syntax:
+    content: 'public interface IPuzzleWithPossibleValues : IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues'
+    content.vb: >-
+      Public Interface IPuzzleWithPossibleValues
+          Inherits IPuzzle, IReadOnlyPuzzleWithMutablePossibleValues
+  inheritedMembers:
+  - SudokuSpice.IPuzzle.Item(System.Int32,System.Int32)
+  - SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+  - SudokuSpice.IPuzzle.DeepCopy
+  - SudokuSpice.IReadOnlyPuzzle.Size
+  - SudokuSpice.IReadOnlyPuzzle.NumSquares
+  - SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  - SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  - SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+  - SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+references:
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.IPuzzle.Item(System.Int32,System.Int32)
+  commentId: P:SudokuSpice.IPuzzle.Item(System.Int32,System.Int32)
+  parent: SudokuSpice.IPuzzle
+  isExternal: true
+  name: Item[Int32, Int32]
+  nameWithType: IPuzzle.Item[Int32, Int32]
+  fullName: SudokuSpice.IPuzzle.Item[System.Int32, System.Int32]
+  nameWithType.vb: IPuzzle.Item(Int32, Int32)
+  fullName.vb: SudokuSpice.IPuzzle.Item(System.Int32, System.Int32)
+  name.vb: Item(Int32, Int32)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle.Item(System.Int32,System.Int32)
+    name: Item
+    nameWithType: IPuzzle.Item
+    fullName: SudokuSpice.IPuzzle.Item
+  - name: '['
+    nameWithType: '['
+    fullName: '['
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ']'
+    nameWithType: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle.Item(System.Int32,System.Int32)
+    name: Item
+    nameWithType: IPuzzle.Item
+    fullName: SudokuSpice.IPuzzle.Item
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.IPuzzle
+  name: Item[Coordinate]
+  nameWithType: IPuzzle.Item[Coordinate]
+  fullName: SudokuSpice.IPuzzle.Item[SudokuSpice.Coordinate]
+  nameWithType.vb: IPuzzle.Item(Coordinate)
+  fullName.vb: SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate)
+  name.vb: Item(Coordinate)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+    name: Item
+    nameWithType: IPuzzle.Item
+    fullName: SudokuSpice.IPuzzle.Item
+  - name: '['
+    nameWithType: '['
+    fullName: '['
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ']'
+    nameWithType: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle.Item(SudokuSpice.Coordinate@)
+    name: Item
+    nameWithType: IPuzzle.Item
+    fullName: SudokuSpice.IPuzzle.Item
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IPuzzle.DeepCopy
+  commentId: M:SudokuSpice.IPuzzle.DeepCopy
+  parent: SudokuSpice.IPuzzle
+  name: DeepCopy()
+  nameWithType: IPuzzle.DeepCopy()
+  fullName: SudokuSpice.IPuzzle.DeepCopy()
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle.DeepCopy
+    name: DeepCopy
+    nameWithType: IPuzzle.DeepCopy
+    fullName: SudokuSpice.IPuzzle.DeepCopy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle.DeepCopy
+    name: DeepCopy
+    nameWithType: IPuzzle.DeepCopy
+    fullName: SudokuSpice.IPuzzle.DeepCopy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IReadOnlyPuzzle.Size
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Size
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: Size
+  nameWithType: IReadOnlyPuzzle.Size
+  fullName: SudokuSpice.IReadOnlyPuzzle.Size
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: NumSquares
+  nameWithType: IReadOnlyPuzzle.NumSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: NumEmptySquares
+  nameWithType: IReadOnlyPuzzle.NumEmptySquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: NumSetSquares
+  nameWithType: IReadOnlyPuzzle.NumSetSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: AllPossibleValuesSpan
+  nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+- uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  commentId: M:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: GetUnsetCoords()
+  nameWithType: IReadOnlyPuzzle.GetUnsetCoords()
+  fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords()
+  spec.csharp:
+  - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+    name: GetUnsetCoords
+    nameWithType: IReadOnlyPuzzle.GetUnsetCoords
+    fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+    name: GetUnsetCoords
+    nameWithType: IReadOnlyPuzzle.GetUnsetCoords
+    fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  parent: SudokuSpice.RuleBased.IPossibleValues
+  name: SetPossibleValues(Coordinate, BitVector)
+  nameWithType: IPossibleValues.SetPossibleValues(Coordinate, BitVector)
+  fullName: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+    name: SetPossibleValues
+    nameWithType: IPossibleValues.SetPossibleValues
+    fullName: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.RuleBased.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.RuleBased.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+    name: SetPossibleValues
+    nameWithType: IPossibleValues.SetPossibleValues
+    fullName: SudokuSpice.RuleBased.IPossibleValues.SetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.RuleBased.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.RuleBased.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  commentId: M:SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+  parent: SudokuSpice.RuleBased.IPossibleValues
+  name: IntersectPossibleValues(Coordinate, BitVector)
+  nameWithType: IPossibleValues.IntersectPossibleValues(Coordinate, BitVector)
+  fullName: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate, SudokuSpice.RuleBased.BitVector)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+    name: IntersectPossibleValues
+    nameWithType: IPossibleValues.IntersectPossibleValues
+    fullName: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.RuleBased.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.RuleBased.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues(SudokuSpice.Coordinate@,SudokuSpice.RuleBased.BitVector)
+    name: IntersectPossibleValues
+    nameWithType: IPossibleValues.IntersectPossibleValues
+    fullName: SudokuSpice.RuleBased.IPossibleValues.IntersectPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.RuleBased.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.RuleBased.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.IPossibleValues
+  name: ResetPossibleValues(Coordinate)
+  nameWithType: IPossibleValues.ResetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+    name: ResetPossibleValues
+    nameWithType: IPossibleValues.ResetPossibleValues
+    fullName: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues(SudokuSpice.Coordinate@)
+    name: ResetPossibleValues
+    nameWithType: IPossibleValues.ResetPossibleValues
+    fullName: SudokuSpice.RuleBased.IPossibleValues.ResetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+  commentId: P:SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+  parent: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  name: AllPossibleValues
+  nameWithType: IReadOnlyPossibleValues.AllPossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.AllPossibleValues
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  name: GetPossibleValues(Coordinate)
+  nameWithType: IReadOnlyPossibleValues.GetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: IReadOnlyPossibleValues.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
+    name: GetPossibleValues
+    nameWithType: IReadOnlyPossibleValues.GetPossibleValues
+    fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IPuzzle
+  commentId: T:SudokuSpice.IPuzzle
+  parent: SudokuSpice
+  name: IPuzzle
+  nameWithType: IPuzzle
+  fullName: SudokuSpice.IPuzzle
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.RuleBased.IPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IPossibleValues
+  nameWithType: IPossibleValues
+  fullName: SudokuSpice.RuleBased.IPossibleValues
+- uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IReadOnlyPossibleValues
+  nameWithType: IReadOnlyPossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice

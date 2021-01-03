@@ -1,32 +1,33 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.RuleBased.Boxes
-  commentId: T:SudokuSpice.RuleBased.Boxes
+- uid: SudokuSpice.Boxes
+  commentId: T:SudokuSpice.Boxes
   id: Boxes
-  parent: SudokuSpice.RuleBased
+  parent: SudokuSpice
   children:
-  - SudokuSpice.RuleBased.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
-  - SudokuSpice.RuleBased.Boxes.CalculateBoxSize(System.Int32)
-  - SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
-  - SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  - SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.Boxes.CalculateBoxSize(System.Int32)
+  - SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
+  - SudokuSpice.Boxes.TryCalculateBoxSize(System.Int32,System.Int32@)
+  - SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
   langs:
   - csharp
   - vb
   name: Boxes
   nameWithType: Boxes
-  fullName: SudokuSpice.RuleBased.Boxes
+  fullName: SudokuSpice.Boxes
   type: Class
   source:
     remote:
-      path: SudokuSpice/RuleBased/Boxes.cs
+      path: SudokuSpice/data/Boxes.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
     id: Boxes
-    path: ../SudokuSpice/RuleBased/Boxes.cs
+    path: ../SudokuSpice/data/Boxes.cs
     startLine: 8
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nProvides utilities for working with &quot;boxes&quot;, i.e. square regions within standard Sudokus.\n"
   example: []
   syntax:
@@ -49,28 +50,28 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: SudokuSpice.RuleBased.Boxes.CalculateBoxSize(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Boxes.CalculateBoxSize(System.Int32)
+- uid: SudokuSpice.Boxes.CalculateBoxSize(System.Int32)
+  commentId: M:SudokuSpice.Boxes.CalculateBoxSize(System.Int32)
   id: CalculateBoxSize(System.Int32)
-  parent: SudokuSpice.RuleBased.Boxes
+  parent: SudokuSpice.Boxes
   langs:
   - csharp
   - vb
   name: CalculateBoxSize(Int32)
   nameWithType: Boxes.CalculateBoxSize(Int32)
-  fullName: SudokuSpice.RuleBased.Boxes.CalculateBoxSize(System.Int32)
+  fullName: SudokuSpice.Boxes.CalculateBoxSize(System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Boxes.cs
+      path: SudokuSpice/data/Boxes.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
     id: CalculateBoxSize
-    path: ../SudokuSpice/RuleBased/Boxes.cs
-    startLine: 13
+    path: ../SudokuSpice/data/Boxes.cs
+    startLine: 16
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nCalculates the size of a box within a puzzle (this should be the square root).\n"
   example: []
   syntax:
@@ -81,35 +82,86 @@ items:
     return:
       type: System.Int32
     content.vb: Public Shared Function CalculateBoxSize(puzzleSize As Integer) As Integer
-  overload: SudokuSpice.RuleBased.Boxes.CalculateBoxSize*
+  overload: SudokuSpice.Boxes.CalculateBoxSize*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if the <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code> is not the square of a whole number.\n"
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.RuleBased.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+- uid: SudokuSpice.Boxes.TryCalculateBoxSize(System.Int32,System.Int32@)
+  commentId: M:SudokuSpice.Boxes.TryCalculateBoxSize(System.Int32,System.Int32@)
+  id: TryCalculateBoxSize(System.Int32,System.Int32@)
+  parent: SudokuSpice.Boxes
+  langs:
+  - csharp
+  - vb
+  name: TryCalculateBoxSize(Int32, out Int32)
+  nameWithType: Boxes.TryCalculateBoxSize(Int32, out Int32)
+  fullName: SudokuSpice.Boxes.TryCalculateBoxSize(System.Int32, out System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/data/Boxes.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TryCalculateBoxSize
+    path: ../SudokuSpice/data/Boxes.cs
+    startLine: 48
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nCalculates the size of a box within a puzzle (this should be the square root).\n"
+  example: []
+  syntax:
+    content: public static bool TryCalculateBoxSize(int puzzleSize, out int boxSize)
+    parameters:
+    - id: puzzleSize
+      type: System.Int32
+      description: The size (i.e. side-length) of the puzzle.
+    - id: boxSize
+      type: System.Int32
+      description: 'Out parameter: the size of the box.'
+    return:
+      type: System.Boolean
+      description: "\nFalse if <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code> is not the square of a whole number.\n"
+    content.vb: Public Shared Function TryCalculateBoxSize(puzzleSize As Integer, ByRef boxSize As Integer) As Boolean
+  overload: SudokuSpice.Boxes.TryCalculateBoxSize*
+  nameWithType.vb: Boxes.TryCalculateBoxSize(Int32, ByRef Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Boxes.TryCalculateBoxSize(System.Int32, ByRef System.Int32)
+  name.vb: TryCalculateBoxSize(Int32, ByRef Int32)
+- uid: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
   id: CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
-  parent: SudokuSpice.RuleBased.Boxes
+  parent: SudokuSpice.Boxes
   langs:
   - csharp
   - vb
   name: CalculateBoxIndex(Coordinate, Int32)
   nameWithType: Boxes.CalculateBoxIndex(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate, System.Int32)
+  fullName: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate, System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Boxes.cs
+      path: SudokuSpice/data/Boxes.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
     id: CalculateBoxIndex
-    path: ../SudokuSpice/RuleBased/Boxes.cs
-    startLine: 40
+    path: ../SudokuSpice/data/Boxes.cs
+    startLine: 81
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nCalculate the zero-based box-index of the given coordinate, starting at the top-left.\n"
   example: []
   syntax:
@@ -122,7 +174,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public Shared Function CalculateBoxIndex(ByRef c As Coordinate, boxSize As Integer) As Integer
-  overload: SudokuSpice.RuleBased.Boxes.CalculateBoxIndex*
+  overload: SudokuSpice.Boxes.CalculateBoxIndex*
   nameWithType.vb: Boxes.CalculateBoxIndex(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
@@ -130,30 +182,30 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.RuleBased.Boxes.CalculateBoxIndex(ByRef SudokuSpice.Coordinate, System.Int32)
+  fullName.vb: SudokuSpice.Boxes.CalculateBoxIndex(ByRef SudokuSpice.Coordinate, System.Int32)
   name.vb: CalculateBoxIndex(ByRef Coordinate, Int32)
-- uid: SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
+- uid: SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
+  commentId: M:SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
   id: GetStartingBoxCoordinate(System.Int32,System.Int32)
-  parent: SudokuSpice.RuleBased.Boxes
+  parent: SudokuSpice.Boxes
   langs:
   - csharp
   - vb
   name: GetStartingBoxCoordinate(Int32, Int32)
   nameWithType: Boxes.GetStartingBoxCoordinate(Int32, Int32)
-  fullName: SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate(System.Int32, System.Int32)
+  fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32, System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Boxes.cs
+      path: SudokuSpice/data/Boxes.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
     id: GetStartingBoxCoordinate
-    path: ../SudokuSpice/RuleBased/Boxes.cs
-    startLine: 46
+    path: ../SudokuSpice/data/Boxes.cs
+    startLine: 87
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: Returns the top-left coordinate for the given box.
   example: []
   syntax:
@@ -166,35 +218,35 @@ items:
     return:
       type: SudokuSpice.Coordinate
     content.vb: Public Shared Function GetStartingBoxCoordinate(box As Integer, boxSize As Integer) As Coordinate
-  overload: SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate*
+  overload: SudokuSpice.Boxes.GetStartingBoxCoordinate*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  id: YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.RuleBased.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Boxes
+- uid: SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  id: YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.Boxes
   langs:
   - csharp
   - vb
   name: YieldUnsetCoordsForBox(Int32, Int32, IReadOnlyPuzzle)
   nameWithType: Boxes.YieldUnsetCoordsForBox(Int32, Int32, IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox(System.Int32, System.Int32, SudokuSpice.RuleBased.IReadOnlyPuzzle)
+  fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32, System.Int32, SudokuSpice.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Boxes.cs
+      path: SudokuSpice/data/Boxes.cs
       branch: internal-puzzle
       repo: https://github.com/MorganR/SudokuSpice
     id: YieldUnsetCoordsForBox
-    path: ../SudokuSpice/RuleBased/Boxes.cs
-    startLine: 54
+    path: ../SudokuSpice/data/Boxes.cs
+    startLine: 95
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nYields an enumerable of coordinates for all the unset squares in the given box.\n"
   example: []
   syntax:
@@ -205,11 +257,11 @@ items:
     - id: boxSize
       type: System.Int32
     - id: puzzle
-      type: SudokuSpice.RuleBased.IReadOnlyPuzzle
+      type: SudokuSpice.IReadOnlyPuzzle
     return:
       type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
     content.vb: Public Shared Function YieldUnsetCoordsForBox(box As Integer, boxSize As Integer, puzzle As IReadOnlyPuzzle) As IEnumerable(Of Coordinate)
-  overload: SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox*
+  overload: SudokuSpice.Boxes.YieldUnsetCoordsForBox*
   modifiers.csharp:
   - public
   - static
@@ -217,11 +269,11 @@ items:
   - Public
   - Shared
 references:
-- uid: SudokuSpice.RuleBased
-  commentId: N:SudokuSpice.RuleBased
-  name: SudokuSpice.RuleBased
-  nameWithType: SudokuSpice.RuleBased
-  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -514,11 +566,14 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.RuleBased.Boxes.CalculateBoxSize*
-  commentId: Overload:SudokuSpice.RuleBased.Boxes.CalculateBoxSize
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+- uid: SudokuSpice.Boxes.CalculateBoxSize*
+  commentId: Overload:SudokuSpice.Boxes.CalculateBoxSize
   name: CalculateBoxSize
   nameWithType: Boxes.CalculateBoxSize
-  fullName: SudokuSpice.RuleBased.Boxes.CalculateBoxSize
+  fullName: SudokuSpice.Boxes.CalculateBoxSize
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -526,38 +581,45 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.RuleBased.Boxes.CalculateBoxIndex*
-  commentId: Overload:SudokuSpice.RuleBased.Boxes.CalculateBoxIndex
+- uid: SudokuSpice.Boxes.TryCalculateBoxSize*
+  commentId: Overload:SudokuSpice.Boxes.TryCalculateBoxSize
+  name: TryCalculateBoxSize
+  nameWithType: Boxes.TryCalculateBoxSize
+  fullName: SudokuSpice.Boxes.TryCalculateBoxSize
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice.Boxes.CalculateBoxIndex*
+  commentId: Overload:SudokuSpice.Boxes.CalculateBoxIndex
   name: CalculateBoxIndex
   nameWithType: Boxes.CalculateBoxIndex
-  fullName: SudokuSpice.RuleBased.Boxes.CalculateBoxIndex
+  fullName: SudokuSpice.Boxes.CalculateBoxIndex
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate*
-  commentId: Overload:SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate
+- uid: SudokuSpice.Boxes.GetStartingBoxCoordinate*
+  commentId: Overload:SudokuSpice.Boxes.GetStartingBoxCoordinate
   name: GetStartingBoxCoordinate
   nameWithType: Boxes.GetStartingBoxCoordinate
-  fullName: SudokuSpice.RuleBased.Boxes.GetStartingBoxCoordinate
-- uid: SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox*
-  commentId: Overload:SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox
+  fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate
+- uid: SudokuSpice.Boxes.YieldUnsetCoordsForBox*
+  commentId: Overload:SudokuSpice.Boxes.YieldUnsetCoordsForBox
   name: YieldUnsetCoordsForBox
   nameWithType: Boxes.YieldUnsetCoordsForBox
-  fullName: SudokuSpice.RuleBased.Boxes.YieldUnsetCoordsForBox
-- uid: SudokuSpice.RuleBased.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzle
-  parent: SudokuSpice.RuleBased
+  fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
   commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
   parent: System.Collections.Generic
