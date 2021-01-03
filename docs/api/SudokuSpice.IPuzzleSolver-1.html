@@ -101,19 +101,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.IPuzzleSolver%601.ComputeStatsForAllSolutions(%600%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.IPuzzleSolver%601.ComputeStatsForAllSolutions(%600%2CSystem.Nullable%7BCancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/IPuzzleSolver.cs/#L43">View Source</a>
   </span>
   <a id="SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions_" data-uid="SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions*"></a>
-  <h4 id="SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__" data-uid="SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})">ComputeStatsForAllSolutions(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
+  <h4 id="SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_CancellationToken__" data-uid="SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})">ComputeStatsForAllSolutions(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))</code></pre>
+    <pre><code class="lang-csharp hljs">SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -131,7 +131,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">CancellationToken</span>&gt;</td>
         <td><span class="parametername">token</span></td>
         <td></td>
       </tr>
@@ -152,37 +152,21 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.OperationCanceledException</span></td>
-        <td><p>May be thrown if the given cancellation token is canceled during the operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.IPuzzleSolver%601.HasUniqueSolution(%600%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_CancellationToken__.md&amp;value=---%0Auid%3A%20SudokuSpice.IPuzzleSolver%601.HasUniqueSolution(%600%2CSystem.Nullable%7BCancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/internal-puzzle/SudokuSpice/IPuzzleSolver.cs/#L51">View Source</a>
   </span>
   <a id="SudokuSpice_IPuzzleSolver_1_HasUniqueSolution_" data-uid="SudokuSpice.IPuzzleSolver`1.HasUniqueSolution*"></a>
-  <h4 id="SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__" data-uid="SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})">HasUniqueSolution(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
+  <h4 id="SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_CancellationToken__" data-uid="SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})">HasUniqueSolution(TPuzzle, Nullable&lt;CancellationToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if the given puzzle has a unique solution. The puzzle is left unchanged.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))</code></pre>
+    <pre><code class="lang-csharp hljs">bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -200,7 +184,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">CancellationToken</span>&gt;</td>
         <td><span class="parametername">token</span></td>
         <td></td>
       </tr>
@@ -218,22 +202,6 @@
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.OperationCanceledException</span></td>
-        <td><p>May be thrown if the given cancellation token is canceled during the operation.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -290,22 +258,6 @@ order is up to the implementation, but it should be stable.</p>
       <tr>
         <td><span class="xref">TPuzzle</span></td>
         <td><p>A solved copy of the given puzzle.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown if this puzzle can't be solved by this solver.</p>
 </td>
       </tr>
     </tbody>
