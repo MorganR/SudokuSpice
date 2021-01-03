@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class ColumnUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Span<Coordinate> columnCoordinates = stackalloc Coordinate[puzzle.Size];
             for (int column = 0; column < puzzle.Size; column++)
@@ -17,8 +17,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     columnCoordinates[row] = new Coordinate(row, column);
                 }
-                ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, columnCoordinates, matrix);
+                if (!ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, columnCoordinates, matrix))
+                {
+                    return false;
+                }
             }
+            return true;
         }
     }
 }

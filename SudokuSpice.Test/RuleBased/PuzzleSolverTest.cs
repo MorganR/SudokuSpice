@@ -27,7 +27,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         [Theory]
-        [MemberData(nameof(InvalidStandardPuzzles))]
+        [ClassData(typeof(InvalidStandardPuzzles))]
         public void Solve_WithInvalidPuzzle_Throws(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
@@ -60,7 +60,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         [Theory]
-        [MemberData(nameof(InvalidStandardPuzzles))]
+        [ClassData(typeof(InvalidStandardPuzzles))]
         public void TrySolve_WithInvalidPuzzle_ReturnsFalse(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
@@ -112,7 +112,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         [Theory]
-        [MemberData(nameof(InvalidStandardPuzzles))]
+        [ClassData(typeof(InvalidStandardPuzzles))]
         public void SolveRandomly_WithInvalidPuzzle_Throws(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
@@ -145,7 +145,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         [Theory]
-        [MemberData(nameof(InvalidStandardPuzzles))]
+        [ClassData(typeof(InvalidStandardPuzzles))]
         public void TrySolveRandomly_WithInvalidPuzzle_ReturnsFalse(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
@@ -176,7 +176,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         [Theory]
-        [MemberData(nameof(InvalidStandardPuzzles))]
+        [ClassData(typeof(InvalidStandardPuzzles))]
         public void GetStatsForAllSolutions_WithInvalidPuzzle_ReturnsNoSolutions(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
@@ -204,7 +204,7 @@ namespace SudokuSpice.RuleBased.Test
         }
 
         [Theory]
-        [MemberData(nameof(InvalidStandardPuzzles))]
+        [ClassData(typeof(InvalidStandardPuzzles))]
         public void HasUniqueSolution_WithInvalidPuzzle_ReturnsFalse(Puzzle puzzle)
         {
             var solver = StandardPuzzles.CreateSolver();
@@ -405,47 +405,6 @@ namespace SudokuSpice.RuleBased.Test
                 // +---+---+    +---+---+ +---+---+ +---+---+
                 new SolveStats() { NumSolutionsFound = 3, NumSquaresGuessed = 2, NumTotalGuesses = 4 },
             };
-
-        }
-
-        public static IEnumerable<object[]> InvalidStandardPuzzles()
-        {
-            // Duplicate in row.
-            yield return new object[] {
-                new Puzzle(
-                    new int?[,] {
-                        {    1, null,    1, null},
-                        {    2, null, null, null},
-                        {    3, null, null, null},
-                        {    4, null, null, null},
-                    })};
-            // Duplicate in column.
-            yield return new object[] {
-                new Puzzle(
-                    new int?[,] {
-                        {    1,    2,    3,    4},
-                        { null, null, null, null},
-                        {    3, null, null, null},
-                        {    1, null, null, null},
-                    })};
-            // Duplicate in box.
-            yield return new object[] {
-                new Puzzle(
-                    new int?[,] {
-                        {    1,    2,    3,    4},
-                        {    2, null, null, null},
-                        {    3, null, null, null},
-                        {    4, null, null, null},
-                    })};
-            // Unsolvable.
-            yield return new object[] {
-                new Puzzle(
-                    new int?[,] {
-                        {    1, null,    3,    4},
-                        { null, null,    1,    2},
-                        {    3, null,    2, null},
-                        {    4, null, null, null},
-                    })};
         }
 
         private static void _AssertPuzzleSolved(Puzzle puzzle)

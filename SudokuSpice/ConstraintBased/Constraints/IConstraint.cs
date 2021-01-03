@@ -4,7 +4,8 @@
     {
         /// <summary>
         /// Adds necessary <see cref="ConstraintHeader"/>s and links to the given
-        /// <paramref name="matrix"/>.
+        /// <paramref name="matrix"/> in order to solve the given <paramref name="puzzle"/>
+        /// according to this constraint. The details here are implementation-specific.
         /// </summary>
         /// <remarks>
         /// This should skip adding <c>ConstraintHeaders</c> that are already satisfied by the given
@@ -15,6 +16,9 @@
         /// </remarks>
         /// <param name="puzzle">The puzzle to solve.</param>
         /// <param name="matrix">The exact-cover matrix to constrain.</param>
-        void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix);
+        /// <returns>
+        /// False if the constraint could not be satisfied by the given puzzle, else true.
+        /// </returns>
+        bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix);
     }
 }

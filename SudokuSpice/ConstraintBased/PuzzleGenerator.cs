@@ -131,7 +131,7 @@ namespace SudokuSpice.ConstraintBased
         private void _FillPuzzle(TPuzzle puzzle)
         {
             var solver = new PuzzleSolver<TPuzzle>(_constraints);
-            solver.SolveRandomly(puzzle);
+            solver.Solve(puzzle, randomizeGuesses: true);
         }
 
         private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle)

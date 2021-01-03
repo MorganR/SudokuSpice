@@ -13,7 +13,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var puzzle = new Puzzle(size);
             var matrix = new ExactCoverMatrix(puzzle);
 
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
             ConstraintHeader firstColumnConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
@@ -48,7 +48,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var puzzle = new Puzzle(size);
             var matrix = new ExactCoverMatrix(puzzle);
 
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             for (int row = 0; row < size; row++)
             {

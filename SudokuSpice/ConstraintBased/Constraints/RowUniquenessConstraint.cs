@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Span<bool> isConstraintSatisfiedAtIndex =
                    stackalloc bool[matrix.AllPossibleValues.Length];
@@ -28,12 +28,19 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     if (isConstraintSatisfiedAtIndex[valueIndex])
                     {
-                        ConstraintUtil.DropPossibleSquaresForValueIndex(rowSquares, valueIndex, matrix);
+                        if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(rowSquares, valueIndex, matrix))
+                        {
+                            return false;
+                        }
                         continue;
                     }
-                    ConstraintUtil.AddConstraintHeadersForValueIndex(rowSquares, valueIndex, matrix);
+                    if (!ConstraintUtil.TryAddConstraintHeadersForValueIndex(rowSquares, valueIndex, matrix))
+                    {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
     }
 }

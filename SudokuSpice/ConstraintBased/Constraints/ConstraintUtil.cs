@@ -20,10 +20,10 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// The coordinates that must contain unique values.
         /// </param>
         /// <param name="matrix">The exact cover matrix for the current puzzle.</param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the puzzle violates uniquness for the given coordinates.
-        /// </exception>
-        public static void ImplementUniquenessConstraintForSquares(
+        /// <returns>
+        /// False if the puzzle violates uniquness for the given coordinates, else true.
+        /// </returns>
+        public static bool TryImplementUniquenessConstraintForSquares(
             IReadOnlyPuzzle puzzle,
             ReadOnlySpan<Coordinate> squareCoordinates,
             ExactCoverMatrix matrix)
@@ -40,11 +40,18 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 if (isConstraintSatisfiedAtIndex[valueIndex])
                 {
-                    DropPossibleSquaresForValueIndex(squares, valueIndex, matrix);
+                    if (!TryDropPossibleSquaresForValueIndex(squares, valueIndex, matrix))
+                    {
+                        return false;
+                    }
                     continue;
                 }
-                AddConstraintHeadersForValueIndex(squares, valueIndex, matrix);
+                if (!TryAddConstraintHeadersForValueIndex(squares, valueIndex, matrix))
+                {
+                    return false;
+                }
             }
+            return true;
         }
 
         /// <summary>
@@ -85,10 +92,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// The value index of the possible values within the squares.
         /// </param>
         /// <param name="matrix">The matrix for the puzzle currently being solved.</param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the puzzle violates uniquness for the given coordinates.
-        /// </exception>
-        public static void DropPossibleSquaresForValueIndex(
+        /// <returns>
+        /// True if all the <see cref="PossibleSquareValue"/>s were dropped safely (eg. without
+        /// resulting in an empty <see cref="ConstraintHeader"/> without any possible square
+        /// values, or a <see cref="Square"/> with no more possible values), else false.
+        /// </returns>
+        public static bool TryDropPossibleSquaresForValueIndex(
             ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
         {
             for (int i = 0; i < squares.Length; i++)
@@ -105,10 +114,10 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
                 if (possibleValue.State != PossibleValueState.DROPPED && !possibleValue.TryDrop())
                 {
-                    throw new ArgumentException(
-                        $"Puzzle violated constraints for value {matrix.AllPossibleValues[valueIndex]} at square {square.Coordinate}.");
+                    return false;
                 }
             }
+            return true;
         }
 
         /// <summary>
@@ -117,15 +126,22 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
         /// possible values in a known state (i.e. dropped or selected).
         /// </summary>
-        /// <param name="squares">The squares to add possible square values from.</param>
+        /// <param name="squares">
+        /// The squares to add <see cref="PossibleSquareValue"/>s from.
+        /// </param>
         /// <param name="valueIndex">
         /// The value index of the possible value within the squares.
         /// </param>
         /// <param name="matrix">The matrix for the current puzzle being solved.</param>
-        public static void AddConstraintHeadersForValueIndex(
+        /// <returns>
+        /// False if the header could not be added, for example because none of the corresponding
+        /// <see cref="PossibleSquareValue"/>s were still possible and the constraint would have
+        /// been empty. Else returns true.
+        /// </returns>
+        public static bool TryAddConstraintHeadersForValueIndex(
             ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
         {
-            var possibleSquares = new PossibleSquareValue[squares.Length];
+            var possibleSquareValues = new PossibleSquareValue[squares.Length];
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
             {
@@ -134,17 +150,22 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleSquareValue? possibleSquare = square.GetPossibleValue(valueIndex);
-                if (possibleSquare is null
-                    || possibleSquare.State != PossibleValueState.UNKNOWN)
+                PossibleSquareValue? possibleValue = square.GetPossibleValue(valueIndex);
+                if (possibleValue is null
+                    || possibleValue.State != PossibleValueState.UNKNOWN)
                 {
                     continue;
                 }
-                possibleSquares[numPossibleSquares++] = possibleSquare;
+                possibleSquareValues[numPossibleSquares++] = possibleValue;
+            }
+            if (numPossibleSquares == 0)
+            {
+                return false;
             }
             ConstraintHeader.CreateConnectedHeader(
                 matrix,
-                new ReadOnlySpan<PossibleSquareValue>(possibleSquares, 0, numPossibleSquares));
+                new ReadOnlySpan<PossibleSquareValue>(possibleSquareValues, 0, numPossibleSquares));
+            return true;
         }
     }
 }

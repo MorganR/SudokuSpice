@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.ConstraintBased.Constraints;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -47,12 +48,68 @@ namespace SudokuSpice.ConstraintBased.Test
 
         [Theory]
         [MemberData(nameof(ValidPuzzleGenerator))]
-        public void SolveRandomly_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
+        public void Solve_ValidPuzzleWithRandomGuesses_SolvesPuzzle(Puzzle puzzle)
         {
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
-            solver.SolveRandomly(puzzle);
+            solver.Solve(puzzle, randomizeGuesses: true);
             _AssertPuzzleSolved(puzzle);
+        }
+
+        [Theory]
+        [ClassData(typeof(InvalidStandardPuzzles))]
+        public void Solve_InvalidPuzzle_Throws(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.Throws<ArgumentException>(() => solver.Solve(puzzle));
+        }
+
+        [Theory]
+        [ClassData(typeof(InvalidStandardPuzzles))]
+        public void Solve_InvalidPuzzleWithRandomGuesses_Throws(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.Throws<ArgumentException>(() => solver.Solve(puzzle, randomizeGuesses: true));
+        }
+
+        [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void TrySolve_ValidPuzzle_SolvesPuzzle(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.True(solver.TrySolve(puzzle));
+            _AssertPuzzleSolved(puzzle);
+        }
+
+        [Theory]
+        [MemberData(nameof(ValidPuzzleGenerator))]
+        public void TrySolve_ValidPuzzleWithRandomGuesses_SolvesPuzzle(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.True(solver.TrySolve(puzzle, randomizeGuesses: true));
+            _AssertPuzzleSolved(puzzle);
+        }
+
+        [Theory]
+        [ClassData(typeof(InvalidStandardPuzzles))]
+        public void TrySolve_InvalidPuzzle_ReturnsFalse(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.False(solver.TrySolve(puzzle));
+        }
+
+        [Theory]
+        [ClassData(typeof(InvalidStandardPuzzles))]
+        public void TrySolve_InvalidPuzzleWithRandomGuesses_ReturnsFalse(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.False(solver.TrySolve(puzzle, randomizeGuesses: true));
         }
 
         [Theory]
@@ -62,6 +119,15 @@ namespace SudokuSpice.ConstraintBased.Test
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Equal(expectedStats.NumSolutionsFound, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
+        }
+
+        [Theory]
+        [ClassData(typeof(InvalidStandardPuzzles))]
+        public void GetStatsForAllSolutions_WithInvalidPuzzles_ReturnsNoSolutions(Puzzle puzzle)
+        {
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+            Assert.Equal(0, solver.GetStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
 
         public static IEnumerable<object[]> ValidPuzzleGenerator()

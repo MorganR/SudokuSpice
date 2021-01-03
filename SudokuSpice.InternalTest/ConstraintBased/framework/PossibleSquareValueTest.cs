@@ -11,8 +11,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 1;
             Square square = matrix.GetSquare(new Coordinate(1, 0));
@@ -36,8 +36,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             Assert.True(matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(valueIndex).TryDrop());
@@ -64,8 +64,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 0));
@@ -90,8 +90,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 0));
@@ -116,8 +116,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 1));
@@ -132,8 +132,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             PossibleSquareValue possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
@@ -154,8 +154,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             PossibleSquareValue possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
@@ -188,8 +188,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 1));
@@ -206,8 +206,8 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
-            new RowUniquenessConstraint().Constrain(puzzle, matrix);
-            new ColumnUniquenessConstraint().Constrain(puzzle, matrix);
+            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 1));

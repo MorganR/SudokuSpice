@@ -32,14 +32,15 @@ namespace SudokuSpice.ConstraintBased
         /// although note that the given <paramref name="puzzle"/> is modified.
         /// </remarks>
         /// <param name="puzzle">The puzzle to solve.</param>
-        /// <param name="possibleValues">
-        /// The possible values for this puzzle. These must be unique.
+        /// <param name="randomizeGuesses">
+        /// If true, will guess in a random order when forced to guess. Else, this tries to guess
+        /// in a clever order, which may have better performance.
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown if the puzzle cannot be solved with this solver's constraints, or if the
         /// possible values are not unique.
         /// </exception>
-        public void Solve(TPuzzle puzzle)
+        public void Solve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
@@ -49,30 +50,49 @@ namespace SudokuSpice.ConstraintBased
             var matrix = new ExactCoverMatrix(puzzle);
             foreach (IConstraint? constraint in _constraints)
             {
-                constraint.Constrain(puzzle, matrix);
+                if (!constraint.TryConstrain(puzzle, matrix))
+                {
+                    throw new ArgumentException("Puzzle violates this solver's constraints.");
+                };
             }
-            if (!_TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix)))
+            if (!(randomizeGuesses ?
+                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)) :
+                _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix))))
             {
-                throw new ArgumentException($"Failed to solve the given puzzle.");
+                throw new ArgumentException("Failed to solve the given puzzle.");
             }
         }
 
-        public void SolveRandomly(TPuzzle puzzle)
+        /// <summary>
+        /// Solves the given <paramref name="puzzle"/>. This modifies the puzzle's data.
+        /// </summary>
+        /// <remarks>
+        /// It is safe to call this method from different threads on the same solver object,
+        /// although note that the given <paramref name="puzzle"/> is modified.
+        /// </remarks>
+        /// <param name="puzzle">The puzzle to solve.</param>
+        /// <param name="randomizeGuesses">
+        /// If true, will guess in a random order when forced to guess. Else, this tries to guess
+        /// in a clever order, which may have better performance.
+        /// </param>
+        /// <returns>True if the puzzle was solved successfully.</returns>
+        public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
-                throw new ArgumentException(
-                    $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
+                return false;
             }
             var matrix = new ExactCoverMatrix(puzzle);
             foreach (IConstraint? constraint in _constraints)
             {
-                constraint.Constrain(puzzle, matrix);
+                if (!constraint.TryConstrain(puzzle, matrix))
+                {
+                    return false;
+                }
             }
-            if (!_TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)))
-            {
-                throw new ArgumentException($"Failed to solve the given puzzle.");
-            }
+            return randomizeGuesses ?
+                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)) :
+                _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix));
         }
 
         public SolveStats GetStatsForAllSolutions(TPuzzle puzzle)
@@ -86,7 +106,10 @@ namespace SudokuSpice.ConstraintBased
             var matrix = new ExactCoverMatrix(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
-                constraint.Constrain(puzzleCopy, matrix);
+                if (!constraint.TryConstrain(puzzleCopy, matrix))
+                {
+                    return new SolveStats();
+                }
             }
             return _TryAllSolutions(new SquareTracker<TPuzzle>(puzzleCopy, matrix));
         }

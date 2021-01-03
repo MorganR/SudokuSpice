@@ -8,15 +8,19 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class BoxUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public void Constrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             for (int box = 0; box < puzzle.Size; box++)
             {
-                _AppendConstraintHeadersInBox(box, (IReadOnlyBoxPuzzle)puzzle, matrix);
+                if (!_TryAppendConstraintHeadersInBox(box, (IReadOnlyBoxPuzzle)puzzle, matrix))
+                {
+                    return false;
+                }
             }
+            return true;
         }
 
-        private static void _AppendConstraintHeadersInBox(
+        private static bool _TryAppendConstraintHeadersInBox(
             int box, IReadOnlyBoxPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Coordinate startCoord = puzzle.GetStartingBoxCoordinate(box);
@@ -31,7 +35,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     boxCoordinates[i++] = new Coordinate(row, col);
                 }
             }
-            ConstraintUtil.ImplementUniquenessConstraintForSquares(puzzle, boxCoordinates, matrix);
+            return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, boxCoordinates, matrix);
         }
     }
 }
