@@ -116,6 +116,7 @@ namespace SudokuSpice
             _allPossibleValues = existing._allPossibleValues;
         }
 
+        /// <summary>Creates a new puzzle with a copy of the given matrix.</summary>
         public static Puzzle CopyFrom(int?[,] matrix)
         {
             return new Puzzle((int?[,])matrix.Clone());

@@ -1,6 +1,4 @@
 using BenchmarkDotNet.Attributes;
-using SudokuSpice.ConstraintBased;
-using SudokuSpice.ConstraintBased.Constraints;
 using SudokuSpice.RuleBased;
 using System.Collections.Generic;
 
@@ -25,7 +23,7 @@ namespace SudokuSpice.Benchmark
         public bool SudokuSpice(PuzzleSampleCollection sampleCollection)
         {
             var puzzle = PuzzleWithPossibleValues.CopyFrom(sampleCollection.Random().NullableMatrix);
-            var solver = StandardPuzzles.CreateSolver();
+            var solver = RuleBased.StandardPuzzles.CreateSolver();
             solver.Solve(puzzle);
             return puzzle.NumEmptySquares == 0;
         }
@@ -34,12 +32,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(SampleCollections))]
         public bool SudokuSpiceConstraints(PuzzleSampleCollection sampleCollection)
         {
-            var solver = new ConstraintBased.PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
-                    new RowUniquenessConstraint(),
-                    new ColumnUniquenessConstraint(),
-                    new BoxUniquenessConstraint()
-                });
+            var solver = ConstraintBased.StandardPuzzles.CreateSolver();
             var puzzle = new Puzzle(sampleCollection.Random().NullableMatrix);
             solver.Solve(puzzle);
             return puzzle.NumEmptySquares == 0;
