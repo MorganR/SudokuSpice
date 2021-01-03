@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly Random _random = new Random();
         private readonly Func<TPuzzle> _puzzleFactory;
-        private readonly IReadOnlyList<IConstraint> _constraints;
+        private readonly PuzzleSolver<TPuzzle> _solver;
 
         /// <summary>
         /// Creates a puzzle generator to create puzzles with custom rules and type.
@@ -25,7 +25,7 @@ namespace SudokuSpice.ConstraintBased
         public PuzzleGenerator(Func<TPuzzle> puzzleFactory, IReadOnlyList<IConstraint> constraints)
         {
             _puzzleFactory = puzzleFactory;
-            _constraints = constraints;
+            _solver = new PuzzleSolver<TPuzzle>(constraints);
         }
 
         /// <summary>
@@ -143,8 +143,7 @@ namespace SudokuSpice.ConstraintBased
 
         private void _FillPuzzle(TPuzzle puzzle)
         {
-            var solver = new PuzzleSolver<TPuzzle>(_constraints);
-            solver.Solve(puzzle, randomizeGuesses: true);
+            _solver.Solve(puzzle, randomizeGuesses: true);
         }
 
         private bool _TryUnsetSquareAt(in Coordinate c, TPuzzle puzzle, CancellationToken? cancellationToken)
@@ -157,9 +156,7 @@ namespace SudokuSpice.ConstraintBased
             }
             int? previousValue = puzzle[in c];
             puzzle[in c] = null;
-            var solver = new PuzzleSolver<TPuzzle>(_constraints);
-            SolveStats solveStats = solver.GetStatsForAllSolutions(puzzle, cancellationToken);
-            if (solveStats.NumSolutionsFound == 1)
+            if (_solver.HasUniqueSolution(puzzle, cancellationToken))
             {
                 return true;
             }

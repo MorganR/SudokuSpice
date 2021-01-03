@@ -7,6 +7,7 @@ items:
   children:
   - SudokuSpice.ConstraintBased.PuzzleSolver`1.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.ConstraintBased.Constraints.IConstraint})
   - SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  - SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
   - SudokuSpice.ConstraintBased.PuzzleSolver`1.Solve(`0,System.Boolean)
   - SudokuSpice.ConstraintBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)
   langs:
@@ -204,10 +205,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetStatsForAllSolutions
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 98
+    startLine: 104
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
+  example: []
   syntax:
     content: public SolveStats GetStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
     parameters:
@@ -219,6 +222,10 @@ items:
       type: SudokuSpice.SolveStats
     content.vb: Public Function GetStatsForAllSolutions(puzzle As TPuzzle, token As CancellationToken? = Nothing) As SolveStats
   overload: SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
   nameWithType.vb: PuzzleSolver(Of TPuzzle).GetStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
   modifiers.csharp:
   - public
@@ -226,6 +233,52 @@ items:
   - Public
   fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of TPuzzle).GetStatsForAllSolutions(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
   name.vb: GetStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+- uid: SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  commentId: M:SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  id: HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  parent: SudokuSpice.ConstraintBased.PuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.ConstraintBased.PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/PuzzleSolver.cs
+      branch: internal-puzzle
+      repo: https://github.com/MorganR/SudokuSpice
+    id: HasUniqueSolution
+    path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
+    startLine: 115
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nDetermines if the given puzzle has a unique solution. The puzzle is left unchanged.\n"
+  example: []
+  syntax:
+    content: public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    - id: token
+      type: System.Nullable{System.Threading.CancellationToken}
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasUniqueSolution(puzzle As TPuzzle, token As CancellationToken? = Nothing) As Boolean
+  overload: SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
+  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
 references:
 - uid: SudokuSpice.IPuzzle
   commentId: T:SudokuSpice.IPuzzle
@@ -680,6 +733,9 @@ references:
   fullName: SudokuSpice.ConstraintBased.PuzzleSolver<TPuzzle>.TrySolve
   nameWithType.vb: PuzzleSolver(Of TPuzzle).TrySolve
   fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of TPuzzle).TrySolve
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions*
   commentId: Overload:SudokuSpice.ConstraintBased.PuzzleSolver`1.GetStatsForAllSolutions
   name: GetStatsForAllSolutions
@@ -776,3 +832,10 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution*
+  commentId: Overload:SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution
+  name: HasUniqueSolution
+  nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution
+  fullName: SudokuSpice.ConstraintBased.PuzzleSolver<TPuzzle>.HasUniqueSolution
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution
+  fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution
