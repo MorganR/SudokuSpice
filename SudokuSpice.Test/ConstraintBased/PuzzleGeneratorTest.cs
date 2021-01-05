@@ -11,7 +11,7 @@ namespace SudokuSpice.ConstraintBased.Test
         public void Constructor_WithValidArgs_Works()
         {
             var generator = new PuzzleGenerator<Puzzle>(
-                size => new Puzzle(size), 
+                size => new Puzzle(size),
                 new PuzzleSolver<Puzzle>(new List<IConstraint> { new RowUniquenessConstraint() }));
         }
 

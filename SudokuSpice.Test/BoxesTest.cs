@@ -64,7 +64,7 @@ namespace SudokuSpice.Test
         [InlineData(3, 3, 2, 3)]
         public void GetBoxIndex_SucceedsForValidValues(int row, int col, int boxSize, int expectedIndex)
         {
-            Assert.Equal(expectedIndex, Boxes.CalculateBoxIndex(new (row, col), boxSize));
+            Assert.Equal(expectedIndex, Boxes.CalculateBoxIndex(new(row, col), boxSize));
         }
 
         [Theory]

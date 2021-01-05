@@ -54,7 +54,8 @@ namespace SudokuSpice.RuleBased.Heuristics
         public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle, IReadOnlyList<IRule> rules)
         {
-            try {
+            try
+            {
                 return new UniqueInRowHeuristic(
                     this, puzzle,
                     (IMissingRowValuesTracker)rules.First(r => r is IMissingRowValuesTracker));

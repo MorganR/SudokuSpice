@@ -52,7 +52,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         }
 
         private void _UpdateUniqueCoordinates(
-            BitVector possiblesToCheck, 
+            BitVector possiblesToCheck,
             ReadOnlySpan<Coordinate> coordinatesToCheck,
             Dictionary<Coordinate, BitVector> previousPossibles)
         {

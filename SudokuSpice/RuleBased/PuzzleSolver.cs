@@ -26,7 +26,7 @@ namespace SudokuSpice.RuleBased
         /// <inheritdoc/>
         public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
-            return _tracker.TryInit(puzzle) && 
+            return _tracker.TryInit(puzzle) &&
                 (randomizeGuesses ? _TrySolveRandomly(new Random()) : _TrySolve());
         }
 
