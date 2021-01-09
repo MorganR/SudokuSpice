@@ -8,13 +8,13 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Tracks and sets Sudoku squares and their possible values.
     /// </summary>
-    internal class SquareTracker
+    internal class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
     {
         private readonly IRuleKeeper _ruleKeeper;
         private readonly IHeuristic? _heuristic;
         private Stack<Coordinate>? _setCoords;
         private Stack<Coordinate>? _coordsThatUsedHeuristics;
-        private IPuzzleWithPossibleValues? _puzzle;
+        private TPuzzle? _puzzle;
 
         public IReadOnlyPuzzleWithPossibleValues? Puzzle => _puzzle;
 
@@ -42,9 +42,9 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Creates a deep copy of this tracker in its current state.
         /// </summary>
-        public SquareTracker(SquareTracker existing)
+        public SquareTracker(SquareTracker<TPuzzle> existing)
         {
-            _puzzle = existing._puzzle is null ? null : (IPuzzleWithPossibleValues)existing._puzzle.DeepCopy();
+            _puzzle = existing._puzzle?.DeepCopy();
             if (existing._setCoords is not null)
             {
                 _setCoords = new Stack<Coordinate>(existing._setCoords!);
@@ -65,7 +65,7 @@ namespace SudokuSpice.RuleBased
         /// <returns>
         /// False if initialization fails, for example if the puzzle violates a rule, else true.
         /// </returns>
-        public bool TryInit(IPuzzleWithPossibleValues puzzle)
+        public bool TryInit(TPuzzle puzzle)
         {
             if (!_ruleKeeper.TryInit(puzzle)
                 || (!_heuristic?.TryInitFor(puzzle) ?? false))

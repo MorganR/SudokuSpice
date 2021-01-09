@@ -6,11 +6,11 @@ using System.Threading;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>
-    /// Solves a single <see cref="IPuzzle"/> using a <see cref="SquareTracker"/>.
+    /// Solves a single <see cref="IPuzzle{T}"/> using a <see cref="SquareTracker"/>.
     /// </summary>
-    public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : IPuzzleWithPossibleValues
+    public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
     {
-        private readonly SquareTracker _tracker;
+        private readonly SquareTracker<TPuzzle> _tracker;
 
         /// <summary>
         /// Constructs a solver for the given square tracker.
@@ -20,7 +20,7 @@ namespace SudokuSpice.RuleBased
             IRuleKeeper ruleKeeper,
             IHeuristic? heuristic = null)
         {
-            _tracker = new SquareTracker(ruleKeeper, heuristic);
+            _tracker = new SquareTracker<TPuzzle>(ruleKeeper, heuristic);
         }
 
         /// <inheritdoc/>
@@ -33,7 +33,7 @@ namespace SudokuSpice.RuleBased
         /// <inheritdoc/>
         public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
-            var copy = (TPuzzle)puzzle.DeepCopy();
+            var copy = puzzle.DeepCopy();
             if (!TrySolve(copy, randomizeGuesses))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
@@ -59,7 +59,7 @@ namespace SudokuSpice.RuleBased
         {
             cancellationToken?.ThrowIfCancellationRequested();
             // Copy the puzzle so that the given puzzle is not modified.
-            if (!_tracker.TryInit((TPuzzle)puzzle.DeepCopy()))
+            if (!_tracker.TryInit(puzzle.DeepCopy()))
             {
                 // No solutions.
                 return new SolveStats();
@@ -125,7 +125,7 @@ namespace SudokuSpice.RuleBased
         }
 
         private static SolveStats _TryAllSolutions(
-            SquareTracker tracker,
+            SquareTracker<TPuzzle> tracker,
             bool validateUniquenessOnly,
             CancellationToken? cancellationToken)
         {
@@ -153,7 +153,7 @@ namespace SudokuSpice.RuleBased
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
-            SquareTracker tracker,
+            SquareTracker<TPuzzle> tracker,
             Coordinate c,
             ReadOnlySpan<int> valuesToGuess,
             bool validateUniquenessOnly,
@@ -163,7 +163,7 @@ namespace SudokuSpice.RuleBased
             for (int i = 0; i < valuesToGuess.Length - 1; i++)
             {
                 cancellationToken?.ThrowIfCancellationRequested();
-                var trackerCopy = new SquareTracker(tracker);
+                var trackerCopy = new SquareTracker<TPuzzle>(tracker);
                 if (trackerCopy.TrySet(in c, valuesToGuess[i]))
                 {
                     SolveStats guessStats = _TryAllSolutions(trackerCopy, validateUniquenessOnly, cancellationToken);

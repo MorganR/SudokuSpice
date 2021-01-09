@@ -6,17 +6,17 @@ using System.Threading;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Solves <see cref="IPuzzle"/>s using an <see cref="ExactCoverMatrix"/>.
+    /// Solves <see cref="IPuzzle{T}"/>s using an <see cref="ExactCoverMatrix"/>.
     /// </summary>
     /// <remarks>
     /// This class is thread-safe.
     /// </remarks>
-    public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : IPuzzle
+    public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly IReadOnlyList<IConstraint> _constraints;
 
         /// <summary>
-        /// Creates a solver that can solve <see cref="IPuzzle"/>s using the given
+        /// Creates a solver that can solve <see cref="IPuzzle{T}"/>s using the given
         /// <see cref="IConstraint"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>
@@ -33,7 +33,7 @@ namespace SudokuSpice.ConstraintBased
                 throw new ArgumentException(
                     $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
-            var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
+            var puzzleCopy = puzzle.DeepCopy();
             var matrix = new ExactCoverMatrix(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
@@ -90,7 +90,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 return new SolveStats();
             }
-            var puzzleCopy = (TPuzzle)puzzle.DeepCopy();
+            var puzzleCopy = puzzle.DeepCopy();
             var matrix = new ExactCoverMatrix(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {

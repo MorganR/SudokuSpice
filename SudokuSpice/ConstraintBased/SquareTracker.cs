@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
-    internal class SquareTracker<TPuzzle> where TPuzzle : IPuzzle
+    internal class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
         private readonly ExactCoverMatrix _matrix;
@@ -22,7 +22,7 @@ namespace SudokuSpice.ConstraintBased
         private SquareTracker(SquareTracker<TPuzzle> other)
         {
             // Puzzle is guaranteed to be of type TPuzzle.
-            _puzzle = (TPuzzle)other._puzzle.DeepCopy();
+            _puzzle = other._puzzle.DeepCopy();
             // Copy matrix, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
             _matrix = other._matrix.CopyUnknowns();
             _setCoords = new Stack<Coordinate>(_puzzle.NumEmptySquares);

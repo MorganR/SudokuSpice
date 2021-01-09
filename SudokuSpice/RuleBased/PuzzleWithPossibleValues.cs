@@ -5,7 +5,7 @@ namespace SudokuSpice.RuleBased
 {
     /// <summary>Manages underlying puzzle data.</summary>.
     // TODO
-    public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues
+    public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues<PuzzleWithPossibleValues>
     {
         private readonly Puzzle _puzzle;
         private readonly PossibleValues _possibleValues;
@@ -84,7 +84,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         public PuzzleWithPossibleValues(PuzzleWithPossibleValues existing)
         {
-            _puzzle = (Puzzle)existing._puzzle.DeepCopy();
+            _puzzle = existing._puzzle.DeepCopy();
             _possibleValues = new PossibleValues(existing._possibleValues);
         }
 
@@ -95,7 +95,7 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <inheritdoc/>
-        public IPuzzle DeepCopy() => new PuzzleWithPossibleValues(this);
+        public PuzzleWithPossibleValues DeepCopy() => new PuzzleWithPossibleValues(this);
 
         /// <inheritdoc/>
         public int? this[int row, int col]
@@ -110,7 +110,7 @@ namespace SudokuSpice.RuleBased
             }
         }
 
-        /// <inheritdoc cref="IPuzzle"/>
+        /// <inheritdoc cref="IPuzzle{T}"/>
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {

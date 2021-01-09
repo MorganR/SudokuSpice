@@ -11,7 +11,7 @@ namespace SudokuSpice
     /// * The possible values for any square in the puzzle are the numbers from 1 to size,
     ///   inclusive.
     /// </summary>.
-    public class Puzzle : IPuzzle
+    public class Puzzle : IPuzzle<Puzzle>
     {
         private readonly int?[,] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
@@ -122,10 +122,10 @@ namespace SudokuSpice
             return new Puzzle((int?[,])matrix.Clone());
         }
 
-        /// <inheritdoc cref="IPuzzle"/>
-        public IPuzzle DeepCopy() => new Puzzle(this);
+        /// <inheritdoc/>
+        public Puzzle DeepCopy() => new Puzzle(this);
 
-        /// <inheritdoc cref="IPuzzle"/>
+        /// <inheritdoc/>
         public int? this[int row, int col]
         {
             get => _squares[row, col];
@@ -140,7 +140,7 @@ namespace SudokuSpice
             }
         }
 
-        /// <inheritdoc cref="IPuzzle"/>
+        /// <inheritdoc/>
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {

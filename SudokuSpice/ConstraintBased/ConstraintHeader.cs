@@ -55,8 +55,6 @@ namespace SudokuSpice.ConstraintBased
         /// The possible square values that would satisfy this header.
         /// </param>
         /// <returns>The newly constructed header.</returns>
-        [SuppressMessage("Design", "CA1000:Do not declare static members on generic types",
-            Justification = "Static factory method is cleaner than using constructor and separate method.")]
         public static ConstraintHeader CreateConnectedHeader(
             ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares)
         {

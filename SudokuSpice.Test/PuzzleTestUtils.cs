@@ -5,7 +5,7 @@ namespace SudokuSpice.Test
 {
     internal static class PuzzleTestUtils
     {
-        internal static void AssertStandardPuzzleSolved(IPuzzle puzzle)
+        internal static void AssertStandardPuzzleSolved(IReadOnlyPuzzle puzzle)
         {
             Assert.Equal(0, puzzle.NumEmptySquares);
             var alreadyFound = new HashSet<int>(puzzle.Size);

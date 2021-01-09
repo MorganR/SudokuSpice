@@ -5,7 +5,7 @@ namespace SudokuSpice
     /// <summary>
     /// Provides read and write access to a Sudoku puzzle.
     /// </summary>
-    public interface IPuzzle : IReadOnlyPuzzle
+    public interface IPuzzle<T> : IReadOnlyPuzzle where T : class, IPuzzle<T>
     {
         /// <summary>
         /// Gets or sets the current value of a given square. A square can be 'unset' by setting
@@ -23,8 +23,8 @@ namespace SudokuSpice
         public new int? this[in Coordinate c] { get; set; }
 
         /// <summary>
-        /// Creates a deep-copy of this <c>IPuzzle</c>.
+        /// Creates a deep-copy of this puzzle.
         /// </summary>
-        public IPuzzle DeepCopy();
+        public T DeepCopy();
     }
 }

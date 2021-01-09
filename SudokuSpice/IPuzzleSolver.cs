@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace SudokuSpice
 {
-    public interface IPuzzleSolver<TPuzzle> where TPuzzle : IPuzzle
+    public interface IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         /// <summary>
         /// Attempts to solve the given puzzle.

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
-    public class PuzzleGenerator<TPuzzle> where TPuzzle : IPuzzle
+    public class PuzzleGenerator<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly Random _random = new Random();
         private readonly Func<int, TPuzzle> _puzzleFactory;
@@ -14,7 +14,7 @@ namespace SudokuSpice
         /// Creates a puzzle generator for generating puzzles.
         /// </summary>
         /// <param name="puzzleFromSize">
-        /// A function that constructs an empty <see cref="IPuzzle"/> of the desired type and shape.
+        /// A function that constructs an empty <see cref="IPuzzle{TPuzzle}"/> of the desired type and shape.
         /// The requested puzzle size (i.e. side-length) is provided as an argument.
         /// </param>
         /// <param name=solver">

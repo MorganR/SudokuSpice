@@ -31,7 +31,7 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public IReadOnlyDictionary<int, int> ValuesToIndices { get; private set; }
 
-        internal ExactCoverMatrix(IPuzzle puzzle)
+        internal ExactCoverMatrix(IReadOnlyPuzzle puzzle)
         {
             _matrix = new Square[puzzle.Size][];
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
