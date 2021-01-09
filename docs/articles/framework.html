@@ -79,7 +79,7 @@ implementing custom rules or constraints.</p>
 <h2 id="important-concepts">Important concepts</h2>
 <p>SudokuSpice uses four main interfaces:</p>
 <ol>
-<li><p>The <a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a></p>
+<li><p>The <a href="xref:SudokuSpice.IPuzzle"><code>IPuzzle</code></a></p>
 <p>Puzzles store the underlying Sudoku data. You likely only need the standard implementations,
 <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> for constraint-based tools, and [<code>PuzzleWithPossibleValues</code>]
 for rule-based tools. However, the interface is provided in case you need to do something a
@@ -93,7 +93,7 @@ regions.</p>
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.BoxUniquenessRule.html"><code>BoxUniquenessRule</code></a>. For convenience and
 efficiency, these come prepackaged in the
 <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.StandardRules.html"><code>StandardRules</code></a> class. Rules do not directly modify the
-<a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or its possible values themselves. They should use an
+<a href="xref:SudokuSpice.IPuzzle"><code>IPuzzle</code></a> or its possible values themselves. They should use an
 <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just enough internal state to
 efficiently provide the possible values of any given square according to <em>only</em> that rule.</p>
 <p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.RuleBased.IRuleKeeper.html"><code>IRuleKeeper</code></a>. The

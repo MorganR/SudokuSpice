@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IReadOnlyPuzzleWithPossibleValues
+    <title>Interface IPuzzleWithPossibleValues&lt;T&gt;
    | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IReadOnlyPuzzleWithPossibleValues
+    <meta name="title" content="Interface IPuzzleWithPossibleValues&lt;T&gt;
    | SudokuSpice ">
     <meta name="generator" content="docfx 2.56.5.0">
     
@@ -68,15 +68,24 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.IPuzzleWithPossibleValues`1">
   
   
-  <h1 id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithPossibleValues" data-uid="SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues" class="text-break">Interface IReadOnlyPuzzleWithPossibleValues
+  <h1 id="SudokuSpice_RuleBased_IPuzzleWithPossibleValues_1" data-uid="SudokuSpice.RuleBased.IPuzzleWithPossibleValues`1" class="text-break">Interface IPuzzleWithPossibleValues&lt;T&gt;
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_System_Int32_System_Int32_">IPuzzle&lt;T&gt;.Item[Int32, Int32]</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_SudokuSpice_Coordinate__">IPuzzle&lt;T&gt;.Item[Coordinate]</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy">IPuzzle&lt;T&gt;.DeepCopy()</a>
+    </div>
     <div>
       <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Size">IReadOnlyPuzzle.Size</a>
     </div>
@@ -93,13 +102,16 @@
       <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_AllPossibleValuesSpan">IReadOnlyPuzzle.AllPossibleValuesSpan</a>
     </div>
     <div>
-      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_System_Int32_System_Int32_">IReadOnlyPuzzle.Item[Int32, Int32]</a>
-    </div>
-    <div>
-      <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_SudokuSpice_Coordinate__">IReadOnlyPuzzle.Item[Coordinate]</a>
-    </div>
-    <div>
       <a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords">IReadOnlyPuzzle.GetUnsetCoords()</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html#SudokuSpice_RuleBased_IPossibleValues_SetPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_">IPossibleValues.SetPossibleValues(Coordinate, BitVector)</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html#SudokuSpice_RuleBased_IPossibleValues_IntersectPossibleValues_SudokuSpice_Coordinate__SudokuSpice_RuleBased_BitVector_">IPossibleValues.IntersectPossibleValues(Coordinate, BitVector)</a>
+    </div>
+    <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html#SudokuSpice_RuleBased_IPossibleValues_ResetPossibleValues_SudokuSpice_Coordinate__">IPossibleValues.ResetPossibleValues(Coordinate)</a>
     </div>
     <div>
       <a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPossibleValues.html#SudokuSpice_RuleBased_IReadOnlyPossibleValues_AllPossibleValues">IReadOnlyPossibleValues.AllPossibleValues</a>
@@ -110,10 +122,25 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
-  <h5 id="SudokuSpice_RuleBased_IReadOnlyPuzzleWithPossibleValues_syntax">Syntax</h5>
+  <h5 id="SudokuSpice_RuleBased_IPuzzleWithPossibleValues_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IReadOnlyPuzzleWithPossibleValues : IReadOnlyPuzzle, IReadOnlyPossibleValues</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IPuzzleWithPossibleValues&lt;T&gt; : IPuzzle&lt;T&gt;, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues where T : class, IPuzzle&lt;T&gt;</code></pre>
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -122,10 +149,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_IReadOnlyPuzzleWithPossibleValues.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_IPuzzleWithPossibleValues_1.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.IPuzzleWithPossibleValues%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/generics/SudokuSpice/RuleBased/IReadOnlyPuzzleWithPossibleValues.cs/#L4" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/generics/SudokuSpice/RuleBased/IPuzzleWithPossibleValues.cs/#L4" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
