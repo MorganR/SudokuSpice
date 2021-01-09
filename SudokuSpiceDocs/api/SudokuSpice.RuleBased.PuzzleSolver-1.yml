@@ -24,16 +24,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: PuzzleSolver
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 10
+    startLine: 15
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSolves a single <xref href=\"SudokuSpice.IPuzzle%601\" data-throw-if-not-resolved=\"false\"></xref> using a <see cref=\"!:SquareTracker\"></see>.\n"
+  summary: "\nSolves puzzles of the given type.\n\nThis solver uses a rule-based approach based on the <xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s provided in\nthe constructor. An optional heuristic can also be provided.\n"
+  remarks: This solver is not thread-safe.
   example: []
   syntax:
     content: 'public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>'
     typeParameters:
     - id: TPuzzle
+      description: The type of puzzle to solve.
     content.vb: >-
       Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzleWithPossibleValues(Of TPuzzle)})
           Implements IPuzzleSolver(Of TPuzzle)
@@ -76,19 +78,21 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 18
+    startLine: 31
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nConstructs a solver for the given square tracker.\n"
+  summary: "\nConstructs a solver with the given rules and optional heuristic.\n\nThis solver can be used to solve multiple puzzles.\n"
   example: []
   syntax:
     content: public PuzzleSolver(IRuleKeeper ruleKeeper, IHeuristic heuristic = null)
     parameters:
     - id: ruleKeeper
       type: SudokuSpice.RuleBased.IRuleKeeper
+      description: The rule keeper to satisfy when solving puzzles.
     - id: heuristic
       type: SudokuSpice.RuleBased.Heuristics.IHeuristic
+      description: "\nA heuristic to use to solve this puzzle efficiently. Can be set to null to skip using\nheuristics.\nNote that only one heuristic can be provided. To use multiple heuristics, create a\nwrapper heuristic like <xref href=\"SudokuSpice.RuleBased.Heuristics.StandardHeuristic\" data-throw-if-not-resolved=\"false\"></xref>.\n"
     content.vb: Public Sub New(ruleKeeper As IRuleKeeper, heuristic As IHeuristic = Nothing)
   overload: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor*
   nameWithType.vb: PuzzleSolver(Of TPuzzle).PuzzleSolver(IRuleKeeper, IHeuristic)
@@ -115,7 +119,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySolve
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 26
+    startLine: 39
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -160,7 +164,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Solve
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 33
+    startLine: 46
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -210,7 +214,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ComputeStatsForAllSolutions
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 44
+    startLine: 57
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -258,7 +262,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: HasUniqueSolution
     path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
-    startLine: 50
+    startLine: 63
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -289,42 +293,12 @@ items:
   fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
   name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
 references:
-- uid: SudokuSpice.IPuzzle`1
-  commentId: T:SudokuSpice.IPuzzle`1
-  name: IPuzzle<T>
-  nameWithType: IPuzzle<T>
-  fullName: SudokuSpice.IPuzzle<T>
-  nameWithType.vb: IPuzzle(Of T)
-  fullName.vb: SudokuSpice.IPuzzle(Of T)
-  name.vb: IPuzzle(Of T)
-  spec.csharp:
-  - uid: SudokuSpice.IPuzzle`1
-    name: IPuzzle
-    nameWithType: IPuzzle
-    fullName: SudokuSpice.IPuzzle
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.IPuzzle`1
-    name: IPuzzle
-    nameWithType: IPuzzle
-    fullName: SudokuSpice.IPuzzle
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: SudokuSpice.RuleBased.Rules.IRule
+  commentId: T:SudokuSpice.RuleBased.Rules.IRule
+  parent: SudokuSpice.RuleBased.Rules
+  name: IRule
+  nameWithType: IRule
+  fullName: SudokuSpice.RuleBased.Rules.IRule
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
@@ -654,6 +628,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.RuleBased.Rules
+  commentId: N:SudokuSpice.RuleBased.Rules
+  name: SudokuSpice.RuleBased.Rules
+  nameWithType: SudokuSpice.RuleBased.Rules
+  fullName: SudokuSpice.RuleBased.Rules
 - uid: System
   commentId: N:System
   isExternal: true
@@ -701,6 +680,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+  commentId: T:SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+  name: StandardHeuristic
+  nameWithType: StandardHeuristic
+  fullName: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.#ctor
   name: PuzzleSolver

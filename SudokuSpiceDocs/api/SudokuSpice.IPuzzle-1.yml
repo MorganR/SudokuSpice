@@ -22,7 +22,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IPuzzle
     path: ../SudokuSpice/IPuzzle.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -32,6 +32,7 @@ items:
     content: 'public interface IPuzzle<T> : IReadOnlyPuzzle where T : class, IPuzzle<T>'
     typeParameters:
     - id: T
+      description: Should be the concrete type implementing this interface.
     content.vb: >-
       Public Interface IPuzzle(Of T As {Class, IPuzzle(Of T)})
           Inherits IReadOnlyPuzzle
@@ -69,7 +70,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/IPuzzle.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -110,7 +111,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/IPuzzle.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -151,7 +152,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
     path: ../SudokuSpice/IPuzzle.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice

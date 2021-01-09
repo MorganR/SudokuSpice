@@ -6,17 +6,21 @@ using System.Threading;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Solves <see cref="IPuzzle{T}"/>s using an <see cref="ExactCoverMatrix"/>.
+    /// Solves puzzles of the given type using an <see cref="ExactCoverMatrix"/>.
     /// </summary>
     /// <remarks>
-    /// This class is thread-safe.
+    /// This class is thread-safe as long as the given constraints' implementations of
+    /// <see cref="IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)"/> are also
+    /// thread-safe. If that's true, then it's safe to solve multiple puzzles concurrently via
+    /// the same solver object.
     /// </remarks>
+    /// <typeparam name="TPuzzle">The type of puzzle to solve.</typeparam>
     public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly IReadOnlyList<IConstraint> _constraints;
 
         /// <summary>
-        /// Creates a solver that can solve <see cref="IPuzzle{T}"/>s using the given
+        /// Creates a solver that can solve puzzles using the given
         /// <see cref="IConstraint"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>

@@ -21,16 +21,19 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: PuzzleGenerator
     path: ../SudokuSpice/PuzzleGenerator.cs
-    startLine: 6
+    startLine: 10
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nGenerates puzzles of the given type based on the provided solver.\n"
+  example: []
   syntax:
     content: >-
       public class PuzzleGenerator<TPuzzle>
           where TPuzzle : class, IPuzzle<TPuzzle>
     typeParameters:
     - id: TPuzzle
+      description: The type of puzzle to generate.
     content.vb: Public Class PuzzleGenerator(Of TPuzzle As {Class, IPuzzle(Of TPuzzle)})
   inheritance:
   - System.Object
@@ -71,7 +74,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/PuzzleGenerator.cs
-    startLine: 23
+    startLine: 27
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -109,7 +112,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Generate
     path: ../SudokuSpice/PuzzleGenerator.cs
-    startLine: 57
+    startLine: 61
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice

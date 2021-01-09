@@ -24,17 +24,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: PuzzleSolver
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 13
+    startLine: 17
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nSolves <xref href=\"SudokuSpice.IPuzzle%601\" data-throw-if-not-resolved=\"false\"></xref>s using an <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-  remarks: "\nThis class is thread-safe.\n"
+  summary: "\nSolves puzzles of the given type using an <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nThis class is thread-safe as long as the given constraints&apos; implementations of\n<xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle%2cSudokuSpice.ConstraintBased.ExactCoverMatrix)\" data-throw-if-not-resolved=\"false\"></xref> are also\nthread-safe. If that&apos;s true, then it&apos;s safe to solve multiple puzzles concurrently via\nthe same solver object.\n"
   example: []
   syntax:
     content: 'public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>'
     typeParameters:
     - id: TPuzzle
+      description: The type of puzzle to solve.
     content.vb: >-
       Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzle(Of TPuzzle)})
           Implements IPuzzleSolver(Of TPuzzle)
@@ -77,11 +78,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 22
+    startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nCreates a solver that can solve <xref href=\"SudokuSpice.IPuzzle%601\" data-throw-if-not-resolved=\"false\"></xref>s using the given\n<xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s. The same solver can be reused for multiple puzzles.\n"
+  summary: "\nCreates a solver that can solve puzzles using the given\n<xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s. The same solver can be reused for multiple puzzles.\n"
   example: []
   syntax:
     content: public PuzzleSolver(IReadOnlyList<IConstraint> constraints)
@@ -116,7 +117,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Solve
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -166,7 +167,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySolve
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 54
+    startLine: 58
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -211,7 +212,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ComputeStatsForAllSolutions
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 74
+    startLine: 78
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -259,7 +260,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: HasUniqueSolution
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 80
+    startLine: 84
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -290,48 +291,62 @@ items:
   fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
   name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
 references:
-- uid: SudokuSpice.IPuzzle`1
-  commentId: T:SudokuSpice.IPuzzle`1
-  name: IPuzzle<T>
-  nameWithType: IPuzzle<T>
-  fullName: SudokuSpice.IPuzzle<T>
-  nameWithType.vb: IPuzzle(Of T)
-  fullName.vb: SudokuSpice.IPuzzle(Of T)
-  name.vb: IPuzzle(Of T)
-  spec.csharp:
-  - uid: SudokuSpice.IPuzzle`1
-    name: IPuzzle
-    nameWithType: IPuzzle
-    fullName: SudokuSpice.IPuzzle
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: SudokuSpice.IPuzzle`1
-    name: IPuzzle
-    nameWithType: IPuzzle
-    fullName: SudokuSpice.IPuzzle
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
   parent: SudokuSpice.ConstraintBased
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  parent: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  nameWithType: IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+    name: TryConstrain
+    nameWithType: IConstraint.TryConstrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+    name: TryConstrain
+    nameWithType: IConstraint.TryConstrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -661,6 +676,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
+  name: IConstraint
+  nameWithType: IConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
 - uid: System
   commentId: N:System
   isExternal: true
@@ -708,12 +729,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
-  parent: SudokuSpice.ConstraintBased.Constraints
-  name: IConstraint
-  nameWithType: IConstraint
-  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+- uid: SudokuSpice.ConstraintBased.Constraints
+  commentId: N:SudokuSpice.ConstraintBased.Constraints
+  name: SudokuSpice.ConstraintBased.Constraints
+  nameWithType: SudokuSpice.ConstraintBased.Constraints
+  fullName: SudokuSpice.ConstraintBased.Constraints
 - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1.#ctor*
   commentId: Overload:SudokuSpice.ConstraintBased.PuzzleSolver`1.#ctor
   name: PuzzleSolver
@@ -763,11 +783,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.Constraints
-  commentId: N:SudokuSpice.ConstraintBased.Constraints
-  name: SudokuSpice.ConstraintBased.Constraints
-  nameWithType: SudokuSpice.ConstraintBased.Constraints
-  fullName: SudokuSpice.ConstraintBased.Constraints
 - uid: System.Collections.Generic.IReadOnlyList`1
   commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true

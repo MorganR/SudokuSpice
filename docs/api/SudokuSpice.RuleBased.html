@@ -81,10 +81,12 @@
       <section><p>Enforces an arbitrary injected set of rules.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.PuzzleSolver-1.html">PuzzleSolver&lt;TPuzzle&gt;</a></h4>
-      <section><p>Solves a single <a class="xref" href="SudokuSpice.IPuzzle-1.html">IPuzzle&lt;T&gt;</a> using a <see cref="!:SquareTracker"></see>.</p>
+      <section><p>Solves puzzles of the given type.</p>
+<p>This solver uses a rule-based approach based on the <a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>s provided in
+the constructor. An optional heuristic can also be provided.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.PuzzleWithPossibleValues.html">PuzzleWithPossibleValues</a></h4>
-      <section><p>Manages underlying puzzle data.</p>
+      <section><p>Stores a puzzle's data and associated possible values.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.StandardPuzzleGenerator.html">StandardPuzzleGenerator</a></h4>
       <section><p>Generates standard Sudoku puzzles.</p>
@@ -103,16 +105,20 @@
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html">IPossibleValues</a></h4>
-      <section></section>
+      <section><p>Stores possible values for a puzzle's coordinates.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IPuzzleWithPossibleValues-1.html">IPuzzleWithPossibleValues&lt;T&gt;</a></h4>
-      <section></section>
+      <section><p>Holds a puzzle's data and corresponding possible values.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPossibleValues.html">IReadOnlyPossibleValues</a></h4>
       <section><p>Provides read-only access to possible value data for a puzzle.</p>
 </section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></h4>
-      <section></section>
+      <section><p>Provides read-only access to a puzzle's data with mutable access to the associated possible values.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithPossibleValues.html">IReadOnlyPuzzleWithPossibleValues</a></h4>
-      <section></section>
+      <section><p>Provides read-only access to a puzzle's data and associated possible values.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.IRuleKeeper.html">IRuleKeeper</a></h4>
       <section></section>
 </article>

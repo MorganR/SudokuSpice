@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased
         private Stack<Coordinate>? _coordsThatUsedHeuristics;
         private TPuzzle? _puzzle;
 
-        public IReadOnlyPuzzleWithPossibleValues? Puzzle => _puzzle;
+        internal IReadOnlyPuzzleWithPossibleValues? Puzzle => _puzzle;
 
         /// <summary>
         /// Constructs a square tracker to track the given puzzle using the given possible values,
@@ -26,12 +26,10 @@ namespace SudokuSpice.RuleBased
         /// <param name="heuristic">
         /// A heuristic to use to solve this puzzle efficiently. Can be set to null to skip using
         /// heuristics.
-        /// <para>
         /// Note that only one heuristic can be provided. To use multiple heuristics, create a
         /// wrapper heuristic like <see cref="StandardHeuristic"/>.
-        /// </para>
         /// </param>
-        public SquareTracker(
+        internal SquareTracker(
             IRuleKeeper ruleKeeper,
             IHeuristic? heuristic = null)
         {
@@ -42,7 +40,7 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Creates a deep copy of this tracker in its current state.
         /// </summary>
-        public SquareTracker(SquareTracker<TPuzzle> existing)
+        internal SquareTracker(SquareTracker<TPuzzle> existing)
         {
             _puzzle = existing._puzzle?.DeepCopy();
             if (existing._setCoords is not null)
@@ -65,7 +63,7 @@ namespace SudokuSpice.RuleBased
         /// <returns>
         /// False if initialization fails, for example if the puzzle violates a rule, else true.
         /// </returns>
-        public bool TryInit(TPuzzle puzzle)
+        internal bool TryInit(TPuzzle puzzle)
         {
             if (!_ruleKeeper.TryInit(puzzle)
                 || (!_heuristic?.TryInitFor(puzzle) ?? false))
@@ -82,7 +80,7 @@ namespace SudokuSpice.RuleBased
         /// Gets the coordinate for the next square to fill in.
         /// </summary>
         /// <returns>The coordinate for the unset square with the least possible values.</returns>
-        public Coordinate GetBestCoordinateToGuess()
+        internal Coordinate GetBestCoordinateToGuess()
         {
             Debug.Assert(_puzzle is not null
                          && _setCoords is not null, "Must initialize tracker.");
@@ -115,7 +113,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
         /// <returns>A list of those possible values.</returns>
-        public List<int> GetPossibleValues(in Coordinate c) => _puzzle!.GetPossibleValues(in c).GetSetBits();
+        internal List<int> GetPossibleValues(in Coordinate c) => _puzzle!.GetPossibleValues(in c).GetSetBits();
 
         /// <summary>
         /// Populates a provided Span with the possible values at the given coordinate, and returns
@@ -134,7 +132,7 @@ namespace SudokuSpice.RuleBased
         /// The number of possible values that were set in the <paramref name="possibleValues"/> span.
         /// </returns>
 
-        public int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) =>
+        internal int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) =>
             _puzzle!.GetPossibleValues(in c).PopulateSetBits(possibleValues);
 
         /// <summary>
@@ -145,7 +143,7 @@ namespace SudokuSpice.RuleBased
         /// <param name="c">The coordinate of the square to set.</param>
         /// <param name="value">The value to set the square to.</param>
         /// <returns>True if the set succeeded.</returns>
-        public bool TrySet(in Coordinate coord, int value)
+        internal bool TrySet(in Coordinate coord, int value)
         {
             Debug.Assert(_puzzle is not null
                          && _setCoords is not null, "Must initialize tracker.");
@@ -162,7 +160,7 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Unsets the most recently set square.
         /// </summary>
-        public void UnsetLast()
+        internal void UnsetLast()
         {
             Debug.Assert(_puzzle is not null
                          && _setCoords is not null, "Must initialize tracker.");

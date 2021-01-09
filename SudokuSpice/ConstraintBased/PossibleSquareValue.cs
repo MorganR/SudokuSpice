@@ -81,7 +81,6 @@ namespace SudokuSpice.ConstraintBased
             {
                 return false;
             }
-            // TODO: Is this check necessary?
             if (FirstLink != null)
             {
                 if (!_TryUpdateLinks(link => link.TryRemoveFromConstraint(), link => link.ReturnToConstraint()))

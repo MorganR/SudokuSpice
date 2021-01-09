@@ -3,8 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.RuleBased
 {
-    /// <summary>Manages underlying puzzle data.</summary>.
-    // TODO
+    /// <summary>Stores a puzzle's data and associated possible values.</summary>.
     public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues<PuzzleWithPossibleValues>
     {
         private readonly Puzzle _puzzle;

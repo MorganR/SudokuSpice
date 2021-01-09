@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 
 namespace SudokuSpice
 {
+    /// <summary>
+    /// Generates puzzles of the given type based on the provided solver.
+    /// </summary>
+    /// <typeparam name="TPuzzle">The type of puzzle to generate.</typeparam>
     public class PuzzleGenerator<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly Random _random = new Random();

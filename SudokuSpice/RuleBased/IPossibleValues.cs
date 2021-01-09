@@ -1,6 +1,8 @@
 ﻿namespace SudokuSpice.RuleBased
 {
-    // TODO
+    /// <summary>
+    /// Stores possible values for a puzzle's coordinates.
+    /// </summary>
     public interface IPossibleValues : IReadOnlyPossibleValues
     {
         /// <summary>
