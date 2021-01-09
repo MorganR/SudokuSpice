@@ -19,14 +19,17 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IPuzzleWithPossibleValues
     path: ../SudokuSpice/RuleBased/IPuzzleWithPossibleValues.cs
-    startLine: 3
+    startLine: 6
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nHolds a puzzle&apos;s data and corresponding possible values.\n"
+  example: []
   syntax:
     content: 'public interface IPuzzleWithPossibleValues<T> : IPuzzle<T>, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues where T : class, IPuzzle<T>'
     typeParameters:
     - id: T
+      description: Should be the concrete type implementing this interface.
     content.vb: >-
       Public Interface IPuzzleWithPossibleValues(Of T As {Class, IPuzzle(Of T)})
           Inherits IPuzzle(Of T), IReadOnlyPuzzleWithMutablePossibleValues

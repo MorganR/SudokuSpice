@@ -23,16 +23,19 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IPuzzleSolver
     path: ../SudokuSpice/IPuzzleSolver.cs
-    startLine: 5
+    startLine: 9
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nSolves puzzles of the given type.\n"
+  example: []
   syntax:
     content: >-
       public interface IPuzzleSolver<TPuzzle>
           where TPuzzle : class, IPuzzle<TPuzzle>
     typeParameters:
     - id: TPuzzle
+      description: The type of puzzle to solve.
     content.vb: Public Interface IPuzzleSolver(Of TPuzzle As {Class, IPuzzle(Of TPuzzle)})
   nameWithType.vb: IPuzzleSolver(Of TPuzzle)
   modifiers.csharp:
@@ -61,7 +64,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySolve
     path: ../SudokuSpice/IPuzzleSolver.cs
-    startLine: 18
+    startLine: 22
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -100,7 +103,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Solve
     path: ../SudokuSpice/IPuzzleSolver.cs
-    startLine: 34
+    startLine: 38
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -144,7 +147,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ComputeStatsForAllSolutions
     path: ../SudokuSpice/IPuzzleSolver.cs
-    startLine: 42
+    startLine: 46
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -186,7 +189,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: HasUniqueSolution
     path: ../SudokuSpice/IPuzzleSolver.cs
-    startLine: 50
+    startLine: 54
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice

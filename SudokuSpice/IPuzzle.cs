@@ -5,6 +5,7 @@ namespace SudokuSpice
     /// <summary>
     /// Provides read and write access to a Sudoku puzzle.
     /// </summary>
+    /// <typeparam name="T">Should be the concrete type implementing this interface.</typeparam>
     public interface IPuzzle<T> : IReadOnlyPuzzle where T : class, IPuzzle<T>
     {
         /// <summary>

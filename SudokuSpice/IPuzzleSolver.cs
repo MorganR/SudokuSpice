@@ -3,6 +3,10 @@ using System.Threading;
 
 namespace SudokuSpice
 {
+    /// <summary>
+    /// Solves puzzles of the given type.
+    /// </summary>
+    /// <typeparam name="TPuzzle">The type of puzzle to solve.</typeparam>
     public interface IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         /// <summary>

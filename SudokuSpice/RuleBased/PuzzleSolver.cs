@@ -6,16 +6,22 @@ using System.Threading;
 namespace SudokuSpice.RuleBased
 {
     /// <summary>
-    /// Solves a single <see cref="IPuzzle{T}"/> using a <see cref="SquareTracker"/>.
+    /// Solves puzzles of the given type.
+    /// 
+    /// This solver uses a rule-based approach based on the <see cref="Rules.IRule"/>s provided in
+    /// the constructor. An optional heuristic can also be provided.
     /// </summary>
+    /// <remarks>This solver is not thread-safe.</remarks>
+    /// <typeparam name="TPuzzle">The type of puzzle to solve.</typeparam>
     public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
     {
         private readonly SquareTracker<TPuzzle> _tracker;
 
         /// <summary>
-        /// Constructs a solver for the given square tracker.
+        /// Constructs a solver with the given rules and optional heuristic.
+        /// 
+        /// This solver can be used to solve multiple puzzles.
         /// </summary>
-        /// <param name="tracker">A square tracker referencing the puzzle to solve.</param>
         public PuzzleSolver(
             IRuleKeeper ruleKeeper,
             IHeuristic? heuristic = null)
