@@ -85,35 +85,11 @@
     <h5>Implements</h5>
     <div><a class="xref" href="SudokuSpice.RuleBased.Heuristics.IHeuristic.html">IHeuristic</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Heuristics.html">SudokuSpice.RuleBased.Heuristics</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Heuristics_StandardHeuristic_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StandardHeuristic : IHeuristic</code></pre>
+    <pre><code class="lang-csharp hljs">public class StandardHeuristic : object, IHeuristic</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -168,13 +144,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_StandardHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_IRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues%2CSystem.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.IRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_StandardHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IReadOnlyList_SudokuSpice_RuleBased_Rules_IRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues%2CIReadOnlyList%7BSudokuSpice.RuleBased.Rules.IRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Heuristics/StandardHeuristic.cs/#L72">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_StandardHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.Heuristics.StandardHeuristic.CopyWithNewReferences*"></a>
-  <h4 id="SudokuSpice_RuleBased_Heuristics_StandardHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_IRule__" data-uid="SudokuSpice.RuleBased.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList&lt;IRule&gt;)</h4>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_StandardHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_IReadOnlyList_SudokuSpice_RuleBased_Rules_IRule__" data-uid="SudokuSpice.RuleBased.Heuristics.StandardHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyList&lt;IRule&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a deep copy of this heuristic. Requires <code>rules</code> to contain an
 <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html">IMissingBoxValuesTracker</a>, an <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.html">IMissingColumnValuesTracker</a>,
 and an <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.html">IMissingRowValuesTracker</a>.</p>
@@ -200,7 +176,7 @@ and an <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingRowValuesTracke
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
         <td><span class="parametername">rules</span></td>
         <td></td>
       </tr>
