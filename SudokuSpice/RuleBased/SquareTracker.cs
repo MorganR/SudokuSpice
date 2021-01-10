@@ -18,17 +18,6 @@ namespace SudokuSpice.RuleBased
 
         internal IReadOnlyPuzzleWithPossibleValues Puzzle => _puzzle;
 
-        /// <summary>
-        /// Constructs a square tracker to track the given puzzle using the given possible values,
-        /// rule keeper, and heuristic.
-        /// </summary>
-        /// <param name="ruleKeeper">The rule keeper to satisfy when modifying this puzzle.</param>
-        /// <param name="heuristic">
-        /// A heuristic to use to solve this puzzle efficiently. Can be set to null to skip using
-        /// heuristics.
-        /// Note that only one heuristic can be provided. To use multiple heuristics, create a
-        /// wrapper heuristic like <see cref="StandardHeuristic"/>.
-        /// </param>
         private SquareTracker(
             TPuzzle puzzle,
             IRuleKeeper ruleKeeper,
@@ -58,9 +47,15 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>
-        /// Tries to initialize this tracker for the given puzzle.
+        /// Tries to construct and initialize a tracker for the given puzzle, rules, and heuristics.
         /// </summary>
         /// <param name="puzzle">The puzzle to solve.</param>
+        /// <param name="ruleKeeper">The rule-keeper to satisfy.</param>
+        /// <param name="heuristic">An optional heuristic to user.</param>
+        /// <param name="tracker">
+        /// An <c>out</c> param where the tracker will be created. Set to null if initialization
+        /// fails (i.e. this method returns false).
+        /// </param>
         /// <returns>
         /// False if initialization fails, for example if the puzzle violates a rule, else true.
         /// </returns>
@@ -86,8 +81,6 @@ namespace SudokuSpice.RuleBased
         /// <returns>The coordinate for the unset square with the least possible values.</returns>
         internal Coordinate GetBestCoordinateToGuess()
         {
-            Debug.Assert(_puzzle is not null
-                         && _setCoords is not null, "Must initialize tracker.");
             Debug.Assert(_puzzle.NumEmptySquares > 0, "No unset squares left to guess!");
             Coordinate bestCoord;
             int numPossibles;
@@ -149,8 +142,6 @@ namespace SudokuSpice.RuleBased
         /// <returns>True if the set succeeded.</returns>
         internal bool TrySet(in Coordinate coord, int value)
         {
-            Debug.Assert(_puzzle is not null
-                         && _setCoords is not null, "Must initialize tracker.");
             bool isValid = _ruleKeeper.TrySet(in coord, value);
             if (!isValid)
             {
@@ -166,8 +157,6 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         internal void UnsetLast()
         {
-            Debug.Assert(_puzzle is not null
-                         && _setCoords is not null, "Must initialize tracker.");
             Coordinate lastCoord = _setCoords.Pop();
             // If this is null, then we want to throw because this method is being misused.
             int value = _puzzle[in lastCoord]!.Value;
