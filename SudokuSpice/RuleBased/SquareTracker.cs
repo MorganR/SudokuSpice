@@ -10,13 +10,13 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     internal class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
     {
+        private readonly TPuzzle _puzzle;
         private readonly IRuleKeeper _ruleKeeper;
         private readonly IHeuristic? _heuristic;
-        private Stack<Coordinate>? _setCoords;
-        private Stack<Coordinate>? _coordsThatUsedHeuristics;
-        private TPuzzle? _puzzle;
+        private readonly Stack<Coordinate> _setCoords;
+        private readonly Stack<Coordinate>? _coordsThatUsedHeuristics;
 
-        internal IReadOnlyPuzzleWithPossibleValues? Puzzle => _puzzle;
+        internal IReadOnlyPuzzleWithPossibleValues Puzzle => _puzzle;
 
         /// <summary>
         /// Constructs a square tracker to track the given puzzle using the given possible values,
@@ -29,12 +29,16 @@ namespace SudokuSpice.RuleBased
         /// Note that only one heuristic can be provided. To use multiple heuristics, create a
         /// wrapper heuristic like <see cref="StandardHeuristic"/>.
         /// </param>
-        internal SquareTracker(
+        private SquareTracker(
+            TPuzzle puzzle,
             IRuleKeeper ruleKeeper,
             IHeuristic? heuristic = null)
         {
+            _puzzle = puzzle;
             _ruleKeeper = ruleKeeper;
             _heuristic = heuristic;
+            _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
+            _coordsThatUsedHeuristics = _heuristic is null ? null : new Stack<Coordinate>(puzzle.NumEmptySquares);
         }
 
         /// <summary>
@@ -42,11 +46,8 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         internal SquareTracker(SquareTracker<TPuzzle> existing)
         {
-            _puzzle = existing._puzzle?.DeepCopy();
-            if (existing._setCoords is not null)
-            {
-                _setCoords = new Stack<Coordinate>(existing._setCoords!);
-            }
+            _puzzle = existing._puzzle.DeepCopy();
+            _setCoords = new Stack<Coordinate>(existing._setCoords);
             if (existing._coordsThatUsedHeuristics is not null)
             {
                 _coordsThatUsedHeuristics = new Stack<Coordinate>(existing._coordsThatUsedHeuristics!);
@@ -63,16 +64,19 @@ namespace SudokuSpice.RuleBased
         /// <returns>
         /// False if initialization fails, for example if the puzzle violates a rule, else true.
         /// </returns>
-        internal bool TryInit(TPuzzle puzzle)
+        internal static bool TryInit(
+            TPuzzle puzzle,
+            IRuleKeeper ruleKeeper,
+            IHeuristic? heuristic,
+            out SquareTracker<TPuzzle>? tracker)
         {
-            if (!_ruleKeeper.TryInit(puzzle)
-                || (!_heuristic?.TryInitFor(puzzle) ?? false))
+            if (!ruleKeeper.TryInit(puzzle)
+                || (!heuristic?.TryInitFor(puzzle) ?? false))
             {
+                tracker = null;
                 return false;
             }
-            _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
-            _coordsThatUsedHeuristics = _heuristic is null ? null : new Stack<Coordinate>(puzzle.NumEmptySquares);
-            _puzzle = puzzle;
+            tracker = new SquareTracker<TPuzzle>(puzzle, ruleKeeper, heuristic);
             return true;
         }
 
@@ -113,7 +117,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
         /// <returns>A list of those possible values.</returns>
-        internal List<int> GetPossibleValues(in Coordinate c) => _puzzle!.GetPossibleValues(in c).GetSetBits();
+        internal List<int> GetPossibleValues(in Coordinate c) => _puzzle.GetPossibleValues(in c).GetSetBits();
 
         /// <summary>
         /// Populates a provided Span with the possible values at the given coordinate, and returns
@@ -133,7 +137,7 @@ namespace SudokuSpice.RuleBased
         /// </returns>
 
         internal int PopulatePossibleValues(in Coordinate c, Span<int> possibleValues) =>
-            _puzzle!.GetPossibleValues(in c).PopulateSetBits(possibleValues);
+            _puzzle.GetPossibleValues(in c).PopulateSetBits(possibleValues);
 
         /// <summary>
         /// Tries to set the square at the given coordinate to the given possible value. This also 
@@ -182,7 +186,7 @@ namespace SudokuSpice.RuleBased
 
         private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()
         {
-            int minNumPossibles = _puzzle!.Size + 1;
+            int minNumPossibles = _puzzle.Size + 1;
             var bestCoord = new Coordinate(0, 0);
             foreach (Coordinate c in _puzzle.GetUnsetCoords())
             {

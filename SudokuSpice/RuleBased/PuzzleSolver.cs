@@ -15,7 +15,8 @@ namespace SudokuSpice.RuleBased
     /// <typeparam name="TPuzzle">The type of puzzle to solve.</typeparam>
     public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
     {
-        private readonly SquareTracker<TPuzzle> _tracker;
+        private readonly IRuleKeeper _ruleKeeper;
+        private readonly IHeuristic? _heuristic;
 
         /// <summary>
         /// Constructs a solver with the given rules and optional heuristic.
@@ -33,14 +34,18 @@ namespace SudokuSpice.RuleBased
             IRuleKeeper ruleKeeper,
             IHeuristic? heuristic = null)
         {
-            _tracker = new SquareTracker<TPuzzle>(ruleKeeper, heuristic);
+            _ruleKeeper = ruleKeeper;
+            _heuristic = heuristic;
         }
 
         /// <inheritdoc/>
         public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
         {
-            return _tracker.TryInit(puzzle) &&
-                (randomizeGuesses ? _TrySolveRandomly(new Random()) : _TrySolve());
+            if (!SquareTracker<TPuzzle>.TryInit(puzzle, _ruleKeeper, _heuristic, out SquareTracker<TPuzzle>? tracker))
+            {
+                return false;
+            }
+            return randomizeGuesses ? _TrySolveRandomly(tracker!, new Random()) : _TrySolve(tracker!);
         }
 
         /// <inheritdoc/>
@@ -72,61 +77,59 @@ namespace SudokuSpice.RuleBased
         {
             cancellationToken?.ThrowIfCancellationRequested();
             // Copy the puzzle so that the given puzzle is not modified.
-            if (!_tracker.TryInit(puzzle.DeepCopy()))
+            if (!SquareTracker<TPuzzle>.TryInit(puzzle.DeepCopy(), _ruleKeeper, _heuristic, out SquareTracker<TPuzzle>? tracker))
             {
                 // No solutions.
                 return new SolveStats();
             }
-            return _TryAllSolutions(_tracker, validateUniquenessOnly, cancellationToken);
+            return _TryAllSolutions(tracker!, validateUniquenessOnly, cancellationToken);
         }
 
-        private bool _TrySolve()
+        private bool _TrySolve(SquareTracker<TPuzzle> tracker)
         {
-            var puzzle = _tracker.Puzzle;
-            Debug.Assert(puzzle is not null, "Puzzle is null, cannot solve.");
-            if (puzzle!.NumEmptySquares == 0)
+            var puzzle = tracker.Puzzle;
+            if (puzzle.NumEmptySquares == 0)
             {
                 return true;
             }
-            Coordinate c = _tracker.GetBestCoordinateToGuess();
+            Coordinate c = tracker.GetBestCoordinateToGuess();
             Span<int> possibleValues = stackalloc int[puzzle.Size];
-            int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
+            int numPossible = tracker.PopulatePossibleValues(in c, possibleValues);
             for (int i = 0; i < numPossible; ++i)
             {
                 int possibleValue = possibleValues[i];
-                if (_tracker.TrySet(in c, possibleValue))
+                if (tracker.TrySet(in c, possibleValue))
                 {
-                    if (_TrySolve())
+                    if (_TrySolve(tracker))
                     {
                         return true;
                     }
-                    _tracker.UnsetLast();
+                    tracker.UnsetLast();
                 }
             }
             return false;
         }
 
-        private bool _TrySolveRandomly(Random random)
+        private bool _TrySolveRandomly(SquareTracker<TPuzzle> tracker, Random random)
         {
-            Debug.Assert(_tracker.Puzzle is not null, "Puzzle is null, cannot solve.");
-            if (_tracker.Puzzle!.NumEmptySquares == 0)
+            if (tracker.Puzzle.NumEmptySquares == 0)
             {
                 return true;
             }
-            Coordinate c = _tracker.GetBestCoordinateToGuess();
-            Span<int> possibleValues = stackalloc int[_tracker.Puzzle.Size];
-            int numPossible = _tracker.PopulatePossibleValues(in c, possibleValues);
+            Coordinate c = tracker.GetBestCoordinateToGuess();
+            Span<int> possibleValues = stackalloc int[tracker.Puzzle.Size];
+            int numPossible = tracker.PopulatePossibleValues(in c, possibleValues);
             while (numPossible > 0)
             {
                 int index = random.Next(0, numPossible);
                 int possibleValue = possibleValues[index];
-                if (_tracker.TrySet(in c, possibleValue))
+                if (tracker.TrySet(in c, possibleValue))
                 {
-                    if (_TrySolveRandomly(random))
+                    if (_TrySolveRandomly(tracker, random))
                     {
                         return true;
                     }
-                    _tracker.UnsetLast();
+                    tracker.UnsetLast();
                 }
                 for (int i = index; i < numPossible - 1; ++i)
                 {
