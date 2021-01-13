@@ -64,6 +64,10 @@ namespace SudokuSpice.ConstraintBased
         /// The number of <paramref name="possibleSquares"/> required to satisfy this constraint.
         /// </param>
         /// <returns>The newly constructed header.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown if called with fewer <paramref name="possibleSquares"/> than the
+        /// <paramref name="requiredCount"/>.
+        /// </exception>
         public static ConstraintHeader CreateConnectedHeader(
             ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1)
         {
