@@ -13,7 +13,6 @@ namespace SudokuSpice.ConstraintBased
         private readonly PossibleSquareValue?[] _possibleValues;
         private readonly Stack<PossibleSquareValue> _valuesDroppedOnSelect;
         private int? _selectedValueIndex;
-        internal ReadOnlySpan<PossibleSquareValue?> AllPossibleValues => new ReadOnlySpan<PossibleSquareValue?>(_possibleValues);
 
         /// <summary>
         /// Gets the <see cref="Coordinate"/> of this square.

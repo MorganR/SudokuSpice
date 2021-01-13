@@ -27,8 +27,11 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Square square = matrix.GetSquare(new Coordinate(0, 0));
             Assert.Equal(expectedPossibleValues.Length, square.NumPossibleValues);
-            Assert.Equal(square.AllPossibleValues.ToArray(), square.GetStillPossibleValues());
-            Assert.Equal(new int[] { 0, 1, 2, 3 }, square.AllPossibleValues.ToArray().Select(pv => pv.ValueIndex).ToArray());
+            var allValueIndices = new int[] { 0, 1, 2, 3 };
+            Assert.Equal(
+                allValueIndices.Select(idx => square.GetPossibleValue(idx)),
+                square.GetStillPossibleValues());
+            Assert.Equal(allValueIndices, square.GetStillPossibleValues().ToArray().Select(pv => pv.ValueIndex).ToArray());
             Assert.Equal(2, square.GetPossibleValue(2).ValueIndex);
         }
 

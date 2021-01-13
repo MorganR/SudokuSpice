@@ -64,7 +64,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var matrix = new ExactCoverMatrix(puzzle);
             var constraintHeader = ConstraintHeader.CreateConnectedHeader(
                 matrix,
-                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
+                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.GetPossibleValue(0)).ToArray());
             Link firstLink = constraintHeader.FirstLink;
             Link secondLink = firstLink.Down;
             Link thirdLink = secondLink.Down;
@@ -88,7 +88,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var matrix = new ExactCoverMatrix(puzzle);
             var constraintHeader = ConstraintHeader.CreateConnectedHeader(
                 matrix,
-                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
+                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.GetPossibleValue(0)).ToArray());
             Link firstLink = constraintHeader.FirstLink;
             Link secondLink = firstLink.Down;
 
@@ -110,7 +110,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var matrix = new ExactCoverMatrix(puzzle);
             var constraintHeader = ConstraintHeader.CreateConnectedHeader(
                 matrix,
-                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.AllPossibleValues[0]).ToArray());
+                matrix.GetSquaresOnRow(0).ToArray().Select(s => s.GetPossibleValue(0)).ToArray());
             Link firstLink = constraintHeader.FirstLink;
             Link secondLink = firstLink.Down;
 
@@ -133,7 +133,7 @@ namespace SudokuSpice.ConstraintBased.Test
             new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
             new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
-            Link link = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink;
+            Link link = matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(0).FirstLink;
             ConstraintHeader header = link.Constraint;
             Assert.True(link.TrySelectForConstraint());
 
@@ -160,11 +160,11 @@ namespace SudokuSpice.ConstraintBased.Test
             new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             Square square = matrix.GetSquare(new Coordinate(0, 0));
-            Link lastLink = square.AllPossibleValues[0].FirstLink;
+            Link lastLink = square.GetPossibleValue(0).FirstLink;
             ConstraintHeader header = lastLink.Constraint;
-            for (int i = 1; i < square.AllPossibleValues.Length; i++)
+            for (int i = 1; i < matrix.AllPossibleValues.Length; i++)
             {
-                Assert.True(square.AllPossibleValues[i].TryDrop());
+                Assert.True(square.GetPossibleValue(i).TryDrop());
             }
             Link linkFromDifferentSquare = lastLink.Down;
             Assert.False(linkFromDifferentSquare.TrySelectForConstraint());
