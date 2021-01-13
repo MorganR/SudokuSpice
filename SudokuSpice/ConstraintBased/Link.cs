@@ -18,16 +18,16 @@
 
         internal static Link CreateConnectedLink(PossibleSquareValue possibleValue, ConstraintHeader header)
         {
-            var squareLink = new Link(possibleValue, header);
-            possibleValue.Attach(squareLink);
-            header.Attach(squareLink);
-            return squareLink;
+            var link = new Link(possibleValue, header);
+            possibleValue.Attach(link);
+            header.Attach(link);
+            return link;
         }
 
         internal bool TryRemoveFromConstraint()
         {
             // If the constraint is already satisfied then we can skip this.
-            if (Constraint.IsSatisfied)
+            if (Constraint.AreAllLinksSelected)
             {
                 return true;
             }
@@ -37,16 +37,16 @@
         internal void ReturnToConstraint()
         {
             // If the constraint is satisfied then we can skip this since this link was never removed.
-            if (Constraint.IsSatisfied)
+            if (Constraint.AreAllLinksSelected)
             {
                 return;
             }
             Constraint.Reattach(this);
         }
 
-        internal bool TrySatisfyConstraint() => Constraint.TrySatisfyFrom(this);
+        internal bool TrySelectForConstraint() => Constraint.TrySelect(this);
 
-        internal void UnsatisfyConstraint() => Constraint.UnsatisfyFrom(this);
+        internal void DeselectForConstraint() => Constraint.Deselect(this);
 
         internal void AppendRight(Link toAppend)
         {

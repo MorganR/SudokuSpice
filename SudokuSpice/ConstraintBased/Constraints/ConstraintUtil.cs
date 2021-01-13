@@ -163,7 +163,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             ConstraintHeader.CreateConnectedHeader(
                 matrix,
-                new ReadOnlySpan<PossibleSquareValue>(possibleSquareValues, 0, numPossibleSquares));
+                possibleSquareValues[0..numPossibleSquares]);
             return true;
         }
     }

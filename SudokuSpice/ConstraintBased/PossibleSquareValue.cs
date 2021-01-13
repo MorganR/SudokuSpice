@@ -52,7 +52,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 FirstLink != null,
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was selected while {nameof(FirstLink)} was null.");
-            if (!_TryUpdateLinks(link => link.TrySatisfyConstraint(), link => link.UnsatisfyConstraint()))
+            if (!_TryUpdateLinks(link => link.TrySelectForConstraint(), link => link.DeselectForConstraint()))
             {
                 return false;
             }
@@ -69,7 +69,7 @@ namespace SudokuSpice.ConstraintBased
                 FirstLink != null,
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was deselected while {nameof(FirstLink)} was null.");
             State = PossibleValueState.UNKNOWN;
-            _RevertLinks(link => link.UnsatisfyConstraint());
+            _RevertLinks(link => link.DeselectForConstraint());
         }
 
         internal bool TryDrop()
@@ -111,13 +111,14 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 FirstLink != null,
                 $"Called {nameof(GetMinConstraintCount)} on {nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} while {nameof(FirstLink)} was null.");
-            int minCount = FirstLink.Constraint.Count;
+            int minCount = FirstLink.Constraint.CountUnselected;
             Link link = FirstLink.Right;
             while (link != FirstLink)
             {
-                if (link.Constraint.Count < minCount)
+                int count = link.Constraint.CountUnselected;
+                if (count < minCount)
                 {
-                    minCount = link.Constraint.Count;
+                    minCount = count;
                 }
                 link = link.Right;
             }

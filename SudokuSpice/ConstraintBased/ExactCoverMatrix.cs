@@ -31,7 +31,17 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public IReadOnlyDictionary<int, int> ValuesToIndices { get; private set; }
 
-        internal ExactCoverMatrix(IReadOnlyPuzzle puzzle)
+        /// <summary>
+        /// Constructs an empty ExactCoverMatrix for solving the given puzzle.
+        ///
+        /// This matrix is essentially just a single column of row headers until
+        /// <see cref="ConstraintHeader"/>s are attached. Constraint headers are necessary to
+        /// define the relationships between squares and their possible values.
+        ///
+        /// Row headers are only created for unset squares in the puzzle.
+        /// </summary>
+        /// <param name="puzzle">The puzzle to be solved.</param>
+        public ExactCoverMatrix(IReadOnlyPuzzle puzzle)
         {
             _matrix = new Square[puzzle.Size][];
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();

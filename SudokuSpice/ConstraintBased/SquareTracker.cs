@@ -51,7 +51,7 @@ namespace SudokuSpice.ConstraintBased
             }
             foreach (ConstraintHeader? constraint in _matrix.GetUnsatisfiedConstraintHeaders())
             {
-                if (constraint.Count == 1)
+                if (constraint.AreAllLinksRequired)
                 {
                     Debug.Assert(
                         constraint.FirstLink != null,
