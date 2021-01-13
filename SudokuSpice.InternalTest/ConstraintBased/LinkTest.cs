@@ -13,7 +13,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(1, matrix);
+            var constraintHeader = new ConstraintHeader(false, 1, matrix);
 
             var link = Link.CreateConnectedLink(possibleSquare, constraintHeader);
 
@@ -36,7 +36,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
             var possibleSquare = new PossibleSquareValue(square, 1);
-            var constraintHeader = new ConstraintHeader(1, matrix);
+            var constraintHeader = new ConstraintHeader(false, 1, matrix);
 
             var firstLink = Link.CreateConnectedLink(possibleSquare, constraintHeader);
             var link = Link.CreateConnectedLink(possibleSquare, constraintHeader);

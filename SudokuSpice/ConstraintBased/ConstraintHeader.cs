@@ -8,10 +8,15 @@ namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
     /// Represents a column from an exact-cover matrix.
+    /// 
+    /// Columns can require multiple rows to be satisfied, and can be optional. See
+    /// <see cref="CreateConnectedHeader(ExactCoverMatrix, ReadOnlySpan{PossibleSquareValue}, int, bool)"/>
+    /// for more details.
     /// </summary>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
     public class ConstraintHeader
     {
+        private readonly bool _isOptional;
         private readonly int _requiredCount;
 
         private int _selectedCount;
@@ -27,8 +32,9 @@ namespace SudokuSpice.ConstraintBased
         internal ConstraintHeader Previous { get; set; }
 
         // Visible for testing
-        internal ConstraintHeader(int requiredCount, ExactCoverMatrix matrix)
+        internal ConstraintHeader(bool isOptional, int requiredCount, ExactCoverMatrix matrix)
         {
+            _isOptional = isOptional;
             _requiredCount = requiredCount;
             Matrix = matrix;
             Next = Previous = this;
@@ -38,7 +44,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(FirstLink != null, $"Can't copy a header with a null {nameof(FirstLink)}.");
             Debug.Assert(!AreAllLinksSelected, $"Can't copy a header that's already satisfied.");
-            var copy = new ConstraintHeader(_requiredCount, matrix);
+            var copy = new ConstraintHeader(_isOptional, _requiredCount, matrix);
             foreach (Link? link in GetLinks())
             {
                 Square? square = matrix.GetSquare(link.PossibleSquareValue.Square.Coordinate);
@@ -63,20 +69,29 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="requiredCount">
         /// The number of <paramref name="possibleSquares"/> required to satisfy this constraint.
         /// </param>
+        /// <param name="isOptional">
+        /// Whether or not this constraint is optional. If a constraint is optional, then it behaves
+        /// as follows:
+        ///
+        ///  * If the required number of links are selected: any remaining possible square values
+        ///    are dropped.
+        ///  * If the constraint becomes impossible, no changes are made to the related possible
+        ///    square values; they will gradually be selected or dropped as necessary.
+        /// </param>
         /// <returns>The newly constructed header.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if called with fewer <paramref name="possibleSquares"/> than the
-        /// <paramref name="requiredCount"/>.
+        /// <paramref name="requiredCount"/> (even if the header is optional).
         /// </exception>
         public static ConstraintHeader CreateConnectedHeader(
-            ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1)
+            ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1, bool isOptional = false)
         {
             if (possibleSquares.Length < requiredCount)
             {
                 throw new ArgumentException(
                     $"Must provide at least {requiredCount} {nameof(PossibleSquareValue)}s when creating a {nameof(ConstraintHeader)}.");
             }
-            var header = new ConstraintHeader(requiredCount, matrix);
+            var header = new ConstraintHeader(isOptional, requiredCount, matrix);
             matrix.Attach(header);
             foreach (PossibleSquareValue? possibleSquare in possibleSquares)
             {
@@ -173,7 +188,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 GetLinks().Contains(link),
                 $"Can't remove missing possible square {link.PossibleSquareValue.Square.Coordinate}, value: {link.PossibleSquareValue.ValueIndex} from constraint.");
-            if (AreAllLinksRequired)
+            if (AreAllLinksRequired && !_isOptional)
             {
                 return false;
             }
@@ -188,6 +203,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal void Attach(Link link)
         {
+            Debug.Assert(!GetLinks().Contains(link), $"Constraint already contained possible square value at {link.PossibleSquareValue.Square.Coordinate}, value: {link.PossibleSquareValue.ValueIndex} when calling {nameof(Attach)}.");
             if (FirstLink is null)
             {
                 FirstLink = link;
@@ -200,6 +216,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal void Reattach(Link link)
         {
+            Debug.Assert(!GetLinks().Contains(link), $"Constraint already contained possible square value at {link.PossibleSquareValue.Square.Coordinate}, value: {link.PossibleSquareValue.ValueIndex} when calling {nameof(Reattach)}.");
             link.ReinsertVertically();
             ++_count;
         }
