@@ -25,8 +25,6 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.True(possibleValue.TryDrop());
             Assert.Equal(3, square.NumPossibleValues);
             Assert.Equal(PossibleValueState.DROPPED, possibleValue.State);
-            Assert.Equal(3, constraintA.Count);
-            Assert.Equal(3, constraintB.Count);
             Assert.DoesNotContain(linkA, constraintA.GetLinks());
             Assert.DoesNotContain(linkB, constraintB.GetLinks());
         }
@@ -53,8 +51,6 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Assert.Equal(4, square.NumPossibleValues);
             Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
-            Assert.Equal(1, constraintA.Count);
-            Assert.Equal(4, constraintB.Count);
             Assert.Same(linkA, constraintA.FirstLink);
             Assert.Contains(linkB, constraintB.GetLinks());
         }
@@ -79,8 +75,6 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
             ConstraintHeader constraintA = linkA.Constraint;
             ConstraintHeader constraintB = linkB.Constraint;
-            Assert.Equal(4, constraintA.Count);
-            Assert.Equal(4, constraintB.Count);
             Assert.Contains(linkA, constraintA.GetLinks());
             Assert.Contains(linkB, constraintB.GetLinks());
         }
@@ -100,13 +94,11 @@ namespace SudokuSpice.ConstraintBased.Test
             Link linkB = linkA.Right;
             ConstraintHeader constraintA = linkA.Constraint;
             ConstraintHeader constraintB = linkB.Constraint;
-            Assert.True(constraintB.TrySatisfyFrom(possibleValue.FirstLink.Right.Up));
+            Assert.True(constraintB.TrySelect(possibleValue.FirstLink.Right.Up));
             possibleValue.Return();
 
             Assert.Equal(4, square.NumPossibleValues);
             Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
-            Assert.Equal(4, constraintA.Count);
-            Assert.Equal(4, constraintB.Count);
             Assert.Contains(linkA, constraintA.GetLinks());
             Assert.Contains(linkB, constraintB.GetLinks());
         }
@@ -141,10 +133,8 @@ namespace SudokuSpice.ConstraintBased.Test
 
             ConstraintHeader constraintA = possibleValue.FirstLink.Constraint;
             ConstraintHeader constraintB = possibleValue.FirstLink.Right.Constraint;
-            Assert.True(constraintA.IsSatisfied);
-            Assert.True(constraintB.IsSatisfied);
-            Assert.Equal(4, constraintA.Count);
-            Assert.Equal(4, constraintB.Count);
+            Assert.True(constraintA.AreAllLinksSelected);
+            Assert.True(constraintB.AreAllLinksSelected);
             Assert.DoesNotContain(constraintA, matrix.GetUnsatisfiedConstraintHeaders());
             Assert.DoesNotContain(constraintB, matrix.GetUnsatisfiedConstraintHeaders());
         }
@@ -219,10 +209,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Link linkB = linkA.Right;
             ConstraintHeader constraintA = linkA.Constraint;
             ConstraintHeader constraintB = linkB.Constraint;
-            Assert.False(constraintA.IsSatisfied);
-            Assert.False(constraintB.IsSatisfied);
-            Assert.Equal(4, constraintA.Count);
-            Assert.Equal(4, constraintB.Count);
+            Assert.False(constraintA.AreAllLinksSelected);
+            Assert.False(constraintB.AreAllLinksSelected);
             foreach (Link link in constraintA.GetLinks())
             {
                 if (link != linkA)
