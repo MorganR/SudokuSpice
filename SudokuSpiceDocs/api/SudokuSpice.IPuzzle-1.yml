@@ -18,8 +18,8 @@ items:
   source:
     remote:
       path: SudokuSpice/IPuzzle.cs
-      branch: init-or-not-init
-      repo: https://github.com/MorganR/SudokuSpice.git
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
     id: IPuzzle
     path: ../SudokuSpice/IPuzzle.cs
     startLine: 8
@@ -66,8 +66,8 @@ items:
   source:
     remote:
       path: SudokuSpice/IPuzzle.cs
-      branch: init-or-not-init
-      repo: https://github.com/MorganR/SudokuSpice.git
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/IPuzzle.cs
     startLine: 14
@@ -107,8 +107,8 @@ items:
   source:
     remote:
       path: SudokuSpice/IPuzzle.cs
-      branch: init-or-not-init
-      repo: https://github.com/MorganR/SudokuSpice.git
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/IPuzzle.cs
     startLine: 22
@@ -148,8 +148,8 @@ items:
   source:
     remote:
       path: SudokuSpice/IPuzzle.cs
-      branch: init-or-not-init
-      repo: https://github.com/MorganR/SudokuSpice.git
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
     id: DeepCopy
     path: ../SudokuSpice/IPuzzle.cs
     startLine: 28
@@ -244,12 +244,15 @@ references:
   nameWithType.vb: IPuzzle(Of T).Item
   fullName.vb: SudokuSpice.IPuzzle(Of T).Item
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
 - uid: System.Nullable{System.Int32}
-  commentId: '!:System.Nullable{System.Int32}'
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
   definition: System.Nullable`1
   name: Nullable<Int32>
   nameWithType: Nullable<Int32>
@@ -291,14 +294,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Nullable`1
+- uid: System
+  commentId: N:System
   isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -308,9 +318,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -323,9 +333,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

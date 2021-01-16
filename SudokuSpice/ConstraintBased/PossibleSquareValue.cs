@@ -52,7 +52,7 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 FirstLink != null,
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was selected while {nameof(FirstLink)} was null.");
-            if (!_TryUpdateLinks(link => link.TrySelectForConstraint(), link => link.DeselectForConstraint()))
+            if (!_TryUpdateLinks(link => link.TrySelectForRequirement(), link => link.DeselectFromRequirement()))
             {
                 return false;
             }
@@ -69,7 +69,7 @@ namespace SudokuSpice.ConstraintBased
                 FirstLink != null,
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was deselected while {nameof(FirstLink)} was null.");
             State = PossibleValueState.UNKNOWN;
-            _RevertLinks(link => link.DeselectForConstraint());
+            _RevertLinks(link => link.DeselectFromRequirement());
         }
 
         internal bool TryDrop()
@@ -83,7 +83,7 @@ namespace SudokuSpice.ConstraintBased
             }
             if (FirstLink != null)
             {
-                if (!_TryUpdateLinks(link => link.TryRemoveFromConstraint(), link => link.ReturnToConstraint()))
+                if (!_TryUpdateLinks(link => link.TryRemoveFromRequirement(), link => link.ReturnToRequirement()))
                 {
                     return false;
                 }
@@ -103,7 +103,7 @@ namespace SudokuSpice.ConstraintBased
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was returned while {nameof(FirstLink)} was null.");
             State = PossibleValueState.UNKNOWN;
             Square.NumPossibleValues++;
-            _RevertLinks(link => link.ReturnToConstraint());
+            _RevertLinks(link => link.ReturnToRequirement());
         }
 
         internal int GetMinConstraintCount()
@@ -111,11 +111,11 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 FirstLink != null,
                 $"Called {nameof(GetMinConstraintCount)} on {nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} while {nameof(FirstLink)} was null.");
-            int minCount = FirstLink.Constraint.CountUnselected;
+            int minCount = FirstLink.Requirement.CountUnselected;
             Link link = FirstLink.Right;
             while (link != FirstLink)
             {
-                int count = link.Constraint.CountUnselected;
+                int count = link.Requirement.CountUnselected;
                 if (count < minCount)
                 {
                     minCount = count;

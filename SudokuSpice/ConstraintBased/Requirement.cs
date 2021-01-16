@@ -10,11 +10,11 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a column from an exact-cover matrix.
     /// 
     /// Columns can require multiple rows to be satisfied, and can be optional. See
-    /// <see cref="CreateConnectedHeader(ExactCoverMatrix, ReadOnlySpan{PossibleSquareValue}, int, bool)"/>
+    /// <see cref="CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan{PossibleSquareValue}, int, bool)"/>
     /// for more details.
     /// </summary>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
-    public class ConstraintHeader
+    public class Requirement
     {
         private readonly bool _isOptional;
         private readonly int _requiredCount;
@@ -28,11 +28,11 @@ namespace SudokuSpice.ConstraintBased
         internal int CountUnselected => _count - _selectedCount;
         internal bool AreAllLinksRequired => _count == _requiredCount;
         internal bool AreAllLinksSelected => _selectedCount == _requiredCount;
-        internal ConstraintHeader Next { get; set; }
-        internal ConstraintHeader Previous { get; set; }
+        internal Requirement Next { get; set; }
+        internal Requirement Previous { get; set; }
 
         // Visible for testing
-        internal ConstraintHeader(bool isOptional, int requiredCount, ExactCoverMatrix matrix)
+        internal Requirement(bool isOptional, int requiredCount, ExactCoverMatrix matrix)
         {
             _isOptional = isOptional;
             _requiredCount = requiredCount;
@@ -40,31 +40,31 @@ namespace SudokuSpice.ConstraintBased
             Next = Previous = this;
         }
 
-        internal ConstraintHeader CopyToMatrix(ExactCoverMatrix matrix)
+        internal Requirement CopyToMatrix(ExactCoverMatrix matrix)
         {
-            Debug.Assert(FirstLink != null, $"Can't copy a header with a null {nameof(FirstLink)}.");
-            Debug.Assert(!AreAllLinksSelected, $"Can't copy a header that's already satisfied.");
-            var copy = new ConstraintHeader(_isOptional, _requiredCount, matrix);
+            Debug.Assert(FirstLink != null, $"Can't copy a requirement with a null {nameof(FirstLink)}.");
+            Debug.Assert(!AreAllLinksSelected, $"Can't copy a requirement that's already satisfied.");
+            var copy = new Requirement(_isOptional, _requiredCount, matrix);
             foreach (Link? link in GetLinks())
             {
                 Square? square = matrix.GetSquare(link.PossibleSquareValue.Square.Coordinate);
                 Debug.Assert(square != null,
                     $"Tried to copy a square link for a null square at {link.PossibleSquareValue.Square.Coordinate}.");
                 PossibleSquareValue? possibleValue = square.GetPossibleValue(link.PossibleSquareValue.ValueIndex);
-                Debug.Assert(possibleValue != null, "Tried to link header to null possible square value.");
+                Debug.Assert(possibleValue != null, "Tried to link requirement to null possible square value.");
                 _ = Link.CreateConnectedLink(possibleValue, copy);
             }
             return copy;
         }
 
         /// <summary>
-        /// Creates a fully connected header that can be satisfied by exactly
+        /// Creates a fully connected requirement that can be satisfied by exactly
         /// <paramref name="requiredCount"/> <paramref name="possibleSquares"/>. Adds and attaches
         /// necessary links to connect the matrix.
         /// </summary>
-        /// <param name="matrix">That matrix that this header should be attached to.</param>
+        /// <param name="matrix">That matrix that this requirement should be attached to.</param>
         /// <param name="possibleSquares">
-        /// The possible square values that would satisfy this header.
+        /// The possible square values that would satisfy this requirement.
         /// </param>
         /// <param name="requiredCount">
         /// The number of <paramref name="possibleSquares"/> required to satisfy this constraint.
@@ -78,26 +78,26 @@ namespace SudokuSpice.ConstraintBased
         ///  * If the constraint becomes impossible, no changes are made to the related possible
         ///    square values; they will gradually be selected or dropped as necessary.
         /// </param>
-        /// <returns>The newly constructed header.</returns>
+        /// <returns>The newly constructed requirement.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if called with fewer <paramref name="possibleSquares"/> than the
-        /// <paramref name="requiredCount"/> (even if the header is optional).
+        /// <paramref name="requiredCount"/> (even if the requirement is optional).
         /// </exception>
-        public static ConstraintHeader CreateConnectedHeader(
+        public static Requirement CreateFullyConnected(
             ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1, bool isOptional = false)
         {
             if (possibleSquares.Length < requiredCount)
             {
                 throw new ArgumentException(
-                    $"Must provide at least {requiredCount} {nameof(PossibleSquareValue)}s when creating a {nameof(ConstraintHeader)}.");
+                    $"Must provide at least {requiredCount} {nameof(PossibleSquareValue)}s when creating a {nameof(Requirement)}.");
             }
-            var header = new ConstraintHeader(isOptional, requiredCount, matrix);
-            matrix.Attach(header);
+            var requirement = new Requirement(isOptional, requiredCount, matrix);
+            matrix.Attach(requirement);
             foreach (PossibleSquareValue? possibleSquare in possibleSquares)
             {
-                _ = Link.CreateConnectedLink(possibleSquare, header);
+                _ = Link.CreateConnectedLink(possibleSquare, requirement);
             }
-            return header;
+            return requirement;
         }
 
         internal bool TrySelect(Link sourceLink)
@@ -137,9 +137,9 @@ namespace SudokuSpice.ConstraintBased
             }
             Next.Previous = Previous;
             Previous.Next = Next;
-            if (Matrix.FirstHeader == this)
+            if (Matrix.FirstRequirement == this)
             {
-                Matrix.FirstHeader = Next;
+                Matrix.FirstRequirement = Next;
             }
             return true;
         }
@@ -167,7 +167,7 @@ namespace SudokuSpice.ConstraintBased
             Previous.Next = this;
         }
 
-        internal void Append(ConstraintHeader toAppend)
+        internal void Append(Requirement toAppend)
         {
             toAppend.Next = Next;
             toAppend.Previous = this;
@@ -175,7 +175,7 @@ namespace SudokuSpice.ConstraintBased
             Next = toAppend;
         }
 
-        internal void Prepend(ConstraintHeader toPrepend)
+        internal void Prepend(Requirement toPrepend)
         {
             toPrepend.Next = this;
             toPrepend.Previous = Previous;

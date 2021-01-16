@@ -3,50 +3,50 @@
     internal class Link
     {
         internal readonly PossibleSquareValue PossibleSquareValue;
-        internal readonly ConstraintHeader Constraint;
+        internal readonly Requirement Requirement;
         internal Link Left { get; private set; }
         internal Link Right { get; private set; }
         internal Link Up { get; private set; }
         internal Link Down { get; private set; }
 
-        private Link(PossibleSquareValue possibleValue, ConstraintHeader constraint)
+        private Link(PossibleSquareValue possibleValue, Requirement requirement)
         {
             this.PossibleSquareValue = possibleValue;
-            Constraint = constraint;
+            Requirement = requirement;
             Up = Down = Right = Left = this;
         }
 
-        internal static Link CreateConnectedLink(PossibleSquareValue possibleValue, ConstraintHeader header)
+        internal static Link CreateConnectedLink(PossibleSquareValue possibleValue, Requirement requirement)
         {
-            var link = new Link(possibleValue, header);
+            var link = new Link(possibleValue, requirement);
             possibleValue.Attach(link);
-            header.Attach(link);
+            requirement.Attach(link);
             return link;
         }
 
-        internal bool TryRemoveFromConstraint()
+        internal bool TryRemoveFromRequirement()
         {
-            // If the constraint is already satisfied then we can skip this.
-            if (Constraint.AreAllLinksSelected)
+            // If the requirement is already satisfied then we can skip this.
+            if (Requirement.AreAllLinksSelected)
             {
                 return true;
             }
-            return Constraint.TryDetach(this);
+            return Requirement.TryDetach(this);
         }
 
-        internal void ReturnToConstraint()
+        internal void ReturnToRequirement()
         {
             // If the constraint is satisfied then we can skip this since this link was never removed.
-            if (Constraint.AreAllLinksSelected)
+            if (Requirement.AreAllLinksSelected)
             {
                 return;
             }
-            Constraint.Reattach(this);
+            Requirement.Reattach(this);
         }
 
-        internal bool TrySelectForConstraint() => Constraint.TrySelect(this);
+        internal bool TrySelectForRequirement() => Requirement.TrySelect(this);
 
-        internal void DeselectForConstraint() => Constraint.Deselect(this);
+        internal void DeselectFromRequirement() => Requirement.Deselect(this);
 
         internal void AppendRight(Link toAppend)
         {

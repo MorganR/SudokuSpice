@@ -49,7 +49,7 @@ namespace SudokuSpice.ConstraintBased
                     bestSquare = square;
                 }
             }
-            foreach (ConstraintHeader? constraint in _matrix.GetUnsatisfiedConstraintHeaders())
+            foreach (Requirement? constraint in _matrix.GetUnsatisfiedRequirements())
             {
                 if (constraint.AreAllLinksRequired)
                 {

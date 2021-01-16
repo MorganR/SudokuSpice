@@ -34,7 +34,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                         }
                         continue;
                     }
-                    if (!ConstraintUtil.TryAddConstraintHeadersForValueIndex(rowSquares, valueIndex, matrix))
+                    if (!ConstraintUtil.TryAddRequirementsForValueIndex(rowSquares, valueIndex, matrix))
                     {
                         return false;
                     }

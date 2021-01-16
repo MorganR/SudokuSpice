@@ -16,7 +16,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             for (int box = 0; box < puzzle.Size; box++)
             {
-                if (!_TryAppendConstraintHeadersInBox(box, boxSize, puzzle, matrix))
+                if (!_TryAppendRequirementsInBox(box, boxSize, puzzle, matrix))
                 {
                     return false;
                 }
@@ -24,7 +24,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return true;
         }
 
-        private static bool _TryAppendConstraintHeadersInBox(
+        private static bool _TryAppendRequirementsInBox(
             int box, int boxSize, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Coordinate startCoord = Boxes.GetStartingBoxCoordinate(box, boxSize);

@@ -11,14 +11,14 @@ namespace SudokuSpice.ConstraintBased
     /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
     /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
     /// matrix. <see cref="Constraints.IConstraint"/>s will then add
-    /// <see cref="ConstraintHeader"/>s, the columns of the matrix and corresponding links.
+    /// <see cref="Requirement"/>s, the columns of the matrix and corresponding links.
     /// </remarks>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover"/>
     public class ExactCoverMatrix
     {
         private readonly int[] _allPossibleValues;
         private readonly Square?[][] _matrix;
-        internal ConstraintHeader? FirstHeader;
+        internal Requirement? FirstRequirement;
 
         /// <summary>
         /// Contains the possible values for the current puzzle.
@@ -35,8 +35,8 @@ namespace SudokuSpice.ConstraintBased
         /// Constructs an empty ExactCoverMatrix for solving the given puzzle.
         ///
         /// This matrix is essentially just a single column of row headers until
-        /// <see cref="ConstraintHeader"/>s are attached. Constraint headers are necessary to
-        /// define the relationships between squares and their possible values.
+        /// <see cref="Requirement"/>s are attached. Requirements are necessary to define the
+        /// relationships between squares and their possible values.
         ///
         /// Row headers are only created for unset squares in the puzzle.
         /// </summary>
@@ -76,8 +76,8 @@ namespace SudokuSpice.ConstraintBased
         internal ExactCoverMatrix CopyUnknowns()
         {
             Debug.Assert(
-                FirstHeader != null,
-                $"Cannot copy a matrix that still has a null {nameof(FirstHeader)}.");
+                FirstRequirement != null,
+                $"Cannot copy a matrix that still has a null {nameof(FirstRequirement)}.");
             var copy = new ExactCoverMatrix(this);
             for (int row = 0; row < copy._matrix.Length; row++)
             {
@@ -95,12 +95,12 @@ namespace SudokuSpice.ConstraintBased
                 }
                 copy._matrix[row] = copyColArray;
             }
-            copy.FirstHeader = FirstHeader.CopyToMatrix(copy);
-            ConstraintHeader copiedHeader = copy.FirstHeader;
-            for (ConstraintHeader nextHeader = FirstHeader.Next; nextHeader != FirstHeader; nextHeader = nextHeader.Next)
+            copy.FirstRequirement = FirstRequirement.CopyToMatrix(copy);
+            Requirement copiedRequirement = copy.FirstRequirement;
+            for (Requirement nextRequirement = FirstRequirement.Next; nextRequirement != FirstRequirement; nextRequirement = nextRequirement.Next)
             {
-                copiedHeader.Append(nextHeader.CopyToMatrix(copy));
-                copiedHeader = copiedHeader.Next;
+                copiedRequirement.Append(nextRequirement.CopyToMatrix(copy));
+                copiedRequirement = copiedRequirement.Next;
             }
             return copy;
         }
@@ -132,30 +132,30 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <summary>
-        /// Gets all the currently unsatisfied <see cref="ConstraintHeader"/>s.
+        /// Gets all the currently unsatisfied <see cref="Requirement"/>s.
         /// </summary>
-        public IEnumerable<ConstraintHeader> GetUnsatisfiedConstraintHeaders()
+        public IEnumerable<Requirement> GetUnsatisfiedRequirements()
         {
-            if (FirstHeader == null)
+            if (FirstRequirement == null)
             {
                 yield break;
             }
-            ConstraintHeader header = FirstHeader;
+            Requirement requirement = FirstRequirement;
             do
             {
-                yield return header;
-                header = header.Next;
-            } while (header != FirstHeader);
+                yield return requirement;
+                requirement = requirement.Next;
+            } while (requirement != FirstRequirement);
         }
 
-        internal void Attach(ConstraintHeader header)
+        internal void Attach(Requirement requirement)
         {
-            if (FirstHeader is null)
+            if (FirstRequirement is null)
             {
-                FirstHeader = header;
+                FirstRequirement = requirement;
             } else
             {
-                FirstHeader.Prepend(header);
+                FirstRequirement.Prepend(requirement);
             }
         }
     }

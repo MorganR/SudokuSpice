@@ -12,7 +12,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// </summary>
         /// <remarks>
         /// This drops any <see cref="PossibleSquareValue"/>s that are no longer possible, and
-        /// adds <see cref="ConstraintHeader"/>s and links to enforce this constraint for the ones
+        /// adds <see cref="Requirement"/>s and links to enforce this constraint for the ones
         /// that are still possible.
         /// </remarks>
         /// <param name="puzzle">The puzzle being solved.</param>
@@ -46,7 +46,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     }
                     continue;
                 }
-                if (!TryAddConstraintHeadersForValueIndex(squares, valueIndex, matrix))
+                if (!TryAddRequirementsForValueIndex(squares, valueIndex, matrix))
                 {
                     return false;
                 }
@@ -93,7 +93,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// </param>
         /// <returns>
         /// True if all the <see cref="PossibleSquareValue"/>s were dropped safely (eg. without
-        /// resulting in an empty <see cref="ConstraintHeader"/> without any possible square
+        /// resulting in an empty <see cref="Requirement"/> without any possible square
         /// values, or a <see cref="Square"/> with no more possible values), else false.
         /// </returns>
         public static bool TryDropPossibleSquaresForValueIndex(
@@ -120,7 +120,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Add a <see cref="ConstraintHeader"/> connecting all the
+        /// Add a <see cref="Requirement"/> connecting all the
         /// <see cref="PossibleSquareValue"/>s at the given <paramref name="valueIndex"/> on the
         /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
         /// possible values in a known state (i.e. dropped or selected).
@@ -133,11 +133,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// </param>
         /// <param name="matrix">The matrix for the current puzzle being solved.</param>
         /// <returns>
-        /// False if the header could not be added, for example because none of the corresponding
-        /// <see cref="PossibleSquareValue"/>s were still possible and the constraint would have
-        /// been empty. Else returns true.
+        /// False if the requirement could not be added, for example because none of the
+        /// corresponding <see cref="PossibleSquareValue"/>s were still possible and the
+        /// requirement would have been empty. Else returns true.
         /// </returns>
-        public static bool TryAddConstraintHeadersForValueIndex(
+        public static bool TryAddRequirementsForValueIndex(
             ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
         {
             var possibleSquareValues = new PossibleSquareValue[squares.Length];
@@ -161,7 +161,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            ConstraintHeader.CreateConnectedHeader(
+            Requirement.CreateFullyConnected(
                 matrix,
                 possibleSquareValues[0..numPossibleSquares]);
             return true;
