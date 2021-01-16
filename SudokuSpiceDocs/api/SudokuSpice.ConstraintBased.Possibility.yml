@@ -29,8 +29,10 @@ items:
   summary: "\nRepresents a row in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.ConstraintBased.Possibility.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
-    content: public class Possibility
-    content.vb: Public Class Possibility
+    content: 'public class Possibility : IPossibility<Possibility, Requirement>'
+    content.vb: >-
+      Public Class Possibility
+          Implements IPossibility(Of Possibility, Requirement)
   inheritance:
   - System.Object
   inheritedMembers:

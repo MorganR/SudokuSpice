@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a row in the <see cref="ExactCoverMatrix"/>. This represents a possible value
     /// for a given <see cref="Square"/>.
     /// </summary>
-    public class Possibility
+    public class Possibility : IPossibility<Possibility, Requirement>
     {
         /// <summary>
         /// Gets the index of the possible value that this represents. This index corresponds with
@@ -24,7 +24,7 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public PossibilityState State { get; private set; }
         [DisallowNull]
-        internal Link? FirstLink { get; private set; }
+        internal Link<Possibility, Requirement>? FirstLink { get; private set; }
 
         internal Possibility(Square square, int valueIndex)
         {
@@ -33,14 +33,14 @@ namespace SudokuSpice.ConstraintBased
             State = PossibilityState.UNKNOWN;
         }
 
-        internal void Attach(Link link)
+        void IPossibility<Possibility, Requirement>.Append(Link<Possibility, Requirement> link) 
         {
             if (FirstLink is null)
             {
                 FirstLink = link;
             } else
             {
-                FirstLink.PrependLeft(link);
+                FirstLink.PrependToPossibility(link);
             }
         }
 
@@ -52,7 +52,10 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 FirstLink != null,
                 $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was selected while {nameof(FirstLink)} was null.");
-            if (!_TryUpdateLinks(link => link.TrySelectForRequirement(), link => link.DeselectFromRequirement()))
+            if (!Links.TryUpdateOnPossibility(
+                FirstLink,
+                link => link.Objective.TrySelect(link),
+                link => link.Objective.Deselect(link)))
             {
                 return false;
             }
@@ -69,7 +72,7 @@ namespace SudokuSpice.ConstraintBased
                 FirstLink != null,
                 $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was deselected while {nameof(FirstLink)} was null.");
             State = PossibilityState.UNKNOWN;
-            _RevertLinks(link => link.DeselectFromRequirement());
+            Links.RevertOnPossibility(FirstLink, link => link.Objective.Deselect(link));
         }
 
         internal bool TryDrop()
@@ -83,7 +86,10 @@ namespace SudokuSpice.ConstraintBased
             }
             if (FirstLink != null)
             {
-                if (!_TryUpdateLinks(link => link.TryRemoveFromRequirement(), link => link.ReturnToRequirement()))
+                if (!Links.TryUpdateOnPossibility(
+                    FirstLink,
+                    link => link.Objective.TryDetach(link),
+                    link => link.Objective.Reattach(link)))
                 {
                     return false;
                 }
@@ -103,62 +109,26 @@ namespace SudokuSpice.ConstraintBased
                 $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was returned while {nameof(FirstLink)} was null.");
             State = PossibilityState.UNKNOWN;
             Square.NumPossibleValues++;
-            _RevertLinks(link => link.ReturnToRequirement());
+            Links.RevertOnPossibility(FirstLink, link => link.Objective.Reattach(link));
         }
 
-        internal int GetMinConstraintCount()
+        internal int GetMinUnselectedCountFromRequirements()
         {
             Debug.Assert(
                 FirstLink != null,
-                $"Called {nameof(GetMinConstraintCount)} on {nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} while {nameof(FirstLink)} was null.");
-            int minCount = FirstLink.Requirement.CountUnselected;
-            Link link = FirstLink.Right;
+                $"Called {nameof(GetMinUnselectedCountFromRequirements)} on {nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} while {nameof(FirstLink)} was null.");
+            int minCount = FirstLink.Objective.CountUnselected;
+            Link<Possibility, Requirement> link = FirstLink.NextOnPossibility;
             while (link != FirstLink)
             {
-                int count = link.Requirement.CountUnselected;
+                int count = link.Objective.CountUnselected;
                 if (count < minCount)
                 {
                     minCount = count;
                 }
-                link = link.Right;
+                link = link.NextOnPossibility;
             }
             return minCount;
-        }
-
-        private bool _TryUpdateLinks(Func<Link, bool> tryFn, Action<Link> undoFn)
-        {
-            Debug.Assert(
-                FirstLink != null,
-                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} called {nameof(_TryUpdateLinks)} while {nameof(FirstLink)} was null.");
-            Link link = FirstLink;
-            do
-            {
-                if (!tryFn(link))
-                {
-                    while (link != FirstLink)
-                    {
-                        link = link.Left;
-                        undoFn(link);
-                    }
-                    return false;
-                }
-                link = link.Right;
-            } while (link != FirstLink);
-            return true;
-        }
-
-        private void _RevertLinks(Action<Link> fn)
-        {
-            Debug.Assert(
-                FirstLink != null,
-                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} called {nameof(_RevertLinks)} while {nameof(FirstLink)} was null.");
-            Link lastLink = FirstLink.Left;
-            Link link = lastLink;
-            do
-            {
-                fn(link);
-                link = link.Left;
-            } while (link != lastLink);
         }
     }
 }

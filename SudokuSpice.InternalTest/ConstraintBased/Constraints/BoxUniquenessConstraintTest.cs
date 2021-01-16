@@ -16,28 +16,28 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             new BoxUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedRequirements().Count());
-            Requirement firstBoxConstraint = matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(0).FirstLink.Requirement;
-            Requirement secondBoxConstraint = matrix.GetSquare(new Coordinate(0, 2)).GetPossibleValue(0).FirstLink.Requirement;
-            Requirement thirdBoxConstraint = matrix.GetSquare(new Coordinate(2, 0)).GetPossibleValue(0).FirstLink.Requirement;
-            Requirement fourthBoxConstraint = matrix.GetSquare(new Coordinate(2, 2)).GetPossibleValue(0).FirstLink.Requirement;
-            Assert.NotSame(firstBoxConstraint, secondBoxConstraint);
-            Assert.NotSame(firstBoxConstraint, thirdBoxConstraint);
-            Assert.NotSame(firstBoxConstraint, fourthBoxConstraint);
-            Assert.NotSame(secondBoxConstraint, thirdBoxConstraint);
-            Assert.NotSame(secondBoxConstraint, fourthBoxConstraint);
-            Assert.NotSame(thirdBoxConstraint, fourthBoxConstraint);
-            Assert.Same(firstBoxConstraint, matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(firstBoxConstraint, matrix.GetSquare(new Coordinate(1, 0)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(firstBoxConstraint, matrix.GetSquare(new Coordinate(1, 1)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(secondBoxConstraint, matrix.GetSquare(new Coordinate(0, 3)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(secondBoxConstraint, matrix.GetSquare(new Coordinate(1, 2)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(secondBoxConstraint, matrix.GetSquare(new Coordinate(1, 3)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(thirdBoxConstraint, matrix.GetSquare(new Coordinate(2, 1)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(thirdBoxConstraint, matrix.GetSquare(new Coordinate(3, 0)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(thirdBoxConstraint, matrix.GetSquare(new Coordinate(3, 1)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(fourthBoxConstraint, matrix.GetSquare(new Coordinate(2, 3)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(fourthBoxConstraint, matrix.GetSquare(new Coordinate(3, 2)).GetPossibleValue(0).FirstLink.Requirement);
-            Assert.Same(fourthBoxConstraint, matrix.GetSquare(new Coordinate(3, 3)).GetPossibleValue(0).FirstLink.Requirement);
+            Requirement firstBoxRequirement = matrix.GetSquare(new Coordinate(0, 0)).GetPossibleValue(0).FirstLink.Objective;
+            Requirement secondBoxRequirement = matrix.GetSquare(new Coordinate(0, 2)).GetPossibleValue(0).FirstLink.Objective;
+            Requirement thirdBoxRequirement = matrix.GetSquare(new Coordinate(2, 0)).GetPossibleValue(0).FirstLink.Objective;
+            Requirement fourthBoxRequirement = matrix.GetSquare(new Coordinate(2, 2)).GetPossibleValue(0).FirstLink.Objective;
+            Assert.NotSame(firstBoxRequirement, secondBoxRequirement);
+            Assert.NotSame(firstBoxRequirement, thirdBoxRequirement);
+            Assert.NotSame(firstBoxRequirement, fourthBoxRequirement);
+            Assert.NotSame(secondBoxRequirement, thirdBoxRequirement);
+            Assert.NotSame(secondBoxRequirement, fourthBoxRequirement);
+            Assert.NotSame(thirdBoxRequirement, fourthBoxRequirement);
+            Assert.Same(firstBoxRequirement, matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(firstBoxRequirement, matrix.GetSquare(new Coordinate(1, 0)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(firstBoxRequirement, matrix.GetSquare(new Coordinate(1, 1)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(secondBoxRequirement, matrix.GetSquare(new Coordinate(0, 3)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(secondBoxRequirement, matrix.GetSquare(new Coordinate(1, 2)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(secondBoxRequirement, matrix.GetSquare(new Coordinate(1, 3)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(thirdBoxRequirement, matrix.GetSquare(new Coordinate(2, 1)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(thirdBoxRequirement, matrix.GetSquare(new Coordinate(3, 0)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(thirdBoxRequirement, matrix.GetSquare(new Coordinate(3, 1)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(fourthBoxRequirement, matrix.GetSquare(new Coordinate(2, 3)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(fourthBoxRequirement, matrix.GetSquare(new Coordinate(3, 2)).GetPossibleValue(0).FirstLink.Objective);
+            Assert.Same(fourthBoxRequirement, matrix.GetSquare(new Coordinate(3, 3)).GetPossibleValue(0).FirstLink.Objective);
         }
 
         [Fact]

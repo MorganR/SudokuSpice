@@ -4,17 +4,17 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 {
     internal class ConstraintTestingUtils
     {
-        public static void AssertPossibleValueIsOnConstraint(
+        public static void AssertPossibleValueIsOnRequirement(
             Possibility possibleValue, Requirement constraint)
         {
-            Link link = constraint.FirstLink;
+            Link<Possibility, Requirement> link = constraint.FirstLink;
             do
             {
-                if (link.PossibleSquareValue == possibleValue)
+                if (link.Possibility == possibleValue)
                 {
                     return;
                 }
-                link = link.Down;
+                link = link.NextOnObjective;
             } while (link != constraint.FirstLink);
             Assert.True(false, "No matching possible square value found.");
         }

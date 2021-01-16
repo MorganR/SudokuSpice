@@ -49,14 +49,14 @@ namespace SudokuSpice.ConstraintBased
                     bestSquare = square;
                 }
             }
-            foreach (Requirement? constraint in _matrix.GetUnsatisfiedRequirements())
+            foreach (Requirement? requirement in _matrix.GetUnsatisfiedRequirements())
             {
-                if (constraint.AreAllLinksRequired)
+                if (requirement.AreAllLinksRequired)
                 {
                     Debug.Assert(
-                        constraint.FirstLink != null,
-                        "Unsatisfied constraint had a null first link.");
-                    Possibility? possibleSquare = constraint.FirstLink.PossibleSquareValue;
+                        requirement.FirstLink != null,
+                        $"Unsatisfied {nameof(Requirement)} had a null first link.");
+                    Possibility possibleSquare = requirement.FirstLink.Possibility;
                     return (possibleSquare.Square.Coordinate,
                         new int[] { possibleSquare.ValueIndex });
                 }
@@ -105,7 +105,7 @@ namespace SudokuSpice.ConstraintBased
                 $"Tried to order possible values at {c}, but square was null.");
             Possibility[]? possibleSquares = square.GetStillPossibleValues();
             return possibleSquares.OrderBy(
-                ps => ps.GetMinConstraintCount()).Select(ps => ps.ValueIndex).ToArray();
+                ps => ps.GetMinUnselectedCountFromRequirements()).Select(ps => ps.ValueIndex).ToArray();
         }
     }
 }

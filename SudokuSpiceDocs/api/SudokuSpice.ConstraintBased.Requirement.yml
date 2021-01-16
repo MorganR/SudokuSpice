@@ -27,8 +27,10 @@ items:
   summary: "\nRepresents a column from an exact-cover matrix.\n\nColumns can require multiple rows to be satisfied, and can be optional. See\n<xref href=\"SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix%2cSystem.ReadOnlySpan%7bSudokuSpice.ConstraintBased.Possibility%7d%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>\nfor more details.\n"
   example: []
   syntax:
-    content: public class Requirement
-    content.vb: Public Class Requirement
+    content: 'public class Requirement : IObjective<Requirement, Possibility>'
+    content.vb: >-
+      Public Class Requirement
+          Implements IObjective(Of Requirement, Possibility)
   seealso:
   - linkType: HRef
     linkId: https://en.wikipedia.org/wiki/Exact_cover

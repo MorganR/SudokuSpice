@@ -1,95 +1,74 @@
 ﻿namespace SudokuSpice.ConstraintBased
 {
-    internal class Link
+    internal class Link<TPossibility, TObjective>
+        where TPossibility : class, IPossibility<TPossibility, TObjective>
+        where TObjective : class, IObjective<TObjective, TPossibility>
     {
-        internal readonly Possibility PossibleSquareValue;
-        internal readonly Requirement Requirement;
-        internal Link Left { get; private set; }
-        internal Link Right { get; private set; }
-        internal Link Up { get; private set; }
-        internal Link Down { get; private set; }
+        internal readonly TPossibility Possibility;
+        internal readonly TObjective Objective;
 
-        private Link(Possibility possibleValue, Requirement requirement)
+        internal Link<TPossibility, TObjective> PreviousOnPossibility { get; private set; }
+        internal Link<TPossibility, TObjective> NextOnPossibility { get; private set; }
+        internal Link<TPossibility, TObjective> PreviousOnObjective { get; private set; }
+        internal Link<TPossibility, TObjective> NextOnObjective { get; private set; }
+
+        private Link(TPossibility possibility, TObjective objective)
         {
-            this.PossibleSquareValue = possibleValue;
-            Requirement = requirement;
-            Up = Down = Right = Left = this;
+            this.Possibility = possibility;
+            Objective = objective;
+            PreviousOnObjective = NextOnObjective = NextOnPossibility = PreviousOnPossibility = this;
         }
 
-        internal static Link CreateConnectedLink(Possibility possibleValue, Requirement requirement)
+        internal static Link<TPossibility, TObjective> CreateConnectedLink(TPossibility possibility, TObjective objective)
         {
-            var link = new Link(possibleValue, requirement);
-            possibleValue.Attach(link);
-            requirement.Attach(link);
+            var link = new Link<TPossibility, TObjective>(possibility, objective);
+            possibility.Append(link);
+            objective.Append(link);
             return link;
         }
 
-        internal bool TryRemoveFromRequirement()
+        internal void AppendToPossibility(Link<TPossibility, TObjective> toAppend)
         {
-            // If the requirement is already satisfied then we can skip this.
-            if (Requirement.AreAllLinksSelected)
-            {
-                return true;
-            }
-            return Requirement.TryDetach(this);
+            toAppend.NextOnPossibility = NextOnPossibility;
+            toAppend.PreviousOnPossibility = this;
+            NextOnPossibility.PreviousOnPossibility = toAppend;
+            NextOnPossibility = toAppend;
         }
 
-        internal void ReturnToRequirement()
+        internal void AppendToObjective(Link<TPossibility, TObjective> toAppend)
         {
-            // If the constraint is satisfied then we can skip this since this link was never removed.
-            if (Requirement.AreAllLinksSelected)
-            {
-                return;
-            }
-            Requirement.Reattach(this);
+            toAppend.NextOnObjective = NextOnObjective;
+            toAppend.PreviousOnObjective = this;
+            NextOnObjective.PreviousOnObjective = toAppend;
+            NextOnObjective = toAppend;
         }
 
-        internal bool TrySelectForRequirement() => Requirement.TrySelect(this);
-
-        internal void DeselectFromRequirement() => Requirement.Deselect(this);
-
-        internal void AppendRight(Link toAppend)
+        internal void PrependToPossibility(Link<TPossibility, TObjective> toPrepend)
         {
-            toAppend.Right = Right;
-            toAppend.Left = this;
-            Right.Left = toAppend;
-            Right = toAppend;
+            toPrepend.NextOnPossibility = this;
+            toPrepend.PreviousOnPossibility = PreviousOnPossibility;
+            PreviousOnPossibility.NextOnPossibility = toPrepend;
+            PreviousOnPossibility = toPrepend;
         }
 
-        internal void AppendDown(Link toAppend)
+        internal void PrependToObjective(Link<TPossibility, TObjective> toPrepend)
         {
-            toAppend.Down = Down;
-            toAppend.Up = this;
-            Down.Up = toAppend;
-            Down = toAppend;
+            toPrepend.NextOnObjective = this;
+            toPrepend.PreviousOnObjective = PreviousOnObjective;
+            PreviousOnObjective.NextOnObjective = toPrepend;
+            PreviousOnObjective = toPrepend;
         }
 
-        internal void PrependLeft(Link toPrepend)
+        internal void PopFromObjective()
         {
-            toPrepend.Right = this;
-            toPrepend.Left = Left;
-            Left.Right = toPrepend;
-            Left = toPrepend;
+            PreviousOnObjective.NextOnObjective = NextOnObjective;
+            NextOnObjective.PreviousOnObjective = PreviousOnObjective;
         }
 
-        internal void PrependUp(Link toPrepend)
+        internal void ReinsertToObjective()
         {
-            toPrepend.Down = this;
-            toPrepend.Up = Up;
-            Up.Down = toPrepend;
-            Up = toPrepend;
-        }
-
-        internal void PopVertically()
-        {
-            Up.Down = Down;
-            Down.Up = Up;
-        }
-
-        internal void ReinsertVertically()
-        {
-            Up.Down = this;
-            Down.Up = this;
+            PreviousOnObjective.NextOnObjective = this;
+            NextOnObjective.PreviousOnObjective = this;
         }
     }
 }
