@@ -5,10 +5,11 @@ items:
   id: SudokuSpice.ConstraintBased
   children:
   - SudokuSpice.ConstraintBased.ExactCoverMatrix
-  - SudokuSpice.ConstraintBased.PossibleSquareValue
-  - SudokuSpice.ConstraintBased.PossibleValueState
+  - SudokuSpice.ConstraintBased.Possibility
+  - SudokuSpice.ConstraintBased.PossibilityState
   - SudokuSpice.ConstraintBased.PuzzleSolver`1
   - SudokuSpice.ConstraintBased.Requirement
+  - SudokuSpice.ConstraintBased.RequirementLink
   - SudokuSpice.ConstraintBased.Square
   - SudokuSpice.ConstraintBased.StandardPuzzles
   langs:
@@ -27,18 +28,18 @@ references:
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
   parent: SudokuSpice.ConstraintBased
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
-- uid: SudokuSpice.ConstraintBased.PossibleValueState
-  commentId: T:SudokuSpice.ConstraintBased.PossibleValueState
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
+- uid: SudokuSpice.ConstraintBased.PossibilityState
+  commentId: T:SudokuSpice.ConstraintBased.PossibilityState
   parent: SudokuSpice.ConstraintBased
-  name: PossibleValueState
-  nameWithType: PossibleValueState
-  fullName: SudokuSpice.ConstraintBased.PossibleValueState
+  name: PossibilityState
+  nameWithType: PossibilityState
+  fullName: SudokuSpice.ConstraintBased.PossibilityState
 - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
   commentId: T:SudokuSpice.ConstraintBased.PuzzleSolver`1
   name: PuzzleSolver<TPuzzle>
@@ -81,6 +82,11 @@ references:
   name: Requirement
   nameWithType: Requirement
   fullName: SudokuSpice.ConstraintBased.Requirement
+- uid: SudokuSpice.ConstraintBased.RequirementLink
+  commentId: T:SudokuSpice.ConstraintBased.RequirementLink
+  name: RequirementLink
+  nameWithType: RequirementLink
+  fullName: SudokuSpice.ConstraintBased.RequirementLink
 - uid: SudokuSpice.ConstraintBased.Square
   commentId: T:SudokuSpice.ConstraintBased.Square
   parent: SudokuSpice.ConstraintBased

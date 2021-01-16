@@ -184,13 +184,13 @@ items:
   summary: "\nGets the possible value with the given value-index.\n"
   example: []
   syntax:
-    content: public PossibleSquareValue GetPossibleValue(int index)
+    content: public Possibility GetPossibleValue(int index)
     parameters:
     - id: index
       type: System.Int32
     return:
-      type: SudokuSpice.ConstraintBased.PossibleSquareValue
-    content.vb: Public Function GetPossibleValue(index As Integer) As PossibleSquareValue
+      type: SudokuSpice.ConstraintBased.Possibility
+    content.vb: Public Function GetPossibleValue(index As Integer) As Possibility
   overload: SudokuSpice.ConstraintBased.Square.GetPossibleValue*
   modifiers.csharp:
   - public
@@ -542,9 +542,9 @@ references:
   name: GetPossibleValue
   nameWithType: Square.GetPossibleValue
   fullName: SudokuSpice.ConstraintBased.Square.GetPossibleValue
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
   parent: SudokuSpice.ConstraintBased
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility

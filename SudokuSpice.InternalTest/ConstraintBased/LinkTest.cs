@@ -12,7 +12,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
+            var possibleSquare = new Possibility(square, 1);
             var requirement = new Requirement(false, 1, matrix);
 
             var link = Link.CreateConnectedLink(possibleSquare, requirement);
@@ -35,7 +35,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
+            var possibleSquare = new Possibility(square, 1);
             var requirement = new Requirement(false, 1, matrix);
 
             var firstLink = Link.CreateConnectedLink(possibleSquare, requirement);
@@ -145,7 +145,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(link, link.Right.Left);
             Assert.Same(link, link.Left.Right);
             // Vertically connected links are dropped from possible values.
-            Assert.Equal(PossibleValueState.DROPPED, link.Up.PossibleSquareValue.State);
+            Assert.Equal(PossibilityState.DROPPED, link.Up.PossibleSquareValue.State);
             Assert.Equal(3, link.Up.PossibleSquareValue.Square.NumPossibleValues);
             // Still connected vertically.
             Assert.Contains(link, link.Requirement.GetLinks());
@@ -172,7 +172,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.False(header.AreAllLinksSelected);
             Assert.Equal(1, square.NumPossibleValues);
             Assert.Same(lastLink.PossibleSquareValue, square.GetStillPossibleValues().Single());
-            Assert.Equal(PossibleValueState.UNKNOWN, lastLink.PossibleSquareValue.State);
+            Assert.Equal(PossibilityState.UNKNOWN, lastLink.PossibleSquareValue.State);
         }
     }
 }

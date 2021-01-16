@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a column from an exact-cover matrix.
     /// 
     /// Columns can require multiple rows to be satisfied, and can be optional. See
-    /// <see cref="CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan{PossibleSquareValue}, int, bool)"/>
+    /// <see cref="CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan{Possibility}, int, bool)"/>
     /// for more details.
     /// </summary>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
@@ -50,7 +50,7 @@ namespace SudokuSpice.ConstraintBased
                 Square? square = matrix.GetSquare(link.PossibleSquareValue.Square.Coordinate);
                 Debug.Assert(square != null,
                     $"Tried to copy a square link for a null square at {link.PossibleSquareValue.Square.Coordinate}.");
-                PossibleSquareValue? possibleValue = square.GetPossibleValue(link.PossibleSquareValue.ValueIndex);
+                Possibility? possibleValue = square.GetPossibleValue(link.PossibleSquareValue.ValueIndex);
                 Debug.Assert(possibleValue != null, "Tried to link requirement to null possible square value.");
                 _ = Link.CreateConnectedLink(possibleValue, copy);
             }
@@ -84,16 +84,16 @@ namespace SudokuSpice.ConstraintBased
         /// <paramref name="requiredCount"/> (even if the requirement is optional).
         /// </exception>
         public static Requirement CreateFullyConnected(
-            ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1, bool isOptional = false)
+            ExactCoverMatrix matrix, ReadOnlySpan<Possibility> possibleSquares, int requiredCount = 1, bool isOptional = false)
         {
             if (possibleSquares.Length < requiredCount)
             {
                 throw new ArgumentException(
-                    $"Must provide at least {requiredCount} {nameof(PossibleSquareValue)}s when creating a {nameof(Requirement)}.");
+                    $"Must provide at least {requiredCount} {nameof(Possibility)}s when creating a {nameof(Requirement)}.");
             }
             var requirement = new Requirement(isOptional, requiredCount, matrix);
             matrix.Attach(requirement);
-            foreach (PossibleSquareValue? possibleSquare in possibleSquares)
+            foreach (Possibility? possibleSquare in possibleSquares)
             {
                 _ = Link.CreateConnectedLink(possibleSquare, requirement);
             }

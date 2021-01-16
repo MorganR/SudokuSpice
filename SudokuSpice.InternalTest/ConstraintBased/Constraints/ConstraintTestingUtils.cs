@@ -5,7 +5,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
     internal class ConstraintTestingUtils
     {
         public static void AssertPossibleValueIsOnConstraint(
-            PossibleSquareValue possibleValue, Requirement constraint)
+            Possibility possibleValue, Requirement constraint)
         {
             Link link = constraint.FirstLink;
             do

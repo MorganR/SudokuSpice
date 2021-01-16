@@ -4,7 +4,7 @@ using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Test
 {
-    public class PossibleSquareValueTest
+    public class PossibilityTest
     {
         [Fact]
         public void TryDrop_DropsOnSuccess()
@@ -16,15 +16,15 @@ namespace SudokuSpice.ConstraintBased.Test
 
             int valueIndex = 1;
             Square square = matrix.GetSquare(new Coordinate(1, 0));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Link linkA = possibleValue.FirstLink;
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Link linkA = possibility.FirstLink;
             Link linkB = linkA.Right;
             Requirement constraintA = linkA.Requirement;
             Requirement constraintB = linkB.Requirement;
 
-            Assert.True(possibleValue.TryDrop());
+            Assert.True(possibility.TryDrop());
             Assert.Equal(3, square.NumPossibleValues);
-            Assert.Equal(PossibleValueState.DROPPED, possibleValue.State);
+            Assert.Equal(PossibilityState.DROPPED, possibility.State);
             Assert.DoesNotContain(linkA, constraintA.GetLinks());
             Assert.DoesNotContain(linkB, constraintB.GetLinks());
         }
@@ -42,15 +42,15 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.True(matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex).TryDrop());
             Assert.True(matrix.GetSquare(new Coordinate(0, 2)).GetPossibleValue(valueIndex).TryDrop());
             Square square = matrix.GetSquare(new Coordinate(0, 3));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Link linkA = possibleValue.FirstLink;
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Link linkA = possibility.FirstLink;
             Link linkB = linkA.Right;
             Requirement constraintA = linkA.Requirement;
             Requirement constraintB = linkB.Requirement;
-            Assert.False(possibleValue.TryDrop());
+            Assert.False(possibility.TryDrop());
 
             Assert.Equal(4, square.NumPossibleValues);
-            Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
+            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
             Assert.Same(linkA, constraintA.FirstLink);
             Assert.Contains(linkB, constraintB.GetLinks());
         }
@@ -65,14 +65,14 @@ namespace SudokuSpice.ConstraintBased.Test
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 0));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Link linkA = possibleValue.FirstLink;
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Link linkA = possibility.FirstLink;
             Link linkB = linkA.Right;
-            Assert.True(possibleValue.TryDrop());
-            possibleValue.Return();
+            Assert.True(possibility.TryDrop());
+            possibility.Return();
 
             Assert.Equal(4, square.NumPossibleValues);
-            Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
+            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
             Requirement constraintA = linkA.Requirement;
             Requirement constraintB = linkB.Requirement;
             Assert.Contains(linkA, constraintA.GetLinks());
@@ -89,16 +89,16 @@ namespace SudokuSpice.ConstraintBased.Test
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 0));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Link linkA = possibleValue.FirstLink;
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Link linkA = possibility.FirstLink;
             Link linkB = linkA.Right;
             Requirement constraintA = linkA.Requirement;
             Requirement constraintB = linkB.Requirement;
-            Assert.True(constraintB.TrySelect(possibleValue.FirstLink.Right.Up));
-            possibleValue.Return();
+            Assert.True(constraintB.TrySelect(possibility.FirstLink.Right.Up));
+            possibility.Return();
 
             Assert.Equal(4, square.NumPossibleValues);
-            Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
+            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
             Assert.Contains(linkA, constraintA.GetLinks());
             Assert.Contains(linkB, constraintB.GetLinks());
         }
@@ -113,10 +113,10 @@ namespace SudokuSpice.ConstraintBased.Test
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 1));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Assert.True(possibleValue.TrySelect());
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Assert.True(possibility.TrySelect());
 
-            Assert.Equal(PossibleValueState.SELECTED, possibleValue.State);
+            Assert.Equal(PossibilityState.SELECTED, possibility.State);
         }
 
         [Fact]
@@ -128,11 +128,11 @@ namespace SudokuSpice.ConstraintBased.Test
             new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
-            PossibleSquareValue possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
-            Assert.True(possibleValue.TrySelect());
+            Possibility possibility = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
+            Assert.True(possibility.TrySelect());
 
-            Requirement constraintA = possibleValue.FirstLink.Requirement;
-            Requirement constraintB = possibleValue.FirstLink.Right.Requirement;
+            Requirement constraintA = possibility.FirstLink.Requirement;
+            Requirement constraintB = possibility.FirstLink.Right.Requirement;
             Assert.True(constraintA.AreAllLinksSelected);
             Assert.True(constraintB.AreAllLinksSelected);
             Assert.DoesNotContain(constraintA, matrix.GetUnsatisfiedRequirements());
@@ -148,28 +148,28 @@ namespace SudokuSpice.ConstraintBased.Test
             new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix);
 
             int valueIndex = 0;
-            PossibleSquareValue possibleValue = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
-            Assert.True(possibleValue.TrySelect());
+            Possibility possibility = matrix.GetSquare(new Coordinate(0, 1)).GetPossibleValue(valueIndex);
+            Assert.True(possibility.TrySelect());
 
-            Requirement constraintA = possibleValue.FirstLink.Requirement;
-            Requirement constraintB = possibleValue.FirstLink.Right.Requirement;
+            Requirement constraintA = possibility.FirstLink.Requirement;
+            Requirement constraintB = possibility.FirstLink.Right.Requirement;
             Assert.Equal(4, constraintA.GetLinks().Count());
             Assert.Equal(4, constraintB.GetLinks().Count());
             foreach (Link link in constraintA.GetLinks())
             {
-                if (link.PossibleSquareValue == possibleValue)
+                if (link.PossibleSquareValue == possibility)
                 {
                     continue;
                 }
-                Assert.Equal(PossibleValueState.DROPPED, link.PossibleSquareValue.State);
+                Assert.Equal(PossibilityState.DROPPED, link.PossibleSquareValue.State);
             }
             foreach (Link link in constraintB.GetLinks())
             {
-                if (link.PossibleSquareValue == possibleValue)
+                if (link.PossibleSquareValue == possibility)
                 {
                     continue;
                 }
-                Assert.Equal(PossibleValueState.DROPPED, link.PossibleSquareValue.State);
+                Assert.Equal(PossibilityState.DROPPED, link.PossibleSquareValue.State);
             }
         }
 
@@ -183,11 +183,11 @@ namespace SudokuSpice.ConstraintBased.Test
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 1));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Assert.True(possibleValue.TrySelect());
-            possibleValue.Deselect();
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Assert.True(possibility.TrySelect());
+            possibility.Deselect();
 
-            Assert.Equal(PossibleValueState.UNKNOWN, possibleValue.State);
+            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
             Assert.Equal(4, square.NumPossibleValues);
         }
 
@@ -201,11 +201,11 @@ namespace SudokuSpice.ConstraintBased.Test
 
             int valueIndex = 0;
             Square square = matrix.GetSquare(new Coordinate(0, 1));
-            PossibleSquareValue possibleValue = square.GetPossibleValue(valueIndex);
-            Assert.True(possibleValue.TrySelect());
-            possibleValue.Deselect();
+            Possibility possibility = square.GetPossibleValue(valueIndex);
+            Assert.True(possibility.TrySelect());
+            possibility.Deselect();
 
-            Link linkA = possibleValue.FirstLink;
+            Link linkA = possibility.FirstLink;
             Link linkB = linkA.Right;
             Requirement constraintA = linkA.Requirement;
             Requirement constraintB = linkB.Requirement;
@@ -215,14 +215,14 @@ namespace SudokuSpice.ConstraintBased.Test
             {
                 if (link != linkA)
                 {
-                    Assert.Equal(PossibleValueState.UNKNOWN, link.PossibleSquareValue.State);
+                    Assert.Equal(PossibilityState.UNKNOWN, link.PossibleSquareValue.State);
                 }
             }
             foreach (Link link in constraintB.GetLinks())
             {
                 if (link != linkB)
                 {
-                    Assert.Equal(PossibleValueState.UNKNOWN, link.PossibleSquareValue.State);
+                    Assert.Equal(PossibilityState.UNKNOWN, link.PossibleSquareValue.State);
                 }
             }
         }

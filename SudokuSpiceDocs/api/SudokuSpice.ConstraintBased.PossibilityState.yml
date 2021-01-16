@@ -1,0 +1,159 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.PossibilityState
+  commentId: T:SudokuSpice.ConstraintBased.PossibilityState
+  id: PossibilityState
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.PossibilityState.DROPPED
+  - SudokuSpice.ConstraintBased.PossibilityState.SELECTED
+  - SudokuSpice.ConstraintBased.PossibilityState.UNKNOWN
+  langs:
+  - csharp
+  - vb
+  name: PossibilityState
+  nameWithType: PossibilityState
+  fullName: SudokuSpice.ConstraintBased.PossibilityState
+  type: Enum
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/PossibilityState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
+    id: PossibilityState
+    path: ../SudokuSpice/ConstraintBased/PossibilityState.cs
+    startLine: 5
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nIndicates if a <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> is still possible, selected, or dropped.\n"
+  example: []
+  syntax:
+    content: public enum PossibilityState
+    content.vb: Public Enum PossibilityState
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: SudokuSpice.ConstraintBased.PossibilityState.UNKNOWN
+  commentId: F:SudokuSpice.ConstraintBased.PossibilityState.UNKNOWN
+  id: UNKNOWN
+  parent: SudokuSpice.ConstraintBased.PossibilityState
+  langs:
+  - csharp
+  - vb
+  name: UNKNOWN
+  nameWithType: PossibilityState.UNKNOWN
+  fullName: SudokuSpice.ConstraintBased.PossibilityState.UNKNOWN
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/PossibilityState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
+    id: UNKNOWN
+    path: ../SudokuSpice/ConstraintBased/PossibilityState.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> is still possible.\n"
+  example: []
+  syntax:
+    content: UNKNOWN = 0
+    return:
+      type: SudokuSpice.ConstraintBased.PossibilityState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: SudokuSpice.ConstraintBased.PossibilityState.SELECTED
+  commentId: F:SudokuSpice.ConstraintBased.PossibilityState.SELECTED
+  id: SELECTED
+  parent: SudokuSpice.ConstraintBased.PossibilityState
+  langs:
+  - csharp
+  - vb
+  name: SELECTED
+  nameWithType: PossibilityState.SELECTED
+  fullName: SudokuSpice.ConstraintBased.PossibilityState.SELECTED
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/PossibilityState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
+    id: SELECTED
+    path: ../SudokuSpice/ConstraintBased/PossibilityState.cs
+    startLine: 14
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> has been selected.\n"
+  example: []
+  syntax:
+    content: SELECTED = 1
+    return:
+      type: SudokuSpice.ConstraintBased.PossibilityState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: SudokuSpice.ConstraintBased.PossibilityState.DROPPED
+  commentId: F:SudokuSpice.ConstraintBased.PossibilityState.DROPPED
+  id: DROPPED
+  parent: SudokuSpice.ConstraintBased.PossibilityState
+  langs:
+  - csharp
+  - vb
+  name: DROPPED
+  nameWithType: PossibilityState.DROPPED
+  fullName: SudokuSpice.ConstraintBased.PossibilityState.DROPPED
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/PossibilityState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice
+    id: DROPPED
+    path: ../SudokuSpice/ConstraintBased/PossibilityState.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThis <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
+  example: []
+  syntax:
+    content: DROPPED = 2
+    return:
+      type: SudokuSpice.ConstraintBased.PossibilityState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  parent: SudokuSpice.ConstraintBased
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.PossibilityState
+  commentId: T:SudokuSpice.ConstraintBased.PossibilityState
+  parent: SudokuSpice.ConstraintBased
+  name: PossibilityState
+  nameWithType: PossibilityState
+  fullName: SudokuSpice.ConstraintBased.PossibilityState

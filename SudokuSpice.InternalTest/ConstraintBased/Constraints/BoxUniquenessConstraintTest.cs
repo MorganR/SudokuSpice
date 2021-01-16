@@ -55,7 +55,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 for (int col = 0; col < size; col++)
                 {
                     for (int idx = 0; idx < possibleValues.Length; ++idx) {
-                        PossibleSquareValue possibleValue = matrix.GetSquare(new Coordinate(row, col)).GetPossibleValue(idx);
+                        Possibility possibleValue = matrix.GetSquare(new Coordinate(row, col)).GetPossibleValue(idx);
                         Assert.NotNull(possibleValue.FirstLink);
                     }
                 }

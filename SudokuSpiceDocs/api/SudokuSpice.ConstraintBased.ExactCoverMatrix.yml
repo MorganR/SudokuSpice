@@ -31,7 +31,7 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
+  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref>s, the columns of the matrix and corresponding links.\n"
   example: []
   syntax:
     content: public class ExactCoverMatrix
@@ -323,12 +323,12 @@ references:
   name: Square
   nameWithType: Square
   fullName: SudokuSpice.ConstraintBased.Square
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
   parent: SudokuSpice.ConstraintBased
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
 - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
   commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
   parent: SudokuSpice.ConstraintBased.Constraints

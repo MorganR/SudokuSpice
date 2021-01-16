@@ -10,7 +10,7 @@
         /// <remarks>
         /// This should skip adding requirements that are already satisfied by the given
         /// <paramref name="puzzle"/>. Instead, it should drop the corresponding
-        /// <see cref="PossibleSquareValue"/>s that would have been included in these requirements.
+        /// <see cref="Possibility"/>s that would have been included in these requirements.
         /// 
         /// Note: See <see cref="ExactCoverMatrix"/> to understand how the matrix works.
         /// </remarks>

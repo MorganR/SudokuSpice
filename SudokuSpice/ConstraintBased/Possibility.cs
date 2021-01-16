@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a row in the <see cref="ExactCoverMatrix"/>. This represents a possible value
     /// for a given <see cref="Square"/>.
     /// </summary>
-    public class PossibleSquareValue
+    public class Possibility
     {
         /// <summary>
         /// Gets the index of the possible value that this represents. This index corresponds with
@@ -22,15 +22,15 @@ namespace SudokuSpice.ConstraintBased
         /// <summary>
         /// Gets the state of this row.
         /// </summary>
-        public PossibleValueState State { get; private set; }
+        public PossibilityState State { get; private set; }
         [DisallowNull]
         internal Link? FirstLink { get; private set; }
 
-        internal PossibleSquareValue(Square square, int valueIndex)
+        internal Possibility(Square square, int valueIndex)
         {
             ValueIndex = valueIndex;
             Square = square;
-            State = PossibleValueState.UNKNOWN;
+            State = PossibilityState.UNKNOWN;
         }
 
         internal void Attach(Link link)
@@ -47,36 +47,36 @@ namespace SudokuSpice.ConstraintBased
         internal bool TrySelect()
         {
             Debug.Assert(
-                State == PossibleValueState.UNKNOWN,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was selected while in state {State}.");
+                State == PossibilityState.UNKNOWN,
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was selected while in state {State}.");
             Debug.Assert(
                 FirstLink != null,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was selected while {nameof(FirstLink)} was null.");
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was selected while {nameof(FirstLink)} was null.");
             if (!_TryUpdateLinks(link => link.TrySelectForRequirement(), link => link.DeselectFromRequirement()))
             {
                 return false;
             }
-            State = PossibleValueState.SELECTED;
+            State = PossibilityState.SELECTED;
             return true;
         }
 
         internal void Deselect()
         {
             Debug.Assert(
-                State == PossibleValueState.SELECTED,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was deselected while in state {State}.");
+                State == PossibilityState.SELECTED,
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was deselected while in state {State}.");
             Debug.Assert(
                 FirstLink != null,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was deselected while {nameof(FirstLink)} was null.");
-            State = PossibleValueState.UNKNOWN;
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was deselected while {nameof(FirstLink)} was null.");
+            State = PossibilityState.UNKNOWN;
             _RevertLinks(link => link.DeselectFromRequirement());
         }
 
         internal bool TryDrop()
         {
             Debug.Assert(
-                State == PossibleValueState.UNKNOWN,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was cleared while in state {State}.");
+                State == PossibilityState.UNKNOWN,
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was cleared while in state {State}.");
             if (Square.NumPossibleValues == 1)
             {
                 return false;
@@ -89,19 +89,19 @@ namespace SudokuSpice.ConstraintBased
                 }
             }
             Square.NumPossibleValues--;
-            State = PossibleValueState.DROPPED;
+            State = PossibilityState.DROPPED;
             return true;
         }
 
         internal void Return()
         {
             Debug.Assert(
-                State == PossibleValueState.DROPPED,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was returned while in state {State}.");
+                State == PossibilityState.DROPPED,
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was returned while in state {State}.");
             Debug.Assert(
                 FirstLink != null,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was returned while {nameof(FirstLink)} was null.");
-            State = PossibleValueState.UNKNOWN;
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} was returned while {nameof(FirstLink)} was null.");
+            State = PossibilityState.UNKNOWN;
             Square.NumPossibleValues++;
             _RevertLinks(link => link.ReturnToRequirement());
         }
@@ -110,7 +110,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(
                 FirstLink != null,
-                $"Called {nameof(GetMinConstraintCount)} on {nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} while {nameof(FirstLink)} was null.");
+                $"Called {nameof(GetMinConstraintCount)} on {nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} while {nameof(FirstLink)} was null.");
             int minCount = FirstLink.Requirement.CountUnselected;
             Link link = FirstLink.Right;
             while (link != FirstLink)
@@ -129,7 +129,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(
                 FirstLink != null,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} called {nameof(_TryUpdateLinks)} while {nameof(FirstLink)} was null.");
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} called {nameof(_TryUpdateLinks)} while {nameof(FirstLink)} was null.");
             Link link = FirstLink;
             do
             {
@@ -151,7 +151,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(
                 FirstLink != null,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} called {nameof(_RevertLinks)} while {nameof(FirstLink)} was null.");
+                $"{nameof(Possibility)} at {Square.Coordinate} with value {ValueIndex} called {nameof(_RevertLinks)} while {nameof(FirstLink)} was null.");
             Link lastLink = FirstLink.Left;
             Link link = lastLink;
             do

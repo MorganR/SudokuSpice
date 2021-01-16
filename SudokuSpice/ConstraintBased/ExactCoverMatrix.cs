@@ -9,7 +9,7 @@ namespace SudokuSpice.ConstraintBased
     /// </summary>
     /// <remarks>
     /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
-    /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
+    /// <see cref="Possibility"/>s. Each of these represents a row in the exact-cover
     /// matrix. <see cref="Constraints.IConstraint"/>s will then add
     /// <see cref="Requirement"/>s, the columns of the matrix and corresponding links.
     /// </remarks>

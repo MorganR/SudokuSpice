@@ -5,7 +5,7 @@ items:
   id: Requirement
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue},System.Int32,System.Boolean)
+  - SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32,System.Boolean)
   langs:
   - csharp
   - vb
@@ -24,7 +24,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nRepresents a column from an exact-cover matrix.\n\nColumns can require multiple rows to be satisfied, and can be optional. See\n<xref href=\"SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix%2cSystem.ReadOnlySpan%7bSudokuSpice.ConstraintBased.PossibleSquareValue%7d%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>\nfor more details.\n"
+  summary: "\nRepresents a column from an exact-cover matrix.\n\nColumns can require multiple rows to be satisfied, and can be optional. See\n<xref href=\"SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix%2cSystem.ReadOnlySpan%7bSudokuSpice.ConstraintBased.Possibility%7d%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>\nfor more details.\n"
   example: []
   syntax:
     content: public class Requirement
@@ -49,16 +49,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue},System.Int32,System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue},System.Int32,System.Boolean)
-  id: CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue},System.Int32,System.Boolean)
+- uid: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32,System.Boolean)
+  commentId: M:SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32,System.Boolean)
+  id: CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32,System.Boolean)
   parent: SudokuSpice.ConstraintBased.Requirement
   langs:
   - csharp
   - vb
-  name: CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan<PossibleSquareValue>, Int32, Boolean)
-  nameWithType: Requirement.CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan<PossibleSquareValue>, Int32, Boolean)
-  fullName: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleSquareValue>, System.Int32, System.Boolean)
+  name: CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan<Possibility>, Int32, Boolean)
+  nameWithType: Requirement.CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan<Possibility>, Int32, Boolean)
+  fullName: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility>, System.Int32, System.Boolean)
   type: Method
   source:
     remote:
@@ -74,13 +74,13 @@ items:
   summary: "\nCreates a fully connected requirement that can be satisfied by exactly\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">requiredCount</code> <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleSquares</code>. Adds and attaches\nnecessary links to connect the matrix.\n"
   example: []
   syntax:
-    content: public static Requirement CreateFullyConnected(ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1, bool isOptional = false)
+    content: public static Requirement CreateFullyConnected(ExactCoverMatrix matrix, ReadOnlySpan<Possibility> possibleSquares, int requiredCount = 1, bool isOptional = false)
     parameters:
     - id: matrix
       type: SudokuSpice.ConstraintBased.ExactCoverMatrix
       description: That matrix that this requirement should be attached to.
     - id: possibleSquares
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue}
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
       description: "\nThe possible square values that would satisfy this requirement.\n"
     - id: requiredCount
       type: System.Int32
@@ -91,24 +91,24 @@ items:
     return:
       type: SudokuSpice.ConstraintBased.Requirement
       description: The newly constructed requirement.
-    content.vb: Public Shared Function CreateFullyConnected(matrix As ExactCoverMatrix, possibleSquares As ReadOnlySpan(Of PossibleSquareValue), requiredCount As Integer = 1, isOptional As Boolean = False) As Requirement
+    content.vb: Public Shared Function CreateFullyConnected(matrix As ExactCoverMatrix, possibleSquares As ReadOnlySpan(Of Possibility), requiredCount As Integer = 1, isOptional As Boolean = False) As Requirement
   overload: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\nThrown if called with fewer <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleSquares</code> than the\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">requiredCount</code> (even if the requirement is optional).\n"
-  nameWithType.vb: Requirement.CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan(Of PossibleSquareValue), Int32, Boolean)
+  nameWithType.vb: Requirement.CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan(Of Possibility), Int32, Boolean)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleSquareValue), System.Int32, System.Boolean)
-  name.vb: CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan(Of PossibleSquareValue), Int32, Boolean)
+  fullName.vb: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility), System.Int32, System.Boolean)
+  name.vb: CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan(Of Possibility), Int32, Boolean)
 references:
-- uid: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue},System.Int32,System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue},System.Int32,System.Boolean)
+- uid: SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32,System.Boolean)
+  commentId: M:SudokuSpice.ConstraintBased.Requirement.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32,System.Boolean)
   isExternal: true
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
@@ -421,16 +421,16 @@ references:
   name: ExactCoverMatrix
   nameWithType: ExactCoverMatrix
   fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.PossibleSquareValue}
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
   parent: System
   definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<PossibleSquareValue>
-  nameWithType: ReadOnlySpan<PossibleSquareValue>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.PossibleSquareValue>
-  nameWithType.vb: ReadOnlySpan(Of PossibleSquareValue)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.PossibleSquareValue)
-  name.vb: ReadOnlySpan(Of PossibleSquareValue)
+  name: ReadOnlySpan<Possibility>
+  nameWithType: ReadOnlySpan<Possibility>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility>
+  nameWithType.vb: ReadOnlySpan(Of Possibility)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility)
+  name.vb: ReadOnlySpan(Of Possibility)
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
@@ -440,10 +440,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -456,10 +456,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-    name: PossibleSquareValue
-    nameWithType: PossibleSquareValue
-    fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
   - name: )
     nameWithType: )
     fullName: )

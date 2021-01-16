@@ -11,7 +11,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// Enforces uniqueness of the values at the given coordinates.
         /// </summary>
         /// <remarks>
-        /// This drops any <see cref="PossibleSquareValue"/>s that are no longer possible, and
+        /// This drops any <see cref="Possibility"/>s that are no longer possible, and
         /// adds <see cref="Requirement"/>s and links to enforce this constraint for the ones
         /// that are still possible.
         /// </remarks>
@@ -83,7 +83,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Drops <see cref="PossibleSquareValue"/>s with the given <paramref name="valueIndex"/>
+        /// Drops <see cref="Possibility"/>s with the given <paramref name="valueIndex"/>
         /// from the given set of <paramref name="squares"/>. Null squares and possible values are
         /// ignored.
         /// </summary>
@@ -92,7 +92,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// The value index of the possible values within the squares.
         /// </param>
         /// <returns>
-        /// True if all the <see cref="PossibleSquareValue"/>s were dropped safely (eg. without
+        /// True if all the <see cref="Possibility"/>s were dropped safely (eg. without
         /// resulting in an empty <see cref="Requirement"/> without any possible square
         /// values, or a <see cref="Square"/> with no more possible values), else false.
         /// </returns>
@@ -106,12 +106,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleSquareValue? possibleValue = square.GetPossibleValue(valueIndex);
+                Possibility? possibleValue = square.GetPossibleValue(valueIndex);
                 if (possibleValue is null)
                 {
                     continue;
                 }
-                if (possibleValue.State != PossibleValueState.DROPPED && !possibleValue.TryDrop())
+                if (possibleValue.State != PossibilityState.DROPPED && !possibleValue.TryDrop())
                 {
                     return false;
                 }
@@ -121,12 +121,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
 
         /// <summary>
         /// Add a <see cref="Requirement"/> connecting all the
-        /// <see cref="PossibleSquareValue"/>s at the given <paramref name="valueIndex"/> on the
+        /// <see cref="Possibility"/>s at the given <paramref name="valueIndex"/> on the
         /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
         /// possible values in a known state (i.e. dropped or selected).
         /// </summary>
         /// <param name="squares">
-        /// The squares to add <see cref="PossibleSquareValue"/>s from.
+        /// The squares to add <see cref="Possibility"/>s from.
         /// </param>
         /// <param name="valueIndex">
         /// The value index of the possible value within the squares.
@@ -134,13 +134,13 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <param name="matrix">The matrix for the current puzzle being solved.</param>
         /// <returns>
         /// False if the requirement could not be added, for example because none of the
-        /// corresponding <see cref="PossibleSquareValue"/>s were still possible and the
+        /// corresponding <see cref="Possibility"/>s were still possible and the
         /// requirement would have been empty. Else returns true.
         /// </returns>
         public static bool TryAddRequirementsForValueIndex(
             ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
         {
-            var possibleSquareValues = new PossibleSquareValue[squares.Length];
+            var possibleSquareValues = new Possibility[squares.Length];
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
             {
@@ -149,9 +149,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                PossibleSquareValue? possibleValue = square.GetPossibleValue(valueIndex);
+                Possibility? possibleValue = square.GetPossibleValue(valueIndex);
                 if (possibleValue is null
-                    || possibleValue.State != PossibleValueState.UNKNOWN)
+                    || possibleValue.State != PossibilityState.UNKNOWN)
                 {
                     continue;
                 }

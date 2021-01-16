@@ -2,21 +2,21 @@
 {
     internal class Link
     {
-        internal readonly PossibleSquareValue PossibleSquareValue;
+        internal readonly Possibility PossibleSquareValue;
         internal readonly Requirement Requirement;
         internal Link Left { get; private set; }
         internal Link Right { get; private set; }
         internal Link Up { get; private set; }
         internal Link Down { get; private set; }
 
-        private Link(PossibleSquareValue possibleValue, Requirement requirement)
+        private Link(Possibility possibleValue, Requirement requirement)
         {
             this.PossibleSquareValue = possibleValue;
             Requirement = requirement;
             Up = Down = Right = Left = this;
         }
 
-        internal static Link CreateConnectedLink(PossibleSquareValue possibleValue, Requirement requirement)
+        internal static Link CreateConnectedLink(Possibility possibleValue, Requirement requirement)
         {
             var link = new Link(possibleValue, requirement);
             possibleValue.Attach(link);
