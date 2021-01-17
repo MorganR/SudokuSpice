@@ -7,7 +7,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         public static void AssertPossibleValueIsOnRequirement(
             PossibleSquareValue possibleValue, Requirement constraint)
         {
-            Link<PossibleSquareValue, Requirement> link = constraint.FirstLink;
+            Link<PossibleSquareValue, Requirement> link = constraint.FirstPossibilityLink;
             do
             {
                 if (link.Possibility == possibleValue)
@@ -15,7 +15,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                     return;
                 }
                 link = link.NextOnObjective;
-            } while (link != constraint.FirstLink);
+            } while (link != constraint.FirstPossibilityLink);
             Assert.True(false, "No matching possible square value found.");
         }
     }

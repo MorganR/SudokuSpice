@@ -4,11 +4,13 @@ items:
   commentId: N:SudokuSpice.ConstraintBased
   id: SudokuSpice.ConstraintBased
   children:
+  - SudokuSpice.ConstraintBased.AndGroup
   - SudokuSpice.ConstraintBased.ExactCoverMatrix
   - SudokuSpice.ConstraintBased.PossibilityState
   - SudokuSpice.ConstraintBased.PossibleSquareValue
   - SudokuSpice.ConstraintBased.PuzzleSolver`1
   - SudokuSpice.ConstraintBased.Requirement
+  - SudokuSpice.ConstraintBased.RequirementGroup
   - SudokuSpice.ConstraintBased.Square
   - SudokuSpice.ConstraintBased.StandardPuzzles
   langs:
@@ -21,6 +23,12 @@ items:
   assemblies:
   - SudokuSpice
 references:
+- uid: SudokuSpice.ConstraintBased.AndGroup
+  commentId: T:SudokuSpice.ConstraintBased.AndGroup
+  parent: SudokuSpice.ConstraintBased
+  name: AndGroup
+  nameWithType: AndGroup
+  fullName: SudokuSpice.ConstraintBased.AndGroup
 - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
   parent: SudokuSpice.ConstraintBased
@@ -81,6 +89,12 @@ references:
   name: Requirement
   nameWithType: Requirement
   fullName: SudokuSpice.ConstraintBased.Requirement
+- uid: SudokuSpice.ConstraintBased.RequirementGroup
+  commentId: T:SudokuSpice.ConstraintBased.RequirementGroup
+  parent: SudokuSpice.ConstraintBased
+  name: RequirementGroup
+  nameWithType: RequirementGroup
+  fullName: SudokuSpice.ConstraintBased.RequirementGroup
 - uid: SudokuSpice.ConstraintBased.Square
   commentId: T:SudokuSpice.ConstraintBased.Square
   parent: SudokuSpice.ConstraintBased

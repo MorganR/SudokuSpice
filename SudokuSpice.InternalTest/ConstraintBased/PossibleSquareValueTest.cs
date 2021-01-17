@@ -51,7 +51,7 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Assert.Equal(4, square.NumPossibleValues);
             Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
-            Assert.Same(linkA, constraintA.FirstLink);
+            Assert.Same(linkA, constraintA.FirstPossibilityLink);
             Assert.Contains(linkB, constraintB.GetLinks());
         }
 
@@ -95,7 +95,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Requirement requirementA = linkA.Objective;
             Requirement requirementB = linkB.Objective;
             // This will drop the possibility via linkB.
-            Assert.True(requirementB.TrySelect(linkB.PreviousOnObjective));
+            Assert.True(requirementB.TrySelectPossibility(linkB.PreviousOnObjective));
 
             possibility.Return();
 

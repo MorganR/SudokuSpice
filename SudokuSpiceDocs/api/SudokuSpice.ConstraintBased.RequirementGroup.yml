@@ -1,40 +1,37 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
-  id: PossibleSquareValue
+- uid: SudokuSpice.ConstraintBased.RequirementGroup
+  commentId: T:SudokuSpice.ConstraintBased.RequirementGroup
+  id: RequirementGroup
   parent: SudokuSpice.ConstraintBased
-  children:
-  - SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  - SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  - SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
+  children: []
   langs:
   - csharp
   - vb
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  name: RequirementGroup
+  nameWithType: RequirementGroup
+  fullName: SudokuSpice.ConstraintBased.RequirementGroup
   type: Class
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/RequirementGroup.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
-    id: PossibleSquareValue
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 9
+    id: RequirementGroup
+    path: ../SudokuSpice/ConstraintBased/RequirementGroup.cs
+    startLine: 4
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nRepresents a row in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-  example: []
   syntax:
-    content: 'public class PossibleSquareValue : IPossibility<PossibleSquareValue, Requirement>'
+    content: 'public abstract class RequirementGroup : IObjective<RequirementGroup, Requirement>, IObjective<RequirementGroup, RequirementGroup>, IPossibility<RequirementGroup, RequirementGroup>'
     content.vb: >-
-      Public Class PossibleSquareValue
-          Implements IPossibility(Of PossibleSquareValue, Requirement)
+      Public MustInherit Class RequirementGroup
+          Implements IObjective(Of RequirementGroup, Requirement), IObjective(Of RequirementGroup, RequirementGroup), IPossibility(Of RequirementGroup, RequirementGroup)
   inheritance:
   - System.Object
+  derivedClasses:
+  - SudokuSpice.ConstraintBased.AndGroup
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -45,131 +42,13 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - abstract
   - class
   modifiers.vb:
   - Public
+  - MustInherit
   - Class
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  id: ValueIndex
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue
-  langs:
-  - csharp
-  - vb
-  name: ValueIndex
-  nameWithType: PossibleSquareValue.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
-    id: ValueIndex
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 15
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets the index of the possible value that this represents. This index corresponds with\n<xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-  example: []
-  syntax:
-    content: public int ValueIndex { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public ReadOnly Property ValueIndex As Integer
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  id: Square
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue
-  langs:
-  - csharp
-  - vb
-  name: Square
-  nameWithType: PossibleSquareValue.Square
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
-    id: Square
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 19
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets the square that this is a possible value for.\n"
-  example: []
-  syntax:
-    content: public Square Square { get; }
-    parameters: []
-    return:
-      type: SudokuSpice.ConstraintBased.Square
-    content.vb: Public ReadOnly Property Square As Square
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue.Square*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  id: State
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue
-  langs:
-  - csharp
-  - vb
-  name: State
-  nameWithType: PossibleSquareValue.State
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
-    id: State
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 23
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets the state of this row.\n"
-  example: []
-  syntax:
-    content: public PossibilityState State { get; }
-    parameters: []
-    return:
-      type: SudokuSpice.ConstraintBased.PossibilityState
-    content.vb: Public ReadOnly Property State As PossibilityState
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue.State*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 references:
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
-  parent: SudokuSpice.ConstraintBased
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  isExternal: true
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -467,40 +346,3 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  isExternal: true
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  name: ValueIndex
-  nameWithType: PossibleSquareValue.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.Square*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  name: Square
-  nameWithType: PossibleSquareValue.Square
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-- uid: SudokuSpice.ConstraintBased.Square
-  commentId: T:SudokuSpice.ConstraintBased.Square
-  parent: SudokuSpice.ConstraintBased
-  name: Square
-  nameWithType: Square
-  fullName: SudokuSpice.ConstraintBased.Square
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.State*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  name: State
-  nameWithType: PossibleSquareValue.State
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.State
-- uid: SudokuSpice.ConstraintBased.PossibilityState
-  commentId: T:SudokuSpice.ConstraintBased.PossibilityState
-  parent: SudokuSpice.ConstraintBased
-  name: PossibilityState
-  nameWithType: PossibilityState
-  fullName: SudokuSpice.ConstraintBased.PossibilityState

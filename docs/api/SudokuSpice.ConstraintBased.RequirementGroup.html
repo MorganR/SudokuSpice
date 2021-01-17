@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace SudokuSpice.ConstraintBased
+    <title>Class RequirementGroup
    | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace SudokuSpice.ConstraintBased
+    <meta name="title" content="Class RequirementGroup
    | SudokuSpice ">
     <meta name="generator" content="docfx 2.56.5.0">
     
@@ -68,47 +68,49 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SudokuSpice.ConstraintBased">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.ConstraintBased.RequirementGroup">
   
-  <h1 id="SudokuSpice_ConstraintBased" data-uid="SudokuSpice.ConstraintBased" class="text-break">Namespace SudokuSpice.ConstraintBased
+  
+  <h1 id="SudokuSpice_ConstraintBased_RequirementGroup" data-uid="SudokuSpice.ConstraintBased.RequirementGroup" class="text-break">Class RequirementGroup
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.AndGroup.html">AndGroup</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a></h4>
-      <section><p>Holds an exact-cover matrix for the current puzzle being solved.</p>
-</section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a></h4>
-      <section><p>Represents a row in the <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a>. This represents a possible value
-for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html#SudokuSpice_ConstraintBased_PossibleSquareValue_Square">Square</a>.</p>
-</section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.PuzzleSolver-1.html">PuzzleSolver&lt;TPuzzle&gt;</a></h4>
-      <section><p>Solves puzzles of the given type using an <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a>.</p>
-</section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a></h4>
-      <section><p>Represents a column from an exact-cover matrix.</p>
-<p>Columns can require multiple rows to be satisfied, and can be optional. See
-<a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html#SudokuSpice_ConstraintBased_Requirement_CreateFullyConnected_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_ReadOnlySpan_SudokuSpice_ConstraintBased_PossibleSquareValue__System_Int32_System_Boolean_">CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan&lt;PossibleSquareValue&gt;, Int32, Boolean)</a>
-for more details.</p>
-</section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.RequirementGroup.html">RequirementGroup</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a></h4>
-      <section><p>Represents a location in a puzzle, including tracking the current possible values at that
-location.</p>
-</section>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.StandardPuzzles.html">StandardPuzzles</a></h4>
-      <section><p>Provides utilities for interacting with standard Sudoku puzzles.</p>
-</section>
-    <h3 id="enums">Enums
-  </h3>
-      <h4><a class="xref" href="SudokuSpice.ConstraintBased.PossibilityState.html">PossibilityState</a></h4>
-      <section><p>Indicates if a <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a> is still possible, selected, or dropped.</p>
-</section>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">RequirementGroup</span></div>
+      <div class="level2"><a class="xref" href="SudokuSpice.ConstraintBased.AndGroup.html">AndGroup</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a></h6>
+  <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
+  <h5 id="SudokuSpice_ConstraintBased_RequirementGroup_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class RequirementGroup : IObjective&lt;RequirementGroup, Requirement&gt;, IObjective&lt;RequirementGroup, RequirementGroup&gt;, IPossibility&lt;RequirementGroup, RequirementGroup&gt;</code></pre>
+  </div>
 </article>
           </div>
           
@@ -116,6 +118,12 @@ location.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_RequirementGroup.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.RequirementGroup%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/RequirementGroup.cs/#L5" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

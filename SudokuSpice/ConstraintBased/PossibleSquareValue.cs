@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.ConstraintBased
@@ -54,8 +53,8 @@ namespace SudokuSpice.ConstraintBased
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was selected while {nameof(FirstLink)} was null.");
             if (!Links.TryUpdateOnPossibility(
                 FirstLink,
-                link => link.Objective.TrySelect(link),
-                link => link.Objective.Deselect(link)))
+                link => link.Objective.TrySelectPossibility(link),
+                link => link.Objective.DeselectPossibility(link)))
             {
                 return false;
             }
@@ -72,7 +71,7 @@ namespace SudokuSpice.ConstraintBased
                 FirstLink != null,
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was deselected while {nameof(FirstLink)} was null.");
             State = PossibilityState.UNKNOWN;
-            Links.RevertOnPossibility(FirstLink, link => link.Objective.Deselect(link));
+            Links.RevertOnPossibility(FirstLink, link => link.Objective.DeselectPossibility(link));
         }
 
         internal bool TryDrop()
@@ -88,8 +87,8 @@ namespace SudokuSpice.ConstraintBased
             {
                 if (!Links.TryUpdateOnPossibility(
                     FirstLink,
-                    link => link.Objective.TryDetach(link),
-                    link => link.Objective.Reattach(link)))
+                    link => link.Objective.TryDropPossibility(link),
+                    link => link.Objective.ReattachPossibility(link)))
                 {
                     return false;
                 }
@@ -109,7 +108,7 @@ namespace SudokuSpice.ConstraintBased
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was returned while {nameof(FirstLink)} was null.");
             State = PossibilityState.UNKNOWN;
             Square.NumPossibleValues++;
-            Links.RevertOnPossibility(FirstLink, link => link.Objective.Reattach(link));
+            Links.RevertOnPossibility(FirstLink, link => link.Objective.ReattachPossibility(link));
         }
 
         internal int GetMinUnselectedCountFromRequirements()

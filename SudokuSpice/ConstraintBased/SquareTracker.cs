@@ -54,9 +54,9 @@ namespace SudokuSpice.ConstraintBased
                 if (requirement.AreAllLinksRequired)
                 {
                     Debug.Assert(
-                        requirement.FirstLink != null,
+                        requirement.FirstPossibilityLink != null,
                         $"Unsatisfied {nameof(Requirement)} had a null first link.");
-                    PossibleSquareValue possibleSquare = requirement.FirstLink.Possibility;
+                    PossibleSquareValue possibleSquare = requirement.FirstPossibilityLink.Possibility;
                     return (possibleSquare.Square.Coordinate,
                         new int[] { possibleSquare.ValueIndex });
                 }

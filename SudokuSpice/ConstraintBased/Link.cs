@@ -1,4 +1,6 @@
-﻿namespace SudokuSpice.ConstraintBased
+﻿using System.Collections.Generic;
+
+namespace SudokuSpice.ConstraintBased
 {
     internal class Link<TPossibility, TObjective>
         where TPossibility : class, IPossibility<TPossibility, TObjective>
@@ -69,6 +71,38 @@
         {
             PreviousOnObjective.NextOnObjective = this;
             NextOnObjective.PreviousOnObjective = this;
+        }
+
+        internal void PopFromPossibility()
+        {
+            PreviousOnPossibility.NextOnPossibility = NextOnPossibility;
+            NextOnPossibility.PreviousOnPossibility = PreviousOnPossibility;
+        }
+
+        internal void ReinsertToPossibility()
+        {
+            PreviousOnPossibility.NextOnPossibility = this;
+            NextOnPossibility.PreviousOnPossibility = this;
+        }
+
+        internal IEnumerable<Link<TPossibility, TObjective>> GetLinksOnPossibility()
+        {
+            var link = this;
+            do
+            {
+                yield return link;
+                link = link.NextOnPossibility;
+            } while (link != this);
+        }
+
+        internal IEnumerable<Link<TPossibility, TObjective>> GetLinksOnObjective()
+        {
+            var link = this;
+            do
+            {
+                yield return link;
+                link = link.NextOnObjective;
+            } while (link != this);
         }
     }
 }
