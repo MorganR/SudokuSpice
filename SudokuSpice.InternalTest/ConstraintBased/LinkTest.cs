@@ -12,10 +12,10 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new Possibility(square, 1);
+            var possibleSquare = new PossibleSquareValue(square, 1);
             var requirement = new Requirement(false, 1, matrix);
 
-            var link = Link<Possibility, Requirement>.CreateConnectedLink(possibleSquare, requirement);
+            var link = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
 
             Assert.Same(link, link.PreviousOnObjective);
             Assert.Same(link, link.NextOnObjective);
@@ -35,11 +35,11 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
             var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new Possibility(square, 1);
+            var possibleSquare = new PossibleSquareValue(square, 1);
             var requirement = new Requirement(false, 1, matrix);
 
-            var firstLink = Link<Possibility, Requirement>.CreateConnectedLink(possibleSquare, requirement);
-            var link = Link<Possibility, Requirement>.CreateConnectedLink(possibleSquare, requirement);
+            var firstLink = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
+            var link = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
 
             Assert.Same(firstLink, link.PreviousOnObjective);
             Assert.Same(firstLink, link.NextOnObjective);

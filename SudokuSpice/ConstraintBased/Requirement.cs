@@ -10,11 +10,11 @@ namespace SudokuSpice.ConstraintBased
     /// Represents a column from an exact-cover matrix.
     /// 
     /// Columns can require multiple rows to be satisfied, and can be optional. See
-    /// <see cref="CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan{Possibility}, int, bool)"/>
+    /// <see cref="CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan{PossibleSquareValue}, int, bool)"/>
     /// for more details.
     /// </summary>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover">Exact cover (Wikipedia)</seealso>
-    public class Requirement : IObjective<Requirement, Possibility>
+    public class Requirement : IObjective<Requirement, PossibleSquareValue>
     {
         private readonly bool _isOptional;
         private readonly int _requiredCount;
@@ -24,7 +24,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal ExactCoverMatrix Matrix { get; private set; }
         [DisallowNull]
-        internal Link<Possibility, Requirement>? FirstLink { get; private set; }
+        internal Link<PossibleSquareValue, Requirement>? FirstLink { get; private set; }
         internal int CountUnselected => _count - _selectedCount;
         internal bool AreAllLinksRequired => _count == _requiredCount;
         internal bool AreRequiredLinksSelected => _selectedCount == _requiredCount;
@@ -45,14 +45,14 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(FirstLink != null, $"Can't copy a requirement with a null {nameof(FirstLink)}.");
             Debug.Assert(!AreRequiredLinksSelected, $"Can't copy a requirement that's already satisfied.");
             var copy = new Requirement(_isOptional, _requiredCount, matrix);
-            foreach (Link<Possibility, Requirement>? link in GetLinks())
+            foreach (Link<PossibleSquareValue, Requirement>? link in GetLinks())
             {
                 Square? square = matrix.GetSquare(link.Possibility.Square.Coordinate);
                 Debug.Assert(square != null,
                     $"Tried to copy a square link for a null square at {link.Possibility.Square.Coordinate}.");
-                Possibility? possibleValue = square.GetPossibleValue(link.Possibility.ValueIndex);
+                PossibleSquareValue? possibleValue = square.GetPossibleValue(link.Possibility.ValueIndex);
                 Debug.Assert(possibleValue != null, "Tried to link requirement to null possible square value.");
-                _ = Link<Possibility, Requirement>.CreateConnectedLink(possibleValue, copy);
+                _ = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleValue, copy);
             }
             return copy;
         }
@@ -84,23 +84,23 @@ namespace SudokuSpice.ConstraintBased
         /// <paramref name="requiredCount"/> (even if the requirement is optional).
         /// </exception>
         public static Requirement CreateFullyConnected(
-            ExactCoverMatrix matrix, ReadOnlySpan<Possibility> possibleSquares, int requiredCount = 1, bool isOptional = false)
+            ExactCoverMatrix matrix, ReadOnlySpan<PossibleSquareValue> possibleSquares, int requiredCount = 1, bool isOptional = false)
         {
             if (possibleSquares.Length < requiredCount)
             {
                 throw new ArgumentException(
-                    $"Must provide at least {requiredCount} {nameof(Possibility)}s when creating a {nameof(Requirement)}.");
+                    $"Must provide at least {requiredCount} {nameof(PossibleSquareValue)}s when creating a {nameof(Requirement)}.");
             }
             var requirement = new Requirement(isOptional, requiredCount, matrix);
             matrix.Attach(requirement);
-            foreach (Possibility? possibleSquare in possibleSquares)
+            foreach (PossibleSquareValue? possibleSquare in possibleSquares)
             {
-                _ = Link<Possibility, Requirement>.CreateConnectedLink(possibleSquare, requirement);
+                _ = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
             }
             return requirement;
         }
 
-        internal bool TrySelect(Link<Possibility, Requirement> sourceLink)
+        internal bool TrySelect(Link<PossibleSquareValue, Requirement> sourceLink)
         {
             Debug.Assert(!AreRequiredLinksSelected, $"Constraint was already satisfied when selecting square {sourceLink.Possibility.Square.Coordinate}, value: {sourceLink.Possibility.ValueIndex}.");
             Debug.Assert(FirstLink != null, $"Tried to satisfy constraint via square {sourceLink.Possibility.Square.Coordinate}, value: {sourceLink.Possibility.ValueIndex} but {nameof(FirstLink)} was null.");
@@ -119,7 +119,7 @@ namespace SudokuSpice.ConstraintBased
                 sourceLink.PopFromObjective();
                 return true;
             }
-            Link<Possibility, Requirement> link = sourceLink.NextOnObjective;
+            Link<PossibleSquareValue, Requirement> link = sourceLink.NextOnObjective;
             while (link != sourceLink)
             {
                 if (!link.Possibility.TryDrop())
@@ -144,7 +144,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        internal void Deselect(Link<Possibility, Requirement> sourceLink)
+        internal void Deselect(Link<PossibleSquareValue, Requirement> sourceLink)
         {
             if (!AreRequiredLinksSelected)
             {
@@ -156,7 +156,7 @@ namespace SudokuSpice.ConstraintBased
             }
             // In this case, other links were dropped but this link was not removed. Return dropped
             // links and matrix connections only.
-            Link<Possibility, Requirement> link = sourceLink.PreviousOnObjective;
+            Link<PossibleSquareValue, Requirement> link = sourceLink.PreviousOnObjective;
             while (link != sourceLink)
             {
                 link.Possibility.Return();
@@ -183,7 +183,7 @@ namespace SudokuSpice.ConstraintBased
             Previous = toPrepend;
         }
 
-        void IObjective<Requirement, Possibility>.Append(Link<Possibility, Requirement> link)
+        void IObjective<Requirement, PossibleSquareValue>.Append(Link<PossibleSquareValue, Requirement> link)
         {
             Debug.Assert(!GetLinks().Contains(link), $"Constraint already contained possible square value at {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} when calling {nameof(Append)}.");
             if (FirstLink is null)
@@ -196,7 +196,7 @@ namespace SudokuSpice.ConstraintBased
             ++_count;
         }
 
-        internal bool TryDetach(Link<Possibility, Requirement> link)
+        internal bool TryDetach(Link<PossibleSquareValue, Requirement> link)
         {
 
             Debug.Assert(
@@ -223,7 +223,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        internal void Reattach(Link<Possibility, Requirement> link)
+        internal void Reattach(Link<PossibleSquareValue, Requirement> link)
         {
             // If the constraint is satisfied then we can skip this since this link was never removed.
             if (AreRequiredLinksSelected)
@@ -238,13 +238,13 @@ namespace SudokuSpice.ConstraintBased
             ++_count;
         }
 
-        internal IEnumerable<Link<Possibility, Requirement>> GetLinks()
+        internal IEnumerable<Link<PossibleSquareValue, Requirement>> GetLinks()
         {
             if (FirstLink == null)
             {
                 yield break;
             }
-            Link<Possibility, Requirement>? link = FirstLink;
+            Link<PossibleSquareValue, Requirement>? link = FirstLink;
             do
             {
                 yield return link;

@@ -110,7 +110,7 @@ for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValu
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_PossibleSquareValue_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PossibleSquareValue</code></pre>
+    <pre><code class="lang-csharp hljs">public class PossibleSquareValue : IPossibility&lt;PossibleSquareValue, Requirement&gt;</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -159,7 +159,7 @@ for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PossibleValueState State { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public PossibilityState State { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -171,7 +171,7 @@ for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValu
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.ConstraintBased.PossibleValueState.html">PossibleValueState</a></td>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.PossibilityState.html">PossibilityState</a></td>
         <td></td>
       </tr>
     </tbody>

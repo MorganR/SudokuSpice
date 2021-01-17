@@ -56,7 +56,7 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
   summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">matrix</code> in order to solve the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>\naccording to this constraint. The details here are implementation-specific.\n"
-  remarks: "\nThis should skip adding requirements that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it should drop the corresponding\n<xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these requirements.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
+  remarks: "\nThis should skip adding requirements that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it should drop the corresponding\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that would have been included in these requirements.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref> to understand how the matrix works.\n"
   example: []
   syntax:
     content: bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -84,12 +84,12 @@ references:
   name: Requirement
   nameWithType: Requirement
   fullName: SudokuSpice.ConstraintBased.Requirement
-- uid: SudokuSpice.ConstraintBased.Possibility
-  commentId: T:SudokuSpice.ConstraintBased.Possibility
+- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
+  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
   parent: SudokuSpice.ConstraintBased
-  name: Possibility
-  nameWithType: Possibility
-  fullName: SudokuSpice.ConstraintBased.Possibility
+  name: PossibleSquareValue
+  nameWithType: PossibleSquareValue
+  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
 - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
   parent: SudokuSpice.ConstraintBased

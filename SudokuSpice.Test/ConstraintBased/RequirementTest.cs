@@ -40,7 +40,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var puzzle = new Puzzle(4);
             var matrix = new ExactCoverMatrix(puzzle);
 
-            var emptyPossibles = new Possibility[0];
+            var emptyPossibles = new PossibleSquareValue[0];
             Assert.Throws<ArgumentException>(() => Requirement.CreateFullyConnected(matrix, emptyPossibles.AsSpan(), 1));
         }
 

@@ -177,7 +177,7 @@ value indices are already set in the given list of
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddRequirementsForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex*"></a>
   <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddRequirementsForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)">TryAddRequirementsForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix)</h4>
   <div class="markdown level1 summary"><p>Add a <a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a> connecting all the
-<a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
+<a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
 given <code data-dev-comment-type="paramref" class="paramref">squares</code>. Skips null squares, null possible values, and any
 possible values in a known state (i.e. dropped or selected).</p>
 </div>
@@ -199,7 +199,7 @@ possible values in a known state (i.e. dropped or selected).</p>
       <tr>
         <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
         <td><span class="parametername">squares</span></td>
-        <td><p>The squares to add <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s from.</p>
+        <td><p>The squares to add <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s from.</p>
 </td>
       </tr>
       <tr>
@@ -228,7 +228,7 @@ possible values in a known state (i.e. dropped or selected).</p>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><p>False if the requirement could not be added, for example because none of the
-corresponding <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s were still possible and the
+corresponding <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s were still possible and the
 requirement would have been empty. Else returns true.</p>
 </td>
       </tr>
@@ -243,7 +243,7 @@ requirement would have been empty. Else returns true.</p>
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryDropPossibleSquaresForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex*"></a>
   <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryDropPossibleSquaresForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32)">TryDropPossibleSquaresForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32)</h4>
-  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
+  <div class="markdown level1 summary"><p>Drops <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s with the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code>
 from the given set of <code data-dev-comment-type="paramref" class="paramref">squares</code>. Null squares and possible values are
 ignored.</p>
 </div>
@@ -287,7 +287,7 @@ ignored.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p>True if all the <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s were dropped safely (eg. without
+        <td><p>True if all the <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s were dropped safely (eg. without
 resulting in an empty <a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a> without any possible square
 values, or a <a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a> with no more possible values), else false.</p>
 </td>
@@ -357,7 +357,7 @@ values, or a <a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Squa
     </tbody>
   </table>
   <h5 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryImplementUniquenessConstraintForSquares_SudokuSpice_IReadOnlyPuzzle_System_ReadOnlySpan_SudokuSpice_Coordinate__SudokuSpice_ConstraintBased_ExactCoverMatrix__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s that are no longer possible, and
+  <div class="markdown level1 remarks"><p>This drops any <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s that are no longer possible, and
 adds <a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a>s and links to enforce this constraint for the ones
 that are still possible.</p>
 </div>
