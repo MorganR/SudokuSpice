@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Intrinsics.X86;
 
-namespace SudokuSpice.RuleBased
+namespace SudokuSpice
 {
     /// <summary>
     /// A 32-bit vector with simple operations for getting and setting bits.

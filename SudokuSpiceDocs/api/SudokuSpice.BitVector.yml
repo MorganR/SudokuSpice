@@ -1,46 +1,46 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
   id: BitVector
-  parent: SudokuSpice.RuleBased
+  parent: SudokuSpice
   children:
-  - SudokuSpice.RuleBased.BitVector.#ctor(System.UInt32)
-  - SudokuSpice.RuleBased.BitVector.Count
-  - SudokuSpice.RuleBased.BitVector.CreateWithSize(System.Int32)
-  - SudokuSpice.RuleBased.BitVector.Data
-  - SudokuSpice.RuleBased.BitVector.Equals(SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.BitVector.Equals(System.Object)
-  - SudokuSpice.RuleBased.BitVector.FindIntersect(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.BitVector.FindUnion(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.BitVector.GetHashCode
-  - SudokuSpice.RuleBased.BitVector.GetSetBits
-  - SudokuSpice.RuleBased.BitVector.IsBitSet(System.Int32)
-  - SudokuSpice.RuleBased.BitVector.IsEmpty
-  - SudokuSpice.RuleBased.BitVector.op_Equality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.BitVector.op_Inequality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  - SudokuSpice.RuleBased.BitVector.PopulateSetBits(System.Span{System.Int32})
-  - SudokuSpice.RuleBased.BitVector.SetBit(System.Int32)
-  - SudokuSpice.RuleBased.BitVector.ToString
-  - SudokuSpice.RuleBased.BitVector.UnsetBit(System.Int32)
+  - SudokuSpice.BitVector.#ctor(System.UInt32)
+  - SudokuSpice.BitVector.Count
+  - SudokuSpice.BitVector.CreateWithSize(System.Int32)
+  - SudokuSpice.BitVector.Data
+  - SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.Equals(System.Object)
+  - SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.GetHashCode
+  - SudokuSpice.BitVector.GetSetBits
+  - SudokuSpice.BitVector.IsBitSet(System.Int32)
+  - SudokuSpice.BitVector.IsEmpty
+  - SudokuSpice.BitVector.op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
+  - SudokuSpice.BitVector.SetBit(System.Int32)
+  - SudokuSpice.BitVector.ToString
+  - SudokuSpice.BitVector.UnsetBit(System.Int32)
   langs:
   - csharp
   - vb
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
+  fullName: SudokuSpice.BitVector
   type: Struct
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: BitVector
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 9
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nA 32-bit vector with simple operations for getting and setting bits.\n"
   example: []
   syntax:
@@ -49,7 +49,7 @@ items:
       Public Structure BitVector
           Implements IEquatable(Of BitVector)
   implements:
-  - System.IEquatable{SudokuSpice.RuleBased.BitVector}
+  - System.IEquatable{SudokuSpice.BitVector}
   inheritedMembers:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
@@ -60,28 +60,28 @@ items:
   modifiers.vb:
   - Public
   - Structure
-- uid: SudokuSpice.RuleBased.BitVector.Data
-  commentId: P:SudokuSpice.RuleBased.BitVector.Data
+- uid: SudokuSpice.BitVector.Data
+  commentId: P:SudokuSpice.BitVector.Data
   id: Data
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: Data
   nameWithType: BitVector.Data
-  fullName: SudokuSpice.RuleBased.BitVector.Data
+  fullName: SudokuSpice.BitVector.Data
   type: Property
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: Data
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 27
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nGets the data stored in this bit vector as an unsigned int.\n"
   example: []
   syntax:
@@ -90,35 +90,35 @@ items:
     return:
       type: System.UInt32
     content.vb: Public ReadOnly Property Data As UInteger
-  overload: SudokuSpice.RuleBased.BitVector.Data*
+  overload: SudokuSpice.BitVector.Data*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.RuleBased.BitVector.Count
-  commentId: P:SudokuSpice.RuleBased.BitVector.Count
+- uid: SudokuSpice.BitVector.Count
+  commentId: P:SudokuSpice.BitVector.Count
   id: Count
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: Count
   nameWithType: BitVector.Count
-  fullName: SudokuSpice.RuleBased.BitVector.Count
+  fullName: SudokuSpice.BitVector.Count
   type: Property
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: Count
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 37
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nGets the count of bits that are set.\n"
   remarks: "\nThis relies on the <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> hardware intrinsic to be efficient. If this\noperation is not available on your hardware, then this function falls back to a\nconsiderably less efficient iterative count over all the bits in the vector.\n"
   example: []
@@ -128,35 +128,35 @@ items:
     return:
       type: System.Int32
     content.vb: Public ReadOnly Property Count As Integer
-  overload: SudokuSpice.RuleBased.BitVector.Count*
+  overload: SudokuSpice.BitVector.Count*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.RuleBased.BitVector.#ctor(System.UInt32)
-  commentId: M:SudokuSpice.RuleBased.BitVector.#ctor(System.UInt32)
+- uid: SudokuSpice.BitVector.#ctor(System.UInt32)
+  commentId: M:SudokuSpice.BitVector.#ctor(System.UInt32)
   id: '#ctor(System.UInt32)'
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: BitVector(UInt32)
   nameWithType: BitVector.BitVector(UInt32)
-  fullName: SudokuSpice.RuleBased.BitVector.BitVector(System.UInt32)
+  fullName: SudokuSpice.BitVector.BitVector(System.UInt32)
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 60
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nConstructs a bit vector with the given data.\n"
   example: []
   syntax:
@@ -166,33 +166,33 @@ items:
       type: System.UInt32
       description: The data to use for this bit vector.
     content.vb: Public Sub New(data As UInteger)
-  overload: SudokuSpice.RuleBased.BitVector.#ctor*
+  overload: SudokuSpice.BitVector.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.CreateWithSize(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.BitVector.CreateWithSize(System.Int32)
+- uid: SudokuSpice.BitVector.CreateWithSize(System.Int32)
+  commentId: M:SudokuSpice.BitVector.CreateWithSize(System.Int32)
   id: CreateWithSize(System.Int32)
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: CreateWithSize(Int32)
   nameWithType: BitVector.CreateWithSize(Int32)
-  fullName: SudokuSpice.RuleBased.BitVector.CreateWithSize(System.Int32)
+  fullName: SudokuSpice.BitVector.CreateWithSize(System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: CreateWithSize
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 69
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nCreates a bit vector with only the first <code>size</code> bits set to true.\n"
   example: []
   syntax:
@@ -202,125 +202,125 @@ items:
       type: System.Int32
       description: The number of bits to set.
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     content.vb: Public Shared Function CreateWithSize(size As Integer) As BitVector
-  overload: SudokuSpice.RuleBased.BitVector.CreateWithSize*
+  overload: SudokuSpice.BitVector.CreateWithSize*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.RuleBased.BitVector.FindIntersect(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.BitVector.FindIntersect(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  id: FindIntersect(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  parent: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  id: FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: FindIntersect(BitVector, BitVector)
   nameWithType: BitVector.FindIntersect(BitVector, BitVector)
-  fullName: SudokuSpice.RuleBased.BitVector.FindIntersect(SudokuSpice.RuleBased.BitVector, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector, SudokuSpice.BitVector)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: FindIntersect
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 88
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nCreates a bit vector that is the intersect of the given vectors.\n"
   example: []
   syntax:
     content: public static BitVector FindIntersect(BitVector a, BitVector b)
     parameters:
     - id: a
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: One bit vector.
     - id: b
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: The other bit vector.
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: A new <code>BitVector</code> that is the intersect of the given vectors.
     content.vb: Public Shared Function FindIntersect(a As BitVector, b As BitVector) As BitVector
-  overload: SudokuSpice.RuleBased.BitVector.FindIntersect*
+  overload: SudokuSpice.BitVector.FindIntersect*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.RuleBased.BitVector.FindUnion(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.BitVector.FindUnion(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  id: FindUnion(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  parent: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  id: FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: FindUnion(BitVector, BitVector)
   nameWithType: BitVector.FindUnion(BitVector, BitVector)
-  fullName: SudokuSpice.RuleBased.BitVector.FindUnion(SudokuSpice.RuleBased.BitVector, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector, SudokuSpice.BitVector)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: FindUnion
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 96
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nCreates a bit vector that is the union of the given vectors.\n"
   example: []
   syntax:
     content: public static BitVector FindUnion(BitVector a, BitVector b)
     parameters:
     - id: a
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: One bit vector.
     - id: b
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: The other bit vector.
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: A new <code>BitVector</code> that is the union of the given vectors.
     content.vb: Public Shared Function FindUnion(a As BitVector, b As BitVector) As BitVector
-  overload: SudokuSpice.RuleBased.BitVector.FindUnion*
+  overload: SudokuSpice.BitVector.FindUnion*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.RuleBased.BitVector.UnsetBit(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.BitVector.UnsetBit(System.Int32)
+- uid: SudokuSpice.BitVector.UnsetBit(System.Int32)
+  commentId: M:SudokuSpice.BitVector.UnsetBit(System.Int32)
   id: UnsetBit(System.Int32)
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: UnsetBit(Int32)
   nameWithType: BitVector.UnsetBit(Int32)
-  fullName: SudokuSpice.RuleBased.BitVector.UnsetBit(System.Int32)
+  fullName: SudokuSpice.BitVector.UnsetBit(System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: UnsetBit
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 102
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nUnsets the given bit index in the given vector. Leaves other bits unchanged.\n"
   example: []
   syntax:
@@ -330,33 +330,33 @@ items:
       type: System.Int32
       description: The zero-based index of the bit to unset.
     content.vb: Public Sub UnsetBit(bit As Integer)
-  overload: SudokuSpice.RuleBased.BitVector.UnsetBit*
+  overload: SudokuSpice.BitVector.UnsetBit*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.SetBit(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.BitVector.SetBit(System.Int32)
+- uid: SudokuSpice.BitVector.SetBit(System.Int32)
+  commentId: M:SudokuSpice.BitVector.SetBit(System.Int32)
   id: SetBit(System.Int32)
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: SetBit(Int32)
   nameWithType: BitVector.SetBit(Int32)
-  fullName: SudokuSpice.RuleBased.BitVector.SetBit(System.Int32)
+  fullName: SudokuSpice.BitVector.SetBit(System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: SetBit
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 108
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nSets the given bit index in the given vector. Leaves other bits unchanged.\n"
   example: []
   syntax:
@@ -366,33 +366,33 @@ items:
       type: System.Int32
       description: The zero-based index of the bit to set.
     content.vb: Public Sub SetBit(bit As Integer)
-  overload: SudokuSpice.RuleBased.BitVector.SetBit*
+  overload: SudokuSpice.BitVector.SetBit*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.IsEmpty
-  commentId: M:SudokuSpice.RuleBased.BitVector.IsEmpty
+- uid: SudokuSpice.BitVector.IsEmpty
+  commentId: M:SudokuSpice.BitVector.IsEmpty
   id: IsEmpty
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: IsEmpty()
   nameWithType: BitVector.IsEmpty()
-  fullName: SudokuSpice.RuleBased.BitVector.IsEmpty()
+  fullName: SudokuSpice.BitVector.IsEmpty()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: IsEmpty
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 114
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nChecks if this vector is empty (i.e. no bits are set).\n"
   example: []
   syntax:
@@ -401,33 +401,33 @@ items:
       type: System.Boolean
       description: True if empty.
     content.vb: Public Function IsEmpty As Boolean
-  overload: SudokuSpice.RuleBased.BitVector.IsEmpty*
+  overload: SudokuSpice.BitVector.IsEmpty*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.IsBitSet(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.BitVector.IsBitSet(System.Int32)
+- uid: SudokuSpice.BitVector.IsBitSet(System.Int32)
+  commentId: M:SudokuSpice.BitVector.IsBitSet(System.Int32)
   id: IsBitSet(System.Int32)
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: IsBitSet(Int32)
   nameWithType: BitVector.IsBitSet(Int32)
-  fullName: SudokuSpice.RuleBased.BitVector.IsBitSet(System.Int32)
+  fullName: SudokuSpice.BitVector.IsBitSet(System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: IsBitSet
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 121
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nChecks if the bit is true at the given index.\n"
   example: []
   syntax:
@@ -440,33 +440,33 @@ items:
       type: System.Boolean
       description: True if set.
     content.vb: Public Function IsBitSet(bit As Integer) As Boolean
-  overload: SudokuSpice.RuleBased.BitVector.IsBitSet*
+  overload: SudokuSpice.BitVector.IsBitSet*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.GetSetBits
-  commentId: M:SudokuSpice.RuleBased.BitVector.GetSetBits
+- uid: SudokuSpice.BitVector.GetSetBits
+  commentId: M:SudokuSpice.BitVector.GetSetBits
   id: GetSetBits
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: GetSetBits()
   nameWithType: BitVector.GetSetBits()
-  fullName: SudokuSpice.RuleBased.BitVector.GetSetBits()
+  fullName: SudokuSpice.BitVector.GetSetBits()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: GetSetBits
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 131
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nGets a list of the bits set in this bit vector.\n"
   remarks: "\nThis operation is slightly more efficient on average when <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> is\nsupported. Worst case performance is roughly the same.\n"
   example: []
@@ -476,33 +476,33 @@ items:
       type: System.Collections.Generic.List{System.Int32}
       description: A list of the bits that are set.
     content.vb: Public Function GetSetBits As List(Of Integer)
-  overload: SudokuSpice.RuleBased.BitVector.GetSetBits*
+  overload: SudokuSpice.BitVector.GetSetBits*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.PopulateSetBits(System.Span{System.Int32})
-  commentId: M:SudokuSpice.RuleBased.BitVector.PopulateSetBits(System.Span{System.Int32})
+- uid: SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
+  commentId: M:SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
   id: PopulateSetBits(System.Span{System.Int32})
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: PopulateSetBits(Span<Int32>)
   nameWithType: BitVector.PopulateSetBits(Span<Int32>)
-  fullName: SudokuSpice.RuleBased.BitVector.PopulateSetBits(System.Span<System.Int32>)
+  fullName: SudokuSpice.BitVector.PopulateSetBits(System.Span<System.Int32>)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: PopulateSetBits
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 177
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nPopulates a provided Span with the indices of set bits, and returns the number of set \nbits it populated.\n\nThis method will return if it reaches the end of the provided\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code> span, so if <code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code> has size N,\nthen this will only populate the indices for the first N set bits, and will return N.\nIf there are less setBits than N, say M, the values of <code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code>\nfrom setIndices[M] to setIndices[N-1] are left unchanged.\n"
   remarks: "\nThis operation is slightly more efficient on average when <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> is\nsupported. Worst case performance is roughly the same.\n"
   example: []
@@ -516,73 +516,73 @@ items:
       type: System.Int32
       description: "\nThe number of set bits that have been populated into <code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code>\n"
     content.vb: Public Function PopulateSetBits(setIndices As Span(Of Integer)) As Integer
-  overload: SudokuSpice.RuleBased.BitVector.PopulateSetBits*
+  overload: SudokuSpice.BitVector.PopulateSetBits*
   nameWithType.vb: BitVector.PopulateSetBits(Span(Of Int32))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.BitVector.PopulateSetBits(System.Span(Of System.Int32))
+  fullName.vb: SudokuSpice.BitVector.PopulateSetBits(System.Span(Of System.Int32))
   name.vb: PopulateSetBits(Span(Of Int32))
-- uid: SudokuSpice.RuleBased.BitVector.Equals(SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.BitVector.Equals(SudokuSpice.RuleBased.BitVector)
-  id: Equals(SudokuSpice.RuleBased.BitVector)
-  parent: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
+  id: Equals(SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: Equals(BitVector)
   nameWithType: BitVector.Equals(BitVector)
-  fullName: SudokuSpice.RuleBased.BitVector.Equals(SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: Equals
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 199
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   syntax:
     content: public bool Equals(BitVector other)
     parameters:
     - id: other
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     return:
       type: System.Boolean
     content.vb: Public Function Equals(other As BitVector) As Boolean
-  overload: SudokuSpice.RuleBased.BitVector.Equals*
+  overload: SudokuSpice.BitVector.Equals*
   implements:
-  - System.IEquatable{SudokuSpice.RuleBased.BitVector}.Equals(SudokuSpice.RuleBased.BitVector)
+  - System.IEquatable{SudokuSpice.BitVector}.Equals(SudokuSpice.BitVector)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.BitVector.Equals(System.Object)
-  commentId: M:SudokuSpice.RuleBased.BitVector.Equals(System.Object)
+- uid: SudokuSpice.BitVector.Equals(System.Object)
+  commentId: M:SudokuSpice.BitVector.Equals(System.Object)
   id: Equals(System.Object)
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: Equals(Object)
   nameWithType: BitVector.Equals(Object)
-  fullName: SudokuSpice.RuleBased.BitVector.Equals(System.Object)
+  fullName: SudokuSpice.BitVector.Equals(System.Object)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: Equals
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 201
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   syntax:
     content: public override bool Equals(object obj)
     parameters:
@@ -592,70 +592,70 @@ items:
       type: System.Boolean
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
   overridden: System.ValueType.Equals(System.Object)
-  overload: SudokuSpice.RuleBased.BitVector.Equals*
+  overload: SudokuSpice.BitVector.Equals*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.RuleBased.BitVector.GetHashCode
-  commentId: M:SudokuSpice.RuleBased.BitVector.GetHashCode
+- uid: SudokuSpice.BitVector.GetHashCode
+  commentId: M:SudokuSpice.BitVector.GetHashCode
   id: GetHashCode
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: GetHashCode()
   nameWithType: BitVector.GetHashCode()
-  fullName: SudokuSpice.RuleBased.BitVector.GetHashCode()
+  fullName: SudokuSpice.BitVector.GetHashCode()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: GetHashCode
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 210
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   syntax:
     content: public override int GetHashCode()
     return:
       type: System.Int32
     content.vb: Public Overrides Function GetHashCode As Integer
   overridden: System.ValueType.GetHashCode
-  overload: SudokuSpice.RuleBased.BitVector.GetHashCode*
+  overload: SudokuSpice.BitVector.GetHashCode*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.RuleBased.BitVector.ToString
-  commentId: M:SudokuSpice.RuleBased.BitVector.ToString
+- uid: SudokuSpice.BitVector.ToString
+  commentId: M:SudokuSpice.BitVector.ToString
   id: ToString
-  parent: SudokuSpice.RuleBased.BitVector
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: ToString()
   nameWithType: BitVector.ToString()
-  fullName: SudokuSpice.RuleBased.BitVector.ToString()
+  fullName: SudokuSpice.BitVector.ToString()
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: ToString
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 215
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   summary: "\nReturns this bitvector as a binary-formatted string (eg. 1011).\n"
   example: []
   syntax:
@@ -664,85 +664,85 @@ items:
       type: System.String
     content.vb: Public Overrides Function ToString As String
   overridden: System.ValueType.ToString
-  overload: SudokuSpice.RuleBased.BitVector.ToString*
+  overload: SudokuSpice.BitVector.ToString*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.RuleBased.BitVector.op_Equality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.BitVector.op_Equality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  id: op_Equality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  parent: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.BitVector.op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  id: op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: Equality(BitVector, BitVector)
   nameWithType: BitVector.Equality(BitVector, BitVector)
-  fullName: SudokuSpice.RuleBased.BitVector.Equality(SudokuSpice.RuleBased.BitVector, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.BitVector.Equality(SudokuSpice.BitVector, SudokuSpice.BitVector)
   type: Operator
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: op_Equality
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 217
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   syntax:
     content: public static bool operator ==(BitVector a, BitVector b)
     parameters:
     - id: a
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     - id: b
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     return:
       type: System.Boolean
     content.vb: Public Shared Operator =(a As BitVector, b As BitVector) As Boolean
-  overload: SudokuSpice.RuleBased.BitVector.op_Equality*
+  overload: SudokuSpice.BitVector.op_Equality*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.RuleBased.BitVector.op_Inequality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.BitVector.op_Inequality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  id: op_Inequality(SudokuSpice.RuleBased.BitVector,SudokuSpice.RuleBased.BitVector)
-  parent: SudokuSpice.RuleBased.BitVector
+- uid: SudokuSpice.BitVector.op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  id: op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: Inequality(BitVector, BitVector)
   nameWithType: BitVector.Inequality(BitVector, BitVector)
-  fullName: SudokuSpice.RuleBased.BitVector.Inequality(SudokuSpice.RuleBased.BitVector, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.BitVector.Inequality(SudokuSpice.BitVector, SudokuSpice.BitVector)
   type: Operator
   source:
     remote:
-      path: SudokuSpice/RuleBased/BitVector.cs
+      path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
     id: op_Inequality
-    path: ../SudokuSpice/RuleBased/BitVector.cs
+    path: ../SudokuSpice/BitVector.cs
     startLine: 218
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.RuleBased
+  namespace: SudokuSpice
   syntax:
     content: public static bool operator !=(BitVector a, BitVector b)
     parameters:
     - id: a
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     - id: b
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     return:
       type: System.Boolean
     content.vb: Public Shared Operator <>(a As BitVector, b As BitVector) As Boolean
-  overload: SudokuSpice.RuleBased.BitVector.op_Inequality*
+  overload: SudokuSpice.BitVector.op_Inequality*
   modifiers.csharp:
   - public
   - static
@@ -750,20 +750,20 @@ items:
   - Public
   - Shared
 references:
-- uid: SudokuSpice.RuleBased
-  commentId: N:SudokuSpice.RuleBased
-  name: SudokuSpice.RuleBased
-  nameWithType: SudokuSpice.RuleBased
-  fullName: SudokuSpice.RuleBased
-- uid: System.IEquatable{SudokuSpice.RuleBased.BitVector}
-  commentId: T:System.IEquatable{SudokuSpice.RuleBased.BitVector}
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.IEquatable{SudokuSpice.BitVector}
+  commentId: T:System.IEquatable{SudokuSpice.BitVector}
   parent: System
   definition: System.IEquatable`1
   name: IEquatable<BitVector>
   nameWithType: IEquatable<BitVector>
-  fullName: System.IEquatable<SudokuSpice.RuleBased.BitVector>
+  fullName: System.IEquatable<SudokuSpice.BitVector>
   nameWithType.vb: IEquatable(Of BitVector)
-  fullName.vb: System.IEquatable(Of SudokuSpice.RuleBased.BitVector)
+  fullName.vb: System.IEquatable(Of SudokuSpice.BitVector)
   name.vb: IEquatable(Of BitVector)
   spec.csharp:
   - uid: System.IEquatable`1
@@ -774,10 +774,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -790,10 +790,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
@@ -994,11 +994,11 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.RuleBased.BitVector.Data*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.Data
+- uid: SudokuSpice.BitVector.Data*
+  commentId: Overload:SudokuSpice.BitVector.Data
   name: Data
   nameWithType: BitVector.Data
-  fullName: SudokuSpice.RuleBased.BitVector.Data
+  fullName: SudokuSpice.BitVector.Data
 - uid: System.UInt32
   commentId: T:System.UInt32
   parent: System
@@ -1009,11 +1009,11 @@ references:
 - uid: System.Runtime.Intrinsics.X86.Popcnt
   commentId: T:System.Runtime.Intrinsics.X86.Popcnt
   isExternal: true
-- uid: SudokuSpice.RuleBased.BitVector.Count*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.Count
+- uid: SudokuSpice.BitVector.Count*
+  commentId: Overload:SudokuSpice.BitVector.Count
   name: Count
   nameWithType: BitVector.Count
-  fullName: SudokuSpice.RuleBased.BitVector.Count
+  fullName: SudokuSpice.BitVector.Count
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -1021,47 +1021,47 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.RuleBased.BitVector.#ctor*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.#ctor
+- uid: SudokuSpice.BitVector.#ctor*
+  commentId: Overload:SudokuSpice.BitVector.#ctor
   name: BitVector
   nameWithType: BitVector.BitVector
-  fullName: SudokuSpice.RuleBased.BitVector.BitVector
-- uid: SudokuSpice.RuleBased.BitVector.CreateWithSize*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.CreateWithSize
+  fullName: SudokuSpice.BitVector.BitVector
+- uid: SudokuSpice.BitVector.CreateWithSize*
+  commentId: Overload:SudokuSpice.BitVector.CreateWithSize
   name: CreateWithSize
   nameWithType: BitVector.CreateWithSize
-  fullName: SudokuSpice.RuleBased.BitVector.CreateWithSize
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
+  fullName: SudokuSpice.BitVector.CreateWithSize
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice.RuleBased.BitVector.FindIntersect*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.FindIntersect
+  fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.BitVector.FindIntersect*
+  commentId: Overload:SudokuSpice.BitVector.FindIntersect
   name: FindIntersect
   nameWithType: BitVector.FindIntersect
-  fullName: SudokuSpice.RuleBased.BitVector.FindIntersect
-- uid: SudokuSpice.RuleBased.BitVector.FindUnion*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.FindUnion
+  fullName: SudokuSpice.BitVector.FindIntersect
+- uid: SudokuSpice.BitVector.FindUnion*
+  commentId: Overload:SudokuSpice.BitVector.FindUnion
   name: FindUnion
   nameWithType: BitVector.FindUnion
-  fullName: SudokuSpice.RuleBased.BitVector.FindUnion
-- uid: SudokuSpice.RuleBased.BitVector.UnsetBit*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.UnsetBit
+  fullName: SudokuSpice.BitVector.FindUnion
+- uid: SudokuSpice.BitVector.UnsetBit*
+  commentId: Overload:SudokuSpice.BitVector.UnsetBit
   name: UnsetBit
   nameWithType: BitVector.UnsetBit
-  fullName: SudokuSpice.RuleBased.BitVector.UnsetBit
-- uid: SudokuSpice.RuleBased.BitVector.SetBit*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.SetBit
+  fullName: SudokuSpice.BitVector.UnsetBit
+- uid: SudokuSpice.BitVector.SetBit*
+  commentId: Overload:SudokuSpice.BitVector.SetBit
   name: SetBit
   nameWithType: BitVector.SetBit
-  fullName: SudokuSpice.RuleBased.BitVector.SetBit
-- uid: SudokuSpice.RuleBased.BitVector.IsEmpty*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.IsEmpty
+  fullName: SudokuSpice.BitVector.SetBit
+- uid: SudokuSpice.BitVector.IsEmpty*
+  commentId: Overload:SudokuSpice.BitVector.IsEmpty
   name: IsEmpty
   nameWithType: BitVector.IsEmpty
-  fullName: SudokuSpice.RuleBased.BitVector.IsEmpty
+  fullName: SudokuSpice.BitVector.IsEmpty
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1069,16 +1069,16 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.RuleBased.BitVector.IsBitSet*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.IsBitSet
+- uid: SudokuSpice.BitVector.IsBitSet*
+  commentId: Overload:SudokuSpice.BitVector.IsBitSet
   name: IsBitSet
   nameWithType: BitVector.IsBitSet
-  fullName: SudokuSpice.RuleBased.BitVector.IsBitSet
-- uid: SudokuSpice.RuleBased.BitVector.GetSetBits*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.GetSetBits
+  fullName: SudokuSpice.BitVector.IsBitSet
+- uid: SudokuSpice.BitVector.GetSetBits*
+  commentId: Overload:SudokuSpice.BitVector.GetSetBits
   name: GetSetBits
   nameWithType: BitVector.GetSetBits
-  fullName: SudokuSpice.RuleBased.BitVector.GetSetBits
+  fullName: SudokuSpice.BitVector.GetSetBits
 - uid: System.Collections.Generic.List{System.Int32}
   commentId: T:System.Collections.Generic.List{System.Int32}
   parent: System.Collections.Generic
@@ -1168,11 +1168,11 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: SudokuSpice.RuleBased.BitVector.PopulateSetBits*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.PopulateSetBits
+- uid: SudokuSpice.BitVector.PopulateSetBits*
+  commentId: Overload:SudokuSpice.BitVector.PopulateSetBits
   name: PopulateSetBits
   nameWithType: BitVector.PopulateSetBits
-  fullName: SudokuSpice.RuleBased.BitVector.PopulateSetBits
+  fullName: SudokuSpice.BitVector.PopulateSetBits
 - uid: System.Span{System.Int32}
   commentId: T:System.Span{System.Int32}
   parent: System
@@ -1256,33 +1256,33 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.BitVector.Equals*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.Equals
+- uid: SudokuSpice.BitVector.Equals*
+  commentId: Overload:SudokuSpice.BitVector.Equals
   name: Equals
   nameWithType: BitVector.Equals
-  fullName: SudokuSpice.RuleBased.BitVector.Equals
-- uid: System.IEquatable{SudokuSpice.RuleBased.BitVector}.Equals(SudokuSpice.RuleBased.BitVector)
-  commentId: M:System.IEquatable{SudokuSpice.RuleBased.BitVector}.Equals(SudokuSpice.RuleBased.BitVector)
-  parent: System.IEquatable{SudokuSpice.RuleBased.BitVector}
+  fullName: SudokuSpice.BitVector.Equals
+- uid: System.IEquatable{SudokuSpice.BitVector}.Equals(SudokuSpice.BitVector)
+  commentId: M:System.IEquatable{SudokuSpice.BitVector}.Equals(SudokuSpice.BitVector)
+  parent: System.IEquatable{SudokuSpice.BitVector}
   definition: System.IEquatable`1.Equals(`0)
   name: Equals(BitVector)
   nameWithType: IEquatable<BitVector>.Equals(BitVector)
-  fullName: System.IEquatable<SudokuSpice.RuleBased.BitVector>.Equals(SudokuSpice.RuleBased.BitVector)
+  fullName: System.IEquatable<SudokuSpice.BitVector>.Equals(SudokuSpice.BitVector)
   nameWithType.vb: IEquatable(Of BitVector).Equals(BitVector)
-  fullName.vb: System.IEquatable(Of SudokuSpice.RuleBased.BitVector).Equals(SudokuSpice.RuleBased.BitVector)
+  fullName.vb: System.IEquatable(Of SudokuSpice.BitVector).Equals(SudokuSpice.BitVector)
   spec.csharp:
   - uid: System.IEquatable`1.Equals(`0)
     name: Equals
     nameWithType: IEquatable<BitVector>.Equals
-    fullName: System.IEquatable<SudokuSpice.RuleBased.BitVector>.Equals
+    fullName: System.IEquatable<SudokuSpice.BitVector>.Equals
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
@@ -1290,15 +1290,15 @@ references:
   - uid: System.IEquatable`1.Equals(`0)
     name: Equals
     nameWithType: IEquatable(Of BitVector).Equals
-    fullName: System.IEquatable(Of SudokuSpice.RuleBased.BitVector).Equals
+    fullName: System.IEquatable(Of SudokuSpice.BitVector).Equals
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
@@ -1419,11 +1419,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.BitVector.GetHashCode*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.GetHashCode
+- uid: SudokuSpice.BitVector.GetHashCode*
+  commentId: Overload:SudokuSpice.BitVector.GetHashCode
   name: GetHashCode
   nameWithType: BitVector.GetHashCode
-  fullName: SudokuSpice.RuleBased.BitVector.GetHashCode
+  fullName: SudokuSpice.BitVector.GetHashCode
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType
@@ -1455,11 +1455,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.BitVector.ToString*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.ToString
+- uid: SudokuSpice.BitVector.ToString*
+  commentId: Overload:SudokuSpice.BitVector.ToString
   name: ToString
   nameWithType: BitVector.ToString
-  fullName: SudokuSpice.RuleBased.BitVector.ToString
+  fullName: SudokuSpice.BitVector.ToString
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1467,13 +1467,13 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: SudokuSpice.RuleBased.BitVector.op_Equality*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.op_Equality
+- uid: SudokuSpice.BitVector.op_Equality*
+  commentId: Overload:SudokuSpice.BitVector.op_Equality
   name: Equality
   nameWithType: BitVector.Equality
-  fullName: SudokuSpice.RuleBased.BitVector.Equality
-- uid: SudokuSpice.RuleBased.BitVector.op_Inequality*
-  commentId: Overload:SudokuSpice.RuleBased.BitVector.op_Inequality
+  fullName: SudokuSpice.BitVector.Equality
+- uid: SudokuSpice.BitVector.op_Inequality*
+  commentId: Overload:SudokuSpice.BitVector.op_Inequality
   name: Inequality
   nameWithType: BitVector.Inequality
-  fullName: SudokuSpice.RuleBased.BitVector.Inequality
+  fullName: SudokuSpice.BitVector.Inequality

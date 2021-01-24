@@ -8,7 +8,7 @@ items:
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.#ctor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UndoLastUpdate
-  - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
+  - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
   langs:
   - csharp
   - vb
@@ -144,16 +144,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
-  id: UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
+  id: UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper
   langs:
   - csharp
   - vb
   name: UpdateIfUnique(ReadOnlySpan<BitVector>, ReadOnlySpan<Coordinate[]>)
   nameWithType: UniqueInXHelper.UpdateIfUnique(ReadOnlySpan<BitVector>, ReadOnlySpan<Coordinate[]>)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan<SudokuSpice.RuleBased.BitVector>, System.ReadOnlySpan<SudokuSpice.Coordinate[]>)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan<SudokuSpice.BitVector>, System.ReadOnlySpan<SudokuSpice.Coordinate[]>)
   type: Method
   source:
     remote:
@@ -170,7 +170,7 @@ items:
     content: public bool UpdateIfUnique(ReadOnlySpan<BitVector> possibleValuesToCheck, ReadOnlySpan<Coordinate[]> coordinatesToCheck)
     parameters:
     - id: possibleValuesToCheck
-      type: System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector}
+      type: System.ReadOnlySpan{SudokuSpice.BitVector}
     - id: coordinatesToCheck
       type: System.ReadOnlySpan{SudokuSpice.Coordinate[]}
     return:
@@ -182,7 +182,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan(Of SudokuSpice.RuleBased.BitVector), System.ReadOnlySpan(Of SudokuSpice.Coordinate()))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan(Of SudokuSpice.BitVector), System.ReadOnlySpan(Of SudokuSpice.Coordinate()))
   name.vb: UpdateIfUnique(ReadOnlySpan(Of BitVector), ReadOnlySpan(Of Coordinate()))
 references:
 - uid: SudokuSpice.RuleBased.Heuristics
@@ -519,15 +519,15 @@ references:
   name: UpdateIfUnique
   nameWithType: UniqueInXHelper.UpdateIfUnique
   fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique
-- uid: System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.RuleBased.BitVector}
+- uid: System.ReadOnlySpan{SudokuSpice.BitVector}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.BitVector}
   parent: System
   definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<BitVector>
   nameWithType: ReadOnlySpan<BitVector>
-  fullName: System.ReadOnlySpan<SudokuSpice.RuleBased.BitVector>
+  fullName: System.ReadOnlySpan<SudokuSpice.BitVector>
   nameWithType.vb: ReadOnlySpan(Of BitVector)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.RuleBased.BitVector)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.BitVector)
   name.vb: ReadOnlySpan(Of BitVector)
   spec.csharp:
   - uid: System.ReadOnlySpan`1
@@ -538,10 +538,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -554,10 +554,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )

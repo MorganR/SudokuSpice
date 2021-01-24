@@ -2,6 +2,8 @@
 - uid: SudokuSpice
   name: SudokuSpice
   items:
+  - uid: SudokuSpice.BitVector
+    name: BitVector
   - uid: SudokuSpice.Boxes
     name: Boxes
   - uid: SudokuSpice.Coordinate
@@ -28,8 +30,6 @@
 - uid: SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   items:
-  - uid: SudokuSpice.ConstraintBased.AndGroup
-    name: AndGroup
   - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
     name: ExactCoverMatrix
   - uid: SudokuSpice.ConstraintBased.PossibilityState
@@ -60,13 +60,13 @@
     name: DiagonalUniquenessConstraint
   - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
     name: IConstraint
+  - uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
+    name: MagicBoxConstraint
   - uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
     name: RowUniquenessConstraint
 - uid: SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
   items:
-  - uid: SudokuSpice.RuleBased.BitVector
-    name: BitVector
   - uid: SudokuSpice.RuleBased.DynamicRuleKeeper
     name: DynamicRuleKeeper
   - uid: SudokuSpice.RuleBased.IPossibleValues

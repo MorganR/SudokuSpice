@@ -9,7 +9,7 @@ items:
   - SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   - SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   langs:
   - csharp
@@ -105,8 +105,8 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.RuleBased.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.BitVector
+      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues*
   nameWithType.vb: IRule.GetPossibleValues(ByRef Coordinate)
@@ -193,16 +193,16 @@ items:
   nameWithType.vb: IRule.Revert(ByRef Coordinate, Int32, CoordinateTracker)
   fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   name.vb: Revert(ByRef Coordinate, Int32, CoordinateTracker)
-- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
   langs:
   - csharp
   - vb
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: IRule.TryInit(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   type: Method
   source:
     remote:
@@ -225,7 +225,7 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to be solved.
     - id: allPossibleValues
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: All the possible values for this puzzle.
     return:
       type: System.Boolean
@@ -447,12 +447,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
+  fullName: SudokuSpice.BitVector
 - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues*
   commentId: Overload:SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
   name: GetPossibleValues

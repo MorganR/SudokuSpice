@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
@@ -103,12 +104,39 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 State == PossibilityState.DROPPED,
                 $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was returned while in state {State}.");
-            Debug.Assert(
-                FirstLink != null,
-                $"{nameof(PossibleSquareValue)} at {Square.Coordinate} with value {ValueIndex} was returned while {nameof(FirstLink)} was null.");
             State = PossibilityState.UNKNOWN;
             Square.NumPossibleValues++;
-            Links.RevertOnPossibility(FirstLink, link => link.Objective.ReattachPossibility(link));
+            if (FirstLink is not null)
+            {
+                Links.RevertOnPossibility(FirstLink, link => link.Objective.ReattachPossibility(link));
+            }
+        }
+
+        internal bool TryDetachRequirement(Link<PossibleSquareValue, Requirement> sourceLink)
+        {
+            if (FirstLink == sourceLink)
+            {
+                FirstLink = sourceLink.NextOnPossibility;
+                if (FirstLink == sourceLink)
+                {
+                    FirstLink = null;
+                    sourceLink.PopFromPossibility();
+                    return TryDrop();
+                }
+            }
+            sourceLink.PopFromPossibility();
+            return true;
+        }
+
+        internal bool ReattachRequirement(Link<PossibleSquareValue, Requirement> sourceLink)
+        {
+            sourceLink.ReinsertToPossibility();
+            if (FirstLink is null)
+            {
+                Return();
+                FirstLink = sourceLink;
+            }
+            return true;
         }
 
         internal int GetMinUnselectedCountFromRequirements()

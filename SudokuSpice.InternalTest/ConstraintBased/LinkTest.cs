@@ -23,8 +23,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(link, link.PreviousOnPossibility);
             Assert.Same(possibleSquare, link.Possibility);
             Assert.Same(requirement, link.Objective);
-            Assert.True(requirement.AreAllLinksRequired);
-            Assert.False(requirement.AreRequiredLinksSelected);
+            Assert.True(requirement.AreAllPossibilitiesRequired);
+            Assert.False(requirement.AreAllRequiredPossibilitiesSelected);
             Assert.Same(link, requirement.FirstPossibilityLink);
             Assert.Same(link, possibleSquare.FirstLink);
         }
@@ -51,8 +51,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(link, firstLink.PreviousOnPossibility);
             Assert.Same(possibleSquare, link.Possibility);
             Assert.Same(requirement, link.Objective);
-            Assert.False(requirement.AreAllLinksRequired);
-            Assert.False(requirement.AreRequiredLinksSelected);
+            Assert.False(requirement.AreAllPossibilitiesRequired);
+            Assert.False(requirement.AreAllRequiredPossibilitiesSelected);
             Assert.Same(firstLink, requirement.FirstPossibilityLink);
             Assert.Same(firstLink, possibleSquare.FirstLink);
         }

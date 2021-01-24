@@ -236,6 +236,92 @@ requirement would have been empty. Else returns true.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddRequirementsForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_Int32_System_Boolean_SudokuSpice_ConstraintBased_Requirement__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.Square%7D%2CSystem.Int32%2CSudokuSpice.ConstraintBased.ExactCoverMatrix%2CSystem.Int32%2CSystem.Boolean%2CSudokuSpice.ConstraintBased.Requirement%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L172">View Source</a>
+  </span>
+  <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddRequirementsForValueIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddRequirementsForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_Int32_System_Boolean_SudokuSpice_ConstraintBased_Requirement__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,System.Boolean,SudokuSpice.ConstraintBased.Requirement@)">TryAddRequirementsForValueIndex(ReadOnlySpan&lt;Square&gt;, Int32, ExactCoverMatrix, Int32, Boolean, out Requirement)</h4>
+  <div class="markdown level1 summary"><p>Add a <a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a> connecting all the
+<a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s at the given <code data-dev-comment-type="paramref" class="paramref">valueIndex</code> on the
+given <code data-dev-comment-type="paramref" class="paramref">squares</code>. Skips null squares, null possible values, and any
+possible values in a known state (i.e. dropped or selected).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryAddRequirementsForValueIndex(ReadOnlySpan&lt;Square&gt; squares, int valueIndex, ExactCoverMatrix matrix, int requiredCount, bool isOptional, out Requirement requirement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
+        <td><span class="parametername">squares</span></td>
+        <td><p>The squares to add <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">valueIndex</span></td>
+        <td><p>The value index of the possible value within the squares.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a></td>
+        <td><span class="parametername">matrix</span></td>
+        <td><p>The matrix for the current puzzle being solved.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">requiredCount</span></td>
+        <td><p>The number of possible square values required to satisfy the new
+<a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isOptional</span></td>
+        <td><p>Whether or not the new <a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a> is optional.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.Requirement.html">Requirement</a></td>
+        <td><span class="parametername">requirement</span></td>
+        <td><p>The new requirement, if successful, else null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>False if the requirement could not be added, for example because none of the
+corresponding <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s were still possible and the
+requirement would have been empty. Else returns true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryDropPossibleSquaresForValueIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Square__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.Square%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">

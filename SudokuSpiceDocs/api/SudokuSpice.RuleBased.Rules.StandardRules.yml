@@ -13,7 +13,7 @@ items:
   - SudokuSpice.RuleBased.Rules.StandardRules.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   - SudokuSpice.RuleBased.Rules.StandardRules.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   langs:
   - csharp
@@ -133,16 +133,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+- uid: SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.StandardRules
   langs:
   - csharp
   - vb
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: StandardRules.TryInit(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   type: Method
   source:
     remote:
@@ -165,7 +165,7 @@ items:
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to be solved.
     - id: allPossibleValues
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
       description: All the possible values for this puzzle.
     return:
       type: System.Boolean
@@ -173,7 +173,7 @@ items:
     content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle, allPossibleValues As BitVector) As Boolean
   overload: SudokuSpice.RuleBased.Rules.StandardRules.TryInit*
   implements:
-  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -208,7 +208,7 @@ items:
     - id: row
       type: System.Int32
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     content.vb: Public Function GetMissingValuesForRow(row As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow*
   implements:
@@ -247,7 +247,7 @@ items:
     - id: column
       type: System.Int32
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     content.vb: Public Function GetMissingValuesForColumn(column As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn*
   implements:
@@ -286,7 +286,7 @@ items:
     - id: box
       type: System.Int32
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     content.vb: Public Function GetMissingValuesForBox(box As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForBox*
   implements:
@@ -326,8 +326,8 @@ items:
     - id: c
       type: SudokuSpice.Coordinate
     return:
-      type: SudokuSpice.RuleBased.BitVector
-      description: The possible values represented as a <xref href="SudokuSpice.RuleBased.BitVector" data-throw-if-not-resolved="false"></xref>.
+      type: SudokuSpice.BitVector
+      description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.StandardRules.GetPossibleValues*
   implements:
@@ -864,14 +864,14 @@ references:
   name: TryInit
   nameWithType: StandardRules.TryInit
   fullName: SudokuSpice.RuleBased.Rules.StandardRules.TryInit
-- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: IRule.TryInit(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
     nameWithType: IRule.TryInit
     fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
@@ -885,15 +885,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
     nameWithType: IRule.TryInit
     fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
@@ -907,19 +907,19 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
+  fullName: SudokuSpice.BitVector
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -927,11 +927,6 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.RuleBased
-  commentId: N:SudokuSpice.RuleBased
-  name: SudokuSpice.RuleBased
-  nameWithType: SudokuSpice.RuleBased
-  fullName: SudokuSpice.RuleBased
 - uid: SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow*
   commentId: Overload:SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow
   name: GetMissingValuesForRow

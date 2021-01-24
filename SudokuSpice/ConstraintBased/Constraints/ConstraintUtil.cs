@@ -140,6 +140,38 @@ namespace SudokuSpice.ConstraintBased.Constraints
         public static bool TryAddRequirementsForValueIndex(
             ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix)
         {
+            return TryAddRequirementsForValueIndex(squares, valueIndex, matrix, requiredCount: 1, isOptional: false, out _);
+        }
+
+        /// <summary>
+        /// Add a <see cref="Requirement"/> connecting all the
+        /// <see cref="PossibleSquareValue"/>s at the given <paramref name="valueIndex"/> on the
+        /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
+        /// possible values in a known state (i.e. dropped or selected).
+        /// </summary>
+        /// <param name="squares">
+        /// The squares to add <see cref="PossibleSquareValue"/>s from.
+        /// </param>
+        /// <param name="valueIndex">
+        /// The value index of the possible value within the squares.
+        /// </param>
+        /// <param name="matrix">The matrix for the current puzzle being solved.</param>
+        /// <param name="requiredCount">
+        /// The number of possible square values required to satisfy the new
+        /// <see cref="Requirement"/>.
+        /// </param>
+        /// <param name="isOptional">
+        /// Whether or not the new <see cref="Requirement"/> is optional.
+        /// </param>
+        /// <param name="requirement">The new requirement, if successful, else null.</param>
+        /// <returns>
+        /// False if the requirement could not be added, for example because none of the
+        /// corresponding <see cref="PossibleSquareValue"/>s were still possible and the
+        /// requirement would have been empty. Else returns true.
+        /// </returns>
+        public static bool TryAddRequirementsForValueIndex(
+            ReadOnlySpan<Square?> squares, int valueIndex, ExactCoverMatrix matrix, int requiredCount, bool isOptional, out Requirement? requirement)
+        {
             var possibleSquareValues = new PossibleSquareValue[squares.Length];
             int numPossibleSquares = 0;
             for (int i = 0; i < squares.Length; i++)
@@ -159,12 +191,16 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             if (numPossibleSquares == 0)
             {
+                requirement = null;
                 return false;
             }
-            Requirement.CreateFullyConnected(
+            requirement = Requirement.CreateFullyConnected(
                 matrix,
-                possibleSquareValues[0..numPossibleSquares]);
+                possibleSquareValues[0..numPossibleSquares],
+                requiredCount: requiredCount,
+                isOptional: isOptional);
             return true;
         }
+
     }
 }

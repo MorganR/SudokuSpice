@@ -25,8 +25,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.True(possibility.TryDrop());
             Assert.Equal(3, square.NumPossibleValues);
             Assert.Equal(PossibilityState.DROPPED, possibility.State);
-            Assert.DoesNotContain(linkA, constraintA.GetLinks());
-            Assert.DoesNotContain(linkB, constraintB.GetLinks());
+            Assert.DoesNotContain(linkA, constraintA.GetPossibleValueLinks());
+            Assert.DoesNotContain(linkB, constraintB.GetPossibleValueLinks());
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Equal(4, square.NumPossibleValues);
             Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
             Assert.Same(linkA, constraintA.FirstPossibilityLink);
-            Assert.Contains(linkB, constraintB.GetLinks());
+            Assert.Contains(linkB, constraintB.GetPossibleValueLinks());
         }
 
         [Fact]
@@ -75,8 +75,8 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
             Requirement constraintA = linkA.Objective;
             Requirement constraintB = linkB.Objective;
-            Assert.Contains(linkA, constraintA.GetLinks());
-            Assert.Contains(linkB, constraintB.GetLinks());
+            Assert.Contains(linkA, constraintA.GetPossibleValueLinks());
+            Assert.Contains(linkB, constraintB.GetPossibleValueLinks());
         }
 
         [Fact]
@@ -101,8 +101,8 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Assert.Equal(4, square.NumPossibleValues);
             Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
-            Assert.Contains(linkA, requirementA.GetLinks());
-            Assert.Contains(linkB, requirementB.GetLinks());
+            Assert.Contains(linkA, requirementA.GetPossibleValueLinks());
+            Assert.Contains(linkB, requirementB.GetPossibleValueLinks());
         }
 
         [Fact]
@@ -135,8 +135,8 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Requirement requirementA = possibility.FirstLink.Objective;
             Requirement requirementB = possibility.FirstLink.NextOnPossibility.Objective;
-            Assert.True(requirementA.AreRequiredLinksSelected);
-            Assert.True(requirementB.AreRequiredLinksSelected);
+            Assert.True(requirementA.AreAllRequiredPossibilitiesSelected);
+            Assert.True(requirementB.AreAllRequiredPossibilitiesSelected);
             Assert.DoesNotContain(requirementA, matrix.GetUnsatisfiedRequirements());
             Assert.DoesNotContain(requirementB, matrix.GetUnsatisfiedRequirements());
         }
@@ -155,9 +155,9 @@ namespace SudokuSpice.ConstraintBased.Test
 
             Requirement requirementA = possibility.FirstLink.Objective;
             Requirement requirementB = possibility.FirstLink.NextOnPossibility.Objective;
-            Assert.Equal(4, requirementA.GetLinks().Count());
-            Assert.Equal(4, requirementB.GetLinks().Count());
-            foreach (Link<PossibleSquareValue, Requirement> link in requirementA.GetLinks())
+            Assert.Equal(4, requirementA.GetPossibleValueLinks().Count());
+            Assert.Equal(4, requirementB.GetPossibleValueLinks().Count());
+            foreach (Link<PossibleSquareValue, Requirement> link in requirementA.GetPossibleValueLinks())
             {
                 if (link.Possibility == possibility)
                 {
@@ -165,7 +165,7 @@ namespace SudokuSpice.ConstraintBased.Test
                 }
                 Assert.Equal(PossibilityState.DROPPED, link.Possibility.State);
             }
-            foreach (Link<PossibleSquareValue, Requirement> link in requirementB.GetLinks())
+            foreach (Link<PossibleSquareValue, Requirement> link in requirementB.GetPossibleValueLinks())
             {
                 if (link.Possibility == possibility)
                 {
@@ -211,16 +211,16 @@ namespace SudokuSpice.ConstraintBased.Test
             Link<PossibleSquareValue, Requirement> linkB = linkA.NextOnPossibility;
             Requirement constraintA = linkA.Objective;
             Requirement constraintB = linkB.Objective;
-            Assert.False(constraintA.AreRequiredLinksSelected);
-            Assert.False(constraintB.AreRequiredLinksSelected);
-            foreach (Link<PossibleSquareValue, Requirement> link in constraintA.GetLinks())
+            Assert.False(constraintA.AreAllRequiredPossibilitiesSelected);
+            Assert.False(constraintB.AreAllRequiredPossibilitiesSelected);
+            foreach (Link<PossibleSquareValue, Requirement> link in constraintA.GetPossibleValueLinks())
             {
                 if (link != linkA)
                 {
                     Assert.Equal(PossibilityState.UNKNOWN, link.Possibility.State);
                 }
             }
-            foreach (Link<PossibleSquareValue, Requirement> link in constraintB.GetLinks())
+            foreach (Link<PossibleSquareValue, Requirement> link in constraintB.GetPossibleValueLinks())
             {
                 if (link != linkB)
                 {

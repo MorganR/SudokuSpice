@@ -1,39 +1,39 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.AndGroup
-  commentId: T:SudokuSpice.ConstraintBased.AndGroup
-  id: AndGroup
-  parent: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
+  id: MagicBoxConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
   children:
-  - SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement},System.Boolean)
-  - SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup},System.Boolean)
+  - SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)
+  - SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
   langs:
   - csharp
   - vb
-  name: AndGroup
-  nameWithType: AndGroup
-  fullName: SudokuSpice.ConstraintBased.AndGroup
+  name: MagicBoxConstraint
+  nameWithType: MagicBoxConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
   type: Class
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/AndGroup.cs
+      path: SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
-    id: AndGroup
-    path: ../SudokuSpice/ConstraintBased/AndGroup.cs
-    startLine: 6
+    id: MagicBoxConstraint
+    path: ../SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
+    startLine: 7
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
+  namespace: SudokuSpice.ConstraintBased.Constraints
   syntax:
-    content: 'public class AndGroup : RequirementGroup, IObjective<RequirementGroup, Requirement>, IObjective<RequirementGroup, RequirementGroup>, IPossibility<RequirementGroup, RequirementGroup>'
+    content: 'public class MagicBoxConstraint : IConstraint'
     content.vb: >-
-      Public Class AndGroup
-          Inherits RequirementGroup
-          Implements IObjective(Of RequirementGroup, Requirement), IObjective(Of RequirementGroup, RequirementGroup), IPossibility(Of RequirementGroup, RequirementGroup)
+      Public Class MagicBoxConstraint
+          Implements IConstraint
   inheritance:
   - System.Object
-  - SudokuSpice.ConstraintBased.RequirementGroup
+  implements:
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -48,96 +48,91 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement},System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement},System.Boolean)
-  id: CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement},System.Boolean)
-  parent: SudokuSpice.ConstraintBased.AndGroup
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)
+  id: '#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)'
+  parent: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
   langs:
   - csharp
   - vb
-  name: CreateFullyConnected(ReadOnlySpan<Requirement>, Boolean)
-  nameWithType: AndGroup.CreateFullyConnected(ReadOnlySpan<Requirement>, Boolean)
-  fullName: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Requirement>, System.Boolean)
-  type: Method
+  name: MagicBoxConstraint(Int32, ReadOnlySpan<Int32>, Boolean)
+  nameWithType: MagicBoxConstraint.MagicBoxConstraint(Int32, ReadOnlySpan<Int32>, Boolean)
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.MagicBoxConstraint(System.Int32, System.ReadOnlySpan<System.Int32>, System.Boolean)
+  type: Constructor
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/AndGroup.cs
+      path: SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
-    id: CreateFullyConnected
-    path: ../SudokuSpice/ConstraintBased/AndGroup.cs
-    startLine: 20
+    id: .ctor
+    path: ../SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
+    startLine: 16
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
+  namespace: SudokuSpice.ConstraintBased.Constraints
   syntax:
-    content: public static AndGroup CreateFullyConnected(ReadOnlySpan<Requirement> requirements, bool isOptional = false)
+    content: public MagicBoxConstraint(int size, ReadOnlySpan<int> magicBoxIndices, bool includeDiagonals = true)
     parameters:
-    - id: requirements
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement}
-    - id: isOptional
+    - id: size
+      type: System.Int32
+    - id: magicBoxIndices
+      type: System.ReadOnlySpan{System.Int32}
+    - id: includeDiagonals
       type: System.Boolean
-    return:
-      type: SudokuSpice.ConstraintBased.AndGroup
-    content.vb: Public Shared Function CreateFullyConnected(requirements As ReadOnlySpan(Of Requirement), isOptional As Boolean = False) As AndGroup
-  overload: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected*
-  nameWithType.vb: AndGroup.CreateFullyConnected(ReadOnlySpan(Of Requirement), Boolean)
+    content.vb: Public Sub New(size As Integer, magicBoxIndices As ReadOnlySpan(Of Integer), includeDiagonals As Boolean = True)
+  overload: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor*
+  nameWithType.vb: MagicBoxConstraint.MagicBoxConstraint(Int32, ReadOnlySpan(Of Int32), Boolean)
   modifiers.csharp:
   - public
-  - static
   modifiers.vb:
   - Public
-  - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Requirement), System.Boolean)
-  name.vb: CreateFullyConnected(ReadOnlySpan(Of Requirement), Boolean)
-- uid: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup},System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup},System.Boolean)
-  id: CreateFullyConnected(System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup},System.Boolean)
-  parent: SudokuSpice.ConstraintBased.AndGroup
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.MagicBoxConstraint(System.Int32, System.ReadOnlySpan(Of System.Int32), System.Boolean)
+  name.vb: MagicBoxConstraint(Int32, ReadOnlySpan(Of Int32), Boolean)
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  id: TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  parent: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
   langs:
   - csharp
   - vb
-  name: CreateFullyConnected(ReadOnlySpan<RequirementGroup>, Boolean)
-  nameWithType: AndGroup.CreateFullyConnected(ReadOnlySpan<RequirementGroup>, Boolean)
-  fullName: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan<SudokuSpice.ConstraintBased.RequirementGroup>, System.Boolean)
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  nameWithType: MagicBoxConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
   type: Method
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/AndGroup.cs
+      path: SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice
-    id: CreateFullyConnected
-    path: ../SudokuSpice/ConstraintBased/AndGroup.cs
-    startLine: 30
+    id: TryConstrain
+    path: ../SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
+    startLine: 31
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
+  namespace: SudokuSpice.ConstraintBased.Constraints
   syntax:
-    content: public static AndGroup CreateFullyConnected(ReadOnlySpan<RequirementGroup> groups, bool isOptional = false)
+    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
     parameters:
-    - id: groups
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup}
-    - id: isOptional
-      type: System.Boolean
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+    - id: matrix
+      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
     return:
-      type: SudokuSpice.ConstraintBased.AndGroup
-    content.vb: Public Shared Function CreateFullyConnected(groups As ReadOnlySpan(Of RequirementGroup), isOptional As Boolean = False) As AndGroup
-  overload: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected*
-  nameWithType.vb: AndGroup.CreateFullyConnected(ReadOnlySpan(Of RequirementGroup), Boolean)
+      type: System.Boolean
+    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix) As Boolean
+  overload: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain*
+  implements:
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
   modifiers.csharp:
   - public
-  - static
   modifiers.vb:
   - Public
-  - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.RequirementGroup), System.Boolean)
-  name.vb: CreateFullyConnected(ReadOnlySpan(Of RequirementGroup), Boolean)
 references:
-- uid: SudokuSpice.ConstraintBased
-  commentId: N:SudokuSpice.ConstraintBased
-  name: SudokuSpice.ConstraintBased
-  nameWithType: SudokuSpice.ConstraintBased
-  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.Constraints
+  commentId: N:SudokuSpice.ConstraintBased.Constraints
+  name: SudokuSpice.ConstraintBased.Constraints
+  nameWithType: SudokuSpice.ConstraintBased.Constraints
+  fullName: SudokuSpice.ConstraintBased.Constraints
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -145,12 +140,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.ConstraintBased.RequirementGroup
-  commentId: T:SudokuSpice.ConstraintBased.RequirementGroup
-  parent: SudokuSpice.ConstraintBased
-  name: RequirementGroup
-  nameWithType: RequirementGroup
-  fullName: SudokuSpice.ConstraintBased.RequirementGroup
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
+  name: IConstraint
+  nameWithType: IConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -436,21 +431,28 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected*
-  commentId: Overload:SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected
-  name: CreateFullyConnected
-  nameWithType: AndGroup.CreateFullyConnected
-  fullName: SudokuSpice.ConstraintBased.AndGroup.CreateFullyConnected
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Requirement}
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor
+  name: MagicBoxConstraint
+  nameWithType: MagicBoxConstraint.MagicBoxConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.MagicBoxConstraint
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System
   definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<Requirement>
-  nameWithType: ReadOnlySpan<Requirement>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Requirement>
-  nameWithType.vb: ReadOnlySpan(Of Requirement)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Requirement)
-  name.vb: ReadOnlySpan(Of Requirement)
+  name: ReadOnlySpan<Int32>
+  nameWithType: ReadOnlySpan<Int32>
+  fullName: System.ReadOnlySpan<System.Int32>
+  nameWithType.vb: ReadOnlySpan(Of Int32)
+  fullName.vb: System.ReadOnlySpan(Of System.Int32)
+  name.vb: ReadOnlySpan(Of Int32)
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
@@ -460,10 +462,11 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.Requirement
-    name: Requirement
-    nameWithType: Requirement
-    fullName: SudokuSpice.ConstraintBased.Requirement
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -476,10 +479,11 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.Requirement
-    name: Requirement
-    nameWithType: Requirement
-    fullName: SudokuSpice.ConstraintBased.Requirement
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -490,12 +494,6 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.ConstraintBased.AndGroup
-  commentId: T:SudokuSpice.ConstraintBased.AndGroup
-  parent: SudokuSpice.ConstraintBased
-  name: AndGroup
-  nameWithType: AndGroup
-  fullName: SudokuSpice.ConstraintBased.AndGroup
 - uid: System.ReadOnlySpan`1
   commentId: T:System.ReadOnlySpan`1
   isExternal: true
@@ -535,45 +533,80 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.RequirementGroup}
-  parent: System
-  definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<RequirementGroup>
-  nameWithType: ReadOnlySpan<RequirementGroup>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.RequirementGroup>
-  nameWithType.vb: ReadOnlySpan(Of RequirementGroup)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.RequirementGroup)
-  name.vb: ReadOnlySpan(Of RequirementGroup)
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain
+  name: TryConstrain
+  nameWithType: MagicBoxConstraint.TryConstrain
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  parent: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  nameWithType: IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
   spec.csharp:
-  - uid: System.ReadOnlySpan`1
-    name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: SudokuSpice.ConstraintBased.RequirementGroup
-    name: RequirementGroup
-    nameWithType: RequirementGroup
-    fullName: SudokuSpice.ConstraintBased.RequirementGroup
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.ReadOnlySpan`1
-    name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.RequirementGroup
-    name: RequirementGroup
-    nameWithType: RequirementGroup
-    fullName: SudokuSpice.ConstraintBased.RequirementGroup
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+    name: TryConstrain
+    nameWithType: IConstraint.TryConstrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
   - name: )
     nameWithType: )
     fullName: )
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+    name: TryConstrain
+    nameWithType: IConstraint.TryConstrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+    name: ExactCoverMatrix
+    nameWithType: ExactCoverMatrix
+    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverMatrix
+  nameWithType: ExactCoverMatrix
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased

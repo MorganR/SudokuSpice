@@ -29,8 +29,9 @@ namespace SudokuSpice.ConstraintBased
         internal Link<PossibleSquareValue, Requirement>? FirstPossibilityLink { get; private set; }
         internal Link<Requirement, RequirementGroup>? FirstGroupLink { get; private set; }
         internal int CountUnselected => _count - _selectedCount;
-        internal bool AreAllLinksRequired => _count == _requiredCount;
-        internal bool AreRequiredLinksSelected => _selectedCount == _requiredCount;
+        internal bool AreAllPossibilitiesRequired => _count == _requiredCount;
+        internal bool AreAllRequiredPossibilitiesSelected => _selectedCount == _requiredCount;
+        internal bool IsOptional => _isOptional;
         internal Requirement Next { get; set; }
         internal Requirement Previous { get; set; }
 
@@ -46,9 +47,9 @@ namespace SudokuSpice.ConstraintBased
         internal Requirement CopyToMatrix(ExactCoverMatrix matrix)
         {
             Debug.Assert(FirstPossibilityLink != null, $"Can't copy a requirement with a null {nameof(FirstPossibilityLink)}.");
-            Debug.Assert(!AreRequiredLinksSelected, $"Can't copy a requirement that's already satisfied.");
+            Debug.Assert(!AreAllRequiredPossibilitiesSelected, $"Can't copy a requirement that's already satisfied.");
             var copy = new Requirement(_isOptional, _requiredCount, matrix);
-            foreach (Link<PossibleSquareValue, Requirement>? link in GetLinks())
+            foreach (Link<PossibleSquareValue, Requirement>? link in GetPossibleValueLinks())
             {
                 Square? square = matrix.GetSquare(link.Possibility.Square.Coordinate);
                 Debug.Assert(square != null,
@@ -115,7 +116,7 @@ namespace SudokuSpice.ConstraintBased
 
         void IObjective<Requirement, PossibleSquareValue>.Append(Link<PossibleSquareValue, Requirement> link)
         {
-            Debug.Assert(!GetLinks().Contains(link), $"Constraint already contained possible square value at {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} when calling {nameof(Append)}.");
+            Debug.Assert(!GetPossibleValueLinks().Contains(link), $"Constraint already contained possible square value at {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} when calling {nameof(Append)}.");
             if (FirstPossibilityLink is null)
             {
                 FirstPossibilityLink = link;
@@ -126,28 +127,28 @@ namespace SudokuSpice.ConstraintBased
             ++_count;
         }
 
-        internal bool TrySelectPossibility(Link<PossibleSquareValue, Requirement> sourceLink)
+        internal bool TrySelectPossibility(Link<PossibleSquareValue, Requirement> possibleValueToRequirement)
         {
-            Debug.Assert(!AreRequiredLinksSelected, $"Constraint was already satisfied when selecting square {sourceLink.Possibility.Square.Coordinate}, value: {sourceLink.Possibility.ValueIndex}.");
-            Debug.Assert(FirstPossibilityLink != null, $"Tried to satisfy constraint via square {sourceLink.Possibility.Square.Coordinate}, value: {sourceLink.Possibility.ValueIndex} but {nameof(FirstPossibilityLink)} was null.");
-            Debug.Assert(GetLinks().Contains(sourceLink), $"Constraint was missing possible square {sourceLink.Possibility.Square.Coordinate}, value: {sourceLink.Possibility.ValueIndex} when satisfying constraint.");
+            Debug.Assert(!AreAllRequiredPossibilitiesSelected, $"Constraint was already satisfied when selecting square {possibleValueToRequirement.Possibility.Square.Coordinate}, value: {possibleValueToRequirement.Possibility.ValueIndex}.");
+            Debug.Assert(FirstPossibilityLink != null, $"Tried to satisfy constraint via square {possibleValueToRequirement.Possibility.Square.Coordinate}, value: {possibleValueToRequirement.Possibility.ValueIndex} but {nameof(FirstPossibilityLink)} was null.");
+            Debug.Assert(GetPossibleValueLinks().Contains(possibleValueToRequirement), $"Constraint was missing possible square {possibleValueToRequirement.Possibility.Square.Coordinate}, value: {possibleValueToRequirement.Possibility.ValueIndex} when satisfying constraint.");
             ++_selectedCount;
-            if (!AreRequiredLinksSelected)
+            if (!AreAllRequiredPossibilitiesSelected)
             {
                 // Drop it from the linked list so we don't consider it a possible value anymore.
                 // Note that the count does not change, because this link is still part of the
                 // constraint; it's just hidden from the linked list of uncertain possible square
                 // values.
-                if (FirstPossibilityLink == sourceLink)
+                if (FirstPossibilityLink == possibleValueToRequirement)
                 {
-                    FirstPossibilityLink = sourceLink.NextOnObjective;
+                    FirstPossibilityLink = possibleValueToRequirement.NextOnObjective;
                 }
-                sourceLink.PopFromObjective();
+                possibleValueToRequirement.PopFromObjective();
                 return true;
             }
             // TODO: Only need to detach other links from objectives, excluding the sourcelink.
             if (!Links.TryUpdateOthersOnObjective(
-                sourceLink,
+                possibleValueToRequirement,
                 toDrop => toDrop.Possibility.TryDrop(),
                 toReturn => toReturn.Possibility.Return()))
             {
@@ -166,7 +167,7 @@ namespace SudokuSpice.ConstraintBased
                     }))
                 {
                     Links.RevertOthersOnObjective(
-                        sourceLink,
+                        possibleValueToRequirement,
                         toReturn => toReturn.Possibility.Return());
                     return false;
                 }
@@ -177,7 +178,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal void DeselectPossibility(Link<PossibleSquareValue, Requirement> sourceLink)
         {
-            if (!AreRequiredLinksSelected)
+            if (!AreAllRequiredPossibilitiesSelected)
             {
                 // In this case, this link was removed but no other links were modified. Simply
                 // reinsert the link.
@@ -202,17 +203,17 @@ namespace SudokuSpice.ConstraintBased
         internal bool TryDropPossibility(Link<PossibleSquareValue, Requirement> link)
         {
             Debug.Assert(
-                GetLinks().Contains(link),
-                $"Can't remove missing possible square {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} from constraint.");
+                GetPossibleValueLinks().Contains(link),
+                $"Can't remove missing possible square {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} from requirement.");
             Debug.Assert(
                 link.Possibility.State != PossibilityState.SELECTED,
                 "Can't detach an already selected possibility.");
             // If the requirement is already satisfied then we can skip this.
-            if (AreRequiredLinksSelected)
+            if (AreAllRequiredPossibilitiesSelected)
             {
                 return true;
             }
-            if (AreAllLinksRequired)
+            if (AreAllPossibilitiesRequired)
             {
                 if (!_isOptional)
                 {
@@ -228,10 +229,15 @@ namespace SudokuSpice.ConstraintBased
                         return false;
                     }
                 }
+                _PopFromMatrix();
             }
             if (FirstPossibilityLink == link)
             {
                 FirstPossibilityLink = link.NextOnObjective;
+                if (FirstPossibilityLink == link)
+                {
+                    FirstPossibilityLink = null;
+                }
             }
             link.PopFromObjective();
             --_count;
@@ -241,46 +247,72 @@ namespace SudokuSpice.ConstraintBased
         internal void ReattachPossibility(Link<PossibleSquareValue, Requirement> link)
         {
             // If the constraint is satisfied then we can skip this since this link was never removed.
-            if (AreRequiredLinksSelected)
+            if (AreAllRequiredPossibilitiesSelected)
             {
                 return;
             }
-            Debug.Assert(!GetLinks().Contains(link), $"{nameof(Requirement)} already contained possible square value at {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} when calling {nameof(ReattachPossibility)}.");
+            Debug.Assert(!GetPossibleValueLinks().Contains(link), $"{nameof(Requirement)} already contained possible square value at {link.Possibility.Square.Coordinate}, value: {link.Possibility.ValueIndex} when calling {nameof(ReattachPossibility)}.");
             Debug.Assert(
                 link.Possibility.State != PossibilityState.SELECTED,
                 "Shouldn't need to reattach a selected possibility.");
             link.ReinsertToObjective();
-            if (FirstGroupLink is not null)
+            if (FirstPossibilityLink is null)
             {
-                Links.RevertOnPossibility(FirstGroupLink, link => link.Objective.ReturnPossibility(link));
+                FirstPossibilityLink = link;
             }
             ++_count;
+            if (AreAllPossibilitiesRequired)
+            {
+                _ReinsertToMatrix();
+                if (FirstGroupLink is not null)
+                {
+                    Links.RevertOnPossibility(
+                        FirstGroupLink,
+                        toReturn =>toReturn.Objective.ReturnPossibility(toReturn));
+                }
+            }
         }
 
-        internal bool TryDrop(Link<Requirement, RequirementGroup> sourceLink)
+        internal bool TryDrop(Link<Requirement, RequirementGroup> thisToParent)
         {
+            Debug.Assert(
+                FirstPossibilityLink is not null,
+                $"{nameof(TryDrop)} called with null {nameof(FirstPossibilityLink)}.");
             Debug.Assert(
                 FirstGroupLink is not null,
                 $"{nameof(TryDrop)} called with null {nameof(FirstGroupLink)}.");
+            Debug.Assert(
+                FirstGroupLink.GetLinksOnPossibility().Contains(thisToParent),
+                "Cannot drop a requirement from a disconnected link.");
             if (!_isOptional)
             {
                 return false;
             }
             // Drop this possibility from the other groups
             if (!Links.TryUpdateOthersOnPossibility(
-                sourceLink,
+                thisToParent,
                 toDrop => toDrop.Objective.TryDropPossibility(toDrop),
                 toReturn => toReturn.Objective.ReturnPossibility(toReturn)))
             {
                 return false;
             }
+            Links.TryUpdateOnObjective(
+                FirstPossibilityLink,
+                toDetachFrom => toDetachFrom.Possibility.TryDetachRequirement(toDetachFrom),
+                toReattachTo => toReattachTo.Possibility.ReattachRequirement(toReattachTo));
             _PopFromMatrix();
             return true;
         }
 
         internal void Return(Link<Requirement, RequirementGroup> sourceLink)
         {
+            Debug.Assert(
+                FirstPossibilityLink is not null,
+                $"{nameof(Return)} called with null {nameof(FirstPossibilityLink)}.");
             _ReinsertToMatrix();
+            Links.RevertOnObjective(
+                FirstPossibilityLink,
+                toReattachTo => toReattachTo.Possibility.ReattachRequirement(toReattachTo));
             Links.RevertOthersOnPossibility(
                 sourceLink,
                 toReturnTo => toReturnTo.Objective.ReturnPossibility(toReturnTo));
@@ -311,7 +343,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
-        internal IEnumerable<Link<PossibleSquareValue, Requirement>> GetLinks()
+        internal IEnumerable<Link<PossibleSquareValue, Requirement>> GetPossibleValueLinks()
         {
             if (FirstPossibilityLink == null)
             {
@@ -343,6 +375,10 @@ namespace SudokuSpice.ConstraintBased
             if (Matrix.FirstRequirement == this)
             {
                 Matrix.FirstRequirement = Next;
+                if (Matrix.FirstRequirement == this)
+                {
+                    Matrix.FirstRequirement = null;
+                }
             }
         }
 
@@ -350,6 +386,10 @@ namespace SudokuSpice.ConstraintBased
         {
             Next.Previous = this;
             Previous.Next = this;
+            if (Matrix.FirstRequirement is null)
+            {
+                Matrix.FirstRequirement = this;
+            }
         }
     }
 }

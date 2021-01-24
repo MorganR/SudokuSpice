@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class PossibleSquareValue
+    <title>Class MagicBoxConstraint
    | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class PossibleSquareValue
+    <meta name="title" content="Class MagicBoxConstraint
    | SudokuSpice ">
     <meta name="generator" content="docfx 2.56.5.0">
     
@@ -68,19 +68,21 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint">
   
   
-  <h1 id="SudokuSpice_ConstraintBased_PossibleSquareValue" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue" class="text-break">Class PossibleSquareValue
+  <h1 id="SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint" data-uid="SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint" class="text-break">Class MagicBoxConstraint
   </h1>
-  <div class="markdown level0 summary"><p>Represents a row in the <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a>. This represents a possible value
-for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html#SudokuSpice_ConstraintBased_PossibleSquareValue_Square">Square</a>.</p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PossibleSquareValue</span></div>
+    <div class="level1"><span class="xref">MagicBoxConstraint</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstraint.html">IConstraint</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -106,108 +108,114 @@ for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValu
       <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.html">SudokuSpice.ConstraintBased.Constraints</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
-  <h5 id="SudokuSpice_ConstraintBased_PossibleSquareValue_syntax">Syntax</h5>
+  <h5 id="SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PossibleSquareValue : IPossibility&lt;PossibleSquareValue, Requirement&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class MagicBoxConstraint : IConstraint</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PossibleSquareValue_Square.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PossibleSquareValue.Square%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint__ctor_System_Int32_System_ReadOnlySpan_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.%23ctor(System.Int32%2CSystem.ReadOnlySpan%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/PossibleSquareValue.cs/#L21">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs/#L17">View Source</a>
   </span>
-  <a id="SudokuSpice_ConstraintBased_PossibleSquareValue_Square_" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue.Square*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PossibleSquareValue_Square" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue.Square">Square</h4>
-  <div class="markdown level1 summary"><p>Gets the square that this is a possible value for.</p>
-</div>
+  <a id="SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint__ctor_" data-uid="SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint__ctor_System_Int32_System_ReadOnlySpan_System_Int32__System_Boolean_" data-uid="SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)">MagicBoxConstraint(Int32, ReadOnlySpan&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Square Square { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MagicBoxConstraint(int size, ReadOnlySpan&lt;int&gt; magicBoxIndices, bool includeDiagonals = true)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PossibleSquareValue_State.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PossibleSquareValue.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/PossibleSquareValue.cs/#L25">View Source</a>
-  </span>
-  <a id="SudokuSpice_ConstraintBased_PossibleSquareValue_State_" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue.State*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PossibleSquareValue_State" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue.State">State</h4>
-  <div class="markdown level1 summary"><p>Gets the state of this row.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PossibilityState State { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.ConstraintBased.PossibilityState.html">PossibilityState</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PossibleSquareValue_ValueIndex.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/PossibleSquareValue.cs/#L17">View Source</a>
-  </span>
-  <a id="SudokuSpice_ConstraintBased_PossibleSquareValue_ValueIndex_" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_PossibleSquareValue_ValueIndex" data-uid="SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex">ValueIndex</h4>
-  <div class="markdown level1 summary"><p>Gets the index of the possible value that this represents. This index corresponds with
-<a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html#SudokuSpice_ConstraintBased_ExactCoverMatrix_AllPossibleValues">AllPossibleValues</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ValueIndex { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">size</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">magicBoxIndices</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">includeDiagonals</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint_TryConstrain_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverMatrix_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.ConstraintBased.ExactCoverMatrix)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs/#L32">View Source</a>
+  </span>
+  <a id="SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint_TryConstrain_" data-uid="SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint_TryConstrain_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverMatrix_" data-uid="SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)">TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a></td>
+        <td><span class="parametername">matrix</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstraint.html">IConstraint</a>
+  </div>
 </article>
           </div>
           
@@ -216,10 +224,10 @@ for a given <a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValu
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_PossibleSquareValue.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.PossibleSquareValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_MagicBoxConstraint.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/PossibleSquareValue.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
