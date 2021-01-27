@@ -32,7 +32,6 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 });
 
             var solution = solver.Solve(puzzle);
-            Assert.True(solver.HasUniqueSolution(puzzle));
             PuzzleTestUtils.AssertStandardPuzzleSolved(solution);
             _AssertMagicSquaresSatisfied(solution, 15, verifyDiagonals: false);
         }

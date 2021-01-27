@@ -10,6 +10,8 @@ namespace SudokuSpice.ConstraintBased
     /// </summary>
     public class PossibleSquareValue : IPossibility<PossibleSquareValue, Requirement>
     {
+        private Link<PossibleSquareValue, Requirement>? _detachedParentLinkThatCausedDrop;
+        
         /// <summary>
         /// Gets the index of the possible value that this represents. This index corresponds with
         /// <see cref="ExactCoverMatrix.AllPossibleValues"/>.
@@ -112,29 +114,49 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
-        internal bool TryDetachRequirement(Link<PossibleSquareValue, Requirement> sourceLink)
+        internal bool TryDetachRequirement(Link<PossibleSquareValue, Requirement> thisToRequirement)
         {
-            if (FirstLink == sourceLink)
+            if (FirstLink == thisToRequirement)
             {
-                FirstLink = sourceLink.NextOnPossibility;
-                if (FirstLink == sourceLink)
+                FirstLink = thisToRequirement.NextOnPossibility;
+                if (FirstLink == thisToRequirement)
                 {
                     FirstLink = null;
-                    sourceLink.PopFromPossibility();
-                    return TryDrop();
+                    _detachedParentLinkThatCausedDrop = thisToRequirement;
+                    if (!TryDrop())
+                    {
+                        _detachedParentLinkThatCausedDrop = null;
+                        FirstLink = thisToRequirement;
+                        return false;
+                    }
+                } else if (thisToRequirement.Objective.NonOptionalParents.Any(
+                    nonOptional => !FirstLink.GetLinksOnPossibility().Any(
+                        toRequirement => toRequirement.Objective.NonOptionalParents.Contains(nonOptional))))
+                {
+                    _detachedParentLinkThatCausedDrop = thisToRequirement;
+                    if (!TryDrop())
+                    {
+                        _detachedParentLinkThatCausedDrop = null;
+                        return false;
+                    }
                 }
             }
-            sourceLink.PopFromPossibility();
+            thisToRequirement.PopFromPossibility();
             return true;
         }
 
-        internal bool ReattachRequirement(Link<PossibleSquareValue, Requirement> sourceLink)
+        internal bool ReattachRequirement(Link<PossibleSquareValue, Requirement> thisToRequirement)
         {
-            sourceLink.ReinsertToPossibility();
+            thisToRequirement.ReinsertToPossibility();
             if (FirstLink is null)
             {
                 Return();
-                FirstLink = sourceLink;
+                _detachedParentLinkThatCausedDrop = null;
+                FirstLink = thisToRequirement;
+            } else if (_detachedParentLinkThatCausedDrop == thisToRequirement)
+            {
+                Return();
+                _detachedParentLinkThatCausedDrop = null;
             }
             return true;
         }

@@ -165,7 +165,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                 matrix, possibleValues, requiredCount: 3, isOptional: true);
             var group = RequirementGroup.RequireAllOf(new Requirement[] { requirement }, isOptional: false);
 
-            requirement.DetachGroup(group.ChildRequirementLink);
+            requirement.TryDetachGroup(group.ChildRequirementLink);
             Assert.Null(requirement.FirstGroupLink);
             requirement.ReattachGroup(group.ChildRequirementLink);
             Assert.Equal(group.ChildRequirementLink, requirement.FirstGroupLink);

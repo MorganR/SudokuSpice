@@ -20,9 +20,11 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly bool _isOptional;
         private readonly int _requiredCount;
+        private readonly HashSet<RequirementGroup>? _nonOptionalParents;
 
         private int _selectedCount;
         private int _count;
+        private Link<Requirement, RequirementGroup>? _detachedLinkThatCausedDrop;
 
         internal ExactCoverMatrix Matrix { get; private set; }
         [DisallowNull]
@@ -35,10 +37,16 @@ namespace SudokuSpice.ConstraintBased
         internal Requirement Next { get; set; }
         internal Requirement Previous { get; set; }
 
+        internal IReadOnlySet<RequirementGroup> NonOptionalParents => _nonOptionalParents;
+
         // Visible for testing
         internal Requirement(bool isOptional, int requiredCount, ExactCoverMatrix matrix)
         {
             _isOptional = isOptional;
+            if (isOptional)
+            {
+                _nonOptionalParents = new HashSet<RequirementGroup>();
+            }
             _requiredCount = requiredCount;
             Matrix = matrix;
             Next = Previous = this;
@@ -48,6 +56,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(FirstPossibilityLink != null, $"Can't copy a requirement with a null {nameof(FirstPossibilityLink)}.");
             Debug.Assert(!AreAllRequiredPossibilitiesSelected, $"Can't copy a requirement that's already satisfied.");
+            // TODO: Update to include parents
             var copy = new Requirement(_isOptional, _requiredCount, matrix);
             foreach (Link<PossibleSquareValue, Requirement>? link in GetPossibleValueLinks())
             {
@@ -125,6 +134,12 @@ namespace SudokuSpice.ConstraintBased
                 FirstPossibilityLink.PrependToObjective(link);
             }
             ++_count;
+        }
+
+        internal void AddNonOptionalParent(RequirementGroup parent)
+        {
+            _nonOptionalParents?.Add(parent);
+            // TODO: Add parent to matrix.
         }
 
         internal bool TrySelectPossibility(Link<PossibleSquareValue, Requirement> possibleValueToRequirement)
@@ -278,11 +293,11 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(
                 FirstPossibilityLink is not null,
                 $"{nameof(TryDrop)} called with null {nameof(FirstPossibilityLink)}.");
+            // Debug.Assert(
+            //     FirstGroupLink is not null,
+            //     $"{nameof(TryDrop)} called with null {nameof(FirstGroupLink)}.");
             Debug.Assert(
-                FirstGroupLink is not null,
-                $"{nameof(TryDrop)} called with null {nameof(FirstGroupLink)}.");
-            Debug.Assert(
-                FirstGroupLink.GetLinksOnPossibility().Contains(thisToParent),
+                FirstGroupLink?.GetLinksOnPossibility().Contains(thisToParent) ?? true,
                 "Cannot drop a requirement from a disconnected link.");
             if (!_isOptional)
             {
@@ -318,20 +333,37 @@ namespace SudokuSpice.ConstraintBased
                 toReturnTo => toReturnTo.Objective.ReturnPossibility(toReturnTo));
         }
 
-        internal void DetachGroup(Link<Requirement, RequirementGroup> link)
+        internal bool TryDetachGroup(Link<Requirement, RequirementGroup> thisToParent)
         {
             Debug.Assert(
                 FirstGroupLink is not null,
-                $"Cannot call {nameof(DetachGroup)} for unattached link.");
-            if (FirstGroupLink == link)
+                $"Cannot call {nameof(TryDetachGroup)} for unattached link.");
+            if (FirstGroupLink == thisToParent)
             {
                 FirstGroupLink = FirstGroupLink.NextOnPossibility;
-                if (FirstGroupLink == link)
+                if (FirstGroupLink == thisToParent)
                 {
                     FirstGroupLink = null;
+                    _detachedLinkThatCausedDrop = thisToParent;
+                    if (!TryDrop(thisToParent))
+                    {
+                        _detachedLinkThatCausedDrop = null;
+                        FirstGroupLink = thisToParent;
+                        return false;
+                    }
+                } else if (thisToParent.Objective.NonOptionalParents.Any(
+                    nonOptional => !FirstGroupLink.GetLinksOnPossibility().Any(toParent => toParent.Objective.NonOptionalParents.Contains(nonOptional))))
+                {
+                    _detachedLinkThatCausedDrop = thisToParent;
+                    if (!TryDrop(thisToParent))
+                    {
+                        _detachedLinkThatCausedDrop = null;
+                        return false;
+                    }
                 }
             }
-            link.PopFromPossibility();
+            thisToParent.PopFromPossibility();
+            return true;
         }
 
         internal void ReattachGroup(Link<Requirement, RequirementGroup> link)
@@ -339,7 +371,13 @@ namespace SudokuSpice.ConstraintBased
             link.ReinsertToPossibility();
             if (FirstGroupLink is null)
             {
+                Return(link);
                 FirstGroupLink = link;
+                _detachedLinkThatCausedDrop = null;
+            } else if (_detachedLinkThatCausedDrop == link)
+            {
+                Return(link);
+                _detachedLinkThatCausedDrop = null;
             }
         }
 

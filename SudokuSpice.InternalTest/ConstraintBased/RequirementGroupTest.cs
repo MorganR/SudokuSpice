@@ -335,7 +335,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             var childGroup = children[0];
             var childToParent = childGroup.ParentGroupLink;
-            childGroup.DetachParent(childToParent);
+            childGroup.TryDetachParent(childToParent);
             Assert.True(
                 childGroup.ParentGroupLink is null
                 || !childGroup.ParentGroupLink.GetLinksOnPossibility().Any(l => l.Objective == parentGroup));
