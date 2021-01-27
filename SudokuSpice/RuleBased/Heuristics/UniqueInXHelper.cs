@@ -12,7 +12,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         public UniqueInXHelper(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
             _previousPossiblesStack = new();
-            _numPossibleValues = puzzle.AllPossibleValues.Count;
+            _numPossibleValues = puzzle.AllPossibleValues.ComputeCount();
             _puzzle = puzzle;
         }
 

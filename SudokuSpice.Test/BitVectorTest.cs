@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace SudokuSpice.RuleBased.Test
+namespace SudokuSpice.Test
 {
     public class BitVectorTest
     {
@@ -94,33 +94,33 @@ namespace SudokuSpice.RuleBased.Test
         [InlineData(0b100, 1)]
         [InlineData(0b0011_1101, 5)]
         [InlineData(uint.MaxValue, 32)]
-        public void Count_OnConstruction_IsCorrect(uint data, int numBits)
+        public void ComputeCount_OnConstruction_IsCorrect(uint data, int numBits)
         {
             var vector = new BitVector(data);
-            Assert.Equal(numBits, vector.Count);
+            Assert.Equal(numBits, vector.ComputeCount());
         }
 
         [Fact]
-        public void Count_AfterMutations_IsCorrect()
+        public void ComputeCount_AfterMutations_IsCorrect()
         {
             var vector = new BitVector(0b1011);
 
             // Mutate (set)
             vector.SetBit(6);
             vector.SetBit(8);
-            Assert.Equal(5, vector.Count);
+            Assert.Equal(5, vector.ComputeCount());
 
             // No-op (set)
             vector.SetBit(8);
-            Assert.Equal(5, vector.Count);
+            Assert.Equal(5, vector.ComputeCount());
 
             // Mutate (unset)
             vector.UnsetBit(0);
-            Assert.Equal(4, vector.Count);
+            Assert.Equal(4, vector.ComputeCount());
 
             // No-op (unset)
             vector.UnsetBit(0);
-            Assert.Equal(4, vector.Count);
+            Assert.Equal(4, vector.ComputeCount());
         }
 
         [Theory]

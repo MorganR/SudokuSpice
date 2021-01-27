@@ -31,8 +31,8 @@ namespace SudokuSpice.RuleBased
         internal PossibleValues(int size, BitVector allPossible)
         {
             Debug.Assert(
-                size == allPossible.Count,
-                $"Size ({size}) must match all possible values count ({allPossible.Count}).");
+                size == allPossible.ComputeCount(),
+                $"Size ({size}) must match all possible values count ({allPossible.ComputeCount()}).");
             AllPossible = allPossible;
             _possibleValues = new BitVector[size][];
             for (int row = 0; row < size; ++row)

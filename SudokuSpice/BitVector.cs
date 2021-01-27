@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.Intrinsics.X86;
 
 namespace SudokuSpice
@@ -27,34 +28,7 @@ namespace SudokuSpice
         /// </summary>
         public uint Data { readonly get; private set; }
 
-        /// <summary>
-        /// Gets the count of bits that are set.
-        /// </summary>
-        /// <remarks>
-        /// This relies on the <see cref="Popcnt"/> hardware intrinsic to be efficient. If this
-        /// operation is not available on your hardware, then this function falls back to a
-        /// considerably less efficient iterative count over all the bits in the vector.
-        /// </remarks>
-        public readonly int Count
-        {
-            get {
-                if (Popcnt.IsSupported)
-                {
-                    return (int)Popcnt.PopCount(Data);
-                }
-                int count = 0;
-                for (int i = 0; i < 32; i++)
-                {
-                    if (IsBitSet(i))
-                    {
-                        count++;
-                    }
-                }
-                return count;
-            }
-        }
-
-        /// <summary>
+               /// <summary>
         /// Constructs a bit vector with the given data.
         /// </summary>
         /// <param name="data">The data to use for this bit vector.</param>
@@ -109,6 +83,16 @@ namespace SudokuSpice
         public void SetBit(int bit) => Data |= _masks[bit];
 
         /// <summary>
+        /// Gets the count of bits that are set.
+        /// </summary>
+        /// <remarks>
+        /// This relies on the <see cref="Popcnt"/> hardware intrinsic to be efficient. If this
+        /// operation is not available on your hardware, then this function falls back to a
+        /// less efficient software-based approach.
+        /// </remarks>
+        public readonly int ComputeCount() => BitOperations.PopCount(Data);
+
+        /// <summary>
         /// Checks if this vector is empty (i.e. no bits are set).
         /// </summary>
         /// <returns>True if empty.</returns>
@@ -133,7 +117,7 @@ namespace SudokuSpice
         {
             if (Popcnt.IsSupported)
             {
-                int numSetBits = Count;
+                int numSetBits = ComputeCount();
                 var setBits = new List<int>(numSetBits);
                 for (int i = 0; setBits.Count < numSetBits; i++)
                 {
@@ -182,7 +166,7 @@ namespace SudokuSpice
             int maxSetBits = setIndices.Length;
             if (Popcnt.IsSupported)
             {
-                int numSetBits = Count;
+                int numSetBits = ComputeCount();
                 maxSetBits = Math.Min(numSetBits, maxSetBits);
             }
             for (int i = 0;

@@ -179,7 +179,7 @@ namespace SudokuSpice.RuleBased
             var bestCoord = new Coordinate(0, 0);
             foreach (Coordinate c in _puzzle.GetUnsetCoords())
             {
-                int numPossibles = _puzzle.GetPossibleValues(in c).Count;
+                int numPossibles = _puzzle.GetPossibleValues(in c).ComputeCount();
                 if (numPossibles == 1)
                 {
                     return (c, 1);
