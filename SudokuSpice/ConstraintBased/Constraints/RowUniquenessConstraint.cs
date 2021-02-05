@@ -5,6 +5,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
     /// <summary>
     /// Enforces the constraint that all values in a row must be unique.
     /// </summary>
+    // TODO: Move these to public tests
     public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
@@ -14,7 +15,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                    stackalloc bool[matrix.AllPossibleValues.Length];
             for (int row = 0; row < puzzle.Size; row++)
             {
-                ReadOnlySpan<Square?> rowSquares = matrix.GetSquaresOnRow(row);
+                ReadOnlySpan<Possibility?[]?> rowSquares = matrix.GetPossibilitiesOnRow(row);
                 isConstraintSatisfiedAtIndex.Clear();
                 for (int col = 0; col < puzzle.Size; col++)
                 {
@@ -24,17 +25,18 @@ namespace SudokuSpice.ConstraintBased.Constraints
                         isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[puzzleValue.Value]] = true;
                     }
                 }
-                for (int valueIndex = 0; valueIndex < isConstraintSatisfiedAtIndex.Length; valueIndex++)
+                for (int possibilityIndex = 0; possibilityIndex < isConstraintSatisfiedAtIndex.Length; possibilityIndex++)
                 {
-                    if (isConstraintSatisfiedAtIndex[valueIndex])
+                    if (isConstraintSatisfiedAtIndex[possibilityIndex])
                     {
-                        if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(rowSquares, valueIndex))
+                        if (!ConstraintUtil.TryDropPossibilitiesAtIndex(rowSquares, possibilityIndex))
                         {
                             return false;
                         }
                         continue;
                     }
-                    if (!ConstraintUtil.TryAddRequirementsForValueIndex(rowSquares, valueIndex, matrix))
+                    if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(
+                        rowSquares, possibilityIndex, matrix, requiredCount: 1, objective: out _))
                     {
                         return false;
                     }

@@ -6,7 +6,7 @@ items:
   parent: SudokuSpice
   children:
   - SudokuSpice.BitVector.#ctor(System.UInt32)
-  - SudokuSpice.BitVector.Count
+  - SudokuSpice.BitVector.ComputeCount
   - SudokuSpice.BitVector.CreateWithSize(System.Int32)
   - SudokuSpice.BitVector.Data
   - SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
@@ -34,10 +34,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: BitVector
     path: ../SudokuSpice/BitVector.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -75,10 +75,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Data
     path: ../SudokuSpice/BitVector.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -91,44 +91,6 @@ items:
       type: System.UInt32
     content.vb: Public ReadOnly Property Data As UInteger
   overload: SudokuSpice.BitVector.Data*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: SudokuSpice.BitVector.Count
-  commentId: P:SudokuSpice.BitVector.Count
-  id: Count
-  parent: SudokuSpice.BitVector
-  langs:
-  - csharp
-  - vb
-  name: Count
-  nameWithType: BitVector.Count
-  fullName: SudokuSpice.BitVector.Count
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/BitVector.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
-    id: Count
-    path: ../SudokuSpice/BitVector.cs
-    startLine: 37
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nGets the count of bits that are set.\n"
-  remarks: "\nThis relies on the <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> hardware intrinsic to be efficient. If this\noperation is not available on your hardware, then this function falls back to a\nconsiderably less efficient iterative count over all the bits in the vector.\n"
-  example: []
-  syntax:
-    content: public int Count { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public ReadOnly Property Count As Integer
-  overload: SudokuSpice.BitVector.Count*
   modifiers.csharp:
   - public
   - get
@@ -150,10 +112,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/BitVector.cs
-    startLine: 60
+    startLine: 34
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -186,10 +148,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: CreateWithSize
     path: ../SudokuSpice/BitVector.cs
-    startLine: 69
+    startLine: 43
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -226,10 +188,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: FindIntersect
     path: ../SudokuSpice/BitVector.cs
-    startLine: 88
+    startLine: 62
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -270,10 +232,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: FindUnion
     path: ../SudokuSpice/BitVector.cs
-    startLine: 96
+    startLine: 70
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -314,10 +276,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: UnsetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 102
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -350,10 +312,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: SetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 108
+    startLine: 82
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -367,6 +329,41 @@ items:
       description: The zero-based index of the bit to set.
     content.vb: Public Sub SetBit(bit As Integer)
   overload: SudokuSpice.BitVector.SetBit*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.BitVector.ComputeCount
+  commentId: M:SudokuSpice.BitVector.ComputeCount
+  id: ComputeCount
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: ComputeCount()
+  nameWithType: BitVector.ComputeCount()
+  fullName: SudokuSpice.BitVector.ComputeCount()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: ComputeCount
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 92
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nGets the count of bits that are set.\n"
+  remarks: "\nThis relies on the <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> hardware intrinsic to be efficient. If this\noperation is not available on your hardware, then this function falls back to a\nless efficient software-based approach.\n"
+  example: []
+  syntax:
+    content: public int ComputeCount()
+    return:
+      type: System.Int32
+    content.vb: Public Function ComputeCount As Integer
+  overload: SudokuSpice.BitVector.ComputeCount*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -386,10 +383,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: IsEmpty
     path: ../SudokuSpice/BitVector.cs
-    startLine: 114
+    startLine: 98
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -421,10 +418,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: IsBitSet
     path: ../SudokuSpice/BitVector.cs
-    startLine: 121
+    startLine: 105
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -460,10 +457,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 131
+    startLine: 115
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -496,10 +493,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: PopulateSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 177
+    startLine: 161
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -539,10 +536,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 199
+    startLine: 183
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -576,10 +573,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 201
+    startLine: 185
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -614,10 +611,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: GetHashCode
     path: ../SudokuSpice/BitVector.cs
-    startLine: 210
+    startLine: 194
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -649,10 +646,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/BitVector.cs
-    startLine: 215
+    startLine: 199
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -686,10 +683,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: op_Equality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 217
+    startLine: 201
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -725,10 +722,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice
+      repo: https://github.com/MorganR/SudokuSpice.git
     id: op_Inequality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 218
+    startLine: 202
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -1006,21 +1003,6 @@ references:
   name: UInt32
   nameWithType: UInt32
   fullName: System.UInt32
-- uid: System.Runtime.Intrinsics.X86.Popcnt
-  commentId: T:System.Runtime.Intrinsics.X86.Popcnt
-  isExternal: true
-- uid: SudokuSpice.BitVector.Count*
-  commentId: Overload:SudokuSpice.BitVector.Count
-  name: Count
-  nameWithType: BitVector.Count
-  fullName: SudokuSpice.BitVector.Count
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: SudokuSpice.BitVector.#ctor*
   commentId: Overload:SudokuSpice.BitVector.#ctor
   name: BitVector
@@ -1031,6 +1013,13 @@ references:
   name: CreateWithSize
   nameWithType: BitVector.CreateWithSize
   fullName: SudokuSpice.BitVector.CreateWithSize
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
@@ -1057,6 +1046,14 @@ references:
   name: SetBit
   nameWithType: BitVector.SetBit
   fullName: SudokuSpice.BitVector.SetBit
+- uid: System.Runtime.Intrinsics.X86.Popcnt
+  commentId: T:System.Runtime.Intrinsics.X86.Popcnt
+  isExternal: true
+- uid: SudokuSpice.BitVector.ComputeCount*
+  commentId: Overload:SudokuSpice.BitVector.ComputeCount
+  name: ComputeCount
+  nameWithType: BitVector.ComputeCount
+  fullName: SudokuSpice.BitVector.ComputeCount
 - uid: SudokuSpice.BitVector.IsEmpty*
   commentId: Overload:SudokuSpice.BitVector.IsEmpty
   name: IsEmpty

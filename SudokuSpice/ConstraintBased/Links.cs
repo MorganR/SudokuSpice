@@ -19,14 +19,12 @@ namespace SudokuSpice.ConstraintBased
         /// Undoes the operations performed by a succesful call to <paramref name="tryFn"/>.
         /// </param>
         /// <returns>True if all calls to <paramref name="tryFn"/> succeed, else false.</returns>
-        internal static bool TryUpdateOnPossibility<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Func<Link<TPossibility, TObjective>, bool> tryFn,
-            Action<Link<TPossibility, TObjective>> undoFn)
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static bool TryUpdateOnPossibility(
+            Link sourceLink,
+            Func<Link, bool> tryFn,
+            Action<Link> undoFn)
         {
-            Link<TPossibility, TObjective> link = sourceLink;
+            Link link = sourceLink;
             do
             {
                 if (!tryFn(link))
@@ -59,14 +57,12 @@ namespace SudokuSpice.ConstraintBased
         /// <paramref name="fn"/> is called.
         /// </param>
         /// <param name="fn">The operation to perform.</param>
-        internal static void RevertOnPossibility<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Action<Link<TPossibility, TObjective>> fn)
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static void RevertOnPossibility(
+            Link sourceLink,
+            Action<Link> fn)
         {
-            Link<TPossibility, TObjective> lastLink = sourceLink.PreviousOnPossibility;
-            Link<TPossibility, TObjective> link = lastLink;
+            Link lastLink = sourceLink.PreviousOnPossibility;
+            Link link = lastLink;
             do
             {
                 fn(link);
@@ -92,14 +88,12 @@ namespace SudokuSpice.ConstraintBased
         /// Undoes the operations performed by a succesful call to <paramref name="tryFn"/>.
         /// </param>
         /// <returns>True if all calls to <paramref name="tryFn"/> succeed, else false.</returns>
-        internal static bool TryUpdateOthersOnPossibility<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Func<Link<TPossibility, TObjective>, bool> tryFn,
-            Action<Link<TPossibility, TObjective>> undoFn) 
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static bool TryUpdateOthersOnPossibility(
+            Link sourceLink,
+            Func<Link, bool> tryFn,
+            Action<Link> undoFn) 
         {
-            for (Link<TPossibility, TObjective>? toUpdate = sourceLink.NextOnPossibility;
+            for (Link? toUpdate = sourceLink.NextOnPossibility;
                 toUpdate != sourceLink;
                 toUpdate = toUpdate.NextOnPossibility)
             {
@@ -133,14 +127,12 @@ namespace SudokuSpice.ConstraintBased
         /// The source to iterate from. <paramref name="fn"/> is not called on this link.
         /// </param>
         /// <param name="fn">The operation to perform.</param>
-        internal static void RevertOthersOnPossibility<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Action<Link<TPossibility, TObjective>> fn) 
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static void RevertOthersOnPossibility(
+            Link sourceLink,
+            Action<Link> fn) 
         {
             for (
-                Link<TPossibility, TObjective>? toRevert = sourceLink.PreviousOnPossibility;
+                Link? toRevert = sourceLink.PreviousOnPossibility;
                 toRevert != sourceLink;
                 toRevert = toRevert.PreviousOnPossibility)
             {
@@ -163,14 +155,12 @@ namespace SudokuSpice.ConstraintBased
         /// Undoes the operations performed by a succesful call to <paramref name="tryFn"/>.
         /// </param>
         /// <returns>True if all calls to <paramref name="tryFn"/> succeed, else false.</returns>
-        internal static bool TryUpdateOnObjective<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Func<Link<TPossibility, TObjective>, bool> tryFn,
-            Action<Link<TPossibility, TObjective>> undoFn)
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static bool TryUpdateOnObjective(
+            Link sourceLink,
+            Func<Link, bool> tryFn,
+            Action<Link> undoFn)
         {
-            Link<TPossibility, TObjective> link = sourceLink;
+            Link link = sourceLink;
             do
             {
                 if (!tryFn(link))
@@ -197,13 +187,11 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="fn">
         /// The operation to perform on each link.
         /// </param>
-        internal static void UpdateOnObjective<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Action<Link<TPossibility, TObjective>> fn)
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static void UpdateOnObjective(
+            Link sourceLink,
+            Action<Link> fn)
         {
-            Link<TPossibility, TObjective> link = sourceLink;
+            Link link = sourceLink;
             do
             {
                 fn(link);
@@ -224,14 +212,12 @@ namespace SudokuSpice.ConstraintBased
         /// <paramref name="fn"/> is called.
         /// </param>
         /// <param name="fn">The operation to perform.</param>
-        internal static void RevertOnObjective<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Action<Link<TPossibility, TObjective>> fn)
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static void RevertOnObjective(
+            Link sourceLink,
+            Action<Link> fn)
         {
-            Link<TPossibility, TObjective> lastLink = sourceLink.PreviousOnObjective;
-            Link<TPossibility, TObjective> link = lastLink;
+            Link lastLink = sourceLink.PreviousOnObjective;
+            Link link = lastLink;
             do
             {
                 fn(link);
@@ -257,14 +243,12 @@ namespace SudokuSpice.ConstraintBased
         /// Undoes the operations performed by a succesful call to <paramref name="tryFn"/>.
         /// </param>
         /// <returns>True if all calls to <paramref name="tryFn"/> succeed, else false.</returns>
-        internal static bool TryUpdateOthersOnObjective<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Func<Link<TPossibility, TObjective>, bool> tryFn,
-            Action<Link<TPossibility, TObjective>> undoFn) 
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static bool TryUpdateOthersOnObjective(
+            Link sourceLink,
+            Func<Link, bool> tryFn,
+            Action<Link> undoFn) 
         {
-            for (Link<TPossibility, TObjective>? toUpdate = sourceLink.NextOnObjective;
+            for (Link? toUpdate = sourceLink.NextOnObjective;
                 toUpdate != sourceLink;
                 toUpdate = toUpdate.NextOnObjective)
             {
@@ -290,13 +274,11 @@ namespace SudokuSpice.ConstraintBased
         /// The source to iterate from. <paramref name="fn"/> is not called on this link.
         /// </param>
         /// <param name="fn">The operation to perform.</param>
-        internal static void UpdateOthersOnObjective<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Action<Link<TPossibility, TObjective>> fn) 
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static void UpdateOthersOnObjective(
+            Link sourceLink,
+            Action<Link> fn) 
         {
-            for (Link<TPossibility, TObjective>? toUpdate = sourceLink.NextOnObjective;
+            for (Link? toUpdate = sourceLink.NextOnObjective;
                 toUpdate != sourceLink;
                 toUpdate = toUpdate.NextOnObjective)
             {
@@ -320,14 +302,12 @@ namespace SudokuSpice.ConstraintBased
         /// The source to iterate from. <paramref name="fn"/> is not called on this link.
         /// </param>
         /// <param name="fn">The operation to perform.</param>
-        internal static void RevertOthersOnObjective<TPossibility, TObjective>(
-            Link<TPossibility, TObjective> sourceLink,
-            Action<Link<TPossibility, TObjective>> fn) 
-            where TPossibility : class, IPossibility<TPossibility, TObjective>
-            where TObjective : class, IObjective<TObjective, TPossibility>
+        internal static void RevertOthersOnObjective(
+            Link sourceLink,
+            Action<Link> fn) 
         {
             for (
-                Link<TPossibility, TObjective>? toRevert = sourceLink.PreviousOnObjective;
+                Link? toRevert = sourceLink.PreviousOnObjective;
                 toRevert != sourceLink;
                 toRevert = toRevert.PreviousOnObjective)
             {

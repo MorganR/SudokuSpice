@@ -2,34 +2,32 @@
 
 namespace SudokuSpice.ConstraintBased
 {
-    internal class Link<TPossibility, TObjective>
-        where TPossibility : class, IPossibility<TPossibility, TObjective>
-        where TObjective : class, IObjective<TObjective, TPossibility>
+    internal class Link
     {
-        internal readonly TPossibility Possibility;
-        internal readonly TObjective Objective;
+        internal readonly IPossibility Possibility;
+        internal readonly IObjective Objective;
 
-        internal Link<TPossibility, TObjective> PreviousOnPossibility { get; private set; }
-        internal Link<TPossibility, TObjective> NextOnPossibility { get; private set; }
-        internal Link<TPossibility, TObjective> PreviousOnObjective { get; private set; }
-        internal Link<TPossibility, TObjective> NextOnObjective { get; private set; }
+        internal Link PreviousOnPossibility { get; private set; }
+        internal Link NextOnPossibility { get; private set; }
+        internal Link PreviousOnObjective { get; private set; }
+        internal Link NextOnObjective { get; private set; }
 
-        private Link(TPossibility possibility, TObjective objective)
+        private Link(IPossibility possibility, IObjective objective)
         {
-            this.Possibility = possibility;
+            Possibility = possibility;
             Objective = objective;
             PreviousOnObjective = NextOnObjective = NextOnPossibility = PreviousOnPossibility = this;
         }
 
-        internal static Link<TPossibility, TObjective> CreateConnectedLink(TPossibility possibility, TObjective objective)
+        internal static Link CreateConnectedLink(IPossibility possibility, IObjective objective)
         {
-            var link = new Link<TPossibility, TObjective>(possibility, objective);
-            possibility.Append(link);
-            objective.Append(link);
+            var link = new Link(possibility, objective);
+            possibility.AppendObjective(link);
+            objective.AppendPossibility(link);
             return link;
         }
 
-        internal void AppendToPossibility(Link<TPossibility, TObjective> toAppend)
+        internal void AppendToPossibility(Link toAppend)
         {
             toAppend.NextOnPossibility = NextOnPossibility;
             toAppend.PreviousOnPossibility = this;
@@ -37,7 +35,7 @@ namespace SudokuSpice.ConstraintBased
             NextOnPossibility = toAppend;
         }
 
-        internal void AppendToObjective(Link<TPossibility, TObjective> toAppend)
+        internal void AppendToObjective(Link toAppend)
         {
             toAppend.NextOnObjective = NextOnObjective;
             toAppend.PreviousOnObjective = this;
@@ -45,7 +43,7 @@ namespace SudokuSpice.ConstraintBased
             NextOnObjective = toAppend;
         }
 
-        internal void PrependToPossibility(Link<TPossibility, TObjective> toPrepend)
+        internal void PrependToPossibility(Link toPrepend)
         {
             toPrepend.NextOnPossibility = this;
             toPrepend.PreviousOnPossibility = PreviousOnPossibility;
@@ -53,7 +51,7 @@ namespace SudokuSpice.ConstraintBased
             PreviousOnPossibility = toPrepend;
         }
 
-        internal void PrependToObjective(Link<TPossibility, TObjective> toPrepend)
+        internal void PrependToObjective(Link toPrepend)
         {
             toPrepend.NextOnObjective = this;
             toPrepend.PreviousOnObjective = PreviousOnObjective;
@@ -85,7 +83,7 @@ namespace SudokuSpice.ConstraintBased
             NextOnPossibility.PreviousOnPossibility = this;
         }
 
-        internal IEnumerable<Link<TPossibility, TObjective>> GetLinksOnPossibility()
+        internal IEnumerable<Link> GetLinksOnPossibility()
         {
             var link = this;
             do
@@ -95,7 +93,7 @@ namespace SudokuSpice.ConstraintBased
             } while (link != this);
         }
 
-        internal IEnumerable<Link<TPossibility, TObjective>> GetLinksOnObjective()
+        internal IEnumerable<Link> GetLinksOnObjective()
         {
             var link = this;
             do

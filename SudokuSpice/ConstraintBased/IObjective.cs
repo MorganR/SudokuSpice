@@ -1,14 +1,29 @@
-﻿namespace SudokuSpice.ConstraintBased
+﻿using System.Collections.Generic;
+
+namespace SudokuSpice.ConstraintBased
 {
-    internal interface IObjective<T, TPossibility>
-        where T : class, IObjective<T, TPossibility>
-        where TPossibility : class, IPossibility<TPossibility, T>
+    public interface IObjective
     {
+        internal bool IsRequired { get; }
+        internal IReadOnlySet<IObjective> RequiredObjectives { get; }
+
         /// <summary>
-        /// Appends the given <paramref name="link"/> to this objective, including updating the next
-        /// and previous links as necessary to maintain a valid doubly linked list.
+        /// Appends the given link to this objective, including updating the next and previous
+        /// links as necessary to maintain a valid doubly linked list.
         /// </summary>
-        /// <param name="link">The link to append and update.</param>
-        void Append(Link<TPossibility, T> link);
+        /// <param name="toNewPossibility">
+        /// The link to the new possibility to connect to this objective.
+        /// </param>
+        internal void AppendPossibility(Link toNewPossibility);
+
+        internal IEnumerable<IPossibility> GetUnknownDirectPossibilities();
+
+        internal bool TrySelectPossibility(Link toSelect);
+
+        internal void DeselectPossibility(Link toDeselect);
+
+        internal bool TryDropPossibility(Link toDrop);
+
+        internal void ReturnPossibility(Link toReturn);
     }
 }

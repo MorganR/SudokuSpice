@@ -52,7 +52,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             });
             var boxesToConstrain = new int[] { 0 };
             var constraint = new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: false);
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = ExactCoverMatrix.Create(puzzle);
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
 
@@ -90,15 +90,20 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 
         private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverMatrix matrix)
         {
-            var square = matrix.GetSquare(coord);
-            var foundValues = new List<PossibleSquareValue>();
-            for (int valueIndex = 0; valueIndex < matrix.AllPossibleValues.Length; ++valueIndex)
+            var square = matrix.GetAllPossibilitiesAt(coord);
+            Assert.NotNull(square);
+            var foundValues = new List<int>();
+            for (int valueIndex = 0; valueIndex < square.Length; ++valueIndex)
             {
-                var possibleValue = square.GetPossibleValue(valueIndex);
-                int value = matrix.AllPossibleValues[valueIndex];
-                if (possibleValue is not null && possibleValue.State == PossibilityState.UNKNOWN)
+                var possibleValue = square[valueIndex];
+                if (possibleValue is null)
                 {
-                    foundValues.Add(possibleValue);
+                    continue;
+                }
+                int value = matrix.AllPossibleValues[valueIndex];
+                if (possibleValue.State == PossibilityState.UNKNOWN)
+                {
+                    foundValues.Add(value);
                     Assert.True(
                         possibleValues.Contains(value),
                         $"Unexpected possible value {value} found at {coord}. Expected: {string.Join(',', possibleValues)}.");
@@ -109,6 +114,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                         $"Missing possible value {value} at {coord}. Expected: {string.Join(',', possibleValues)}.");
                 }
             }
+            Assert.Equal(possibleValues.Length, foundValues.Count);
         }
     }
 }

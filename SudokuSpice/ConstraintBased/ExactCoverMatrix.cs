@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
@@ -17,8 +17,8 @@ namespace SudokuSpice.ConstraintBased
     public class ExactCoverMatrix
     {
         private readonly int[] _allPossibleValues;
-        private readonly Square?[][] _matrix;
-        internal Requirement? FirstRequirement;
+        private readonly Possibility?[]?[][] _matrix;
+        private readonly LinkedList<Objective> _unsatisfiedObjectives;
 
         /// <summary>
         /// Contains the possible values for the current puzzle.
@@ -29,7 +29,7 @@ namespace SudokuSpice.ConstraintBased
         /// Maps possible values for the puzzle to indices in the <see cref="AllPossibleValues"/>
         /// array.
         /// </summary>
-        public IReadOnlyDictionary<int, int> ValuesToIndices { get; private set; }
+        public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
 
         /// <summary>
         /// Constructs an empty ExactCoverMatrix for solving the given puzzle.
@@ -41,121 +41,152 @@ namespace SudokuSpice.ConstraintBased
         /// Row headers are only created for unset squares in the puzzle.
         /// </summary>
         /// <param name="puzzle">The puzzle to be solved.</param>
-        public ExactCoverMatrix(IReadOnlyPuzzle puzzle)
+        private ExactCoverMatrix(IReadOnlyPuzzle puzzle)
         {
-            _matrix = new Square[puzzle.Size][];
+            int size = puzzle.Size;
+            _matrix = new Possibility[size][][];
+            for (int rowIndex = 0; rowIndex < size; ++rowIndex)
+            {
+                _matrix[rowIndex] = new Possibility[size][];
+            }
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
+            _unsatisfiedObjectives = new LinkedList<Objective>();
             var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {
                 valuesToIndices[_allPossibleValues[index]] = index;
             }
             ValuesToIndices = valuesToIndices;
-            for (int row = 0; row < puzzle.Size; row++)
-            {
-                var colArray = new Square[puzzle.Size];
-                for (int col = 0; col < puzzle.Size; col++)
-                {
-                    var coord = new Coordinate(row, col);
-                    if (!puzzle[in coord].HasValue)
-                    {
-                        colArray[col] = new Square(coord, _allPossibleValues.Length);
-                    }
-                }
-                _matrix[row] = colArray;
-            }
         }
 
         private ExactCoverMatrix(ExactCoverMatrix other)
         {
-            _matrix = new Square[other._matrix.Length][];
+            int length = other._matrix.Length;
+            _matrix = new Possibility[length][][];
+            for (int rowIndex = 0; rowIndex < length; ++rowIndex)
+            {
+                _matrix[rowIndex] = new Possibility[length][];
+            }
             _allPossibleValues = other.AllPossibleValues.ToArray();
+            _unsatisfiedObjectives = new LinkedList<Objective>();
             ValuesToIndices = other.ValuesToIndices;
+        }
+
+        public static ExactCoverMatrix Create(IReadOnlyPuzzle puzzle)
+        {
+            var matrix = new ExactCoverMatrix(puzzle);
+            int size = puzzle.Size;
+            for (int rowIndex = 0; rowIndex < size; rowIndex++)
+            {
+                var possibilitiesRow = matrix._matrix[rowIndex];
+                for (int columnIndex = 0; columnIndex < size; columnIndex++)
+                {
+                    var coord = new Coordinate(rowIndex, columnIndex);
+                    if (!puzzle[in coord].HasValue)
+                    {
+                        var possibilitiesForSquare = matrix._allPossibleValues.Select((_, index) => new Possibility(coord, index)).ToArray();
+                        possibilitiesRow[columnIndex] = possibilitiesForSquare;
+                        // Enforce that all squares need to have a value.
+                        Objective.CreateFullyConnected(matrix, possibilitiesForSquare, 1);
+                    }
+                }
+            }
+            return matrix;
         }
 
         internal ExactCoverMatrix CopyUnknowns()
         {
-            Debug.Assert(
-                FirstRequirement != null,
-                $"Cannot copy a matrix that still has a null {nameof(FirstRequirement)}.");
             var copy = new ExactCoverMatrix(this);
-            for (int row = 0; row < copy._matrix.Length; row++)
+            foreach (var requiredObjective in _unsatisfiedObjectives)
             {
-                Square?[] colArray = _matrix[row];
-                var copyColArray = new Square[colArray.Length];
-                for (int col = 0; col < copyColArray.Length; col++)
-                {
-                    Square? square = colArray[col];
-                    if (square is null
-                        || square.IsSet)
-                    {
-                        continue;
-                    }
-                    copyColArray[col] = square.CopyWithPossibleValues();
-                }
-                copy._matrix[row] = copyColArray;
-            }
-            copy.FirstRequirement = FirstRequirement.CopyToMatrix(copy);
-            Requirement copiedRequirement = copy.FirstRequirement;
-            for (Requirement nextRequirement = FirstRequirement.Next; nextRequirement != FirstRequirement; nextRequirement = nextRequirement.Next)
-            {
-                copiedRequirement.Append(nextRequirement.CopyToMatrix(copy));
-                copiedRequirement = copiedRequirement.Next;
+                var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
+                Objective.CreateFullyConnected(
+                    copy,
+                    possibilitiesForObjective, requiredObjective.CountToSatisfy);
             }
             return copy;
         }
 
         /// <summary>
-        /// Gets the square representing the given <see cref="Coordinate"/>. This returns null if
+        /// Gets the possibilities at the given <see cref="Coordinate"/>. This returns null if
         /// the square's value was preset in the current puzzle being solved.
         /// </summary>
-        public Square? GetSquare(in Coordinate c) => _matrix[c.Row][c.Column];
+        public Possibility?[]? GetAllPossibilitiesAt(in Coordinate c) => _matrix[c.Row][c.Column];
 
         /// <summary>
-        /// Gets all the <see cref="Square"/>s on the requested row.
+        /// Gets all the currently unsatisfied <see cref="Objective"/>s.
+        /// </summary>
+        public IEnumerable<Objective> GetUnsatisfiedRequiredObjectives() => _unsatisfiedObjectives;
+
+        /// <summary>
+        /// Gets all the possiblities, grouped by column, on the requested row.
+        ///
+        /// Indexing the result looks like:
+        ///
+        /// <c>
+        /// var row = matrix.GetSquaresOnRow(rowIndex);
+        /// var possibility = row[columnIndex][valueIndex];
+        /// </c>
         /// </summary>
         /// <param name="row">A zero-based row index.</param>
-        public ReadOnlySpan<Square?> GetSquaresOnRow(int row) => new ReadOnlySpan<Square?>(_matrix[row]);
+        internal ReadOnlySpan<Possibility?[]?> GetPossibilitiesOnRow(int row) =>
+            new ReadOnlySpan<Possibility?[]?>(_matrix[row]);
 
-        /// <summary>
-        /// Gets all the <see cref="Square"/>s on the requested column.
-        /// </summary>
-        /// <param name="column">A zero-based column index.</param>
-        public List<Square?> GetSquaresOnColumn(int column)
+        internal LinkedListNode<Objective> AttachObjective(Objective objective)
         {
-            var squares = new List<Square?>(_matrix.Length);
-            for (int row = 0; row < _matrix.Length; row++)
-            {
-                squares.Add(_matrix[row][column]);
-            }
-            return squares;
+            return _unsatisfiedObjectives.AddLast(objective);
         }
 
-        /// <summary>
-        /// Gets all the currently unsatisfied <see cref="Requirement"/>s.
-        /// </summary>
-        public IEnumerable<Requirement> GetUnsatisfiedRequirements()
+        internal void DetachObjective(LinkedListNode<Objective> node)
         {
-            if (FirstRequirement == null)
-            {
-                yield break;
-            }
-            Requirement requirement = FirstRequirement;
-            do
-            {
-                yield return requirement;
-                requirement = requirement.Next;
-            } while (requirement != FirstRequirement);
+            _unsatisfiedObjectives.Remove(node);
         }
 
-        internal void Attach(Requirement requirement)
+        internal void ReattachObjective(LinkedListNode<Objective> node)
         {
-            if (FirstRequirement is null)
+            _unsatisfiedObjectives.AddLast(node);
+        }
+
+        private IEnumerable<IPossibility> _CopyUnknownPossibilities(IObjective objective, ExactCoverMatrix puzzleCopy)
+        {
+            var length = _matrix.Length;
+            foreach (var possibility in objective.GetUnknownDirectPossibilities())
             {
-                FirstRequirement = requirement;
-            } else
-            {
-                FirstRequirement.Prepend(requirement);
+                if (possibility is Possibility concretePossibility)
+                {
+                    if (concretePossibility.State != PossibilityState.UNKNOWN)
+                    {
+                        continue;
+                    }
+
+                    var coord = concretePossibility.Coordinate;
+                    var copiedRow = puzzleCopy._matrix[coord.Row];
+                    var copiedSquare = copiedRow[coord.Column];
+                    if (copiedSquare is null)
+                    {
+                        copiedSquare = new Possibility[_allPossibleValues.Length];
+                        copiedRow[coord.Column] = copiedSquare;
+                    }
+                    
+                    var copiedPossibility = copiedSquare[concretePossibility.Index];
+                    if (copiedPossibility is null)
+                    {
+                        copiedPossibility = new Possibility(coord, concretePossibility.Index);
+                        copiedSquare[concretePossibility.Index] = copiedPossibility;
+                    }
+                    yield return copiedPossibility;
+                } else if (possibility is OptionalObjective optionalObjective)
+                {
+                    if (optionalObjective.State != PossibilityState.UNKNOWN)
+                    {
+                        continue;
+                    }
+                    var copiedPossibilities = _CopyUnknownPossibilities(optionalObjective, puzzleCopy).ToArray();
+                    yield return OptionalObjective.CreateWithPossibilities(copiedPossibilities, optionalObjective.TotalCountToSatisfy);
+                } else
+                {
+                    throw new ArgumentException($"Possibilities must be one of {nameof(Possibility)} and {nameof(OptionalObjective)} in order to copy objectives. Received possibility with type: {possibility.GetType().Name}");
+                }
             }
         }
     }

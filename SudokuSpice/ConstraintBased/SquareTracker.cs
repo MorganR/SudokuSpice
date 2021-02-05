@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly TPuzzle _puzzle;
         private readonly ExactCoverMatrix _matrix;
-        private readonly Stack<Coordinate> _setCoords;
+        private readonly Stack<Guess> _setSquares;
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
@@ -16,7 +17,7 @@ namespace SudokuSpice.ConstraintBased
         {
             _puzzle = puzzle;
             _matrix = matrix;
-            _setCoords = new Stack<Coordinate>(puzzle.NumEmptySquares);
+            _setSquares = new Stack<Guess>(puzzle.NumEmptySquares);
         }
 
         private SquareTracker(SquareTracker<TPuzzle> other)
@@ -25,61 +26,56 @@ namespace SudokuSpice.ConstraintBased
             _puzzle = other._puzzle.DeepCopy();
             // Copy matrix, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
             _matrix = other._matrix.CopyUnknowns();
-            _setCoords = new Stack<Coordinate>(_puzzle.NumEmptySquares);
+            _setSquares = new Stack<Guess>(_puzzle.NumEmptySquares);
         }
 
         internal SquareTracker<TPuzzle> CopyForContinuation() => new SquareTracker<TPuzzle>(this);
 
-        internal (Coordinate coord, int[] possibleValueIndices) GetBestGuess()
+        internal IEnumerable<Guess> GetBestGuesses()
         {
             int maxPossibleValues = _puzzle.Size + 1;
-            Square? bestSquare = null;
-            foreach (Coordinate coord in _puzzle.GetUnsetCoords())
+            Objective? bestObjective = null;
+            foreach (Objective? objective in _matrix.GetUnsatisfiedRequiredObjectives())
             {
-                Square? square = _matrix.GetSquare(in coord);
-                Debug.Assert(square != null, $"Square was null at unset coord {coord}.");
-                if (square.NumPossibleValues < maxPossibleValues)
+                if (!objective.AllUnknownPossibilitiesAreConcrete)
                 {
-                    maxPossibleValues = square.NumPossibleValues;
-                    if (maxPossibleValues == 1)
-                    {
-                        return (coord,
-                            new int[] { square.GetStillPossibleValues()[0].ValueIndex });
-                    }
-                    bestSquare = square;
+                    continue;
                 }
-            }
-            foreach (Requirement? requirement in _matrix.GetUnsatisfiedRequirements())
-            {
-                if (requirement.AreAllPossibilitiesRequired && !requirement.IsOptional)
+                if (objective.AllPossibilitiesAreRequired)
                 {
-                    Debug.Assert(
-                        requirement.FirstPossibilityLink != null,
-                        $"Unsatisfied {nameof(Requirement)} had a null first link.");
-                    PossibleSquareValue possibleSquare = requirement.FirstPossibilityLink.Possibility;
-                    return (possibleSquare.Square.Coordinate,
-                        new int[] { possibleSquare.ValueIndex });
+                    Possibility possibility = (Possibility)((IObjective)objective)
+                        .GetUnknownDirectPossibilities().First();
+                    return new Guess(possibility.Coordinate, possibility.Index).Yield();
+                }
+                var numPossibilities = objective.CountUnknown;
+                if (numPossibilities < maxPossibleValues)
+                {
+                    maxPossibleValues = numPossibilities;
+                    bestObjective = objective;
                 }
             }
             Debug.Assert(
-                bestSquare != null,
-                $"{nameof(bestSquare)} was still null at the end of {nameof(GetBestGuess)}.");
-            return (bestSquare.Coordinate,
-                _OrderPossibleValuesByProbability(bestSquare.Coordinate));
+                bestObjective is not null,
+                $"{nameof(bestObjective)} was still null at the end of {nameof(GetBestGuesses)}.");
+            return _RetrieveGuessesFromObjective(bestObjective);
         }
 
-        internal bool TrySet(in Coordinate c, int valueIndex)
+        internal bool TrySet(in Guess guess)
         {
-            Square? square = _matrix.GetSquare(in c);
+            Possibility?[]? square = _matrix.GetAllPossibilitiesAt(guess.Coordinate);
             Debug.Assert(
-                square != null,
-                $"Tried to set {c} to value at {valueIndex}, but square was null.");
-            if (!square.TrySet(valueIndex))
+                square is not null,
+                $"Tried to set {guess.Coordinate} to value at {guess.PossibilityIndex}, but square was null.");
+            var possibility = square[guess.PossibilityIndex];
+            Debug.Assert(
+                possibility is not null,
+                $"Tried to set square at {guess.Coordinate} to possibility at {guess.PossibilityIndex}, but possibility was null.");
+            if (!possibility.TrySelect())
             {
                 return false;
             }
-            _puzzle[in c] = _matrix.AllPossibleValues[valueIndex];
-            _setCoords.Push(c);
+            _puzzle[guess.Coordinate] = _matrix.AllPossibleValues[guess.PossibilityIndex];
+            _setSquares.Push(guess);
             // if (IsSolved)
             // {
             //     for (int row = 0; row < _puzzle.Size; ++row)
@@ -107,26 +103,28 @@ namespace SudokuSpice.ConstraintBased
         internal void UnsetLast()
         {
             Debug.Assert(
-                _setCoords.Count > 0,
+                _setSquares.Count > 0,
                 "Tried to call UnsetLast when no squares had been set.");
-            Coordinate c = _setCoords.Pop();
-            _puzzle[in c] = null;
-            Square? square = _matrix.GetSquare(in c);
+            Guess setSquare = _setSquares.Pop();
+            _puzzle[setSquare.Coordinate] = null;
+            Possibility?[]? square = _matrix.GetAllPossibilitiesAt(setSquare.Coordinate);
             Debug.Assert(
-                square != null,
-                $"Tried to unset the last update to a null square at {c}.");
-            square.Unset();
+                square is not null,
+                $"Tried to unset the last update to a null square at {setSquare.Coordinate}.");
+            var possibility = square[setSquare.PossibilityIndex];
+            Debug.Assert(
+                possibility is not null,
+                $"Tried to unselect a possibility at index {setSquare.PossibilityIndex} for " +
+                $"square {setSquare.Coordinate}, but the possiblity was null.");
+            possibility.Deselect();
         }
 
-        private int[] _OrderPossibleValuesByProbability(in Coordinate c)
+        private IEnumerable<Guess> _RetrieveGuessesFromObjective(Objective objective)
         {
-            Square? square = _matrix.GetSquare(in c);
-            Debug.Assert(
-                square != null,
-                $"Tried to order possible values at {c}, but square was null.");
-            PossibleSquareValue[]? possibleSquares = square.GetStillPossibleValues();
-            return possibleSquares.OrderBy(
-                ps => ps.GetMinUnselectedCountFromRequirements()).Select(ps => ps.ValueIndex).ToArray();
+            Debug.Assert(!objective.IsSatisfied, "Objective must not be satisfied.");
+            Debug.Assert(objective.AllUnknownPossibilitiesAreConcrete, "All possibilities must be concrete.");
+            return ((IObjective)objective).GetUnknownDirectPossibilities().Select(
+                p => new Guess(((Possibility)p).Coordinate, ((Possibility)p).Index));
         }
     }
 }

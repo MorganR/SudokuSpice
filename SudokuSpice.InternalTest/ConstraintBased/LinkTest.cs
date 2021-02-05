@@ -2,59 +2,80 @@
 using System.Linq;
 using Xunit;
 
-namespace SudokuSpice.ConstraintBased.Test
+namespace SudokuSpice.ConstraintBased.InternalTest
 {
     public class LinkTest
     {
         [Fact]
         public void CreateConnectedLink_ConnectsCorrectly()
         {
-            var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var requirement = new Requirement(false, 1, matrix);
+            var possibility = new FakePossibility();
+            var objective = new FakeObjective();
 
-            var link = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
+            var link = Link.CreateConnectedLink(possibility, objective);
 
-            Assert.Same(link, link.PreviousOnObjective);
+            Assert.Same(link, possibility.FirstLink);
+            Assert.Same(link, objective.FirstLink);
             Assert.Same(link, link.NextOnObjective);
+            Assert.Same(link, link.PreviousOnObjective);
             Assert.Same(link, link.NextOnPossibility);
             Assert.Same(link, link.PreviousOnPossibility);
-            Assert.Same(possibleSquare, link.Possibility);
-            Assert.Same(requirement, link.Objective);
-            Assert.True(requirement.AreAllPossibilitiesRequired);
-            Assert.False(requirement.AreAllRequiredPossibilitiesSelected);
-            Assert.Same(link, requirement.FirstPossibilityLink);
-            Assert.Same(link, possibleSquare.FirstLink);
+            Assert.Same(possibility, link.Possibility);
+            Assert.Same(objective, link.Objective);
+            Assert.Single(link.GetLinksOnObjective(), link);
+            Assert.Single(link.GetLinksOnPossibility(), link);
         }
 
         [Fact]
-        public void CreateConnectedLink_WithExistingLinks_ConnectsCorrectly()
+        public void CreateConnectedLink_WithExistingLinksOnObjective_ConnectsCorrectly()
         {
-            var puzzle = new Puzzle(4);
-            var matrix = new ExactCoverMatrix(puzzle);
-            var square = new Square(new Coordinate(0, 0), 2);
-            var possibleSquare = new PossibleSquareValue(square, 1);
-            var requirement = new Requirement(false, 1, matrix);
+            var possibility = new FakePossibility();
+            var objective = new FakeObjective();
 
-            var firstLink = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
-            var link = Link<PossibleSquareValue, Requirement>.CreateConnectedLink(possibleSquare, requirement);
+            var firstLink = Link.CreateConnectedLink(new FakePossibility(), objective);
+            var link = Link.CreateConnectedLink(possibility, objective);
 
             Assert.Same(firstLink, link.PreviousOnObjective);
             Assert.Same(firstLink, link.NextOnObjective);
-            Assert.Same(firstLink, link.NextOnPossibility);
-            Assert.Same(firstLink, link.PreviousOnPossibility);
+            Assert.Same(link, link.NextOnPossibility);
+            Assert.Same(link, link.PreviousOnPossibility);
             Assert.Same(link, firstLink.PreviousOnObjective);
             Assert.Same(link, firstLink.NextOnObjective);
+            Assert.Same(firstLink, firstLink.NextOnPossibility);
+            Assert.Same(firstLink, firstLink.PreviousOnPossibility);
+            Assert.Same(possibility, link.Possibility);
+            Assert.Same(objective, link.Objective);
+            Assert.Equal(2, link.GetLinksOnObjective().Count());
+            Assert.Contains(link, link.GetLinksOnObjective());
+            Assert.Contains(firstLink, link.GetLinksOnObjective());
+            Assert.Single(link.GetLinksOnPossibility(), link);
+            Assert.Single(firstLink.GetLinksOnPossibility(), firstLink);
+        }
+
+        [Fact]
+        public void CreateConnectedLink_WithExistingLinksOnPossibility_ConnectsCorrectly()
+        {
+            var possibility = new FakePossibility();
+            var objective = new FakeObjective();
+
+            var firstLink = Link.CreateConnectedLink(possibility, new FakeObjective());
+            var link = Link.CreateConnectedLink(possibility, objective);
+
+            Assert.Same(link, link.PreviousOnObjective);
+            Assert.Same(link, link.NextOnObjective);
+            Assert.Same(firstLink, link.NextOnPossibility);
+            Assert.Same(firstLink, link.PreviousOnPossibility);
+            Assert.Same(firstLink, firstLink.PreviousOnObjective);
+            Assert.Same(firstLink, firstLink.NextOnObjective);
             Assert.Same(link, firstLink.NextOnPossibility);
             Assert.Same(link, firstLink.PreviousOnPossibility);
-            Assert.Same(possibleSquare, link.Possibility);
-            Assert.Same(requirement, link.Objective);
-            Assert.False(requirement.AreAllPossibilitiesRequired);
-            Assert.False(requirement.AreAllRequiredPossibilitiesSelected);
-            Assert.Same(firstLink, requirement.FirstPossibilityLink);
-            Assert.Same(firstLink, possibleSquare.FirstLink);
+            Assert.Same(possibility, link.Possibility);
+            Assert.Same(objective, link.Objective);
+            Assert.Equal(2, link.GetLinksOnPossibility().Count());
+            Assert.Contains(link, link.GetLinksOnPossibility());
+            Assert.Contains(firstLink, link.GetLinksOnPossibility());
+            Assert.Single(link.GetLinksOnObjective(), link);
+            Assert.Single(firstLink.GetLinksOnObjective(), firstLink);
         }
 
         [Fact]
@@ -63,8 +84,8 @@ namespace SudokuSpice.ConstraintBased.Test
             var poppedPossibility = new FakePossibility();
             var secondPossibility = new FakePossibility();
             var objective = new FakeObjective();
-            var poppedLink = Link<FakePossibility, FakeObjective>.CreateConnectedLink(poppedPossibility, objective);
-            var secondLink = Link<FakePossibility, FakeObjective>.CreateConnectedLink(secondPossibility, objective);
+            var poppedLink = Link.CreateConnectedLink(poppedPossibility, objective);
+            var secondLink = Link.CreateConnectedLink(secondPossibility, objective);
 
             poppedLink.PopFromObjective();
 
@@ -72,8 +93,7 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(secondLink, poppedLink.PreviousOnObjective);
             Assert.Same(secondLink, secondLink.NextOnObjective);
             Assert.Same(secondLink, secondLink.PreviousOnObjective);
-            Assert.Contains(poppedLink, objective.GetLinks());
-            Assert.Contains(secondLink, objective.GetLinks());
+            Assert.Same(poppedLink, objective.FirstLink);
         }
 
         [Fact]
@@ -82,8 +102,8 @@ namespace SudokuSpice.ConstraintBased.Test
             var poppedPossibility = new FakePossibility();
             var secondPossibility = new FakePossibility();
             var objective = new FakeObjective();
-            var poppedLink = Link<FakePossibility, FakeObjective>.CreateConnectedLink(poppedPossibility, objective);
-            var secondLink = Link<FakePossibility, FakeObjective>.CreateConnectedLink(secondPossibility, objective);
+            var poppedLink = Link.CreateConnectedLink(poppedPossibility, objective);
+            var secondLink = Link.CreateConnectedLink(secondPossibility, objective);
 
             poppedLink.PopFromObjective();
             poppedLink.ReinsertToObjective();
@@ -92,17 +112,55 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(secondLink, poppedLink.PreviousOnObjective);
             Assert.Same(poppedLink, secondLink.NextOnObjective);
             Assert.Same(poppedLink, secondLink.PreviousOnObjective);
-            Assert.Contains(poppedLink, objective.GetLinks());
+            Assert.Same(poppedLink, objective.FirstLink);
         }
+
+        [Fact]
+        public void PopFromPossibility_OnlyUpdatesLinkReferences()
+        {
+            var possibility = new FakePossibility();
+            var poppedObjective = new FakeObjective();
+            var secondObjective = new FakeObjective();
+            var poppedLink = Link.CreateConnectedLink(possibility, poppedObjective);
+            var secondLink = Link.CreateConnectedLink(possibility, secondObjective);
+
+            poppedLink.PopFromPossibility();
+
+            Assert.Same(secondLink, poppedLink.NextOnPossibility);
+            Assert.Same(secondLink, poppedLink.PreviousOnPossibility);
+            Assert.Same(secondLink, secondLink.NextOnPossibility);
+            Assert.Same(secondLink, secondLink.PreviousOnPossibility);
+            Assert.Same(poppedLink, possibility.FirstLink);
+        }
+
+        [Fact]
+        public void ReinsertToPossibility_UndoesPop()
+        {
+            var possibility = new FakePossibility();
+            var poppedObjective = new FakeObjective();
+            var secondObjective = new FakeObjective();
+            var poppedLink = Link.CreateConnectedLink(possibility, poppedObjective);
+            var secondLink = Link.CreateConnectedLink(possibility, secondObjective);
+
+            poppedLink.PopFromPossibility();
+            poppedLink.ReinsertToPossibility();
+
+            Assert.Same(secondLink, poppedLink.NextOnPossibility);
+            Assert.Same(secondLink, poppedLink.PreviousOnPossibility);
+            Assert.Same(poppedLink, secondLink.NextOnPossibility);
+            Assert.Same(poppedLink, secondLink.PreviousOnPossibility);
+            Assert.Same(poppedLink, possibility.FirstLink);
+        }
+
 
         [Fact]
         public void AppendToPossibility_AppendsImmediatelyAfterLink()
         {
             var possibility = new NoopPossibility();
             var objective = new NoopObjective();
-            var firstLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var secondLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var thirdLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
+            var firstLink = Link.CreateConnectedLink(possibility, objective);
+            var secondLink = Link.CreateConnectedLink(possibility, objective);
+            var thirdLink = Link.CreateConnectedLink(possibility, objective);
 
             firstLink.AppendToPossibility(secondLink);
             firstLink.AppendToPossibility(thirdLink);
@@ -120,9 +178,9 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var possibility = new NoopPossibility();
             var objective = new NoopObjective();
-            var firstLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var secondLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var thirdLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
+            var firstLink = Link.CreateConnectedLink(possibility, objective);
+            var secondLink = Link.CreateConnectedLink(possibility, objective);
+            var thirdLink = Link.CreateConnectedLink(possibility, objective);
 
             firstLink.PrependToPossibility(secondLink);
             firstLink.PrependToPossibility(thirdLink);
@@ -140,9 +198,9 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var possibility = new NoopPossibility();
             var objective = new NoopObjective();
-            var firstLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var secondLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var thirdLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
+            var firstLink = Link.CreateConnectedLink(possibility, objective);
+            var secondLink = Link.CreateConnectedLink(possibility, objective);
+            var thirdLink = Link.CreateConnectedLink(possibility, objective);
 
             firstLink.AppendToObjective(secondLink);
             firstLink.AppendToObjective(thirdLink);
@@ -160,9 +218,9 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var possibility = new NoopPossibility();
             var objective = new NoopObjective();
-            var firstLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var secondLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
-            var thirdLink = Link<NoopPossibility, NoopObjective>.CreateConnectedLink(possibility, objective);
+            var firstLink = Link.CreateConnectedLink(possibility, objective);
+            var secondLink = Link.CreateConnectedLink(possibility, objective);
+            var thirdLink = Link.CreateConnectedLink(possibility, objective);
 
             firstLink.PrependToObjective(secondLink);
             firstLink.PrependToObjective(thirdLink);
@@ -175,74 +233,68 @@ namespace SudokuSpice.ConstraintBased.Test
             Assert.Same(firstLink, secondLink.PreviousOnObjective);
         }
 
-
-
-        private class FakePossibility : IPossibility<FakePossibility, FakeObjective>
+        private class FakePossibility : IPossibility
         {
-            public Link<FakePossibility, FakeObjective>? FirstLink;
+            public Link? FirstLink;
 
-            public IEnumerable<Link<FakePossibility, FakeObjective>> GetLinks()
+            void IPossibility.AppendObjective(Link toNewObjective)
             {
                 if (FirstLink is null)
                 {
-                    yield break;
-                }
-                var link = FirstLink;
-                do
-                {
-                    yield return link;
-                    link = link.NextOnPossibility;
-                } while (link != FirstLink);
-            }
-
-            public void Append(Link<FakePossibility, FakeObjective> link)
-            {
-                if (FirstLink is null)
-                {
-                    FirstLink = link;
+                    FirstLink = toNewObjective;
                     return;
                 }
-                FirstLink.PrependToPossibility(link);
+                FirstLink.PrependToPossibility(toNewObjective);
             }
+
+            void IPossibility.ReattachObjective(Link toReattach) => throw new System.NotImplementedException();
+            bool IPossibility.TryDetachObjective(Link toDetach) => throw new System.NotImplementedException();
         }
 
-        private class FakeObjective : IObjective<FakeObjective, FakePossibility>
+        private class FakeObjective : IObjective
         {
-            public Link<FakePossibility, FakeObjective>? FirstLink;
+            public Link? FirstLink;
 
-            public IEnumerable<Link<FakePossibility, FakeObjective>> GetLinks()
+            bool IObjective.IsRequired => true;
+
+            IReadOnlySet<IObjective> IObjective.RequiredObjectives => new HashSet<IObjective> { this };
+
+            void IObjective.AppendPossibility(Link toNewPossibility) 
             {
                 if (FirstLink is null)
                 {
-                    yield break;
-                }
-                var link = FirstLink;
-                do
-                {
-                    yield return link;
-                    link = link.NextOnObjective;
-                } while (link != FirstLink);
-            }
-
-            public void Append(Link<FakePossibility, FakeObjective> link)
-            {
-                if (FirstLink is null)
-                {
-                    FirstLink = link;
+                    FirstLink = toNewPossibility;
                     return;
                 }
-                FirstLink.PrependToObjective(link);
+                FirstLink.PrependToObjective(toNewPossibility);
             }
+
+            IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities() => throw new System.NotImplementedException();
+            bool IObjective.TrySelectPossibility(Link toSelect) => throw new System.NotImplementedException();
+            void IObjective.DeselectPossibility(Link toDeselect) => throw new System.NotImplementedException();
+            bool IObjective.TryDropPossibility(Link toDrop) => throw new System.NotImplementedException();
+            void IObjective.ReturnPossibility(Link toReturn) => throw new System.NotImplementedException();
         }
 
-        private class NoopPossibility : IPossibility<NoopPossibility, NoopObjective>
+        private class NoopPossibility : IPossibility
         {
-            public void Append(Link<NoopPossibility, NoopObjective> link) { }
+            void IPossibility.AppendObjective(Link toNewObjective) { }
+            void IPossibility.ReattachObjective(Link toReattach) => throw new System.NotImplementedException();
+            bool IPossibility.TryDetachObjective(Link toDetach) => throw new System.NotImplementedException();
         }
 
-        private class NoopObjective : IObjective<NoopObjective, NoopPossibility>
+        private class NoopObjective : IObjective
         {
-            public void Append(Link<NoopPossibility, NoopObjective> link) { }
+            bool IObjective.IsRequired => throw new System.NotImplementedException();
+
+            IReadOnlySet<IObjective> IObjective.RequiredObjectives => throw new System.NotImplementedException();
+
+            void IObjective.AppendPossibility(Link toNewPossibility) { }
+            void IObjective.DeselectPossibility(Link toDeselect) => throw new System.NotImplementedException();
+            IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities() => throw new System.NotImplementedException();
+            void IObjective.ReturnPossibility(Link toReturn) => throw new System.NotImplementedException();
+            bool IObjective.TryDropPossibility(Link toDrop) => throw new System.NotImplementedException();
+            bool IObjective.TrySelectPossibility(Link toSelect) => throw new System.NotImplementedException();
         }
     }
 }

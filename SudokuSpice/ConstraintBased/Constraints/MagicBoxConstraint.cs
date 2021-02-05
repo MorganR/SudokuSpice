@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SudokuSpice.ConstraintBased.Constraints
@@ -67,7 +68,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         {
             Coordinate startCoord = Boxes.GetStartingBoxCoordinate(boxIndex, _boxSize);
             Span<Coordinate> toConstrain = stackalloc Coordinate[_boxSize];
-            List<RequirementGroup> setsToOr = new();
+            List<OptionalObjective> setsToOr = new();
             for (int rowIdx = 0; rowIdx < _boxSize; ++rowIdx)
             {
                 for (int i = 0; i < _boxSize; ++i)
@@ -78,7 +79,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     return false;
                 }
-                _ConstrainAndClearOverlappingSets(setsToOr);
+                _ConstrainAndClearOverlappingSets(matrix, setsToOr);
             }
             for (int colIdx = 0; colIdx < _boxSize; ++colIdx)
             {
@@ -90,7 +91,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     return false;
                 }
-                _ConstrainAndClearOverlappingSets(setsToOr);
+                _ConstrainAndClearOverlappingSets(matrix, setsToOr);
             }
             if (!_includeDiagonals)
             {
@@ -105,7 +106,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            _ConstrainAndClearOverlappingSets(setsToOr);
+            _ConstrainAndClearOverlappingSets(matrix, setsToOr);
             for (int offset = 0; offset < _boxSize; ++offset)
             {
                 toConstrain[offset] = new Coordinate(startCoord.Row + offset, startCoord.Column + offset);
@@ -114,7 +115,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            _ConstrainAndClearOverlappingSets(setsToOr);
+            _ConstrainAndClearOverlappingSets(matrix, setsToOr);
             return true;
         }
 
@@ -122,9 +123,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
             ReadOnlySpan<Coordinate> toConstrain,
             IReadOnlyPuzzle puzzle,
             ExactCoverMatrix matrix,
-            List<RequirementGroup> setsToOr)
+            List<OptionalObjective> setsToOr)
         {
-            Square[] unsetSquares = new Square[toConstrain.Length];
+            Possibility?[]?[] unsetSquares = new Possibility[toConstrain.Length][];
             BitVector alreadySet = new BitVector();
             int numUnset = 0;
             for (int i = 0; i < toConstrain.Length; ++i)
@@ -135,16 +136,16 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     alreadySet.SetBit(square.Value);
                 } else
                 {
-                    unsetSquares[numUnset++] = matrix.GetSquare(in toConstrain[i])!;
+                    unsetSquares[numUnset++] = matrix.GetAllPossibilitiesAt(in toConstrain[i])!;
                 }
             }
             if (numUnset == 0)
             {
                 return _possibleSets.Contains(alreadySet);
             }
-            PossibleSquareValue[] possibleSquareValues = new PossibleSquareValue[numUnset];
-            Dictionary<int, Requirement> requirementsByPossibleValue = new();
-            Requirement[] requirementsToConnect = new Requirement[numUnset];
+            Possibility[] possibilities = new Possibility[numUnset];
+            Dictionary<int, OptionalObjective> objectivesByPossibleValue = new();
+            OptionalObjective[] objectivesToConnect = new OptionalObjective[numUnset];
             var relevantSets = _possibleSets.Where(set => BitVector.FindIntersect(set, alreadySet) == alreadySet)
                 .ToArray();
             var relevantValues = relevantSets.Aggregate((union, set) => BitVector.FindUnion(union, set));
@@ -157,7 +158,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             var valuesToDrop = new BitVector(_allPossibleValues.Data ^ unsetValues.Data);
             foreach (var value in valuesToDrop.GetSetBits())
             {
-                if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(unsetSquares[0..numUnset], matrix.ValuesToIndices[value]))
+                if (!ConstraintUtil.TryDropPossibilitiesAtIndex(unsetSquares[0..numUnset], matrix.ValuesToIndices[value]))
                 {
                     return false;
                 }
@@ -166,43 +167,43 @@ namespace SudokuSpice.ConstraintBased.Constraints
             // Set requirements on the relevant values.
             foreach (BitVector set in relevantSets)
             {
-                int reqCount = 0;
+                int countToConnect = 0;
                 var unsetPossibleValues = new BitVector(set.Data ^ alreadySet.Data);
                 // Create a requirement for each possible value.
                 foreach (var possibleValue in unsetPossibleValues.GetSetBits())
                 {
-                    if (requirementsByPossibleValue.TryGetValue(possibleValue, out Requirement? existingReq))
+                    if (objectivesByPossibleValue.TryGetValue(possibleValue, out OptionalObjective? existingObjective))
                     {
-                        requirementsToConnect[reqCount++] = existingReq;
+                        objectivesToConnect[countToConnect++] = existingObjective;
                         continue;
                     }
-                    if (!ConstraintUtil.TryAddRequirementsForValueIndex(
+                    if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
                         unsetSquares[0..numUnset],
                         matrix.ValuesToIndices[possibleValue],
                         matrix,
                         requiredCount: 1,
-                        isOptional: true,
-                        out Requirement? req))
+                        objective: out OptionalObjective? objective))
                     {
                         continue;
                     }
-                    requirementsToConnect[reqCount++] = req;
-                    requirementsByPossibleValue[possibleValue] = req;
+                    Debug.Assert(objective is not null); // Should always be set if above was true.
+                    objectivesToConnect[countToConnect++] = objective;
+                    objectivesByPossibleValue[possibleValue] = objective;
                 }
                 // If we have some requirements, group them in an optional "AND" grouping.
-                if (reqCount == 0)
+                if (countToConnect == 0)
                 {
                     continue;
                 }
-                var group = RequirementGroup.RequireAllOf(requirementsToConnect[0..reqCount], isOptional: true);
+                var group = OptionalObjective.CreateWithPossibilities(objectivesToConnect[0..countToConnect], countToSatisfy: countToConnect);
                 setsToOr.Add(group);
             }
             return setsToOr.Count > 0;
         } 
 
-        private void _ConstrainAndClearOverlappingSets(List<RequirementGroup> setsToOr)
+        private void _ConstrainAndClearOverlappingSets(ExactCoverMatrix matrix, List<OptionalObjective> setsToOr)
         {
-            RequirementGroup.RequireOneOf(setsToOr.ToArray().AsSpan());
+            Objective.CreateFullyConnected(matrix, setsToOr.ToArray(), countToSatisfy: 1);
             setsToOr.Clear();
         }
 

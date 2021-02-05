@@ -1,68 +1,138 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace SudokuSpice.ConstraintBased.Test
+namespace SudokuSpice.ConstraintBased.InternalTest
 {
     public class ExactCoverMatrixTest
     {
         [Fact]
-        public void GetSquare_ReturnsSquareWithCorrectCoordinates()
+        public void GetPossibilitiesOnRow_ReturnsExpectedSquares()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new(puzzle);
+            var matrix = ExactCoverMatrix.Create(puzzle);
 
-            Assert.Equal(new Coordinate(0, 0), matrix.GetSquare(new Coordinate(0, 0)).Coordinate);
-            Assert.Equal(new Coordinate(1, 2), matrix.GetSquare(new Coordinate(1, 2)).Coordinate);
-            Assert.Equal(new Coordinate(3, 3), matrix.GetSquare(new Coordinate(3, 3)).Coordinate);
+            int rowIndex = 1;
+            var row = matrix.GetPossibilitiesOnRow(rowIndex);
+            Assert.Equal(4, row.Length);
+            Assert.Equal(new Coordinate(rowIndex, 0), row[0]![0]!.Coordinate);
+            Assert.Equal(new Coordinate(rowIndex, 1), row[1]![0]!.Coordinate);
+            Assert.Equal(new Coordinate(rowIndex, 2), row[2]![0]!.Coordinate);
+            Assert.Equal(new Coordinate(rowIndex, 3), row[3]![0]!.Coordinate);
         }
 
         [Fact]
-        public void GetSquare_ReturnsSquareWithExpectedPossibleValues()
+        // TODO: Move to public tests
+        public void Create_ConfiguresSquareObjectives()
         {
-            int[] expectedPossibleValues = new int[] { 0, 2, 4, 5 };
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new(puzzle);
+            var matrix = ExactCoverMatrix.Create(puzzle);
 
-            Square square = matrix.GetSquare(new Coordinate(0, 0));
-            Assert.Equal(expectedPossibleValues.Length, square.NumPossibleValues);
-            var allValueIndices = new int[] { 0, 1, 2, 3 };
-            Assert.Equal(
-                allValueIndices.Select(idx => square.GetPossibleValue(idx)),
-                square.GetStillPossibleValues());
-            Assert.Equal(allValueIndices, square.GetStillPossibleValues().ToArray().Select(pv => pv.ValueIndex).ToArray());
-            Assert.Equal(2, square.GetPossibleValue(2).ValueIndex);
+            var objectives = matrix.GetUnsatisfiedRequiredObjectives();
+            Assert.Equal(puzzle.Size * puzzle.Size, objectives.Count());
+            var seenCoordinates = new HashSet<Coordinate>();
+            var possibilityIndices = new HashSet<int>() { 0, 1, 2, 3 };
+            Assert.All(objectives,
+                concreteObjective =>
+                {
+                    IObjective objective = concreteObjective;
+                    var possibilities = objective.GetUnknownDirectPossibilities().Cast<Possibility>().ToArray();
+                    Assert.Equal(puzzle.Size, possibilities.Length);
+                    Assert.Equal(possibilityIndices, new HashSet<int>(possibilities.Select(p => p.Index)));
+                    var firstCoord = possibilities.First().Coordinate;
+                    Assert.All(possibilities,
+                        p =>
+                        {
+                            Assert.Equal(firstCoord, p.Coordinate);
+                            Assert.Equal(PossibilityState.UNKNOWN, p.State);
+                        });
+                    Assert.DoesNotContain(firstCoord, seenCoordinates);
+                    seenCoordinates.Add(firstCoord);
+                });
         }
 
         [Fact]
-        public void GetSquaresOnRow_ReturnsExpectedSquares()
+        // TODO: Move to public tests
+        public void SelectSquareValue_DropsOtherPossibilitiesForSquareOnly()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new(puzzle);
+            var matrix = ExactCoverMatrix.Create(puzzle);
 
-            int row = 1;
-            ReadOnlySpan<Square> squares = matrix.GetSquaresOnRow(row);
-            Assert.Equal(4, squares.Length);
-            Assert.Equal(new Coordinate(row, 0), squares[0].Coordinate);
-            Assert.Equal(new Coordinate(row, 1), squares[1].Coordinate);
-            Assert.Equal(new Coordinate(row, 2), squares[2].Coordinate);
-            Assert.Equal(new Coordinate(row, 3), squares[3].Coordinate);
+            var initialObjectivesCount = matrix.GetUnsatisfiedRequiredObjectives().Count();
+            var seenCoordinates = new HashSet<Coordinate>();
+            var possibilityIndices = new HashSet<int>() { 0, 1, 2, 3 };
+            var coordToSet = new Coordinate(1, 1);
+            int indexToSet = 1;
+            var possibilitiesAtCoord = matrix.GetAllPossibilitiesAt(coordToSet)!;
+
+            Assert.True(possibilitiesAtCoord[indexToSet]!.TrySelect());
+
+            Assert.Equal(initialObjectivesCount - 1, matrix.GetUnsatisfiedRequiredObjectives().Count());
+            for (int i = 0; i < puzzle.Size; ++i)
+            {
+                if (i == indexToSet)
+                {
+                    Assert.Equal(PossibilityState.SELECTED, possibilitiesAtCoord[i]!.State);
+                } else
+                {
+                    Assert.Equal(PossibilityState.DROPPED, possibilitiesAtCoord[i]!.State);
+                }
+            }
+            for (int row = 0; row < puzzle.Size; ++row)
+            {
+                for (int col = 0; col < puzzle.Size; ++col)
+                {
+                    var coord = new Coordinate(row, col);
+                    if (coord == coordToSet)
+                    {
+                        continue;
+                    }
+                    var possibilities = matrix.GetAllPossibilitiesAt(in coord);
+                    Assert.All(possibilities, p => Assert.Equal(PossibilityState.UNKNOWN, p!.State));
+                }
+            }
         }
 
+
+
+
         [Fact]
-        public void GetSquaresOnColumn_ReturnsExpectedSquares()
+        public void CopyUnknowns_KeepsUnknownsAndDropsOthers()
         {
             var puzzle = new Puzzle(4);
-            ExactCoverMatrix matrix = new(puzzle);
+            var matrix = ExactCoverMatrix.Create(puzzle);
 
-            int column = 1;
-            List<Square> squares = matrix.GetSquaresOnColumn(column);
-            Assert.Equal(4, squares.Count);
-            Assert.Equal(new Coordinate(0, column), squares[0].Coordinate);
-            Assert.Equal(new Coordinate(1, column), squares[1].Coordinate);
-            Assert.Equal(new Coordinate(2, column), squares[2].Coordinate);
-            Assert.Equal(new Coordinate(3, column), squares[3].Coordinate);
+            int initialObjectivesCount = matrix.GetUnsatisfiedRequiredObjectives().Count();
+            var coordToSelect = new Coordinate(1, 1);
+            int indexToDrop = 0;
+            var possibilitiesToAlter = matrix.GetAllPossibilitiesAt(in coordToSelect);
+            Assert.True(possibilitiesToAlter![indexToDrop]!.TrySelect());
+            Assert.All(possibilitiesToAlter, p => Assert.NotEqual(PossibilityState.UNKNOWN, p!.State));
+            Assert.Equal(initialObjectivesCount - 1, matrix.GetUnsatisfiedRequiredObjectives().Count());
+
+            var copy = matrix.CopyUnknowns();
+            var possibilitiesToBeNull = copy.GetAllPossibilitiesAt(in coordToSelect);
+            Assert.Null(possibilitiesToBeNull);
+            for (int rowIndex = 0; rowIndex < puzzle.Size; ++rowIndex)
+            {
+                for (int colIndex = 0; colIndex < puzzle.Size; ++colIndex)
+                {
+                    var coord = new Coordinate(rowIndex, colIndex);
+                    if (coord == coordToSelect)
+                    {
+                        continue;
+                    }
+                    var possibilities = copy.GetAllPossibilitiesAt(in coord);
+                    Assert.NotNull(possibilities);
+                    Assert.All(possibilities, p =>
+                    {
+                        Assert.NotNull(p);
+                        Assert.Equal(coord, p!.Coordinate);
+                        Assert.Equal(PossibilityState.UNKNOWN, p!.State);
+                    });
+                }
+            }
+            Assert.Equal(initialObjectivesCount - 1, copy.GetUnsatisfiedRequiredObjectives().Count());
         }
     }
 }
