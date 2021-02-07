@@ -184,20 +184,19 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             // 123456789 | 4578 | 1
             // 4         | x    | x
 
-            // diagonals \: 16 25 34
-            // diagonals /: 18 27 45
+            // diagonals \: 16 25 34 -> Has to be 25 when combining top left and middle possibles.
+            // diagonals /: 18 27 45 -> Has to be 45 when combining bottom left and middle possibles.
 
             // 25        | 4578 | x
             // 123456789 | 5    | 1
             // 4         | x    | x
 
-            // rows: 124578, cols: 124578, diagonals: 25
+            // Note this doesn't filter further because failed optional objectives can't drop
+            // possiblities.
+
             _AssertPossibleValuesAtSquare(new (3, 3), new int[] { 2, 5 }, matrix);
-            // rows: 124578, cols: 4578, diagonals: n/a
             _AssertPossibleValuesAtSquare(new (3, 4), new int[] { 4, 5, 7, 8 }, matrix);
-            // rows: 123456789, cols: 123456789, diagonals: n/a
             _AssertPossibleValuesAtSquare(new (4, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
-            // rows: 123456789, cols: 4578, diagonals: 
             _AssertPossibleValuesAtSquare(new (4, 4), new int[] { 5 }, matrix);
             _AssertPossibleValuesAtSquare(new (4, 5), new int[] { 1 }, matrix);
             _AssertPossibleValuesAtSquare(new (5, 3), new int[] { 4 }, matrix);
