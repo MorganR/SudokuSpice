@@ -14,6 +14,7 @@ namespace SudokuSpice.ConstraintBased
         private int _selectedCount;
         private Link? _toPossibility;
         private bool _allPossibilitiesAreConcrete;
+        private bool _atLeastOnePossibilityIsConcrete;
         private LinkedListNode<Objective>? _linkInMatrix;
         private NodeState _state;
 
@@ -22,9 +23,13 @@ namespace SudokuSpice.ConstraintBased
         internal bool AllUnknownPossibilitiesAreConcrete
         {
             get {
-                if (_allPossibilitiesAreConcrete || IsSatisfied || _toPossibility is null)
+                if (_allPossibilitiesAreConcrete)
                 {
                     return true;
+                }
+                if (!_atLeastOnePossibilityIsConcrete || IsSatisfied || _toPossibility is null)
+                {
+                    return false;
                 }
                 foreach (var toUnknown in _toPossibility.GetLinksOnObjective())
                 {
@@ -50,6 +55,7 @@ namespace SudokuSpice.ConstraintBased
             _matrix = matrix;
             _countToSatisfy = countToSatisfy;
             _allPossibilitiesAreConcrete = true;
+            _atLeastOnePossibilityIsConcrete = false;
             _state = NodeState.UNKNOWN;
         }
 
@@ -77,6 +83,9 @@ namespace SudokuSpice.ConstraintBased
             if (toNewPossibility.Possibility is not Possibility)
             {
                 _allPossibilitiesAreConcrete = false;
+            } else
+            {
+                _atLeastOnePossibilityIsConcrete = true;
             }
             if (_toPossibility is null)
             {
