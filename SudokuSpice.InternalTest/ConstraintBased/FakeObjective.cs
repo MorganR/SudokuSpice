@@ -13,6 +13,8 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         internal List<Link> DroppedPossibilities = new();
         internal List<Link> SelectedPossibilities = new();
 
+        public NodeState State { get; set; }
+
         internal FakeObjective(bool isRequired = false)
         {
             _isRequired = isRequired;

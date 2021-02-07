@@ -2,8 +2,9 @@
 {
     public interface IPossibility
     {
+        public NodeState State { get; }
         internal void AppendObjective(Link toNewObjective);
-        internal void ReattachObjective(Link toReattach);
-        internal bool TryDetachObjective(Link toDetach);
+        internal void NotifyReattachedToObjective(Link toReattach);
+        internal bool TryNotifyDroppedFromObjective(Link toDetach);
     }
 }

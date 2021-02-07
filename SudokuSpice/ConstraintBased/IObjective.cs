@@ -4,6 +4,8 @@ namespace SudokuSpice.ConstraintBased
 {
     public interface IObjective
     {
+        public NodeState State { get; }
+
         internal bool IsRequired { get; }
         internal IReadOnlySet<IObjective> RequiredObjectives { get; }
 

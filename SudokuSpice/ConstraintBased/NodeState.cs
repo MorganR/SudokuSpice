@@ -3,7 +3,7 @@
     /// <summary>
     /// Indicates if a <see cref="PossibleSquareValue"/> is still possible, selected, or dropped.
     /// </summary>
-    public enum PossibilityState
+    public enum NodeState
     {
         /// <summary>
         /// This <see cref="PossibleSquareValue"/> is still possible.

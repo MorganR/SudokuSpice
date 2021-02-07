@@ -14,8 +14,8 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             var link = Link.CreateConnectedLink(possibility, objective);
 
-            Assert.Same(link, possibility.FirstLink);
-            Assert.Same(link, objective.FirstLink);
+            Assert.Single(possibility.AttachedObjectives, link);
+            Assert.Single(objective.AttachedPossibilities, link);
             Assert.Same(link, link.NextOnObjective);
             Assert.Same(link, link.PreviousOnObjective);
             Assert.Same(link, link.NextOnPossibility);
@@ -93,7 +93,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(secondLink, poppedLink.PreviousOnObjective);
             Assert.Same(secondLink, secondLink.NextOnObjective);
             Assert.Same(secondLink, secondLink.PreviousOnObjective);
-            Assert.Same(poppedLink, objective.FirstLink);
+            Assert.Same(poppedLink, objective.AttachedPossibilities.First());
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(secondLink, poppedLink.PreviousOnObjective);
             Assert.Same(poppedLink, secondLink.NextOnObjective);
             Assert.Same(poppedLink, secondLink.PreviousOnObjective);
-            Assert.Same(poppedLink, objective.FirstLink);
+            Assert.Same(poppedLink, objective.AttachedPossibilities.First());
         }
 
         [Fact]
@@ -130,7 +130,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(secondLink, poppedLink.PreviousOnPossibility);
             Assert.Same(secondLink, secondLink.NextOnPossibility);
             Assert.Same(secondLink, secondLink.PreviousOnPossibility);
-            Assert.Same(poppedLink, possibility.FirstLink);
+            Assert.Same(poppedLink, possibility.AttachedObjectives.First());
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(secondLink, poppedLink.PreviousOnPossibility);
             Assert.Same(poppedLink, secondLink.NextOnPossibility);
             Assert.Same(poppedLink, secondLink.PreviousOnPossibility);
-            Assert.Same(poppedLink, possibility.FirstLink);
+            Assert.Same(poppedLink, possibility.AttachedObjectives.First());
         }
 
 
@@ -232,59 +232,19 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(secondLink, thirdLink.PreviousOnObjective);
             Assert.Same(firstLink, secondLink.PreviousOnObjective);
         }
-
-        private class FakePossibility : IPossibility
-        {
-            public Link? FirstLink;
-
-            void IPossibility.AppendObjective(Link toNewObjective)
-            {
-                if (FirstLink is null)
-                {
-                    FirstLink = toNewObjective;
-                    return;
-                }
-                FirstLink.PrependToPossibility(toNewObjective);
-            }
-
-            void IPossibility.ReattachObjective(Link toReattach) => throw new System.NotImplementedException();
-            bool IPossibility.TryDetachObjective(Link toDetach) => throw new System.NotImplementedException();
-        }
-
-        private class FakeObjective : IObjective
-        {
-            public Link? FirstLink;
-
-            bool IObjective.IsRequired => true;
-
-            IReadOnlySet<IObjective> IObjective.RequiredObjectives => new HashSet<IObjective> { this };
-
-            void IObjective.AppendPossibility(Link toNewPossibility) 
-            {
-                if (FirstLink is null)
-                {
-                    FirstLink = toNewPossibility;
-                    return;
-                }
-                FirstLink.PrependToObjective(toNewPossibility);
-            }
-
-            IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities() => throw new System.NotImplementedException();
-            bool IObjective.TrySelectPossibility(Link toSelect) => throw new System.NotImplementedException();
-            void IObjective.DeselectPossibility(Link toDeselect) => throw new System.NotImplementedException();
-            bool IObjective.TryDropPossibility(Link toDrop) => throw new System.NotImplementedException();
-            void IObjective.ReturnPossibility(Link toReturn) => throw new System.NotImplementedException();
-        }
-
         private class NoopPossibility : IPossibility
         {
+            public NodeState State { get; set; }
+            
             void IPossibility.AppendObjective(Link toNewObjective) { }
-            void IPossibility.ReattachObjective(Link toReattach) => throw new System.NotImplementedException();
-            bool IPossibility.TryDetachObjective(Link toDetach) => throw new System.NotImplementedException();
+            void IPossibility.NotifyReattachedToObjective(Link toReattach) => throw new System.NotImplementedException();
+            bool IPossibility.TryNotifyDroppedFromObjective(Link toDetach) => throw new System.NotImplementedException();
         }
 
         private class NoopObjective : IObjective
         {
+            public NodeState State { get; set; }
+
             bool IObjective.IsRequired => throw new System.NotImplementedException();
 
             IReadOnlySet<IObjective> IObjective.RequiredObjectives => throw new System.NotImplementedException();

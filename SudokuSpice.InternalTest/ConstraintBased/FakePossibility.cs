@@ -9,13 +9,15 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         internal List<Link> AttachedObjectives = new List<Link>();
         internal List<Link> DetachedObjectives = new List<Link>();
 
+        public NodeState State { get; set; }
+
         void IPossibility.AppendObjective(Link toNewObjective)
         {
             AttachedObjectives.Add(toNewObjective);
             AttachedObjectives[0].PrependToPossibility(toNewObjective);
         }
 
-        void IPossibility.ReattachObjective(Link toReattach)
+        void IPossibility.NotifyReattachedToObjective(Link toReattach)
         {
             if (!DetachedObjectives.Contains(toReattach))
             {
@@ -24,7 +26,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             DetachedObjectives.Remove(toReattach);
         }
 
-        bool IPossibility.TryDetachObjective(Link toDetach)
+        bool IPossibility.TryNotifyDroppedFromObjective(Link toDetach)
         {
             if (!AttachedObjectives.Contains(toDetach))
             {

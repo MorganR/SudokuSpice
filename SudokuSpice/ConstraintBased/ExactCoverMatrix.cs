@@ -154,7 +154,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 if (possibility is Possibility concretePossibility)
                 {
-                    if (concretePossibility.State != PossibilityState.UNKNOWN)
+                    if (concretePossibility.State != NodeState.UNKNOWN)
                     {
                         continue;
                     }
@@ -177,7 +177,7 @@ namespace SudokuSpice.ConstraintBased
                     yield return copiedPossibility;
                 } else if (possibility is OptionalObjective optionalObjective)
                 {
-                    if (optionalObjective.State != PossibilityState.UNKNOWN)
+                    if (optionalObjective.State != NodeState.UNKNOWN)
                     {
                         continue;
                     }

@@ -10,7 +10,9 @@ namespace SudokuSpice.ConstraintBased
             return requiredObjectives.Any(
                 required => !toIterate.GetLinksOnPossibility().Any(
                     otherObjective => 
-                    otherObjective != toCheck && otherObjective.Objective.RequiredObjectives.Contains(required)));
+                    otherObjective != toCheck &&
+                    otherObjective.Objective.State != NodeState.DROPPED &&
+                    otherObjective.Objective.RequiredObjectives.Contains(required)));
         }
     }
 }

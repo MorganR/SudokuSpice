@@ -13,7 +13,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             Assert.Equal(new Coordinate(1, 1), possibility.Coordinate);
             Assert.Equal(2, possibility.Index);
-            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
+            Assert.Equal(NodeState.UNKNOWN, possibility.State);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             Assert.True(possibility.TryDrop());
 
-            Assert.Equal(PossibilityState.DROPPED, possibility.State);
+            Assert.Equal(NodeState.DROPPED, possibility.State);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.True(possibility.TryDrop());
 
             Assert.Single(objective.DroppedPossibilities, link);
-            Assert.Equal(PossibilityState.DROPPED, possibility.State);
+            Assert.Equal(NodeState.DROPPED, possibility.State);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             Assert.False(possibility.TryDrop());
 
-            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
+            Assert.Equal(NodeState.UNKNOWN, possibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToReject.DroppedPossibilities);
         }
@@ -76,12 +76,12 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             Assert.True(possibility.TrySelect());
 
-            Assert.Equal(PossibilityState.SELECTED, possibility.State);
+            Assert.Equal(NodeState.SELECTED, possibility.State);
             Assert.Single(objective.SelectedPossibilities, link);
 
             possibility.Deselect();
 
-            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
+            Assert.Equal(NodeState.UNKNOWN, possibility.State);
             Assert.Empty(objective.SelectedPossibilities);
         }
 
@@ -97,7 +97,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             Assert.False(possibility.TrySelect());
 
-            Assert.Equal(PossibilityState.UNKNOWN, possibility.State);
+            Assert.Equal(NodeState.UNKNOWN, possibility.State);
             Assert.Empty(objective.SelectedPossibilities);
             Assert.Empty(objectiveToReject.SelectedPossibilities);
         }
@@ -112,13 +112,13 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var linkToDrop = Link.CreateConnectedLink(possibility, objective);
             var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.True(possibility.TryDetachObjective(linkToDetach));
-            Assert.Equal(PossibilityState.DROPPED, concretePossibility.State);
+            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.Equal(NodeState.DROPPED, concretePossibility.State);
             Assert.Single(objective.DroppedPossibilities, linkToDrop);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
-            possibility.ReattachObjective(linkToDetach);
-            Assert.Equal(PossibilityState.UNKNOWN, concretePossibility.State);
+            possibility.NotifyReattachedToObjective(linkToDetach);
+            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
         }
@@ -137,13 +137,13 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var linkToDrop = Link.CreateConnectedLink(possibility, objectiveToDropFrom);
             var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.True(possibility.TryDetachObjective(linkToDetach));
-            Assert.Equal(PossibilityState.DROPPED, concretePossibility.State);
+            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.Equal(NodeState.DROPPED, concretePossibility.State);
             Assert.Single(objectiveToDropFrom.DroppedPossibilities, linkToDrop);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
-            possibility.ReattachObjective(linkToDetach);
-            Assert.Equal(PossibilityState.UNKNOWN, concretePossibility.State);
+            possibility.NotifyReattachedToObjective(linkToDetach);
+            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objectiveToDropFrom.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
         }
@@ -161,23 +161,23 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var linkToCauseDrop = Link.CreateConnectedLink(possibility, objective);
             var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.True(possibility.TryDetachObjective(linkToDetach));
-            Assert.Equal(PossibilityState.UNKNOWN, concretePossibility.State);
+            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
-            Assert.True(possibility.TryDetachObjective(linkToCauseDrop));
-            Assert.Equal(PossibilityState.DROPPED, concretePossibility.State);
+            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToCauseDrop));
+            Assert.Equal(NodeState.DROPPED, concretePossibility.State);
+            Assert.Empty(objective.DroppedPossibilities);
+            Assert.Single(objectiveToDetach.DroppedPossibilities, linkToDetach);
+
+            possibility.NotifyReattachedToObjective(linkToCauseDrop);
+            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
-            possibility.ReattachObjective(linkToCauseDrop);
-            Assert.Equal(PossibilityState.UNKNOWN, concretePossibility.State);
-            Assert.Empty(objective.DroppedPossibilities);
-            Assert.Empty(objectiveToDetach.DroppedPossibilities);
-
-            possibility.ReattachObjective(linkToDetach);
-            Assert.Equal(PossibilityState.UNKNOWN, concretePossibility.State);
+            possibility.NotifyReattachedToObjective(linkToDetach);
+            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
         }
@@ -193,41 +193,35 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Link linkToOther = Link.CreateConnectedLink(possibility, objective);
             Link linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.False(possibility.TryDetachObjective(linkToDetach));
-            Assert.Equal(PossibilityState.UNKNOWN, concretePossibility.State);
+            Assert.False(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
             // Verify the attempted-detached objective was still attached by dropping the
             // possibility from it.
-            Assert.True(possibility.TryDetachObjective(linkToOther));
-            Assert.Equal(PossibilityState.DROPPED, concretePossibility.State);
+            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToOther));
+            Assert.Equal(NodeState.DROPPED, concretePossibility.State);
             Assert.Single(objectiveToDetach.DroppedPossibilities, linkToDetach);
         }
 
         [Fact]
-        public void TrySelectAndDeselect_WhenSharedByOpposingObjectives_Works()
+        public void TrySelectAndDeselect_WhenSharedByOpposingObjectives_Fails()
         {
             var puzzle = new Puzzle(4);
             var matrix = ExactCoverMatrix.Create(puzzle);
             var concretePossibility = new Possibility(new(), 1);
-            IPossibility possibility = concretePossibility;
             var possibilities = new IPossibility[] { concretePossibility };
-            var parentToSelect = OptionalObjective.CreateWithPossibilities(possibilities, 1);
-            var parentToDrop = OptionalObjective.CreateWithPossibilities(possibilities.Append(new FakePossibility()).ToArray(), 1);
+            var parentA = OptionalObjective.CreateWithPossibilities(possibilities, 1);
+            var parentB = OptionalObjective.CreateWithPossibilities(possibilities.Append(new FakePossibility()).ToArray(), 1);
             var required = Objective.CreateFullyConnected(
                 matrix,
-                new IPossibility[] { parentToSelect, parentToDrop },
+                new IPossibility[] { parentA, parentB },
                 1);
 
-            Assert.True(concretePossibility.TrySelect());
-            Assert.Equal(PossibilityState.SELECTED, parentToSelect.State);
-            Assert.Equal(PossibilityState.DROPPED, parentToDrop.State);
-            Assert.True(required.IsSatisfied);
-
-            concretePossibility.Deselect();
-            Assert.Equal(PossibilityState.UNKNOWN, parentToSelect.State);
-            Assert.Equal(PossibilityState.UNKNOWN, parentToDrop.State);
+            Assert.False(concretePossibility.TrySelect());
+            Assert.Equal(NodeState.UNKNOWN, parentA.State);
+            Assert.Equal(NodeState.UNKNOWN, parentB.State);
             Assert.False(required.IsSatisfied);
         }
 
@@ -248,24 +242,24 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             // Additionally try one where optional ends up dropped before the cascade somehow... maybe add one to possibilities and to optional's countToSatisfy.
 
             Assert.True(possibilities[0].TrySelect());
-            Assert.Equal(PossibilityState.SELECTED, possibilities[0].State);
-            Assert.Equal(PossibilityState.DROPPED, possibilities[1].State);
-            Assert.Equal(PossibilityState.UNKNOWN, optional.State);
+            Assert.Equal(NodeState.SELECTED, possibilities[0].State);
+            Assert.Equal(NodeState.DROPPED, possibilities[1].State);
+            Assert.Equal(NodeState.UNKNOWN, optional.State);
             Assert.Empty(fakePossibility.DetachedObjectives);
             Assert.True(required.IsSatisfied);
             Assert.False(separateRequired.IsSatisfied);
 
             Assert.True(((IObjective)optional).TrySelectPossibility(fakeLinkToOptional));
-            Assert.Equal(PossibilityState.SELECTED, possibilities[0].State);
-            Assert.Equal(PossibilityState.DROPPED, possibilities[1].State);
-            Assert.Equal(PossibilityState.SELECTED, optional.State);
+            Assert.Equal(NodeState.SELECTED, possibilities[0].State);
+            Assert.Equal(NodeState.DROPPED, possibilities[1].State);
+            Assert.Equal(NodeState.SELECTED, optional.State);
             Assert.True(required.IsSatisfied);
             Assert.True(separateRequired.IsSatisfied);
 
             ((IObjective)optional).DeselectPossibility(fakeLinkToOptional);
-            Assert.Equal(PossibilityState.SELECTED, possibilities[0].State);
-            Assert.Equal(PossibilityState.DROPPED, possibilities[1].State);
-            Assert.Equal(PossibilityState.UNKNOWN, optional.State);
+            Assert.Equal(NodeState.SELECTED, possibilities[0].State);
+            Assert.Equal(NodeState.DROPPED, possibilities[1].State);
+            Assert.Equal(NodeState.UNKNOWN, optional.State);
             Assert.Empty(fakePossibility.DetachedObjectives);
             Assert.True(required.IsSatisfied);
             Assert.False(separateRequired.IsSatisfied);
@@ -288,20 +282,20 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var separateRequired = Objective.CreateFullyConnected(matrix, new IPossibility[] { optional, new FakePossibility() }, 1);
 
             Assert.True(((IObjective)optional).TryDropPossibility(fakeLinkToOptional));
-            Assert.Equal(PossibilityState.UNKNOWN, optional.State);
+            Assert.Equal(NodeState.UNKNOWN, optional.State);
             Assert.True(possibilities[0].TrySelect());
-            Assert.Equal(PossibilityState.SELECTED, possibilities[0].State);
-            Assert.Equal(PossibilityState.DROPPED, possibilities[1].State);
-            Assert.Equal(PossibilityState.DROPPED, possibilities[2].State);
-            Assert.Equal(PossibilityState.DROPPED, optional.State);
+            Assert.Equal(NodeState.SELECTED, possibilities[0].State);
+            Assert.Equal(NodeState.DROPPED, possibilities[1].State);
+            Assert.Equal(NodeState.DROPPED, possibilities[2].State);
+            Assert.Equal(NodeState.DROPPED, optional.State);
             Assert.True(required.IsSatisfied);
             Assert.False(separateRequired.IsSatisfied);
 
             possibilities[0].Deselect();
-            Assert.Equal(PossibilityState.UNKNOWN, possibilities[0].State);
-            Assert.Equal(PossibilityState.UNKNOWN, possibilities[1].State);
-            Assert.Equal(PossibilityState.UNKNOWN, possibilities[2].State);
-            Assert.Equal(PossibilityState.UNKNOWN, optional.State);
+            Assert.Equal(NodeState.UNKNOWN, possibilities[0].State);
+            Assert.Equal(NodeState.UNKNOWN, possibilities[1].State);
+            Assert.Equal(NodeState.UNKNOWN, possibilities[2].State);
+            Assert.Equal(NodeState.UNKNOWN, optional.State);
             Assert.False(required.IsSatisfied);
             Assert.False(separateRequired.IsSatisfied);
         }

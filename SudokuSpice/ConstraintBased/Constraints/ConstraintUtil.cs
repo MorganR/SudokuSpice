@@ -224,7 +224,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
                 Possibility? possibility = square[possibilityIndex];
                 if (possibility is null
-                    || possibility.State != PossibilityState.UNKNOWN)
+                    || possibility.State != NodeState.UNKNOWN)
                 {
                     continue;
                 }

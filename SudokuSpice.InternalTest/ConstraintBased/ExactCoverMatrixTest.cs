@@ -44,7 +44,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                         p =>
                         {
                             Assert.Equal(firstCoord, p.Coordinate);
-                            Assert.Equal(PossibilityState.UNKNOWN, p.State);
+                            Assert.Equal(NodeState.UNKNOWN, p.State);
                         });
                     Assert.DoesNotContain(firstCoord, seenCoordinates);
                     seenCoordinates.Add(firstCoord);
@@ -72,10 +72,10 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             {
                 if (i == indexToSet)
                 {
-                    Assert.Equal(PossibilityState.SELECTED, possibilitiesAtCoord[i]!.State);
+                    Assert.Equal(NodeState.SELECTED, possibilitiesAtCoord[i]!.State);
                 } else
                 {
-                    Assert.Equal(PossibilityState.DROPPED, possibilitiesAtCoord[i]!.State);
+                    Assert.Equal(NodeState.DROPPED, possibilitiesAtCoord[i]!.State);
                 }
             }
             for (int row = 0; row < puzzle.Size; ++row)
@@ -88,7 +88,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                         continue;
                     }
                     var possibilities = matrix.GetAllPossibilitiesAt(in coord);
-                    Assert.All(possibilities, p => Assert.Equal(PossibilityState.UNKNOWN, p!.State));
+                    Assert.All(possibilities, p => Assert.Equal(NodeState.UNKNOWN, p!.State));
                 }
             }
         }
@@ -107,7 +107,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             int indexToDrop = 0;
             var possibilitiesToAlter = matrix.GetAllPossibilitiesAt(in coordToSelect);
             Assert.True(possibilitiesToAlter![indexToDrop]!.TrySelect());
-            Assert.All(possibilitiesToAlter, p => Assert.NotEqual(PossibilityState.UNKNOWN, p!.State));
+            Assert.All(possibilitiesToAlter, p => Assert.NotEqual(NodeState.UNKNOWN, p!.State));
             Assert.Equal(initialObjectivesCount - 1, matrix.GetUnsatisfiedRequiredObjectives().Count());
 
             var copy = matrix.CopyUnknowns();
@@ -128,7 +128,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                     {
                         Assert.NotNull(p);
                         Assert.Equal(coord, p!.Coordinate);
-                        Assert.Equal(PossibilityState.UNKNOWN, p!.State);
+                        Assert.Equal(NodeState.UNKNOWN, p!.State);
                     });
                 }
             }

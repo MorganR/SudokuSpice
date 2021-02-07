@@ -15,10 +15,13 @@ namespace SudokuSpice.ConstraintBased
         private Link? _toPossibility;
         private bool _allPossibilitiesAreConcrete;
         private LinkedListNode<Objective>? _linkInMatrix;
+        private NodeState _state;
+
+        public NodeState State => _state;
 
         internal bool AllUnknownPossibilitiesAreConcrete
         {
-            get { 
+            get {
                 if (_allPossibilitiesAreConcrete || IsSatisfied || _toPossibility is null)
                 {
                     return true;
@@ -47,6 +50,7 @@ namespace SudokuSpice.ConstraintBased
             _matrix = matrix;
             _countToSatisfy = countToSatisfy;
             _allPossibilitiesAreConcrete = true;
+            _state = NodeState.UNKNOWN;
         }
 
         public static Objective CreateFullyConnected(
@@ -105,8 +109,8 @@ namespace SudokuSpice.ConstraintBased
             {
                 if (!Links.TryUpdateOthersOnObjective(
                     toSelect,
-                    toDetach => toDetach.Possibility.TryDetachObjective(toDetach),
-                    toReattach => toReattach.Possibility.ReattachObjective(toReattach)))
+                    toDetach => toDetach.Possibility.TryNotifyDroppedFromObjective(toDetach),
+                    toReattach => toReattach.Possibility.NotifyReattachedToObjective(toReattach)))
                 {
                     --_selectedCount;
                     return false;
@@ -114,6 +118,7 @@ namespace SudokuSpice.ConstraintBased
                 Debug.Assert(_linkInMatrix is not null,
                     $"{nameof(_linkInMatrix)} should be set during construction.");
                 _matrix.DetachObjective(_linkInMatrix);
+                _state = NodeState.SELECTED;
             }
             _PopPossibility(toSelect);
             return true;
@@ -126,12 +131,13 @@ namespace SudokuSpice.ConstraintBased
             _ReinsertPossibility(toDeselect);
             if (IsSatisfied)
             {
+                _state = NodeState.SELECTED;
                 Debug.Assert(_linkInMatrix is not null,
                     $"{nameof(_linkInMatrix)} should be set during construction.");
                 _matrix.ReattachObjective(_linkInMatrix);
                 Links.RevertOthersOnObjective(
                     toDeselect,
-                    toReattach => toReattach.Possibility.ReattachObjective(toReattach));
+                    toReattach => toReattach.Possibility.NotifyReattachedToObjective(toReattach));
             }
             --_selectedCount;
         }
@@ -176,7 +182,5 @@ namespace SudokuSpice.ConstraintBased
             _toPossibility = _previousFirstPossibilityLinks.Pop();
             toReinsert.ReinsertToObjective();
         }
-
-
     }
 }
