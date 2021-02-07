@@ -10,23 +10,35 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private readonly int _size;
         private readonly int _boxSize;
         private readonly bool _includeDiagonals;
-        private readonly int[] _magicBoxIndices;
+        private readonly Box[] _magicBoxes;
         private readonly BitVector _allPossibleValues;
         private readonly IReadOnlySet<BitVector> _possibleSets;
 
-        public MagicBoxConstraint(int size, ReadOnlySpan<int> magicBoxIndices, bool includeDiagonals = true)
+        public MagicBoxConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Box> boxes, bool includeDiagonals = true)
         {
-            _size = size;
-            _boxSize = Boxes.CalculateBoxSize(size);
+            _size = possibleValues.Length;
+            _magicBoxes = boxes.ToArray();
+            _boxSize = Boxes.CalculateBoxSize(_size);
             _includeDiagonals = includeDiagonals;
-            _magicBoxIndices = magicBoxIndices.ToArray();
-            if (_magicBoxIndices.Any(idx => idx < 0 || idx >= _size))
+            if (_magicBoxes.Any(
+                b => 
+                b.TopLeft.Row < 0 || b.TopLeft.Column < 0 ||
+                b.TopLeft.Row + b.Size > _size || b.TopLeft.Column + b.Size > _size ||
+                b.Size != _boxSize))
             {
-                throw new ArgumentException($"Box indices must be in the range [0,{nameof(size)}-1].");
+                throw new ArgumentException(
+                    $"Based on the {nameof(possibleValues)}, {nameof(boxes)} must fit in a puzzle of size {_size} and have size {_boxSize}.");
             }
-            _allPossibleValues = BitVector.CreateWithSize(size + 1);
-            _allPossibleValues.UnsetBit(0);
-            _possibleSets = _ComputeMagicSets(_size, _boxSize, _allPossibleValues);
+            _allPossibleValues = new BitVector();
+            for (int i = 0; i < possibleValues.Length; ++i)
+            {
+                if (_allPossibleValues.IsBitSet(possibleValues[i]))
+                {
+                    throw new ArgumentException("Values must be unique.");
+                }
+                _allPossibleValues.SetBit(possibleValues[i]);
+            }
+            _possibleSets = MagicSquares.ComputeSets(possibleValues, _boxSize, _allPossibleValues);
         }
 
         public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -35,9 +47,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            foreach (int boxIndex in _magicBoxIndices)
+            foreach (Box box in _magicBoxes)
             {
-                if (!_TryConstrainBox(boxIndex, puzzle, matrix))
+                if (!_TryConstrainBox(box, puzzle, matrix))
                 {
                     return false;
                 }
@@ -64,9 +76,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return copiedSet.IsEmpty();
         }
 
-        private bool _TryConstrainBox(int boxIndex, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
-            Coordinate startCoord = Boxes.GetStartingBoxCoordinate(boxIndex, _boxSize);
+            Coordinate startCoord = box.TopLeft;
             Span<Coordinate> toConstrain = stackalloc Coordinate[_boxSize];
             List<OptionalObjective> setsToOr = new();
             for (int rowIdx = 0; rowIdx < _boxSize; ++rowIdx)
@@ -205,56 +217,6 @@ namespace SudokuSpice.ConstraintBased.Constraints
         {
             Objective.CreateFullyConnected(matrix, setsToOr.ToArray(), countToSatisfy: 1);
             setsToOr.Clear();
-        }
-
-        private static HashSet<BitVector> _ComputeMagicSets(int size, int boxSize, BitVector allPossibleValues)
-        {
-            int magicSum = _ComputeMagicSquareSum(size, boxSize);
-            var sets = new HashSet<BitVector>();
-            foreach (int possibleValue in allPossibleValues.GetSetBits())
-            {
-                var set = new BitVector();
-                set.SetBit(possibleValue);
-                BitVector possibleValues = allPossibleValues;
-                possibleValues.UnsetBit(possibleValue);
-                sets = new (sets.Union(_ComputeMagicSetsForRemainder(boxSize - 1, magicSum - possibleValue, possibleValues, set)));
-            }
-            return sets;
-        }
-
-        private static int _ComputeMagicSquareSum(int size, int boxSize)
-        {
-            int sum = 0;
-            for (int i = 1; i <= size; ++i)
-            {
-                sum += i;
-            }
-            return sum / boxSize;
-        }
-
-        private static HashSet<BitVector> _ComputeMagicSetsForRemainder(int remainingSize, int remainder, BitVector possibleValues, BitVector partialSet)
-        {
-            var result = new HashSet<BitVector>();
-            if (remainingSize == 0)
-            {
-                if (remainder == 0)
-                {
-                    result.Add(partialSet);
-                }
-                return result;
-            }
-            foreach (var possibleValue in possibleValues.GetSetBits())
-            {
-                if (remainder - possibleValue >= 0)
-                {
-                    BitVector set = partialSet;
-                    set.SetBit(possibleValue);
-                    BitVector reducedPossibleValues = possibleValues;
-                    reducedPossibleValues.UnsetBit(possibleValue);
-                    result = new (result.Union(_ComputeMagicSetsForRemainder(remainingSize - 1, remainder - possibleValue, reducedPossibleValues, set)));
-                }
-            }
-            return result;
         }
     }
 }

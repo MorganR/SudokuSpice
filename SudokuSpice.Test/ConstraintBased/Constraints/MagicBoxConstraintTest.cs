@@ -21,8 +21,14 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new int[] { 0, 4, 8 };
-            var constraint = new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: false);
+            var boxesToConstrain = new Box[] { 
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
+            };
+            var constraint = new MagicBoxConstraint(
+                _CreateStandardPossibleValues(9),
+                boxesToConstrain, includeDiagonals: false);
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { 
                     new RowUniquenessConstraint(),
@@ -50,13 +56,25 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null,    6, null, null },
             });
 
-            var boxesToConstrain = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+            var boxesToConstrain = new Box[] { 
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(0, 3), 3),
+                new Box(new Coordinate(0, 6), 3),
+                new Box(new Coordinate(3, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(3, 6), 3),
+                new Box(new Coordinate(6, 0), 3),
+                new Box(new Coordinate(6, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
+            };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
-                    new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: false)
+                    new MagicBoxConstraint(
+                        _CreateStandardPossibleValues(puzzle.Size),
+                        boxesToConstrain, includeDiagonals: false)
                 });
 
             var solution = solver.Solve(puzzle);
@@ -78,19 +96,22 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 {    6, null,    1, null, null, null,    7, null, null },
                 {    2, null, null, null, null, null, null, null, null },
             });
-
-            var boxesToConstrain = new int[] { 4 };
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(3, 3), 3),
+            };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
-                    new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: true)
+                    new MagicBoxConstraint(
+                        _CreateStandardPossibleValues(9),
+                        boxesToConstrain, includeDiagonals: true)
                 });
 
             var solution = solver.Solve(puzzle);
             PuzzleTestUtils.AssertStandardPuzzleSolved(solution);
-            _AssertMagicSquaresSatisfied(solution, 15, verifyDiagonals: true);
+            _AssertMagicSquaresSatisfied(solution, boxesToConstrain, 15, verifyDiagonals: true);
         }
 
         [Fact]
@@ -107,8 +128,12 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new int[] { 0 };
-            var constraint = new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: false);
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
+            };
+            var constraint = new MagicBoxConstraint(
+                _CreateStandardPossibleValues(9),
+                boxesToConstrain, includeDiagonals: false);
             var matrix = ExactCoverMatrix.Create(puzzle);
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
@@ -136,8 +161,12 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new int[] { 4 };
-            var constraint = new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: true);
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(3, 3), 3),
+            };
+            var constraint = new MagicBoxConstraint(
+                _CreateStandardPossibleValues(9),
+                boxesToConstrain, includeDiagonals: true);
             var matrix = ExactCoverMatrix.Create(puzzle);
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
@@ -165,21 +194,36 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new int[] { 0 };
-            var constraint = new MagicBoxConstraint(9, boxesToConstrain, includeDiagonals: false);
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
+            };
+            var constraint = new MagicBoxConstraint(
+                _CreateStandardPossibleValues(9),
+                boxesToConstrain, includeDiagonals: false);
             var matrix = ExactCoverMatrix.Create(puzzle);
 
             Assert.False(constraint.TryConstrain(puzzle, matrix));
         }
 
-        private static void _AssertMagicSquaresSatisfied(Puzzle puzzle, int expectedSum, bool verifyDiagonals)
+        private static void _AssertMagicSquaresSatisfied(IReadOnlyPuzzle puzzle, int expectedSum, bool verifyDiagonals)
         {
             int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            for (int boxIdx = 0; boxIdx < puzzle.Size; ++boxIdx)
+            var boxes = new Box[puzzle.Size];
+            for (int boxIdx = 0; boxIdx < boxes.Length; ++boxIdx)
             {
+                boxes[boxIdx] = new Box(Boxes.GetStartingBoxCoordinate(boxIdx, boxSize), boxSize);
+            }
+            _AssertMagicSquaresSatisfied(puzzle, boxes, expectedSum, verifyDiagonals);
+        }
+
+        private static void _AssertMagicSquaresSatisfied(IReadOnlyPuzzle puzzle, Box[] boxesToCheck, int expectedSum, bool verifyDiagonals)
+        {
+            foreach (Box box in boxesToCheck)
+            {
+                int boxSize = box.Size;
                 var rowSums = new int[boxSize];
                 var colSums = new int[boxSize];
-                var startCoord = Boxes.GetStartingBoxCoordinate(boxIdx, boxSize);
+                var startCoord = box.TopLeft;
                 var endCoord = new Coordinate(startCoord.Row + boxSize, startCoord.Column + boxSize);
                 for (int row = startCoord.Row; row < endCoord.Row; ++row)
                 {
@@ -192,33 +236,27 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 }
                 Assert.All(rowSums, sum => Assert.Equal(expectedSum, sum));
                 Assert.All(colSums, sum => Assert.Equal(expectedSum, sum));
-            }
-        }
-
-        private static void _AssertMagicSquaresSatisfied(Puzzle puzzle, int[] boxesToCheck, int expectedSum, bool verifyDiagonals)
-        {
-            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            foreach (int boxIdx in boxesToCheck)
-            {
-                var rowSums = new int[boxSize];
-                var colSums = new int[boxSize];
-                var startCoord = Boxes.GetStartingBoxCoordinate(boxIdx, boxSize);
-                var endCoord = new Coordinate(startCoord.Row + boxSize, startCoord.Column + boxSize);
-                for (int row = startCoord.Row; row < endCoord.Row; ++row)
+                if (verifyDiagonals)
                 {
-                    for (int col = startCoord.Column; col < endCoord.Column; ++col)
+                    int diagSum = 0;
+                    for (Coordinate coord = startCoord; coord != endCoord; coord = new Coordinate(coord.Row + 1, coord.Column + 1))
                     {
-                        var value = puzzle[row, col].Value;
-                        rowSums[row - startCoord.Row] += value;
-                        colSums[col - startCoord.Column] += value;
+                        var value = puzzle[in coord].Value;
+                        diagSum += value;
                     }
+                    Assert.Equal(expectedSum, diagSum);
+                    diagSum = 0;
+                    var topRightCoord = new Coordinate(startCoord.Row, endCoord.Column - 1);
+                    var bottomLeftEndCoord = new Coordinate(endCoord.Row, startCoord.Column - 1);
+                    for (Coordinate coord = topRightCoord; coord != bottomLeftEndCoord; coord = new Coordinate(coord.Row + 1, coord.Column - 1))
+                    {
+                        var value = puzzle[in coord].Value;
+                        diagSum += value;
+                    }
+                    Assert.Equal(expectedSum, diagSum);
                 }
-                Assert.All(rowSums, sum => Assert.Equal(expectedSum, sum));
-                Assert.All(colSums, sum => Assert.Equal(expectedSum, sum));
             }
         }
-
-
 
         private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverMatrix matrix)
         {
@@ -249,6 +287,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             Assert.True(
                 possibleValues.Length == foundValues.Count,
                 $"Found {foundValues.Count} possible values when expected {possibleValues.Length} at {coord}.");
+        }
+
+        private static int[] _CreateStandardPossibleValues(int size)
+        {
+            int[] values = new int[size];
+            for (int i = 0; i < size; ++i)
+            {
+                values[i] = i + 1;
+            }
+            return values;
         }
     }
 }
