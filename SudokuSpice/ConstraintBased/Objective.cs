@@ -47,8 +47,6 @@ namespace SudokuSpice.ConstraintBased
         internal int CountUnknown => _possibilityCount - _selectedCount;
 
         bool IObjective.IsRequired => true;
-        // TODO: Cache this
-        IReadOnlySet<IObjective> IObjective.RequiredObjectives => new HashSet<IObjective> { this };
 
         private Objective(ExactCoverMatrix matrix, int countToSatisfy)
         {
@@ -118,8 +116,8 @@ namespace SudokuSpice.ConstraintBased
             {
                 if (!Links.TryUpdateOthersOnObjective(
                     toSelect,
-                    toDetach => toDetach.Possibility.TryNotifyDroppedFromObjective(toDetach),
-                    toReattach => toReattach.Possibility.NotifyReattachedToObjective(toReattach)))
+                    toDetach => toDetach.Possibility.TryDropFromObjective(toDetach),
+                    toReattach => toReattach.Possibility.ReturnFromObjective(toReattach)))
                 {
                     --_selectedCount;
                     return false;
@@ -140,13 +138,13 @@ namespace SudokuSpice.ConstraintBased
             _ReinsertPossibility(toDeselect);
             if (IsSatisfied)
             {
-                _state = NodeState.SELECTED;
+                _state = NodeState.UNKNOWN;
                 Debug.Assert(_linkInMatrix is not null,
                     $"{nameof(_linkInMatrix)} should be set during construction.");
                 _matrix.ReattachObjective(_linkInMatrix);
                 Links.RevertOthersOnObjective(
                     toDeselect,
-                    toReattach => toReattach.Possibility.NotifyReattachedToObjective(toReattach));
+                    toReattach => toReattach.Possibility.ReturnFromObjective(toReattach));
             }
             --_selectedCount;
         }

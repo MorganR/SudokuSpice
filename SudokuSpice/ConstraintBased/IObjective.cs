@@ -7,7 +7,6 @@ namespace SudokuSpice.ConstraintBased
         public NodeState State { get; }
 
         internal bool IsRequired { get; }
-        internal IReadOnlySet<IObjective> RequiredObjectives { get; }
 
         /// <summary>
         /// Appends the given link to this objective, including updating the next and previous

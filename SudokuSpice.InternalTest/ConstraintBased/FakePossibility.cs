@@ -7,7 +7,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
     {
         internal bool CanBeDetached = true;
         internal List<Link> AttachedObjectives = new List<Link>();
-        internal List<Link> DetachedObjectives = new List<Link>();
+        internal List<Link> DroppedFromObjectives = new List<Link>();
 
         public NodeState State { get; set; }
 
@@ -17,22 +17,22 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             AttachedObjectives[0].PrependToPossibility(toNewObjective);
         }
 
-        void IPossibility.NotifyReattachedToObjective(Link toReattach)
+        void IPossibility.ReturnFromObjective(Link toReattach)
         {
-            if (!DetachedObjectives.Contains(toReattach))
+            if (!DroppedFromObjectives.Contains(toReattach))
             {
                 throw new InvalidOperationException("Can't reattach an objective that is not detached.");
             }
-            DetachedObjectives.Remove(toReattach);
+            DroppedFromObjectives.Remove(toReattach);
         }
 
-        bool IPossibility.TryNotifyDroppedFromObjective(Link toDetach)
+        bool IPossibility.TryDropFromObjective(Link toDetach)
         {
             if (!AttachedObjectives.Contains(toDetach))
             {
                 throw new InvalidOperationException("Can't detach an objective that was never attached.");
             }
-            if (DetachedObjectives.Contains(toDetach))
+            if (DroppedFromObjectives.Contains(toDetach))
             {
                 throw new InvalidOperationException("Can't re-detach an objective that was already detached.");
             }
@@ -40,7 +40,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             {
                 return false;
             }
-            DetachedObjectives.Add(toDetach);
+            DroppedFromObjectives.Add(toDetach);
             return true;
         }
     }

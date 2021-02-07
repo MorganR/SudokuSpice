@@ -130,61 +130,51 @@ namespace SudokuSpice.ConstraintBased
             _currentOperation = Operation.NONE;
         }
 
-        bool IPossibility.TryNotifyDroppedFromObjective(Link toDetach)
+        bool IPossibility.TryDropFromObjective(Link dropSource)
         {
             Debug.Assert(_toObjective is not null,
                 "At least one objective must be attached.");
             Debug.Assert(_possibleObjectiveCount > 0,
                 $"Cannot be dropped from an objective with {nameof(_possibleObjectiveCount)} already equal to 0.");
-            Debug.Assert(!_detachedObjectives.Contains(toDetach));
+            Debug.Assert(!_detachedObjectives.Contains(dropSource));
             switch (State)
             {
                 case NodeState.DROPPED:
                     --_possibleObjectiveCount;
-                    _detachedObjectives.Add(toDetach);
+                    _detachedObjectives.Add(dropSource);
                     return true;
                 case NodeState.SELECTED:
-                    // Can be dropped from any objective as long as it's not an important one.
-                    if (!_IsObjectiveImportant(toDetach))
-                    {
-                        --_possibleObjectiveCount;
-                        _detachedObjectives.Add(toDetach);
-                        return true;
-                    }
                     return false;
                 default:
-                    if (_IsObjectiveImportant(toDetach))
+                    if (_currentOperation == Operation.DROP)
                     {
-                        if (_currentOperation == Operation.DROP)
-                        {
-                            --_possibleObjectiveCount;
-                            _detachedObjectives.Add(toDetach);
-                            return true;
-                        } else if (_currentOperation == Operation.SELECT)
-                        {
-                            return false;
-                        }
-                        Debug.Assert(_currentOperation == Operation.NONE);
-                        _currentOperation = Operation.DROP;
-                        if (!Links.TryUpdateOthersOnPossibility(
-                            toDetach,
-                            toDrop => toDrop.Objective.TryDropPossibility(toDrop),
-                            toReturn => toReturn.Objective.ReturnPossibility(toReturn)))
-                        {
-                            _currentOperation = Operation.NONE;
-                            return false;
-                        }
-                        State = NodeState.DROPPED;
-                        _objectiveThatCausedDrop = toDetach;
-                        _currentOperation = Operation.NONE;
+                        --_possibleObjectiveCount;
+                        _detachedObjectives.Add(dropSource);
+                        return true;
+                    } else if (_currentOperation == Operation.SELECT)
+                    {
+                        return false;
                     }
+                    Debug.Assert(_currentOperation == Operation.NONE);
+                    _currentOperation = Operation.DROP;
+                    if (!Links.TryUpdateOthersOnPossibility(
+                        dropSource,
+                        toDrop => toDrop.Objective.TryDropPossibility(toDrop),
+                        toReturn => toReturn.Objective.ReturnPossibility(toReturn)))
+                    {
+                        _currentOperation = Operation.NONE;
+                        return false;
+                    }
+                    State = NodeState.DROPPED;
+                    _objectiveThatCausedDrop = dropSource;
+                    _currentOperation = Operation.NONE;
                     --_possibleObjectiveCount;
-                    _detachedObjectives.Add(toDetach);
+                    _detachedObjectives.Add(dropSource);
                     return true;
             }
         }
 
-        void IPossibility.NotifyReattachedToObjective(Link toReattach)
+        void IPossibility.ReturnFromObjective(Link toReattach)
         {
             Debug.Assert(_detachedObjectives.Contains(toReattach));
             _detachedObjectives.Remove(toReattach);
@@ -196,8 +186,6 @@ namespace SudokuSpice.ConstraintBased
                     {
                         return;
                     }
-                    Debug.Assert(_IsObjectiveImportant(toReattach),
-                        "Objective that caused drop was not important when reattaching.");
                     _objectiveThatCausedDrop = null;
                     _currentOperation = Operation.RETURN;
                     Links.RevertOthersOnPossibility(
@@ -207,23 +195,11 @@ namespace SudokuSpice.ConstraintBased
                     _currentOperation = Operation.NONE;
                     return;
                 default:
-                    if (_currentOperation == Operation.DROP
-                        || _currentOperation == Operation.RETURN)
-                    {
-                        return;
-                    }
-                    Debug.Assert(
-                        !_IsObjectiveImportant(toReattach),
-                        $"Reattached important objective while in state {State} and performing operation {_currentOperation}.");
+                    Debug.Assert(State == NodeState.UNKNOWN);
+                    Debug.Assert(_currentOperation == Operation.NONE
+                        || _currentOperation == Operation.RETURN);
                     return;
             }
-        }
-
-        private bool _IsObjectiveImportant(Link toObjective)
-        {
-            return toObjective.Objective.IsRequired ||
-                _possibleObjectiveCount == 1 ||
-                Objectives.LinksToUniqueRequiredObjective(toCheck: toObjective, toIterate: _toObjective!);
         }
     }
 }

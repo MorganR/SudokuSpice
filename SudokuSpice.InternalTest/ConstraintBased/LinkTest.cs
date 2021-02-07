@@ -237,8 +237,8 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             public NodeState State { get; set; }
             
             void IPossibility.AppendObjective(Link toNewObjective) { }
-            void IPossibility.NotifyReattachedToObjective(Link toReattach) => throw new System.NotImplementedException();
-            bool IPossibility.TryNotifyDroppedFromObjective(Link toDetach) => throw new System.NotImplementedException();
+            void IPossibility.ReturnFromObjective(Link toReattach) => throw new System.NotImplementedException();
+            bool IPossibility.TryDropFromObjective(Link toDetach) => throw new System.NotImplementedException();
         }
 
         private class NoopObjective : IObjective
@@ -246,8 +246,6 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             public NodeState State { get; set; }
 
             bool IObjective.IsRequired => throw new System.NotImplementedException();
-
-            IReadOnlySet<IObjective> IObjective.RequiredObjectives => throw new System.NotImplementedException();
 
             void IObjective.AppendPossibility(Link toNewPossibility) { }
             void IObjective.DeselectPossibility(Link toDeselect) => throw new System.NotImplementedException();

@@ -24,27 +24,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             }
         }
 
-        internal void SetRequiredObjectives(IEnumerable<IObjective> objectives)
-        {
-            if (_isRequired)
-            {
-                throw new InvalidOperationException("Can't set required objectives on a required objective.");
-            }
-            _requiredObjectives = new HashSet<IObjective>(objectives); 
-        }
-
         bool IObjective.IsRequired => _isRequired;
-
-        IReadOnlySet<IObjective> IObjective.RequiredObjectives
-        {
-            get {
-                if (_requiredObjectives is null)
-                {
-                    throw new InvalidOperationException("Must stub the required objectives before retrieving them.");
-                }
-                return _requiredObjectives;
-            }
-        }
 
         void IObjective.AppendPossibility(Link toNewPossibility)
         {

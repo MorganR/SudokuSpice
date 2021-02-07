@@ -4,7 +4,7 @@
     {
         public NodeState State { get; }
         internal void AppendObjective(Link toNewObjective);
-        internal void NotifyReattachedToObjective(Link toReattach);
-        internal bool TryNotifyDroppedFromObjective(Link toDetach);
+        internal void ReturnFromObjective(Link toReattach);
+        internal bool TryDropFromObjective(Link toDetach);
     }
 }

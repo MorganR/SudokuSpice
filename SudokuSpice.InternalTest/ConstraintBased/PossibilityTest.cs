@@ -112,12 +112,12 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var linkToDrop = Link.CreateConnectedLink(possibility, objective);
             var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.True(possibility.TryDropFromObjective(linkToDetach));
             Assert.Equal(NodeState.DROPPED, concretePossibility.State);
             Assert.Single(objective.DroppedPossibilities, linkToDrop);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
-            possibility.NotifyReattachedToObjective(linkToDetach);
+            possibility.ReturnFromObjective(linkToDetach);
             Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
@@ -132,53 +132,17 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var objectiveToDetach = new FakeObjective();
             var sharedParent = new FakeObjective(isRequired: false);
             var uniqueParent = new FakeObjective(isRequired: true);
-            objectiveToDropFrom.SetRequiredObjectives(new IObjective[] { sharedParent });
-            objectiveToDetach.SetRequiredObjectives(new IObjective[] { uniqueParent, sharedParent });
             var linkToDrop = Link.CreateConnectedLink(possibility, objectiveToDropFrom);
             var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.True(possibility.TryDropFromObjective(linkToDetach));
             Assert.Equal(NodeState.DROPPED, concretePossibility.State);
             Assert.Single(objectiveToDropFrom.DroppedPossibilities, linkToDrop);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
-            possibility.NotifyReattachedToObjective(linkToDetach);
+            possibility.ReturnFromObjective(linkToDetach);
             Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objectiveToDropFrom.DroppedPossibilities);
-            Assert.Empty(objectiveToDetach.DroppedPossibilities);
-        }
-
-        [Fact]
-        public void TryDetachAndReattachObjective_IfRequiredObjectiveNotUnique_DoesNotDrop()
-        {
-            var concretePossibility = new Possibility(new(), 1);
-            IPossibility possibility = concretePossibility;
-            var requiredParent = new FakeObjective(isRequired: true);
-            var objective = new FakeObjective();
-            var objectiveToDetach = new FakeObjective();
-            objective.SetRequiredObjectives(new IObjective[] { requiredParent });
-            objectiveToDetach.SetRequiredObjectives(new IObjective[] { requiredParent });
-            var linkToCauseDrop = Link.CreateConnectedLink(possibility, objective);
-            var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
-
-            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToDetach));
-            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
-            Assert.Empty(objective.DroppedPossibilities);
-            Assert.Empty(objectiveToDetach.DroppedPossibilities);
-
-            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToCauseDrop));
-            Assert.Equal(NodeState.DROPPED, concretePossibility.State);
-            Assert.Empty(objective.DroppedPossibilities);
-            Assert.Single(objectiveToDetach.DroppedPossibilities, linkToDetach);
-
-            possibility.NotifyReattachedToObjective(linkToCauseDrop);
-            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
-            Assert.Empty(objective.DroppedPossibilities);
-            Assert.Empty(objectiveToDetach.DroppedPossibilities);
-
-            possibility.NotifyReattachedToObjective(linkToDetach);
-            Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
-            Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
         }
 
@@ -193,14 +157,14 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Link linkToOther = Link.CreateConnectedLink(possibility, objective);
             Link linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
-            Assert.False(possibility.TryNotifyDroppedFromObjective(linkToDetach));
+            Assert.False(possibility.TryDropFromObjective(linkToDetach));
             Assert.Equal(NodeState.UNKNOWN, concretePossibility.State);
             Assert.Empty(objective.DroppedPossibilities);
             Assert.Empty(objectiveToDetach.DroppedPossibilities);
 
             // Verify the attempted-detached objective was still attached by dropping the
             // possibility from it.
-            Assert.True(possibility.TryNotifyDroppedFromObjective(linkToOther));
+            Assert.True(possibility.TryDropFromObjective(linkToOther));
             Assert.Equal(NodeState.DROPPED, concretePossibility.State);
             Assert.Single(objectiveToDetach.DroppedPossibilities, linkToDetach);
         }
@@ -245,7 +209,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Equal(NodeState.SELECTED, possibilities[0].State);
             Assert.Equal(NodeState.DROPPED, possibilities[1].State);
             Assert.Equal(NodeState.UNKNOWN, optional.State);
-            Assert.Empty(fakePossibility.DetachedObjectives);
+            Assert.Empty(fakePossibility.DroppedFromObjectives);
             Assert.True(required.IsSatisfied);
             Assert.False(separateRequired.IsSatisfied);
 
@@ -260,7 +224,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Equal(NodeState.SELECTED, possibilities[0].State);
             Assert.Equal(NodeState.DROPPED, possibilities[1].State);
             Assert.Equal(NodeState.UNKNOWN, optional.State);
-            Assert.Empty(fakePossibility.DetachedObjectives);
+            Assert.Empty(fakePossibility.DroppedFromObjectives);
             Assert.True(required.IsSatisfied);
             Assert.False(separateRequired.IsSatisfied);
 
