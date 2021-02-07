@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased
     /// Holds an exact-cover matrix for the current puzzle being solved.
     /// </summary>
     /// <remarks>
-    /// The exact cover matrix is organized by <see cref="Box"/>s, which in turn contain
+    /// The exact cover matrix is organized by <see cref="Square"/>s, which in turn contain
     /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
     /// matrix. <see cref="Constraints.IConstraint"/>s will then add
     /// <see cref="Requirement"/>s, the columns of the matrix and corresponding links.
@@ -19,6 +19,8 @@ namespace SudokuSpice.ConstraintBased
         private readonly int[] _allPossibleValues;
         private readonly Possibility?[]?[][] _matrix;
         private readonly LinkedList<Objective> _unsatisfiedObjectives;
+        // TODO: Have a way to guess from the optional objectives that only have one left.
+        // private readonly LinkedList<OptionalObjective> _unknownOptionalObjectivesWithConcretePossibilities;
 
         /// <summary>
         /// Contains the possible values for the current puzzle.
@@ -51,6 +53,7 @@ namespace SudokuSpice.ConstraintBased
             }
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
             _unsatisfiedObjectives = new LinkedList<Objective>();
+            // _unknownOptionalObjectivesWithConcretePossibilities = new LinkedList<OptionalObjective>();
             var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {
@@ -69,6 +72,7 @@ namespace SudokuSpice.ConstraintBased
             }
             _allPossibleValues = other.AllPossibleValues.ToArray();
             _unsatisfiedObjectives = new LinkedList<Objective>();
+            // _unknownOptionalObjectivesWithConcretePossibilities = new LinkedList<OptionalObjective>();
             ValuesToIndices = other.ValuesToIndices;
         }
 

@@ -21,10 +21,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Box[] { 
-                new Box(new Coordinate(0, 0), 3),
-                new Box(new Coordinate(3, 3), 3),
-                new Box(new Coordinate(6, 6), 3),
+            var boxesToConstrain = new Square[] { 
+                new Square(new Coordinate(0, 0), 3),
+                new Square(new Coordinate(3, 3), 3),
+                new Square(new Coordinate(6, 6), 3),
             };
             var constraint = new MagicBoxConstraint(
                 _CreateStandardPossibleValues(9),
@@ -38,7 +38,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var solution = solver.Solve(puzzle);
 
             Assert.Equal(0, solution.NumEmptySquares);
-            _AssertMagicSquaresSatisfied(solution, boxesToConstrain, expectedSum: 15, verifyDiagonals: false);
+            MagicSquareTests.AssertMagicSquaresSatisfied(
+                solution, boxesToConstrain, expectedSum: 15, verifyDiagonals: false);
         }
 
         [Fact]
@@ -56,16 +57,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null,    6, null, null },
             });
 
-            var boxesToConstrain = new Box[] { 
-                new Box(new Coordinate(0, 0), 3),
-                new Box(new Coordinate(0, 3), 3),
-                new Box(new Coordinate(0, 6), 3),
-                new Box(new Coordinate(3, 0), 3),
-                new Box(new Coordinate(3, 3), 3),
-                new Box(new Coordinate(3, 6), 3),
-                new Box(new Coordinate(6, 0), 3),
-                new Box(new Coordinate(6, 3), 3),
-                new Box(new Coordinate(6, 6), 3),
+            var boxesToConstrain = new Square[] { 
+                new Square(new Coordinate(0, 0), 3),
+                new Square(new Coordinate(0, 3), 3),
+                new Square(new Coordinate(0, 6), 3),
+                new Square(new Coordinate(3, 0), 3),
+                new Square(new Coordinate(3, 3), 3),
+                new Square(new Coordinate(3, 6), 3),
+                new Square(new Coordinate(6, 0), 3),
+                new Square(new Coordinate(6, 3), 3),
+                new Square(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
@@ -79,7 +80,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 
             var solution = solver.Solve(puzzle);
             PuzzleTestUtils.AssertStandardPuzzleSolved(solution);
-            _AssertMagicSquaresSatisfied(solution, 15, verifyDiagonals: false);
+            MagicSquareTests.AssertMagicSquaresSatisfied(solution, 15, verifyDiagonals: false);
         }
 
         [Fact]
@@ -96,8 +97,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 {    6, null,    1, null, null, null,    7, null, null },
                 {    2, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Box[] {
-                new Box(new Coordinate(3, 3), 3),
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
@@ -111,7 +112,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 
             var solution = solver.Solve(puzzle);
             PuzzleTestUtils.AssertStandardPuzzleSolved(solution);
-            _AssertMagicSquaresSatisfied(solution, boxesToConstrain, 15, verifyDiagonals: true);
+            MagicSquareTests.AssertMagicSquaresSatisfied(solution, boxesToConstrain, 15, verifyDiagonals: true);
         }
 
         [Fact]
@@ -128,8 +129,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Box[] {
-                new Box(new Coordinate(0, 0), 3),
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(0, 0), 3),
             };
             var constraint = new MagicBoxConstraint(
                 _CreateStandardPossibleValues(9),
@@ -161,8 +162,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Box[] {
-                new Box(new Coordinate(3, 3), 3),
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(3, 3), 3),
             };
             var constraint = new MagicBoxConstraint(
                 _CreateStandardPossibleValues(9),
@@ -171,10 +172,33 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
 
-            _AssertPossibleValuesAtSquare(new (3, 3), new int[] { 1, 2, 4, 5 }, matrix);
+            // rows: 18, 27, 45
+            // rows: all
+            // rows: 4
+
+            // cols: all
+            // cols: 84 75
+            // cols: 1
+
+            // 124578    | 4578 | x
+            // 123456789 | 4578 | 1
+            // 4         | x    | x
+
+            // diagonals \: 16 25 34
+            // diagonals /: 18 27 45
+
+            // 25        | 4578 | x
+            // 123456789 | 5    | 1
+            // 4         | x    | x
+
+            // rows: 124578, cols: 124578, diagonals: 25
+            _AssertPossibleValuesAtSquare(new (3, 3), new int[] { 2, 5 }, matrix);
+            // rows: 124578, cols: 4578, diagonals: n/a
             _AssertPossibleValuesAtSquare(new (3, 4), new int[] { 4, 5, 7, 8 }, matrix);
+            // rows: 123456789, cols: 123456789, diagonals: n/a
             _AssertPossibleValuesAtSquare(new (4, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
-            _AssertPossibleValuesAtSquare(new (4, 4), new int[] { 4, 5 }, matrix);
+            // rows: 123456789, cols: 4578, diagonals: 
+            _AssertPossibleValuesAtSquare(new (4, 4), new int[] { 5 }, matrix);
             _AssertPossibleValuesAtSquare(new (4, 5), new int[] { 1 }, matrix);
             _AssertPossibleValuesAtSquare(new (5, 3), new int[] { 4 }, matrix);
             _AssertPossibleValuesAtSquare(new (6, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
@@ -194,8 +218,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Box[] {
-                new Box(new Coordinate(0, 0), 3),
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(0, 0), 3),
             };
             var constraint = new MagicBoxConstraint(
                 _CreateStandardPossibleValues(9),
@@ -203,59 +227,6 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var matrix = ExactCoverMatrix.Create(puzzle);
 
             Assert.False(constraint.TryConstrain(puzzle, matrix));
-        }
-
-        private static void _AssertMagicSquaresSatisfied(IReadOnlyPuzzle puzzle, int expectedSum, bool verifyDiagonals)
-        {
-            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            var boxes = new Box[puzzle.Size];
-            for (int boxIdx = 0; boxIdx < boxes.Length; ++boxIdx)
-            {
-                boxes[boxIdx] = new Box(Boxes.GetStartingBoxCoordinate(boxIdx, boxSize), boxSize);
-            }
-            _AssertMagicSquaresSatisfied(puzzle, boxes, expectedSum, verifyDiagonals);
-        }
-
-        private static void _AssertMagicSquaresSatisfied(IReadOnlyPuzzle puzzle, Box[] boxesToCheck, int expectedSum, bool verifyDiagonals)
-        {
-            foreach (Box box in boxesToCheck)
-            {
-                int boxSize = box.Size;
-                var rowSums = new int[boxSize];
-                var colSums = new int[boxSize];
-                var startCoord = box.TopLeft;
-                var endCoord = new Coordinate(startCoord.Row + boxSize, startCoord.Column + boxSize);
-                for (int row = startCoord.Row; row < endCoord.Row; ++row)
-                {
-                    for (int col = startCoord.Column; col < endCoord.Column; ++col)
-                    {
-                        var value = puzzle[row, col].Value;
-                        rowSums[row - startCoord.Row] += value;
-                        colSums[col - startCoord.Column] += value;
-                    }
-                }
-                Assert.All(rowSums, sum => Assert.Equal(expectedSum, sum));
-                Assert.All(colSums, sum => Assert.Equal(expectedSum, sum));
-                if (verifyDiagonals)
-                {
-                    int diagSum = 0;
-                    for (Coordinate coord = startCoord; coord != endCoord; coord = new Coordinate(coord.Row + 1, coord.Column + 1))
-                    {
-                        var value = puzzle[in coord].Value;
-                        diagSum += value;
-                    }
-                    Assert.Equal(expectedSum, diagSum);
-                    diagSum = 0;
-                    var topRightCoord = new Coordinate(startCoord.Row, endCoord.Column - 1);
-                    var bottomLeftEndCoord = new Coordinate(endCoord.Row, startCoord.Column - 1);
-                    for (Coordinate coord = topRightCoord; coord != bottomLeftEndCoord; coord = new Coordinate(coord.Row + 1, coord.Column - 1))
-                    {
-                        var value = puzzle[in coord].Value;
-                        diagSum += value;
-                    }
-                    Assert.Equal(expectedSum, diagSum);
-                }
-            }
         }
 
         private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverMatrix matrix)
@@ -286,7 +257,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             }
             Assert.True(
                 possibleValues.Length == foundValues.Count,
-                $"Found {foundValues.Count} possible values when expected {possibleValues.Length} at {coord}.");
+                $"Found {foundValues.Count} possible values when expected {possibleValues.Length} at {coord}. Expected {string.Join(',', possibleValues)}, found: {string.Join(',', foundValues)}.");
         }
 
         private static int[] _CreateStandardPossibleValues(int size)

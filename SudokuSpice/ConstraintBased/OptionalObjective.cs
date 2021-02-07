@@ -179,6 +179,7 @@ namespace SudokuSpice.ConstraintBased
                     if (_IsSatisfied)
                     {
                         --_selectedCount;
+                        // TODO: Should this be allowed, example if the parent is also optional?
                         return false;
                     }
                     _PopPossibility(possibilityToSelect);
@@ -259,15 +260,19 @@ namespace SudokuSpice.ConstraintBased
             if (_AllPossibilitiesAreRequired)
             {
                 _currentOperation = Operation.DROP;
-                Debug.Assert(_toObjective is not null,
-                    "At least one objective must be attached.");
-                if (!Links.TryUpdateOnPossibility(
-                    _toObjective,
-                    toDrop => toDrop.Objective.TryDropPossibility(toDrop),
-                    toReturn => toReturn.Objective.ReturnPossibility(toReturn)))
+                // _toObjective can be null if we drop this during setup because it turns out to
+                // be impossible.
+                if (_toObjective is not null)
                 {
-                    _currentOperation = Operation.NONE;
-                    return false;
+                    if (!Links.TryUpdateOnPossibility(
+                        _toObjective,
+                        toDrop => toDrop.Objective.TryDropPossibility(toDrop),
+                        toReturn => toReturn.Objective.ReturnPossibility(toReturn)))
+                    {
+                        _currentOperation = Operation.NONE;
+                        return false;
+                    }
+
                 }
                 _state = NodeState.DROPPED;
                 _linkThatCausedDrop = toDrop;

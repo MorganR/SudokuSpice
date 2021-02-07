@@ -89,6 +89,5 @@ namespace SudokuSpice
             }
             return result;
         }
-
     }
 }

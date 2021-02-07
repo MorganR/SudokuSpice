@@ -10,11 +10,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private readonly int _size;
         private readonly int _boxSize;
         private readonly bool _includeDiagonals;
-        private readonly Box[] _magicBoxes;
+        private readonly Square[] _magicBoxes;
         private readonly BitVector _allPossibleValues;
         private readonly IReadOnlySet<BitVector> _possibleSets;
 
-        public MagicBoxConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Box> boxes, bool includeDiagonals = true)
+        public MagicBoxConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Square> boxes, bool includeDiagonals = true)
         {
             _size = possibleValues.Length;
             _magicBoxes = boxes.ToArray();
@@ -47,7 +47,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            foreach (Box box in _magicBoxes)
+            foreach (Square box in _magicBoxes)
             {
                 if (!_TryConstrainBox(box, puzzle, matrix))
                 {
@@ -76,7 +76,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return copiedSet.IsEmpty();
         }
 
-        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        private bool _TryConstrainBox(Square box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Coordinate startCoord = box.TopLeft;
             Span<Coordinate> toConstrain = stackalloc Coordinate[_boxSize];
@@ -156,18 +156,14 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 return _possibleSets.Contains(alreadySet);
             }
             Possibility[] possibilities = new Possibility[numUnset];
-            Dictionary<int, OptionalObjective> objectivesByPossibleValue = new();
-            OptionalObjective[] objectivesToConnect = new OptionalObjective[numUnset];
             var relevantSets = _possibleSets.Where(set => BitVector.FindIntersect(set, alreadySet) == alreadySet)
                 .ToArray();
-            var relevantValues = relevantSets.Aggregate((union, set) => BitVector.FindUnion(union, set));
+            var relevantValues = relevantSets.Aggregate(BitVector.FindUnion);
 
-            // Drop the irrelevant values.
-
-            // Just the values in relevantValues that are not part of alreadySet, since alreadySet
-            // is a subset of relevantValues.
-            var unsetValues = new BitVector(relevantValues.Data ^ alreadySet.Data);
-            var valuesToDrop = new BitVector(_allPossibleValues.Data ^ unsetValues.Data);
+            // alreadySet is a subset of relevantValues.
+            var unsetRelevantValues = relevantValues.Data ^ alreadySet.Data;
+            // Drop all the values that are already set or are not part of any relevant sets.
+            var valuesToDrop = new BitVector(_allPossibleValues.Data ^ unsetRelevantValues);
             foreach (var value in valuesToDrop.GetSetBits())
             {
                 if (!ConstraintUtil.TryDropPossibilitiesAtIndex(unsetSquares[0..numUnset], matrix.ValuesToIndices[value]))
@@ -176,39 +172,64 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
             }
 
+            Dictionary<int, OptionalObjective> objectivesByPossibleValue = new();
+            BitVector failedValues = new BitVector();
+            foreach (var possibleValue in relevantValues.GetSetBits())
+            {
+                if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
+                    unsetSquares[0..numUnset],
+                    matrix.ValuesToIndices[possibleValue],
+                    matrix,
+                    requiredCount: 1,
+                    objective: out OptionalObjective? objective))
+                {
+                    failedValues.SetBit(possibleValue);
+                    continue;
+                }
+                objectivesByPossibleValue[possibleValue] = objective!;
+            }
+
             // Set requirements on the relevant values.
+            OptionalObjective[] valuesToConnect = new OptionalObjective[numUnset];
+            BitVector usedValues = new BitVector();
             foreach (BitVector set in relevantSets)
             {
                 int countToConnect = 0;
-                var unsetPossibleValues = new BitVector(set.Data ^ alreadySet.Data);
-                // Create a requirement for each possible value.
-                foreach (var possibleValue in unsetPossibleValues.GetSetBits())
-                {
-                    if (objectivesByPossibleValue.TryGetValue(possibleValue, out OptionalObjective? existingObjective))
-                    {
-                        objectivesToConnect[countToConnect++] = existingObjective;
-                        continue;
-                    }
-                    if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
-                        unsetSquares[0..numUnset],
-                        matrix.ValuesToIndices[possibleValue],
-                        matrix,
-                        requiredCount: 1,
-                        objective: out OptionalObjective? objective))
-                    {
-                        continue;
-                    }
-                    Debug.Assert(objective is not null); // Should always be set if above was true.
-                    objectivesToConnect[countToConnect++] = objective;
-                    objectivesByPossibleValue[possibleValue] = objective;
-                }
-                // If we have some requirements, group them in an optional "AND" grouping.
-                if (countToConnect == 0)
+                var unsetPossibleValuesInSet = new BitVector(set.Data ^ alreadySet.Data);
+                // If one of the possible values in this set can't be grouped, then skip the set.
+                if (!BitVector.FindIntersect(
+                    unsetPossibleValuesInSet, failedValues).IsEmpty())
                 {
                     continue;
                 }
-                var group = OptionalObjective.CreateWithPossibilities(objectivesToConnect[0..countToConnect], countToSatisfy: countToConnect);
-                setsToOr.Add(group);
+                // Create a requirement for each possible value.
+                foreach (var possibleValue in unsetPossibleValuesInSet.GetSetBits())
+                {
+                    usedValues.SetBit(possibleValue);
+                    valuesToConnect[countToConnect++] = objectivesByPossibleValue[possibleValue];
+                }
+                // If we have some requirements, group them in an optional "AND" grouping.
+                Debug.Assert(countToConnect > 0);
+                var setObjective = OptionalObjective.CreateWithPossibilities(valuesToConnect[0..countToConnect], countToSatisfy: countToConnect);
+                setsToOr.Add(setObjective);
+            }
+            // usedValues are a subset of relevantValues.
+            var unusedValues = relevantValues.Data ^ usedValues.Data;
+            // unusedValues are a superset of failedValues.
+            var groupedValuesToDrop = new BitVector(unusedValues ^ failedValues.Data);
+            if (!groupedValuesToDrop.IsEmpty())
+            {
+                // These values were grouped into an optional objective, but that objective is not
+                // connected up to a required objective. That means these values are actually
+                // impossible, so drop the possible values altogether.
+                foreach (var valueToDrop in groupedValuesToDrop.GetSetBits())
+                {
+                    if (!ConstraintUtil.TryDropPossibilitiesAtIndex(
+                        unsetSquares[0..numUnset], matrix.ValuesToIndices[valueToDrop]))
+                    {
+                        return false;
+                    }
+                }
             }
             return setsToOr.Count > 0;
         } 
