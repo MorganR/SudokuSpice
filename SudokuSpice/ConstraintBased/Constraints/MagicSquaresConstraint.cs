@@ -5,29 +5,29 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased.Constraints
 {
-    public class MagicBoxConstraint : IConstraint
+    public class MagicSquaresConstraint : IConstraint
     {
         private readonly int _size;
-        private readonly int _boxSize;
+        private readonly int _squareSize;
         private readonly bool _includeDiagonals;
-        private readonly Square[] _magicBoxes;
+        private readonly Square[] _magicSquares;
         private readonly BitVector _allPossibleValues;
         private readonly IReadOnlySet<BitVector> _possibleSets;
 
-        public MagicBoxConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Square> boxes, bool includeDiagonals = true)
+        public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Square> squares, bool includeDiagonals = true)
         {
             _size = possibleValues.Length;
-            _magicBoxes = boxes.ToArray();
-            _boxSize = Boxes.CalculateBoxSize(_size);
+            _magicSquares = squares.ToArray();
+            _squareSize = Boxes.CalculateBoxSize(_size);
             _includeDiagonals = includeDiagonals;
-            if (_magicBoxes.Any(
+            if (_magicSquares.Any(
                 b => 
                 b.TopLeft.Row < 0 || b.TopLeft.Column < 0 ||
                 b.TopLeft.Row + b.Size > _size || b.TopLeft.Column + b.Size > _size ||
-                b.Size != _boxSize))
+                b.Size != _squareSize))
             {
                 throw new ArgumentException(
-                    $"Based on the {nameof(possibleValues)}, {nameof(boxes)} must fit in a puzzle of size {_size} and have size {_boxSize}.");
+                    $"Based on the {nameof(possibleValues)}, {nameof(squares)} must fit in a puzzle of size {_size} and have size {_squareSize}.");
             }
             _allPossibleValues = new BitVector();
             for (int i = 0; i < possibleValues.Length; ++i)
@@ -38,7 +38,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
                 _allPossibleValues.SetBit(possibleValues[i]);
             }
-            _possibleSets = MagicSquares.ComputeSets(possibleValues, _boxSize, _allPossibleValues);
+            _possibleSets = MagicSquares.ComputeSets(possibleValues, _squareSize, _allPossibleValues);
         }
 
         public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -47,7 +47,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            foreach (Square box in _magicBoxes)
+            foreach (Square box in _magicSquares)
             {
                 if (!_TryConstrainBox(box, puzzle, matrix))
                 {
@@ -79,11 +79,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private bool _TryConstrainBox(Square box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Coordinate startCoord = box.TopLeft;
-            Span<Coordinate> toConstrain = stackalloc Coordinate[_boxSize];
+            Span<Coordinate> toConstrain = stackalloc Coordinate[_squareSize];
             List<OptionalObjective> setsToOr = new();
-            for (int rowIdx = 0; rowIdx < _boxSize; ++rowIdx)
+            for (int rowIdx = 0; rowIdx < _squareSize; ++rowIdx)
             {
-                for (int i = 0; i < _boxSize; ++i)
+                for (int i = 0; i < _squareSize; ++i)
                 {
                     toConstrain[i] = new Coordinate(startCoord.Row + rowIdx, startCoord.Column + i);
                 }
@@ -93,9 +93,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
                 _ConstrainAndClearOverlappingSets(matrix, setsToOr);
             }
-            for (int colIdx = 0; colIdx < _boxSize; ++colIdx)
+            for (int colIdx = 0; colIdx < _squareSize; ++colIdx)
             {
-                for (int i = 0; i < _boxSize; ++i)
+                for (int i = 0; i < _squareSize; ++i)
                 {
                     toConstrain[i] = new Coordinate(startCoord.Row + i, startCoord.Column + colIdx);
                 }
@@ -109,8 +109,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return true;
             }
-            int lastColumn = startCoord.Column + _boxSize - 1;
-            for (int offset = 0; offset < _boxSize; ++offset)
+            int lastColumn = startCoord.Column + _squareSize - 1;
+            for (int offset = 0; offset < _squareSize; ++offset)
             {
                 toConstrain[offset] = new Coordinate(startCoord.Row + offset, lastColumn - offset);
             }
@@ -119,7 +119,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 return false;
             }
             _ConstrainAndClearOverlappingSets(matrix, setsToOr);
-            for (int offset = 0; offset < _boxSize; ++offset)
+            for (int offset = 0; offset < _squareSize; ++offset)
             {
                 toConstrain[offset] = new Coordinate(startCoord.Row + offset, startCoord.Column + offset);
             }

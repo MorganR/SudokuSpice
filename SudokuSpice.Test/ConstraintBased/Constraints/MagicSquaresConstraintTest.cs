@@ -5,7 +5,7 @@ using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Constraints.Test
 {
-    public class MagicBoxConstraintTest
+    public class MagicSquaresConstraintTest
     {
         [Fact]
         public void Solve_WithManySolutions_CanSolve()
@@ -26,7 +26,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 new Square(new Coordinate(3, 3), 3),
                 new Square(new Coordinate(6, 6), 3),
             };
-            var constraint = new MagicBoxConstraint(
+            var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
             var solver = new PuzzleSolver<Puzzle>(
@@ -73,7 +73,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
-                    new MagicBoxConstraint(
+                    new MagicSquaresConstraint(
                         _CreateStandardPossibleValues(puzzle.Size),
                         boxesToConstrain, includeDiagonals: false)
                 });
@@ -105,7 +105,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
-                    new MagicBoxConstraint(
+                    new MagicSquaresConstraint(
                         _CreateStandardPossibleValues(9),
                         boxesToConstrain, includeDiagonals: true)
                 });
@@ -132,7 +132,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var boxesToConstrain = new Square[] {
                 new Square(new Coordinate(0, 0), 3),
             };
-            var constraint = new MagicBoxConstraint(
+            var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
             var matrix = ExactCoverMatrix.Create(puzzle);
@@ -165,7 +165,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var boxesToConstrain = new Square[] {
                 new Square(new Coordinate(3, 3), 3),
             };
-            var constraint = new MagicBoxConstraint(
+            var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: true);
             var matrix = ExactCoverMatrix.Create(puzzle);
@@ -220,7 +220,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var boxesToConstrain = new Square[] {
                 new Square(new Coordinate(0, 0), 3),
             };
-            var constraint = new MagicBoxConstraint(
+            var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
             var matrix = ExactCoverMatrix.Create(puzzle);

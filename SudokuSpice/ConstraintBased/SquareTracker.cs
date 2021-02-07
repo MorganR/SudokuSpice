@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
+    // TODO: Rename to, for example: Guesser
     internal class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
@@ -76,27 +77,6 @@ namespace SudokuSpice.ConstraintBased
             }
             _puzzle[guess.Coordinate] = _matrix.AllPossibleValues[guess.PossibilityIndex];
             _setSquares.Push(guess);
-            // if (IsSolved)
-            // {
-            //     for (int row = 0; row < _puzzle.Size; ++row)
-            //     {
-            //         var squaresOnRow = _matrix.GetSquaresOnRow(row);
-            //         foreach (var aSquare in squaresOnRow)
-            //         {
-            //             if (aSquare is not null)
-            //             {
-            //                 var psq = aSquare.GetPossibleValue(
-            //                     _matrix.ValuesToIndices[_puzzle[aSquare.Coordinate].Value]);
-            //                 Debug.Assert(psq.State == PossibilityState.SELECTED);
-            //                 var requirement = psq.FirstLink.Objective;
-            //                 Debug.Assert(requirement.AreAllRequiredPossibilitiesSelected);
-            //                 var andGroups = requirement.FirstGroupLink.GetLinksOnPossibility();
-            //                 Debug.Assert(andGroups.All(group => group.Objective.AreAllRequiredPossibilitiesSelected));
-            //                 Debug.Assert(andGroups.All(group => group.Objective.ParentGroupLink.GetLinksOnPossibility().All(orGroup => orGroup.Objective.AreAllRequiredPossibilitiesSelected)));
-            //             }
-            //         }
-            //     }
-            // }
             return true;
         }
 

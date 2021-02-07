@@ -15,9 +15,6 @@ namespace SudokuSpice.ConstraintBased
             RETURN,
         }
 
-        // TODO: Remove this debug stuff
-        private readonly HashSet<Link> _detachedObjectives = new();
-
         private int _possibleObjectiveCount;
         private Link? _toObjective;
         private Operation _currentOperation = Operation.NONE;
@@ -136,12 +133,10 @@ namespace SudokuSpice.ConstraintBased
                 "At least one objective must be attached.");
             Debug.Assert(_possibleObjectiveCount > 0,
                 $"Cannot be dropped from an objective with {nameof(_possibleObjectiveCount)} already equal to 0.");
-            Debug.Assert(!_detachedObjectives.Contains(dropSource));
             switch (State)
             {
                 case NodeState.DROPPED:
                     --_possibleObjectiveCount;
-                    _detachedObjectives.Add(dropSource);
                     return true;
                 case NodeState.SELECTED:
                     return false;
@@ -149,7 +144,6 @@ namespace SudokuSpice.ConstraintBased
                     if (_currentOperation == Operation.DROP)
                     {
                         --_possibleObjectiveCount;
-                        _detachedObjectives.Add(dropSource);
                         return true;
                     } else if (_currentOperation == Operation.SELECT)
                     {
@@ -169,15 +163,12 @@ namespace SudokuSpice.ConstraintBased
                     _objectiveThatCausedDrop = dropSource;
                     _currentOperation = Operation.NONE;
                     --_possibleObjectiveCount;
-                    _detachedObjectives.Add(dropSource);
                     return true;
             }
         }
 
         void IPossibility.ReturnFromObjective(Link toReattach)
         {
-            Debug.Assert(_detachedObjectives.Contains(toReattach));
-            _detachedObjectives.Remove(toReattach);
             ++_possibleObjectiveCount;
             switch (State)
             {
