@@ -179,7 +179,6 @@ namespace SudokuSpice.ConstraintBased
                     if (_IsSatisfied)
                     {
                         --_selectedCount;
-                        // TODO: Should this be allowed, example if the parent is also optional?
                         return false;
                     }
                     _PopPossibility(possibilityToSelect);
@@ -247,13 +246,18 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(_toPossibility.GetLinksOnObjective().Contains(toDrop),
                 "Tried to drop a possibility that's not connected to this objective.");
             if (State == NodeState.DROPPED ||
-                State == NodeState.SELECTED ||
-                _currentOperation == Operation.DROP ||
+                State == NodeState.SELECTED)
+            {
+                --_possibilityCount;
+                _PopPossibility(toDrop);
+                return true;
+            }
+            if (_currentOperation == Operation.DROP ||
                 _currentOperation == Operation.SELECT)
             {
                 --_possibilityCount;
-                // TODO: Is this good?
-                // _PopPossibility(toDrop);
+                // Don't pop the possibility in case we're currently operating over them during
+                // a drop/select operation.
                 return true;
             }
             Debug.Assert(_currentOperation == Operation.NONE);
@@ -261,7 +265,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 _currentOperation = Operation.DROP;
                 // _toObjective can be null if we drop this during setup because it turns out to
-                // be impossible.
+                // be impossible at higher levels.
                 if (_toObjective is not null)
                 {
                     if (!Links.TryUpdateOnPossibility(
@@ -286,20 +290,19 @@ namespace SudokuSpice.ConstraintBased
         void IObjective.ReturnPossibility(Link toReturn)
         {
             ++_possibilityCount;
-            if ((State == NodeState.DROPPED
-                && _linkThatCausedDrop != toReturn)
-                || State == NodeState.SELECTED
-                || _currentOperation != Operation.NONE)
+            if (State != NodeState.DROPPED ||
+                _linkThatCausedDrop != toReturn)
+            {
+                _ReinsertPossibility(toReturn);
+                return;
+            }
+            if (_currentOperation != Operation.NONE)
             {
                 return;
             }
             Debug.Assert(!_toPossibility?.GetLinksOnObjective().Contains(toReturn) ?? true,
                 "Tried to return a possibility that's already connected to this objective.");
             _ReinsertPossibility(toReturn);
-            if (_linkThatCausedDrop != toReturn)
-            {
-                return;
-            }
             Debug.Assert(_toObjective is not null,
                 "At least one objective must be attached.");
             _currentOperation = Operation.RETURN;
