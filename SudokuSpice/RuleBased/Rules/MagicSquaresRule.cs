@@ -85,31 +85,31 @@ namespace SudokuSpice.RuleBased.Rules
                 var relativeCoord = _GetRelative(in coord);
                 var setValues = BitVector.FindUnion(
                     _setOnColumns[relativeCoord.Column], _setOnRows[relativeCoord.Row]);
-                var results = new BitVector(
-                    _rowPossibleSets[relativeCoord.Row].Aggregate(BitVector.FindUnion).Data
-                    ^ _setOnRows[relativeCoord.Row].Data);
+                var results = BitVector.FindDifference(
+                    _rowPossibleSets[relativeCoord.Row].Aggregate(BitVector.FindUnion),
+                    _setOnRows[relativeCoord.Row]);
                 results = BitVector.FindIntersect(
                     results,
-                    new BitVector(
-                        _columnPossibleSets[relativeCoord.Column].Aggregate(BitVector.FindUnion).Data
-                        ^ _setOnColumns[relativeCoord.Column].Data));
+                    BitVector.FindDifference(
+                        _columnPossibleSets[relativeCoord.Column].Aggregate(BitVector.FindUnion),
+                        _setOnColumns[relativeCoord.Column]));
                 if (_includeDiagonals)
                 {
                     if (_IsOnBackwardDiagonal(relativeCoord))
                     {
                         results = BitVector.FindIntersect(
                             results,
-                            new BitVector(
-                                _backwardDiagonalPossibleSets!.Aggregate(BitVector.FindUnion).Data
-                                ^ _setOnBackwardDiagonal.Data));
+                            BitVector.FindDifference(
+                                _backwardDiagonalPossibleSets!.Aggregate(BitVector.FindUnion),
+                                _setOnBackwardDiagonal));
                     }
                     if (_IsOnForwardDiagonal(relativeCoord))
                     {
                         results = BitVector.FindIntersect(
                             results,
-                            new BitVector(
-                                _forwardDiagonalPossibleSets!.Aggregate(BitVector.FindUnion).Data
-                                ^ _setOnForwardDiagonal.Data));
+                            BitVector.FindDifference(
+                                _forwardDiagonalPossibleSets!.Aggregate(BitVector.FindUnion),
+                                _setOnForwardDiagonal));
                     }
                 }
                 return results;
@@ -163,10 +163,10 @@ namespace SudokuSpice.RuleBased.Rules
                 _setOnColumns[relativeCoord.Column].UnsetBit(value);
                 var setOnX = _setOnRows[relativeCoord.Row];
                 _rowPossibleSets[relativeCoord.Row].UnionWith(_allPossibleSets.Where(
-                    set => BitVector.FindIntersect(set, setOnX) == setOnX));
+                    set => setOnX.IsSubsetOf(set)));
                 setOnX = _setOnColumns[relativeCoord.Column];
                 _columnPossibleSets[relativeCoord.Column].UnionWith(_allPossibleSets.Where(
-                    set => BitVector.FindIntersect(set, setOnX) == setOnX));
+                    set => setOnX.IsSubsetOf(set)));
                 if (!_includeDiagonals)
                 {
                     return;
@@ -175,13 +175,13 @@ namespace SudokuSpice.RuleBased.Rules
                 {
                     _setOnForwardDiagonal.UnsetBit(value);
                     _forwardDiagonalPossibleSets!.UnionWith(_allPossibleSets.Where(
-                        set => BitVector.FindIntersect(set, _setOnForwardDiagonal) == _setOnForwardDiagonal));
+                        set => _setOnForwardDiagonal.IsSubsetOf(set)));
                 }
                 if (_IsOnBackwardDiagonal(relativeCoord))
                 {
                     _setOnBackwardDiagonal.UnsetBit(value);
                     _backwardDiagonalPossibleSets!.UnionWith(_allPossibleSets.Where(
-                        set => BitVector.FindIntersect(set, _setOnBackwardDiagonal) == _setOnBackwardDiagonal));
+                        set => _setOnBackwardDiagonal.IsSubsetOf(set)));
                 }
             }
 

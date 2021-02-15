@@ -161,9 +161,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
             var relevantValues = relevantSets.Aggregate(BitVector.FindUnion);
 
             // alreadySet is a subset of relevantValues.
-            var unsetRelevantValues = relevantValues.Data ^ alreadySet.Data;
+            var unsetRelevantValues = BitVector.FindDifference(relevantValues, alreadySet);
             // Drop all the values that are already set or are not part of any relevant sets.
-            var valuesToDrop = new BitVector(_allPossibleValues.Data ^ unsetRelevantValues);
+            var valuesToDrop = BitVector.FindDifference(_allPossibleValues, unsetRelevantValues);
             foreach (var value in valuesToDrop.GetSetBits())
             {
                 if (!ConstraintUtil.TryDropPossibilitiesAtIndex(unsetSquares[0..numUnset], matrix.ValuesToIndices[value]))
@@ -173,7 +173,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
 
             Dictionary<int, OptionalObjective> objectivesByPossibleValue = new();
-            BitVector failedValues = new BitVector();
+            BitVector failedValues = new();
             foreach (var possibleValue in relevantValues.GetSetBits())
             {
                 if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
@@ -191,7 +191,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
 
             // Set requirements on the relevant values.
             OptionalObjective[] valuesToConnect = new OptionalObjective[numUnset];
-            BitVector usedValues = new BitVector();
+            BitVector usedValues = new();
             foreach (BitVector set in relevantSets)
             {
                 int countToConnect = 0;
@@ -214,9 +214,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 setsToOr.Add(setObjective);
             }
             // usedValues are a subset of relevantValues.
-            var unusedValues = relevantValues.Data ^ usedValues.Data;
+            var unusedValues = BitVector.FindDifference(relevantValues, usedValues);
             // unusedValues are a superset of failedValues.
-            var groupedValuesToDrop = new BitVector(unusedValues ^ failedValues.Data);
+            var groupedValuesToDrop = BitVector.FindDifference(unusedValues, failedValues);
             if (!groupedValuesToDrop.IsEmpty)
             {
                 // These values were grouped into an optional objective, but that objective is not
