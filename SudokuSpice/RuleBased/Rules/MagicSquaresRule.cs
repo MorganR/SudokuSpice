@@ -346,7 +346,7 @@ namespace SudokuSpice.RuleBased.Rules
             }
             foreach (var unsetCoord in puzzle.GetUnsetCoords())
             {
-                if (GetPossibleValues(unsetCoord).IsEmpty())
+                if (GetPossibleValues(unsetCoord).IsEmpty)
                 {
                     return false;
                 }

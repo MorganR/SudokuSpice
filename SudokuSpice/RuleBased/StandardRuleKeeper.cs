@@ -67,7 +67,7 @@ namespace SudokuSpice.RuleBased
             foreach (Coordinate c in puzzle.GetUnsetCoords())
             {
                 _puzzle.IntersectPossibleValues(in c, _GetPossibleValues(in c));
-                if (_puzzle.GetPossibleValues(in c).IsEmpty())
+                if (_puzzle.GetPossibleValues(in c).IsEmpty)
                 {
                     return false;
                 }
@@ -123,7 +123,7 @@ namespace SudokuSpice.RuleBased
                 updatedPossibles = BitVector.FindIntersect(
                     _puzzle.GetPossibleValues(in workingCoord),
                     _unsetRowValues[c.Row]);
-                if (updatedPossibles.IsEmpty())
+                if (updatedPossibles.IsEmpty)
                 {
                     _unsetRowValues[c.Row].SetBit(value);
                     _unsetColumnValues[c.Column].SetBit(value);
@@ -143,7 +143,7 @@ namespace SudokuSpice.RuleBased
                 updatedPossibles = BitVector.FindIntersect(
                     _puzzle.GetPossibleValues(in workingCoord),
                     _unsetColumnValues[c.Column]);
-                if (updatedPossibles.IsEmpty())
+                if (updatedPossibles.IsEmpty)
                 {
                     _unsetRowValues[c.Row].SetBit(value);
                     _unsetColumnValues[c.Column].SetBit(value);
@@ -163,7 +163,7 @@ namespace SudokuSpice.RuleBased
                 updatedPossibles = BitVector.FindIntersect(
                         _puzzle.GetPossibleValues(in inBoxCoord),
                         _unsetBoxValues[boxIdx]);
-                if (updatedPossibles.IsEmpty())
+                if (updatedPossibles.IsEmpty)
                 {
                     _unsetRowValues[c.Row].SetBit(value);
                     _unsetColumnValues[c.Column].SetBit(value);

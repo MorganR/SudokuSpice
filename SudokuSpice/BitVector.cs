@@ -28,7 +28,13 @@ namespace SudokuSpice
         /// </summary>
         public uint Data { readonly get; private set; }
 
-               /// <summary>
+        /// <summary>
+        /// Checks if this vector is empty (i.e. no bits are set).
+        /// </summary>
+        /// <returns>True if empty.</returns>
+        public readonly bool IsEmpty => Data == 0;
+
+        /// <summary>
         /// Constructs a bit vector with the given data.
         /// </summary>
         /// <param name="data">The data to use for this bit vector.</param>
@@ -111,12 +117,6 @@ namespace SudokuSpice
         /// less efficient software-based approach.
         /// </remarks>
         public readonly int ComputeCount() => BitOperations.PopCount(Data);
-
-        /// <summary>
-        /// Checks if this vector is empty (i.e. no bits are set).
-        /// </summary>
-        /// <returns>True if empty.</returns>
-        public readonly bool IsEmpty() => Data == 0;
 
         /// <summary>
         /// Checks if the bit is true at the given index.

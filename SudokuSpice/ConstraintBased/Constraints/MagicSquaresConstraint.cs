@@ -73,7 +73,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
                 copiedSet.UnsetBit(possibleValue);
             }
-            return copiedSet.IsEmpty();
+            return copiedSet.IsEmpty;
         }
 
         private bool _TryConstrainBox(Square box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
@@ -198,7 +198,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 var unsetPossibleValuesInSet = new BitVector(set.Data ^ alreadySet.Data);
                 // If one of the possible values in this set can't be grouped, then skip the set.
                 if (!BitVector.FindIntersect(
-                    unsetPossibleValuesInSet, failedValues).IsEmpty())
+                    unsetPossibleValuesInSet, failedValues).IsEmpty)
                 {
                     continue;
                 }
@@ -217,7 +217,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             var unusedValues = relevantValues.Data ^ usedValues.Data;
             // unusedValues are a superset of failedValues.
             var groupedValuesToDrop = new BitVector(unusedValues ^ failedValues.Data);
-            if (!groupedValuesToDrop.IsEmpty())
+            if (!groupedValuesToDrop.IsEmpty)
             {
                 // These values were grouped into an optional objective, but that objective is not
                 // connected up to a required objective. That means these values are actually

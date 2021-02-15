@@ -143,7 +143,7 @@ namespace SudokuSpice.Test
         public void IsEmpty_Succeeds(uint data, bool isEmpty)
         {
             var vector = new BitVector(data);
-            Assert.Equal(isEmpty, vector.IsEmpty());
+            Assert.Equal(isEmpty, vector.IsEmpty);
         }
 
         [Theory]
