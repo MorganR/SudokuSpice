@@ -4,6 +4,17 @@ using System.Linq;
 
 namespace SudokuSpice.RuleBased.Rules
 {
+    /// <summary>
+    /// Enforces a rule that certain regions in a puzzle must be
+    /// <a href="https://en.wikipedia.org/wiki/Magic_square">magic squares</a>, i.e. the sums of the
+    /// values in each of their rows, columns, and (optionally) their diagonals add up to the same
+    /// value.
+    ///
+    /// Note that this does <em>not</em> enforce uniqueness of values within the magic square as a
+    /// whole. It <em>does</em>, however, prevent value duplication within each row, column, and/or
+    /// diagonal. This can be combined with other rules if you need proper row, column, box, and/or
+    /// diagonal uniqueness.
+    /// </summary>
     public class MagicSquaresRule : IRule
     {
         private class BoxPossibleValues
@@ -275,6 +286,28 @@ namespace SudokuSpice.RuleBased.Rules
         private IReadOnlySet<BitVector>? _possibleSets;
         private BoxPossibleValues[]? _boxPossibleValues;
 
+        /// <summary>
+        /// Constructs a rule that will enforce that the given <paramref name="squares"/> are
+        /// magic squares based on the rows, columns, and, optionally, the diagonals.
+        ///
+        /// Unlike other rules, this rule can only be constructed for a specific puzzle size.
+        /// Attempting to initialize this rule with an incompatible puzzle will fail.
+        /// </summary>
+        /// <param name="size">
+        /// The size of the puzzle this rule applies to.
+        /// </param>
+        /// <param name="squares">
+        /// The locations of the magic squares. The squares' size must be the square root of the
+        /// puzzle <paramref name="size"/>.
+        /// </param>
+        /// <param name="includeDiagonals">
+        /// If true, values along the diagonals of the square must also sum to the magic number.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// If the any of the given <paramref name="squares"/>' sizes are not compatible with the
+        /// given puzzle's <paramref name="size"/>.
+        /// </exception>
+
         public MagicSquaresRule(int size, IEnumerable<Box> squares, bool includeDiagonals)
         {
             _size = size;
@@ -295,6 +328,7 @@ namespace SudokuSpice.RuleBased.Rules
             _includeDiagonals = existing._includeDiagonals;
         }
 
+        /// <inheritdoc />
         public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
         {
             var copy = new MagicSquaresRule(this);
@@ -312,6 +346,7 @@ namespace SudokuSpice.RuleBased.Rules
             return copy;
         }
 
+        /// <inheritdoc />
         public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
         {
             if (_size != puzzle.Size)
@@ -354,6 +389,7 @@ namespace SudokuSpice.RuleBased.Rules
             return true;
         }
 
+        /// <inheritdoc />
         public BitVector GetPossibleValues(in Coordinate c)
         {
             if (_boxPossibleValues is null)
@@ -367,6 +403,7 @@ namespace SudokuSpice.RuleBased.Rules
                 (intersect, bp) => BitVector.FindIntersect(bp.GetPossibleValues(coordCopy), intersect));
         }
 
+        /// <inheritdoc />
         public void Revert(in Coordinate c, int val)
         {
             if (_boxPossibleValues is null)
@@ -380,6 +417,7 @@ namespace SudokuSpice.RuleBased.Rules
             }
         }
 
+        /// <inheritdoc />
         public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             if (_boxPossibleValues is null)
@@ -393,6 +431,7 @@ namespace SudokuSpice.RuleBased.Rules
             }
         }
 
+        /// <inheritdoc />
         public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
         {
             if (_boxPossibleValues is null)
