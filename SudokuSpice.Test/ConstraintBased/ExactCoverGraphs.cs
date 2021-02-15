@@ -5,11 +5,11 @@ using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Test
 {
-    internal static class ExactCoverMatrices
+    internal static class ExactCoverGraphs
     {
-        internal static void AssertNoPossibleValuesAtSquare(Coordinate coord, ExactCoverGraph matrix)
+        internal static void AssertNoPossibleValuesAtSquare(Coordinate coord, ExactCoverGraph graph)
         {
-            var square = matrix.GetAllPossibilitiesAt(coord);
+            var square = graph.GetAllPossibilitiesAt(coord);
             if (square is not null)
             {
                 for (int valueIndex = 0; valueIndex < square.Length; ++valueIndex)
@@ -23,9 +23,9 @@ namespace SudokuSpice.ConstraintBased.Test
             }
         }
 
-        internal static void AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverGraph matrix)
+        internal static void AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverGraph graph)
         {
-            var square = matrix.GetAllPossibilitiesAt(coord);
+            var square = graph.GetAllPossibilitiesAt(coord);
             Assert.NotNull(square);
             var foundValues = new List<int>();
             for (int valueIndex = 0; valueIndex < square.Length; ++valueIndex)
@@ -35,7 +35,7 @@ namespace SudokuSpice.ConstraintBased.Test
                 {
                     continue;
                 }
-                int value = matrix.AllPossibleValues[valueIndex];
+                int value = graph.AllPossibleValues[valueIndex];
                 if (possibleValue.State == NodeState.UNKNOWN)
                 {
                     foundValues.Add(value);

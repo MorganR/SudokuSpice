@@ -14,10 +14,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null,    3,    1, null },
                 { null, null, null, null },
             });
-            var matrix = ExactCoverGraph.Create(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
             var constraint = new DiagonalUniquenessConstraint();
 
-            Assert.False(constraint.TryConstrain(puzzle, matrix));
+            Assert.False(constraint.TryConstrain(puzzle, graph));
         }
 
         [Fact]
@@ -29,27 +29,27 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null,    3,    3, null },
                 {    4, null, null, null },
             });
-            var matrix = ExactCoverGraph.Create(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
             var constraint = new DiagonalUniquenessConstraint();
 
-            Assert.True(constraint.TryConstrain(puzzle, matrix));
+            Assert.True(constraint.TryConstrain(puzzle, graph));
 
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(0, 1), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(0, 2), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(1, 0), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(1, 3), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(2, 0), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(2, 3), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(3, 1), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(3, 2), new int[] { 1, 2, 3, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(1, 1), new int[] { 2, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(3, 3), new int[] { 2, 4 }, matrix);
-            ExactCoverMatrices.AssertPossibleValuesAtSquare(new(0, 3), new int[] { 1 }, matrix);
-            ExactCoverMatrices.AssertNoPossibleValuesAtSquare(new(0, 0), matrix);
-            ExactCoverMatrices.AssertNoPossibleValuesAtSquare(new(2, 2), matrix);
-            ExactCoverMatrices.AssertNoPossibleValuesAtSquare(new(1, 2), matrix);
-            ExactCoverMatrices.AssertNoPossibleValuesAtSquare(new(2, 1), matrix);
-            ExactCoverMatrices.AssertNoPossibleValuesAtSquare(new(3, 0), matrix);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(0, 1), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(0, 2), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(1, 0), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(1, 3), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(2, 0), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(2, 3), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(3, 1), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(3, 2), new int[] { 1, 2, 3, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(1, 1), new int[] { 2, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(3, 3), new int[] { 2, 4 }, graph);
+            ExactCoverGraphs.AssertPossibleValuesAtSquare(new(0, 3), new int[] { 1 }, graph);
+            ExactCoverGraphs.AssertNoPossibleValuesAtSquare(new(0, 0), graph);
+            ExactCoverGraphs.AssertNoPossibleValuesAtSquare(new(2, 2), graph);
+            ExactCoverGraphs.AssertNoPossibleValuesAtSquare(new(1, 2), graph);
+            ExactCoverGraphs.AssertNoPossibleValuesAtSquare(new(2, 1), graph);
+            ExactCoverGraphs.AssertNoPossibleValuesAtSquare(new(3, 0), graph);
         }
     }
 }

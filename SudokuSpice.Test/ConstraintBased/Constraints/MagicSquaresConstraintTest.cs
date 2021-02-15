@@ -135,17 +135,17 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
-            var matrix = ExactCoverGraph.Create(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
 
-            Assert.True(constraint.TryConstrain(puzzle, matrix));
+            Assert.True(constraint.TryConstrain(puzzle, graph));
 
-            _AssertPossibleValuesAtSquare(new(0, 0), new int[] { 1, 2, 4, 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new(0, 1), new int[] { 4, 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new(1, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
-            _AssertPossibleValuesAtSquare(new(1, 1), new int[] { 4, 5, 7, 8 }, matrix);
-            _AssertPossibleValuesAtSquare(new(1, 2), new int[] { 1 }, matrix);
-            _AssertPossibleValuesAtSquare(new(2, 0), new int[] { 7 }, matrix);
-            _AssertPossibleValuesAtSquare(new(3, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
+            _AssertPossibleValuesAtSquare(new(0, 0), new int[] { 1, 2, 4, 5 }, graph);
+            _AssertPossibleValuesAtSquare(new(0, 1), new int[] { 4, 5 }, graph);
+            _AssertPossibleValuesAtSquare(new(1, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, graph);
+            _AssertPossibleValuesAtSquare(new(1, 1), new int[] { 4, 5, 7, 8 }, graph);
+            _AssertPossibleValuesAtSquare(new(1, 2), new int[] { 1 }, graph);
+            _AssertPossibleValuesAtSquare(new(2, 0), new int[] { 7 }, graph);
+            _AssertPossibleValuesAtSquare(new(3, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, graph);
         }
 
         [Fact]
@@ -168,9 +168,9 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: true);
-            var matrix = ExactCoverGraph.Create(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
 
-            Assert.True(constraint.TryConstrain(puzzle, matrix));
+            Assert.True(constraint.TryConstrain(puzzle, graph));
 
             // rows: 18, 27, 45
             // rows: all
@@ -194,13 +194,13 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             // Note this doesn't filter further because failed optional objectives can't drop
             // possiblities.
 
-            _AssertPossibleValuesAtSquare(new(3, 3), new int[] { 2, 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new(3, 4), new int[] { 4, 5, 7, 8 }, matrix);
-            _AssertPossibleValuesAtSquare(new(4, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
-            _AssertPossibleValuesAtSquare(new(4, 4), new int[] { 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new(4, 5), new int[] { 1 }, matrix);
-            _AssertPossibleValuesAtSquare(new(5, 3), new int[] { 4 }, matrix);
-            _AssertPossibleValuesAtSquare(new(6, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
+            _AssertPossibleValuesAtSquare(new(3, 3), new int[] { 2, 5 }, graph);
+            _AssertPossibleValuesAtSquare(new(3, 4), new int[] { 4, 5, 7, 8 }, graph);
+            _AssertPossibleValuesAtSquare(new(4, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, graph);
+            _AssertPossibleValuesAtSquare(new(4, 4), new int[] { 5 }, graph);
+            _AssertPossibleValuesAtSquare(new(4, 5), new int[] { 1 }, graph);
+            _AssertPossibleValuesAtSquare(new(5, 3), new int[] { 4 }, graph);
+            _AssertPossibleValuesAtSquare(new(6, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, graph);
         }
 
         [Fact]
@@ -223,14 +223,14 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
-            var matrix = ExactCoverGraph.Create(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
 
-            Assert.False(constraint.TryConstrain(puzzle, matrix));
+            Assert.False(constraint.TryConstrain(puzzle, graph));
         }
 
-        private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverGraph matrix)
+        private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverGraph graph)
         {
-            var square = matrix.GetAllPossibilitiesAt(coord);
+            var square = graph.GetAllPossibilitiesAt(coord);
             Assert.NotNull(square);
             var foundValues = new List<int>();
             for (int valueIndex = 0; valueIndex < square.Length; ++valueIndex)
@@ -240,7 +240,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 {
                     continue;
                 }
-                int value = matrix.AllPossibleValues[valueIndex];
+                int value = graph.AllPossibleValues[valueIndex];
                 if (possibleValue.State == NodeState.UNKNOWN)
                 {
                     foundValues.Add(value);
