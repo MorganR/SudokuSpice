@@ -224,7 +224,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 initialPossibleValues[1],
                 rule.GetPossibleValues(new Coordinate(1, 1)));
         }
+    }
 
+    public class MagicSquaresRuleSolverTests
+    {
         [Fact]
         public void Solve_WithManySolutions_Works()
         {
@@ -330,6 +333,104 @@ namespace SudokuSpice.RuleBased.Rules.Test
             PuzzleTestUtils.AssertStandardPuzzleSolved(solution);
             MagicSquareTests.AssertMagicSquaresSatisfied(
                 solution, magicSquares, expectedSum: 15, verifyDiagonals: false);
+        }
+    }
+
+    public class MagicSquaresRuleUniqueSolutionTests
+    {
+        [Fact]
+        public void HasUniqueSolution_WithManySolutions_IsFalse()
+        {
+             var puzzle = new PuzzleWithPossibleValues(new int?[,] {
+                { null, null,    9, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null,    3,    5, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+            });
+            var magicSquares = new Square[] { 
+                new Square(new Coordinate(0, 0), 3),
+                new Square(new Coordinate(3, 3), 3),
+                new Square(new Coordinate(6, 6), 3),
+            };
+            var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
+                new DynamicRuleKeeper(
+                    new List<IRule>() {
+                        new RowUniquenessRule(),
+                        new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false),
+                    }));
+
+            Assert.False(solver.HasUniqueSolution(puzzle));
+        }
+
+        [Fact]
+        public void HasUniqueSolution_WithUniqueSolution_IsTrue()
+        {
+             var puzzle = new PuzzleWithPossibleValues(new int?[,] {
+                { null, null,    9, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null,    1, null },
+                { null, null, null, null, null,    5, null, null, null },
+                { null, null, null, null, null, null, null, null,    8 },
+                { null, null, null, null, null, null, null, null, null },
+                {    7, null, null, null, null, null, null, null, null },
+                { null, null, null,    3, null, null, null, null, null },
+                { null,    4, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null,    6, null, null },
+            });
+            var magicSquares = new Square[] { 
+                new Square(new Coordinate(0, 0), 3),
+                new Square(new Coordinate(0, 3), 3),
+                new Square(new Coordinate(0, 6), 3),
+                new Square(new Coordinate(3, 0), 3),
+                new Square(new Coordinate(3, 3), 3),
+                new Square(new Coordinate(3, 6), 3),
+                new Square(new Coordinate(6, 0), 3),
+                new Square(new Coordinate(6, 3), 3),
+                new Square(new Coordinate(6, 6), 3),
+            };
+            var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
+                new DynamicRuleKeeper(
+                    new List<IRule>() {
+                        new RowUniquenessRule(),
+                        new ColumnUniquenessRule(),
+                        new BoxUniquenessRule(),
+                        new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false),
+                    }));
+
+            Assert.True(solver.HasUniqueSolution(puzzle));
+        }
+
+        [Fact]
+        public void HasUniqueSolution_WithOneSolutionUsingDiagonals_IsTrue()
+        {
+             var puzzle = new PuzzleWithPossibleValues(new int?[,] {
+                { null, null, null, null, null, null, null,    1,    2 },
+                { null,    5, null, null,    9, null, null, null, null },
+                { null, null, null, null, null,    8, null, null, null },
+                { null,    3, null, null, null, null,    5, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null,    9, null },
+                { null, null, null, null,    4,    3,    9, null, null },
+                {    6, null,    1, null, null, null,    7, null, null },
+                {    2, null, null, null, null, null, null, null, null },
+            });
+            var magicSquares = new Square[] { 
+                new Square(new Coordinate(3, 3), 3),
+            };
+            var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
+                new DynamicRuleKeeper(
+                    new List<IRule>() {
+                        new RowUniquenessRule(),
+                        new ColumnUniquenessRule(),
+                        new BoxUniquenessRule(),
+                        new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: true),
+                    }));
+
+            Assert.True(solver.HasUniqueSolution(puzzle));
         }
     }
 }

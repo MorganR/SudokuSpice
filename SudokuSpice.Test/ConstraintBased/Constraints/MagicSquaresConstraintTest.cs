@@ -21,7 +21,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] { 
+            var boxesToConstrain = new Square[] {
                 new Square(new Coordinate(0, 0), 3),
                 new Square(new Coordinate(3, 3), 3),
                 new Square(new Coordinate(6, 6), 3),
@@ -30,7 +30,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { 
+                new List<IConstraint> {
                     new RowUniquenessConstraint(),
                     constraint,
                 });
@@ -57,7 +57,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null,    6, null, null },
             });
 
-            var boxesToConstrain = new Square[] { 
+            var boxesToConstrain = new Square[] {
                 new Square(new Coordinate(0, 0), 3),
                 new Square(new Coordinate(0, 3), 3),
                 new Square(new Coordinate(0, 6), 3),
@@ -116,106 +116,6 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         }
 
         [Fact]
-        public void HasUniqueSolution_NotUnique()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null,    3,    5, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-            });
-            var boxesToConstrain = new Square[] { 
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
-            };
-            var constraint = new MagicSquaresConstraint(
-                _CreateStandardPossibleValues(9),
-                boxesToConstrain, includeDiagonals: false);
-            var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { 
-                    new RowUniquenessConstraint(),
-                    constraint,
-                });
-
-            Assert.False(solver.HasUniqueSolution(puzzle));
-        }
-
-        [Fact]
-        public void HasUniqueSolution_IsUnique()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null,    1, null },
-                { null, null, null, null, null,    5, null, null, null },
-                { null, null, null, null, null, null, null, null,    8 },
-                { null, null, null, null, null, null, null, null, null },
-                {    7, null, null, null, null, null, null, null, null },
-                { null, null, null,    3, null, null, null, null, null },
-                { null,    4, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null,    6, null, null },
-            });
-
-            var boxesToConstrain = new Square[] { 
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(0, 3), 3),
-                new Square(new Coordinate(0, 6), 3),
-                new Square(new Coordinate(3, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(3, 6), 3),
-                new Square(new Coordinate(6, 0), 3),
-                new Square(new Coordinate(6, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
-            };
-            var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
-                    new RowUniquenessConstraint(),
-                    new ColumnUniquenessConstraint(),
-                    new BoxUniquenessConstraint(),
-                    new MagicSquaresConstraint(
-                        _CreateStandardPossibleValues(puzzle.Size),
-                        boxesToConstrain, includeDiagonals: false)
-                });
-
-            Assert.True(solver.HasUniqueSolution(puzzle));
-        }
-
-        [Fact]
-        public void HasUniqueSolution_IsUniqueWithDiagonals()
-        {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null, null, null, null, null, null,    1,    2 },
-                { null,    5, null, null,    9, null, null, null, null },
-                { null, null, null, null, null,    8, null, null, null },
-                { null,    3, null, null, null, null,    5, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null,    9, null },
-                { null, null, null, null,    4,    3,    9, null, null },
-                {    6, null,    1, null, null, null,    7, null, null },
-                {    2, null, null, null, null, null, null, null, null },
-            });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(3, 3), 3),
-            };
-            var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
-                    new RowUniquenessConstraint(),
-                    new ColumnUniquenessConstraint(),
-                    new BoxUniquenessConstraint(),
-                    new MagicSquaresConstraint(
-                        _CreateStandardPossibleValues(9),
-                        boxesToConstrain, includeDiagonals: true)
-                });
-
-            Assert.True(solver.HasUniqueSolution(puzzle));
-        }
-
-        [Fact]
         public void TryConstrain_ConstrainsCorrectly()
         {
             var puzzle = new Puzzle(new int?[,] {
@@ -239,13 +139,13 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
 
-            _AssertPossibleValuesAtSquare(new (0, 0), new int[] { 1, 2, 4, 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new (0, 1), new int[] { 4, 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new (1, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
-            _AssertPossibleValuesAtSquare(new (1, 1), new int[] { 4, 5, 7, 8 }, matrix);
-            _AssertPossibleValuesAtSquare(new (1, 2), new int[] { 1 }, matrix);
-            _AssertPossibleValuesAtSquare(new (2, 0), new int[] { 7 }, matrix);
-            _AssertPossibleValuesAtSquare(new (3, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
+            _AssertPossibleValuesAtSquare(new(0, 0), new int[] { 1, 2, 4, 5 }, matrix);
+            _AssertPossibleValuesAtSquare(new(0, 1), new int[] { 4, 5 }, matrix);
+            _AssertPossibleValuesAtSquare(new(1, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
+            _AssertPossibleValuesAtSquare(new(1, 1), new int[] { 4, 5, 7, 8 }, matrix);
+            _AssertPossibleValuesAtSquare(new(1, 2), new int[] { 1 }, matrix);
+            _AssertPossibleValuesAtSquare(new(2, 0), new int[] { 7 }, matrix);
+            _AssertPossibleValuesAtSquare(new(3, 0), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
         }
 
         [Fact]
@@ -294,13 +194,13 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             // Note this doesn't filter further because failed optional objectives can't drop
             // possiblities.
 
-            _AssertPossibleValuesAtSquare(new (3, 3), new int[] { 2, 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new (3, 4), new int[] { 4, 5, 7, 8 }, matrix);
-            _AssertPossibleValuesAtSquare(new (4, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
-            _AssertPossibleValuesAtSquare(new (4, 4), new int[] { 5 }, matrix);
-            _AssertPossibleValuesAtSquare(new (4, 5), new int[] { 1 }, matrix);
-            _AssertPossibleValuesAtSquare(new (5, 3), new int[] { 4 }, matrix);
-            _AssertPossibleValuesAtSquare(new (6, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
+            _AssertPossibleValuesAtSquare(new(3, 3), new int[] { 2, 5 }, matrix);
+            _AssertPossibleValuesAtSquare(new(3, 4), new int[] { 4, 5, 7, 8 }, matrix);
+            _AssertPossibleValuesAtSquare(new(4, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
+            _AssertPossibleValuesAtSquare(new(4, 4), new int[] { 5 }, matrix);
+            _AssertPossibleValuesAtSquare(new(4, 5), new int[] { 1 }, matrix);
+            _AssertPossibleValuesAtSquare(new(5, 3), new int[] { 4 }, matrix);
+            _AssertPossibleValuesAtSquare(new(6, 3), new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, matrix);
         }
 
         [Fact]
@@ -350,13 +250,152 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 } else
                 {
                     Assert.False(
-                        possibleValues.Contains(value), 
+                        possibleValues.Contains(value),
                         $"Missing possible value {value} at {coord}. Expected: {string.Join(',', possibleValues)}.");
                 }
             }
             Assert.True(
                 possibleValues.Length == foundValues.Count,
                 $"Found {foundValues.Count} possible values when expected {possibleValues.Length} at {coord}. Expected {string.Join(',', possibleValues)}, found: {string.Join(',', foundValues)}.");
+        }
+
+        private static int[] _CreateStandardPossibleValues(int size)
+        {
+            int[] values = new int[size];
+            for (int i = 0; i < size; ++i)
+            {
+                values[i] = i + 1;
+            }
+            return values;
+        }
+    }
+
+    public class MagicSquaresConstraintNotUniqueSolutionTest
+    {
+        [Fact]
+        public void HasUniqueSolution_NotUnique()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                { null, null,    9, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null,    3,    5, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null, null, null },
+            });
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(0, 0), 3),
+                new Square(new Coordinate(3, 3), 3),
+                new Square(new Coordinate(6, 6), 3),
+            };
+            var constraint = new MagicSquaresConstraint(
+                _CreateStandardPossibleValues(9),
+                boxesToConstrain, includeDiagonals: false);
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> {
+                    new RowUniquenessConstraint(),
+                    constraint,
+                });
+
+            Assert.False(solver.HasUniqueSolution(puzzle));
+        }
+
+        private static int[] _CreateStandardPossibleValues(int size)
+        {
+            int[] values = new int[size];
+            for (int i = 0; i < size; ++i)
+            {
+                values[i] = i + 1;
+            }
+            return values;
+        }
+    }
+
+    public class MagicSquaresConstraintUniqueSolutionTest
+    {
+        [Fact]
+        public void HasUniqueSolution_IsUnique()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                { null, null,    9, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null,    1, null },
+                { null, null, null, null, null,    5, null, null, null },
+                { null, null, null, null, null, null, null, null,    8 },
+                { null, null, null, null, null, null, null, null, null },
+                {    7, null, null, null, null, null, null, null, null },
+                { null, null, null,    3, null, null, null, null, null },
+                { null,    4, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null,    6, null, null },
+            });
+
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(0, 0), 3),
+                new Square(new Coordinate(0, 3), 3),
+                new Square(new Coordinate(0, 6), 3),
+                new Square(new Coordinate(3, 0), 3),
+                new Square(new Coordinate(3, 3), 3),
+                new Square(new Coordinate(3, 6), 3),
+                new Square(new Coordinate(6, 0), 3),
+                new Square(new Coordinate(6, 3), 3),
+                new Square(new Coordinate(6, 6), 3),
+            };
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> {
+                    new RowUniquenessConstraint(),
+                    new ColumnUniquenessConstraint(),
+                    new BoxUniquenessConstraint(),
+                    new MagicSquaresConstraint(
+                        _CreateStandardPossibleValues(puzzle.Size),
+                        boxesToConstrain, includeDiagonals: false)
+                });
+
+            Assert.True(solver.HasUniqueSolution(puzzle));
+        }
+
+        private static int[] _CreateStandardPossibleValues(int size)
+        {
+            int[] values = new int[size];
+            for (int i = 0; i < size; ++i)
+            {
+                values[i] = i + 1;
+            }
+            return values;
+        }
+    }
+
+    public class MagicSquaresConstraintUniqueSolutionWithDiagonalsTest
+    {
+        [Fact]
+        public void HasUniqueSolution_IsUniqueWithDiagonals()
+        {
+            var puzzle = new Puzzle(new int?[,] {
+                { null, null, null, null, null, null, null,    1,    2 },
+                { null,    5, null, null,    9, null, null, null, null },
+                { null, null, null, null, null,    8, null, null, null },
+                { null,    3, null, null, null, null,    5, null, null },
+                { null, null, null, null, null, null, null, null, null },
+                { null, null, null, null, null, null, null,    9, null },
+                { null, null, null, null,    4,    3,    9, null, null },
+                {    6, null,    1, null, null, null,    7, null, null },
+                {    2, null, null, null, null, null, null, null, null },
+            });
+            var boxesToConstrain = new Square[] {
+                new Square(new Coordinate(3, 3), 3),
+            };
+            var solver = new PuzzleSolver<Puzzle>(
+                new List<IConstraint> {
+                    new RowUniquenessConstraint(),
+                    new ColumnUniquenessConstraint(),
+                    new BoxUniquenessConstraint(),
+                    new MagicSquaresConstraint(
+                        _CreateStandardPossibleValues(9),
+                        boxesToConstrain, includeDiagonals: true)
+                });
+
+            Assert.True(solver.HasUniqueSolution(puzzle));
         }
 
         private static int[] _CreateStandardPossibleValues(int size)
