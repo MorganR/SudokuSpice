@@ -55,6 +55,18 @@ namespace SudokuSpice.Test
             Assert.Equal(new BitVector(unionData), BitVector.FindUnion(vectorA, vectorB));
         }
 
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(0, uint.MaxValue, uint.MaxValue)]
+        [InlineData(0b1101_1001, 0b0100_0111, 0b1001_1110)]
+        public void FindDifference_IsCorrect(uint dataA, uint dataB, uint difference)
+        {
+            var vectorA = new BitVector(dataA);
+            var vectorB = new BitVector(dataB);
+            Assert.Equal(new BitVector(difference), BitVector.FindDifference(vectorA, vectorB));
+        }
+
+
         [Fact]
         public void SetBit_Succeeds()
         {
@@ -132,6 +144,32 @@ namespace SudokuSpice.Test
         {
             var vector = new BitVector(data);
             Assert.Equal(isEmpty, vector.IsEmpty());
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(0, uint.MaxValue)]
+        [InlineData(1, 1)]
+        [InlineData(1, uint.MaxValue)]
+        [InlineData(0b1001, 0b1010_1111)]
+        [InlineData(uint.MaxValue, uint.MaxValue)]
+        public void IsSubsetOf_True(uint subsetData, uint supersetData)
+        {
+            var subset = new BitVector(subsetData);
+            var superset = new BitVector(supersetData);
+            Assert.True(subset.IsSubsetOf(superset));
+        }
+
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(uint.MaxValue, 0b1111)]
+        [InlineData(0b10, 0b01)]
+        [InlineData(0b1110, 0b0110)]
+        public void IsSubsetOf_False(uint subsetData, uint supersetData)
+        {
+            var subset = new BitVector(subsetData);
+            var notSuperset = new BitVector(supersetData);
+            Assert.False(subset.IsSubsetOf(notSuperset));
         }
 
         [Theory]

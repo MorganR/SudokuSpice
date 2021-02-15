@@ -55,6 +55,18 @@ namespace SudokuSpice
         }
 
         /// <summary>
+        /// Determines if this vector is a subset of the given vector (i.e. all bits set in this
+        /// vector are also set in <paramref name="other"/>).
+        /// </summary>
+        /// <param name="other">The possible superset.</param>
+        /// <returns>True if this is equal to or a subset of the given vector.</returns>
+        public bool IsSubsetOf(BitVector other)
+        {
+            var intersect = FindIntersect(this, other);
+            return intersect == this;
+        }
+
+        /// <summary>
         /// Creates a bit vector that is the intersect of the given vectors.
         /// </summary>
         /// <param name="a">One bit vector.</param>
@@ -69,6 +81,14 @@ namespace SudokuSpice
         /// <param name="b">The other bit vector.</param>
         /// <returns> A new <c>BitVector</c> that is the union of the given vectors.</returns>
         public static BitVector FindUnion(BitVector a, BitVector b) => new BitVector(a.Data | b.Data);
+
+        /// <summary>
+        /// Creates a bit vector that is the difference of the given vectors.
+        /// </summary>
+        /// <param name="a">One bit vector.</param>
+        /// <param name="b">The other bit vector.</param>
+        /// <returns> A new <c>BitVector</c> that is the union of the given vectors.</returns>
+        public static BitVector FindDifference(BitVector a, BitVector b) => new BitVector(a.Data ^ b.Data);
 
         /// <summary>
         /// Unsets the given bit index in the given vector. Leaves other bits unchanged.
