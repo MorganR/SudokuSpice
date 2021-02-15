@@ -19,8 +19,6 @@ namespace SudokuSpice.ConstraintBased
         private readonly int[] _allPossibleValues;
         private readonly Possibility?[]?[][] _matrix;
         private readonly LinkedList<Objective> _unsatisfiedObjectives;
-        // TODO: Have a way to guess from the optional objectives that only have one left.
-        // private readonly LinkedList<OptionalObjective> _unknownOptionalObjectivesWithConcretePossibilities;
 
         /// <summary>
         /// Contains the possible values for the current puzzle.

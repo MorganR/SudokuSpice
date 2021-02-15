@@ -5,8 +5,7 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
-    // TODO: Rename to, for example: Guesser
-    internal class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
+    internal class Guesser<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
         private readonly ExactCoverMatrix _matrix;
@@ -14,14 +13,14 @@ namespace SudokuSpice.ConstraintBased
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
-        internal SquareTracker(TPuzzle puzzle, ExactCoverMatrix matrix)
+        internal Guesser(TPuzzle puzzle, ExactCoverMatrix matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;
             _setSquares = new Stack<Guess>(puzzle.NumEmptySquares);
         }
 
-        private SquareTracker(SquareTracker<TPuzzle> other)
+        private Guesser(Guesser<TPuzzle> other)
         {
             // Puzzle is guaranteed to be of type TPuzzle.
             _puzzle = other._puzzle.DeepCopy();
@@ -30,7 +29,7 @@ namespace SudokuSpice.ConstraintBased
             _setSquares = new Stack<Guess>(_puzzle.NumEmptySquares);
         }
 
-        internal SquareTracker<TPuzzle> CopyForContinuation() => new SquareTracker<TPuzzle>(this);
+        internal Guesser<TPuzzle> CopyForContinuation() => new Guesser<TPuzzle>(this);
 
         internal IEnumerable<Guess> GetBestGuesses()
         {

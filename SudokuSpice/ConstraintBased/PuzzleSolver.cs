@@ -48,8 +48,8 @@ namespace SudokuSpice.ConstraintBased
                 };
             }
             if (!(randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzleCopy, matrix)) :
-                _TrySolve(new SquareTracker<TPuzzle>(puzzleCopy, matrix))))
+                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzleCopy, matrix)) :
+                _TrySolve(new Guesser<TPuzzle>(puzzleCopy, matrix))))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
@@ -72,8 +72,8 @@ namespace SudokuSpice.ConstraintBased
                 }
             }
             return randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)) :
-                _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix));
+                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzle, matrix)) :
+                _TrySolve(new Guesser<TPuzzle>(puzzle, matrix));
         }
 
         /// <inheritdoc/>
@@ -104,7 +104,7 @@ namespace SudokuSpice.ConstraintBased
                     return new SolveStats();
                 }
             }
-            return _TryAllSolutions(new SquareTracker<TPuzzle>(puzzleCopy, matrix), validateUniquenessOnly, token);
+            return _TryAllSolutions(new Guesser<TPuzzle>(puzzleCopy, matrix), validateUniquenessOnly, token);
         }
 
 
@@ -123,7 +123,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        private static bool _TrySolve(SquareTracker<TPuzzle> tracker)
+        private static bool _TrySolve(Guesser<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -144,7 +144,7 @@ namespace SudokuSpice.ConstraintBased
             return false;
         }
 
-        private static bool _TrySolveRandomly(Random rand, SquareTracker<TPuzzle> tracker)
+        private static bool _TrySolveRandomly(Random rand, Guesser<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
@@ -174,7 +174,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         private static SolveStats _TryAllSolutions(
-            SquareTracker<TPuzzle> tracker, bool validateUniquenessOnly, CancellationToken? cancellationToken)
+            Guesser<TPuzzle> tracker, bool validateUniquenessOnly, CancellationToken? cancellationToken)
         {
             if (tracker.IsSolved)
             {
@@ -195,7 +195,7 @@ namespace SudokuSpice.ConstraintBased
 
         private static SolveStats _TryAllSolutionsWithGuess(
             ReadOnlySpan<Guess> guesses,
-            SquareTracker<TPuzzle> tracker,
+            Guesser<TPuzzle> tracker,
             bool validateUniquenessOnly,
             CancellationToken? cancellationToken)
         {
@@ -203,7 +203,7 @@ namespace SudokuSpice.ConstraintBased
             for (int i = 0; i < guesses.Length - 1; i++)
             {
                 cancellationToken?.ThrowIfCancellationRequested();
-                SquareTracker<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
+                Guesser<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
                 if (trackerCopy.TrySet(in guesses[i]))
                 {
                     SolveStats stats = _TryAllSolutions(trackerCopy, validateUniquenessOnly, cancellationToken);
