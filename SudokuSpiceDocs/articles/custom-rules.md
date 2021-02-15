@@ -10,7 +10,7 @@ using the [`DiagonalUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.DiagonalUn
 
 The new rule needs to extend the [`IRule`](xref:SudokuSpice.RuleBased.Rules.IRule), and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the [`BitVector`](xref:SudokuSpice.RuleBased.BitVector) struct, which provides an
+we'll use the [`BitVector`](xref:SudokuSpice.BitVector) struct, which provides an
 efficient set-like struct using the 32 bits of a `uint`.
 
 ### TryInit

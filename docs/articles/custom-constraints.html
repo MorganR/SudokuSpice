@@ -75,19 +75,18 @@ new constraint: the
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.html"><code>DiagonalUniquenessConstraint</code></a>.</p>
 <p>If you haven't yet read the <a href="framework.html#important-concepts">constraints summary</a>, read that first!</p>
 <h2 id="creating-a-constraint">Creating a constraint</h2>
-<p>A single constraint object can be used to solve multiple puzzles. Generally speaking,
-no work needs to be done in the constructor.</p>
+<p>A single constraint object can be used to solve multiple puzzles. Where possible, a constraint
+should be flexible to multiple puzzle sizes.</p>
 <h3 id="the-tryconstrain-method">The <code>TryConstrain</code> method</h3>
 <p>The <code>IConstraint.TryConstrain</code> operation adds new
-<a href="xref:SudokuSpice.ConstraintBased.ConstraintHeader"><code>ConstraintHeader</code>s</a> (and corresponding
-links) to the given
-<a href="xref:SudokuSpice.ConstraintBased.ExactCoverMatrix"><code>ExactCoverMatrix</code></a>. It must also drop any
-<a href="xref:SudokuSpice.ConstraintBased.PossibleSquareValue"><code>PossibleSquareValue</code>s</a> that are now
-impossible based on applying this constraint to the puzzle's preset values.</p>
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Objective.html"><code>Objective</code>s</a> to the given
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ExactCoverGraph.html"><code>ExactCoverGraph</code></a>. It must also drop any
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Possibility.html"><code>Possibility</code>s</a> that are now impossible based on
+applying this constraint to the puzzle's preset values.</p>
 <p>It should return false if the given puzzle cannot satisfy this constraint, else true.</p>
-<h4 id="define-your-headers">Define your headers</h4>
-<p>The first thing we need to identify is what a constraint header looks like for this constraint.
-We could state this constraint as follows:</p>
+<h4 id="define-your-objectives">Define your objectives</h4>
+<p>The first thing we need to identify is what an objective looks like for this constraint. We could
+state this constraint as follows:</p>
 <blockquote>
 <p>Each forward diagonal, and each backward diagonal, needs to contain all possible values.</p>
 </blockquote>
@@ -95,9 +94,9 @@ We could state this constraint as follows:</p>
 <h4 id="determine-unique-coordinates">Determine unique coordinates</h4>
 <p>The unique coordinates here are those on the forward diagonal, and those on the backward diagonal.
 We can find all the coordinates on the forward diagonal as follows:</p>
-<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
 {
-    var forwardDiagonalCoordinates = new Coordinate[puzzle.Size];
+    Span&lt;Coordinate&gt; forwardDiagonalCoordinates = stackalloc Coordinate[puzzle.Size];
     for (int row = 0, col = puzzle.Size - 1;  row &lt; puzzle.Size; row++, col--)
     {
         forwardDiagonalCoordinates[row] = new Coordinate(row, col);
@@ -109,14 +108,14 @@ We can find all the coordinates on the forward diagonal as follows:</p>
 <h4 id="identify-possible-values">Identify possible values</h4>
 <p>We need to identify which values are actually possible on each diagonal based on the preset
 values. Within the constraint-based solver, we map a puzzle's possible values to zero-based indices
-based on the order they are returne when we first call <code>puzzle.AllPossibleValues</code>. This mapping is
-handled by the <code>ExactCoverMatrix</code>.</p>
-<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+based on the order they are returned when we first call <code>puzzle.AllPossibleValues</code>. This mapping is
+handled by the <code>ExactCoverGraph</code>.</p>
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
 {
     ...
 
     Span&lt;bool&gt; isConstraintSatisfiedAtIndex =
-            stackalloc bool[matrix.AllPossibleValues.Length];
+            stackalloc bool[graph.AllPossibleValues.Length];
     // Zero the array since stackalloc does not guarantee this.
     isConstraintSatisfiedAtIndex.Clear();
     for (int i = 0; i &lt; forwardDiagonalCoordinates.Length; i++)
@@ -124,42 +123,50 @@ handled by the <code>ExactCoverMatrix</code>.</p>
         var puzzleValue = puzzle[forwardDiagonalCoordinates[i]];
         if (puzzleValue.HasValue)
         {
-            isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[puzzleValue.Value]] = true;
+            var possibilityIndex = graph.ValuesToIndices[puzzleValue.Value];
+            if (isConstraintSatisfiedAtIndex[possibilityIndex])
+            {
+                // This value is duplicated on the diagonal. This is not allowed.
+                return false;
+            }
+            isConstraintSatisfiedAtIndex[possibilityIndex] = true;
         }
     }
 
     // TODO: Check this for backward diagonal coordinates.
 }
 </code></pre>
-<h4 id="add-headers-and-drop-impossible-rows">Add headers and drop impossible rows</h4>
-<p>Now we can iterate through each possible value on each diagonal, drop possible square values that
-are no longer possible, and add constraint headers for the rest.</p>
-<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverMatrix matrix)
+<h4 id="add-objectives-and-drop-impossible-possibilities">Add objectives and drop impossible possibilities</h4>
+<p>Now we can iterate through each possible value on each diagonal, drop possibilities that are no
+longer possible, and add constraint headers for the rest.</p>
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
 {
     ...
 
-    var squares = new Square?[forwardDiagonalCoordinates.Length];
+	Possibility?[]?[] squares = new Possibility[forwardDiagonalCoordinates.Length][];
     for (int i = 0; i &lt; squares.Length; i++)
     {
-        squares[i] = matrix.GetSquare(in forwardDiagonalCoordinates[i]);
+		squares[i] = graph.GetAllPossibilitiesAt(in squareCoordinates[i]);
     }
-    for (int valueIndex = 0; valueIndex &lt; isConstraintSatisfiedAtIndex.Length; valueIndex++)
+    for (int possibilityIndex = 0; possibilityIndex &lt; isConstraintSatisfiedAtIndex.Length; possibilityIndex++)
     {
-        if (isConstraintSatisfiedAtIndex[valueIndex])
+        if (isConstraintSatisfiedAtIndex[possibilityIndex])
         {
-			if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(squares, valueIndex))
+			if (!ConstraintUtil.TryDropPossibilitiesAtIndex(squares, possibilityIndex))
 			{
 				return false;
 			}
 			continue;
         }
-		if (!ConstraintUtil.TryAddConstraintHeadersForValueIndex(squares, valueIndex, matrix))
+        // Each possible value should only be present once on the diagonal, so set requiredCount to
+        // 1. The objective will be linked into the graph, so discard the out parameter.
+		if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(squares, possibilityIndex, graph, requiredCount: 1, objective: out _))
 		{
 			return false;
 		}
     }
 
-    // TODO: Add headers and drop rows for the backward diagonal.
+    // TODO: Add objectives and drop possibilities for the backward diagonal.
 
     ...
 
@@ -168,14 +175,15 @@ are no longer possible, and add constraint headers for the rest.</p>
 </code></pre>
 <p>Note that here we made use of the
 <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.html"><code>ConstraintUtil</code></a> to easily
-add headers and drop rows. This provides a few useful functions for implementing constraints. In
-fact, we could have replaced all of this work for handling the forward diagonal with the following:</p>
+add objectives and drop possibilities. This provides a few useful functions for implementing
+constraints. In fact, we could have replaced all of this work for handling the forward diagonal
+with the following:</p>
 <pre><code class="lang-csharp">Span&lt;Coordinate&gt; coordinates = stackalloc Coordinate[puzzle.Size];
 for (int row = 0, col = puzzle.Size - 1;  row &lt; puzzle.Size; row++, col--)
 {
     coordinates[row] = new Coordinate(row, col);
 }
-return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
+return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, coordinates, graph);
 </code></pre>
 </article>
           </div>
