@@ -61,18 +61,6 @@ namespace SudokuSpice
         }
 
         /// <summary>
-        /// Determines if this vector is a subset of the given vector (i.e. all bits set in this
-        /// vector are also set in <paramref name="other"/>).
-        /// </summary>
-        /// <param name="other">The possible superset.</param>
-        /// <returns>True if this is equal to or a subset of the given vector.</returns>
-        public bool IsSubsetOf(BitVector other)
-        {
-            var intersect = FindIntersect(this, other);
-            return intersect == this;
-        }
-
-        /// <summary>
         /// Creates a bit vector that is the intersect of the given vectors.
         /// </summary>
         /// <param name="a">One bit vector.</param>
@@ -199,6 +187,18 @@ namespace SudokuSpice
                 }
             }
             return numRecordedSetBits;
+        }
+
+        /// <summary>
+        /// Determines if this vector is a subset of the given vector (i.e. all bits set in this
+        /// vector are also set in <paramref name="other"/>).
+        /// </summary>
+        /// <param name="other">The possible superset.</param>
+        /// <returns>True if this is equal to or a subset of the given vector.</returns>
+        public readonly bool IsSubsetOf(BitVector other)
+        {
+            var intersect = FindIntersect(this, other);
+            return intersect == this;
         }
 
         public readonly bool Equals(BitVector other) => Data == other.Data;
