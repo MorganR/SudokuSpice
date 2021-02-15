@@ -231,7 +231,7 @@ according to this constraint. The details here are implementation-specific.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -251,8 +251,9 @@ according to this constraint. The details here are implementation-specific.</p>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a></td>
-        <td><span class="parametername">matrix</span></td>
-        <td></td>
+        <td><span class="parametername">graph</span></td>
+        <td><p>The exact-cover graph to constrain.</p>
+</td>
       </tr>
     </tbody>
   </table>

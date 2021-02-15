@@ -10,6 +10,7 @@ items:
   - SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
   - SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
   - SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
   - SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
   langs:
   - csharp
@@ -73,7 +74,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: AllPossibleValues
     path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -110,7 +111,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ValuesToIndices
     path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -147,7 +148,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Create
     path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
-    startLine: 89
+    startLine: 92
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -187,7 +188,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetAllPossibilitiesAt
     path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
-    startLine: 128
+    startLine: 138
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -209,6 +210,40 @@ items:
   - Public
   fullName.vb: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(ByRef SudokuSpice.Coordinate)
   name.vb: GetAllPossibilitiesAt(ByRef Coordinate)
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  id: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 144
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>s that have at least one\nconcrete <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> as a direct possibility.\n"
+  example: []
+  syntax:
+    content: public IEnumerable<Objective> GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+    return:
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
+    content.vb: Public Function GetUnsatisfiedRequiredObjectivesWithConcretePossibilities As IEnumerable(Of Objective)
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
   commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
   id: GetUnsatisfiedRequiredObjectives
@@ -227,7 +262,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsatisfiedRequiredObjectives
     path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
-    startLine: 133
+    startLine: 152
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -261,11 +296,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetPossibilitiesOnRow
     path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
-    startLine: 146
+    startLine: 169
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets all the possiblities, grouped by column, on the requested row.\n\nIndexing the result looks like:\n\n<code>var row = matrix.GetSquaresOnRow(rowIndex);\nvar possibility = row[columnIndex][valueIndex];</code>\n"
+  summary: "\nGets all the possiblities, grouped by column, on the requested row.\n\nIndexing the result looks like:\n\n<code>var row = graph.GetSquaresOnRow(rowIndex);\nvar possibility = row[columnIndex][valueIndex];</code>\n"
   example: []
   syntax:
     content: public ReadOnlySpan<Possibility[]> GetPossibilitiesOnRow(int row)
@@ -882,11 +917,11 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
-  name: GetUnsatisfiedRequiredObjectives
-  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectives
-  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  name: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
 - uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
   commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
   parent: System.Collections.Generic
@@ -968,6 +1003,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  name: GetUnsatisfiedRequiredObjectives
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow*
   commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow
   name: GetPossibilitiesOnRow

@@ -126,17 +126,18 @@ items:
   remarks: "\nThis should skip adding objectives that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it should drop the relevant\n<xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref> to understand how the graph works.\n"
   example: []
   syntax:
-    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
+    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to solve.
-    - id: matrix
+    - id: graph
       type: SudokuSpice.ConstraintBased.ExactCoverGraph
+      description: The exact-cover graph to constrain.
     return:
       type: System.Boolean
       description: "\nFalse if the constraint could not be satisfied by the given puzzle, else true.\n"
-    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverGraph) As Boolean
+    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, graph As ExactCoverGraph) As Boolean
   overload: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain*
   implements:
   - SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
