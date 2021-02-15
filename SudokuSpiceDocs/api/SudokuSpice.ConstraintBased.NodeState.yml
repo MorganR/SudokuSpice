@@ -22,11 +22,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: NodeState
     path: ../SudokuSpice/ConstraintBased/NodeState.cs
-    startLine: 5
+    startLine: 6
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nIndicates if a <see cref=\"!:PossibleSquareValue\"></see> is still possible, selected, or dropped.\n"
+  summary: "\nIndicates if an <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> is still possible,\nselected, or dropped.\n"
   example: []
   syntax:
     content: public enum NodeState
@@ -55,11 +55,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: UNKNOWN
     path: ../SudokuSpice/ConstraintBased/NodeState.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis <see cref=\"!:PossibleSquareValue\"></see> is still possible.\n"
+  summary: "\nThis node is still possible.\n"
   example: []
   syntax:
     content: UNKNOWN = 0
@@ -89,11 +89,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: SELECTED
     path: ../SudokuSpice/ConstraintBased/NodeState.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis <see cref=\"!:PossibleSquareValue\"></see> has been selected.\n"
+  summary: "\nThis node has been selected/satisfied.\n"
   example: []
   syntax:
     content: SELECTED = 1
@@ -123,11 +123,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: DROPPED
     path: ../SudokuSpice/ConstraintBased/NodeState.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis <see cref=\"!:PossibleSquareValue\"></see> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
+  summary: "\nThis node has been dropped, i.e. it is no longer possible with the currently selected\nvalues.\n"
   example: []
   syntax:
     content: DROPPED = 2
@@ -140,6 +140,18 @@ items:
   - Public
   - Const
 references:
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  parent: SudokuSpice.ConstraintBased
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased

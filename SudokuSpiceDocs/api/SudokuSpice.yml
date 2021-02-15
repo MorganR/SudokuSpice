@@ -5,6 +5,7 @@ items:
   id: SudokuSpice
   children:
   - SudokuSpice.BitVector
+  - SudokuSpice.Box
   - SudokuSpice.Boxes
   - SudokuSpice.Coordinate
   - SudokuSpice.CoordinateTracker
@@ -16,7 +17,6 @@ items:
   - SudokuSpice.Puzzle
   - SudokuSpice.PuzzleGenerator`1
   - SudokuSpice.SolveStats
-  - SudokuSpice.Square
   langs:
   - csharp
   - vb
@@ -33,6 +33,12 @@ references:
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.Box
+  commentId: T:SudokuSpice.Box
+  parent: SudokuSpice
+  name: Box
+  nameWithType: Box
+  fullName: SudokuSpice.Box
 - uid: SudokuSpice.Boxes
   commentId: T:SudokuSpice.Boxes
   name: Boxes
@@ -187,11 +193,6 @@ references:
   name: SolveStats
   nameWithType: SolveStats
   fullName: SudokuSpice.SolveStats
-- uid: SudokuSpice.Square
-  commentId: T:SudokuSpice.Square
-  name: Square
-  nameWithType: Square
-  fullName: SudokuSpice.Square
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice

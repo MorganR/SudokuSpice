@@ -12,33 +12,33 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// Enforces uniqueness of the values at the given coordinates.
         /// </summary>
         /// <remarks>
-        /// This drops any <see cref="PossibleSquareValue"/>s that are no longer possible, and
-        /// adds <see cref="Requirement"/>s and links to enforce this constraint for the ones
-        /// that are still possible.
+        /// This drops any <see cref="Possibility"/>s that are no longer possible, and adds
+        /// <see cref="Objective"/>s to enforce this constraint for the ones that are still
+        /// possible.
         /// </remarks>
         /// <param name="puzzle">The puzzle being solved.</param>
         /// <param name="squareCoordinates">
         /// The coordinates that must contain unique values.
         /// </param>
-        /// <param name="matrix">The exact cover matrix for the current puzzle.</param>
+        /// <param name="graph">The exact-cover graph for the current puzzle.</param>
         /// <returns>
         /// False if the puzzle violates uniquness for the given coordinates, else true.
         /// </returns>
         public static bool TryImplementUniquenessConstraintForSquares(
             IReadOnlyPuzzle puzzle,
             ReadOnlySpan<Coordinate> squareCoordinates,
-            ExactCoverMatrix matrix)
+            ExactCoverGraph graph)
         {
             Span<bool> isConstraintSatisfiedAtIndex =
-                    stackalloc bool[matrix.AllPossibleValues.Length];
-            if (!TryCheckForSetValues(puzzle, matrix, squareCoordinates, isConstraintSatisfiedAtIndex))
+                    stackalloc bool[graph.AllPossibleValues.Length];
+            if (!TryCheckForSetValues(puzzle, graph, squareCoordinates, isConstraintSatisfiedAtIndex))
             {
                 return false;
             }
             Possibility?[]?[] squares = new Possibility[squareCoordinates.Length][];
             for (int i = 0; i < squares.Length; i++)
             {
-                squares[i] = matrix.GetAllPossibilitiesAt(in squareCoordinates[i]);
+                squares[i] = graph.GetAllPossibilitiesAt(in squareCoordinates[i]);
             }
             for (int possibilityIndex = 0; possibilityIndex < isConstraintSatisfiedAtIndex.Length; possibilityIndex++)
             {
@@ -50,7 +50,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     }
                     continue;
                 }
-                if (!TryAddObjectiveForPossibilityIndex(squares, possibilityIndex, matrix, requiredCount: 1, objective: out _))
+                if (!TryAddObjectiveForPossibilityIndex(squares, possibilityIndex, graph, requiredCount: 1, objective: out _))
                 {
                     return false;
                 }
@@ -67,7 +67,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// made as to the state of <paramref name="isValueIndexPresentInSquares"/>.
         /// </summary>
         /// <param name="puzzle">The current puzzle being solved.</param>
-        /// <param name="matrix">The matrix for the puzzle being solved.</param>
+        /// <param name="graph">The graph for the puzzle being solved.</param>
         /// <param name="squareCoordinates">The coordinates to check.</param>
         /// <param name="isValueIndexPresentInSquares">
         /// An array that will be updated to indicate which values are set.
@@ -75,7 +75,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <returns>False if a value is duplicated in the given coordinates.</returns>
         public static bool TryCheckForSetValues(
             IReadOnlyPuzzle puzzle,
-            ExactCoverMatrix matrix,
+            ExactCoverGraph graph,
             ReadOnlySpan<Coordinate> squareCoordinates,
             Span<bool> isValueIndexPresentInSquares)
         {
@@ -85,7 +85,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 int? square = puzzle[in coordinate];
                 if (square.HasValue)
                 {
-                    int valueIndex = matrix.ValuesToIndices[square.Value];
+                    int valueIndex = graph.ValuesToIndices[square.Value];
                     if (isValueIndexPresentInSquares[valueIndex])
                     {
                         // Duplicate values are not allowed.
@@ -98,7 +98,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Drops <see cref="Possibility"/>s with the given <paramref name="valueIndex"/>
+        /// Drops <see cref="Possibility"/>s with the given <paramref name="possibilityIndex"/>
         /// from the given set of <paramref name="squares"/>. Null squares and possible values are
         /// ignored.
         ///
@@ -106,16 +106,15 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <paramref name="squares"/>. Some may have been dropped.
         /// </summary>
         /// <param name="squares">The squares to drop, if not null.</param>
-        /// <param name="valueIndex">
-        /// The value index of the possible values within the squares.
+        /// <param name="possibilityIndex">
+        /// The index of the possibility within the squares.
         /// </param>
         /// <returns>
         /// True if all the <paramref name="squares"/> were dropped safely (eg. without
-        /// resulting in an empty <see cref="Objective"/> without any possible square
-        /// values, else false.
+        /// resulting in any <see cref="Objective"/> that can no longer be satisfied).
         /// </returns>
         public static bool TryDropPossibilitiesAtIndex(
-            ReadOnlySpan<Possibility?[]?> squares, int valueIndex)
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex)
         {
             for (int i = 0; i < squares.Length; i++)
             {
@@ -124,7 +123,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     continue;
                 }
-                Possibility? possibleValue = square[valueIndex];
+                Possibility? possibleValue = square[possibilityIndex];
                 if (possibleValue is null)
                 {
                     continue;
@@ -133,42 +132,37 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     return false;
                 }
-                square[valueIndex] = null;
+                square[possibilityIndex] = null;
             }
             return true;
         }
 
         /// <summary>
-        /// Add an <see cref="IObjective"/> connecting all the
-        /// <see cref="PossibleSquareValue"/>s at the given <paramref name="possibilityIndex"/> on the
-        /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
-        /// possible values in a known state (i.e. dropped or selected).
+        /// Add an <see cref="OptionalObjective"/> connecting all the
+        /// <see cref="Possibility"/>s at the given <paramref name="possibilityIndex"/> on the
+        /// given <paramref name="squares"/>. Skips null squares, null possibilities, and any
+        /// possibilities in a known state (i.e. dropped or selected).
         /// </summary>
         /// <param name="squares">
-        /// The squares to add <see cref="PossibleSquareValue"/>s from.
+        /// The squares to add <see cref="Possibility"/>s from.
         /// </param>
         /// <param name="possibilityIndex">
         /// The value index of the possible value within the squares.
         /// </param>
-        /// <param name="matrix">The matrix for the current puzzle being solved.</param>
+        /// <param name="graph">The graph for the current puzzle being solved.</param>
         /// <param name="requiredCount">
-        /// The number of possible square values required to satisfy the new
-        /// <see cref="Requirement"/>.
+        /// The number of possibilities required to satisfy the new <see cref="OptionalObjective"/>.
         /// </param>
-        /// <param name="isOptional">
-        /// Whether or not the new <see cref="Requirement"/> is optional.
-        /// </param>
-        /// <param name="requirement">The new requirement, if successful, else null.</param>
+        /// <param name="objective">The new optional objective, if successful, else null.</param>
         /// <returns>
-        /// False if the requirement could not be added, for example because none of the
-        /// corresponding <see cref="PossibleSquareValue"/>s were still possible and the
-        /// requirement would have been empty. Else returns true.
+        /// False if the objective could not be added, for example because not enough
+        /// <see cref="Possibility"/> objects were still possible to satisfy it, else true.
         /// </returns>
         public static bool TryAddOptionalObjectiveForPossibilityIndex(
-            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverMatrix matrix, int requiredCount, out OptionalObjective? objective)
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph, int requiredCount, out OptionalObjective? objective)
         {
             var possibilities = new Possibility[squares.Length];
-            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, matrix, possibilities);
+            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, graph, possibilities);
             if (numPossibilities == 0)
             {
                 objective = null;
@@ -181,50 +175,45 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Add an <see cref="IObjective"/> connecting all the
-        /// <see cref="PossibleSquareValue"/>s at the given <paramref name="possibilityIndex"/> on the
-        /// given <paramref name="squares"/>. Skips null squares, null possible values, and any
-        /// possible values in a known state (i.e. dropped or selected).
+        /// Add an <see cref="Objective"/> connecting all the <see cref="Possibility"/>s at the
+        /// given <paramref name="possibilityIndex"/> on the given <paramref name="squares"/>.
+        /// Skips null squares, null possibilities, and any possibilities in a known state (i.e.
+        /// dropped or selected).
         /// </summary>
         /// <param name="squares">
-        /// The squares to add <see cref="PossibleSquareValue"/>s from.
+        /// The squares to add <see cref="Possibility"/>s from.
         /// </param>
         /// <param name="possibilityIndex">
         /// The value index of the possible value within the squares.
         /// </param>
-        /// <param name="matrix">The matrix for the current puzzle being solved.</param>
+        /// <param name="graph">The graph for the current puzzle being solved.</param>
         /// <param name="requiredCount">
-        /// The number of possible square values required to satisfy the new
-        /// <see cref="Requirement"/>.
+        /// The number of possibilities required to satisfy the new <see cref="Objective"/>.
         /// </param>
-        /// <param name="isOptional">
-        /// Whether or not the new <see cref="Requirement"/> is optional.
-        /// </param>
-        /// <param name="requirement">The new requirement, if successful, else null.</param>
+        /// <param name="objective">The new objective, if successful, else null.</param>
         /// <returns>
-        /// False if the requirement could not be added, for example because none of the
-        /// corresponding <see cref="PossibleSquareValue"/>s were still possible and the
-        /// requirement would have been empty. Else returns true.
+        /// False if the objective could not be added, for example because not enough
+        /// <see cref="Possibility"/> objects were still possible to satisfy it, else true.
         /// </returns>
         public static bool TryAddObjectiveForPossibilityIndex(
-            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverMatrix matrix, int requiredCount, out Objective? objective)
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph, int requiredCount, out Objective? objective)
         {
             var possibilities = new Possibility[squares.Length];
-            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, matrix, possibilities);
+            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, graph, possibilities);
             if (numPossibilities == 0)
             {
                 objective = null;
                 return false;
             }
             objective = Objective.CreateFullyConnected(
-                matrix,
+                graph,
                 possibilities[0..numPossibilities],
                 countToSatisfy: requiredCount);
             return true;
         }
 
         private static int _RetrieveUnknownPossibilities(
-            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverMatrix matrix,
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph matrix,
             Span<Possibility?> unknownPossibilities)
         {
             Debug.Assert(unknownPossibilities.Length == squares.Length);

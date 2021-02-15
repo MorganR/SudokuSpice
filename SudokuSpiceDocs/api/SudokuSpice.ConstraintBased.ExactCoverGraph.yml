@@ -1,39 +1,40 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
-  id: ExactCoverMatrix
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  id: ExactCoverGraph
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix.Create(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
   langs:
   - csharp
   - vb
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
   type: Class
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: ExactCoverMatrix
-    path: ../SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
-    startLine: 16
+    id: ExactCoverGraph
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 32
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nHolds an exact-cover matrix for the current puzzle being solved.\n"
-  remarks: "\nThe exact cover matrix is organized by <xref href=\"SudokuSpice.Square\" data-throw-if-not-resolved=\"false\"></xref>s, which in turn contain\n<see cref=\"!:PossibleSquareValue\"></see>s. Each of these represents a row in the exact-cover\nmatrix. <xref href=\"SudokuSpice.ConstraintBased.Constraints.IConstraint\" data-throw-if-not-resolved=\"false\"></xref>s will then add\n<see cref=\"!:Requirement\"></see>s, the columns of the matrix and corresponding links.\n"
+  summary: "\nHolds an exact-cover graph for the current puzzle being solved.\n\nThis is an extension of the\n<a href=\"https://en.wikipedia.org/wiki/Exact_cover\">exact-cover matrix</a> concept. Rows of\nthe exact-cover matrix, i.e. a specific location and possible value for that location, are\nrepresented by <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects. These are linked together by\n<xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> objects, which represent the columns of an exact-cover matrix.\n\nFor example, the <xref href=\"SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint\" data-throw-if-not-resolved=\"false\"></xref> uses a required \n<xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> to link all the <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects on a single row\nthat have the same possible value. This way, when one of these possibilities is selected,\nthen the others are all dropped.\n\nTo extend the concept into a larger graph, this also uses <xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref>s\nto create subgroups over <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects and/or other\n<xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref> objects. This allows for much more complex constraints,\nsuch as the <xref href=\"SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nThe ExactCoverGraph adds <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects for all the unset coordinates\nin a puzzle on creation, as well as <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> objects that group all the\npossible values for each location. These effectively implements the constraint: &quot;Each\ncoordinate in the puzzle must have one and only one value.&quot;\n"
   example: []
   syntax:
-    content: public class ExactCoverMatrix
-    content.vb: Public Class ExactCoverMatrix
+    content: public class ExactCoverGraph
+    content.vb: Public Class ExactCoverGraph
   seealso:
   - linkType: HRef
     linkId: https://en.wikipedia.org/wiki/Exact_cover
@@ -54,25 +55,25 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
   id: AllPossibleValues
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
   langs:
   - csharp
   - vb
   name: AllPossibleValues
-  nameWithType: ExactCoverMatrix.AllPossibleValues
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+  nameWithType: ExactCoverGraph.AllPossibleValues
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
   type: Property
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: AllPossibleValues
-    path: ../SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
-    startLine: 27
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 41
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -84,36 +85,36 @@ items:
     return:
       type: System.ReadOnlySpan{System.Int32}
     content.vb: Public ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
   id: ValuesToIndices
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
   langs:
   - csharp
   - vb
   name: ValuesToIndices
-  nameWithType: ExactCoverMatrix.ValuesToIndices
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
+  nameWithType: ExactCoverGraph.ValuesToIndices
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
   type: Property
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ValuesToIndices
-    path: ../SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
-    startLine: 33
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 47
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
+  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
   example: []
   syntax:
     content: public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
@@ -121,69 +122,72 @@ items:
     return:
       type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
     content.vb: Public ReadOnly Property ValuesToIndices As IReadOnlyDictionary(Of Integer, Integer)
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices*
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.Create(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.Create(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
   id: Create(SudokuSpice.IReadOnlyPuzzle)
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
   langs:
   - csharp
   - vb
   name: Create(IReadOnlyPuzzle)
-  nameWithType: ExactCoverMatrix.Create(IReadOnlyPuzzle)
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.Create(SudokuSpice.IReadOnlyPuzzle)
+  nameWithType: ExactCoverGraph.Create(IReadOnlyPuzzle)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Create
-    path: ../SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
-    startLine: 78
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 89
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nCreates an exact-cover graph for solving the given puzzle.\n\nThis adds <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects for all the unset coordinates in a puzzle on\ncreation, as well as <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> objects that group all the possible values\nfor each location. These effectively implements the constraint: &quot;Each square in the\npuzzle must have one and only one value.&quot;\n"
+  example: []
   syntax:
-    content: public static ExactCoverMatrix Create(IReadOnlyPuzzle puzzle)
+    content: public static ExactCoverGraph Create(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
     return:
-      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
-    content.vb: Public Shared Function Create(puzzle As IReadOnlyPuzzle) As ExactCoverMatrix
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.Create*
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
+    content.vb: Public Shared Function Create(puzzle As IReadOnlyPuzzle) As ExactCoverGraph
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.Create*
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
   id: GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
   langs:
   - csharp
   - vb
   name: GetAllPossibilitiesAt(Coordinate)
-  nameWithType: ExactCoverMatrix.GetAllPossibilitiesAt(Coordinate)
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(SudokuSpice.Coordinate)
+  nameWithType: ExactCoverGraph.GetAllPossibilitiesAt(Coordinate)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetAllPossibilitiesAt
-    path: ../SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
-    startLine: 117
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 128
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -197,33 +201,33 @@ items:
     return:
       type: SudokuSpice.ConstraintBased.Possibility[]
     content.vb: Public Function GetAllPossibilitiesAt(ByRef c As Coordinate) As Possibility()
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt*
-  nameWithType.vb: ExactCoverMatrix.GetAllPossibilitiesAt(ByRef Coordinate)
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt*
+  nameWithType.vb: ExactCoverGraph.GetAllPossibilitiesAt(ByRef Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(ByRef SudokuSpice.Coordinate)
+  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(ByRef SudokuSpice.Coordinate)
   name.vb: GetAllPossibilitiesAt(ByRef Coordinate)
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives
-  commentId: M:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
   id: GetUnsatisfiedRequiredObjectives
-  parent: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
   langs:
   - csharp
   - vb
   name: GetUnsatisfiedRequiredObjectives()
-  nameWithType: ExactCoverMatrix.GetUnsatisfiedRequiredObjectives()
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives()
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectives()
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives()
   type: Method
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsatisfiedRequiredObjectives
-    path: ../SudokuSpice/ConstraintBased/ExactCoverMatrix.cs
-    startLine: 122
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 133
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -234,23 +238,83 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
     content.vb: Public Function GetUnsatisfiedRequiredObjectives As IEnumerable(Of Objective)
-  overload: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives*
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  id: GetPossibilitiesOnRow(System.Int32)
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: GetPossibilitiesOnRow(Int32)
+  nameWithType: ExactCoverGraph.GetPossibilitiesOnRow(Int32)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetPossibilitiesOnRow
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 146
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets all the possiblities, grouped by column, on the requested row.\n\nIndexing the result looks like:\n\n<code>var row = matrix.GetSquaresOnRow(rowIndex);\nvar possibility = row[columnIndex][valueIndex];</code>\n"
+  example: []
+  syntax:
+    content: public ReadOnlySpan<Possibility[]> GetPossibilitiesOnRow(int row)
+    parameters:
+    - id: row
+      type: System.Int32
+      description: A zero-based row index.
+    return:
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+    content.vb: Public Function GetPossibilitiesOnRow(row As Integer) As ReadOnlySpan(Of Possibility())
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: SudokuSpice.Square
-  commentId: T:SudokuSpice.Square
-  name: Square
-  nameWithType: Square
-  fullName: SudokuSpice.Square
-- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
-  parent: SudokuSpice.ConstraintBased.Constraints
-  name: IConstraint
-  nameWithType: IConstraint
-  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  name: RowUniquenessConstraint
+  nameWithType: RowUniquenessConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  parent: SudokuSpice.ConstraintBased
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+  name: MagicSquaresConstraint
+  nameWithType: MagicSquaresConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -542,22 +606,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.Constraints
-  commentId: N:SudokuSpice.ConstraintBased.Constraints
-  name: SudokuSpice.ConstraintBased.Constraints
-  nameWithType: SudokuSpice.ConstraintBased.Constraints
-  fullName: SudokuSpice.ConstraintBased.Constraints
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
   name: AllPossibleValues
-  nameWithType: ExactCoverMatrix.AllPossibleValues
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+  nameWithType: ExactCoverGraph.AllPossibleValues
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
 - uid: System.ReadOnlySpan{System.Int32}
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System
@@ -641,14 +700,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
   isExternal: true
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
   name: ValuesToIndices
-  nameWithType: ExactCoverMatrix.ValuesToIndices
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices
+  nameWithType: ExactCoverGraph.ValuesToIndices
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
 - uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   parent: System.Collections.Generic
@@ -766,23 +825,23 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.Create*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.Create
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.Create*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.Create
   name: Create
-  nameWithType: ExactCoverMatrix.Create
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.Create
+  nameWithType: ExactCoverGraph.Create
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.Create
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
   parent: SudokuSpice.ConstraintBased
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
@@ -794,11 +853,11 @@ references:
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt
   name: GetAllPossibilitiesAt
-  nameWithType: ExactCoverMatrix.GetAllPossibilitiesAt
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt
+  nameWithType: ExactCoverGraph.GetAllPossibilitiesAt
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt
 - uid: SudokuSpice.ConstraintBased.Possibility[]
   isExternal: true
   name: Possibility[]
@@ -823,17 +882,11 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: SudokuSpice.ConstraintBased.Objective
-  commentId: T:SudokuSpice.ConstraintBased.Objective
-  parent: SudokuSpice.ConstraintBased
-  name: Objective
-  nameWithType: Objective
-  fullName: SudokuSpice.ConstraintBased.Objective
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives*
-  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
   name: GetUnsatisfiedRequiredObjectives
-  nameWithType: ExactCoverMatrix.GetUnsatisfiedRequiredObjectives
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
 - uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
   commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
   parent: System.Collections.Generic
@@ -912,6 +965,66 @@ references:
   - name: T
     nameWithType: T
     fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow
+  name: GetPossibilitiesOnRow
+  nameWithType: ExactCoverGraph.GetPossibilitiesOnRow
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Possibility[]>
+  nameWithType: ReadOnlySpan<Possibility[]>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility[]>
+  nameWithType.vb: ReadOnlySpan(Of Possibility())
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility())
+  name.vb: ReadOnlySpan(Of Possibility())
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )

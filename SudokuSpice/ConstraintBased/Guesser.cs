@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -8,12 +7,12 @@ namespace SudokuSpice.ConstraintBased
     internal class Guesser<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
-        private readonly ExactCoverMatrix _matrix;
+        private readonly ExactCoverGraph _matrix;
         private readonly Stack<Guess> _setSquares;
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
-        internal Guesser(TPuzzle puzzle, ExactCoverMatrix matrix)
+        internal Guesser(TPuzzle puzzle, ExactCoverGraph matrix)
         {
             _puzzle = puzzle;
             _matrix = matrix;

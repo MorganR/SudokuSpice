@@ -5,8 +5,8 @@ items:
   id: MagicSquaresConstraint
   parent: SudokuSpice.ConstraintBased.Constraints
   children:
-  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)
-  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   langs:
   - csharp
   - vb
@@ -21,15 +21,17 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: MagicSquaresConstraint
     path: ../SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
-    startLine: 7
+    startLine: 49
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nEnforces a constraint that certain regions in a puzzle must be\n<a href=\"https://en.wikipedia.org/wiki/Magic_square\">magic squares</a>, i.e. the sums of the\nvalues in each of their rows, columns, and (optionally) their diagonals add up to the same\nvalue.\n\nNote that this does <em>not</em> enforce uniqueness of values within the magic square as a\nwhole. It <em>does</em>, however, prevent value duplication within each row, column, and/or\ndiagonal. This can be combined with the <xref href=\"SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint\" data-throw-if-not-resolved=\"false\"></xref> if you need\nbox-level uniqueness.\n"
+  remarks: "\nThis makes use of <xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref> objects to construct a complicated graph.\n\nFor example, in a standard 3x3 magic square for a standard 9x9 Sudoku puzzle, the magic sum\n(i.e. required sum for each row/column/diagonal) is 15. This can be formed through various\ncombinations, eg:\n\n* 1,5,9\n* 1,6,8\n...\n\nFor each row or column or diagonal, this looks at the existing values to determine the\npossible sets. It drops impossible <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects, and groups the\nremaining possibilities as follows (using the 1,5,9 set as an example):\n\nIn this row/column/diagonal, create an optional objective to require that a single 1 is\nselected from these squares. Repeat for the 5 and the 9. \n\nThen, group each of these optional objectives into another optional objective that requires\nall of them to be satisfied. This defines an individual possible set for this\nrow/column/diagonal.\n\nRepeat this for all the possible sets on this row/column/diagonal. Reuse groups where\npossible, for example set 1,6,8 would use the same &quot;1&quot; grouping from set 1,5,8.\n\nNow group all these optional set objectives into a single required objective that can be\nsatisfied by any of these optional sets.\n\nIn the end, this results in a single required objective for each row/column/diagonal,\nenforcing that this row/column/diagonal is composed of one of the possible sets.\n"
+  example: []
   syntax:
     content: 'public class MagicSquaresConstraint : IConstraint'
     content.vb: >-
       Public Class MagicSquaresConstraint
-
           Implements IConstraint
   inheritance:
   - System.Object
@@ -49,16 +51,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)
-  id: '#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)'
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  id: '#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)'
   parent: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
   langs:
   - csharp
   - vb
-  name: MagicSquaresConstraint(ReadOnlySpan<Int32>, IEnumerable<Square>, Boolean)
-  nameWithType: MagicSquaresConstraint.MagicSquaresConstraint(ReadOnlySpan<Int32>, IEnumerable<Square>, Boolean)
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(System.ReadOnlySpan<System.Int32>, System.Collections.Generic.IEnumerable<SudokuSpice.Square>, System.Boolean)
+  name: MagicSquaresConstraint(ReadOnlySpan<Int32>, IEnumerable<Box>, Boolean)
+  nameWithType: MagicSquaresConstraint.MagicSquaresConstraint(ReadOnlySpan<Int32>, IEnumerable<Box>, Boolean)
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(System.ReadOnlySpan<System.Int32>, System.Collections.Generic.IEnumerable<SudokuSpice.Box>, System.Boolean)
   type: Constructor
   source:
     remote:
@@ -67,38 +69,47 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
-    startLine: 16
+    startLine: 75
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nConstructs a constraint that will enforce that the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code> are\nmagic squares based on the rows, columns, and, optionally, the diagonals.\n"
+  example: []
   syntax:
-    content: public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Square> squares, bool includeDiagonals = true)
+    content: public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Box> squares, bool includeDiagonals = true)
     parameters:
     - id: possibleValues
       type: System.ReadOnlySpan{System.Int32}
+      description: "\nThe possible values that can be in the magic squares.\n"
     - id: squares
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Square}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
+      description: "\nThe locations of the magic squares.\n"
     - id: includeDiagonals
       type: System.Boolean
-    content.vb: Public Sub New(possibleValues As ReadOnlySpan(Of Integer), squares As IEnumerable(Of Square), includeDiagonals As Boolean = True)
+      description: "\nIf true, values along the diagonals of the square must also sum to the magic number.\n"
+    content.vb: Public Sub New(possibleValues As ReadOnlySpan(Of Integer), squares As IEnumerable(Of Box), includeDiagonals As Boolean = True)
   overload: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor*
-  nameWithType.vb: MagicSquaresConstraint.MagicSquaresConstraint(ReadOnlySpan(Of Int32), IEnumerable(Of Square), Boolean)
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nIf the any of the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>&apos; sizes are not compatible with the\nlength of <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleValues</code>.\n"
+  nameWithType.vb: MagicSquaresConstraint.MagicSquaresConstraint(ReadOnlySpan(Of Int32), IEnumerable(Of Box), Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(System.ReadOnlySpan(Of System.Int32), System.Collections.Generic.IEnumerable(Of SudokuSpice.Square), System.Boolean)
-  name.vb: MagicSquaresConstraint(ReadOnlySpan(Of Int32), IEnumerable(Of Square), Boolean)
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  id: TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(System.ReadOnlySpan(Of System.Int32), System.Collections.Generic.IEnumerable(Of SudokuSpice.Box), System.Boolean)
+  name.vb: MagicSquaresConstraint(ReadOnlySpan(Of Int32), IEnumerable(Of Box), Boolean)
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  id: TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   parent: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
   langs:
   - csharp
   - vb
-  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  nameWithType: MagicSquaresConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  nameWithType: MagicSquaresConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverGraph)
   type: Method
   source:
     remote:
@@ -107,28 +118,49 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TryConstrain
     path: ../SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
-    startLine: 43
+    startLine: 103
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">graph</code> in order to solve the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>\naccording to this constraint. The details here are implementation-specific.\n"
+  remarks: "\nThis should skip adding objectives that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it should drop the relevant\n<xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref> to understand how the graph works.\n"
+  example: []
   syntax:
-    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
     - id: matrix
-      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
     return:
       type: System.Boolean
-    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix) As Boolean
+      description: "\nFalse if the constraint could not be satisfied by the given puzzle, else true.\n"
+    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverGraph) As Boolean
   overload: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain*
   implements:
-  - SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
+- uid: SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint
+  name: BoxUniquenessConstraint
+  nameWithType: BoxUniquenessConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
 - uid: SudokuSpice.ConstraintBased.Constraints
   commentId: N:SudokuSpice.ConstraintBased.Constraints
   name: SudokuSpice.ConstraintBased.Constraints
@@ -426,12 +458,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor*
   commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor
   name: MagicSquaresConstraint
@@ -481,16 +521,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Square}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Square}
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Box}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<Square>
-  nameWithType: IEnumerable<Square>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Square>
-  nameWithType.vb: IEnumerable(Of Square)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Square)
-  name.vb: IEnumerable(Of Square)
+  name: IEnumerable<Box>
+  nameWithType: IEnumerable<Box>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Box>
+  nameWithType.vb: IEnumerable(Of Box)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Box)
+  name.vb: IEnumerable(Of Box)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
@@ -500,10 +540,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Square
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.Square
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -516,10 +556,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Square
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.Square
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
   - name: )
     nameWithType: )
     fullName: )
@@ -619,14 +659,14 @@ references:
   name: TryConstrain
   nameWithType: MagicSquaresConstraint.TryConstrain
   fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain
-- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   parent: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  nameWithType: IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  nameWithType: IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverGraph)
   spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
     name: TryConstrain
     nameWithType: IConstraint.TryConstrain
     fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
@@ -640,15 +680,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-    name: ExactCoverMatrix
-    nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+    name: ExactCoverGraph
+    nameWithType: ExactCoverGraph
+    fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
     name: TryConstrain
     nameWithType: IConstraint.TryConstrain
     fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
@@ -662,10 +702,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-    name: ExactCoverMatrix
-    nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+    name: ExactCoverGraph
+    nameWithType: ExactCoverGraph
+    fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
   - name: )
     nameWithType: )
     fullName: )
@@ -675,19 +715,14 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
   parent: SudokuSpice.ConstraintBased
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.ConstraintBased
-  commentId: N:SudokuSpice.ConstraintBased
-  name: SudokuSpice.ConstraintBased
-  nameWithType: SudokuSpice.ConstraintBased
-  fullName: SudokuSpice.ConstraintBased

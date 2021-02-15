@@ -23,15 +23,16 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Possibility
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nA concrete possibility in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. This represents a single\npossible value for a single square in the puzzle.\n"
+  example: []
   syntax:
     content: 'public class Possibility : IPossibility'
     content.vb: >-
       Public Class Possibility
-
           Implements IPossibility
   inheritance:
   - System.Object
@@ -69,10 +70,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Coordinate
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 22
+    startLine: 28
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe square this possibility is for.\n"
+  example: []
   syntax:
     content: public Coordinate Coordinate { get; }
     parameters: []
@@ -104,10 +107,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Index
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 23
+    startLine: 33
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe value index this possibility is for (corresponds to the values in\n<xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>).\n"
+  example: []
   syntax:
     content: public int Index { get; }
     parameters: []
@@ -139,10 +144,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 24
+    startLine: 35
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public NodeState State { get; }
     parameters: []
@@ -176,7 +183,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TryDrop
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 62
+    startLine: 74
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -194,6 +201,12 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -513,6 +526,9 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.Possibility.Index*
   commentId: Overload:SudokuSpice.ConstraintBased.Possibility.Index
   name: Index

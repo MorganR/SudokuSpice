@@ -21,15 +21,16 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: OptionalObjective
     path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
-    startLine: 7
+    startLine: 24
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nAn optional objective in an <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. An optional objective is both\nan <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> and an <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThis can be satisfied if one or more attached <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref> objects are\nselected. Once satisfied, this drops any remaining unknown possibilities, and notifies\nparent objectives that to select this possibility.\n\nUnlike <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>s, this class can be dropped. Dropping this objetive does\nnot immediately impact attached possibilities. These possibilities may still be dropped\nor selected, as long as this objective does not become satisfied. If selecting a\npossibility would satisfy a dropped optional objective, then the call to\n<xref href=\"SudokuSpice.ConstraintBased.IObjective.TrySelectPossibility(SudokuSpice.ConstraintBased.Link)\" data-throw-if-not-resolved=\"false\"></xref> will fail.\n\nAll <code>OptionalObjective</code> objects must eventually be descendents of at least one\n<xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: 'public class OptionalObjective : IOptionalObjective, IObjective, IPossibility'
     content.vb: >-
       Public Class OptionalObjective
-
           Implements IOptionalObjective, IObjective, IPossibility
   inheritance:
   - System.Object
@@ -69,10 +70,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
-    startLine: 36
+    startLine: 63
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public NodeState State { get; }
     parameters: []
@@ -107,21 +110,30 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CreateWithPossibilities
     path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
-    startLine: 44
+    startLine: 89
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nCreates an optional objective with the given possibilities attached. This objective\nwill be satisfied when <code data-dev-comment-type=\"paramref\" class=\"paramref\">countToSatisfy</code> of these possibilities are\nselected.\n\nNote that this results in an <xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref> with no parent objectives.\nThe returned objective must eventually be connected to at least one top-level required\n<xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> object in order to behave correctly.\n"
+  example: []
   syntax:
     content: public static OptionalObjective CreateWithPossibilities(ReadOnlySpan<IPossibility> possibilities, int countToSatisfy)
     parameters:
     - id: possibilities
       type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+      description: The possibilities that could satisfy this objective.
     - id: countToSatisfy
       type: System.Int32
+      description: "\nThe number of possibilities that must be selected to satisfy this objective.\n"
     return:
       type: SudokuSpice.ConstraintBased.OptionalObjective
+      description: The newly constructed optional objective.
     content.vb: Public Shared Function CreateWithPossibilities(possibilities As ReadOnlySpan(Of IPossibility), countToSatisfy As Integer) As OptionalObjective
   overload: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nIf the <code data-dev-comment-type=\"paramref\" class=\"paramref\">countToSatisfy</code> is less than 1 or is impossible with the\ngiven number of <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilities</code>.\n"
   nameWithType.vb: OptionalObjective.CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
   modifiers.csharp:
   - public
@@ -132,6 +144,33 @@ items:
   fullName.vb: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
   name.vb: CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
 references:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  parent: SudokuSpice.ConstraintBased
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  parent: SudokuSpice.ConstraintBased
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: SudokuSpice.ConstraintBased.IObjective.TrySelectPossibility(SudokuSpice.ConstraintBased.Link)
+  commentId: M:SudokuSpice.ConstraintBased.IObjective.TrySelectPossibility(SudokuSpice.ConstraintBased.Link)
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -150,18 +189,6 @@ references:
   name: IOptionalObjective
   nameWithType: IOptionalObjective
   fullName: SudokuSpice.ConstraintBased.IOptionalObjective
-- uid: SudokuSpice.ConstraintBased.IObjective
-  commentId: T:SudokuSpice.ConstraintBased.IObjective
-  parent: SudokuSpice.ConstraintBased
-  name: IObjective
-  nameWithType: IObjective
-  fullName: SudokuSpice.ConstraintBased.IObjective
-- uid: SudokuSpice.ConstraintBased.IPossibility
-  commentId: T:SudokuSpice.ConstraintBased.IPossibility
-  parent: SudokuSpice.ConstraintBased
-  name: IPossibility
-  nameWithType: IPossibility
-  fullName: SudokuSpice.ConstraintBased.IPossibility
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -470,6 +497,15 @@ references:
   name: NodeState
   nameWithType: NodeState
   fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*
   commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities
   name: CreateWithPossibilities
@@ -524,12 +560,6 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.ConstraintBased.OptionalObjective
-  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
-  parent: SudokuSpice.ConstraintBased
-  name: OptionalObjective
-  nameWithType: OptionalObjective
-  fullName: SudokuSpice.ConstraintBased.OptionalObjective
 - uid: System.ReadOnlySpan`1
   commentId: T:System.ReadOnlySpan`1
   isExternal: true

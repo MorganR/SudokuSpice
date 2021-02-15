@@ -3,22 +3,22 @@
     public interface IConstraint
     {
         /// <summary>
-        /// Adds necessary <see cref="Requirement"/>s and links to the given
-        /// <paramref name="matrix"/> in order to solve the given <paramref name="puzzle"/>
+        /// Adds necessary <see cref="IObjective"/>s and links to the given
+        /// <paramref name="graph"/> in order to solve the given <paramref name="puzzle"/>
         /// according to this constraint. The details here are implementation-specific.
         /// </summary>
         /// <remarks>
-        /// This should skip adding requirements that are already satisfied by the given
-        /// <paramref name="puzzle"/>. Instead, it should drop the corresponding
-        /// <see cref="PossibleSquareValue"/>s that would have been included in these requirements.
+        /// This should skip adding objectives that are already satisfied by the given
+        /// <paramref name="puzzle"/>. Instead, it should drop the relevant
+        /// <see cref="Possibility"/>s that are no longer possible.
         /// 
-        /// Note: See <see cref="ExactCoverMatrix"/> to understand how the matrix works.
+        /// Note: See <see cref="ExactCoverGraph"/> to understand how the graph works.
         /// </remarks>
         /// <param name="puzzle">The puzzle to solve.</param>
-        /// <param name="matrix">The exact-cover matrix to constrain.</param>
+        /// <param name="graph">The exact-cover graph to constrain.</param>
         /// <returns>
         /// False if the constraint could not be satisfied by the given puzzle, else true.
         /// </returns>
-        bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix);
+        bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph);
     }
 }

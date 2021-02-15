@@ -173,7 +173,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TrySelectAndDeselect_WhenSharedByOpposingObjectives_Fails()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var concretePossibility = new Possibility(new(), 1);
             var possibilities = new IPossibility[] { concretePossibility };
             var parentA = OptionalObjective.CreateWithPossibilities(possibilities, 1);
@@ -193,7 +193,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void CascadingDropUpDownUp()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), 2);
             var required = Objective.CreateFullyConnected(matrix, possibilities, 1);
             var fakePossibility = new FakePossibility();
@@ -235,7 +235,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void CascadingDropUpDownUpWithDropAtMidpoint()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), 3);
             var required = Objective.CreateFullyConnected(matrix, possibilities, 1);
             var fakePossibility = new FakePossibility();

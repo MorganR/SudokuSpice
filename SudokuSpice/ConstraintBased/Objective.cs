@@ -5,10 +5,14 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
+    /// <summary>
+    /// A required objective in the <see cref="ExactCoverGraph"/>. This enforces that one or more
+    /// <see cref="IPossibility"/>s must be selected.
+    /// </summary>
     public class Objective : IObjective
     {
         private readonly int _countToSatisfy;
-        private readonly ExactCoverMatrix _matrix;
+        private readonly ExactCoverGraph _matrix;
         private readonly Stack<Link> _previousFirstPossibilityLinks = new();
         private int _possibilityCount;
         private int _selectedCount;
@@ -18,8 +22,15 @@ namespace SudokuSpice.ConstraintBased
         private LinkedListNode<Objective>? _linkInMatrix;
         private NodeState _state;
 
+        /// <inheritdoc />
         public NodeState State => _state;
 
+        /// <summary>
+        /// Whether or not all unknown possibilities are actually <see cref="Possibility"/>
+        /// objects.
+        /// 
+        /// If no possibilities are unknown, this returns false.
+        /// </summary>
         internal bool AllUnknownPossibilitiesAreConcrete
         {
             get {
@@ -41,14 +52,26 @@ namespace SudokuSpice.ConstraintBased
                 return true;
             }
         }
+        /// <summary>
+        /// Whether or not all remaining unknown possibilities are required.
+        /// </summary>
         internal bool AllPossibilitiesAreRequired => _possibilityCount == _countToSatisfy;
+        // TODO: Drop this to internal state.
         internal bool IsSatisfied => _selectedCount == _countToSatisfy;
-        internal int CountToSatisfy => _countToSatisfy;
+        /// <summary>
+        /// The total number of possibilities that must be selected for this objective to be
+        /// satisfied.
+        /// </summary>
+        internal int TotalCountToSatisfy => _countToSatisfy;
+        /// <summary>
+        /// The number of possibilities that are in an unknown state.
+        /// </summary>
         internal int CountUnknown => _possibilityCount - _selectedCount;
 
+        /// <inheritdoc />
         bool IObjective.IsRequired => true;
 
-        private Objective(ExactCoverMatrix matrix, int countToSatisfy)
+        private Objective(ExactCoverGraph matrix, int countToSatisfy)
         {
             _matrix = matrix;
             _countToSatisfy = countToSatisfy;
@@ -57,8 +80,24 @@ namespace SudokuSpice.ConstraintBased
             _state = NodeState.UNKNOWN;
         }
 
+        /// <summary>
+        /// Constructs an objective that's fully connected to the given
+        /// <paramref name="possibilities"/> and into the given <paramref name="graph"/>.
+        /// </summary>
+        /// <param name="graph">The graph to attach this to.</param>
+        /// <param name="possibilities">The possibilities that could satisfy this objective.</param>
+        /// <param name="countToSatisfy">
+        /// The number of possibilities that must be satisfied in order to satisfy this objective.
+        /// Once this number of possibilities are selected, all other possibilities on this
+        /// objective will be dropped.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// If the <paramref name="countToSatisfy"/> is less than 1 or is impossible with the
+        /// given number of <paramref name="possibilities"/>.
+        /// </exception>
+        /// <returns>The newly constructed objective.</returns>
         public static Objective CreateFullyConnected(
-            ExactCoverMatrix matrix,
+            ExactCoverGraph graph,
             ReadOnlySpan<IPossibility> possibilities,
             int countToSatisfy)
         {
@@ -66,15 +105,17 @@ namespace SudokuSpice.ConstraintBased
             {
                 throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length].");
             }
-            var objective = new Objective(matrix, countToSatisfy);
+            var objective = new Objective(graph, countToSatisfy);
             foreach (var possibility in possibilities)
             {
                 Link.CreateConnectedLink(possibility, objective);
             }
-            objective._linkInMatrix = matrix.AttachObjective(objective);
+            // TODO: Only attach if at least one possibility is concrete.
+            objective._linkInMatrix = graph.AttachObjective(objective);
             return objective;
         }
 
+        /// <inheritdoc />
         void IObjective.AppendPossibility(Link toNewPossibility)
         {
             ++_possibilityCount;
@@ -93,6 +134,7 @@ namespace SudokuSpice.ConstraintBased
             _toPossibility.PrependToObjective(toNewPossibility);
         }
 
+        /// <inheritdoc />
         IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities()
         {
             if (_toPossibility is null || IsSatisfied)
@@ -103,6 +145,7 @@ namespace SudokuSpice.ConstraintBased
                 .Select(link => link.Possibility);
         }
 
+        /// <inheritdoc />
         bool IObjective.TrySelectPossibility(Link toSelect)
         {
             Debug.Assert(_toPossibility is not null,
@@ -131,6 +174,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
+        /// <inheritdoc />
         void IObjective.DeselectPossibility(Link toDeselect)
         {
             Debug.Assert(!_toPossibility?.GetLinksOnObjective().Contains(toDeselect) ?? true,
@@ -149,6 +193,7 @@ namespace SudokuSpice.ConstraintBased
             --_selectedCount;
         }
 
+        /// <inheritdoc />
         bool IObjective.TryDropPossibility(Link toDrop)
         {
             Debug.Assert(_toPossibility?.GetLinksOnObjective().Contains(toDrop) ?? false,
@@ -162,6 +207,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
+        /// <inheritdoc />
         void IObjective.ReturnPossibility(Link toReturn)
         {
             Debug.Assert(!_toPossibility?.GetLinksOnObjective().Contains(toReturn) ?? true,

@@ -5,16 +5,32 @@ using System.Linq;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Holds an exact-cover matrix for the current puzzle being solved.
+    /// Holds an exact-cover graph for the current puzzle being solved.
+    /// 
+    /// This is an extension of the
+    /// <a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a> concept. Rows of
+    /// the exact-cover matrix, i.e. a specific location and possible value for that location, are
+    /// represented by <see cref="Possibility"/> objects. These are linked together by
+    /// <see cref="IObjective"/> objects, which represent the columns of an exact-cover matrix.
+    /// 
+    /// For example, the <see cref="Constraints.RowUniquenessConstraint"/> uses a required 
+    /// <see cref="Objective"/> to link all the <see cref="Possibility"/> objects on a single row
+    /// that have the same possible value. This way, when one of these possibilities is selected,
+    /// then the others are all dropped.
+    ///
+    /// To extend the concept into a larger graph, this also uses <see cref="OptionalObjective"/>s
+    /// to create subgroups over <see cref="Possibility"/> objects and/or other
+    /// <see cref="OptionalObjective"/> objects. This allows for much more complex constraints,
+    /// such as the <see cref="Constraints.MagicSquaresConstraint"/>.
     /// </summary>
     /// <remarks>
-    /// The exact cover matrix is organized by <see cref="Box"/>s, which in turn contain
-    /// <see cref="PossibleSquareValue"/>s. Each of these represents a row in the exact-cover
-    /// matrix. <see cref="Constraints.IConstraint"/>s will then add
-    /// <see cref="Requirement"/>s, the columns of the matrix and corresponding links.
+    /// The ExactCoverGraph adds <see cref="Possibility"/> objects for all the unset coordinates
+    /// in a puzzle on creation, as well as <see cref="Objective"/> objects that group all the
+    /// possible values for each location. These effectively implements the constraint: "Each
+    /// coordinate in the puzzle must have one and only one value."
     /// </remarks>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover"/>
-    public class ExactCoverMatrix
+    public class ExactCoverGraph
     {
         private readonly int[] _allPossibleValues;
         private readonly Possibility?[]?[][] _matrix;
@@ -31,17 +47,7 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
 
-        /// <summary>
-        /// Constructs an empty ExactCoverMatrix for solving the given puzzle.
-        ///
-        /// This matrix is essentially just a single column of row headers until
-        /// <see cref="Requirement"/>s are attached. Requirements are necessary to define the
-        /// relationships between squares and their possible values.
-        ///
-        /// Row headers are only created for unset squares in the puzzle.
-        /// </summary>
-        /// <param name="puzzle">The puzzle to be solved.</param>
-        private ExactCoverMatrix(IReadOnlyPuzzle puzzle)
+        private ExactCoverGraph(IReadOnlyPuzzle puzzle)
         {
             int size = puzzle.Size;
             _matrix = new Possibility[size][][];
@@ -51,7 +57,6 @@ namespace SudokuSpice.ConstraintBased
             }
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
             _unsatisfiedObjectives = new LinkedList<Objective>();
-            // _unknownOptionalObjectivesWithConcretePossibilities = new LinkedList<OptionalObjective>();
             var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {
@@ -60,7 +65,7 @@ namespace SudokuSpice.ConstraintBased
             ValuesToIndices = valuesToIndices;
         }
 
-        private ExactCoverMatrix(ExactCoverMatrix other)
+        private ExactCoverGraph(ExactCoverGraph other)
         {
             int length = other._matrix.Length;
             _matrix = new Possibility[length][][];
@@ -70,13 +75,21 @@ namespace SudokuSpice.ConstraintBased
             }
             _allPossibleValues = other.AllPossibleValues.ToArray();
             _unsatisfiedObjectives = new LinkedList<Objective>();
-            // _unknownOptionalObjectivesWithConcretePossibilities = new LinkedList<OptionalObjective>();
             ValuesToIndices = other.ValuesToIndices;
         }
 
-        public static ExactCoverMatrix Create(IReadOnlyPuzzle puzzle)
+        /// <summary>
+        /// Creates an exact-cover graph for solving the given puzzle.
+        ///
+        /// This adds <see cref="Possibility"/> objects for all the unset coordinates in a puzzle on
+        /// creation, as well as <see cref="Objective"/> objects that group all the possible values
+        /// for each location. These effectively implements the constraint: "Each square in the
+        /// puzzle must have one and only one value."
+        /// </summary>
+        /// <param name="puzzle">The puzzle to solve.</param>
+        public static ExactCoverGraph Create(IReadOnlyPuzzle puzzle)
         {
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = new ExactCoverGraph(puzzle);
             int size = puzzle.Size;
             for (int rowIndex = 0; rowIndex < size; rowIndex++)
             {
@@ -96,15 +109,15 @@ namespace SudokuSpice.ConstraintBased
             return matrix;
         }
 
-        internal ExactCoverMatrix CopyUnknowns()
+        internal ExactCoverGraph CopyUnknowns()
         {
-            var copy = new ExactCoverMatrix(this);
+            var copy = new ExactCoverGraph(this);
             foreach (var requiredObjective in _unsatisfiedObjectives)
             {
                 var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
                 Objective.CreateFullyConnected(
                     copy,
-                    possibilitiesForObjective, requiredObjective.CountToSatisfy);
+                    possibilitiesForObjective, requiredObjective.TotalCountToSatisfy);
             }
             return copy;
         }
@@ -131,7 +144,7 @@ namespace SudokuSpice.ConstraintBased
         /// </c>
         /// </summary>
         /// <param name="row">A zero-based row index.</param>
-        internal ReadOnlySpan<Possibility?[]?> GetPossibilitiesOnRow(int row) =>
+        public ReadOnlySpan<Possibility?[]?> GetPossibilitiesOnRow(int row) =>
             new ReadOnlySpan<Possibility?[]?>(_matrix[row]);
 
         internal LinkedListNode<Objective> AttachObjective(Objective objective)
@@ -149,7 +162,7 @@ namespace SudokuSpice.ConstraintBased
             _unsatisfiedObjectives.AddLast(node);
         }
 
-        private IEnumerable<IPossibility> _CopyUnknownPossibilities(IObjective objective, ExactCoverMatrix puzzleCopy)
+        private IEnumerable<IPossibility> _CopyUnknownPossibilities(IObjective objective, ExactCoverGraph puzzleCopy)
         {
             var length = _matrix.Length;
             foreach (var possibility in objective.GetUnknownDirectPossibilities())

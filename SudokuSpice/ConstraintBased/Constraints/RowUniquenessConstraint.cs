@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
         {
             Span<bool> isConstraintSatisfiedAtIndex =
                    stackalloc bool[matrix.AllPossibleValues.Length];

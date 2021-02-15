@@ -5,6 +5,48 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased.Constraints
 {
+    /// <summary>
+    /// Enforces a constraint that certain regions in a puzzle must be
+    /// <a href="https://en.wikipedia.org/wiki/Magic_square">magic squares</a>, i.e. the sums of the
+    /// values in each of their rows, columns, and (optionally) their diagonals add up to the same
+    /// value.
+    ///
+    /// Note that this does <em>not</em> enforce uniqueness of values within the magic square as a
+    /// whole. It <em>does</em>, however, prevent value duplication within each row, column, and/or
+    /// diagonal. This can be combined with the <see cref="BoxUniquenessConstraint"/> if you need
+    /// box-level uniqueness.
+    /// </summary>
+    /// <remarks>
+    /// This makes use of <see cref="OptionalObjective"/> objects to construct a complicated graph.
+    ///
+    /// For example, in a standard 3x3 magic square for a standard 9x9 Sudoku puzzle, the magic sum
+    /// (i.e. required sum for each row/column/diagonal) is 15. This can be formed through various
+    /// combinations, eg:
+    /// 
+    ///   * 1,5,9
+    ///   * 1,6,8
+    ///   ...
+    ///   
+    /// For each row or column or diagonal, this looks at the existing values to determine the
+    /// possible sets. It drops impossible <see cref="Possibility"/> objects, and groups the
+    /// remaining possibilities as follows (using the 1,5,9 set as an example):
+    /// 
+    /// In this row/column/diagonal, create an optional objective to require that a single 1 is
+    /// selected from these squares. Repeat for the 5 and the 9. 
+    /// 
+    /// Then, group each of these optional objectives into another optional objective that requires
+    /// all of them to be satisfied. This defines an individual possible set for this
+    /// row/column/diagonal.
+    /// 
+    /// Repeat this for all the possible sets on this row/column/diagonal. Reuse groups where
+    /// possible, for example set 1,6,8 would use the same "1" grouping from set 1,5,8.
+    /// 
+    /// Now group all these optional set objectives into a single required objective that can be
+    /// satisfied by any of these optional sets.
+    ///
+    /// In the end, this results in a single required objective for each row/column/diagonal,
+    /// enforcing that this row/column/diagonal is composed of one of the possible sets.
+    /// </remarks>
     public class MagicSquaresConstraint : IConstraint
     {
         private readonly int _size;
@@ -14,6 +56,23 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private readonly BitVector _allPossibleValues;
         private readonly IReadOnlySet<BitVector> _possibleSets;
 
+        /// <summary>
+        /// Constructs a constraint that will enforce that the given <paramref name="squares"/> are
+        /// magic squares based on the rows, columns, and, optionally, the diagonals.
+        /// </summary>
+        /// <param name="possibleValues">
+        /// The possible values that can be in the magic squares.
+        /// </param>
+        /// <param name="squares">
+        /// The locations of the magic squares.
+        /// </param>
+        /// <param name="includeDiagonals">
+        /// If true, values along the diagonals of the square must also sum to the magic number.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// If the any of the given <paramref name="squares"/>' sizes are not compatible with the
+        /// length of <paramref name="possibleValues"/>.
+        /// </exception>
         public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Box> squares, bool includeDiagonals = true)
         {
             _size = possibleValues.Length;
@@ -41,7 +100,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
             _possibleSets = MagicSquares.ComputeSets(possibleValues, _squareSize, _allPossibleValues);
         }
 
-        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        /// <inheritdoc />
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
         {
             if (!_IsCompatible(puzzle))
             {
@@ -76,7 +136,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return copiedSet.IsEmpty;
         }
 
-        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
         {
             Coordinate startCoord = box.TopLeft;
             Span<Coordinate> toConstrain = stackalloc Coordinate[_squareSize];
@@ -134,7 +194,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private bool _TryConstrainToPossibleSets(
             ReadOnlySpan<Coordinate> toConstrain,
             IReadOnlyPuzzle puzzle,
-            ExactCoverMatrix matrix,
+            ExactCoverGraph matrix,
             List<OptionalObjective> setsToOr)
         {
             Possibility?[]?[] unsetSquares = new Possibility[toConstrain.Length][];
@@ -234,7 +294,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return setsToOr.Count > 0;
         } 
 
-        private void _ConstrainAndClearOverlappingSets(ExactCoverMatrix matrix, List<OptionalObjective> setsToOr)
+        private void _ConstrainAndClearOverlappingSets(ExactCoverGraph matrix, List<OptionalObjective> setsToOr)
         {
             Objective.CreateFullyConnected(matrix, setsToOr.ToArray(), countToSatisfy: 1);
             setsToOr.Clear();

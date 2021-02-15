@@ -1,21 +1,22 @@
 ﻿namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Indicates if a <see cref="PossibleSquareValue"/> is still possible, selected, or dropped.
+    /// Indicates if an <see cref="IPossibility"/> or <see cref="IObjective"/> is still possible,
+    /// selected, or dropped.
     /// </summary>
     public enum NodeState
     {
         /// <summary>
-        /// This <see cref="PossibleSquareValue"/> is still possible.
+        /// This node is still possible.
         /// </summary>
         UNKNOWN,
         /// <summary>
-        /// This <see cref="PossibleSquareValue"/> has been selected.
+        /// This node has been selected/satisfied.
         /// </summary>
         SELECTED,
         /// <summary>
-        /// This <see cref="PossibleSquareValue"/> has been dropped, i.e. it is no longer possible
-        /// with the currently selected values.
+        /// This node has been dropped, i.e. it is no longer possible with the currently selected
+        /// values.
         /// </summary>
         DROPPED
     }

@@ -43,7 +43,6 @@ items:
     content: 'public class Puzzle : IPuzzle<Puzzle>, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
-
           Implements IPuzzle(Of Puzzle), IReadOnlyPuzzle
   inheritance:
   - System.Object
@@ -85,6 +84,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The side-length of the puzzle (puzzles must be square).
   example: []
   syntax:
     content: public int Size { get; }
@@ -123,6 +123,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The total number of squares in the puzzle.
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -161,6 +162,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The current number of empty/unknown squares in the puzzle.
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -199,6 +201,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The number of set/known squares in the puzzle.
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -237,6 +240,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -431,6 +435,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nCreates a deep-copy of this puzzle.\n"
   example: []
   syntax:
     content: public Puzzle DeepCopy()
@@ -466,6 +471,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nGets or sets the current value of a given square. A square can be &apos;unset&apos; by setting\nits value to <code>null</code>.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -512,14 +518,17 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nGets or sets the value of the given square, like <xref href=\"SudokuSpice.IPuzzle%601.Item(System.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, but\nusing a <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref uid=\"langword_csharp_int\" name=\"int\" href=\"\"></xref> accessors.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
+      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
+      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.Puzzle.Item*
   implements:

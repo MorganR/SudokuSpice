@@ -7,7 +7,7 @@ namespace SudokuSpice.ConstraintBased.Test
 {
     internal static class ExactCoverMatrices
     {
-        internal static void AssertNoPossibleValuesAtSquare(Coordinate coord, ExactCoverMatrix matrix)
+        internal static void AssertNoPossibleValuesAtSquare(Coordinate coord, ExactCoverGraph matrix)
         {
             var square = matrix.GetAllPossibilitiesAt(coord);
             if (square is not null)
@@ -23,7 +23,7 @@ namespace SudokuSpice.ConstraintBased.Test
             }
         }
 
-        internal static void AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverMatrix matrix)
+        internal static void AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverGraph matrix)
         {
             var square = matrix.GetAllPossibilitiesAt(coord);
             Assert.NotNull(square);

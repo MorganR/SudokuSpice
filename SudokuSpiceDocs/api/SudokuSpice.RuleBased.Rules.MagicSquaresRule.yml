@@ -5,7 +5,7 @@ items:
   id: MagicSquaresRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)
+  - SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
   - SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32)
@@ -34,7 +34,6 @@ items:
     content: 'public class MagicSquaresRule : IRule'
     content.vb: >-
       Public Class MagicSquaresRule
-
           Implements IRule
   inheritance:
   - System.Object
@@ -54,16 +53,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)
-  commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)
-  id: '#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Square},System.Boolean)'
+- uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  id: '#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)'
   parent: SudokuSpice.RuleBased.Rules.MagicSquaresRule
   langs:
   - csharp
   - vb
-  name: MagicSquaresRule(Int32, IEnumerable<Square>, Boolean)
-  nameWithType: MagicSquaresRule.MagicSquaresRule(Int32, IEnumerable<Square>, Boolean)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(System.Int32, System.Collections.Generic.IEnumerable<SudokuSpice.Square>, System.Boolean)
+  name: MagicSquaresRule(Int32, IEnumerable<Box>, Boolean)
+  nameWithType: MagicSquaresRule.MagicSquaresRule(Int32, IEnumerable<Box>, Boolean)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(System.Int32, System.Collections.Generic.IEnumerable<SudokuSpice.Box>, System.Boolean)
   type: Constructor
   source:
     remote:
@@ -77,23 +76,23 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   syntax:
-    content: public MagicSquaresRule(int size, IEnumerable<Square> squares, bool includeDiagonals)
+    content: public MagicSquaresRule(int size, IEnumerable<Box> squares, bool includeDiagonals)
     parameters:
     - id: size
       type: System.Int32
     - id: squares
-      type: System.Collections.Generic.IEnumerable{SudokuSpice.Square}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
     - id: includeDiagonals
       type: System.Boolean
-    content.vb: Public Sub New(size As Integer, squares As IEnumerable(Of Square), includeDiagonals As Boolean)
+    content.vb: Public Sub New(size As Integer, squares As IEnumerable(Of Box), includeDiagonals As Boolean)
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor*
-  nameWithType.vb: MagicSquaresRule.MagicSquaresRule(Int32, IEnumerable(Of Square), Boolean)
+  nameWithType.vb: MagicSquaresRule.MagicSquaresRule(Int32, IEnumerable(Of Box), Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(System.Int32, System.Collections.Generic.IEnumerable(Of SudokuSpice.Square), System.Boolean)
-  name.vb: MagicSquaresRule(Int32, IEnumerable(Of Square), Boolean)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(System.Int32, System.Collections.Generic.IEnumerable(Of SudokuSpice.Box), System.Boolean)
+  name.vb: MagicSquaresRule(Int32, IEnumerable(Of Box), Boolean)
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
@@ -650,16 +649,16 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Square}
-  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Square}
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Box}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<Square>
-  nameWithType: IEnumerable<Square>
-  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Square>
-  nameWithType.vb: IEnumerable(Of Square)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Square)
-  name.vb: IEnumerable(Of Square)
+  name: IEnumerable<Box>
+  nameWithType: IEnumerable<Box>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Box>
+  nameWithType.vb: IEnumerable(Of Box)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Box)
+  name.vb: IEnumerable(Of Box)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
@@ -669,10 +668,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.Square
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.Square
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -685,10 +684,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.Square
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.Square
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
   - name: )
     nameWithType: )
     fullName: )

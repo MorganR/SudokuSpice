@@ -135,7 +135,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
 
@@ -168,7 +168,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: true);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));
 
@@ -223,12 +223,12 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             Assert.False(constraint.TryConstrain(puzzle, matrix));
         }
 
-        private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverMatrix matrix)
+        private static void _AssertPossibleValuesAtSquare(Coordinate coord, int[] possibleValues, ExactCoverGraph matrix)
         {
             var square = matrix.GetAllPossibilitiesAt(coord);
             Assert.NotNull(square);

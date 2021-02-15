@@ -14,7 +14,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, 3, null, null },
                 { null, 4, null, null },
             });
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var constraint = new RowUniquenessConstraint();
 
             Assert.False(constraint.TryConstrain(puzzle, matrix));
@@ -29,7 +29,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null,    3,    4 },
                 {    1,    2,    3,    4 },
             });
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var constraint = new RowUniquenessConstraint();
 
             Assert.True(constraint.TryConstrain(puzzle, matrix));

@@ -160,7 +160,9 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_CopyWithNewReference_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>
+references updated to the given puzzle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -179,7 +181,9 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The new puzzle reference to use. To ensure this rule's internal state is correct, this
+puzzle should contain the same data as the current puzzle referenced by this rule.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -209,7 +213,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_GetDimension_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetDimension*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_GetDimension_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetDimension(SudokuSpice.Coordinate@)">GetDimension(Coordinate)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the dimension for a coordinate.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -258,7 +263,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_GetMissingValuesForColumn_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetMissingValuesForColumn*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_GetMissingValuesForColumn_System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetMissingValuesForColumn(System.Int32)">GetMissingValuesForColumn(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns all the values that still need to be set in the given column.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -305,7 +311,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_GetNumDimensions_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetNumDimensions*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)">GetNumDimensions(IReadOnlyPuzzle)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns the number of dimensions that will be enforced to contain unique values.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -324,7 +331,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle for which to determine the number of dimensions.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -354,7 +362,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_TrackUnsetCoordinatesOnSameDimension_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.TrackUnsetCoordinatesOnSameDimension*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)">TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds the coordinates of unset values on the given dimension to the given tracker.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -373,17 +382,20 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">dimension</span></td>
-        <td></td>
+        <td><p>The dimension to search.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">source</span></td>
-        <td></td>
+        <td><p>The source coordinate for the change; should be skipped.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></td>
         <td><span class="parametername">tracker</span></td>
-        <td></td>
+        <td><p>The tracker to add coordiantes to.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -398,7 +410,8 @@
   </span>
   <a id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_TryInit_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.TryInit*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)">TryInit(IReadOnlyPuzzle, BitVector)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to initialize this rule to prepare to solve the given puzzle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -417,12 +430,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to be solved.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
         <td><span class="parametername">allPossibleValues</span></td>
-        <td></td>
+        <td><p>All the possible values for this puzzle.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -437,12 +452,18 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>False if the puzzle violates this rule and initialization fails, else true.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="SudokuSpice.RuleBased.Rules.UniquenessRule.html#SudokuSpice_RuleBased_Rules_UniquenessRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_">UniquenessRule.TryInit(IReadOnlyPuzzle, BitVector)</a></div>
+  <h5 id="SudokuSpice_RuleBased_Rules_ColumnUniquenessRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the rule's state is unchanged on
+failure.</p>
+</div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.html">IMissingColumnValuesTracker</a>

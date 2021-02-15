@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void GetPossibilitiesOnRow_ReturnsExpectedSquares()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             int rowIndex = 1;
             var row = matrix.GetPossibilitiesOnRow(rowIndex);
@@ -26,7 +26,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void Create_ConfiguresSquareObjectives()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             var objectives = matrix.GetUnsatisfiedRequiredObjectives();
             Assert.Equal(puzzle.Size * puzzle.Size, objectives.Count());
@@ -56,7 +56,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void SelectSquareValue_DropsOtherPossibilitiesForSquareOnly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             var initialObjectivesCount = matrix.GetUnsatisfiedRequiredObjectives().Count();
             var seenCoordinates = new HashSet<Coordinate>();
@@ -100,7 +100,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void CopyUnknowns_KeepsUnknownsAndDropsOthers()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
 
             int initialObjectivesCount = matrix.GetUnsatisfiedRequiredObjectives().Count();
             var coordToSelect = new Coordinate(1, 1);

@@ -5,6 +5,23 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
+    /// <summary>
+    /// An optional objective in an <see cref="ExactCoverGraph"/>. An optional objective is both
+    /// an <see cref="IObjective"/> and an <see cref="IPossibility"/>.
+    ///
+    /// This can be satisfied if one or more attached <see cref="IPossibility"/> objects are
+    /// selected. Once satisfied, this drops any remaining unknown possibilities, and notifies
+    /// parent objectives that to select this possibility.
+    ///
+    /// Unlike <see cref="Objective"/>s, this class can be dropped. Dropping this objetive does
+    /// not immediately impact attached possibilities. These possibilities may still be dropped
+    /// or selected, as long as this objective does not become satisfied. If selecting a
+    /// possibility would satisfy a dropped optional objective, then the call to
+    /// <see cref="IObjective.TrySelectPossibility(Link)"/> will fail.
+    /// 
+    /// All <c>OptionalObjective</c> objects must eventually be descendents of at least one
+    /// <see cref="Objective"/>.
+    /// </summary>
     public class OptionalObjective : IOptionalObjective
     {
         private enum Operation
@@ -29,12 +46,21 @@ namespace SudokuSpice.ConstraintBased
 
         private bool _AllPossibilitiesAreRequired => _possibilityCount == _totalCountToSatisfy;
         private bool _IsSatisfied => _selectedCount == _totalCountToSatisfy;
-        private int _CountUnknown => _possibilityCount - _selectedCount;
+        /// <summary>
+        /// The total count of possibilities that must be selected in order to satisfy this
+        /// objective.
+        /// </summary>
         internal int TotalCountToSatisfy => _totalCountToSatisfy;
+        /// <summary>
+        /// The number of possibilities that must still be selected in order to satisfy this
+        /// objective.
+        /// </summary>
         internal int RemainingCountToSatisfy => _totalCountToSatisfy - _selectedCount;
 
+        /// <inheritdoc />
         bool IObjective.IsRequired => false;
 
+        /// <inheritdoc />
         public NodeState State => _state;
 
         private OptionalObjective(int countToSatisfy)
@@ -43,6 +69,24 @@ namespace SudokuSpice.ConstraintBased
             _state = NodeState.UNKNOWN;
         }
 
+        /// <summary>
+        /// Creates an optional objective with the given possibilities attached. This objective
+        /// will be satisfied when <paramref name="countToSatisfy"/> of these possibilities are
+        /// selected.
+        /// 
+        /// Note that this results in an <see cref="OptionalObjective"/> with no parent objectives.
+        /// The returned objective must eventually be connected to at least one top-level required
+        /// <see cref="Objective"/> object in order to behave correctly.
+        /// </summary>
+        /// <param name="possibilities">The possibilities that could satisfy this objective.</param>
+        /// <param name="countToSatisfy">
+        /// The number of possibilities that must be selected to satisfy this objective.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// If the <paramref name="countToSatisfy"/> is less than 1 or is impossible with the
+        /// given number of <paramref name="possibilities"/>.
+        /// </exception>
+        /// <returns>The newly constructed optional objective.</returns>
         public static OptionalObjective CreateWithPossibilities(ReadOnlySpan<IPossibility> possibilities, int countToSatisfy)
         {
             if (countToSatisfy < 1 || countToSatisfy > possibilities.Length)
@@ -57,6 +101,7 @@ namespace SudokuSpice.ConstraintBased
             return objective;
         }
 
+        /// <inheritdoc />
         IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities()
         {
             if (_toPossibility is null)
@@ -66,6 +111,7 @@ namespace SudokuSpice.ConstraintBased
             return _toPossibility.GetLinksOnObjective().Select(link => link.Possibility);
         }
 
+        /// <inheritdoc />
         void IPossibility.AppendObjective(Link toNewObjective)
         {
             if (_state != NodeState.UNKNOWN)
@@ -81,6 +127,7 @@ namespace SudokuSpice.ConstraintBased
             _toObjective.PrependToPossibility(toNewObjective);
         }
 
+        /// <inheritdoc />
         bool IPossibility.TryDropFromObjective(Link dropSource)
         {
             Debug.Assert(_toObjective is not null,
@@ -124,6 +171,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        /// <inheritdoc />
         void IPossibility.ReturnFromObjective(Link returnSource)
         {
             ++_possibleObjectiveCount;
@@ -152,6 +200,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        /// <inheritdoc />
         void IObjective.AppendPossibility(Link toNewPossibility)
         {
             if (_state != NodeState.UNKNOWN)
@@ -168,6 +217,7 @@ namespace SudokuSpice.ConstraintBased
             _toPossibility.PrependToObjective(toNewPossibility);
         }
 
+        /// <inheritdoc />
         bool IObjective.TrySelectPossibility(Link possibilityToSelect)
         {
             Debug.Assert(_currentOperation == Operation.NONE);
@@ -210,6 +260,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        /// <inheritdoc />
         void IObjective.DeselectPossibility(Link possibilityToDeselect)
         {
             Debug.Assert(_currentOperation == Operation.NONE,
@@ -240,6 +291,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        /// <inheritdoc />
         bool IObjective.TryDropPossibility(Link toDrop)
         {
             Debug.Assert(_toPossibility is not null,
@@ -288,6 +340,7 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
+        /// <inheritdoc />
         void IObjective.ReturnPossibility(Link toReturn)
         {
             ++_possibilityCount;

@@ -7,11 +7,11 @@ using System.Threading;
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Solves puzzles of the given type using an <see cref="ExactCoverMatrix"/>.
+    /// Solves puzzles of the given type using an <see cref="ExactCoverGraph"/>.
     /// </summary>
     /// <remarks>
     /// This class is thread-safe as long as the given constraints' implementations of
-    /// <see cref="IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)"/> are also
+    /// <see cref="IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)"/> are also
     /// thread-safe. If that's true, then it's safe to solve multiple puzzles concurrently via
     /// the same solver object.
     /// </remarks>
@@ -39,7 +39,7 @@ namespace SudokuSpice.ConstraintBased
                     $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
             var puzzleCopy = puzzle.DeepCopy();
-            var matrix = ExactCoverMatrix.Create(puzzleCopy);
+            var matrix = ExactCoverGraph.Create(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
                 if (!constraint.TryConstrain(puzzleCopy, matrix))
@@ -63,7 +63,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 return false;
             }
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             foreach (IConstraint? constraint in _constraints)
             {
                 if (!constraint.TryConstrain(puzzle, matrix))
@@ -96,7 +96,7 @@ namespace SudokuSpice.ConstraintBased
                 return new SolveStats();
             }
             var puzzleCopy = puzzle.DeepCopy();
-            var matrix = ExactCoverMatrix.Create(puzzleCopy);
+            var matrix = ExactCoverGraph.Create(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
                 if (!constraint.TryConstrain(puzzleCopy, matrix))

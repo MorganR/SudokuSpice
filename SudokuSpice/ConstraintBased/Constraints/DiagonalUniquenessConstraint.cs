@@ -8,13 +8,13 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class DiagonalUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
         {
             return _TryConstrainForwardDiagonal(puzzle, matrix)
                 && _TryConstrainBackwardDiagonal(puzzle, matrix);
         }
 
-        private static bool _TryConstrainForwardDiagonal(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        private static bool _TryConstrainForwardDiagonal(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
         {
             Span<Coordinate> coordinates = stackalloc Coordinate[puzzle.Size];
             for (int row = 0, col = puzzle.Size - 1; row < puzzle.Size; row++, col--)
@@ -24,7 +24,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, coordinates, matrix);
         }
 
-        private static bool _TryConstrainBackwardDiagonal(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        private static bool _TryConstrainBackwardDiagonal(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
         {
             Span<Coordinate> Coordinates = stackalloc Coordinate[puzzle.Size];
             for (int row = 0, col = 0; row < puzzle.Size; row++, col++)

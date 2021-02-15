@@ -16,7 +16,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         {
             int size = 4;
             var puzzle = new Puzzle(size);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), numPossibilities);
 
             var objective = Objective.CreateFullyConnected(matrix, possibilities, numRequired);
@@ -26,7 +26,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Equal(numPossibilities == numRequired, objective.AllPossibilitiesAreRequired);
             Assert.False(objective.IsSatisfied);
             Assert.Equal(possibilities.Length, objective.CountUnknown);
-            Assert.Equal(numRequired, objective.CountToSatisfy);
+            Assert.Equal(numRequired, objective.TotalCountToSatisfy);
             Assert.All(possibilities,
                 p => Assert.Contains(p, ((IObjective)objective).GetUnknownDirectPossibilities()));
             Assert.All(((IObjective)objective).GetUnknownDirectPossibilities(),
@@ -39,7 +39,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         {
             int size = 4;
             var puzzle = new Puzzle(size);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), 1);
             Assert.Single(possibilities);
 
@@ -51,7 +51,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void AllUnknownPossibilitiesAreConcrete_UpdatesWhenPossibilitiesChange()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var fakePossibility = new FakePossibility();
             var possibilities = new IPossibility[] {
                 new Possibility(new Coordinate(), 0),
@@ -71,7 +71,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void CreateFullyConnected_WithOptionalObjectives_ConnectsCorrectly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var optionalObjectives = new OptionalObjective[] {
                 OptionalObjective.CreateWithPossibilities(Possibilities.CreatePossibilities(new Coordinate(), 2), 1),
                 OptionalObjective.CreateWithPossibilities(Possibilities.CreatePossibilities(new Coordinate(), 2), 1),
@@ -88,7 +88,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TrySelectAndDeselectPossibility_WithOneRequired_Works()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = new FakePossibility[] {
                 new FakePossibility(),
                 new FakePossibility(),
@@ -118,7 +118,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TrySelectAndDeselectPossibility_WithMultipleRequired_Works()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = new FakePossibility[] {
                 new FakePossibility(),
                 new FakePossibility(),
@@ -153,7 +153,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TrySelectPossibility_WithUndetachablePossibility_Fails()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = new FakePossibility[] {
                 new FakePossibility(),
                 new FakePossibility(),
@@ -178,7 +178,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TryDropAndReturnPossibility_Succeeds()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = new FakePossibility[] {
                 new FakePossibility(),
                 new FakePossibility(),
@@ -207,7 +207,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TryDropPossibility_WhenRequired_Fails()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = new FakePossibility[] {
                 new FakePossibility(),
                 new FakePossibility(),

@@ -277,7 +277,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         public void TrySelectPossibility_CausesCascadingDrop_SelectsAndDeselectsCorrectly()
         {
             var puzzle = new Puzzle(4);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var fakePossibilities = new FakePossibility[] {
                 new FakePossibility(),
                 new FakePossibility(),

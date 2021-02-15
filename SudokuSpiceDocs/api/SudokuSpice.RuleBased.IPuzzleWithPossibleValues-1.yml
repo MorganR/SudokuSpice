@@ -32,7 +32,6 @@ items:
       description: Should be the concrete type implementing this interface.
     content.vb: >-
       Public Interface IPuzzleWithPossibleValues(Of T As {Class, IPuzzle(Of T)})
-
           Inherits IPuzzle(Of T), IReadOnlyPuzzleWithMutablePossibleValues
   inheritedMembers:
   - SudokuSpice.IPuzzle{{T}}.Item(System.Int32,System.Int32)

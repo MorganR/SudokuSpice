@@ -1,9 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SudokuSpice.ConstraintBased
 {
+    /// <summary>
+    /// A concrete possibility in the <see cref="ExactCoverGraph"/>. This represents a single
+    /// possible value for a single square in the puzzle.
+    /// </summary>
     public class Possibility : IPossibility
     {
         private enum Operation
@@ -20,8 +23,16 @@ namespace SudokuSpice.ConstraintBased
         private Operation _currentOperation = Operation.NONE;
         private Link? _objectiveThatCausedDrop;
 
+        /// <summary>
+        /// The square this possibility is for.
+        /// </summary>
         public Coordinate Coordinate { get; }
+        /// <summary>
+        /// The value index this possibility is for (corresponds to the values in
+        /// <see cref="ExactCoverGraph.AllPossibleValues"/>).
+        /// </summary>
         public int Index { get; }
+        /// <inheritdoc />
         public NodeState State { get; private set; }
 
         internal Possibility(Coordinate location, int valueIndex)
@@ -32,6 +43,7 @@ namespace SudokuSpice.ConstraintBased
             State = NodeState.UNKNOWN;
         }
 
+        /// <inheritdoc />
         void IPossibility.AppendObjective(Link toNewObjective)
         {
             if (State != NodeState.UNKNOWN)
@@ -87,6 +99,16 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        /// <summary>
+        /// Tries to select this possibility and update the graph accordingly.
+        /// </summary>
+        /// <remarks>
+        /// This is a safe operation. If it returns false, then no lasting changes have been made to
+        /// the graph.
+        /// </remarks>
+        /// <returns>
+        /// True if this succeeds and all objectives are/can still be satisfied, else false.
+        /// </returns>
         internal bool TrySelect()
         {
             switch (State)
@@ -113,6 +135,11 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        /// <summary>
+        /// Deselects this possibility and updates the graph accordingly.
+        ///
+        /// This possibility must be selected prior to calling this method.
+        /// </summary>
         internal void Deselect()
         {
             Debug.Assert(_toObjective is not null,
@@ -127,6 +154,7 @@ namespace SudokuSpice.ConstraintBased
             _currentOperation = Operation.NONE;
         }
 
+        /// <inheritdoc />
         bool IPossibility.TryDropFromObjective(Link dropSource)
         {
             Debug.Assert(_toObjective is not null,
@@ -167,20 +195,21 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
-        void IPossibility.ReturnFromObjective(Link toReattach)
+        /// <inheritdoc />
+        void IPossibility.ReturnFromObjective(Link returnSource)
         {
             ++_possibleObjectiveCount;
             switch (State)
             {
                 case NodeState.DROPPED:
-                    if (_objectiveThatCausedDrop != toReattach)
+                    if (_objectiveThatCausedDrop != returnSource)
                     {
                         return;
                     }
                     _objectiveThatCausedDrop = null;
                     _currentOperation = Operation.RETURN;
                     Links.RevertOthersOnPossibility(
-                        toReattach,
+                        returnSource,
                         toReturn => toReturn.Objective.ReturnPossibility(toReturn));
                     State = NodeState.UNKNOWN;
                     _currentOperation = Operation.NONE;

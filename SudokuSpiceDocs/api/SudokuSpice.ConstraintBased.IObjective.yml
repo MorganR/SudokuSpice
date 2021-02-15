@@ -20,10 +20,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IObjective
     path: ../SudokuSpice/ConstraintBased/IObjective.cs
-    startLine: 4
+    startLine: 7
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nDefines an objective in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref> graph.\n"
+  example: []
   syntax:
     content: public interface IObjective
     content.vb: Public Interface IObjective
@@ -51,10 +53,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/IObjective.cs
-    startLine: 6
+    startLine: 12
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: NodeState State { get; }
     parameters: []
@@ -67,6 +71,12 @@ items:
   modifiers.vb:
   - ReadOnly
 references:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased

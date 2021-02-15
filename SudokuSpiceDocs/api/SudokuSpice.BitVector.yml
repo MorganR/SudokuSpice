@@ -11,12 +11,14 @@ items:
   - SudokuSpice.BitVector.Data
   - SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
   - SudokuSpice.BitVector.Equals(System.Object)
+  - SudokuSpice.BitVector.FindDifference(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.GetHashCode
   - SudokuSpice.BitVector.GetSetBits
   - SudokuSpice.BitVector.IsBitSet(System.Int32)
   - SudokuSpice.BitVector.IsEmpty
+  - SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
   - SudokuSpice.BitVector.op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
@@ -47,7 +49,6 @@ items:
     content: 'public struct BitVector : IEquatable<BitVector>'
     content.vb: >-
       Public Structure BitVector
-
           Implements IEquatable(Of BitVector)
   implements:
   - System.IEquatable{SudokuSpice.BitVector}
@@ -98,6 +99,44 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: SudokuSpice.BitVector.IsEmpty
+  commentId: P:SudokuSpice.BitVector.IsEmpty
+  id: IsEmpty
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: IsEmpty
+  nameWithType: BitVector.IsEmpty
+  fullName: SudokuSpice.BitVector.IsEmpty
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IsEmpty
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 34
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nChecks if this vector is empty (i.e. no bits are set).\n"
+  example: []
+  syntax:
+    content: public bool IsEmpty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: True if empty.
+    content.vb: Public ReadOnly Property IsEmpty As Boolean
+  overload: SudokuSpice.BitVector.IsEmpty*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: SudokuSpice.BitVector.#ctor(System.UInt32)
   commentId: M:SudokuSpice.BitVector.#ctor(System.UInt32)
   id: '#ctor(System.UInt32)'
@@ -116,7 +155,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/BitVector.cs
-    startLine: 34
+    startLine: 40
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -152,7 +191,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CreateWithSize
     path: ../SudokuSpice/BitVector.cs
-    startLine: 43
+    startLine: 49
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -192,7 +231,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: FindIntersect
     path: ../SudokuSpice/BitVector.cs
-    startLine: 62
+    startLine: 68
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -236,7 +275,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: FindUnion
     path: ../SudokuSpice/BitVector.cs
-    startLine: 70
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -262,6 +301,50 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: SudokuSpice.BitVector.FindDifference(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.FindDifference(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  id: FindDifference(SudokuSpice.BitVector,SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: FindDifference(BitVector, BitVector)
+  nameWithType: BitVector.FindDifference(BitVector, BitVector)
+  fullName: SudokuSpice.BitVector.FindDifference(SudokuSpice.BitVector, SudokuSpice.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: FindDifference
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 84
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nCreates a bit vector that is the difference of the given vectors.\n"
+  example: []
+  syntax:
+    content: public static BitVector FindDifference(BitVector a, BitVector b)
+    parameters:
+    - id: a
+      type: SudokuSpice.BitVector
+      description: One bit vector.
+    - id: b
+      type: SudokuSpice.BitVector
+      description: The other bit vector.
+    return:
+      type: SudokuSpice.BitVector
+      description: A new <code>BitVector</code> that is the union of the given vectors.
+    content.vb: Public Shared Function FindDifference(a As BitVector, b As BitVector) As BitVector
+  overload: SudokuSpice.BitVector.FindDifference*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: SudokuSpice.BitVector.UnsetBit(System.Int32)
   commentId: M:SudokuSpice.BitVector.UnsetBit(System.Int32)
   id: UnsetBit(System.Int32)
@@ -280,7 +363,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: UnsetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 76
+    startLine: 90
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -316,7 +399,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: SetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 82
+    startLine: 96
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -352,7 +435,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ComputeCount
     path: ../SudokuSpice/BitVector.cs
-    startLine: 92
+    startLine: 106
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -365,41 +448,6 @@ items:
       type: System.Int32
     content.vb: Public Function ComputeCount As Integer
   overload: SudokuSpice.BitVector.ComputeCount*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.BitVector.IsEmpty
-  commentId: M:SudokuSpice.BitVector.IsEmpty
-  id: IsEmpty
-  parent: SudokuSpice.BitVector
-  langs:
-  - csharp
-  - vb
-  name: IsEmpty()
-  nameWithType: BitVector.IsEmpty()
-  fullName: SudokuSpice.BitVector.IsEmpty()
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/BitVector.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: IsEmpty
-    path: ../SudokuSpice/BitVector.cs
-    startLine: 98
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nChecks if this vector is empty (i.e. no bits are set).\n"
-  example: []
-  syntax:
-    content: public bool IsEmpty()
-    return:
-      type: System.Boolean
-      description: True if empty.
-    content.vb: Public Function IsEmpty As Boolean
-  overload: SudokuSpice.BitVector.IsEmpty*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -422,7 +470,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IsBitSet
     path: ../SudokuSpice/BitVector.cs
-    startLine: 105
+    startLine: 113
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -461,7 +509,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 115
+    startLine: 123
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -497,7 +545,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: PopulateSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 161
+    startLine: 169
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -522,6 +570,45 @@ items:
   - Public
   fullName.vb: SudokuSpice.BitVector.PopulateSetBits(System.Span(Of System.Int32))
   name.vb: PopulateSetBits(Span(Of Int32))
+- uid: SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
+  id: IsSubsetOf(SudokuSpice.BitVector)
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: IsSubsetOf(BitVector)
+  nameWithType: BitVector.IsSubsetOf(BitVector)
+  fullName: SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IsSubsetOf
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 197
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nDetermines if this vector is a subset of the given vector (i.e. all bits set in this\nvector are also set in <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code>).\n"
+  example: []
+  syntax:
+    content: public bool IsSubsetOf(BitVector other)
+    parameters:
+    - id: other
+      type: SudokuSpice.BitVector
+      description: The possible superset.
+    return:
+      type: System.Boolean
+      description: True if this is equal to or a subset of the given vector.
+    content.vb: Public Function IsSubsetOf(other As BitVector) As Boolean
+  overload: SudokuSpice.BitVector.IsSubsetOf*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
   commentId: M:SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
   id: Equals(SudokuSpice.BitVector)
@@ -540,7 +627,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 183
+    startLine: 203
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -577,7 +664,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 185
+    startLine: 205
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -615,7 +702,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetHashCode
     path: ../SudokuSpice/BitVector.cs
-    startLine: 194
+    startLine: 214
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -650,7 +737,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/BitVector.cs
-    startLine: 199
+    startLine: 219
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -687,7 +774,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: op_Equality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 201
+    startLine: 221
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -726,7 +813,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: op_Inequality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 202
+    startLine: 222
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -1004,6 +1091,18 @@ references:
   name: UInt32
   nameWithType: UInt32
   fullName: System.UInt32
+- uid: SudokuSpice.BitVector.IsEmpty*
+  commentId: Overload:SudokuSpice.BitVector.IsEmpty
+  name: IsEmpty
+  nameWithType: BitVector.IsEmpty
+  fullName: SudokuSpice.BitVector.IsEmpty
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: SudokuSpice.BitVector.#ctor*
   commentId: Overload:SudokuSpice.BitVector.#ctor
   name: BitVector
@@ -1037,6 +1136,11 @@ references:
   name: FindUnion
   nameWithType: BitVector.FindUnion
   fullName: SudokuSpice.BitVector.FindUnion
+- uid: SudokuSpice.BitVector.FindDifference*
+  commentId: Overload:SudokuSpice.BitVector.FindDifference
+  name: FindDifference
+  nameWithType: BitVector.FindDifference
+  fullName: SudokuSpice.BitVector.FindDifference
 - uid: SudokuSpice.BitVector.UnsetBit*
   commentId: Overload:SudokuSpice.BitVector.UnsetBit
   name: UnsetBit
@@ -1055,18 +1159,6 @@ references:
   name: ComputeCount
   nameWithType: BitVector.ComputeCount
   fullName: SudokuSpice.BitVector.ComputeCount
-- uid: SudokuSpice.BitVector.IsEmpty*
-  commentId: Overload:SudokuSpice.BitVector.IsEmpty
-  name: IsEmpty
-  nameWithType: BitVector.IsEmpty
-  fullName: SudokuSpice.BitVector.IsEmpty
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
 - uid: SudokuSpice.BitVector.IsBitSet*
   commentId: Overload:SudokuSpice.BitVector.IsBitSet
   name: IsBitSet
@@ -1254,6 +1346,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.BitVector.IsSubsetOf*
+  commentId: Overload:SudokuSpice.BitVector.IsSubsetOf
+  name: IsSubsetOf
+  nameWithType: BitVector.IsSubsetOf
+  fullName: SudokuSpice.BitVector.IsSubsetOf
 - uid: SudokuSpice.BitVector.Equals*
   commentId: Overload:SudokuSpice.BitVector.Equals
   name: Equals

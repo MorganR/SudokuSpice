@@ -12,7 +12,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = ExactCoverMatrix.Create(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
             var squareObjectives = new HashSet<Objective>(matrix.GetUnsatisfiedRequiredObjectives());
 
             Assert.True(new ColumnUniquenessConstraint().TryConstrain(puzzle, matrix));
