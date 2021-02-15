@@ -26,6 +26,12 @@ namespace SudokuSpice.ConstraintBased
         public NodeState State => _state;
 
         /// <summary>
+        /// True if at least one attached possibility is actually a <see cref="Possibility"/>
+        /// object.
+        /// </summary>
+        internal bool AtLeastOnePossibilityIsConcrete => _atLeastOnePossibilityIsConcrete;
+
+        /// <summary>
         /// Whether or not all unknown possibilities are actually <see cref="Possibility"/>
         /// objects.
         /// 
@@ -110,7 +116,6 @@ namespace SudokuSpice.ConstraintBased
             {
                 Link.CreateConnectedLink(possibility, objective);
             }
-            // TODO: Only attach if at least one possibility is concrete.
             objective._linkInGraph = graph.AttachObjective(objective);
             return objective;
         }

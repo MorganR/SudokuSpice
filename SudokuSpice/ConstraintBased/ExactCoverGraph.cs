@@ -34,7 +34,8 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly int[] _allPossibleValues;
         private readonly Possibility?[]?[][] _possibilities;
-        private readonly LinkedList<Objective> _unsatisfiedObjectives;
+        private readonly LinkedList<Objective> _unsatisfiedObjectivesWithPossibilities;
+        private readonly LinkedList<Objective> _unsatisfiedObjectivesWithoutPossibilities;
 
         /// <summary>
         /// Contains the possible values for the current puzzle.
@@ -56,7 +57,8 @@ namespace SudokuSpice.ConstraintBased
                 _possibilities[rowIndex] = new Possibility[size][];
             }
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
-            _unsatisfiedObjectives = new LinkedList<Objective>();
+            _unsatisfiedObjectivesWithPossibilities = new LinkedList<Objective>();
+            _unsatisfiedObjectivesWithoutPossibilities = new LinkedList<Objective>();
             var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {
@@ -74,7 +76,8 @@ namespace SudokuSpice.ConstraintBased
                 _possibilities[rowIndex] = new Possibility[length][];
             }
             _allPossibleValues = other.AllPossibleValues.ToArray();
-            _unsatisfiedObjectives = new LinkedList<Objective>();
+            _unsatisfiedObjectivesWithPossibilities = new LinkedList<Objective>();
+            _unsatisfiedObjectivesWithoutPossibilities = new LinkedList<Objective>();
             ValuesToIndices = other.ValuesToIndices;
         }
 
@@ -112,7 +115,14 @@ namespace SudokuSpice.ConstraintBased
         internal ExactCoverGraph CopyUnknowns()
         {
             var copy = new ExactCoverGraph(this);
-            foreach (var requiredObjective in _unsatisfiedObjectives)
+            foreach (var requiredObjective in _unsatisfiedObjectivesWithPossibilities)
+            {
+                var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
+                Objective.CreateFullyConnected(
+                    copy,
+                    possibilitiesForObjective, requiredObjective.TotalCountToSatisfy);
+            }
+            foreach (var requiredObjective in _unsatisfiedObjectivesWithoutPossibilities)
             {
                 var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
                 Objective.CreateFullyConnected(
@@ -129,9 +139,22 @@ namespace SudokuSpice.ConstraintBased
         public Possibility?[]? GetAllPossibilitiesAt(in Coordinate c) => _possibilities[c.Row][c.Column];
 
         /// <summary>
+        /// Gets all the currently unsatisfied <see cref="Objective"/>s that have at least one
+        /// concrete <see cref="Possibility"/> as a direct possibility.
+        /// </summary>
+        public IEnumerable<Objective> GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+        {
+            return _unsatisfiedObjectivesWithPossibilities;
+        }
+
+        /// <summary>
         /// Gets all the currently unsatisfied <see cref="Objective"/>s.
         /// </summary>
-        public IEnumerable<Objective> GetUnsatisfiedRequiredObjectives() => _unsatisfiedObjectives;
+        public IEnumerable<Objective> GetUnsatisfiedRequiredObjectives()
+        {
+            return ((IEnumerable<Objective>)_unsatisfiedObjectivesWithPossibilities)
+                .Concat(_unsatisfiedObjectivesWithoutPossibilities);
+        }
 
         /// <summary>
         /// Gets all the possiblities, grouped by column, on the requested row.
@@ -149,17 +172,33 @@ namespace SudokuSpice.ConstraintBased
 
         internal LinkedListNode<Objective> AttachObjective(Objective objective)
         {
-            return _unsatisfiedObjectives.AddLast(objective);
+            if (objective.AtLeastOnePossibilityIsConcrete)
+            {
+                return _unsatisfiedObjectivesWithPossibilities.AddLast(objective);
+            }
+            return _unsatisfiedObjectivesWithoutPossibilities.AddLast(objective);
         }
 
         internal void DetachObjective(LinkedListNode<Objective> node)
         {
-            _unsatisfiedObjectives.Remove(node);
+            if (node.Value.AtLeastOnePossibilityIsConcrete)
+            {
+                _unsatisfiedObjectivesWithPossibilities.Remove(node);
+            } else
+            {
+                _unsatisfiedObjectivesWithoutPossibilities.Remove(node);
+            }
         }
 
         internal void ReattachObjective(LinkedListNode<Objective> node)
         {
-            _unsatisfiedObjectives.AddLast(node);
+            if (node.Value.AtLeastOnePossibilityIsConcrete)
+            {
+                _unsatisfiedObjectivesWithPossibilities.AddLast(node);
+            } else
+            {
+                _unsatisfiedObjectivesWithoutPossibilities.AddLast(node);
+            }
         }
 
         private IEnumerable<IPossibility> _CopyUnknownPossibilities(IObjective objective, ExactCoverGraph puzzleCopy)

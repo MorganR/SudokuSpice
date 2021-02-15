@@ -33,7 +33,7 @@ namespace SudokuSpice.ConstraintBased
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Objective? bestObjective = null;
-            foreach (Objective? objective in _graph.GetUnsatisfiedRequiredObjectives())
+            foreach (Objective? objective in _graph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities())
             {
                 if (!objective.AllUnknownPossibilitiesAreConcrete)
                 {
