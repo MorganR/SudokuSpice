@@ -184,7 +184,7 @@ namespace SudokuSpice.ConstraintBased
                         continue;
                     }
                     var copiedPossibilities = _CopyUnknownPossibilities(optionalObjective, puzzleCopy).ToArray();
-                    yield return OptionalObjective.CreateWithPossibilities(copiedPossibilities, optionalObjective.TotalCountToSatisfy);
+                    yield return OptionalObjective.CreateWithPossibilities(copiedPossibilities, optionalObjective.RemainingCountToSatisfy);
                 } else
                 {
                     throw new ArgumentException($"Possibilities must be one of {nameof(Possibility)} and {nameof(OptionalObjective)} in order to copy objectives. Received possibility with type: {possibility.GetType().Name}");

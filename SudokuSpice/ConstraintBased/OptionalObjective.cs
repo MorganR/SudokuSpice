@@ -31,6 +31,7 @@ namespace SudokuSpice.ConstraintBased
         private bool _IsSatisfied => _selectedCount == _totalCountToSatisfy;
         private int _CountUnknown => _possibilityCount - _selectedCount;
         internal int TotalCountToSatisfy => _totalCountToSatisfy;
+        internal int RemainingCountToSatisfy => _totalCountToSatisfy - _selectedCount;
 
         bool IObjective.IsRequired => false;
 
@@ -46,7 +47,7 @@ namespace SudokuSpice.ConstraintBased
         {
             if (countToSatisfy < 1 || countToSatisfy > possibilities.Length)
             {
-                throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length].");
+                throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length]. Received: {countToSatisfy} with {possibilities.Length} possibilities.");
             }
             var objective = new OptionalObjective(countToSatisfy);
             foreach (var possibility in possibilities)
