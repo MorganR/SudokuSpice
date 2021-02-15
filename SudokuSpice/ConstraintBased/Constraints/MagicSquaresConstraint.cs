@@ -101,7 +101,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <inheritdoc />
-        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
         {
             if (!_IsCompatible(puzzle))
             {
@@ -109,7 +109,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             foreach (Box box in _magicSquares)
             {
-                if (!_TryConstrainBox(box, puzzle, matrix))
+                if (!_TryConstrainBox(box, puzzle, graph))
                 {
                     return false;
                 }
@@ -136,7 +136,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return copiedSet.IsEmpty;
         }
 
-        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
+        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
         {
             Coordinate startCoord = box.TopLeft;
             Span<Coordinate> toConstrain = stackalloc Coordinate[_squareSize];
@@ -147,11 +147,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     toConstrain[i] = new Coordinate(startCoord.Row + rowIdx, startCoord.Column + i);
                 }
-                if (!_TryConstrainToPossibleSets(toConstrain, puzzle, matrix, setsToOr))
+                if (!_TryConstrainToPossibleSets(toConstrain, puzzle, graph, setsToOr))
                 {
                     return false;
                 }
-                _ConstrainAndClearOverlappingSets(matrix, setsToOr);
+                _ConstrainAndClearOverlappingSets(graph, setsToOr);
             }
             for (int colIdx = 0; colIdx < _squareSize; ++colIdx)
             {
@@ -159,11 +159,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 {
                     toConstrain[i] = new Coordinate(startCoord.Row + i, startCoord.Column + colIdx);
                 }
-                if (!_TryConstrainToPossibleSets(toConstrain, puzzle, matrix, setsToOr))
+                if (!_TryConstrainToPossibleSets(toConstrain, puzzle, graph, setsToOr))
                 {
                     return false;
                 }
-                _ConstrainAndClearOverlappingSets(matrix, setsToOr);
+                _ConstrainAndClearOverlappingSets(graph, setsToOr);
             }
             if (!_includeDiagonals)
             {
@@ -174,27 +174,27 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 toConstrain[offset] = new Coordinate(startCoord.Row + offset, lastColumn - offset);
             }
-            if (!_TryConstrainToPossibleSets(toConstrain, puzzle, matrix, setsToOr))
+            if (!_TryConstrainToPossibleSets(toConstrain, puzzle, graph, setsToOr))
             {
                 return false;
             }
-            _ConstrainAndClearOverlappingSets(matrix, setsToOr);
+            _ConstrainAndClearOverlappingSets(graph, setsToOr);
             for (int offset = 0; offset < _squareSize; ++offset)
             {
                 toConstrain[offset] = new Coordinate(startCoord.Row + offset, startCoord.Column + offset);
             }
-            if (!_TryConstrainToPossibleSets(toConstrain, puzzle, matrix, setsToOr))
+            if (!_TryConstrainToPossibleSets(toConstrain, puzzle, graph, setsToOr))
             {
                 return false;
             }
-            _ConstrainAndClearOverlappingSets(matrix, setsToOr);
+            _ConstrainAndClearOverlappingSets(graph, setsToOr);
             return true;
         }
 
         private bool _TryConstrainToPossibleSets(
             ReadOnlySpan<Coordinate> toConstrain,
             IReadOnlyPuzzle puzzle,
-            ExactCoverGraph matrix,
+            ExactCoverGraph graph,
             List<OptionalObjective> setsToOr)
         {
             Possibility?[]?[] unsetSquares = new Possibility[toConstrain.Length][];
@@ -208,7 +208,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     alreadySet.SetBit(square.Value);
                 } else
                 {
-                    unsetSquares[numUnset++] = matrix.GetAllPossibilitiesAt(in toConstrain[i])!;
+                    unsetSquares[numUnset++] = graph.GetAllPossibilitiesAt(in toConstrain[i])!;
                 }
             }
             if (numUnset == 0)
@@ -226,7 +226,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             var valuesToDrop = BitVector.FindDifference(_allPossibleValues, unsetRelevantValues);
             foreach (var value in valuesToDrop.GetSetBits())
             {
-                if (!ConstraintUtil.TryDropPossibilitiesAtIndex(unsetSquares[0..numUnset], matrix.ValuesToIndices[value]))
+                if (!ConstraintUtil.TryDropPossibilitiesAtIndex(unsetSquares[0..numUnset], graph.ValuesToIndices[value]))
                 {
                     return false;
                 }
@@ -238,8 +238,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
                     unsetSquares[0..numUnset],
-                    matrix.ValuesToIndices[possibleValue],
-                    matrix,
+                    graph.ValuesToIndices[possibleValue],
+                    graph,
                     requiredCount: 1,
                     objective: out OptionalObjective? objective))
                 {
@@ -285,7 +285,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 foreach (var valueToDrop in groupedValuesToDrop.GetSetBits())
                 {
                     if (!ConstraintUtil.TryDropPossibilitiesAtIndex(
-                        unsetSquares[0..numUnset], matrix.ValuesToIndices[valueToDrop]))
+                        unsetSquares[0..numUnset], graph.ValuesToIndices[valueToDrop]))
                     {
                         return false;
                     }
@@ -294,9 +294,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return setsToOr.Count > 0;
         } 
 
-        private void _ConstrainAndClearOverlappingSets(ExactCoverGraph matrix, List<OptionalObjective> setsToOr)
+        private void _ConstrainAndClearOverlappingSets(ExactCoverGraph graph, List<OptionalObjective> setsToOr)
         {
-            Objective.CreateFullyConnected(matrix, setsToOr.ToArray(), countToSatisfy: 1);
+            Objective.CreateFullyConnected(graph, setsToOr.ToArray(), countToSatisfy: 1);
             setsToOr.Clear();
         }
     }

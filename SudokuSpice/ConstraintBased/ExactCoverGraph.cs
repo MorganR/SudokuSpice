@@ -33,7 +33,7 @@ namespace SudokuSpice.ConstraintBased
     public class ExactCoverGraph
     {
         private readonly int[] _allPossibleValues;
-        private readonly Possibility?[]?[][] _matrix;
+        private readonly Possibility?[]?[][] _possibilities;
         private readonly LinkedList<Objective> _unsatisfiedObjectives;
 
         /// <summary>
@@ -50,10 +50,10 @@ namespace SudokuSpice.ConstraintBased
         private ExactCoverGraph(IReadOnlyPuzzle puzzle)
         {
             int size = puzzle.Size;
-            _matrix = new Possibility[size][][];
+            _possibilities = new Possibility[size][][];
             for (int rowIndex = 0; rowIndex < size; ++rowIndex)
             {
-                _matrix[rowIndex] = new Possibility[size][];
+                _possibilities[rowIndex] = new Possibility[size][];
             }
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
             _unsatisfiedObjectives = new LinkedList<Objective>();
@@ -67,11 +67,11 @@ namespace SudokuSpice.ConstraintBased
 
         private ExactCoverGraph(ExactCoverGraph other)
         {
-            int length = other._matrix.Length;
-            _matrix = new Possibility[length][][];
+            int length = other._possibilities.Length;
+            _possibilities = new Possibility[length][][];
             for (int rowIndex = 0; rowIndex < length; ++rowIndex)
             {
-                _matrix[rowIndex] = new Possibility[length][];
+                _possibilities[rowIndex] = new Possibility[length][];
             }
             _allPossibleValues = other.AllPossibleValues.ToArray();
             _unsatisfiedObjectives = new LinkedList<Objective>();
@@ -89,24 +89,24 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="puzzle">The puzzle to solve.</param>
         public static ExactCoverGraph Create(IReadOnlyPuzzle puzzle)
         {
-            var matrix = new ExactCoverGraph(puzzle);
+            var graph = new ExactCoverGraph(puzzle);
             int size = puzzle.Size;
             for (int rowIndex = 0; rowIndex < size; rowIndex++)
             {
-                var possibilitiesRow = matrix._matrix[rowIndex];
+                var possibilitiesRow = graph._possibilities[rowIndex];
                 for (int columnIndex = 0; columnIndex < size; columnIndex++)
                 {
                     var coord = new Coordinate(rowIndex, columnIndex);
                     if (!puzzle[in coord].HasValue)
                     {
-                        var possibilitiesForSquare = matrix._allPossibleValues.Select((_, index) => new Possibility(coord, index)).ToArray();
+                        var possibilitiesForSquare = graph._allPossibleValues.Select((_, index) => new Possibility(coord, index)).ToArray();
                         possibilitiesRow[columnIndex] = possibilitiesForSquare;
                         // Enforce that all squares need to have a value.
-                        Objective.CreateFullyConnected(matrix, possibilitiesForSquare, 1);
+                        Objective.CreateFullyConnected(graph, possibilitiesForSquare, 1);
                     }
                 }
             }
-            return matrix;
+            return graph;
         }
 
         internal ExactCoverGraph CopyUnknowns()
@@ -126,7 +126,7 @@ namespace SudokuSpice.ConstraintBased
         /// Gets the possibilities at the given <see cref="Coordinate"/>. This returns null if
         /// the square's value was preset in the current puzzle being solved.
         /// </summary>
-        public Possibility?[]? GetAllPossibilitiesAt(in Coordinate c) => _matrix[c.Row][c.Column];
+        public Possibility?[]? GetAllPossibilitiesAt(in Coordinate c) => _possibilities[c.Row][c.Column];
 
         /// <summary>
         /// Gets all the currently unsatisfied <see cref="Objective"/>s.
@@ -139,13 +139,13 @@ namespace SudokuSpice.ConstraintBased
         /// Indexing the result looks like:
         ///
         /// <c>
-        /// var row = matrix.GetSquaresOnRow(rowIndex);
+        /// var row = graph.GetSquaresOnRow(rowIndex);
         /// var possibility = row[columnIndex][valueIndex];
         /// </c>
         /// </summary>
         /// <param name="row">A zero-based row index.</param>
         public ReadOnlySpan<Possibility?[]?> GetPossibilitiesOnRow(int row) =>
-            new ReadOnlySpan<Possibility?[]?>(_matrix[row]);
+            new ReadOnlySpan<Possibility?[]?>(_possibilities[row]);
 
         internal LinkedListNode<Objective> AttachObjective(Objective objective)
         {
@@ -164,7 +164,7 @@ namespace SudokuSpice.ConstraintBased
 
         private IEnumerable<IPossibility> _CopyUnknownPossibilities(IObjective objective, ExactCoverGraph puzzleCopy)
         {
-            var length = _matrix.Length;
+            var length = _possibilities.Length;
             foreach (var possibility in objective.GetUnknownDirectPossibilities())
             {
                 if (possibility is Possibility concretePossibility)
@@ -175,7 +175,7 @@ namespace SudokuSpice.ConstraintBased
                     }
 
                     var coord = concretePossibility.Coordinate;
-                    var copiedRow = puzzleCopy._matrix[coord.Row];
+                    var copiedRow = puzzleCopy._possibilities[coord.Row];
                     var copiedSquare = copiedRow[coord.Column];
                     if (copiedSquare is null)
                     {

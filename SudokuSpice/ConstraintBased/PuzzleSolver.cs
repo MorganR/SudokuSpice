@@ -39,17 +39,17 @@ namespace SudokuSpice.ConstraintBased
                     $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
             var puzzleCopy = puzzle.DeepCopy();
-            var matrix = ExactCoverGraph.Create(puzzleCopy);
+            var graph = ExactCoverGraph.Create(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzleCopy, matrix))
+                if (!constraint.TryConstrain(puzzleCopy, graph))
                 {
                     throw new ArgumentException("Puzzle violates this solver's constraints.");
                 };
             }
             if (!(randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzleCopy, matrix)) :
-                _TrySolve(new Guesser<TPuzzle>(puzzleCopy, matrix))))
+                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzleCopy, graph)) :
+                _TrySolve(new Guesser<TPuzzle>(puzzleCopy, graph))))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
@@ -63,17 +63,17 @@ namespace SudokuSpice.ConstraintBased
             {
                 return false;
             }
-            var matrix = ExactCoverGraph.Create(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzle, matrix))
+                if (!constraint.TryConstrain(puzzle, graph))
                 {
                     return false;
                 }
             }
             return randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzle, matrix)) :
-                _TrySolve(new Guesser<TPuzzle>(puzzle, matrix));
+                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzle, graph)) :
+                _TrySolve(new Guesser<TPuzzle>(puzzle, graph));
         }
 
         /// <inheritdoc/>
@@ -96,15 +96,15 @@ namespace SudokuSpice.ConstraintBased
                 return new SolveStats();
             }
             var puzzleCopy = puzzle.DeepCopy();
-            var matrix = ExactCoverGraph.Create(puzzleCopy);
+            var graph = ExactCoverGraph.Create(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzleCopy, matrix))
+                if (!constraint.TryConstrain(puzzleCopy, graph))
                 {
                     return new SolveStats();
                 }
             }
-            return _TryAllSolutions(new Guesser<TPuzzle>(puzzleCopy, matrix), validateUniquenessOnly, token);
+            return _TryAllSolutions(new Guesser<TPuzzle>(puzzleCopy, graph), validateUniquenessOnly, token);
         }
 
 

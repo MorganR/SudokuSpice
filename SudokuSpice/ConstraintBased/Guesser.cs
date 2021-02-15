@@ -7,24 +7,23 @@ namespace SudokuSpice.ConstraintBased
     internal class Guesser<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
-        private readonly ExactCoverGraph _matrix;
+        private readonly ExactCoverGraph _graph;
         private readonly Stack<Guess> _setSquares;
 
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
-        internal Guesser(TPuzzle puzzle, ExactCoverGraph matrix)
+        internal Guesser(TPuzzle puzzle, ExactCoverGraph graph)
         {
             _puzzle = puzzle;
-            _matrix = matrix;
+            _graph = graph;
             _setSquares = new Stack<Guess>(puzzle.NumEmptySquares);
         }
 
         private Guesser(Guesser<TPuzzle> other)
         {
-            // Puzzle is guaranteed to be of type TPuzzle.
             _puzzle = other._puzzle.DeepCopy();
-            // Copy matrix, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
-            _matrix = other._matrix.CopyUnknowns();
+            // Copy graph, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
+            _graph = other._graph.CopyUnknowns();
             _setSquares = new Stack<Guess>(_puzzle.NumEmptySquares);
         }
 
@@ -34,7 +33,7 @@ namespace SudokuSpice.ConstraintBased
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Objective? bestObjective = null;
-            foreach (Objective? objective in _matrix.GetUnsatisfiedRequiredObjectives())
+            foreach (Objective? objective in _graph.GetUnsatisfiedRequiredObjectives())
             {
                 if (!objective.AllUnknownPossibilitiesAreConcrete)
                 {
@@ -61,7 +60,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal bool TrySet(in Guess guess)
         {
-            Possibility?[]? square = _matrix.GetAllPossibilitiesAt(guess.Coordinate);
+            Possibility?[]? square = _graph.GetAllPossibilitiesAt(guess.Coordinate);
             Debug.Assert(
                 square is not null,
                 $"Tried to set {guess.Coordinate} to value at {guess.PossibilityIndex}, but square was null.");
@@ -73,7 +72,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 return false;
             }
-            _puzzle[guess.Coordinate] = _matrix.AllPossibleValues[guess.PossibilityIndex];
+            _puzzle[guess.Coordinate] = _graph.AllPossibleValues[guess.PossibilityIndex];
             _setSquares.Push(guess);
             return true;
         }
@@ -85,7 +84,7 @@ namespace SudokuSpice.ConstraintBased
                 "Tried to call UnsetLast when no squares had been set.");
             Guess setSquare = _setSquares.Pop();
             _puzzle[setSquare.Coordinate] = null;
-            Possibility?[]? square = _matrix.GetAllPossibilitiesAt(setSquare.Coordinate);
+            Possibility?[]? square = _graph.GetAllPossibilitiesAt(setSquare.Coordinate);
             Debug.Assert(
                 square is not null,
                 $"Tried to unset the last update to a null square at {setSquare.Coordinate}.");

@@ -213,7 +213,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         private static int _RetrieveUnknownPossibilities(
-            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph matrix,
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph,
             Span<Possibility?> unknownPossibilities)
         {
             Debug.Assert(unknownPossibilities.Length == squares.Length);

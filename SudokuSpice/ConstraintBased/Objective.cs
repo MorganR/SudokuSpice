@@ -12,14 +12,14 @@ namespace SudokuSpice.ConstraintBased
     public class Objective : IObjective
     {
         private readonly int _countToSatisfy;
-        private readonly ExactCoverGraph _matrix;
+        private readonly ExactCoverGraph _graph;
         private readonly Stack<Link> _previousFirstPossibilityLinks = new();
         private int _possibilityCount;
         private int _selectedCount;
         private Link? _toPossibility;
         private bool _allPossibilitiesAreConcrete;
         private bool _atLeastOnePossibilityIsConcrete;
-        private LinkedListNode<Objective>? _linkInMatrix;
+        private LinkedListNode<Objective>? _linkInGraph;
         private NodeState _state;
 
         /// <inheritdoc />
@@ -71,9 +71,9 @@ namespace SudokuSpice.ConstraintBased
         /// <inheritdoc />
         bool IObjective.IsRequired => true;
 
-        private Objective(ExactCoverGraph matrix, int countToSatisfy)
+        private Objective(ExactCoverGraph graph, int countToSatisfy)
         {
-            _matrix = matrix;
+            _graph = graph;
             _countToSatisfy = countToSatisfy;
             _allPossibilitiesAreConcrete = true;
             _atLeastOnePossibilityIsConcrete = false;
@@ -111,7 +111,7 @@ namespace SudokuSpice.ConstraintBased
                 Link.CreateConnectedLink(possibility, objective);
             }
             // TODO: Only attach if at least one possibility is concrete.
-            objective._linkInMatrix = graph.AttachObjective(objective);
+            objective._linkInGraph = graph.AttachObjective(objective);
             return objective;
         }
 
@@ -165,9 +165,9 @@ namespace SudokuSpice.ConstraintBased
                     --_selectedCount;
                     return false;
                 }
-                Debug.Assert(_linkInMatrix is not null,
-                    $"{nameof(_linkInMatrix)} should be set during construction.");
-                _matrix.DetachObjective(_linkInMatrix);
+                Debug.Assert(_linkInGraph is not null,
+                    $"{nameof(_linkInGraph)} should be set during construction.");
+                _graph.DetachObjective(_linkInGraph);
                 _state = NodeState.SELECTED;
             }
             _PopPossibility(toSelect);
@@ -183,9 +183,9 @@ namespace SudokuSpice.ConstraintBased
             if (IsSatisfied)
             {
                 _state = NodeState.UNKNOWN;
-                Debug.Assert(_linkInMatrix is not null,
-                    $"{nameof(_linkInMatrix)} should be set during construction.");
-                _matrix.ReattachObjective(_linkInMatrix);
+                Debug.Assert(_linkInGraph is not null,
+                    $"{nameof(_linkInGraph)} should be set during construction.");
+                _graph.ReattachObjective(_linkInGraph);
                 Links.RevertOthersOnObjective(
                     toDeselect,
                     toReattach => toReattach.Possibility.ReturnFromObjective(toReattach));

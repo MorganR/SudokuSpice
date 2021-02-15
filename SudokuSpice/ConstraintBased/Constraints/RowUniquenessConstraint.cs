@@ -8,20 +8,20 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
         {
             Span<bool> isConstraintSatisfiedAtIndex =
-                   stackalloc bool[matrix.AllPossibleValues.Length];
+                   stackalloc bool[graph.AllPossibleValues.Length];
             for (int row = 0; row < puzzle.Size; row++)
             {
-                ReadOnlySpan<Possibility?[]?> rowSquares = matrix.GetPossibilitiesOnRow(row);
+                ReadOnlySpan<Possibility?[]?> rowSquares = graph.GetPossibilitiesOnRow(row);
                 isConstraintSatisfiedAtIndex.Clear();
                 for (int col = 0; col < puzzle.Size; col++)
                 {
                     int? puzzleValue = puzzle[row, col];
                     if (puzzleValue.HasValue)
                     {
-                        int valueIndex = matrix.ValuesToIndices[puzzleValue.Value];
+                        int valueIndex = graph.ValuesToIndices[puzzleValue.Value];
                         if (isConstraintSatisfiedAtIndex[valueIndex])
                         {
                             return false;
@@ -40,7 +40,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                         continue;
                     }
                     if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(
-                        rowSquares, possibilityIndex, matrix, requiredCount: 1, objective: out _))
+                        rowSquares, possibilityIndex, graph, requiredCount: 1, objective: out _))
                     {
                         return false;
                     }
