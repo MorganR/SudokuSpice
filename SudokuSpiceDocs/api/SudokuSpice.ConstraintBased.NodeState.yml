@@ -1,0 +1,153 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  id: NodeState
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.NodeState.DROPPED
+  - SudokuSpice.ConstraintBased.NodeState.SELECTED
+  - SudokuSpice.ConstraintBased.NodeState.UNKNOWN
+  langs:
+  - csharp
+  - vb
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+  type: Enum
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/NodeState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: NodeState
+    path: ../SudokuSpice/ConstraintBased/NodeState.cs
+    startLine: 5
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nIndicates if a <see cref=\"!:PossibleSquareValue\"></see> is still possible, selected, or dropped.\n"
+  example: []
+  syntax:
+    content: public enum NodeState
+    content.vb: Public Enum NodeState
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: SudokuSpice.ConstraintBased.NodeState.UNKNOWN
+  commentId: F:SudokuSpice.ConstraintBased.NodeState.UNKNOWN
+  id: UNKNOWN
+  parent: SudokuSpice.ConstraintBased.NodeState
+  langs:
+  - csharp
+  - vb
+  name: UNKNOWN
+  nameWithType: NodeState.UNKNOWN
+  fullName: SudokuSpice.ConstraintBased.NodeState.UNKNOWN
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/NodeState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: UNKNOWN
+    path: ../SudokuSpice/ConstraintBased/NodeState.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThis <see cref=\"!:PossibleSquareValue\"></see> is still possible.\n"
+  example: []
+  syntax:
+    content: UNKNOWN = 0
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: SudokuSpice.ConstraintBased.NodeState.SELECTED
+  commentId: F:SudokuSpice.ConstraintBased.NodeState.SELECTED
+  id: SELECTED
+  parent: SudokuSpice.ConstraintBased.NodeState
+  langs:
+  - csharp
+  - vb
+  name: SELECTED
+  nameWithType: NodeState.SELECTED
+  fullName: SudokuSpice.ConstraintBased.NodeState.SELECTED
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/NodeState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: SELECTED
+    path: ../SudokuSpice/ConstraintBased/NodeState.cs
+    startLine: 14
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThis <see cref=\"!:PossibleSquareValue\"></see> has been selected.\n"
+  example: []
+  syntax:
+    content: SELECTED = 1
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: SudokuSpice.ConstraintBased.NodeState.DROPPED
+  commentId: F:SudokuSpice.ConstraintBased.NodeState.DROPPED
+  id: DROPPED
+  parent: SudokuSpice.ConstraintBased.NodeState
+  langs:
+  - csharp
+  - vb
+  name: DROPPED
+  nameWithType: NodeState.DROPPED
+  fullName: SudokuSpice.ConstraintBased.NodeState.DROPPED
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/NodeState.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: DROPPED
+    path: ../SudokuSpice/ConstraintBased/NodeState.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThis <see cref=\"!:PossibleSquareValue\"></see> has been dropped, i.e. it is no longer possible\nwith the currently selected values.\n"
+  example: []
+  syntax:
+    content: DROPPED = 2
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState

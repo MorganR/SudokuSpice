@@ -80,6 +80,10 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Objective</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -108,7 +112,102 @@
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_Objective_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Objective : IObjective&lt;Objective, Possibility&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class Objective : IObjective</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Objective_State.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Objective.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Objective.cs/#L21">View Source</a>
+  </span>
+  <a id="SudokuSpice_ConstraintBased_Objective_State_" data-uid="SudokuSpice.ConstraintBased.Objective.State*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_Objective_State" data-uid="SudokuSpice.ConstraintBased.Objective.State">State</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NodeState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.NodeState.html">NodeState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Objective_CreateFullyConnected_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_ReadOnlySpan_SudokuSpice_ConstraintBased_IPossibility__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix%2CSystem.ReadOnlySpan%7BSudokuSpice.ConstraintBased.IPossibility%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Objective.cs/#L60">View Source</a>
+  </span>
+  <a id="SudokuSpice_ConstraintBased_Objective_CreateFullyConnected_" data-uid="SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_Objective_CreateFullyConnected_SudokuSpice_ConstraintBased_ExactCoverMatrix_System_ReadOnlySpan_SudokuSpice_ConstraintBased_IPossibility__System_Int32_" data-uid="SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)">CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan&lt;IPossibility&gt;, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Objective CreateFullyConnected(ExactCoverMatrix matrix, ReadOnlySpan&lt;IPossibility&gt; possibilities, int countToSatisfy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a></td>
+        <td><span class="parametername">matrix</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a>&gt;</td>
+        <td><span class="parametername">possibilities</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">countToSatisfy</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a>
   </div>
 </article>
           </div>
@@ -121,7 +220,7 @@
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Objective.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Objective%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Objective.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Objective.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

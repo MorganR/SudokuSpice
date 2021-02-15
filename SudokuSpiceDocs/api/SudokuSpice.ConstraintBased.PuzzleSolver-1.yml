@@ -24,7 +24,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: PuzzleSolver
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -38,6 +38,7 @@ items:
       description: The type of puzzle to solve.
     content.vb: >-
       Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzle(Of TPuzzle)})
+
           Implements IPuzzleSolver(Of TPuzzle)
   inheritance:
   - System.Object
@@ -78,7 +79,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 26
+    startLine: 27
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -117,30 +118,22 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Solve
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nSolves the given puzzle in place.\n"
   example: []
   syntax:
     content: public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
-      description: "\nThe puzzle to solve. This will be copied instead of solved in-place.\n"
     - id: randomizeGuesses
       type: System.Boolean
-      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
     return:
       type: '{TPuzzle}'
-      description: A solved copy of the given puzzle.
     content.vb: Public Function Solve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As TPuzzle
   overload: SudokuSpice.ConstraintBased.PuzzleSolver`1.Solve*
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\nThrown if this puzzle can&apos;t be solved by this solver.\n"
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.Solve({TPuzzle},System.Boolean)
   nameWithType.vb: PuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
@@ -167,21 +160,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySolve
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nAttempts to solve the given puzzle.\n"
   example: []
   syntax:
     content: public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
-      description: The puzzle to solve. This will be solved in place.
     - id: randomizeGuesses
       type: System.Boolean
-      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
     return:
       type: System.Boolean
     content.vb: Public Function TrySolve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As Boolean
@@ -212,11 +202,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ComputeStatsForAllSolutions
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 78
+    startLine: 79
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
   example: []
   syntax:
     content: public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
@@ -229,10 +218,6 @@ items:
       type: SudokuSpice.SolveStats
     content.vb: Public Function ComputeStatsForAllSolutions(puzzle As TPuzzle, token As CancellationToken? = Nothing) As SolveStats
   overload: SudokuSpice.ConstraintBased.PuzzleSolver`1.ComputeStatsForAllSolutions*
-  exceptions:
-  - type: System.OperationCanceledException
-    commentId: T:System.OperationCanceledException
-    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.ComputeStatsForAllSolutions({TPuzzle},System.Nullable{System.Threading.CancellationToken})
   nameWithType.vb: PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
@@ -260,11 +245,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: HasUniqueSolution
     path: ../SudokuSpice/ConstraintBased/PuzzleSolver.cs
-    startLine: 84
+    startLine: 85
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nDetermines if the given puzzle has a unique solution. The puzzle is left unchanged.\n"
   example: []
   syntax:
     content: public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
@@ -277,10 +261,6 @@ items:
       type: System.Boolean
     content.vb: Public Function HasUniqueSolution(puzzle As TPuzzle, token As CancellationToken? = Nothing) As Boolean
   overload: SudokuSpice.ConstraintBased.PuzzleSolver`1.HasUniqueSolution*
-  exceptions:
-  - type: System.OperationCanceledException
-    commentId: T:System.OperationCanceledException
-    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.HasUniqueSolution({TPuzzle},System.Nullable{System.Threading.CancellationToken})
   nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
@@ -888,9 +868,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
 - uid: '{TPuzzle}'
   commentId: '!:TPuzzle'
   definition: TPuzzle
@@ -1155,9 +1132,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.OperationCanceledException
-  commentId: T:System.OperationCanceledException
-  isExternal: true
 - uid: System.Nullable{System.Threading.CancellationToken}
   commentId: T:System.Nullable{System.Threading.CancellationToken}
   parent: System

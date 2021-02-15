@@ -6,8 +6,9 @@ items:
   parent: SudokuSpice.ConstraintBased
   children:
   - SudokuSpice.ConstraintBased.Possibility.Coordinate
+  - SudokuSpice.ConstraintBased.Possibility.Index
   - SudokuSpice.ConstraintBased.Possibility.State
-  - SudokuSpice.ConstraintBased.Possibility.ValueIndex
+  - SudokuSpice.ConstraintBased.Possibility.TryDrop
   langs:
   - csharp
   - vb
@@ -22,17 +23,20 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Possibility
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 9
+    startLine: 6
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   syntax:
-    content: 'public class Possibility : IPossibility<Possibility, Objective>'
+    content: 'public class Possibility : IPossibility'
     content.vb: >-
       Public Class Possibility
-          Implements IPossibility(Of Possibility, Objective)
+
+          Implements IPossibility
   inheritance:
   - System.Object
+  implements:
+  - SudokuSpice.ConstraintBased.IPossibility
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -65,7 +69,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Coordinate
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 13
+    startLine: 22
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -82,35 +86,35 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.ConstraintBased.Possibility.ValueIndex
-  commentId: P:SudokuSpice.ConstraintBased.Possibility.ValueIndex
-  id: ValueIndex
+- uid: SudokuSpice.ConstraintBased.Possibility.Index
+  commentId: P:SudokuSpice.ConstraintBased.Possibility.Index
+  id: Index
   parent: SudokuSpice.ConstraintBased.Possibility
   langs:
   - csharp
   - vb
-  name: ValueIndex
-  nameWithType: Possibility.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.Possibility.ValueIndex
+  name: Index
+  nameWithType: Possibility.Index
+  fullName: SudokuSpice.ConstraintBased.Possibility.Index
   type: Property
   source:
     remote:
       path: SudokuSpice/ConstraintBased/Possibility.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: ValueIndex
+    id: Index
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 14
+    startLine: 23
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   syntax:
-    content: public int ValueIndex { get; }
+    content: public int Index { get; }
     parameters: []
     return:
       type: System.Int32
-    content.vb: Public ReadOnly Property ValueIndex As Integer
-  overload: SudokuSpice.ConstraintBased.Possibility.ValueIndex*
+    content.vb: Public ReadOnly Property Index As Integer
+  overload: SudokuSpice.ConstraintBased.Possibility.Index*
   modifiers.csharp:
   - public
   - get
@@ -135,23 +139,60 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 15
+    startLine: 24
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   syntax:
-    content: public PossibilityState State { get; }
+    content: public NodeState State { get; }
     parameters: []
     return:
-      type: SudokuSpice.ConstraintBased.PossibilityState
-    content.vb: Public ReadOnly Property State As PossibilityState
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: Public ReadOnly Property State As NodeState
   overload: SudokuSpice.ConstraintBased.Possibility.State*
+  implements:
+  - SudokuSpice.ConstraintBased.IPossibility.State
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Possibility.TryDrop
+  commentId: M:SudokuSpice.ConstraintBased.Possibility.TryDrop
+  id: TryDrop
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: TryDrop()
+  nameWithType: Possibility.TryDrop()
+  fullName: SudokuSpice.ConstraintBased.Possibility.TryDrop()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TryDrop
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 62
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nTries to drop this possibility, if that is compatible with existing objectives.\n\nThis is meant to be checked during matrix construction so that constraints can drop\npossibilities that violate the puzzle&apos;s preset values.\n\nIf this method fails, it suggests that the current puzzle cannot satisfy all the current\nconstraints.\n"
+  example: []
+  syntax:
+    content: public bool TryDrop()
+    return:
+      type: System.Boolean
+      description: "\nTrue if the possibility is already dropped or was successfully dropped from all\nexisting objectives, else false.\n"
+    content.vb: Public Function TryDrop As Boolean
+  overload: SudokuSpice.ConstraintBased.Possibility.TryDrop*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
@@ -165,6 +206,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  parent: SudokuSpice.ConstraintBased
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -466,11 +513,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.ConstraintBased.Possibility.ValueIndex*
-  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.ValueIndex
-  name: ValueIndex
-  nameWithType: Possibility.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.Possibility.ValueIndex
+- uid: SudokuSpice.ConstraintBased.Possibility.Index*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.Index
+  name: Index
+  nameWithType: Possibility.Index
+  fullName: SudokuSpice.ConstraintBased.Possibility.Index
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -483,9 +530,27 @@ references:
   name: State
   nameWithType: Possibility.State
   fullName: SudokuSpice.ConstraintBased.Possibility.State
-- uid: SudokuSpice.ConstraintBased.PossibilityState
-  commentId: T:SudokuSpice.ConstraintBased.PossibilityState
+- uid: SudokuSpice.ConstraintBased.IPossibility.State
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.State
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  name: State
+  nameWithType: IPossibility.State
+  fullName: SudokuSpice.ConstraintBased.IPossibility.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
   parent: SudokuSpice.ConstraintBased
-  name: PossibilityState
-  nameWithType: PossibilityState
-  fullName: SudokuSpice.ConstraintBased.PossibilityState
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.Possibility.TryDrop*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.TryDrop
+  name: TryDrop
+  nameWithType: Possibility.TryDrop
+  fullName: SudokuSpice.ConstraintBased.Possibility.TryDrop
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

@@ -6,9 +6,9 @@ items:
   parent: SudokuSpice.ConstraintBased.Constraints
   children:
   - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.Coordinate},System.Span{System.Boolean})
-  - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,System.Boolean,SudokuSpice.ConstraintBased.Requirement@)
-  - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32)
+  - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.Objective@)
+  - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.OptionalObjective@)
+  - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32)
   - SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryImplementUniquenessConstraintForSquares(SudokuSpice.IReadOnlyPuzzle,System.ReadOnlySpan{SudokuSpice.Coordinate},SudokuSpice.ConstraintBased.ExactCoverMatrix)
   langs:
   - csharp
@@ -24,7 +24,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ConstraintUtil
     path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
@@ -68,12 +68,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TryImplementUniquenessConstraintForSquares
     path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
   summary: "\nEnforces uniqueness of the values at the given coordinates.\n"
-  remarks: "\nThis drops any <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible, and\nadds <xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref>s and links to enforce this constraint for the ones\nthat are still possible.\n"
+  remarks: "\nThis drops any <see cref=\"!:PossibleSquareValue\"></see>s that are no longer possible, and\nadds <see cref=\"!:Requirement\"></see>s and links to enforce this constraint for the ones\nthat are still possible.\n"
   example: []
   syntax:
     content: public static bool TryImplementUniquenessConstraintForSquares(IReadOnlyPuzzle puzzle, ReadOnlySpan<Coordinate> squareCoordinates, ExactCoverMatrix matrix)
@@ -119,7 +119,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CheckForSetValues
     path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-    startLine: 67
+    startLine: 68
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
@@ -151,134 +151,84 @@ items:
   - Shared
   fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.Coordinate), System.Span(Of System.Boolean))
   name.vb: CheckForSetValues(IReadOnlyPuzzle, ExactCoverMatrix, ReadOnlySpan(Of Coordinate), Span(Of Boolean))
-- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32)
-  id: TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32)
+- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32)
+  id: TryDropPossibilitiesAtIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32)
   parent: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil
   langs:
   - csharp
   - vb
-  name: TryDropPossibleSquaresForValueIndex(ReadOnlySpan<Square>, Int32)
-  nameWithType: ConstraintUtil.TryDropPossibleSquaresForValueIndex(ReadOnlySpan<Square>, Int32)
-  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square>, System.Int32)
+  name: TryDropPossibilitiesAtIndex(ReadOnlySpan<Possibility[]>, Int32)
+  nameWithType: ConstraintUtil.TryDropPossibilitiesAtIndex(ReadOnlySpan<Possibility[]>, Int32)
+  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility[]>, System.Int32)
   type: Method
   source:
     remote:
       path: SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: TryDropPossibleSquaresForValueIndex
+    id: TryDropPossibilitiesAtIndex
     path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-    startLine: 98
+    startLine: 102
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nDrops <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n"
+  summary: "\nDrops <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code>\nfrom the given set of <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Null squares and possible values are\nignored.\n\nIf this returns false, there is no guarantee as to the state of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Some may have been dropped.\n"
   example: []
   syntax:
-    content: public static bool TryDropPossibleSquaresForValueIndex(ReadOnlySpan<Square> squares, int valueIndex)
+    content: public static bool TryDropPossibilitiesAtIndex(ReadOnlySpan<Possibility[]> squares, int valueIndex)
     parameters:
     - id: squares
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
       description: The squares to drop, if not null.
     - id: valueIndex
       type: System.Int32
       description: "\nThe value index of the possible values within the squares.\n"
     return:
       type: System.Boolean
-      description: "\nTrue if all the <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s were dropped safely (eg. without\nresulting in an empty <xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref> without any possible square\nvalues, or a <xref href=\"SudokuSpice.ConstraintBased.Square\" data-throw-if-not-resolved=\"false\"></xref> with no more possible values), else false.\n"
-    content.vb: Public Shared Function TryDropPossibleSquaresForValueIndex(squares As ReadOnlySpan(Of Square), valueIndex As Integer) As Boolean
-  overload: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex*
-  nameWithType.vb: ConstraintUtil.TryDropPossibleSquaresForValueIndex(ReadOnlySpan(Of Square), Int32)
+      description: "\nTrue if all the <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code> were dropped safely (eg. without\nresulting in an empty <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> without any possible square\nvalues, else false.\n"
+    content.vb: Public Shared Function TryDropPossibilitiesAtIndex(squares As ReadOnlySpan(Of Possibility()), valueIndex As Integer) As Boolean
+  overload: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex*
+  nameWithType.vb: ConstraintUtil.TryDropPossibilitiesAtIndex(ReadOnlySpan(Of Possibility()), Int32)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square), System.Int32)
-  name.vb: TryDropPossibleSquaresForValueIndex(ReadOnlySpan(Of Square), Int32)
-- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  id: TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility()), System.Int32)
+  name.vb: TryDropPossibilitiesAtIndex(ReadOnlySpan(Of Possibility()), Int32)
+- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.OptionalObjective@)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.OptionalObjective@)
+  id: TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.OptionalObjective@)
   parent: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil
   langs:
   - csharp
   - vb
-  name: TryAddRequirementsForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix)
-  nameWithType: ConstraintUtil.TryAddRequirementsForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix)
-  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square>, System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  name: TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan<Possibility[]>, Int32, ExactCoverMatrix, Int32, out OptionalObjective)
+  nameWithType: ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan<Possibility[]>, Int32, ExactCoverMatrix, Int32, out OptionalObjective)
+  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility[]>, System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.Int32, out SudokuSpice.ConstraintBased.OptionalObjective)
   type: Method
   source:
     remote:
       path: SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: TryAddRequirementsForValueIndex
+    id: TryAddOptionalObjectiveForPossibilityIndex
     path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-    startLine: 139
+    startLine: 152
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nAdd a <xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
+  summary: "\nAdd an <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<see cref=\"!:PossibleSquareValue\"></see>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilityIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
   example: []
   syntax:
-    content: public static bool TryAddRequirementsForValueIndex(ReadOnlySpan<Square> squares, int valueIndex, ExactCoverMatrix matrix)
+    content: public static bool TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan<Possibility[]> squares, int possibilityIndex, ExactCoverMatrix matrix, int requiredCount, out OptionalObjective objective)
     parameters:
     - id: squares
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
-      description: "\nThe squares to add <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s from.\n"
-    - id: valueIndex
-      type: System.Int32
-      description: "\nThe value index of the possible value within the squares.\n"
-    - id: matrix
-      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
-      description: The matrix for the current puzzle being solved.
-    return:
-      type: System.Boolean
-      description: "\nFalse if the requirement could not be added, for example because none of the\ncorresponding <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s were still possible and the\nrequirement would have been empty. Else returns true.\n"
-    content.vb: Public Shared Function TryAddRequirementsForValueIndex(squares As ReadOnlySpan(Of Square), valueIndex As Integer, matrix As ExactCoverMatrix) As Boolean
-  overload: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex*
-  nameWithType.vb: ConstraintUtil.TryAddRequirementsForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square), System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  name.vb: TryAddRequirementsForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix)
-- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,System.Boolean,SudokuSpice.ConstraintBased.Requirement@)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,System.Boolean,SudokuSpice.ConstraintBased.Requirement@)
-  id: TryAddRequirementsForValueIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,System.Boolean,SudokuSpice.ConstraintBased.Requirement@)
-  parent: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil
-  langs:
-  - csharp
-  - vb
-  name: TryAddRequirementsForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix, Int32, Boolean, out Requirement)
-  nameWithType: ConstraintUtil.TryAddRequirementsForValueIndex(ReadOnlySpan<Square>, Int32, ExactCoverMatrix, Int32, Boolean, out Requirement)
-  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square>, System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.Int32, System.Boolean, out SudokuSpice.ConstraintBased.Requirement)
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: TryAddRequirementsForValueIndex
-    path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
-    startLine: 171
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nAdd a <xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">valueIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
-  example: []
-  syntax:
-    content: public static bool TryAddRequirementsForValueIndex(ReadOnlySpan<Square> squares, int valueIndex, ExactCoverMatrix matrix, int requiredCount, bool isOptional, out Requirement requirement)
-    parameters:
-    - id: squares
-      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
-      description: "\nThe squares to add <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s from.\n"
-    - id: valueIndex
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+      description: "\nThe squares to add <see cref=\"!:PossibleSquareValue\"></see>s from.\n"
+    - id: possibilityIndex
       type: System.Int32
       description: "\nThe value index of the possible value within the squares.\n"
     - id: matrix
@@ -286,27 +236,78 @@ items:
       description: The matrix for the current puzzle being solved.
     - id: requiredCount
       type: System.Int32
-      description: "\nThe number of possible square values required to satisfy the new\n<xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-    - id: isOptional
-      type: System.Boolean
-      description: "\nWhether or not the new <xref href=\"SudokuSpice.ConstraintBased.Requirement\" data-throw-if-not-resolved=\"false\"></xref> is optional.\n"
-    - id: requirement
-      type: SudokuSpice.ConstraintBased.Requirement
-      description: The new requirement, if successful, else null.
+      description: "\nThe number of possible square values required to satisfy the new\n<see cref=\"!:Requirement\"></see>.\n"
+    - id: objective
+      type: SudokuSpice.ConstraintBased.OptionalObjective
     return:
       type: System.Boolean
-      description: "\nFalse if the requirement could not be added, for example because none of the\ncorresponding <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue\" data-throw-if-not-resolved=\"false\"></xref>s were still possible and the\nrequirement would have been empty. Else returns true.\n"
-    content.vb: Public Shared Function TryAddRequirementsForValueIndex(squares As ReadOnlySpan(Of Square), valueIndex As Integer, matrix As ExactCoverMatrix, requiredCount As Integer, isOptional As Boolean, ByRef requirement As Requirement) As Boolean
-  overload: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex*
-  nameWithType.vb: ConstraintUtil.TryAddRequirementsForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix, Int32, Boolean, ByRef Requirement)
+      description: "\nFalse if the requirement could not be added, for example because none of the\ncorresponding <see cref=\"!:PossibleSquareValue\"></see>s were still possible and the\nrequirement would have been empty. Else returns true.\n"
+    content.vb: Public Shared Function TryAddOptionalObjectiveForPossibilityIndex(squares As ReadOnlySpan(Of Possibility()), possibilityIndex As Integer, matrix As ExactCoverMatrix, requiredCount As Integer, ByRef objective As OptionalObjective) As Boolean
+  overload: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex*
+  nameWithType.vb: ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan(Of Possibility()), Int32, ExactCoverMatrix, Int32, ByRef OptionalObjective)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square), System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.Int32, System.Boolean, ByRef SudokuSpice.ConstraintBased.Requirement)
-  name.vb: TryAddRequirementsForValueIndex(ReadOnlySpan(Of Square), Int32, ExactCoverMatrix, Int32, Boolean, ByRef Requirement)
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility()), System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.Int32, ByRef SudokuSpice.ConstraintBased.OptionalObjective)
+  name.vb: TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan(Of Possibility()), Int32, ExactCoverMatrix, Int32, ByRef OptionalObjective)
+- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.Objective@)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.Objective@)
+  id: TryAddObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverMatrix,System.Int32,SudokuSpice.ConstraintBased.Objective@)
+  parent: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil
+  langs:
+  - csharp
+  - vb
+  name: TryAddObjectiveForPossibilityIndex(ReadOnlySpan<Possibility[]>, Int32, ExactCoverMatrix, Int32, out Objective)
+  nameWithType: ConstraintUtil.TryAddObjectiveForPossibilityIndex(ReadOnlySpan<Possibility[]>, Int32, ExactCoverMatrix, Int32, out Objective)
+  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex(System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility[]>, System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.Int32, out SudokuSpice.ConstraintBased.Objective)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TryAddObjectiveForPossibilityIndex
+    path: ../SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs
+    startLine: 194
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nAdd an <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> connecting all the\n<see cref=\"!:PossibleSquareValue\"></see>s at the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilityIndex</code> on the\ngiven <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>. Skips null squares, null possible values, and any\npossible values in a known state (i.e. dropped or selected).\n"
+  example: []
+  syntax:
+    content: public static bool TryAddObjectiveForPossibilityIndex(ReadOnlySpan<Possibility[]> squares, int possibilityIndex, ExactCoverMatrix matrix, int requiredCount, out Objective objective)
+    parameters:
+    - id: squares
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+      description: "\nThe squares to add <see cref=\"!:PossibleSquareValue\"></see>s from.\n"
+    - id: possibilityIndex
+      type: System.Int32
+      description: "\nThe value index of the possible value within the squares.\n"
+    - id: matrix
+      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
+      description: The matrix for the current puzzle being solved.
+    - id: requiredCount
+      type: System.Int32
+      description: "\nThe number of possible square values required to satisfy the new\n<see cref=\"!:Requirement\"></see>.\n"
+    - id: objective
+      type: SudokuSpice.ConstraintBased.Objective
+    return:
+      type: System.Boolean
+      description: "\nFalse if the requirement could not be added, for example because none of the\ncorresponding <see cref=\"!:PossibleSquareValue\"></see>s were still possible and the\nrequirement would have been empty. Else returns true.\n"
+    content.vb: Public Shared Function TryAddObjectiveForPossibilityIndex(squares As ReadOnlySpan(Of Possibility()), possibilityIndex As Integer, matrix As ExactCoverMatrix, requiredCount As Integer, ByRef objective As Objective) As Boolean
+  overload: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex*
+  nameWithType.vb: ConstraintUtil.TryAddObjectiveForPossibilityIndex(ReadOnlySpan(Of Possibility()), Int32, ExactCoverMatrix, Int32, ByRef Objective)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility()), System.Int32, SudokuSpice.ConstraintBased.ExactCoverMatrix, System.Int32, ByRef SudokuSpice.ConstraintBased.Objective)
+  name.vb: TryAddObjectiveForPossibilityIndex(ReadOnlySpan(Of Possibility()), Int32, ExactCoverMatrix, Int32, ByRef Objective)
 references:
 - uid: SudokuSpice.ConstraintBased.Constraints
   commentId: N:SudokuSpice.ConstraintBased.Constraints
@@ -605,18 +606,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
-  parent: SudokuSpice.ConstraintBased
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
-- uid: SudokuSpice.ConstraintBased.Requirement
-  commentId: T:SudokuSpice.ConstraintBased.Requirement
-  parent: SudokuSpice.ConstraintBased
-  name: Requirement
-  nameWithType: Requirement
-  fullName: SudokuSpice.ConstraintBased.Requirement
 - uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryImplementUniquenessConstraintForSquares*
   commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryImplementUniquenessConstraintForSquares
   name: TryImplementUniquenessConstraintForSquares
@@ -683,11 +672,6 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.ConstraintBased
-  commentId: N:SudokuSpice.ConstraintBased
-  name: SudokuSpice.ConstraintBased
-  nameWithType: SudokuSpice.ConstraintBased
-  fullName: SudokuSpice.ConstraintBased
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
@@ -732,6 +716,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
 - uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues*
   commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.CheckForSetValues
   name: CheckForSetValues
@@ -820,27 +809,32 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.Square
-  commentId: T:SudokuSpice.ConstraintBased.Square
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
   parent: SudokuSpice.ConstraintBased
-  name: Square
-  nameWithType: Square
-  fullName: SudokuSpice.ConstraintBased.Square
-- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex*
-  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex
-  name: TryDropPossibleSquaresForValueIndex
-  nameWithType: ConstraintUtil.TryDropPossibleSquaresForValueIndex
-  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibleSquaresForValueIndex
-- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
-  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Square}
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex
+  name: TryDropPossibilitiesAtIndex
+  nameWithType: ConstraintUtil.TryDropPossibilitiesAtIndex
+  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryDropPossibilitiesAtIndex
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
   parent: System
   definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<Square>
-  nameWithType: ReadOnlySpan<Square>
-  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Square>
-  nameWithType.vb: ReadOnlySpan(Of Square)
-  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Square)
-  name.vb: ReadOnlySpan(Of Square)
+  name: ReadOnlySpan<Possibility[]>
+  nameWithType: ReadOnlySpan<Possibility[]>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility[]>
+  nameWithType.vb: ReadOnlySpan(Of Possibility())
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility())
+  name.vb: ReadOnlySpan(Of Possibility())
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
@@ -850,10 +844,13 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: SudokuSpice.ConstraintBased.Square
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.ConstraintBased.Square
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -866,10 +863,13 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: SudokuSpice.ConstraintBased.Square
-    name: Square
-    nameWithType: Square
-    fullName: SudokuSpice.ConstraintBased.Square
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
@@ -880,8 +880,25 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex*
-  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex
-  name: TryAddRequirementsForValueIndex
-  nameWithType: ConstraintUtil.TryAddRequirementsForValueIndex
-  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddRequirementsForValueIndex
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex
+  name: TryAddOptionalObjectiveForPossibilityIndex
+  nameWithType: ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex
+  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex
+  name: TryAddObjectiveForPossibilityIndex
+  nameWithType: ConstraintUtil.TryAddObjectiveForPossibilityIndex
+  fullName: SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddObjectiveForPossibilityIndex

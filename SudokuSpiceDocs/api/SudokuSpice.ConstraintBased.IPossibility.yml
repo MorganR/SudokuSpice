@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  id: IPossibility
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.IPossibility.State
+  langs:
+  - csharp
+  - vb
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/IPossibility.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IPossibility
+    path: ../SudokuSpice/ConstraintBased/IPossibility.cs
+    startLine: 2
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: public interface IPossibility
+    content.vb: Public Interface IPossibility
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.ConstraintBased.IPossibility.State
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.State
+  id: State
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: IPossibility.State
+  fullName: SudokuSpice.ConstraintBased.IPossibility.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/IPossibility.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: State
+    path: ../SudokuSpice/ConstraintBased/IPossibility.cs
+    startLine: 4
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: NodeState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: ReadOnly Property State As NodeState
+  overload: SudokuSpice.ConstraintBased.IPossibility.State*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.IPossibility.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.IPossibility.State
+  name: State
+  nameWithType: IPossibility.State
+  fullName: SudokuSpice.ConstraintBased.IPossibility.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState

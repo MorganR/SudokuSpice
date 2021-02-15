@@ -36,7 +36,9 @@ items:
     content: 'public class BoxUniquenessRule : UniquenessRule, IMissingBoxValuesTracker, IRule'
     content.vb: >-
       Public Class BoxUniquenessRule
+
           Inherits UniquenessRule
+
           Implements IMissingBoxValuesTracker, IRule
   inheritance:
   - System.Object
@@ -115,14 +117,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nCreates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>\nreferences updated to the given puzzle.\n"
   example: []
   syntax:
     content: public override IRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
     return:
       type: SudokuSpice.RuleBased.Rules.IRule
     content.vb: Public Overrides Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As IRule
@@ -158,21 +158,16 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nTries to initialize this rule to prepare to solve the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
   example: []
   syntax:
     content: public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-      description: The puzzle to be solved.
     - id: allPossibleValues
       type: SudokuSpice.BitVector
-      description: All the possible values for this puzzle.
     return:
       type: System.Boolean
-      description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
     content.vb: Public Overrides Function TryInit(puzzle As IReadOnlyPuzzle, allPossibleValues As BitVector) As Boolean
   overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TryInit*
@@ -206,7 +201,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: Returns all the values that still need to be set in the given box.
   example: []
   syntax:
     content: public BitVector GetMissingValuesForBox(int box)
@@ -245,14 +239,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nReturns the number of dimensions that will be enforced to contain unique values.\n"
   example: []
   syntax:
     content: protected override int GetNumDimensions(IReadOnlyPuzzle puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-      description: The puzzle for which to determine the number of dimensions.
     return:
       type: System.Int32
     content.vb: Protected Overrides Function GetNumDimensions(puzzle As IReadOnlyPuzzle) As Integer
@@ -286,7 +278,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nGets the dimension for a coordinate.\n"
   example: []
   syntax:
     content: protected override int GetDimension(in Coordinate c)
@@ -329,20 +320,16 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nAdds the coordinates of unset values on the given dimension to the given tracker.\n"
   example: []
   syntax:
     content: protected override void TrackUnsetCoordinatesOnSameDimension(int dimension, in Coordinate source, CoordinateTracker tracker)
     parameters:
     - id: dimension
       type: System.Int32
-      description: The dimension to search.
     - id: source
       type: SudokuSpice.Coordinate
-      description: The source coordinate for the change; should be skipped.
     - id: tracker
       type: SudokuSpice.CoordinateTracker
-      description: The tracker to add coordiantes to.
     content.vb: Protected Overrides Sub TrackUnsetCoordinatesOnSameDimension(dimension As Integer, ByRef source As Coordinate, tracker As CoordinateTracker)
   overridden: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.BoxUniquenessRule.TrackUnsetCoordinatesOnSameDimension*

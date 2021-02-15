@@ -1,40 +1,42 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
-  id: PossibleSquareValue
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  id: OptionalObjective
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  - SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  - SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
+  - SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  - SudokuSpice.ConstraintBased.OptionalObjective.State
   langs:
   - csharp
   - vb
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
   type: Class
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/OptionalObjective.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: PossibleSquareValue
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 10
+    id: OptionalObjective
+    path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
+    startLine: 7
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nRepresents a row in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix\" data-throw-if-not-resolved=\"false\"></xref>. This represents a possible value\nfor a given <xref href=\"SudokuSpice.ConstraintBased.PossibleSquareValue.Square\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-  example: []
   syntax:
-    content: 'public class PossibleSquareValue : IPossibility<PossibleSquareValue, Requirement>'
+    content: 'public class OptionalObjective : IOptionalObjective, IObjective, IPossibility'
     content.vb: >-
-      Public Class PossibleSquareValue
-          Implements IPossibility(Of PossibleSquareValue, Requirement)
+      Public Class OptionalObjective
+
+          Implements IOptionalObjective, IObjective, IPossibility
   inheritance:
   - System.Object
+  implements:
+  - SudokuSpice.ConstraintBased.IOptionalObjective
+  - SudokuSpice.ConstraintBased.IObjective
+  - SudokuSpice.ConstraintBased.IPossibility
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -49,127 +51,87 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  id: ValueIndex
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue
-  langs:
-  - csharp
-  - vb
-  name: ValueIndex
-  nameWithType: PossibleSquareValue.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: ValueIndex
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 18
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets the index of the possible value that this represents. This index corresponds with\n<xref href=\"SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-  example: []
-  syntax:
-    content: public int ValueIndex { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public ReadOnly Property ValueIndex As Integer
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  id: Square
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue
-  langs:
-  - csharp
-  - vb
-  name: Square
-  nameWithType: PossibleSquareValue.Square
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  type: Property
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: Square
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 22
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets the square that this is a possible value for.\n"
-  example: []
-  syntax:
-    content: public Square Square { get; }
-    parameters: []
-    return:
-      type: SudokuSpice.ConstraintBased.Square
-    content.vb: Public ReadOnly Property Square As Square
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue.Square*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.State
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.State
+  commentId: P:SudokuSpice.ConstraintBased.OptionalObjective.State
   id: State
-  parent: SudokuSpice.ConstraintBased.PossibleSquareValue
+  parent: SudokuSpice.ConstraintBased.OptionalObjective
   langs:
   - csharp
   - vb
   name: State
-  nameWithType: PossibleSquareValue.State
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.State
+  nameWithType: OptionalObjective.State
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.State
   type: Property
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/PossibleSquareValue.cs
+      path: SudokuSpice/ConstraintBased/OptionalObjective.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
-    path: ../SudokuSpice/ConstraintBased/PossibleSquareValue.cs
-    startLine: 26
+    path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
+    startLine: 36
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nGets the state of this row.\n"
-  example: []
   syntax:
-    content: public PossibilityState State { get; }
+    content: public NodeState State { get; }
     parameters: []
     return:
-      type: SudokuSpice.ConstraintBased.PossibilityState
-    content.vb: Public ReadOnly Property State As PossibilityState
-  overload: SudokuSpice.ConstraintBased.PossibleSquareValue.State*
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: Public ReadOnly Property State As NodeState
+  overload: SudokuSpice.ConstraintBased.OptionalObjective.State*
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective.State
+  - SudokuSpice.ConstraintBased.IPossibility.State
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  id: CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  parent: SudokuSpice.ConstraintBased.OptionalObjective
+  langs:
+  - csharp
+  - vb
+  name: CreateWithPossibilities(ReadOnlySpan<IPossibility>, Int32)
+  nameWithType: OptionalObjective.CreateWithPossibilities(ReadOnlySpan<IPossibility>, Int32)
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/OptionalObjective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateWithPossibilities
+    path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
+    startLine: 44
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: public static OptionalObjective CreateWithPossibilities(ReadOnlySpan<IPossibility> possibilities, int countToSatisfy)
+    parameters:
+    - id: possibilities
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+    - id: countToSatisfy
+      type: System.Int32
+    return:
+      type: SudokuSpice.ConstraintBased.OptionalObjective
+    content.vb: Public Shared Function CreateWithPossibilities(possibilities As ReadOnlySpan(Of IPossibility), countToSatisfy As Integer) As OptionalObjective
+  overload: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*
+  nameWithType.vb: OptionalObjective.CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
+  name.vb: CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
 references:
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
-  parent: SudokuSpice.ConstraintBased
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  commentId: P:SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  isExternal: true
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
@@ -182,6 +144,24 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: SudokuSpice.ConstraintBased.IOptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.IOptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IOptionalObjective
+  nameWithType: IOptionalObjective
+  fullName: SudokuSpice.ConstraintBased.IOptionalObjective
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  parent: SudokuSpice.ConstraintBased
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -467,14 +447,76 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  commentId: P:SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues
-  isExternal: true
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
-  name: ValueIndex
-  nameWithType: PossibleSquareValue.ValueIndex
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.ValueIndex
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.State
+  name: State
+  nameWithType: OptionalObjective.State
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.State
+- uid: SudokuSpice.ConstraintBased.IObjective.State
+  commentId: P:SudokuSpice.ConstraintBased.IObjective.State
+  parent: SudokuSpice.ConstraintBased.IObjective
+  name: State
+  nameWithType: IObjective.State
+  fullName: SudokuSpice.ConstraintBased.IObjective.State
+- uid: SudokuSpice.ConstraintBased.IPossibility.State
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.State
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  name: State
+  nameWithType: IPossibility.State
+  fullName: SudokuSpice.ConstraintBased.IPossibility.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*
+  commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities
+  name: CreateWithPossibilities
+  nameWithType: OptionalObjective.CreateWithPossibilities
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<IPossibility>
+  nameWithType: ReadOnlySpan<IPossibility>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>
+  nameWithType.vb: ReadOnlySpan(Of IPossibility)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility)
+  name.vb: ReadOnlySpan(Of IPossibility)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -482,25 +524,48 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.Square*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-  name: Square
-  nameWithType: PossibleSquareValue.Square
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.Square
-- uid: SudokuSpice.ConstraintBased.Square
-  commentId: T:SudokuSpice.ConstraintBased.Square
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
   parent: SudokuSpice.ConstraintBased
-  name: Square
-  nameWithType: Square
-  fullName: SudokuSpice.ConstraintBased.Square
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue.State*
-  commentId: Overload:SudokuSpice.ConstraintBased.PossibleSquareValue.State
-  name: State
-  nameWithType: PossibleSquareValue.State
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue.State
-- uid: SudokuSpice.ConstraintBased.PossibilityState
-  commentId: T:SudokuSpice.ConstraintBased.PossibilityState
-  parent: SudokuSpice.ConstraintBased
-  name: PossibilityState
-  nameWithType: PossibilityState
-  fullName: SudokuSpice.ConstraintBased.PossibilityState
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

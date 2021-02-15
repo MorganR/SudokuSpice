@@ -4,7 +4,9 @@ items:
   commentId: T:SudokuSpice.ConstraintBased.Objective
   id: Objective
   parent: SudokuSpice.ConstraintBased
-  children: []
+  children:
+  - SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  - SudokuSpice.ConstraintBased.Objective.State
   langs:
   - csharp
   - vb
@@ -19,17 +21,20 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Objective
     path: ../SudokuSpice/ConstraintBased/Objective.cs
-    startLine: 8
+    startLine: 7
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
   syntax:
-    content: 'public class Objective : IObjective<Objective, Possibility>'
+    content: 'public class Objective : IObjective'
     content.vb: >-
       Public Class Objective
-          Implements IObjective(Of Objective, Possibility)
+
+          Implements IObjective
   inheritance:
   - System.Object
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -44,6 +49,87 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: SudokuSpice.ConstraintBased.Objective.State
+  commentId: P:SudokuSpice.ConstraintBased.Objective.State
+  id: State
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: Objective.State
+  fullName: SudokuSpice.ConstraintBased.Objective.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: State
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 20
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: public NodeState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: Public ReadOnly Property State As NodeState
+  overload: SudokuSpice.ConstraintBased.Objective.State*
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective.State
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  id: CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix,System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan<IPossibility>, Int32)
+  nameWithType: Objective.CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan<IPossibility>, Int32)
+  fullName: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateFullyConnected
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 59
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  syntax:
+    content: public static Objective CreateFullyConnected(ExactCoverMatrix matrix, ReadOnlySpan<IPossibility> possibilities, int countToSatisfy)
+    parameters:
+    - id: matrix
+      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
+    - id: possibilities
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+    - id: countToSatisfy
+      type: System.Int32
+    return:
+      type: SudokuSpice.ConstraintBased.Objective
+    content.vb: Public Shared Function CreateFullyConnected(matrix As ExactCoverMatrix, possibilities As ReadOnlySpan(Of IPossibility), countToSatisfy As Integer) As Objective
+  overload: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*
+  nameWithType.vb: Objective.CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan(Of IPossibility), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverMatrix, System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
+  name.vb: CreateFullyConnected(ExactCoverMatrix, ReadOnlySpan(Of IPossibility), Int32)
 references:
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
@@ -57,6 +143,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -342,3 +434,125 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: SudokuSpice.ConstraintBased.Objective.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.Objective.State
+  name: State
+  nameWithType: Objective.State
+  fullName: SudokuSpice.ConstraintBased.Objective.State
+- uid: SudokuSpice.ConstraintBased.IObjective.State
+  commentId: P:SudokuSpice.ConstraintBased.IObjective.State
+  parent: SudokuSpice.ConstraintBased.IObjective
+  name: State
+  nameWithType: IObjective.State
+  fullName: SudokuSpice.ConstraintBased.IObjective.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*
+  commentId: Overload:SudokuSpice.ConstraintBased.Objective.CreateFullyConnected
+  name: CreateFullyConnected
+  nameWithType: Objective.CreateFullyConnected
+  fullName: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected
+- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverMatrix
+  nameWithType: ExactCoverMatrix
+  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<IPossibility>
+  nameWithType: ReadOnlySpan<IPossibility>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>
+  nameWithType.vb: ReadOnlySpan(Of IPossibility)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility)
+  name.vb: ReadOnlySpan(Of IPossibility)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  parent: SudokuSpice.ConstraintBased
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

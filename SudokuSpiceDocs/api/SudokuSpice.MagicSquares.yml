@@ -1,39 +1,36 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
-  commentId: T:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
-  id: MagicBoxConstraint
-  parent: SudokuSpice.ConstraintBased.Constraints
+- uid: SudokuSpice.MagicSquares
+  commentId: T:SudokuSpice.MagicSquares
+  id: MagicSquares
+  parent: SudokuSpice
   children:
-  - SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)
-  - SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  - SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})
+  - SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  - SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})
   langs:
   - csharp
   - vb
-  name: MagicBoxConstraint
-  nameWithType: MagicBoxConstraint
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
+  name: MagicSquares
+  nameWithType: MagicSquares
+  fullName: SudokuSpice.MagicSquares
   type: Class
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
+      path: SudokuSpice/MagicSquares.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: MagicBoxConstraint
-    path: ../SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
-    startLine: 6
+    id: MagicSquares
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 7
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased.Constraints
+  namespace: SudokuSpice
   syntax:
-    content: 'public class MagicBoxConstraint : IConstraint'
-    content.vb: >-
-      Public Class MagicBoxConstraint
-          Implements IConstraint
+    content: public static class MagicSquares
+    content.vb: Public Module MagicSquares
   inheritance:
   - System.Object
-  implements:
-  - SudokuSpice.ConstraintBased.Constraints.IConstraint
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -44,95 +41,141 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - static
   - class
   modifiers.vb:
   - Public
-  - Class
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)
-  id: '#ctor(System.Int32,System.ReadOnlySpan{System.Int32},System.Boolean)'
-  parent: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
+  - Module
+- uid: SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})
+  id: ComputeSum(System.ReadOnlySpan{System.Int32})
+  parent: SudokuSpice.MagicSquares
   langs:
   - csharp
   - vb
-  name: MagicBoxConstraint(Int32, ReadOnlySpan<Int32>, Boolean)
-  nameWithType: MagicBoxConstraint.MagicBoxConstraint(Int32, ReadOnlySpan<Int32>, Boolean)
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.MagicBoxConstraint(System.Int32, System.ReadOnlySpan<System.Int32>, System.Boolean)
-  type: Constructor
-  source:
-    remote:
-      path: SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
-      branch: flexible-constraints
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: .ctor
-    path: ../SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
-    startLine: 15
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased.Constraints
-  syntax:
-    content: public MagicBoxConstraint(int size, ReadOnlySpan<int> magicBoxIndices, bool includeDiagonals = true)
-    parameters:
-    - id: size
-      type: System.Int32
-    - id: magicBoxIndices
-      type: System.ReadOnlySpan{System.Int32}
-    - id: includeDiagonals
-      type: System.Boolean
-    content.vb: Public Sub New(size As Integer, magicBoxIndices As ReadOnlySpan(Of Integer), includeDiagonals As Boolean = True)
-  overload: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor*
-  nameWithType.vb: MagicBoxConstraint.MagicBoxConstraint(Int32, ReadOnlySpan(Of Int32), Boolean)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.MagicBoxConstraint(System.Int32, System.ReadOnlySpan(Of System.Int32), System.Boolean)
-  name.vb: MagicBoxConstraint(Int32, ReadOnlySpan(Of Int32), Boolean)
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  id: TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  parent: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint
-  langs:
-  - csharp
-  - vb
-  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  nameWithType: MagicBoxConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
+  name: ComputeSum(ReadOnlySpan<Int32>)
+  nameWithType: MagicSquares.ComputeSum(ReadOnlySpan<Int32>)
+  fullName: SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan<System.Int32>)
   type: Method
   source:
     remote:
-      path: SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
+      path: SudokuSpice/MagicSquares.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: TryConstrain
-    path: ../SudokuSpice/ConstraintBased/Constraints/MagicBoxConstraint.cs
+    id: ComputeSum
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 9
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static int ComputeSum(ReadOnlySpan<int> values)
+    parameters:
+    - id: values
+      type: System.ReadOnlySpan{System.Int32}
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ComputeSum(values As ReadOnlySpan(Of Integer)) As Integer
+  overload: SudokuSpice.MagicSquares.ComputeSum*
+  nameWithType.vb: MagicSquares.ComputeSum(ReadOnlySpan(Of Int32))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan(Of System.Int32))
+  name.vb: ComputeSum(ReadOnlySpan(Of Int32))
+- uid: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})
+  id: ComputeSets(System.ReadOnlySpan{System.Int32})
+  parent: SudokuSpice.MagicSquares
+  langs:
+  - csharp
+  - vb
+  name: ComputeSets(ReadOnlySpan<Int32>)
+  nameWithType: MagicSquares.ComputeSets(ReadOnlySpan<Int32>)
+  fullName: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan<System.Int32>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/MagicSquares.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: ComputeSets
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 15
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values)
+    parameters:
+    - id: values
+      type: System.ReadOnlySpan{System.Int32}
+    return:
+      type: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+    content.vb: Public Shared Function ComputeSets(values As ReadOnlySpan(Of Integer)) As HashSet(Of BitVector)
+  overload: SudokuSpice.MagicSquares.ComputeSets*
+  nameWithType.vb: MagicSquares.ComputeSets(ReadOnlySpan(Of Int32))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan(Of System.Int32))
+  name.vb: ComputeSets(ReadOnlySpan(Of Int32))
+- uid: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  id: ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  parent: SudokuSpice.MagicSquares
+  langs:
+  - csharp
+  - vb
+  name: ComputeSets(ReadOnlySpan<Int32>, Int32, BitVector)
+  nameWithType: MagicSquares.ComputeSets(ReadOnlySpan<Int32>, Int32, BitVector)
+  fullName: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan<System.Int32>, System.Int32, SudokuSpice.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/MagicSquares.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: ComputeSets
+    path: ../SudokuSpice/MagicSquares.cs
     startLine: 30
   assemblies:
   - SudokuSpice
-  namespace: SudokuSpice.ConstraintBased.Constraints
+  namespace: SudokuSpice
   syntax:
-    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+    content: public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values, int boxSize, BitVector allPossibleValues)
     parameters:
-    - id: puzzle
-      type: SudokuSpice.IReadOnlyPuzzle
-    - id: matrix
-      type: SudokuSpice.ConstraintBased.ExactCoverMatrix
+    - id: values
+      type: System.ReadOnlySpan{System.Int32}
+    - id: boxSize
+      type: System.Int32
+    - id: allPossibleValues
+      type: SudokuSpice.BitVector
     return:
-      type: System.Boolean
-    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, matrix As ExactCoverMatrix) As Boolean
-  overload: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain*
-  implements:
-  - SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
+      type: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+    content.vb: Public Shared Function ComputeSets(values As ReadOnlySpan(Of Integer), boxSize As Integer, allPossibleValues As BitVector) As HashSet(Of BitVector)
+  overload: SudokuSpice.MagicSquares.ComputeSets*
+  nameWithType.vb: MagicSquares.ComputeSets(ReadOnlySpan(Of Int32), Int32, BitVector)
   modifiers.csharp:
   - public
+  - static
   modifiers.vb:
   - Public
+  - Shared
+  fullName.vb: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan(Of System.Int32), System.Int32, SudokuSpice.BitVector)
+  name.vb: ComputeSets(ReadOnlySpan(Of Int32), Int32, BitVector)
 references:
-- uid: SudokuSpice.ConstraintBased.Constraints
-  commentId: N:SudokuSpice.ConstraintBased.Constraints
-  name: SudokuSpice.ConstraintBased.Constraints
-  nameWithType: SudokuSpice.ConstraintBased.Constraints
-  fullName: SudokuSpice.ConstraintBased.Constraints
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -140,12 +183,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
-  parent: SudokuSpice.ConstraintBased.Constraints
-  name: IConstraint
-  nameWithType: IConstraint
-  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -431,18 +468,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor*
-  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.#ctor
-  name: MagicBoxConstraint
-  nameWithType: MagicBoxConstraint.MagicBoxConstraint
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.MagicBoxConstraint
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+- uid: SudokuSpice.MagicSquares.ComputeSum*
+  commentId: Overload:SudokuSpice.MagicSquares.ComputeSum
+  name: ComputeSum
+  nameWithType: MagicSquares.ComputeSum
+  fullName: SudokuSpice.MagicSquares.ComputeSum
 - uid: System.ReadOnlySpan{System.Int32}
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System
@@ -487,13 +517,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Boolean
-  commentId: T:System.Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: System.ReadOnlySpan`1
   commentId: T:System.ReadOnlySpan`1
   isExternal: true
@@ -533,80 +563,101 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain*
-  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain
-  name: TryConstrain
-  nameWithType: MagicBoxConstraint.TryConstrain
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicBoxConstraint.TryConstrain
-- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-  parent: SudokuSpice.ConstraintBased.Constraints.IConstraint
-  name: TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  nameWithType: IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)
-  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverMatrix)
+- uid: SudokuSpice.MagicSquares.ComputeSets*
+  commentId: Overload:SudokuSpice.MagicSquares.ComputeSets
+  name: ComputeSets
+  nameWithType: MagicSquares.ComputeSets
+  fullName: SudokuSpice.MagicSquares.ComputeSets
+- uid: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+  commentId: T:System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  name: HashSet<BitVector>
+  nameWithType: HashSet<BitVector>
+  fullName: System.Collections.Generic.HashSet<SudokuSpice.BitVector>
+  nameWithType.vb: HashSet(Of BitVector)
+  fullName.vb: System.Collections.Generic.HashSet(Of SudokuSpice.BitVector)
+  name.vb: HashSet(Of BitVector)
   spec.csharp:
-  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-    name: TryConstrain
-    nameWithType: IConstraint.TryConstrain
-    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-    name: ExactCoverMatrix
-    nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  - name: )
-    nameWithType: )
-    fullName: )
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.BitVector
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverMatrix)
-    name: TryConstrain
-    nameWithType: IConstraint.TryConstrain
-    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.IReadOnlyPuzzle
-    name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-    name: ExactCoverMatrix
-    nameWithType: ExactCoverMatrix
-    fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.IReadOnlyPuzzle
-  commentId: T:SudokuSpice.IReadOnlyPuzzle
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
-  name: IReadOnlyPuzzle
-  nameWithType: IReadOnlyPuzzle
-  fullName: SudokuSpice.IReadOnlyPuzzle
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
-  parent: SudokuSpice.ConstraintBased
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-- uid: SudokuSpice
-  commentId: N:SudokuSpice
-  name: SudokuSpice
-  nameWithType: SudokuSpice
-  fullName: SudokuSpice
-- uid: SudokuSpice.ConstraintBased
-  commentId: N:SudokuSpice.ConstraintBased
-  name: SudokuSpice.ConstraintBased
-  nameWithType: SudokuSpice.ConstraintBased
-  fullName: SudokuSpice.ConstraintBased
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.BitVector
