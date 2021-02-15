@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace SudokuSpice.Test
@@ -16,18 +13,18 @@ namespace SudokuSpice.Test
         [InlineData(16, 4)]
         [InlineData(25, 5)]
         [InlineData(100, 10)]
-        public void CalculateBoxSize_WithValidSizes_IsCorrect(int puzzleSize, int expectedBoxSize)
+        public void IntSquareRoot_WithValidSizes_IsCorrect(int puzzleSize, int expectedBoxSize)
         {
-            Assert.Equal(expectedBoxSize, Boxes.CalculateBoxSize(puzzleSize));
+            Assert.Equal(expectedBoxSize, Boxes.IntSquareRoot(puzzleSize));
         }
 
         [Theory]
         [InlineData(-1)]
         [InlineData(0)]
         [InlineData(8)]
-        public void CalculateBoxSize_WithInvalidSize_Throws(int puzzleSize)
+        public void IntSquareRoot_WithInvalidSize_Throws(int puzzleSize)
         {
-            Assert.Throws<ArgumentException>(() => Boxes.CalculateBoxSize(puzzleSize));
+            Assert.Throws<ArgumentException>(() => Boxes.IntSquareRoot(puzzleSize));
         }
 
         [Theory]
@@ -37,9 +34,9 @@ namespace SudokuSpice.Test
         [InlineData(16, 4)]
         [InlineData(25, 5)]
         [InlineData(100, 10)]
-        public void TryCalculateBoxSize_WithValidSizes_IsCorrect(int puzzleSize, int expectedBoxSize)
+        public void TryIntSquareRoot_WithValidSizes_IsCorrect(int puzzleSize, int expectedBoxSize)
         {
-            Assert.True(Boxes.TryCalculateBoxSize(puzzleSize, out int boxSize));
+            Assert.True(Boxes.TryIntSquareRoot(puzzleSize, out int boxSize));
             Assert.Equal(expectedBoxSize, boxSize);
         }
 
@@ -47,9 +44,9 @@ namespace SudokuSpice.Test
         [InlineData(-1)]
         [InlineData(0)]
         [InlineData(8)]
-        public void TryCalculateBoxSize_WithInvalidSize_ReturnsFalse(int puzzleSize)
+        public void TryIntSquareRoot_WithInvalidSize_ReturnsFalse(int puzzleSize)
         {
-            Assert.False(Boxes.TryCalculateBoxSize(puzzleSize, out _));
+            Assert.False(Boxes.TryIntSquareRoot(puzzleSize, out _));
         }
 
         [Theory]

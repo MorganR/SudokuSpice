@@ -29,7 +29,7 @@ namespace SudokuSpice.RuleBased
         {
             int size = puzzle.Size;
             _puzzle = puzzle;
-            _boxSize = Boxes.CalculateBoxSize(puzzle.Size);
+            _boxSize = Boxes.IntSquareRoot(puzzle.Size);
             _unsetRowValues = new BitVector[size];
             _unsetRowValues.AsSpan().Fill(_puzzle.AllPossibleValues);
             Span<BitVector> possibleValues = _unsetRowValues.AsSpan();

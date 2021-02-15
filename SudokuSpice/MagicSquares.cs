@@ -9,13 +9,13 @@ namespace SudokuSpice
     {
         public static int ComputeSum(ReadOnlySpan<int> values)
         {
-            int boxSize = Boxes.CalculateBoxSize(values.Length);
+            int boxSize = Boxes.IntSquareRoot(values.Length);
             return _ComputeSum(values, boxSize);
         }
 
         public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values)
         {
-            int boxSize = Boxes.CalculateBoxSize(values.Length);
+            int boxSize = Boxes.IntSquareRoot(values.Length);
             BitVector allPossibleValues = new BitVector();
             for (int i = 0; i < values.Length; ++i)
             {
@@ -30,7 +30,7 @@ namespace SudokuSpice
 
         public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values, int boxSize, BitVector allPossibleValues)
         {
-            Debug.Assert(Boxes.TryCalculateBoxSize(values.Length, out int expectedBoxSize)
+            Debug.Assert(Boxes.TryIntSquareRoot(values.Length, out int expectedBoxSize)
                 && expectedBoxSize == boxSize,
                 $"Expected box size of {expectedBoxSize} for given size, but received {boxSize}.");
             Debug.Assert(allPossibleValues.ComputeCount() == values.Length,

@@ -25,7 +25,7 @@ namespace SudokuSpice.Test
                     Assert.True(alreadyFound.Add(puzzle[row, col].Value), $"Value at ({row}, {col}) clashed with another value in that col!");
                 }
             }
-            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
+            int boxSize = Boxes.IntSquareRoot(puzzle.Size);
             for (int box = 0; box < puzzle.Size; box++)
             {
                 alreadyFound.Clear();

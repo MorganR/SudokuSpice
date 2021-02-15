@@ -46,7 +46,7 @@ namespace SudokuSpice.RuleBased.Rules
         public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
         {
             int size = puzzle.Size;
-            _boxSize = Boxes.CalculateBoxSize(size);
+            _boxSize = Boxes.IntSquareRoot(size);
             if (size != _unsetRowValues?.Length)
             {
                 _unsetRowValues = new BitVector[size];

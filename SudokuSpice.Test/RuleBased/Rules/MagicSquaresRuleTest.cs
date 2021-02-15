@@ -20,8 +20,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
+            var magicSquares = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
 
@@ -50,8 +50,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] {
-                new Square(new Coordinate(3, 3), 3),
+            var magicSquares = new Box[] {
+                new Box(new Coordinate(3, 3), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: true);
 
@@ -80,8 +80,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
+            var magicSquares = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
 
@@ -102,8 +102,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
+            var magicSquares = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -145,8 +145,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
+            var magicSquares = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -242,10 +242,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] { 
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var magicSquares = new Box[] { 
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
@@ -275,16 +275,16 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null,    4, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null,    6, null, null },
             });
-            var magicSquares = new Square[] { 
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(0, 3), 3),
-                new Square(new Coordinate(0, 6), 3),
-                new Square(new Coordinate(3, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(3, 6), 3),
-                new Square(new Coordinate(6, 0), 3),
-                new Square(new Coordinate(6, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var magicSquares = new Box[] { 
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(0, 3), 3),
+                new Box(new Coordinate(0, 6), 3),
+                new Box(new Coordinate(3, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(3, 6), 3),
+                new Box(new Coordinate(6, 0), 3),
+                new Box(new Coordinate(6, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
@@ -316,8 +316,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {    6, null,    1, null, null, null,    7, null, null },
                 {    2, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] { 
-                new Square(new Coordinate(3, 3), 3),
+            var magicSquares = new Box[] { 
+                new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
@@ -352,10 +352,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] { 
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var magicSquares = new Box[] { 
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
@@ -381,16 +381,16 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 { null,    4, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null,    6, null, null },
             });
-            var magicSquares = new Square[] { 
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(0, 3), 3),
-                new Square(new Coordinate(0, 6), 3),
-                new Square(new Coordinate(3, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(3, 6), 3),
-                new Square(new Coordinate(6, 0), 3),
-                new Square(new Coordinate(6, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var magicSquares = new Box[] { 
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(0, 3), 3),
+                new Box(new Coordinate(0, 6), 3),
+                new Box(new Coordinate(3, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(3, 6), 3),
+                new Box(new Coordinate(6, 0), 3),
+                new Box(new Coordinate(6, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
@@ -418,8 +418,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 {    6, null,    1, null, null, null,    7, null, null },
                 {    2, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Square[] { 
-                new Square(new Coordinate(3, 3), 3),
+            var magicSquares = new Box[] { 
+                new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(

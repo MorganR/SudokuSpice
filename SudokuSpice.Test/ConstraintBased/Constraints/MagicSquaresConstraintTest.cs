@@ -21,10 +21,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
@@ -57,16 +57,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null,    6, null, null },
             });
 
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(0, 3), 3),
-                new Square(new Coordinate(0, 6), 3),
-                new Square(new Coordinate(3, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(3, 6), 3),
-                new Square(new Coordinate(6, 0), 3),
-                new Square(new Coordinate(6, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(0, 3), 3),
+                new Box(new Coordinate(0, 6), 3),
+                new Box(new Coordinate(3, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(3, 6), 3),
+                new Box(new Coordinate(6, 0), 3),
+                new Box(new Coordinate(6, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
@@ -97,8 +97,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 {    6, null,    1, null, null, null,    7, null, null },
                 {    2, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(3, 3), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
@@ -129,8 +129,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
             };
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
@@ -162,8 +162,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(3, 3), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(3, 3), 3),
             };
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
@@ -217,8 +217,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
             };
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
@@ -286,10 +286,10 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null, null, null, null },
                 { null, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var constraint = new MagicSquaresConstraint(
                 _CreateStandardPossibleValues(9),
@@ -331,16 +331,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 { null, null, null, null, null, null,    6, null, null },
             });
 
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(0, 0), 3),
-                new Square(new Coordinate(0, 3), 3),
-                new Square(new Coordinate(0, 6), 3),
-                new Square(new Coordinate(3, 0), 3),
-                new Square(new Coordinate(3, 3), 3),
-                new Square(new Coordinate(3, 6), 3),
-                new Square(new Coordinate(6, 0), 3),
-                new Square(new Coordinate(6, 3), 3),
-                new Square(new Coordinate(6, 6), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(0, 0), 3),
+                new Box(new Coordinate(0, 3), 3),
+                new Box(new Coordinate(0, 6), 3),
+                new Box(new Coordinate(3, 0), 3),
+                new Box(new Coordinate(3, 3), 3),
+                new Box(new Coordinate(3, 6), 3),
+                new Box(new Coordinate(6, 0), 3),
+                new Box(new Coordinate(6, 3), 3),
+                new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {
@@ -382,8 +382,8 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 {    6, null,    1, null, null, null,    7, null, null },
                 {    2, null, null, null, null, null, null, null, null },
             });
-            var boxesToConstrain = new Square[] {
-                new Square(new Coordinate(3, 3), 3),
+            var boxesToConstrain = new Box[] {
+                new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> {

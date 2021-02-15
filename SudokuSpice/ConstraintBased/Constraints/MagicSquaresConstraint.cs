@@ -10,15 +10,15 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private readonly int _size;
         private readonly int _squareSize;
         private readonly bool _includeDiagonals;
-        private readonly Square[] _magicSquares;
+        private readonly Box[] _magicSquares;
         private readonly BitVector _allPossibleValues;
         private readonly IReadOnlySet<BitVector> _possibleSets;
 
-        public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Square> squares, bool includeDiagonals = true)
+        public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Box> squares, bool includeDiagonals = true)
         {
             _size = possibleValues.Length;
             _magicSquares = squares.ToArray();
-            _squareSize = Boxes.CalculateBoxSize(_size);
+            _squareSize = Boxes.IntSquareRoot(_size);
             _includeDiagonals = includeDiagonals;
             if (_magicSquares.Any(
                 b => 
@@ -47,7 +47,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             {
                 return false;
             }
-            foreach (Square box in _magicSquares)
+            foreach (Box box in _magicSquares)
             {
                 if (!_TryConstrainBox(box, puzzle, matrix))
                 {
@@ -76,7 +76,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return copiedSet.IsEmpty;
         }
 
-        private bool _TryConstrainBox(Square box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        private bool _TryConstrainBox(Box box, IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
             Coordinate startCoord = box.TopLeft;
             Span<Coordinate> toConstrain = stackalloc Coordinate[_squareSize];

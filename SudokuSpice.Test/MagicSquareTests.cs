@@ -7,19 +7,19 @@ namespace SudokuSpice.Test
         internal static void AssertMagicSquaresSatisfied(
             IReadOnlyPuzzle puzzle, int expectedSum, bool verifyDiagonals)
         {
-            int boxSize = Boxes.CalculateBoxSize(puzzle.Size);
-            var boxes = new Square[puzzle.Size];
+            int boxSize = Boxes.IntSquareRoot(puzzle.Size);
+            var boxes = new Box[puzzle.Size];
             for (int boxIdx = 0; boxIdx < boxes.Length; ++boxIdx)
             {
-                boxes[boxIdx] = new Square(Boxes.GetStartingBoxCoordinate(boxIdx, boxSize), boxSize);
+                boxes[boxIdx] = new Box(Boxes.GetStartingBoxCoordinate(boxIdx, boxSize), boxSize);
             }
             AssertMagicSquaresSatisfied(puzzle, boxes, expectedSum, verifyDiagonals);
         }
 
         internal static void AssertMagicSquaresSatisfied(
-            IReadOnlyPuzzle puzzle, Square[] boxesToCheck, int expectedSum, bool verifyDiagonals)
+            IReadOnlyPuzzle puzzle, Box[] boxesToCheck, int expectedSum, bool verifyDiagonals)
         {
-            foreach (Square box in boxesToCheck)
+            foreach (Box box in boxesToCheck)
             {
                 int boxSize = box.Size;
                 var rowSums = new int[boxSize];

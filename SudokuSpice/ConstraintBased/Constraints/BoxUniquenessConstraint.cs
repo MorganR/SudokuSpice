@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <inheritdoc/>
         public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
         {
-            if (!Boxes.TryCalculateBoxSize(puzzle.Size, out int boxSize))
+            if (!Boxes.TryIntSquareRoot(puzzle.Size, out int boxSize))
             {
                 return false;
             }

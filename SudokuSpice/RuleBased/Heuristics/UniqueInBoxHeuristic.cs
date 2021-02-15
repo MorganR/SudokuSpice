@@ -68,7 +68,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// <inheritdoc/>
         public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
         {
-            _boxSize = Boxes.CalculateBoxSize(puzzle.Size);
+            _boxSize = Boxes.IntSquareRoot(puzzle.Size);
             _puzzle = puzzle;
             _helper = new UniqueInXHelper(puzzle);
             return true;

@@ -9,7 +9,7 @@ namespace SudokuSpice.RuleBased.Rules
         private class BoxPossibleValues
         {
             private readonly BitVector _allPossibleValues;
-            private readonly Square _box;
+            private readonly Box _box;
             private readonly IReadOnlyPuzzle _puzzle;
             private readonly IReadOnlySet<BitVector> _allPossibleSets;
             private readonly BitVector[] _setOnRows;
@@ -24,7 +24,7 @@ namespace SudokuSpice.RuleBased.Rules
             private BitVector _setOnForwardDiagonal;
             private BitVector _setOnBackwardDiagonal;
 
-            public BoxPossibleValues(Square box, BitVector allPossibleValues, IReadOnlySet<BitVector> allPossibleSets, IReadOnlyPuzzle puzzle, bool includeDiagonals)
+            public BoxPossibleValues(Box box, BitVector allPossibleValues, IReadOnlySet<BitVector> allPossibleSets, IReadOnlyPuzzle puzzle, bool includeDiagonals)
             {
                 _allPossibleValues = allPossibleValues;
                 _box = box;
@@ -267,7 +267,7 @@ namespace SudokuSpice.RuleBased.Rules
             }
         }
 
-        private readonly Square[] _boxes; 
+        private readonly Box[] _boxes; 
         private readonly int _size;
         private readonly int _boxSize;
         private readonly bool _includeDiagonals;
@@ -275,11 +275,11 @@ namespace SudokuSpice.RuleBased.Rules
         private IReadOnlySet<BitVector>? _possibleSets;
         private BoxPossibleValues[]? _boxPossibleValues;
 
-        public MagicSquaresRule(int size, IEnumerable<Square> squares, bool includeDiagonals)
+        public MagicSquaresRule(int size, IEnumerable<Box> squares, bool includeDiagonals)
         {
             _size = size;
             _boxes = squares.ToArray();
-            _boxSize = Boxes.CalculateBoxSize(size);
+            _boxSize = Boxes.IntSquareRoot(size);
             _includeDiagonals = includeDiagonals;
             if (!_boxes.All(b => b.Size == _boxSize))
             {
