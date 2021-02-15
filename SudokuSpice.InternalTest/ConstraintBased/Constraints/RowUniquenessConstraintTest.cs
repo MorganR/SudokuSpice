@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Constraints.Test
@@ -11,55 +12,45 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             int size = 4;
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix(puzzle);
+            var matrix = ExactCoverGraph.Create(puzzle);
+            var squareObjectives = new HashSet<Objective>(matrix.GetUnsatisfiedRequiredObjectives());
 
-            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
+            Assert.True(new RowUniquenessConstraint().TryConstrain(puzzle, matrix));
 
-            Assert.Equal(size * possibleValues.Length, matrix.GetUnsatisfiedConstraintHeaders().Count());
-            ConstraintHeader firstRowConstraint = matrix.GetSquare(new Coordinate(0, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            ConstraintHeader secondRowConstraint = matrix.GetSquare(new Coordinate(1, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            ConstraintHeader thirdRowConstraint = matrix.GetSquare(new Coordinate(2, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            ConstraintHeader fourthRowConstraint = matrix.GetSquare(new Coordinate(3, 0)).AllPossibleValues[0].FirstLink.Constraint;
-            Assert.NotSame(firstRowConstraint, secondRowConstraint);
-            Assert.NotSame(firstRowConstraint, thirdRowConstraint);
-            Assert.NotSame(firstRowConstraint, fourthRowConstraint);
-            Assert.NotSame(secondRowConstraint, thirdRowConstraint);
-            Assert.NotSame(secondRowConstraint, fourthRowConstraint);
-            Assert.NotSame(thirdRowConstraint, fourthRowConstraint);
-            Assert.Same(firstRowConstraint, matrix.GetSquare(new Coordinate(0, 1)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(firstRowConstraint, matrix.GetSquare(new Coordinate(0, 2)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(firstRowConstraint, matrix.GetSquare(new Coordinate(0, 3)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(secondRowConstraint, matrix.GetSquare(new Coordinate(1, 1)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(secondRowConstraint, matrix.GetSquare(new Coordinate(1, 2)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(secondRowConstraint, matrix.GetSquare(new Coordinate(1, 3)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(thirdRowConstraint, matrix.GetSquare(new Coordinate(2, 1)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(thirdRowConstraint, matrix.GetSquare(new Coordinate(2, 2)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(thirdRowConstraint, matrix.GetSquare(new Coordinate(2, 3)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(fourthRowConstraint, matrix.GetSquare(new Coordinate(3, 1)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(fourthRowConstraint, matrix.GetSquare(new Coordinate(3, 2)).AllPossibleValues[0].FirstLink.Constraint);
-            Assert.Same(fourthRowConstraint, matrix.GetSquare(new Coordinate(3, 3)).AllPossibleValues[0].FirstLink.Constraint);
-        }
-
-        [Fact]
-        public void Constrain_SetsUpSquareLinksForAllPossibleValues()
-        {
-            int size = 4;
-            int[] possibleValues = new int[] { 1, 3, 5, 7 };
-            var puzzle = new Puzzle(size);
-            var matrix = new ExactCoverMatrix(puzzle);
-
-            new RowUniquenessConstraint().TryConstrain(puzzle, matrix);
-
-            for (int row = 0; row < size; row++)
+            Assert.Equal(
+                size * possibleValues.Length + squareObjectives.Count,
+                matrix.GetUnsatisfiedRequiredObjectives().Count());
+            Dictionary<int, HashSet<int>> rowsToValues = new();
+            for (int i = 0; i < size; ++i)
             {
-                for (int col = 0; col < size; col++)
-                {
-                    foreach (PossibleSquareValue possibleValue in matrix.GetSquare(new Coordinate(row, col)).AllPossibleValues)
-                    {
-                        Assert.NotNull(possibleValue.FirstLink);
-                    }
-                }
+                rowsToValues[i] = new HashSet<int>();
             }
+            var expectedColumns = new int[] { 0, 1, 2, 3 };
+            Assert.All(matrix.GetUnsatisfiedRequiredObjectives(),
+                concreteObjective =>
+                {
+                    if (squareObjectives.Contains(concreteObjective))
+                    {
+                        return;
+                    }
+                    IObjective objective = concreteObjective;
+                    var possibilities = objective.GetUnknownDirectPossibilities().Cast<Possibility>().ToArray();
+                    int row = possibilities[0].Coordinate.Row;
+                    int value = possibilities[0].Index;
+                    Assert.DoesNotContain(value, rowsToValues[row]);
+                    rowsToValues[row].Add(value);
+                    var expectedCoordinates = expectedColumns.Select(column => new Coordinate(row, column)).ToArray();
+                    Assert.Equal(expectedCoordinates.Length, possibilities.Length);
+                    Assert.All(possibilities, p =>
+                    {
+                        Assert.Contains(p.Coordinate, expectedCoordinates);
+                        Assert.Equal(value, p.Index);
+                    });
+                    Assert.All(expectedCoordinates, c => Assert.NotNull(possibilities.SingleOrDefault(p => p.Coordinate == c)));
+                });
+            Assert.All(
+                rowsToValues.Values,
+                values => Assert.Equal(new HashSet<int> { 0, 1, 2, 3 }, values));
         }
     }
 }

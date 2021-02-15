@@ -2,6 +2,10 @@
 - uid: SudokuSpice
   name: SudokuSpice
   items:
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+  - uid: SudokuSpice.Box
+    name: Box
   - uid: SudokuSpice.Boxes
     name: Boxes
   - uid: SudokuSpice.Coordinate
@@ -18,6 +22,8 @@
     name.vb: IPuzzleSolver(Of TPuzzle)
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
+  - uid: SudokuSpice.MagicSquares
+    name: MagicSquares
   - uid: SudokuSpice.Puzzle
     name: Puzzle
   - uid: SudokuSpice.PuzzleGenerator`1
@@ -28,19 +34,25 @@
 - uid: SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   items:
-  - uid: SudokuSpice.ConstraintBased.ConstraintHeader
-    name: ConstraintHeader
-  - uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-    name: ExactCoverMatrix
-  - uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-    name: PossibleSquareValue
-  - uid: SudokuSpice.ConstraintBased.PossibleValueState
-    name: PossibleValueState
+  - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+    name: ExactCoverGraph
+  - uid: SudokuSpice.ConstraintBased.IObjective
+    name: IObjective
+  - uid: SudokuSpice.ConstraintBased.IOptionalObjective
+    name: IOptionalObjective
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+  - uid: SudokuSpice.ConstraintBased.NodeState
+    name: NodeState
+  - uid: SudokuSpice.ConstraintBased.Objective
+    name: Objective
+  - uid: SudokuSpice.ConstraintBased.OptionalObjective
+    name: OptionalObjective
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
   - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
     name: PuzzleSolver<TPuzzle>
     name.vb: PuzzleSolver(Of TPuzzle)
-  - uid: SudokuSpice.ConstraintBased.Square
-    name: Square
   - uid: SudokuSpice.ConstraintBased.StandardPuzzles
     name: StandardPuzzles
 - uid: SudokuSpice.ConstraintBased.Constraints
@@ -56,13 +68,13 @@
     name: DiagonalUniquenessConstraint
   - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
     name: IConstraint
+  - uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+    name: MagicSquaresConstraint
   - uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
     name: RowUniquenessConstraint
 - uid: SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
   items:
-  - uid: SudokuSpice.RuleBased.BitVector
-    name: BitVector
   - uid: SudokuSpice.RuleBased.DynamicRuleKeeper
     name: DynamicRuleKeeper
   - uid: SudokuSpice.RuleBased.IPossibleValues
@@ -121,6 +133,8 @@
     name: IMissingRowValuesTracker
   - uid: SudokuSpice.RuleBased.Rules.IRule
     name: IRule
+  - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule
+    name: MagicSquaresRule
   - uid: SudokuSpice.RuleBased.Rules.RowUniquenessRule
     name: RowUniquenessRule
   - uid: SudokuSpice.RuleBased.Rules.StandardRules

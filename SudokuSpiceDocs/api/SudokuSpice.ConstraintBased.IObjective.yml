@@ -1,0 +1,95 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  id: IObjective
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.IObjective.State
+  langs:
+  - csharp
+  - vb
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/IObjective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IObjective
+    path: ../SudokuSpice/ConstraintBased/IObjective.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nDefines an objective in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref> graph.\n"
+  example: []
+  syntax:
+    content: public interface IObjective
+    content.vb: Public Interface IObjective
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.ConstraintBased.IObjective.State
+  commentId: P:SudokuSpice.ConstraintBased.IObjective.State
+  id: State
+  parent: SudokuSpice.ConstraintBased.IObjective
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: IObjective.State
+  fullName: SudokuSpice.ConstraintBased.IObjective.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/IObjective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: State
+    path: ../SudokuSpice/ConstraintBased/IObjective.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: NodeState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: ReadOnly Property State As NodeState
+  overload: SudokuSpice.ConstraintBased.IObjective.State*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.IObjective.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.IObjective.State
+  name: State
+  nameWithType: IObjective.State
+  fullName: SudokuSpice.ConstraintBased.IObjective.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState

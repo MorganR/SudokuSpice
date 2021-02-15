@@ -81,17 +81,41 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">ExactCoverMatrix</span></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ExactCoverMatrix : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class ExactCoverMatrix</code></pre>
   </div>
   <h5 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>The exact cover matrix is organized by <a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>s, which in turn contain
-<a class="xref" href="SudokuSpice.ConstraintBased.PossibleSquareValue.html">PossibleSquareValue</a>s. Each of these represents a row in the exact-cover
+  <div class="markdown level0 remarks"><p>The exact cover matrix is organized by <a class="xref" href="SudokuSpice.Square.html">Square</a>s, which in turn contain
+<see cref="!:PossibleSquareValue"></see>s. Each of these represents a row in the exact-cover
 matrix. <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstraint.html">IConstraint</a>s will then add
-<a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader.html">ConstraintHeader</a>s, the columns of the matrix and corresponding links.</p>
+<see cref="!:Requirement"></see>s, the columns of the matrix and corresponding links.</p>
 </div>
   <h3 id="properties">Properties
   </h3>
@@ -100,7 +124,7 @@ matrix. <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstrain
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_AllPossibleValues.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L26">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L26">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_AllPossibleValues_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_AllPossibleValues" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.AllPossibleValues">AllPossibleValues</h4>
@@ -121,7 +145,7 @@ matrix. <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstrain
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -131,7 +155,7 @@ matrix. <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.IConstrain
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_ValuesToIndices.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L32">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L32">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_ValuesToIndices_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_ValuesToIndices" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.ValuesToIndices">ValuesToIndices</h4>
@@ -153,7 +177,7 @@ array.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -162,20 +186,67 @@ array.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquare_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_Create_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.Create(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L102">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L77">View Source</a>
   </span>
-  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquare_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquare_SudokuSpice_Coordinate__" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquare(SudokuSpice.Coordinate@)">GetSquare(Coordinate)</h4>
-  <div class="markdown level1 summary"><p>Gets the square representing the given <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>. This returns null if
+  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_Create_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.Create*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_Create_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.Create(SudokuSpice.IReadOnlyPuzzle)">Create(IReadOnlyPuzzle)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ExactCoverMatrix Create(IReadOnlyPuzzle puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverMatrix.html">ExactCoverMatrix</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_GetAllPossibilitiesAt_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L116">View Source</a>
+  </span>
+  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetAllPossibilitiesAt_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetAllPossibilitiesAt_SudokuSpice_Coordinate__" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)">GetAllPossibilitiesAt(Coordinate)</h4>
+  <div class="markdown level1 summary"><p>Gets the possibilities at the given <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>. This returns null if
 the square's value was preset in the current puzzle being solved.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Square GetSquare(in Coordinate c)</code></pre>
+    <pre><code class="lang-csharp hljs">public Possibility[] GetAllPossibilitiesAt(in Coordinate c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -204,124 +275,26 @@ the square's value was preset in the current puzzle being solved.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a></td>
+        <td><a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquaresOnColumn_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_GetUnsatisfiedRequiredObjectives.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L114">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L121">View Source</a>
   </span>
-  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquaresOnColumn_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquaresOnColumn_System_Int32_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnColumn(System.Int32)">GetSquaresOnColumn(Int32)</h4>
-  <div class="markdown level1 summary"><p>Gets all the <a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>s on the requested column.</p>
+  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetUnsatisfiedRequiredObjectives_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives*"></a>
+  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetUnsatisfiedRequiredObjectives" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedRequiredObjectives">GetUnsatisfiedRequiredObjectives()</h4>
+  <div class="markdown level1 summary"><p>Gets all the currently unsatisfied <a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>s.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;Square&gt; GetSquaresOnColumn(int column)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">column</span></td>
-        <td><p>A zero-based column index.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">List</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquaresOnRow_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L108">View Source</a>
-  </span>
-  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquaresOnRow_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetSquaresOnRow_System_Int32_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetSquaresOnRow(System.Int32)">GetSquaresOnRow(Int32)</h4>
-  <div class="markdown level1 summary"><p>Gets all the <a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>s on the requested row.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;Square&gt; GetSquaresOnRow(int row)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">row</span></td>
-        <td><p>A zero-based row index.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Square.html">Square</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix_GetUnsatisfiedConstraintHeaders.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L127">View Source</a>
-  </span>
-  <a id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetUnsatisfiedConstraintHeaders_" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_ExactCoverMatrix_GetUnsatisfiedConstraintHeaders" data-uid="SudokuSpice.ConstraintBased.ExactCoverMatrix.GetUnsatisfiedConstraintHeaders">GetUnsatisfiedConstraintHeaders()</h4>
-  <div class="markdown level1 summary"><p>Gets all the currently unsatisfied <a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader.html">ConstraintHeader</a>s.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ConstraintHeader&gt; GetUnsatisfiedConstraintHeaders()</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Objective&gt; GetUnsatisfiedRequiredObjectives()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -333,7 +306,7 @@ the square's value was preset in the current puzzle being solved.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.ConstraintHeader.html">ConstraintHeader</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -353,7 +326,7 @@ the square's value was preset in the current puzzle being solved.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverMatrix.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverMatrix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverMatrix.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

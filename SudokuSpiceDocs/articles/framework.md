@@ -14,7 +14,7 @@ implementing custom rules or constraints.
 
 SudokuSpice uses four main interfaces:
 
-1.  The [`IPuzzle`](xref:SudokuSpice.IPuzzle)
+1.  The [`IPuzzle`](xref:SudokuSpice.IPuzzle`1)
 
 	Puzzles store the underlying Sudoku data. You likely only need the standard implementations,
 	[`Puzzle`](xref:SudokuSpice.Puzzle) for constraint-based tools, and [`PuzzleWithPossibleValues`]
@@ -30,7 +30,7 @@ SudokuSpice uses four main interfaces:
 	[`BoxUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.BoxUniquenessRule). For convenience and
 	efficiency, these come prepackaged in the
 	[`StandardRules`](xref:SudokuSpice.RuleBased.Rules.StandardRules) class. Rules do not directly modify the
-	[`IPuzzle`](xref:SudokuSpice.IPuzzle) or its possible values themselves. They should use an
+	[`IPuzzle`](xref:SudokuSpice.IPuzzle`1) or its possible values themselves. They should use an
 	[`IReadOnlyPuzzle`](xref:SudokuSpice.IReadOnlyPuzzle) and just enough internal state to
 	efficiently provide the possible values of any given square according to *only* that rule.
 	
@@ -70,7 +70,7 @@ SudokuSpice uses four main interfaces:
     [`RowUniquenessConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint)
     enforces the constraint that "each row must contain *all* possible values."
 
-    Constraints are implemented using an
+    Constraints are implemented using a form of an
     [exact-cover matrix](https://en.wikipedia.org/wiki/Exact_cover). The exact-cover matrix combines
     two concepts into a single matrix. Each row represents a possible value for a single square, for
     example "Row: 1, Column: 0, Value: 2". We'll represent this in the short-form notation: `R1C0V2`.
@@ -95,15 +95,24 @@ SudokuSpice uses four main interfaces:
 
     SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
     the `RxCxVx` cells in the first column) are represented by
-    [`PossibleSquareValue`s](xref:SudokuSpice.ConstraintBased.PossibleSquareValue). Column headers
+    [`Possibility`s](xref:SudokuSpice.ConstraintBased.Possibility). Column headers
     (i.e. the cells in the first row) are represented by
-    [`ConstraintHeader`s](xref:SudokuSpice.ConstraintBased.ConstraintHeader). Rows and columns are
+	[`Objective`s](xref:SudokuSpice.ConstraintBased.Objective). Rows and columns are
     connected by links, which represent the 1s in the matrix. Each link is connected up and down to
-    the other '1s' that satisfy that constraint header, and connected left and right to the other
-    '1s' that are present for that possible square value.
+    the other '1s' that satisfy that objective, and connected left and right to the other
+    '1s' that are present for that possibility.
+
+	In addition, SudokuSpice's implementation extends the matrix to a larger graph to enable more
+	complicated constraints. These use
+	[`OptionalObjective`s](xref:SudokuSpice.ConstraintBased.OptionalObjective) to group
+	`Possibility`s and/or other `OptionalObjective`s. More details can be found in the
+	[`ExactCoverGraph`](xref:SudokuSpice.ConstraintBased.ExactCoverGraph) and
+	[`OptionalObjective`](xref:SudokuSpice.ConstraintBased.OptionalObjective) docs. The
+	[`MagicSquaresConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint)
+	demonstrates how to use these optional objectives to implement a complicated constraint.
 
     The constraint-based solver uses constraints instead of rules. It does not provide a separate
-    heuristics concept because the exact-cover matrix provides the `UniqueIn*` heuristics by default.
+    heuristics concept because the objectives inherently provide the `UniqueIn*` heuristics.
     Adding additional layers of heuristics would add complexity with minimal, if any, performance
     improvement.
 

@@ -147,7 +147,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             {
                 for (int column = 0; column < puzzle.Size; column++)
                 {
-                    int box = Boxes.CalculateBoxIndex(new(row, column), Boxes.CalculateBoxSize(puzzle.Size));
+                    int box = Boxes.CalculateBoxIndex(new(row, column), Boxes.IntSquareRoot(puzzle.Size));
                     Assert.Equal(
                         possibleValuesByBox[box],
                         rule.GetPossibleValues(new Coordinate(row, column)));

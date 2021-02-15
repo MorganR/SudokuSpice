@@ -4,12 +4,15 @@ items:
   commentId: N:SudokuSpice.ConstraintBased
   id: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.ConstraintHeader
-  - SudokuSpice.ConstraintBased.ExactCoverMatrix
-  - SudokuSpice.ConstraintBased.PossibleSquareValue
-  - SudokuSpice.ConstraintBased.PossibleValueState
+  - SudokuSpice.ConstraintBased.ExactCoverGraph
+  - SudokuSpice.ConstraintBased.IObjective
+  - SudokuSpice.ConstraintBased.IOptionalObjective
+  - SudokuSpice.ConstraintBased.IPossibility
+  - SudokuSpice.ConstraintBased.NodeState
+  - SudokuSpice.ConstraintBased.Objective
+  - SudokuSpice.ConstraintBased.OptionalObjective
+  - SudokuSpice.ConstraintBased.Possibility
   - SudokuSpice.ConstraintBased.PuzzleSolver`1
-  - SudokuSpice.ConstraintBased.Square
   - SudokuSpice.ConstraintBased.StandardPuzzles
   langs:
   - csharp
@@ -21,30 +24,53 @@ items:
   assemblies:
   - SudokuSpice
 references:
-- uid: SudokuSpice.ConstraintBased.ConstraintHeader
-  commentId: T:SudokuSpice.ConstraintBased.ConstraintHeader
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
   parent: SudokuSpice.ConstraintBased
-  name: ConstraintHeader
-  nameWithType: ConstraintHeader
-  fullName: SudokuSpice.ConstraintBased.ConstraintHeader
-- uid: SudokuSpice.ConstraintBased.ExactCoverMatrix
-  commentId: T:SudokuSpice.ConstraintBased.ExactCoverMatrix
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
   parent: SudokuSpice.ConstraintBased
-  name: ExactCoverMatrix
-  nameWithType: ExactCoverMatrix
-  fullName: SudokuSpice.ConstraintBased.ExactCoverMatrix
-- uid: SudokuSpice.ConstraintBased.PossibleSquareValue
-  commentId: T:SudokuSpice.ConstraintBased.PossibleSquareValue
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.IOptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.IOptionalObjective
   parent: SudokuSpice.ConstraintBased
-  name: PossibleSquareValue
-  nameWithType: PossibleSquareValue
-  fullName: SudokuSpice.ConstraintBased.PossibleSquareValue
-- uid: SudokuSpice.ConstraintBased.PossibleValueState
-  commentId: T:SudokuSpice.ConstraintBased.PossibleValueState
+  name: IOptionalObjective
+  nameWithType: IOptionalObjective
+  fullName: SudokuSpice.ConstraintBased.IOptionalObjective
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
   parent: SudokuSpice.ConstraintBased
-  name: PossibleValueState
-  nameWithType: PossibleValueState
-  fullName: SudokuSpice.ConstraintBased.PossibleValueState
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  parent: SudokuSpice.ConstraintBased
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
 - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
   commentId: T:SudokuSpice.ConstraintBased.PuzzleSolver`1
   name: PuzzleSolver<TPuzzle>
@@ -81,12 +107,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ConstraintBased.Square
-  commentId: T:SudokuSpice.ConstraintBased.Square
-  parent: SudokuSpice.ConstraintBased
-  name: Square
-  nameWithType: Square
-  fullName: SudokuSpice.ConstraintBased.Square
 - uid: SudokuSpice.ConstraintBased.StandardPuzzles
   commentId: T:SudokuSpice.ConstraintBased.StandardPuzzles
   name: StandardPuzzles

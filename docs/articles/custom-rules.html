@@ -77,7 +77,7 @@ using the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.DiagonalUniqu
 <h2 id="creating-a-rule">Creating a rule</h2>
 <p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a>, and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the <a class="xref" href="../api/SudokuSpice.RuleBased.BitVector.html"><code>BitVector</code></a> struct, which provides an
+we'll use the <a class="xref" href="../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an
 efficient set-like struct using the 32 bits of a <code>uint</code>.</p>
 <h3 id="tryinit">TryInit</h3>
 <p>When starting to solve a puzzle, the rule keeper will call <code>IRule.TryInit</code>. This is where we

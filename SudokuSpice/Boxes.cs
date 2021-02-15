@@ -9,14 +9,19 @@ namespace SudokuSpice
     public static class Boxes
     {
         /// <summary>
-        /// Calculates the size of a box within a puzzle (this should be the square root).
+        /// Calculates the square root of a number. Only works for integers that have integer
+        /// square roots.
+        ///
+        /// This is useful for determining the standard box-size for a puzzle (i.e.
+        /// <paramref name="toRoot"/> would be the size of the puzzle, and the result would be the
+        /// size of each box.
         /// </summary>
         /// <exception cref="ArgumentException">
-        /// Thrown if the <paramref name="puzzleSize"/> is not the square of a whole number.
+        /// Thrown if <paramref name="toRoot"/> is not the square of a whole number.
         /// </exception>
-        public static int CalculateBoxSize(int puzzleSize)
+        public static int IntSquareRoot(int toRoot)
         {
-            switch (puzzleSize)
+            switch (toRoot)
             {
                 case 1:
                     return 1;
@@ -29,45 +34,52 @@ namespace SudokuSpice
                 case 25:
                     return 5;
                 default:
-                    int root = (int)Math.Sqrt(puzzleSize);
-                    if (root == 0 || root * root != puzzleSize)
+                    int root = (int)Math.Sqrt(toRoot);
+                    if (root == 0 || root * root != toRoot)
                     {
-                        throw new ArgumentException($"{nameof(puzzleSize)} must be square.");
+                        throw new ArgumentException($"{nameof(toRoot)} must be square.");
                     }
                     return root;
             }
         }
 
         /// <summary>
-        /// Calculates the size of a box within a puzzle (this should be the square root).
+        /// Calculates the square root of a number. Only works for integers that have integer
+        /// square roots.
+        /// 
+        /// This is useful for determining the standard box-size for a puzzle (i.e.
+        /// <paramref name="toRoot"/> would be the size of the puzzle, and
+        /// <paramref name="root"/> would be the size of each box).
         /// </summary>
-        /// <param name="puzzleSize">The size (i.e. side-length) of the puzzle.</param>
-        /// <param name="boxSize">Out parameter: the size of the box.</param>
+        /// <param name="toRoot">
+        /// The number to root. Should be the square of another integer.
+        /// </param>
+        /// <param name="root">Out parameter: the square root of <paramref name="toRoot"/>.</param>
         /// <returns>
-        /// False if <paramref name="puzzleSize"/> is not the square of a whole number.
+        /// False if <paramref name="toRoot"/> is not the square of a whole number.
         /// </returns>
-        public static bool TryCalculateBoxSize(int puzzleSize, out int boxSize)
+        public static bool TryIntSquareRoot(int toRoot, out int root)
         {
-            switch (puzzleSize)
+            switch (toRoot)
             {
                 case 1:
-                    boxSize = 1;
+                    root = 1;
                     break;
                 case 4:
-                    boxSize = 2;
+                    root = 2;
                     break;
                 case 9:
-                    boxSize = 3;
+                    root = 3;
                     break;
                 case 16:
-                    boxSize = 4;
+                    root = 4;
                     break;
                 case 25:
-                    boxSize = 5;
+                    root = 5;
                     break;
                 default:
-                    boxSize = (int)Math.Sqrt(puzzleSize);
-                    if (puzzleSize == 0 || boxSize * boxSize != puzzleSize)
+                    root = (int)Math.Sqrt(toRoot);
+                    if (toRoot == 0 || root * root != toRoot)
                     {
                         return false;
                     }

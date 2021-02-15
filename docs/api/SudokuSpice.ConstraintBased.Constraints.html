@@ -89,6 +89,16 @@
       <h4><a class="xref" href="SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.html">DiagonalUniquenessConstraint</a></h4>
       <section><p>Enforces the constraint that all values in on each diagonal must be unique.</p>
 </section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.html">MagicSquaresConstraint</a></h4>
+      <section><p>Enforces a constraint that certain regions in a puzzle must be
+<a href="https://en.wikipedia.org/wiki/Magic_square">magic squares</a>, i.e. the sums of the
+values in each of their rows, columns, and (optionally) their diagonals add up to the same
+value.</p>
+<p>Note that this does <em>not</em> enforce uniqueness of values within the magic square as a
+whole. It <em>does</em>, however, prevent value duplication within each row, column, and/or
+diagonal. This can be combined with the <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint.html">BoxUniquenessConstraint</a> if you need
+box-level uniqueness.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html">RowUniquenessConstraint</a></h4>
       <section><p>Enforces the constraint that all values in a row must be unique.</p>
 </section>

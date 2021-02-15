@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/IMissingRowValuesTracker.cs
-      branch: init-or-not-init
+      branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IMissingRowValuesTracker
     path: ../SudokuSpice/RuleBased/Rules/IMissingRowValuesTracker.cs
@@ -36,7 +36,7 @@ items:
   - SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   - SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   modifiers.csharp:
   - public
@@ -58,7 +58,7 @@ items:
   source:
     remote:
       path: SudokuSpice/RuleBased/Rules/IMissingRowValuesTracker.cs
-      branch: init-or-not-init
+      branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetMissingValuesForRow
     path: ../SudokuSpice/RuleBased/Rules/IMissingRowValuesTracker.cs
@@ -74,7 +74,7 @@ items:
     - id: row
       type: System.Int32
     return:
-      type: SudokuSpice.RuleBased.BitVector
+      type: SudokuSpice.BitVector
     content.vb: Function GetMissingValuesForRow(row As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow*
 references:
@@ -275,14 +275,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+- uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: IRule.TryInit(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.RuleBased.BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
     nameWithType: IRule.TryInit
     fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
@@ -296,15 +296,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)
+  - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
     nameWithType: IRule.TryInit
     fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
@@ -318,10 +318,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.RuleBased.BitVector
+  - uid: SudokuSpice.BitVector
     name: BitVector
     nameWithType: BitVector
-    fullName: SudokuSpice.RuleBased.BitVector
+    fullName: SudokuSpice.BitVector
   - name: )
     nameWithType: )
     fullName: )
@@ -404,18 +404,26 @@ references:
   nameWithType: IMissingRowValuesTracker.GetMissingValuesForRow
   fullName: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: SudokuSpice.RuleBased.BitVector
-  commentId: T:SudokuSpice.RuleBased.BitVector
-  parent: SudokuSpice.RuleBased
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
   name: BitVector
   nameWithType: BitVector
-  fullName: SudokuSpice.RuleBased.BitVector
-- uid: SudokuSpice.RuleBased
-  commentId: N:SudokuSpice.RuleBased
-  name: SudokuSpice.RuleBased
-  nameWithType: SudokuSpice.RuleBased
-  fullName: SudokuSpice.RuleBased
+  fullName: SudokuSpice.BitVector
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice

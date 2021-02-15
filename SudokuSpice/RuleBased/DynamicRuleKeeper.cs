@@ -57,7 +57,7 @@ namespace SudokuSpice.RuleBased
                 {
                     puzzle.IntersectPossibleValues(in c, r.GetPossibleValues(in c));
                 }
-                if (puzzle.GetPossibleValues(in c).IsEmpty())
+                if (puzzle.GetPossibleValues(in c).IsEmpty)
                 {
                     return false;
                 }
@@ -96,7 +96,7 @@ namespace SudokuSpice.RuleBased
                 {
                     _puzzle.IntersectPossibleValues(in affectedCoord, r.GetPossibleValues(in affectedCoord));
                 }
-                if (_puzzle.GetPossibleValues(in affectedCoord).IsEmpty())
+                if (_puzzle.GetPossibleValues(in affectedCoord).IsEmpty)
                 {
                     foreach (IRule? r in _rules)
                     {

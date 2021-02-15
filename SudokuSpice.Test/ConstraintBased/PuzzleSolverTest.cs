@@ -12,7 +12,7 @@ namespace SudokuSpice.ConstraintBased.Test
         [ClassData(typeof(ValidStandardPuzzles))]
         public void Solve_ValidPuzzle_SolvesPuzzle(int?[,] matrix)
         {
-            var puzzle = new Puzzle(matrix);
+            var puzzle = Puzzle.CopyFrom(matrix);
             var solver = new PuzzleSolver<Puzzle>(
                 new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             var solved = solver.Solve(puzzle);

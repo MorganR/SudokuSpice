@@ -89,11 +89,35 @@ convenience.</p>
     <div><a class="xref" href="SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html">IMissingBoxValuesTracker</a></div>
     <div><a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Rules.html">SudokuSpice.RuleBased.Rules</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Rules_StandardRules_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StandardRules : object, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, IRule</code></pre>
+    <pre><code class="lang-csharp hljs">public class StandardRules : IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker, IRule</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -102,7 +126,7 @@ convenience.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules__ctor.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L28">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L28">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules__ctor_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.#ctor*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules__ctor" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.#ctor">StandardRules()</h4>
@@ -122,7 +146,7 @@ reused to solve multiple puzzles with the same <code data-dev-comment-type="para
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L40">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L40">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_CopyWithNewReference_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
@@ -173,7 +197,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForBox_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForBox(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L101">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L101">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForBox_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForBox*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForBox_System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForBox(System.Int32)">GetMissingValuesForBox(Int32)</h4>
@@ -211,7 +235,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
+        <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -221,7 +245,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForColumn_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L98">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L98">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForColumn_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForColumn_System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForColumn(System.Int32)">GetMissingValuesForColumn(Int32)</h4>
@@ -259,7 +283,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
+        <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -269,7 +293,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForRow_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L95">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L95">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForRow_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_GetMissingValuesForRow_System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetMissingValuesForRow(System.Int32)">GetMissingValuesForRow(Int32)</h4>
@@ -307,7 +331,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
+        <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -317,7 +341,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L104">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L104">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_GetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.GetPossibleValues(SudokuSpice.Coordinate@)">GetPossibleValues(Coordinate)</h4>
@@ -355,8 +379,8 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
-        <td><p>The possible values represented as a <a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a>.</p>
+        <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
+        <td><p>The possible values represented as a <a class="xref" href="SudokuSpice.BitVector.html">BitVector</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -374,7 +398,7 @@ be called before or after modifying the underlying puzzle's data.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L115">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L115">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_Revert_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.Revert*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_Revert_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
@@ -423,7 +447,7 @@ where the caller already knows all the possible coordinates that could be affect
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L123">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L123">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_Revert_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.Revert*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
@@ -471,13 +495,13 @@ tracker.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.RuleBased.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L46">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L46">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_TryInit_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.TryInit*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_BitVector_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.RuleBased.BitVector)">TryInit(IReadOnlyPuzzle, BitVector)</h4>
+  <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)">TryInit(IReadOnlyPuzzle, BitVector)</h4>
   <div class="markdown level1 summary"><p>Tries to initialize this rule to prepare to solve the given puzzle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -502,7 +526,7 @@ tracker.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.BitVector.html">BitVector</a></td>
+        <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
         <td><span class="parametername">allPossibleValues</span></td>
         <td><p>All the possible values for this puzzle.</p>
 </td>
@@ -525,7 +549,7 @@ tracker.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Rules_StandardRules_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_RuleBased_BitVector__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_StandardRules_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
 fails. Therefore, it is <em>not</em> guaranteed that the rule's state is unchanged on
 failure.</p>
@@ -535,7 +559,7 @@ failure.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L133">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L133">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_StandardRules_Update_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.Update*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_StandardRules_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.StandardRules.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>
@@ -605,7 +629,7 @@ tracker.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_StandardRules.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.StandardRules%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/init-or-not-init/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/StandardRules.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

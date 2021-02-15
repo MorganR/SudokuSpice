@@ -28,7 +28,7 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
         {
-            _boxSize = Boxes.CalculateBoxSize(puzzle.Size);
+            _boxSize = Boxes.IntSquareRoot(puzzle.Size);
             _puzzle = puzzle;
             if (!base.TryInit(puzzle, allPossibleValues))
             {

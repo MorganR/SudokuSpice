@@ -1,0 +1,893 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Box
+  commentId: T:SudokuSpice.Box
+  id: Box
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.Box.#ctor(SudokuSpice.Coordinate,System.Int32)
+  - SudokuSpice.Box.Contains(SudokuSpice.Coordinate@)
+  - SudokuSpice.Box.Equals(SudokuSpice.Box)
+  - SudokuSpice.Box.Equals(System.Object)
+  - SudokuSpice.Box.GetHashCode
+  - SudokuSpice.Box.op_Equality(SudokuSpice.Box,SudokuSpice.Box)
+  - SudokuSpice.Box.op_Inequality(SudokuSpice.Box,SudokuSpice.Box)
+  - SudokuSpice.Box.Size
+  - SudokuSpice.Box.TopLeft
+  langs:
+  - csharp
+  - vb
+  name: Box
+  nameWithType: Box
+  fullName: SudokuSpice.Box
+  type: Struct
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Box
+    path: ../SudokuSpice/Box.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nDefines a square region within a puzzle.\n"
+  example: []
+  syntax:
+    content: 'public struct Box : IEquatable<Box>'
+    content.vb: >-
+      Public Structure Box
+          Implements IEquatable(Of Box)
+  implements:
+  - System.IEquatable{SudokuSpice.Box}
+  inheritedMembers:
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+- uid: SudokuSpice.Box.TopLeft
+  commentId: P:SudokuSpice.Box.TopLeft
+  id: TopLeft
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: TopLeft
+  nameWithType: Box.TopLeft
+  fullName: SudokuSpice.Box.TopLeft
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TopLeft
+    path: ../SudokuSpice/Box.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe top-left coordinate (inclusive) for this box.\n"
+  example: []
+  syntax:
+    content: public Coordinate TopLeft { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.Coordinate
+    content.vb: Public ReadOnly Property TopLeft As Coordinate
+  overload: SudokuSpice.Box.TopLeft*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.Box.Size
+  commentId: P:SudokuSpice.Box.Size
+  id: Size
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: Box.Size
+  fullName: SudokuSpice.Box.Size
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Size
+    path: ../SudokuSpice/Box.cs
+    startLine: 16
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe size (i.e. side-length) of this box.\n"
+  example: []
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Size As Integer
+  overload: SudokuSpice.Box.Size*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.Box.#ctor(SudokuSpice.Coordinate,System.Int32)
+  commentId: M:SudokuSpice.Box.#ctor(SudokuSpice.Coordinate,System.Int32)
+  id: '#ctor(SudokuSpice.Coordinate,System.Int32)'
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Box(Coordinate, Int32)
+  nameWithType: Box.Box(Coordinate, Int32)
+  fullName: SudokuSpice.Box.Box(SudokuSpice.Coordinate, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Box.cs
+    startLine: 22
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nConstructs a box covering the given region. <code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code> must be greater\nthan 0.\n"
+  example: []
+  syntax:
+    content: public Box(Coordinate topLeft, int size)
+    parameters:
+    - id: topLeft
+      type: SudokuSpice.Coordinate
+    - id: size
+      type: System.Int32
+    content.vb: Public Sub New(topLeft As Coordinate, size As Integer)
+  overload: SudokuSpice.Box.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.Box.Contains(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Box.Contains(SudokuSpice.Coordinate@)
+  id: Contains(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Contains(Coordinate)
+  nameWithType: Box.Contains(Coordinate)
+  fullName: SudokuSpice.Box.Contains(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Contains
+    path: ../SudokuSpice/Box.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nReturns true if the given coordinate is part of the box.\n"
+  example: []
+  syntax:
+    content: public bool Contains(in Coordinate coord)
+    parameters:
+    - id: coord
+      type: SudokuSpice.Coordinate
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(ByRef coord As Coordinate) As Boolean
+  overload: SudokuSpice.Box.Contains*
+  nameWithType.vb: Box.Contains(ByRef Coordinate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.Box.Contains(ByRef SudokuSpice.Coordinate)
+  name.vb: Contains(ByRef Coordinate)
+- uid: SudokuSpice.Box.Equals(System.Object)
+  commentId: M:SudokuSpice.Box.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: Box.Equals(Object)
+  fullName: SudokuSpice.Box.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/Box.cs
+    startLine: 43
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: SudokuSpice.Box.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: SudokuSpice.Box.Equals(SudokuSpice.Box)
+  commentId: M:SudokuSpice.Box.Equals(SudokuSpice.Box)
+  id: Equals(SudokuSpice.Box)
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Equals(Box)
+  nameWithType: Box.Equals(Box)
+  fullName: SudokuSpice.Box.Equals(SudokuSpice.Box)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/Box.cs
+    startLine: 52
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public bool Equals(Box other)
+    parameters:
+    - id: other
+      type: SudokuSpice.Box
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As Box) As Boolean
+  overload: SudokuSpice.Box.Equals*
+  implements:
+  - System.IEquatable{SudokuSpice.Box}.Equals(SudokuSpice.Box)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.Box.GetHashCode
+  commentId: M:SudokuSpice.Box.GetHashCode
+  id: GetHashCode
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Box.GetHashCode()
+  fullName: SudokuSpice.Box.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetHashCode
+    path: ../SudokuSpice/Box.cs
+    startLine: 57
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: SudokuSpice.Box.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: SudokuSpice.Box.op_Equality(SudokuSpice.Box,SudokuSpice.Box)
+  commentId: M:SudokuSpice.Box.op_Equality(SudokuSpice.Box,SudokuSpice.Box)
+  id: op_Equality(SudokuSpice.Box,SudokuSpice.Box)
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Equality(Box, Box)
+  nameWithType: Box.Equality(Box, Box)
+  fullName: SudokuSpice.Box.Equality(SudokuSpice.Box, SudokuSpice.Box)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: op_Equality
+    path: ../SudokuSpice/Box.cs
+    startLine: 62
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator ==(Box left, Box right)
+    parameters:
+    - id: left
+      type: SudokuSpice.Box
+    - id: right
+      type: SudokuSpice.Box
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As Box, right As Box) As Boolean
+  overload: SudokuSpice.Box.op_Equality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: SudokuSpice.Box.op_Inequality(SudokuSpice.Box,SudokuSpice.Box)
+  commentId: M:SudokuSpice.Box.op_Inequality(SudokuSpice.Box,SudokuSpice.Box)
+  id: op_Inequality(SudokuSpice.Box,SudokuSpice.Box)
+  parent: SudokuSpice.Box
+  langs:
+  - csharp
+  - vb
+  name: Inequality(Box, Box)
+  nameWithType: Box.Inequality(Box, Box)
+  fullName: SudokuSpice.Box.Inequality(SudokuSpice.Box, SudokuSpice.Box)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/Box.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: op_Inequality
+    path: ../SudokuSpice/Box.cs
+    startLine: 67
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator !=(Box left, Box right)
+    parameters:
+    - id: left
+      type: SudokuSpice.Box
+    - id: right
+      type: SudokuSpice.Box
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As Box, right As Box) As Boolean
+  overload: SudokuSpice.Box.op_Inequality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.IEquatable{SudokuSpice.Box}
+  commentId: T:System.IEquatable{SudokuSpice.Box}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<Box>
+  nameWithType: IEquatable<Box>
+  fullName: System.IEquatable<SudokuSpice.Box>
+  nameWithType.vb: IEquatable(Of Box)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Box)
+  name.vb: IEquatable(Of Box)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: SudokuSpice.Box.TopLeft*
+  commentId: Overload:SudokuSpice.Box.TopLeft
+  name: TopLeft
+  nameWithType: Box.TopLeft
+  fullName: SudokuSpice.Box.TopLeft
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.Box.Size*
+  commentId: Overload:SudokuSpice.Box.Size
+  name: Size
+  nameWithType: Box.Size
+  fullName: SudokuSpice.Box.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.Box.#ctor*
+  commentId: Overload:SudokuSpice.Box.#ctor
+  name: Box
+  nameWithType: Box.Box
+  fullName: SudokuSpice.Box.Box
+- uid: SudokuSpice.Box.Contains*
+  commentId: Overload:SudokuSpice.Box.Contains
+  name: Contains
+  nameWithType: Box.Contains
+  fullName: SudokuSpice.Box.Contains
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Box.Equals*
+  commentId: Overload:SudokuSpice.Box.Equals
+  name: Equals
+  nameWithType: Box.Equals
+  fullName: SudokuSpice.Box.Equals
+- uid: System.IEquatable{SudokuSpice.Box}.Equals(SudokuSpice.Box)
+  commentId: M:System.IEquatable{SudokuSpice.Box}.Equals(SudokuSpice.Box)
+  parent: System.IEquatable{SudokuSpice.Box}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(Box)
+  nameWithType: IEquatable<Box>.Equals(Box)
+  fullName: System.IEquatable<SudokuSpice.Box>.Equals(SudokuSpice.Box)
+  nameWithType.vb: IEquatable(Of Box).Equals(Box)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Box).Equals(SudokuSpice.Box)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<Box>.Equals
+    fullName: System.IEquatable<SudokuSpice.Box>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of Box).Equals
+    fullName: System.IEquatable(Of SudokuSpice.Box).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Box
+  commentId: T:SudokuSpice.Box
+  parent: SudokuSpice
+  name: Box
+  nameWithType: Box
+  fullName: SudokuSpice.Box
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Box.GetHashCode*
+  commentId: Overload:SudokuSpice.Box.GetHashCode
+  name: GetHashCode
+  nameWithType: Box.GetHashCode
+  fullName: SudokuSpice.Box.GetHashCode
+- uid: SudokuSpice.Box.op_Equality*
+  commentId: Overload:SudokuSpice.Box.op_Equality
+  name: Equality
+  nameWithType: Box.Equality
+  fullName: SudokuSpice.Box.Equality
+- uid: SudokuSpice.Box.op_Inequality*
+  commentId: Overload:SudokuSpice.Box.op_Inequality
+  name: Inequality
+  nameWithType: Box.Inequality
+  fullName: SudokuSpice.Box.Inequality

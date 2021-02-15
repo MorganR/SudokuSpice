@@ -8,33 +8,39 @@ namespace SudokuSpice.ConstraintBased.Constraints
     public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
-        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverMatrix matrix)
+        public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
         {
             Span<bool> isConstraintSatisfiedAtIndex =
-                   stackalloc bool[matrix.AllPossibleValues.Length];
+                   stackalloc bool[graph.AllPossibleValues.Length];
             for (int row = 0; row < puzzle.Size; row++)
             {
-                ReadOnlySpan<Square?> rowSquares = matrix.GetSquaresOnRow(row);
+                ReadOnlySpan<Possibility?[]?> rowSquares = graph.GetPossibilitiesOnRow(row);
                 isConstraintSatisfiedAtIndex.Clear();
                 for (int col = 0; col < puzzle.Size; col++)
                 {
                     int? puzzleValue = puzzle[row, col];
                     if (puzzleValue.HasValue)
                     {
-                        isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[puzzleValue.Value]] = true;
+                        int valueIndex = graph.ValuesToIndices[puzzleValue.Value];
+                        if (isConstraintSatisfiedAtIndex[valueIndex])
+                        {
+                            return false;
+                        }
+                        isConstraintSatisfiedAtIndex[valueIndex] = true;
                     }
                 }
-                for (int valueIndex = 0; valueIndex < isConstraintSatisfiedAtIndex.Length; valueIndex++)
+                for (int possibilityIndex = 0; possibilityIndex < isConstraintSatisfiedAtIndex.Length; possibilityIndex++)
                 {
-                    if (isConstraintSatisfiedAtIndex[valueIndex])
+                    if (isConstraintSatisfiedAtIndex[possibilityIndex])
                     {
-                        if (!ConstraintUtil.TryDropPossibleSquaresForValueIndex(rowSquares, valueIndex))
+                        if (!ConstraintUtil.TryDropPossibilitiesAtIndex(rowSquares, possibilityIndex))
                         {
                             return false;
                         }
                         continue;
                     }
-                    if (!ConstraintUtil.TryAddConstraintHeadersForValueIndex(rowSquares, valueIndex, matrix))
+                    if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(
+                        rowSquares, possibilityIndex, graph, requiredCount: 1, objective: out _))
                     {
                         return false;
                     }

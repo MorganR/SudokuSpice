@@ -8,7 +8,7 @@ namespace SudokuSpice
         internal static string ToString(IReadOnlyPuzzle puzzle)
         {
             int size = puzzle.Size;
-            bool showBoxes = Boxes.TryCalculateBoxSize(size, out int boxSize);
+            bool showBoxes = Boxes.TryIntSquareRoot(size, out int boxSize);
             if (showBoxes)
             {
                 return _ToStringWithBoxes(puzzle, boxSize);

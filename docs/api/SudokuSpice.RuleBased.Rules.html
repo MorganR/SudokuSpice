@@ -86,6 +86,16 @@
       <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.html">DiagonalUniquenessRule</a></h4>
       <section><p>Restricts that the forward and backward diagonals each contain all unique values.</p>
 </section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.MagicSquaresRule.html">MagicSquaresRule</a></h4>
+      <section><p>Enforces a rule that certain regions in a puzzle must be
+<a href="https://en.wikipedia.org/wiki/Magic_square">magic squares</a>, i.e. the sums of the
+values in each of their rows, columns, and (optionally) their diagonals add up to the same
+value.</p>
+<p>Note that this does <em>not</em> enforce uniqueness of values within the magic square as a
+whole. It <em>does</em>, however, prevent value duplication within each row, column, and/or
+diagonal. This can be combined with other rules if you need proper row, column, box, and/or
+diagonal uniqueness.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.RowUniquenessRule.html">RowUniquenessRule</a></h4>
       <section><p>Restricts that each row contains all unique values.</p>
 </section>

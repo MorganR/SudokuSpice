@@ -1,95 +1,106 @@
-﻿namespace SudokuSpice.ConstraintBased
+﻿using System.Collections.Generic;
+
+namespace SudokuSpice.ConstraintBased
 {
     internal class Link
     {
-        internal readonly PossibleSquareValue PossibleSquareValue;
-        internal readonly ConstraintHeader Constraint;
-        internal Link Left { get; private set; }
-        internal Link Right { get; private set; }
-        internal Link Up { get; private set; }
-        internal Link Down { get; private set; }
+        internal readonly IPossibility Possibility;
+        internal readonly IObjective Objective;
 
-        private Link(PossibleSquareValue possibleValue, ConstraintHeader constraint)
+        internal Link PreviousOnPossibility { get; private set; }
+        internal Link NextOnPossibility { get; private set; }
+        internal Link PreviousOnObjective { get; private set; }
+        internal Link NextOnObjective { get; private set; }
+
+        private Link(IPossibility possibility, IObjective objective)
         {
-            this.PossibleSquareValue = possibleValue;
-            Constraint = constraint;
-            Up = Down = Right = Left = this;
+            Possibility = possibility;
+            Objective = objective;
+            PreviousOnObjective = NextOnObjective = NextOnPossibility = PreviousOnPossibility = this;
         }
 
-        internal static Link CreateConnectedLink(PossibleSquareValue possibleValue, ConstraintHeader header)
+        internal static Link CreateConnectedLink(IPossibility possibility, IObjective objective)
         {
-            var squareLink = new Link(possibleValue, header);
-            possibleValue.Attach(squareLink);
-            header.Attach(squareLink);
-            return squareLink;
+            var link = new Link(possibility, objective);
+            possibility.AppendObjective(link);
+            objective.AppendPossibility(link);
+            return link;
         }
 
-        internal bool TryRemoveFromConstraint()
+        internal void AppendToPossibility(Link toAppend)
         {
-            // If the constraint is already satisfied then we can skip this.
-            if (Constraint.IsSatisfied)
+            toAppend.NextOnPossibility = NextOnPossibility;
+            toAppend.PreviousOnPossibility = this;
+            NextOnPossibility.PreviousOnPossibility = toAppend;
+            NextOnPossibility = toAppend;
+        }
+
+        internal void AppendToObjective(Link toAppend)
+        {
+            toAppend.NextOnObjective = NextOnObjective;
+            toAppend.PreviousOnObjective = this;
+            NextOnObjective.PreviousOnObjective = toAppend;
+            NextOnObjective = toAppend;
+        }
+
+        internal void PrependToPossibility(Link toPrepend)
+        {
+            toPrepend.NextOnPossibility = this;
+            toPrepend.PreviousOnPossibility = PreviousOnPossibility;
+            PreviousOnPossibility.NextOnPossibility = toPrepend;
+            PreviousOnPossibility = toPrepend;
+        }
+
+        internal void PrependToObjective(Link toPrepend)
+        {
+            toPrepend.NextOnObjective = this;
+            toPrepend.PreviousOnObjective = PreviousOnObjective;
+            PreviousOnObjective.NextOnObjective = toPrepend;
+            PreviousOnObjective = toPrepend;
+        }
+
+        internal void PopFromObjective()
+        {
+            PreviousOnObjective.NextOnObjective = NextOnObjective;
+            NextOnObjective.PreviousOnObjective = PreviousOnObjective;
+        }
+
+        internal void ReinsertToObjective()
+        {
+            PreviousOnObjective.NextOnObjective = this;
+            NextOnObjective.PreviousOnObjective = this;
+        }
+
+        internal void PopFromPossibility()
+        {
+            PreviousOnPossibility.NextOnPossibility = NextOnPossibility;
+            NextOnPossibility.PreviousOnPossibility = PreviousOnPossibility;
+        }
+
+        internal void ReinsertToPossibility()
+        {
+            PreviousOnPossibility.NextOnPossibility = this;
+            NextOnPossibility.PreviousOnPossibility = this;
+        }
+
+        internal IEnumerable<Link> GetLinksOnPossibility()
+        {
+            var link = this;
+            do
             {
-                return true;
-            }
-            return Constraint.TryDetach(this);
+                yield return link;
+                link = link.NextOnPossibility;
+            } while (link != this);
         }
 
-        internal void ReturnToConstraint()
+        internal IEnumerable<Link> GetLinksOnObjective()
         {
-            // If the constraint is satisfied then we can skip this since this link was never removed.
-            if (Constraint.IsSatisfied)
+            var link = this;
+            do
             {
-                return;
-            }
-            Constraint.Reattach(this);
-        }
-
-        internal bool TrySatisfyConstraint() => Constraint.TrySatisfyFrom(this);
-
-        internal void UnsatisfyConstraint() => Constraint.UnsatisfyFrom(this);
-
-        internal void AppendRight(Link toAppend)
-        {
-            toAppend.Right = Right;
-            toAppend.Left = this;
-            Right.Left = toAppend;
-            Right = toAppend;
-        }
-
-        internal void AppendDown(Link toAppend)
-        {
-            toAppend.Down = Down;
-            toAppend.Up = this;
-            Down.Up = toAppend;
-            Down = toAppend;
-        }
-
-        internal void PrependLeft(Link toPrepend)
-        {
-            toPrepend.Right = this;
-            toPrepend.Left = Left;
-            Left.Right = toPrepend;
-            Left = toPrepend;
-        }
-
-        internal void PrependUp(Link toPrepend)
-        {
-            toPrepend.Down = this;
-            toPrepend.Up = Up;
-            Up.Down = toPrepend;
-            Up = toPrepend;
-        }
-
-        internal void PopVertically()
-        {
-            Up.Down = Down;
-            Down.Up = Up;
-        }
-
-        internal void ReinsertVertically()
-        {
-            Up.Down = this;
-            Down.Up = this;
+                yield return link;
+                link = link.NextOnObjective;
+            } while (link != this);
         }
     }
 }

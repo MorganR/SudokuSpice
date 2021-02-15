@@ -4,6 +4,8 @@ items:
   commentId: N:SudokuSpice
   id: SudokuSpice
   children:
+  - SudokuSpice.BitVector
+  - SudokuSpice.Box
   - SudokuSpice.Boxes
   - SudokuSpice.Coordinate
   - SudokuSpice.CoordinateTracker
@@ -11,6 +13,7 @@ items:
   - SudokuSpice.IPuzzle`1
   - SudokuSpice.IPuzzleSolver`1
   - SudokuSpice.IReadOnlyPuzzle
+  - SudokuSpice.MagicSquares
   - SudokuSpice.Puzzle
   - SudokuSpice.PuzzleGenerator`1
   - SudokuSpice.SolveStats
@@ -24,6 +27,18 @@ items:
   assemblies:
   - SudokuSpice
 references:
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.Box
+  commentId: T:SudokuSpice.Box
+  parent: SudokuSpice
+  name: Box
+  nameWithType: Box
+  fullName: SudokuSpice.Box
 - uid: SudokuSpice.Boxes
   commentId: T:SudokuSpice.Boxes
   name: Boxes
@@ -125,6 +140,11 @@ references:
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.MagicSquares
+  commentId: T:SudokuSpice.MagicSquares
+  name: MagicSquares
+  nameWithType: MagicSquares
+  fullName: SudokuSpice.MagicSquares
 - uid: SudokuSpice.Puzzle
   commentId: T:SudokuSpice.Puzzle
   parent: SudokuSpice

@@ -1,16 +1,17 @@
 ﻿using SudokuSpice.ConstraintBased.Constraints;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace SudokuSpice.ConstraintBased
 {
     /// <summary>
-    /// Solves puzzles of the given type using an <see cref="ExactCoverMatrix"/>.
+    /// Solves puzzles of the given type using an <see cref="ExactCoverGraph"/>.
     /// </summary>
     /// <remarks>
     /// This class is thread-safe as long as the given constraints' implementations of
-    /// <see cref="IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverMatrix)"/> are also
+    /// <see cref="IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)"/> are also
     /// thread-safe. If that's true, then it's safe to solve multiple puzzles concurrently via
     /// the same solver object.
     /// </remarks>
@@ -38,17 +39,17 @@ namespace SudokuSpice.ConstraintBased
                     $"{nameof(puzzle.AllPossibleValuesSpan)} must all be unique. Received values: {puzzle.AllPossibleValuesSpan.ToString()}.");
             }
             var puzzleCopy = puzzle.DeepCopy();
-            var matrix = new ExactCoverMatrix(puzzleCopy);
+            var graph = ExactCoverGraph.Create(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzleCopy, matrix))
+                if (!constraint.TryConstrain(puzzleCopy, graph))
                 {
                     throw new ArgumentException("Puzzle violates this solver's constraints.");
                 };
             }
             if (!(randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzleCopy, matrix)) :
-                _TrySolve(new SquareTracker<TPuzzle>(puzzleCopy, matrix))))
+                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzleCopy, graph)) :
+                _TrySolve(new Guesser<TPuzzle>(puzzleCopy, graph))))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
             }
@@ -62,17 +63,17 @@ namespace SudokuSpice.ConstraintBased
             {
                 return false;
             }
-            var matrix = new ExactCoverMatrix(puzzle);
+            var graph = ExactCoverGraph.Create(puzzle);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzle, matrix))
+                if (!constraint.TryConstrain(puzzle, graph))
                 {
                     return false;
                 }
             }
             return randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new SquareTracker<TPuzzle>(puzzle, matrix)) :
-                _TrySolve(new SquareTracker<TPuzzle>(puzzle, matrix));
+                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzle, graph)) :
+                _TrySolve(new Guesser<TPuzzle>(puzzle, graph));
         }
 
         /// <inheritdoc/>
@@ -95,15 +96,15 @@ namespace SudokuSpice.ConstraintBased
                 return new SolveStats();
             }
             var puzzleCopy = puzzle.DeepCopy();
-            var matrix = new ExactCoverMatrix(puzzleCopy);
+            var graph = ExactCoverGraph.Create(puzzleCopy);
             foreach (IConstraint? constraint in _constraints)
             {
-                if (!constraint.TryConstrain(puzzleCopy, matrix))
+                if (!constraint.TryConstrain(puzzleCopy, graph))
                 {
                     return new SolveStats();
                 }
             }
-            return _TryAllSolutions(new SquareTracker<TPuzzle>(puzzleCopy, matrix), validateUniquenessOnly, token);
+            return _TryAllSolutions(new Guesser<TPuzzle>(puzzleCopy, graph), validateUniquenessOnly, token);
         }
 
 
@@ -122,16 +123,16 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        private static bool _TrySolve(SquareTracker<TPuzzle> tracker)
+        private static bool _TrySolve(Guesser<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
                 return true;
             }
-            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
-            foreach (int possibleValue in possibleValues)
+            var guesses = tracker.GetBestGuesses();
+            foreach (Guess guess in guesses)
             {
-                if (tracker.TrySet(in c, possibleValue))
+                if (tracker.TrySet(in guess))
                 {
                     if (_TrySolve(tracker))
                     {
@@ -143,18 +144,23 @@ namespace SudokuSpice.ConstraintBased
             return false;
         }
 
-        private static bool _TrySolveRandomly(Random rand, SquareTracker<TPuzzle> tracker)
+        private static bool _TrySolveRandomly(Random rand, Guesser<TPuzzle> tracker)
         {
             if (tracker.IsSolved)
             {
                 return true;
             }
-            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
-            var possibleValuesList = new List<int>(possibleValues);
-            while (possibleValuesList.Count > 0)
+            var guessList = new LinkedList<Guess>(tracker.GetBestGuesses());
+            while (guessList.Count > 0)
             {
-                int possibleValue = possibleValuesList[rand.Next(0, possibleValuesList.Count)];
-                if (tracker.TrySet(in c, possibleValue))
+                
+                var guessNode = guessList.First!;
+                for(int randomIndex = rand.Next(0, guessList.Count); randomIndex > 0; --randomIndex)
+                {
+                    guessNode = guessNode.Next!;
+                }
+                ref Guess guess = ref guessNode.ValueRef;
+                if (tracker.TrySet(in guess))
                 {
                     if (_TrySolveRandomly(rand, tracker))
                     {
@@ -162,44 +168,43 @@ namespace SudokuSpice.ConstraintBased
                     }
                     tracker.UnsetLast();
                 }
-                _ = possibleValuesList.Remove(possibleValue);
+                guessList.Remove(guessNode);
             }
             return false;
         }
 
         private static SolveStats _TryAllSolutions(
-            SquareTracker<TPuzzle> tracker, bool validateUniquenessOnly, CancellationToken? cancellationToken)
+            Guesser<TPuzzle> tracker, bool validateUniquenessOnly, CancellationToken? cancellationToken)
         {
             if (tracker.IsSolved)
             {
                 return new SolveStats() { NumSolutionsFound = 1 };
             }
             cancellationToken?.ThrowIfCancellationRequested();
-            (Coordinate c, int[]? possibleValues) = tracker.GetBestGuess();
-            if (possibleValues.Length == 1)
+            var guesses = tracker.GetBestGuesses().ToArray();
+            if (guesses.Length == 1)
             {
-                if (tracker.TrySet(in c, possibleValues[0]))
+                if (tracker.TrySet(in guesses[0]))
                 {
                     return _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(in c, possibleValues, tracker, validateUniquenessOnly, cancellationToken);
+            return _TryAllSolutionsWithGuess(guesses, tracker, validateUniquenessOnly, cancellationToken);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
-            in Coordinate guessCoordinate,
-            ReadOnlySpan<int> valuesToGuess,
-            SquareTracker<TPuzzle> tracker,
+            ReadOnlySpan<Guess> guesses,
+            Guesser<TPuzzle> tracker,
             bool validateUniquenessOnly,
             CancellationToken? cancellationToken)
         {
             var solveStats = new SolveStats();
-            for (int i = 0; i < valuesToGuess.Length - 1; i++)
+            for (int i = 0; i < guesses.Length - 1; i++)
             {
                 cancellationToken?.ThrowIfCancellationRequested();
-                SquareTracker<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
-                if (trackerCopy.TrySet(in guessCoordinate, valuesToGuess[i]))
+                Guesser<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
+                if (trackerCopy.TrySet(in guesses[i]))
                 {
                     SolveStats stats = _TryAllSolutions(trackerCopy, validateUniquenessOnly, cancellationToken);
                     solveStats.NumSolutionsFound += stats.NumSolutionsFound;
@@ -211,7 +216,7 @@ namespace SudokuSpice.ConstraintBased
                     }
                 }
             }
-            if (tracker.TrySet(in guessCoordinate, valuesToGuess[^1]))
+            if (tracker.TrySet(in guesses[^1]))
             {
                 SolveStats stats = _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);
                 solveStats.NumSolutionsFound += stats.NumSolutionsFound;
@@ -227,7 +232,7 @@ namespace SudokuSpice.ConstraintBased
                 return new SolveStats();
             }
             solveStats.NumSquaresGuessed++;
-            solveStats.NumTotalGuesses += valuesToGuess.Length;
+            solveStats.NumTotalGuesses += guesses.Length;
             return solveStats;
         }
     }
