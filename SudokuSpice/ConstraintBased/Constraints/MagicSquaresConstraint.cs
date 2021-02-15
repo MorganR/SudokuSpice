@@ -239,7 +239,6 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
                     unsetSquares[0..numUnset],
                     graph.ValuesToIndices[possibleValue],
-                    graph,
                     requiredCount: 1,
                     objective: out OptionalObjective? objective))
                 {
@@ -294,7 +293,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             return setsToOr.Count > 0;
         } 
 
-        private void _ConstrainAndClearOverlappingSets(ExactCoverGraph graph, List<OptionalObjective> setsToOr)
+        private static void _ConstrainAndClearOverlappingSets(ExactCoverGraph graph, List<OptionalObjective> setsToOr)
         {
             Objective.CreateFullyConnected(graph, setsToOr.ToArray(), countToSatisfy: 1);
             setsToOr.Clear();

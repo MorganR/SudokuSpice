@@ -159,10 +159,10 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <see cref="Possibility"/> objects were still possible to satisfy it, else true.
         /// </returns>
         public static bool TryAddOptionalObjectiveForPossibilityIndex(
-            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph, int requiredCount, out OptionalObjective? objective)
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, int requiredCount, out OptionalObjective? objective)
         {
             var possibilities = new Possibility[squares.Length];
-            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, graph, possibilities);
+            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, possibilities);
             if (numPossibilities == 0)
             {
                 objective = null;
@@ -199,7 +199,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph, int requiredCount, out Objective? objective)
         {
             var possibilities = new Possibility[squares.Length];
-            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, graph, possibilities);
+            int numPossibilities = _RetrieveUnknownPossibilities(squares, possibilityIndex, possibilities);
             if (numPossibilities == 0)
             {
                 objective = null;
@@ -213,7 +213,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         private static int _RetrieveUnknownPossibilities(
-            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph,
+            ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex,
             Span<Possibility?> unknownPossibilities)
         {
             Debug.Assert(unknownPossibilities.Length == squares.Length);

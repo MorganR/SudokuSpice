@@ -96,7 +96,7 @@ namespace SudokuSpice.ConstraintBased
             possibility.Deselect();
         }
 
-        private IEnumerable<Guess> _RetrieveGuessesFromObjective(Objective objective)
+        private static IEnumerable<Guess> _RetrieveGuessesFromObjective(Objective objective)
         {
             Debug.Assert(!objective.IsSatisfied, "Objective must not be satisfied.");
             Debug.Assert(objective.AllUnknownPossibilitiesAreConcrete, "All possibilities must be concrete.");

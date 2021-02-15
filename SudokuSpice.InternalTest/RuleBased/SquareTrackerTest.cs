@@ -159,8 +159,8 @@ namespace SudokuSpice.RuleBased.Test
                     ruleKeeper,
                     ruleKeeper,
                     ruleKeeper),
-                out SquareTracker<PuzzleWithPossibleValues> tracker));
-            return tracker;
+                out SquareTracker<PuzzleWithPossibleValues>? tracker));
+            return tracker!;
         }
     }
 }

@@ -267,7 +267,7 @@ namespace SudokuSpice.RuleBased.Rules
                 return new Coordinate(_box.TopLeft.Row + coord.Row, _box.TopLeft.Column + coord.Column);
             }
 
-            private bool _IsOnBackwardDiagonal(in Coordinate relativeCoord)
+            private static bool _IsOnBackwardDiagonal(in Coordinate relativeCoord)
             {
                 return relativeCoord.Row == relativeCoord.Column;
             }
