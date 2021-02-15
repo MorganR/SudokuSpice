@@ -5,7 +5,6 @@ namespace SudokuSpice.ConstraintBased.Constraints
     /// <summary>
     /// Enforces the constraint that all values in a row must be unique.
     /// </summary>
-    // TODO: Move these to public tests
     public class RowUniquenessConstraint : IConstraint
     {
         /// <inheritdoc/>
@@ -22,7 +21,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     int? puzzleValue = puzzle[row, col];
                     if (puzzleValue.HasValue)
                     {
-                        isConstraintSatisfiedAtIndex[matrix.ValuesToIndices[puzzleValue.Value]] = true;
+                        int valueIndex = matrix.ValuesToIndices[puzzleValue.Value];
+                        if (isConstraintSatisfiedAtIndex[valueIndex])
+                        {
+                            return false;
+                        }
+                        isConstraintSatisfiedAtIndex[valueIndex] = true;
                     }
                 }
                 for (int possibilityIndex = 0; possibilityIndex < isConstraintSatisfiedAtIndex.Length; possibilityIndex++)

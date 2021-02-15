@@ -31,7 +31,10 @@ namespace SudokuSpice.ConstraintBased.Constraints
         {
             Span<bool> isConstraintSatisfiedAtIndex =
                     stackalloc bool[matrix.AllPossibleValues.Length];
-            CheckForSetValues(puzzle, matrix, squareCoordinates, isConstraintSatisfiedAtIndex);
+            if (!TryCheckForSetValues(puzzle, matrix, squareCoordinates, isConstraintSatisfiedAtIndex))
+            {
+                return false;
+            }
             Possibility?[]?[] squares = new Possibility[squareCoordinates.Length][];
             for (int i = 0; i < squares.Length; i++)
             {
@@ -56,9 +59,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
         }
 
         /// <summary>
-        /// Fills the <paramref name="isValueIndexPresentInSquares"/> span according to which
-        /// value indices are already set in the given list of
+        /// Tries to fill the <paramref name="isValueIndexPresentInSquares"/> span according to
+        /// which value indices are already set in the given list of
         /// <paramref name="squareCoordinates"/>. Each index is true if that value is already set.
+        ///
+        /// Results are only complete if this returns true. If it returns false, no guarantees are
+        /// made as to the state of <paramref name="isValueIndexPresentInSquares"/>.
         /// </summary>
         /// <param name="puzzle">The current puzzle being solved.</param>
         /// <param name="matrix">The matrix for the puzzle being solved.</param>
@@ -66,7 +72,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <param name="isValueIndexPresentInSquares">
         /// An array that will be updated to indicate which values are set.
         /// </param>
-        public static void CheckForSetValues(
+        /// <returns>False if a value is duplicated in the given coordinates.</returns>
+        public static bool TryCheckForSetValues(
             IReadOnlyPuzzle puzzle,
             ExactCoverMatrix matrix,
             ReadOnlySpan<Coordinate> squareCoordinates,
@@ -78,9 +85,16 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 int? square = puzzle[in coordinate];
                 if (square.HasValue)
                 {
-                    isValueIndexPresentInSquares[matrix.ValuesToIndices[square.Value]] = true;
+                    int valueIndex = matrix.ValuesToIndices[square.Value];
+                    if (isValueIndexPresentInSquares[valueIndex])
+                    {
+                        // Duplicate values are not allowed.
+                        return false;
+                    }
+                    isValueIndexPresentInSquares[valueIndex] = true;
                 }
             }
+            return true;
         }
 
         /// <summary>
