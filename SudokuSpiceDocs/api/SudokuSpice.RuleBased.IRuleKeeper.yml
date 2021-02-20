@@ -98,7 +98,7 @@ items:
   syntax:
     content: IReadOnlyList<IRule> GetRules()
     return:
-      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+      type: IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
     content.vb: Function GetRules As IReadOnlyList(Of IRule)
   overload: SudokuSpice.RuleBased.IRuleKeeper.GetRules*
 - uid: SudokuSpice.RuleBased.IRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -255,21 +255,20 @@ references:
   name: GetRules
   nameWithType: IRuleKeeper.GetRules
   fullName: SudokuSpice.RuleBased.IRuleKeeper.GetRules
-- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
-  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyList`1
+- uid: IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+  commentId: '!:IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}'
+  definition: IReadOnlyList`1
   name: IReadOnlyList<IRule>
   nameWithType: IReadOnlyList<IRule>
-  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.IRule>
+  fullName: IReadOnlyList<SudokuSpice.RuleBased.Rules.IRule>
   nameWithType.vb: IReadOnlyList(Of IRule)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.IRule)
+  fullName.vb: IReadOnlyList(Of SudokuSpice.RuleBased.Rules.IRule)
   name.vb: IReadOnlyList(Of IRule)
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
@@ -282,10 +281,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -297,69 +296,54 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IReadOnlyList`1
-  commentId: T:System.Collections.Generic.IReadOnlyList`1
+- uid: IReadOnlyList`1
   isExternal: true
-  name: IReadOnlyList<T>
-  nameWithType: IReadOnlyList<T>
-  fullName: System.Collections.Generic.IReadOnlyList<T>
-  nameWithType.vb: IReadOnlyList(Of T)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
-  name.vb: IReadOnlyList(Of T)
+  name: IReadOnlyList<>
+  nameWithType: IReadOnlyList<>
+  fullName: IReadOnlyList<>
+  nameWithType.vb: IReadOnlyList(Of )
+  fullName.vb: IReadOnlyList(Of )
+  name.vb: IReadOnlyList(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
+  - uid: IReadOnlyList`1
     name: IReadOnlyList
     nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
+    fullName: IReadOnlyList
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: SudokuSpice.RuleBased.IRuleKeeper.TryInit*
   commentId: Overload:SudokuSpice.RuleBased.IRuleKeeper.TryInit
   name: TryInit
   nameWithType: IRuleKeeper.TryInit
   fullName: SudokuSpice.RuleBased.IRuleKeeper.TryInit
 - uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: SudokuSpice.RuleBased.IRuleKeeper.TrySet*
   commentId: Overload:SudokuSpice.RuleBased.IRuleKeeper.TrySet
   name: TrySet
@@ -372,8 +356,6 @@ references:
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
