@@ -34,7 +34,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         private readonly int _totalCountToSatisfy;
-        private readonly Stack<Link> _previousFirstPossibilityLinks = new();
+        private readonly Stack<Link> _previousFirstPossibilityLinks;
         private int _possibleObjectiveCount;
         private int _possibilityCount;
         private int _selectedCount;
@@ -61,12 +61,15 @@ namespace SudokuSpice.ConstraintBased
         bool IObjective.IsRequired => false;
 
         /// <inheritdoc />
+        bool IPossibility.IsConcrete => false;
+        /// <inheritdoc />
         public NodeState State => _state;
 
-        private OptionalObjective(int countToSatisfy)
+        private OptionalObjective(int countToSatisfy, int expectedPossibilitiesCount)
         {
             _totalCountToSatisfy = countToSatisfy;
             _state = NodeState.UNKNOWN;
+            _previousFirstPossibilityLinks = new Stack<Link>(expectedPossibilitiesCount);
         }
 
         /// <summary>
@@ -93,7 +96,7 @@ namespace SudokuSpice.ConstraintBased
             {
                 throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length]. Received: {countToSatisfy} with {possibilities.Length} possibilities.");
             }
-            var objective = new OptionalObjective(countToSatisfy);
+            var objective = new OptionalObjective(countToSatisfy, possibilities.Length);
             foreach (var possibility in possibilities)
             {
                 Link.CreateConnectedLink(possibility, objective);

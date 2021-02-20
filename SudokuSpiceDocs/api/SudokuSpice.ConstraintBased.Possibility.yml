@@ -7,6 +7,7 @@ items:
   children:
   - SudokuSpice.ConstraintBased.Possibility.Coordinate
   - SudokuSpice.ConstraintBased.Possibility.Index
+  - SudokuSpice.ConstraintBased.Possibility.IsConcrete
   - SudokuSpice.ConstraintBased.Possibility.State
   - SudokuSpice.ConstraintBased.Possibility.TryDrop
   langs:
@@ -30,15 +31,22 @@ items:
   summary: "\nA concrete possibility in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. This represents a single\npossible value for a single square in the puzzle.\n"
   example: []
   syntax:
-    content: 'public class Possibility : object, IPossibility'
+    content: 'public class Possibility : IPossibility'
     content.vb: >-
       Public Class Possibility
-          Inherits Object
           Implements IPossibility
   inheritance:
   - System.Object
   implements:
   - SudokuSpice.ConstraintBased.IPossibility
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -119,6 +127,45 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  commentId: P:SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  id: IsConcrete
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: IsConcrete
+  nameWithType: Possibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IsConcrete
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
+  example: []
+  syntax:
+    content: public bool IsConcrete { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsConcrete As Boolean
+  overload: SudokuSpice.ConstraintBased.Possibility.IsConcrete*
+  implements:
+  - SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: SudokuSpice.ConstraintBased.Possibility.State
   commentId: P:SudokuSpice.ConstraintBased.Possibility.State
   id: State
@@ -137,7 +184,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 35
+    startLine: 37
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -176,7 +223,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TryDrop
     path: ../SudokuSpice/ConstraintBased/Possibility.cs
-    startLine: 74
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -205,12 +252,304 @@ references:
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: SudokuSpice.ConstraintBased.IPossibility
   commentId: T:SudokuSpice.ConstraintBased.IPossibility
   parent: SudokuSpice.ConstraintBased
   name: IPossibility
   nameWithType: IPossibility
   fullName: SudokuSpice.ConstraintBased.IPossibility
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.ConstraintBased.Possibility.Coordinate*
   commentId: Overload:SudokuSpice.ConstraintBased.Possibility.Coordinate
   name: Coordinate
@@ -236,10 +575,30 @@ references:
   nameWithType: Possibility.Index
   fullName: SudokuSpice.ConstraintBased.Possibility.Index
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: SudokuSpice.ConstraintBased.Possibility.IsConcrete*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  name: IsConcrete
+  nameWithType: Possibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.Possibility.IsConcrete
+- uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  name: IsConcrete
+  nameWithType: IPossibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: SudokuSpice.ConstraintBased.Possibility.State*
   commentId: Overload:SudokuSpice.ConstraintBased.Possibility.State
   name: State
@@ -262,8 +621,3 @@ references:
   name: TryDrop
   nameWithType: Possibility.TryDrop
   fullName: SudokuSpice.ConstraintBased.Possibility.TryDrop
-- uid: System.Boolean
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased
 {
+    // TODO: Could this be turned into a value-type? It's the most allocated object by far
     internal class Link
     {
         internal readonly IPossibility Possibility;
@@ -19,6 +21,7 @@ namespace SudokuSpice.ConstraintBased
             PreviousOnObjective = NextOnObjective = NextOnPossibility = PreviousOnPossibility = this;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static Link CreateConnectedLink(IPossibility possibility, IObjective objective)
         {
             var link = new Link(possibility, objective);
@@ -27,6 +30,7 @@ namespace SudokuSpice.ConstraintBased
             return link;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void AppendToPossibility(Link toAppend)
         {
             toAppend.NextOnPossibility = NextOnPossibility;
@@ -35,6 +39,7 @@ namespace SudokuSpice.ConstraintBased
             NextOnPossibility = toAppend;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void AppendToObjective(Link toAppend)
         {
             toAppend.NextOnObjective = NextOnObjective;
@@ -43,6 +48,7 @@ namespace SudokuSpice.ConstraintBased
             NextOnObjective = toAppend;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PrependToPossibility(Link toPrepend)
         {
             toPrepend.NextOnPossibility = this;
@@ -51,6 +57,7 @@ namespace SudokuSpice.ConstraintBased
             PreviousOnPossibility = toPrepend;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PrependToObjective(Link toPrepend)
         {
             toPrepend.NextOnObjective = this;
@@ -59,24 +66,28 @@ namespace SudokuSpice.ConstraintBased
             PreviousOnObjective = toPrepend;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PopFromObjective()
         {
             PreviousOnObjective.NextOnObjective = NextOnObjective;
             NextOnObjective.PreviousOnObjective = PreviousOnObjective;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void ReinsertToObjective()
         {
             PreviousOnObjective.NextOnObjective = this;
             NextOnObjective.PreviousOnObjective = this;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PopFromPossibility()
         {
             PreviousOnPossibility.NextOnPossibility = NextOnPossibility;
             NextOnPossibility.PreviousOnPossibility = PreviousOnPossibility;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void ReinsertToPossibility()
         {
             PreviousOnPossibility.NextOnPossibility = this;

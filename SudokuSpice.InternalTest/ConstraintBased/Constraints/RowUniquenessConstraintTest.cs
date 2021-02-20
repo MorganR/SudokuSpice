@@ -13,20 +13,20 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
             var matrix = ExactCoverGraph.Create(puzzle);
-            var squareObjectives = new HashSet<Objective>(matrix.GetUnsatisfiedRequiredObjectives());
+            var squareObjectives = new HashSet<Objective>(matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
 
             Assert.True(new RowUniquenessConstraint().TryConstrain(puzzle, matrix));
 
             Assert.Equal(
                 size * possibleValues.Length + squareObjectives.Count,
-                matrix.GetUnsatisfiedRequiredObjectives().Count());
+                matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities().Count());
             Dictionary<int, HashSet<int>> rowsToValues = new();
             for (int i = 0; i < size; ++i)
             {
                 rowsToValues[i] = new HashSet<int>();
             }
             var expectedColumns = new int[] { 0, 1, 2, 3 };
-            Assert.All(matrix.GetUnsatisfiedRequiredObjectives(),
+            Assert.All(matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities(),
                 concreteObjective =>
                 {
                     if (squareObjectives.Contains(concreteObjective))

@@ -31,7 +31,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                 p => Assert.Contains(p, ((IObjective)objective).GetUnknownDirectPossibilities()));
             Assert.All(((IObjective)objective).GetUnknownDirectPossibilities(),
                 p => Assert.Contains(p, possibilities));
-            Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectives());
+            Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         {
             var puzzle = new Puzzle(4);
             var matrix = ExactCoverGraph.Create(puzzle);
-            var fakePossibility = new FakePossibility();
+            var fakePossibility = new FakePossibility(isConcrete: false);
             var possibilities = new IPossibility[] {
                 new Possibility(new Coordinate(), 0),
                 fakePossibility,
@@ -107,7 +107,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             ((IObjective)objective).DeselectPossibility(selectedPossibility.AttachedObjectives.First());
             Assert.False(objective.IsSatisfied);
-            Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectives());
+            Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
             Assert.Empty(selectedPossibility.DroppedFromObjectives);
             Assert.Empty(droppedPossibility.DroppedFromObjectives);
             Assert.Contains(selectedPossibility, ((IObjective)objective).GetUnknownDirectPossibilities());
@@ -132,18 +132,19 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.False(concreteObjective.IsSatisfied);
             Assert.Equal(1, concreteObjective.CountUnknown);
             Assert.Single(objective.GetUnknownDirectPossibilities(), secondSelected);
-            Assert.Contains(concreteObjective, matrix.GetUnsatisfiedRequiredObjectives());
+            Assert.Contains(concreteObjective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
 
             Assert.True(objective.TrySelectPossibility(secondSelected.AttachedObjectives.First()));
             Assert.True(concreteObjective.IsSatisfied);
             Assert.Equal(0, concreteObjective.CountUnknown);
-            Assert.DoesNotContain(concreteObjective, matrix.GetUnsatisfiedRequiredObjectives());
+            Assert.True(!matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities().Contains(concreteObjective) ||
+                matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities().Count() == 1);
 
             objective.DeselectPossibility(secondSelected.AttachedObjectives.First());
             Assert.False(concreteObjective.IsSatisfied);
             Assert.Equal(1, concreteObjective.CountUnknown);
             Assert.Single(objective.GetUnknownDirectPossibilities(), secondSelected);
-            Assert.Contains(concreteObjective, matrix.GetUnsatisfiedRequiredObjectives());
+            Assert.Contains(concreteObjective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
 
             objective.DeselectPossibility(firstSelected.AttachedObjectives.First());
             Assert.Equal(2, concreteObjective.CountUnknown);
@@ -168,7 +169,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.False(objective.TrySelectPossibility(toSelect.AttachedObjectives.First()));
             Assert.Empty(possibilities[1].DroppedFromObjectives);
             Assert.Empty(undetachable.DroppedFromObjectives);
-            Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectives());
+            Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
             Assert.Contains(toSelect, objective.GetUnknownDirectPossibilities());
             Assert.Contains(possibilities[1], objective.GetUnknownDirectPossibilities());
             Assert.Contains(undetachable, objective.GetUnknownDirectPossibilities());

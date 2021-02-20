@@ -34,8 +34,8 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly int[] _allPossibleValues;
         private readonly Possibility?[]?[][] _possibilities;
-        private readonly LinkedList<Objective> _unsatisfiedObjectivesWithPossibilities;
-        private readonly LinkedList<Objective> _unsatisfiedObjectivesWithoutPossibilities;
+        private Objective? _firstUnsatisfiedObjectiveWithConcretePossibilities;
+        private Objective? _firstUnsatisfiedObjectiveWithoutConcretePossibilities;
 
         /// <summary>
         /// Contains the possible values for the current puzzle.
@@ -57,8 +57,6 @@ namespace SudokuSpice.ConstraintBased
                 _possibilities[rowIndex] = new Possibility[size][];
             }
             _allPossibleValues = puzzle.AllPossibleValuesSpan.ToArray();
-            _unsatisfiedObjectivesWithPossibilities = new LinkedList<Objective>();
-            _unsatisfiedObjectivesWithoutPossibilities = new LinkedList<Objective>();
             var valuesToIndices = new Dictionary<int, int>(_allPossibleValues.Length);
             for (int index = 0; index < _allPossibleValues.Length; index++)
             {
@@ -76,8 +74,6 @@ namespace SudokuSpice.ConstraintBased
                 _possibilities[rowIndex] = new Possibility[length][];
             }
             _allPossibleValues = other.AllPossibleValues.ToArray();
-            _unsatisfiedObjectivesWithPossibilities = new LinkedList<Objective>();
-            _unsatisfiedObjectivesWithoutPossibilities = new LinkedList<Objective>();
             ValuesToIndices = other.ValuesToIndices;
         }
 
@@ -94,6 +90,7 @@ namespace SudokuSpice.ConstraintBased
         {
             var graph = new ExactCoverGraph(puzzle);
             int size = puzzle.Size;
+            int numValues = graph._allPossibleValues.Length;
             for (int rowIndex = 0; rowIndex < size; rowIndex++)
             {
                 var possibilitiesRow = graph._possibilities[rowIndex];
@@ -102,7 +99,7 @@ namespace SudokuSpice.ConstraintBased
                     var coord = new Coordinate(rowIndex, columnIndex);
                     if (!puzzle[in coord].HasValue)
                     {
-                        var possibilitiesForSquare = graph._allPossibleValues.Select((_, index) => new Possibility(coord, index)).ToArray();
+                        var possibilitiesForSquare = _CreatePossibilitiesForSquare(in coord, numValues);
                         possibilitiesRow[columnIndex] = possibilitiesForSquare;
                         // Enforce that all squares need to have a value.
                         Objective.CreateFullyConnected(graph, possibilitiesForSquare, 1);
@@ -115,19 +112,22 @@ namespace SudokuSpice.ConstraintBased
         internal ExactCoverGraph CopyUnknowns()
         {
             var copy = new ExactCoverGraph(this);
-            foreach (var requiredObjective in _unsatisfiedObjectivesWithPossibilities)
+            foreach (var requiredObjective in _firstUnsatisfiedObjectiveWithConcretePossibilities!.GetConnectedObjectives())
             {
                 var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
                 Objective.CreateFullyConnected(
                     copy,
                     possibilitiesForObjective, requiredObjective.TotalCountToSatisfy);
             }
-            foreach (var requiredObjective in _unsatisfiedObjectivesWithoutPossibilities)
+            if (_firstUnsatisfiedObjectiveWithoutConcretePossibilities is not null)
             {
-                var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
-                Objective.CreateFullyConnected(
-                    copy,
-                    possibilitiesForObjective, requiredObjective.TotalCountToSatisfy);
+                foreach (var requiredObjective in _firstUnsatisfiedObjectiveWithoutConcretePossibilities.GetConnectedObjectives())
+                {
+                    var possibilitiesForObjective = _CopyUnknownPossibilities(requiredObjective, copy).ToArray();
+                    Objective.CreateFullyConnected(
+                        copy,
+                        possibilitiesForObjective, requiredObjective.TotalCountToSatisfy);
+                }
             }
             return copy;
         }
@@ -144,7 +144,7 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public IEnumerable<Objective> GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
         {
-            return _unsatisfiedObjectivesWithPossibilities;
+            return _firstUnsatisfiedObjectiveWithConcretePossibilities!.GetConnectedObjectives();
         }
 
         /// <summary>
@@ -152,8 +152,13 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public IEnumerable<Objective> GetUnsatisfiedRequiredObjectives()
         {
-            return ((IEnumerable<Objective>)_unsatisfiedObjectivesWithPossibilities)
-                .Concat(_unsatisfiedObjectivesWithoutPossibilities);
+            var withConcretePossibilities = _firstUnsatisfiedObjectiveWithConcretePossibilities!.GetConnectedObjectives();
+            if (_firstUnsatisfiedObjectiveWithoutConcretePossibilities is null)
+            {
+                return withConcretePossibilities;
+            }
+            return withConcretePossibilities.Concat(
+                _firstUnsatisfiedObjectiveWithoutConcretePossibilities.GetConnectedObjectives());
         }
 
         /// <summary>
@@ -170,35 +175,50 @@ namespace SudokuSpice.ConstraintBased
         public ReadOnlySpan<Possibility?[]?> GetPossibilitiesOnRow(int row) =>
             new ReadOnlySpan<Possibility?[]?>(_possibilities[row]);
 
-        internal LinkedListNode<Objective> AttachObjective(Objective objective)
+        internal void AttachObjective(Objective objective)
         {
             if (objective.AtLeastOnePossibilityIsConcrete)
             {
-                return _unsatisfiedObjectivesWithPossibilities.AddLast(objective);
-            }
-            return _unsatisfiedObjectivesWithoutPossibilities.AddLast(objective);
-        }
-
-        internal void DetachObjective(LinkedListNode<Objective> node)
-        {
-            if (node.Value.AtLeastOnePossibilityIsConcrete)
-            {
-                _unsatisfiedObjectivesWithPossibilities.Remove(node);
+                if (_firstUnsatisfiedObjectiveWithConcretePossibilities is null)
+                {
+                    _firstUnsatisfiedObjectiveWithConcretePossibilities = objective;
+                } else
+                {
+                    objective.PrependToGraphBefore(_firstUnsatisfiedObjectiveWithConcretePossibilities);
+                }
             } else
             {
-                _unsatisfiedObjectivesWithoutPossibilities.Remove(node);
+                if (_firstUnsatisfiedObjectiveWithoutConcretePossibilities is null)
+                {
+                    _firstUnsatisfiedObjectiveWithoutConcretePossibilities = objective;
+                } else
+                {
+                    objective.PrependToGraphBefore(_firstUnsatisfiedObjectiveWithoutConcretePossibilities);
+                }
             }
         }
 
-        internal void ReattachObjective(LinkedListNode<Objective> node)
+        internal void DetachObjective(Objective toDetach)
         {
-            if (node.Value.AtLeastOnePossibilityIsConcrete)
+            toDetach.PopFromGraph();
+            if (toDetach.AtLeastOnePossibilityIsConcrete)
             {
-                _unsatisfiedObjectivesWithPossibilities.AddLast(node);
+                if (_firstUnsatisfiedObjectiveWithConcretePossibilities == toDetach)
+                {
+                    _firstUnsatisfiedObjectiveWithConcretePossibilities = toDetach.NextObjectiveInGraph;
+                }
             } else
             {
-                _unsatisfiedObjectivesWithoutPossibilities.AddLast(node);
+                if (_firstUnsatisfiedObjectiveWithoutConcretePossibilities == toDetach)
+                {
+                    _firstUnsatisfiedObjectiveWithoutConcretePossibilities = toDetach.NextObjectiveInGraph;
+                }
             }
+        }
+
+        internal void ReattachObjective(Objective toReattach)
+        {
+            toReattach.ReinsertToGraph();
         }
 
         private IEnumerable<IPossibility> _CopyUnknownPossibilities(IObjective objective, ExactCoverGraph puzzleCopy)
@@ -242,6 +262,16 @@ namespace SudokuSpice.ConstraintBased
                     throw new ArgumentException($"Possibilities must be one of {nameof(Possibility)} and {nameof(OptionalObjective)} in order to copy objectives. Received possibility with type: {possibility.GetType().Name}");
                 }
             }
+        }
+
+        private static Possibility[] _CreatePossibilitiesForSquare(in Coordinate location, int numToCreate)
+        {
+            var possibilities = new Possibility[numToCreate];
+            for (int i = 0; i < possibilities.Length; ++i)
+            {
+                possibilities[i] = new Possibility(location, i);
+            }
+            return possibilities;
         }
     }
 }

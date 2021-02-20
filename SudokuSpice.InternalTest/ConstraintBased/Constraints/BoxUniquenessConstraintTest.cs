@@ -14,19 +14,19 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
             int[] possibleValues = new int[] { 1, 3, 5, 7 };
             var puzzle = new Puzzle(size);
             var matrix = ExactCoverGraph.Create(puzzle);
-            var squareObjectives = new HashSet<Objective>(matrix.GetUnsatisfiedRequiredObjectives());
+            var squareObjectives = new HashSet<Objective>(matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
 
             Assert.True(new BoxUniquenessConstraint().TryConstrain(puzzle, matrix));
 
             Assert.Equal(
                 size * possibleValues.Length + squareObjectives.Count,
-                matrix.GetUnsatisfiedRequiredObjectives().Count());
+                matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities().Count());
             Dictionary<int, HashSet<int>> boxIndicesToValues = new();
             for (int i = 0; i < size; ++i)
             {
                 boxIndicesToValues[i] = new HashSet<int>();
             }
-            Assert.All(matrix.GetUnsatisfiedRequiredObjectives(),
+            Assert.All(matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities(),
                 concreteObjective =>
                 {
                     if (squareObjectives.Contains(concreteObjective))

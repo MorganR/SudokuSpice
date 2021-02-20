@@ -13,14 +13,17 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly int _countToSatisfy;
         private readonly ExactCoverGraph _graph;
-        private readonly Stack<Link> _previousFirstPossibilityLinks = new();
+        private readonly Stack<Link> _previousFirstPossibilityLinks;
         private int _possibilityCount;
         private int _selectedCount;
         private Link? _toPossibility;
         private bool _allPossibilitiesAreConcrete;
         private bool _atLeastOnePossibilityIsConcrete;
-        private LinkedListNode<Objective>? _linkInGraph;
+        private Objective _nextObjectiveInGraph;
+        private Objective _previousObjectiveInGraph;
         private NodeState _state;
+
+        internal Objective NextObjectiveInGraph => _nextObjectiveInGraph;
 
         /// <inheritdoc />
         public NodeState State => _state;
@@ -77,13 +80,16 @@ namespace SudokuSpice.ConstraintBased
         /// <inheritdoc />
         bool IObjective.IsRequired => true;
 
-        private Objective(ExactCoverGraph graph, int countToSatisfy)
+        private Objective(ExactCoverGraph graph, int countToSatisfy, int expectedPossibilitiesCount)
         {
             _graph = graph;
             _countToSatisfy = countToSatisfy;
             _allPossibilitiesAreConcrete = true;
             _atLeastOnePossibilityIsConcrete = false;
             _state = NodeState.UNKNOWN;
+            _previousFirstPossibilityLinks = new Stack<Link>(expectedPossibilitiesCount);
+            _nextObjectiveInGraph = this;
+            _previousObjectiveInGraph = this;
         }
 
         /// <summary>
@@ -111,12 +117,12 @@ namespace SudokuSpice.ConstraintBased
             {
                 throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length].");
             }
-            var objective = new Objective(graph, countToSatisfy);
+            var objective = new Objective(graph, countToSatisfy, possibilities.Length);
             foreach (var possibility in possibilities)
             {
                 Link.CreateConnectedLink(possibility, objective);
             }
-            objective._linkInGraph = graph.AttachObjective(objective);
+            graph.AttachObjective(objective);
             return objective;
         }
 
@@ -124,12 +130,12 @@ namespace SudokuSpice.ConstraintBased
         void IObjective.AppendPossibility(Link toNewPossibility)
         {
             ++_possibilityCount;
-            if (toNewPossibility.Possibility is not Possibility)
-            {
-                _allPossibilitiesAreConcrete = false;
-            } else
+            if (toNewPossibility.Possibility.IsConcrete)
             {
                 _atLeastOnePossibilityIsConcrete = true;
+            } else
+            {
+                _allPossibilitiesAreConcrete = false;
             }
             if (_toPossibility is null)
             {
@@ -170,9 +176,7 @@ namespace SudokuSpice.ConstraintBased
                     --_selectedCount;
                     return false;
                 }
-                Debug.Assert(_linkInGraph is not null,
-                    $"{nameof(_linkInGraph)} should be set during construction.");
-                _graph.DetachObjective(_linkInGraph);
+                _graph.DetachObjective(this);
                 _state = NodeState.SELECTED;
             }
             _PopPossibility(toSelect);
@@ -188,9 +192,7 @@ namespace SudokuSpice.ConstraintBased
             if (IsSatisfied)
             {
                 _state = NodeState.UNKNOWN;
-                Debug.Assert(_linkInGraph is not null,
-                    $"{nameof(_linkInGraph)} should be set during construction.");
-                _graph.ReattachObjective(_linkInGraph);
+                _graph.ReattachObjective(this);
                 Links.RevertOthersOnObjective(
                     toDeselect,
                     toReattach => toReattach.Possibility.ReturnFromObjective(toReattach));
@@ -221,10 +223,43 @@ namespace SudokuSpice.ConstraintBased
             _ReinsertPossibility(toReturn);
         }
 
+        internal void PrependToGraphBefore(Objective next)
+        {
+            _nextObjectiveInGraph = next;
+            _previousObjectiveInGraph = next._previousObjectiveInGraph;
+            next._previousObjectiveInGraph = this;
+            _previousObjectiveInGraph._nextObjectiveInGraph = this;
+        }
+
+        internal void PopFromGraph()
+        {
+            _previousObjectiveInGraph._nextObjectiveInGraph = _nextObjectiveInGraph;
+            _nextObjectiveInGraph._previousObjectiveInGraph = _previousObjectiveInGraph;
+        }
+
+        internal void ReinsertToGraph()
+        {
+            _previousObjectiveInGraph._nextObjectiveInGraph = this;
+            _nextObjectiveInGraph._previousObjectiveInGraph = this;
+        }
+
+        internal IEnumerable<Objective> GetConnectedObjectives()
+        {
+            var link = this;
+            do
+            {
+                yield return link;
+                link = link._nextObjectiveInGraph;
+            } while (link != this);
+        }
+
         private void _PopPossibility(Link toPop)
         {
             toPop.PopFromObjective();
             _previousFirstPossibilityLinks.Push(_toPossibility!);
+            // TODO: Try removing one if here by always updating _toPossibility to toPop.Next.
+            // This should work since _previousFirstPossibilityLinks now saves state.
+            // TODO: Try removing this stack altogether.
             if (_toPossibility == toPop)
             {
                 _toPossibility = toPop.NextOnObjective;

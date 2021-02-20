@@ -9,6 +9,13 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         internal List<Link> AttachedObjectives = new List<Link>();
         internal List<Link> DroppedFromObjectives = new List<Link>();
 
+        internal FakePossibility(bool isConcrete = true)
+        {
+            IsConcrete = isConcrete;
+        }
+
+        public bool IsConcrete { get; set; }
+
         public NodeState State { get; set; }
 
         void IPossibility.AppendObjective(Link toNewObjective)

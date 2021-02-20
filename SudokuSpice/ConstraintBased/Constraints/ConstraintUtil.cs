@@ -169,7 +169,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 return false;
             }
             objective = OptionalObjective.CreateWithPossibilities(
-                possibilities[0..numPossibilities],
+                new ReadOnlySpan<IPossibility>(possibilities, 0, numPossibilities),
                 countToSatisfy: requiredCount);
             return true;
         }
@@ -207,7 +207,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             objective = Objective.CreateFullyConnected(
                 graph,
-                possibilities[0..numPossibilities],
+                new ReadOnlySpan<IPossibility>(possibilities, 0, numPossibilities),
                 countToSatisfy: requiredCount);
             return true;
         }
@@ -220,12 +220,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             int numPossibilities = 0;
             for (int i = 0; i < squares.Length; i++)
             {
-                Possibility?[]? square = squares[i];
-                if (square is null)
-                {
-                    continue;
-                }
-                Possibility? possibility = square[possibilityIndex];
+                Possibility? possibility = squares[i]?[possibilityIndex];
                 if (possibility is null
                     || possibility.State != NodeState.UNKNOWN)
                 {

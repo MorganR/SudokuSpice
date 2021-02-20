@@ -107,14 +107,13 @@ namespace SudokuSpice.ConstraintBased
             return _TryAllSolutions(new Guesser<TPuzzle>(puzzleCopy, graph), validateUniquenessOnly, token);
         }
 
-
         private static bool _AreValuesUnique(ReadOnlySpan<int> values)
         {
-            for (int i = 0; i < values.Length; i++)
+            for (int i = 1; i < values.Length; ++i)
             {
-                for (int j = i - 1; j >= 0; j--)
+                for (int j = i - 1; j >= 0; --j)
                 {
-                    if (values[j] == values[i])
+                    if (values[i] == values[j])
                     {
                         return false;
                     }

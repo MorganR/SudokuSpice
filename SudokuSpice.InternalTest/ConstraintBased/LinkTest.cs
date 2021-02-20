@@ -234,6 +234,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         }
         private class NoopPossibility : IPossibility
         {
+            public bool IsConcrete { get; set; }
             public NodeState State { get; set; }
             
             void IPossibility.AppendObjective(Link toNewObjective) { }

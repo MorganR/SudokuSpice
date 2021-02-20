@@ -193,13 +193,13 @@ dropped or selected).</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddOptionalObjectiveForPossibilityIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Possibility____System_Int32_SudokuSpice_ConstraintBased_ExactCoverGraph_System_Int32_SudokuSpice_ConstraintBased_OptionalObjective__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.Possibility%5B%5D%7D%2CSystem.Int32%2CSudokuSpice.ConstraintBased.ExactCoverGraph%2CSystem.Int32%2CSudokuSpice.ConstraintBased.OptionalObjective%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddOptionalObjectiveForPossibilityIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Possibility____System_Int32_System_Int32_SudokuSpice_ConstraintBased_OptionalObjective__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.Possibility%5B%5D%7D%2CSystem.Int32%2CSystem.Int32%2CSudokuSpice.ConstraintBased.OptionalObjective%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/Constraints/ConstraintUtil.cs/#L161">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddOptionalObjectiveForPossibilityIndex_" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddOptionalObjectiveForPossibilityIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Possibility____System_Int32_SudokuSpice_ConstraintBased_ExactCoverGraph_System_Int32_SudokuSpice_ConstraintBased_OptionalObjective__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,SudokuSpice.ConstraintBased.ExactCoverGraph,System.Int32,SudokuSpice.ConstraintBased.OptionalObjective@)">TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan&lt;Possibility[]&gt;, Int32, ExactCoverGraph, Int32, out OptionalObjective)</h4>
+  <h4 id="SudokuSpice_ConstraintBased_Constraints_ConstraintUtil_TryAddOptionalObjectiveForPossibilityIndex_System_ReadOnlySpan_SudokuSpice_ConstraintBased_Possibility____System_Int32_System_Int32_SudokuSpice_ConstraintBased_OptionalObjective__" data-uid="SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]},System.Int32,System.Int32,SudokuSpice.ConstraintBased.OptionalObjective@)">TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan&lt;Possibility[]&gt;, Int32, Int32, out OptionalObjective)</h4>
   <div class="markdown level1 summary"><p>Add an <a class="xref" href="SudokuSpice.ConstraintBased.OptionalObjective.html">OptionalObjective</a> connecting all the
 <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>s at the given <code data-dev-comment-type="paramref" class="paramref">possibilityIndex</code> on the
 given <code data-dev-comment-type="paramref" class="paramref">squares</code>. Skips null squares, null possibilities, and any
@@ -208,7 +208,7 @@ possibilities in a known state (i.e. dropped or selected).</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan&lt;Possibility[]&gt; squares, int possibilityIndex, ExactCoverGraph graph, int requiredCount, out OptionalObjective objective)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool TryAddOptionalObjectiveForPossibilityIndex(ReadOnlySpan&lt;Possibility[]&gt; squares, int possibilityIndex, int requiredCount, out OptionalObjective objective)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -230,12 +230,6 @@ possibilities in a known state (i.e. dropped or selected).</p>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">possibilityIndex</span></td>
         <td><p>The value index of the possible value within the squares.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a></td>
-        <td><span class="parametername">graph</span></td>
-        <td><p>The graph for the current puzzle being solved.</p>
 </td>
       </tr>
       <tr>

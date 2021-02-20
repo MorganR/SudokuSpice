@@ -6,6 +6,12 @@
     public interface IPossibility
     {
         /// <summary>
+        /// True if this possibility is a concrete possibility, i.e. a leaf node in the graph, as
+        /// opposed to a group of other possibilities.
+        /// </summary>
+        public bool IsConcrete { get; }
+
+        /// <summary>
         /// The current state of this node in the <see cref="ExactCoverGraph"/>.
         /// </summary>
         public NodeState State { get; }

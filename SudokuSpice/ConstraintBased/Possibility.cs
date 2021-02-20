@@ -33,6 +33,8 @@ namespace SudokuSpice.ConstraintBased
         /// </summary>
         public int Index { get; }
         /// <inheritdoc />
+        public bool IsConcrete => true;
+        /// <inheritdoc />
         public NodeState State { get; private set; }
 
         internal Possibility(Coordinate location, int valueIndex)

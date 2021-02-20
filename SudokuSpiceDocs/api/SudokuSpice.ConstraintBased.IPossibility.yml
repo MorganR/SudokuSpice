@@ -5,6 +5,7 @@ items:
   id: IPossibility
   parent: SudokuSpice.ConstraintBased
   children:
+  - SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   - SudokuSpice.ConstraintBased.IPossibility.State
   langs:
   - csharp
@@ -35,6 +36,41 @@ items:
   modifiers.vb:
   - Public
   - Interface
+- uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  id: IsConcrete
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  langs:
+  - csharp
+  - vb
+  name: IsConcrete
+  nameWithType: IPossibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/IPossibility.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IsConcrete
+    path: ../SudokuSpice/ConstraintBased/IPossibility.cs
+    startLine: 11
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
+  example: []
+  syntax:
+    content: bool IsConcrete { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsConcrete As Boolean
+  overload: SudokuSpice.ConstraintBased.IPossibility.IsConcrete*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
 - uid: SudokuSpice.ConstraintBased.IPossibility.State
   commentId: P:SudokuSpice.ConstraintBased.IPossibility.State
   id: State
@@ -53,7 +89,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/IPossibility.cs
-    startLine: 10
+    startLine: 16
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -82,6 +118,24 @@ references:
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete*
+  commentId: Overload:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  name: IsConcrete
+  nameWithType: IPossibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.ConstraintBased.IPossibility.State*
   commentId: Overload:SudokuSpice.ConstraintBased.IPossibility.State
   name: State
