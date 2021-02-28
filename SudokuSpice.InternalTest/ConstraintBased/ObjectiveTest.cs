@@ -8,18 +8,33 @@ namespace SudokuSpice.ConstraintBased.InternalTest
     public class ObjectiveTest
     {
         [Theory]
-        [InlineData(1, 1)]
-        [InlineData(2, 1)]
-        [InlineData(2, 2)]
-        [InlineData(4, 1)]
-        public void CreateFullyConnected_ConnectsCorrectly(int numPossibilities, int numRequired)
+        [InlineData(1, 1, true)]
+        [InlineData(2, 1, true)]
+        [InlineData(2, 2, true)]
+        [InlineData(4, 1, true)]
+        [InlineData(1, 1, false)]
+        [InlineData(2, 1, false)]
+        [InlineData(2, 2, false)]
+        [InlineData(4, 1, false)]
+        public void CreateFullyConnected_ConnectsCorrectly(int numPossibilities, int numRequired, bool asConcrete)
         {
             int size = 4;
             var puzzle = new Puzzle(size);
             var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), numPossibilities);
 
-            var objective = Objective.CreateFullyConnected(matrix, possibilities, numRequired);
+            Objective objective;
+            if (asConcrete)
+            {
+                objective = Objective.CreateFullyConnected(matrix,
+                    new ReadOnlySpan<Possibility>(possibilities),
+                    numRequired);
+            } else
+            {
+                objective = Objective.CreateFullyConnected(matrix,
+                    new ReadOnlySpan<IPossibility>(possibilities),
+                    numRequired);
+            }
 
             Assert.True(objective.AllUnknownPossibilitiesAreConcrete);
             Assert.True(((IObjective)objective).IsRequired);
@@ -34,8 +49,10 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
         }
 
-        [Fact]
-        public void CreateFullyConnected_NeedsMoreThanPossible_Throws()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CreateFullyConnected_NeedsMoreThanPossible_Throws(bool asConcrete)
         {
             int size = 4;
             var puzzle = new Puzzle(size);
@@ -44,7 +61,16 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Single(possibilities);
 
             Assert.Throws<ArgumentException>(
-                () => Objective.CreateFullyConnected(matrix, possibilities, possibilities.Length + 1));
+                () =>
+                {
+                    if (asConcrete)
+                    {
+                        Objective.CreateFullyConnected(matrix, new ReadOnlySpan<Possibility>(possibilities), possibilities.Length + 1);
+                    } else
+                    {
+                        Objective.CreateFullyConnected(matrix, new ReadOnlySpan<IPossibility>(possibilities), possibilities.Length + 1);
+                    }
+                });
         }
 
         [Fact]

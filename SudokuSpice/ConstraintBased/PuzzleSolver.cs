@@ -128,10 +128,11 @@ namespace SudokuSpice.ConstraintBased
             {
                 return true;
             }
-            var guesses = tracker.GetBestGuesses();
-            foreach (Guess guess in guesses)
+            Span<Guess> guesses = stackalloc Guess[tracker.MaxGuessCount];
+            var guessCount = tracker.PopulateBestGuesses(guesses);
+            for (int i = 0; i < guessCount; ++i)
             {
-                if (tracker.TrySet(in guess))
+                if (tracker.TrySet(in guesses[i]))
                 {
                     if (_TrySolve(tracker))
                     {
@@ -149,16 +150,11 @@ namespace SudokuSpice.ConstraintBased
             {
                 return true;
             }
-            var guessList = new LinkedList<Guess>(tracker.GetBestGuesses());
-            while (guessList.Count > 0)
+            Span<Guess> guesses = stackalloc Guess[tracker.MaxGuessCount];
+            var guessCount = tracker.PopulateBestGuesses(guesses);
+            while (guessCount > 0)
             {
-                
-                var guessNode = guessList.First!;
-                for(int randomIndex = rand.Next(0, guessList.Count); randomIndex > 0; --randomIndex)
-                {
-                    guessNode = guessNode.Next!;
-                }
-                ref Guess guess = ref guessNode.ValueRef;
+                ref Guess guess = ref Spans.PopRandom(rand, guesses[0..guessCount--]);
                 if (tracker.TrySet(in guess))
                 {
                     if (_TrySolveRandomly(rand, tracker))
@@ -167,7 +163,6 @@ namespace SudokuSpice.ConstraintBased
                     }
                     tracker.UnsetLast();
                 }
-                guessList.Remove(guessNode);
             }
             return false;
         }
@@ -180,8 +175,9 @@ namespace SudokuSpice.ConstraintBased
                 return new SolveStats() { NumSolutionsFound = 1 };
             }
             cancellationToken?.ThrowIfCancellationRequested();
-            var guesses = tracker.GetBestGuesses().ToArray();
-            if (guesses.Length == 1)
+            Span<Guess> guesses = stackalloc Guess[tracker.MaxGuessCount];
+            var guessCount = tracker.PopulateBestGuesses(guesses);
+            if (guessCount == 1)
             {
                 if (tracker.TrySet(in guesses[0]))
                 {
@@ -189,7 +185,7 @@ namespace SudokuSpice.ConstraintBased
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(guesses, tracker, validateUniquenessOnly, cancellationToken);
+            return _TryAllSolutionsWithGuess(guesses[0..guessCount], tracker, validateUniquenessOnly, cancellationToken);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(

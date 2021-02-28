@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased.Constraints
 {
@@ -24,6 +25,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// <returns>
         /// False if the puzzle violates uniquness for the given coordinates, else true.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveOptimization)]
         public static bool TryImplementUniquenessConstraintForSquares(
             IReadOnlyPuzzle puzzle,
             ReadOnlySpan<Coordinate> squareCoordinates,
@@ -73,6 +75,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// An array that will be updated to indicate which values are set.
         /// </param>
         /// <returns>False if a value is duplicated in the given coordinates.</returns>
+        [MethodImpl(
+            MethodImplOptions.AggressiveInlining |
+            MethodImplOptions.AggressiveOptimization)]
         public static bool TryCheckForSetValues(
             IReadOnlyPuzzle puzzle,
             ExactCoverGraph graph,
@@ -113,6 +118,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// True if all the <paramref name="squares"/> were dropped safely (eg. without
         /// resulting in any <see cref="Objective"/> that can no longer be satisfied).
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveOptimization)]
         public static bool TryDropPossibilitiesAtIndex(
             ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex)
         {
@@ -158,6 +164,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// False if the objective could not be added, for example because not enough
         /// <see cref="Possibility"/> objects were still possible to satisfy it, else true.
         /// </returns>
+        [MethodImpl(
+            MethodImplOptions.AggressiveInlining |
+            MethodImplOptions.AggressiveOptimization)]
         public static bool TryAddOptionalObjectiveForPossibilityIndex(
             ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, int requiredCount, out OptionalObjective? objective)
         {
@@ -195,6 +204,9 @@ namespace SudokuSpice.ConstraintBased.Constraints
         /// False if the objective could not be added, for example because not enough
         /// <see cref="Possibility"/> objects were still possible to satisfy it, else true.
         /// </returns>
+        [MethodImpl(
+            MethodImplOptions.AggressiveInlining |
+            MethodImplOptions.AggressiveOptimization)]
         public static bool TryAddObjectiveForPossibilityIndex(
             ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex, ExactCoverGraph graph, int requiredCount, out Objective? objective)
         {
@@ -207,11 +219,14 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
             objective = Objective.CreateFullyConnected(
                 graph,
-                new ReadOnlySpan<IPossibility>(possibilities, 0, numPossibilities),
+                new ReadOnlySpan<Possibility>(possibilities, 0, numPossibilities),
                 countToSatisfy: requiredCount);
             return true;
         }
 
+        [MethodImpl(
+            MethodImplOptions.AggressiveInlining |
+            MethodImplOptions.AggressiveOptimization)]
         private static int _RetrieveUnknownPossibilities(
             ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex,
             Span<Possibility?> unknownPossibilities)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased
 {
@@ -13,7 +14,6 @@ namespace SudokuSpice.ConstraintBased
     {
         private readonly int _countToSatisfy;
         private readonly ExactCoverGraph _graph;
-        private readonly Stack<Link> _previousFirstPossibilityLinks;
         private int _possibilityCount;
         private int _selectedCount;
         private Link? _toPossibility;
@@ -29,36 +29,22 @@ namespace SudokuSpice.ConstraintBased
         public NodeState State => _state;
 
         /// <summary>
-        /// True if at least one attached possibility is actually a <see cref="Possibility"/>
-        /// object.
+        /// True if at least one attached possibility is a concrete possibility, i.e. a leaf node.
         /// </summary>
         internal bool AtLeastOnePossibilityIsConcrete => _atLeastOnePossibilityIsConcrete;
 
         /// <summary>
-        /// Whether or not all unknown possibilities are actually <see cref="Possibility"/>
-        /// objects.
+        /// True if all attached possibility are concrete possibilities, i.e. leaf nodes.
         /// 
         /// If no possibilities are unknown, this returns false.
         /// </summary>
         internal bool AllUnknownPossibilitiesAreConcrete
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get {
-                if (_allPossibilitiesAreConcrete)
-                {
-                    return true;
-                }
-                if (!_atLeastOnePossibilityIsConcrete || IsSatisfied || _toPossibility is null)
-                {
-                    return false;
-                }
-                foreach (var toUnknown in _toPossibility.GetLinksOnObjective())
-                {
-                    if (toUnknown.Possibility is not Possibility)
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return _allPossibilitiesAreConcrete ||
+                    (_atLeastOnePossibilityIsConcrete && _state != NodeState.SELECTED
+                     && _toPossibility!.GetPossibilitiesOnObjective().All(p => p.IsConcrete));
             }
         }
         /// <summary>
@@ -80,14 +66,13 @@ namespace SudokuSpice.ConstraintBased
         /// <inheritdoc />
         bool IObjective.IsRequired => true;
 
-        private Objective(ExactCoverGraph graph, int countToSatisfy, int expectedPossibilitiesCount)
+        private Objective(ExactCoverGraph graph, int countToSatisfy)
         {
             _graph = graph;
             _countToSatisfy = countToSatisfy;
             _allPossibilitiesAreConcrete = true;
             _atLeastOnePossibilityIsConcrete = false;
             _state = NodeState.UNKNOWN;
-            _previousFirstPossibilityLinks = new Stack<Link>(expectedPossibilitiesCount);
             _nextObjectiveInGraph = this;
             _previousObjectiveInGraph = this;
         }
@@ -108,6 +93,7 @@ namespace SudokuSpice.ConstraintBased
         /// given number of <paramref name="possibilities"/>.
         /// </exception>
         /// <returns>The newly constructed objective.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveOptimization)]
         public static Objective CreateFullyConnected(
             ExactCoverGraph graph,
             ReadOnlySpan<IPossibility> possibilities,
@@ -117,7 +103,42 @@ namespace SudokuSpice.ConstraintBased
             {
                 throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length].");
             }
-            var objective = new Objective(graph, countToSatisfy, possibilities.Length);
+            var objective = new Objective(graph, countToSatisfy);
+            foreach (var possibility in possibilities)
+            {
+                Link.CreateConnectedLink(possibility, objective);
+            }
+            graph.AttachObjective(objective);
+            return objective;
+        }
+
+        /// <summary>
+        /// Constructs an objective that's fully connected to the given
+        /// <paramref name="possibilities"/> and into the given <paramref name="graph"/>.
+        /// </summary>
+        /// <param name="graph">The graph to attach this to.</param>
+        /// <param name="possibilities">The possibilities that could satisfy this objective.</param>
+        /// <param name="countToSatisfy">
+        /// The number of possibilities that must be satisfied in order to satisfy this objective.
+        /// Once this number of possibilities are selected, all other possibilities on this
+        /// objective will be dropped.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// If the <paramref name="countToSatisfy"/> is less than 1 or is impossible with the
+        /// given number of <paramref name="possibilities"/>.
+        /// </exception>
+        /// <returns>The newly constructed objective.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+        public static Objective CreateFullyConnected(
+            ExactCoverGraph graph,
+            ReadOnlySpan<Possibility> possibilities,
+            int countToSatisfy)
+        {
+            if (countToSatisfy < 1 || countToSatisfy > possibilities.Length)
+            {
+                throw new ArgumentException($"{nameof(countToSatisfy)} must be in the inclusive range [1, {nameof(possibilities)}.Length].");
+            }
+            var objective = new Objective(graph, countToSatisfy);
             foreach (var possibility in possibilities)
             {
                 Link.CreateConnectedLink(possibility, objective);
@@ -127,6 +148,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <inheritdoc />
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         void IObjective.AppendPossibility(Link toNewPossibility)
         {
             ++_possibilityCount;
@@ -148,12 +170,11 @@ namespace SudokuSpice.ConstraintBased
         /// <inheritdoc />
         IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities()
         {
-            if (_toPossibility is null || IsSatisfied)
+            if (State == NodeState.SELECTED)
             {
                 return Enumerable.Empty<IPossibility>();
             }
-            return _toPossibility.GetLinksOnObjective()
-                .Select(link => link.Possibility);
+            return _toPossibility!.GetPossibilitiesOnObjective();
         }
 
         /// <inheritdoc />
@@ -186,7 +207,8 @@ namespace SudokuSpice.ConstraintBased
         /// <inheritdoc />
         void IObjective.DeselectPossibility(Link toDeselect)
         {
-            Debug.Assert(!_toPossibility?.GetLinksOnObjective().Contains(toDeselect) ?? true,
+            Debug.Assert(!_toPossibility!.GetLinksOnObjective().Contains(toDeselect) ||
+                _toPossibility.GetLinksOnObjective().Count() == 1,
                 "Tried to deselect a link that's not connected to this objective.");
             _ReinsertPossibility(toDeselect);
             if (IsSatisfied)
@@ -223,6 +245,7 @@ namespace SudokuSpice.ConstraintBased
             _ReinsertPossibility(toReturn);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PrependToGraphBefore(Objective next)
         {
             _nextObjectiveInGraph = next;
@@ -231,12 +254,14 @@ namespace SudokuSpice.ConstraintBased
             _previousObjectiveInGraph._nextObjectiveInGraph = this;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PopFromGraph()
         {
             _previousObjectiveInGraph._nextObjectiveInGraph = _nextObjectiveInGraph;
             _nextObjectiveInGraph._previousObjectiveInGraph = _previousObjectiveInGraph;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void ReinsertToGraph()
         {
             _previousObjectiveInGraph._nextObjectiveInGraph = this;
@@ -253,26 +278,19 @@ namespace SudokuSpice.ConstraintBased
             } while (link != this);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void _PopPossibility(Link toPop)
         {
             toPop.PopFromObjective();
-            _previousFirstPossibilityLinks.Push(_toPossibility!);
-            // TODO: Try removing one if here by always updating _toPossibility to toPop.Next.
-            // This should work since _previousFirstPossibilityLinks now saves state.
-            // TODO: Try removing this stack altogether.
             if (_toPossibility == toPop)
             {
                 _toPossibility = toPop.NextOnObjective;
-                if (_toPossibility == toPop)
-                {
-                    _toPossibility = null;
-                }
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void _ReinsertPossibility(Link toReinsert)
         {
-            _toPossibility = _previousFirstPossibilityLinks.Pop();
             toReinsert.ReinsertToObjective();
         }
     }

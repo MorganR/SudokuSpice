@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased
 {
@@ -102,7 +103,7 @@ namespace SudokuSpice.ConstraintBased
                         var possibilitiesForSquare = _CreatePossibilitiesForSquare(in coord, numValues);
                         possibilitiesRow[columnIndex] = possibilitiesForSquare;
                         // Enforce that all squares need to have a value.
-                        Objective.CreateFullyConnected(graph, possibilitiesForSquare, 1);
+                        Objective.CreateFullyConnected(graph, new ReadOnlySpan<Possibility>(possibilitiesForSquare), 1);
                     }
                 }
             }
@@ -175,6 +176,9 @@ namespace SudokuSpice.ConstraintBased
         public ReadOnlySpan<Possibility?[]?> GetPossibilitiesOnRow(int row) =>
             new ReadOnlySpan<Possibility?[]?>(_possibilities[row]);
 
+        [MethodImpl(
+            MethodImplOptions.AggressiveInlining |
+            MethodImplOptions.AggressiveOptimization)]
         internal void AttachObjective(Objective objective)
         {
             if (objective.AtLeastOnePossibilityIsConcrete)
@@ -198,6 +202,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void DetachObjective(Objective toDetach)
         {
             toDetach.PopFromGraph();
@@ -216,6 +221,7 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void ReattachObjective(Objective toReattach)
         {
             toReattach.ReinsertToGraph();
@@ -264,6 +270,9 @@ namespace SudokuSpice.ConstraintBased
             }
         }
 
+        [MethodImpl(
+            MethodImplOptions.AggressiveInlining |
+            MethodImplOptions.AggressiveOptimization)]
         private static Possibility[] _CreatePossibilitiesForSquare(in Coordinate location, int numToCreate)
         {
             var possibilities = new Possibility[numToCreate];

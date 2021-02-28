@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased
 {
@@ -46,6 +47,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <inheritdoc />
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         void IPossibility.AppendObjective(Link toNewObjective)
         {
             if (State != NodeState.UNKNOWN)

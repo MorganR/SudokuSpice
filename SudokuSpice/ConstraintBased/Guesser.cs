@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -10,6 +11,7 @@ namespace SudokuSpice.ConstraintBased
         private readonly ExactCoverGraph _graph;
         private readonly Stack<Guess> _setSquares;
 
+        internal int MaxGuessCount { get; }
         internal bool IsSolved => _puzzle.NumEmptySquares == 0;
 
         internal Guesser(TPuzzle puzzle, ExactCoverGraph graph)
@@ -17,6 +19,7 @@ namespace SudokuSpice.ConstraintBased
             _puzzle = puzzle;
             _graph = graph;
             _setSquares = new Stack<Guess>(puzzle.NumEmptySquares);
+            MaxGuessCount = _graph.AllPossibleValues.Length;
         }
 
         private Guesser(Guesser<TPuzzle> other)
@@ -25,11 +28,12 @@ namespace SudokuSpice.ConstraintBased
             // Copy graph, focusing only on 'Unknown' possible square values and (therefore) unsatisfied constraints.
             _graph = other._graph.CopyUnknowns();
             _setSquares = new Stack<Guess>(_puzzle.NumEmptySquares);
+            MaxGuessCount = other.MaxGuessCount;
         }
 
         internal Guesser<TPuzzle> CopyForContinuation() => new Guesser<TPuzzle>(this);
 
-        internal IEnumerable<Guess> GetBestGuesses()
+        internal int PopulateBestGuesses(Span<Guess> toPopulate)
         {
             int maxPossibleValues = _puzzle.Size + 1;
             Objective? bestObjective = null;
@@ -43,7 +47,8 @@ namespace SudokuSpice.ConstraintBased
                 {
                     Possibility possibility = (Possibility)((IObjective)objective)
                         .GetUnknownDirectPossibilities().First();
-                    return new Guess(possibility.Coordinate, possibility.Index).Yield();
+                    toPopulate[0] = new Guess(possibility.Coordinate, possibility.Index);
+                    return 1;
                 }
                 var numPossibilities = objective.CountUnknown;
                 if (numPossibilities < maxPossibleValues)
@@ -54,8 +59,8 @@ namespace SudokuSpice.ConstraintBased
             }
             Debug.Assert(
                 bestObjective is not null,
-                $"{nameof(bestObjective)} was still null at the end of {nameof(GetBestGuesses)}.");
-            return _RetrieveGuessesFromObjective(bestObjective);
+                $"{nameof(bestObjective)} was still null at the end of {nameof(PopulateBestGuesses)}.");
+            return _PopulateGuessesFromObjective(bestObjective, toPopulate);
         }
 
         internal bool TrySet(in Guess guess)
@@ -96,12 +101,17 @@ namespace SudokuSpice.ConstraintBased
             possibility.Deselect();
         }
 
-        private static IEnumerable<Guess> _RetrieveGuessesFromObjective(Objective objective)
+        private static int _PopulateGuessesFromObjective(Objective objective, Span<Guess> toPopulate)
         {
             Debug.Assert(!objective.IsSatisfied, "Objective must not be satisfied.");
             Debug.Assert(objective.AllUnknownPossibilitiesAreConcrete, "All possibilities must be concrete.");
-            return ((IObjective)objective).GetUnknownDirectPossibilities().Select(
-                p => new Guess(((Possibility)p).Coordinate, ((Possibility)p).Index));
+            int guessCount = 0;
+            foreach (IPossibility p in ((IObjective)objective).GetUnknownDirectPossibilities())
+            {
+                var possibility = (Possibility)p;
+                toPopulate[guessCount++] = new Guess(possibility.Coordinate, possibility.Index);
+            }
+            return guessCount;
         }
     }
 }

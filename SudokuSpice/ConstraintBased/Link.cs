@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased
 {
-    // TODO: Could this be turned into a value-type? It's the most allocated object by far
     internal class Link
     {
         internal readonly IPossibility Possibility;
@@ -110,6 +109,16 @@ namespace SudokuSpice.ConstraintBased
             do
             {
                 yield return link;
+                link = link.NextOnObjective;
+            } while (link != this);
+        }
+
+        internal IEnumerable<IPossibility> GetPossibilitiesOnObjective()
+        {
+            var link = this;
+            do
+            {
+                yield return link.Possibility;
                 link = link.NextOnObjective;
             } while (link != this);
         }

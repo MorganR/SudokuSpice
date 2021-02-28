@@ -195,7 +195,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var puzzle = new Puzzle(4);
             var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), 2);
-            var required = Objective.CreateFullyConnected(matrix, possibilities, 1);
+            var required = Objective.CreateFullyConnected(matrix, new ReadOnlySpan<Possibility>(possibilities), 1);
             var fakePossibility = new FakePossibility();
             var optional = OptionalObjective.CreateWithPossibilities(
                 possibilities.Cast<IPossibility>().ToArray(), 2);
@@ -237,7 +237,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var puzzle = new Puzzle(4);
             var matrix = ExactCoverGraph.Create(puzzle);
             var possibilities = Possibilities.CreatePossibilities(new Coordinate(), 3);
-            var required = Objective.CreateFullyConnected(matrix, possibilities, 1);
+            var required = Objective.CreateFullyConnected(matrix, new ReadOnlySpan<Possibility>(possibilities), 1);
             var fakePossibility = new FakePossibility();
             var optional = OptionalObjective.CreateWithPossibilities(
                 possibilities[1..3], 2);
