@@ -94,35 +94,11 @@ such as the <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.MagicS
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">ExactCoverGraph</span></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_ExactCoverGraph_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ExactCoverGraph</code></pre>
+    <pre><code class="lang-csharp hljs">public class ExactCoverGraph : object</code></pre>
   </div>
   <h5 id="SudokuSpice_ConstraintBased_ExactCoverGraph_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>The ExactCoverGraph adds <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a> objects for all the unset coordinates
@@ -137,7 +113,7 @@ coordinate in the puzzle must have one and only one value.&quot;</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_AllPossibleValues.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L43">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L44">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_AllPossibleValues_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_AllPossibleValues" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues">AllPossibleValues</h4>
@@ -158,7 +134,7 @@ coordinate in the puzzle must have one and only one value.&quot;</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -168,7 +144,7 @@ coordinate in the puzzle must have one and only one value.&quot;</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_ValuesToIndices.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L49">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L50">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_ValuesToIndices_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_ValuesToIndices" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices">ValuesToIndices</h4>
@@ -190,7 +166,7 @@ array.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">IReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -202,7 +178,7 @@ array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_Create_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L89">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L90">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_Create_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.Create*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_Create_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)">Create(IReadOnlyPuzzle)</h4>
@@ -255,7 +231,7 @@ puzzle must have one and only one value.&quot;</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_GetAllPossibilitiesAt_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L139">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L140">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetAllPossibilitiesAt_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetAllPossibilitiesAt_SudokuSpice_Coordinate__" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)">GetAllPossibilitiesAt(Coordinate)</h4>
@@ -304,7 +280,7 @@ the square's value was preset in the current puzzle being solved.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_GetPossibilitiesOnRow_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L175">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L176">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetPossibilitiesOnRow_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetPossibilitiesOnRow_System_Int32_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)">GetPossibilitiesOnRow(Int32)</h4>
@@ -346,7 +322,7 @@ var possibility = row[columnIndex][valueIndex];</code></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>[]&gt;</td>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a>[]&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -356,7 +332,7 @@ var possibility = row[columnIndex][valueIndex];</code></p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_GetUnsatisfiedRequiredObjectives.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L153">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L154">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetUnsatisfiedRequiredObjectives_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetUnsatisfiedRequiredObjectives" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives">GetUnsatisfiedRequiredObjectives()</h4>
@@ -377,7 +353,7 @@ var possibility = row[columnIndex][valueIndex];</code></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -387,7 +363,7 @@ var possibility = row[columnIndex][valueIndex];</code></p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph_GetUnsatisfiedRequiredObjectivesWithConcretePossibilities.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L145">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L146">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetUnsatisfiedRequiredObjectivesWithConcretePossibilities_" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities*"></a>
   <h4 id="SudokuSpice_ConstraintBased_ExactCoverGraph_GetUnsatisfiedRequiredObjectivesWithConcretePossibilities" data-uid="SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities">GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()</h4>
@@ -409,7 +385,7 @@ concrete <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Pos
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -429,7 +405,7 @@ concrete <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Pos
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_ExactCoverGraph.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.ExactCoverGraph%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L33" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/ExactCoverGraph.cs/#L34" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

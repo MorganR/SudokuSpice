@@ -1,0 +1,196 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Spans
+  commentId: T:SudokuSpice.Spans
+  id: Spans
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.Spans.PopRandom``1(Random,Span{``0})
+  langs:
+  - csharp
+  - vb
+  name: Spans
+  nameWithType: Spans
+  fullName: SudokuSpice.Spans
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/Spans.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Spans
+    path: ../SudokuSpice/Spans.cs
+    startLine: 8
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nUtilities for working with <see cref=\"!:System.Span&lt;T>\"></see> objects.\n"
+  example: []
+  syntax:
+    content: 'public static class Spans : object'
+    content.vb: >-
+      Public Module Spans
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.Spans.PopRandom``1(Random,Span{``0})
+  commentId: M:SudokuSpice.Spans.PopRandom``1(Random,Span{``0})
+  id: PopRandom``1(Random,Span{``0})
+  parent: SudokuSpice.Spans
+  langs:
+  - csharp
+  - vb
+  name: PopRandom<T>(Random, Span<T>)
+  nameWithType: Spans.PopRandom<T>(Random, Span<T>)
+  fullName: SudokuSpice.Spans.PopRandom<T>(Random, Span<T>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Spans.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: PopRandom
+    path: ../SudokuSpice/Spans.cs
+    startLine: 20
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nPops a random value from the span between 0 (inclusive) and end (exclusive).\n\nModifies the Span to swap the returned value to the end of the given range.\n"
+  example: []
+  syntax:
+    content: public static T PopRandom<T>(Random rand, Span<T> data)
+    parameters:
+    - id: rand
+      type: Random
+      description: The random instance to use.
+    - id: data
+      type: Span{{T}}
+      description: The span to pop from.
+    typeParameters:
+    - id: T
+      description: The type of data in the Span.
+    return:
+      type: '{T}'
+      description: ''
+    content.vb: Public Shared Function PopRandom(Of T)(rand As Random, data As Span(Of T)) As T
+  overload: SudokuSpice.Spans.PopRandom*
+  nameWithType.vb: Spans.PopRandom(Of T)(Random, Span(Of T))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Spans.PopRandom(Of T)(Random, Span(Of T))
+  name.vb: PopRandom(Of T)(Random, Span(Of T))
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.Spans.PopRandom*
+  commentId: Overload:SudokuSpice.Spans.PopRandom
+  name: PopRandom
+  nameWithType: Spans.PopRandom
+  fullName: SudokuSpice.Spans.PopRandom
+- uid: Random
+  commentId: '!:Random'
+  isExternal: true
+  name: Random
+  nameWithType: Random
+  fullName: Random
+- uid: Span{{T}}
+  commentId: '!:Span{``0}'
+  definition: Span`1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: Span`1
+    name: Span
+    nameWithType: Span
+    fullName: Span
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Span`1
+    name: Span
+    nameWithType: Span
+    fullName: Span
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Span`1
+  isExternal: true
+  name: Span<>
+  nameWithType: Span<>
+  fullName: Span<>
+  nameWithType.vb: Span(Of )
+  fullName.vb: Span(Of )
+  name.vb: Span(Of )
+  spec.csharp:
+  - uid: Span`1
+    name: Span
+    nameWithType: Span
+    fullName: Span
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Span`1
+    name: Span
+    nameWithType: Span
+    fullName: Span
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

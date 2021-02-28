@@ -6,6 +6,7 @@ items:
   parent: SudokuSpice.ConstraintBased
   children:
   - SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  - SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
   - SudokuSpice.ConstraintBased.Objective.State
   langs:
   - csharp
@@ -21,7 +22,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Objective
     path: ../SudokuSpice/ConstraintBased/Objective.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -100,7 +101,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CreateFullyConnected
     path: ../SudokuSpice/ConstraintBased/Objective.cs
-    startLine: 110
+    startLine: 95
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -132,6 +133,56 @@ items:
   - Shared
   fullName.vb: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
   name.vb: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of IPossibility), Int32)
+- uid: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  id: CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan<Possibility>, Int32)
+  nameWithType: Objective.CreateFullyConnected(ExactCoverGraph, ReadOnlySpan<Possibility>, Int32)
+  fullName: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateFullyConnected
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 130
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nConstructs an objective that&apos;s fully connected to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilities</code> and into the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">graph</code>.\n"
+  example: []
+  syntax:
+    content: public static Objective CreateFullyConnected(ExactCoverGraph graph, ReadOnlySpan<Possibility> possibilities, int countToSatisfy)
+    parameters:
+    - id: graph
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
+      description: The graph to attach this to.
+    - id: possibilities
+      type: ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
+      description: The possibilities that could satisfy this objective.
+    - id: countToSatisfy
+      type: System.Int32
+      description: "\nThe number of possibilities that must be satisfied in order to satisfy this objective.\nOnce this number of possibilities are selected, all other possibilities on this\nobjective will be dropped.\n"
+    return:
+      type: SudokuSpice.ConstraintBased.Objective
+      description: The newly constructed objective.
+    content.vb: Public Shared Function CreateFullyConnected(graph As ExactCoverGraph, possibilities As ReadOnlySpan(Of Possibility), countToSatisfy As Integer) As Objective
+  overload: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*
+  nameWithType.vb: Objective.CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of Possibility), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility), System.Int32)
+  name.vb: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of Possibility), Int32)
 references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
@@ -265,6 +316,47 @@ references:
   - name: ''
     nameWithType: ''
     fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
+  commentId: '!:ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}'
+  definition: ReadOnlySpan`1
+  name: ReadOnlySpan<Possibility>
+  nameWithType: ReadOnlySpan<Possibility>
+  fullName: ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility>
+  nameWithType.vb: ReadOnlySpan(Of Possibility)
+  fullName.vb: ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility)
+  name.vb: ReadOnlySpan(Of Possibility)
+  spec.csharp:
+  - uid: ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
   - name: )
     nameWithType: )
     fullName: )
