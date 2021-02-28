@@ -121,8 +121,7 @@ namespace SudokuSpice.RuleBased
             int numPossible = tracker.PopulatePossibleValues(in c, possibleValues);
             while (numPossible > 0)
             {
-                int index = random.Next(0, numPossible);
-                int possibleValue = possibleValues[index];
+                int possibleValue = Spans.PopRandom(random, possibleValues[0..numPossible--]);
                 if (tracker.TrySet(in c, possibleValue))
                 {
                     if (_TrySolveRandomly(tracker, random))
@@ -131,11 +130,6 @@ namespace SudokuSpice.RuleBased
                     }
                     tracker.UnsetLast();
                 }
-                for (int i = index; i < numPossible - 1; ++i)
-                {
-                    possibleValues[i] = possibleValues[i + 1];
-                }
-                --numPossible;
             }
             return false;
         }
