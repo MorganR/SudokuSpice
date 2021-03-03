@@ -5,7 +5,7 @@ namespace SudokuSpice
     /// <summary>
     /// Defines a square region within a puzzle.
     /// </summary>
-    public readonly struct Box : System.IEquatable<Box>
+    public readonly struct Box : IEquatable<Box>
     {
         /// <summary>
         /// The top-left coordinate (inclusive) for this box.
