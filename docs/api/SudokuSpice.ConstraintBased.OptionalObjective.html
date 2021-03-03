@@ -98,11 +98,35 @@ possibility would satisfy a dropped optional objective, then the call to
     <div><a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a></div>
     <div><a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_ConstraintBased_OptionalObjective_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class OptionalObjective : object, IOptionalObjective, IObjective, IPossibility</code></pre>
+    <pre><code class="lang-csharp hljs">public class OptionalObjective : IOptionalObjective, IObjective, IPossibility</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -141,13 +165,13 @@ possibility would satisfy a dropped optional objective, then the call to
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_OptionalObjective_CreateWithPossibilities_ReadOnlySpan_SudokuSpice_ConstraintBased_IPossibility__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan%7BSudokuSpice.ConstraintBased.IPossibility%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_ConstraintBased_OptionalObjective_CreateWithPossibilities_System_ReadOnlySpan_SudokuSpice_ConstraintBased_IPossibility__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan%7BSudokuSpice.ConstraintBased.IPossibility%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/ConstraintBased/OptionalObjective.cs/#L93">View Source</a>
   </span>
   <a id="SudokuSpice_ConstraintBased_OptionalObjective_CreateWithPossibilities_" data-uid="SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*"></a>
-  <h4 id="SudokuSpice_ConstraintBased_OptionalObjective_CreateWithPossibilities_ReadOnlySpan_SudokuSpice_ConstraintBased_IPossibility__System_Int32_" data-uid="SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)">CreateWithPossibilities(ReadOnlySpan&lt;IPossibility&gt;, Int32)</h4>
+  <h4 id="SudokuSpice_ConstraintBased_OptionalObjective_CreateWithPossibilities_System_ReadOnlySpan_SudokuSpice_ConstraintBased_IPossibility__System_Int32_" data-uid="SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)">CreateWithPossibilities(ReadOnlySpan&lt;IPossibility&gt;, Int32)</h4>
   <div class="markdown level1 summary"><p>Creates an optional objective with the given possibilities attached. This objective
 will be satisfied when <code data-dev-comment-type="paramref" class="paramref">countToSatisfy</code> of these possibilities are
 selected.</p>
@@ -171,7 +195,7 @@ The returned objective must eventually be connected to at least one top-level re
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a>&gt;</td>
         <td><span class="parametername">possibilities</span></td>
         <td><p>The possibilities that could satisfy this objective.</p>
 </td>
@@ -196,6 +220,23 @@ The returned objective must eventually be connected to at least one top-level re
       <tr>
         <td><a class="xref" href="SudokuSpice.ConstraintBased.OptionalObjective.html">OptionalObjective</a></td>
         <td><p>The newly constructed optional objective.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">countToSatisfy</code> is less than 1 or is impossible with the
+given number of <code data-dev-comment-type="paramref" class="paramref">possibilities</code>.</p>
 </td>
       </tr>
     </tbody>

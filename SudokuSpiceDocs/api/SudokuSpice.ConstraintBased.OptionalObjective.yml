@@ -5,7 +5,7 @@ items:
   id: OptionalObjective
   parent: SudokuSpice.ConstraintBased
   children:
-  - SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  - SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
   - SudokuSpice.ConstraintBased.OptionalObjective.State
   - SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete
   langs:
@@ -29,10 +29,9 @@ items:
   summary: "\nAn optional objective in an <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. An optional objective is both\nan <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> and an <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThis can be satisfied if one or more attached <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref> objects are\nselected. Once satisfied, this drops any remaining unknown possibilities, and notifies\nparent objectives that to select this possibility.\n\nUnlike <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>s, this class can be dropped. Dropping this objetive does\nnot immediately impact attached possibilities. These possibilities may still be dropped\nor selected, as long as this objective does not become satisfied. If selecting a\npossibility would satisfy a dropped optional objective, then the call to\n<xref href=\"SudokuSpice.ConstraintBased.IObjective.TrySelectPossibility(SudokuSpice.ConstraintBased.Link)\" data-throw-if-not-resolved=\"false\"></xref> will fail.\n\nAll <code>OptionalObjective</code> objects must eventually be descendents of at least one\n<xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
-    content: 'public class OptionalObjective : object, IOptionalObjective, IObjective, IPossibility'
+    content: 'public class OptionalObjective : IOptionalObjective, IObjective, IPossibility'
     content.vb: >-
       Public Class OptionalObjective
-          Inherits Object
           Implements IOptionalObjective, IObjective, IPossibility
   inheritance:
   - System.Object
@@ -40,6 +39,14 @@ items:
   - SudokuSpice.ConstraintBased.IOptionalObjective
   - SudokuSpice.ConstraintBased.IObjective
   - SudokuSpice.ConstraintBased.IPossibility
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -126,16 +133,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
-  commentId: M:SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
-  id: CreateWithPossibilities(ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  id: CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
   parent: SudokuSpice.ConstraintBased.OptionalObjective
   langs:
   - csharp
   - vb
   name: CreateWithPossibilities(ReadOnlySpan<IPossibility>, Int32)
   nameWithType: OptionalObjective.CreateWithPossibilities(ReadOnlySpan<IPossibility>, Int32)
-  fullName: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>, System.Int32)
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>, System.Int32)
   type: Method
   source:
     remote:
@@ -154,7 +161,7 @@ items:
     content: public static OptionalObjective CreateWithPossibilities(ReadOnlySpan<IPossibility> possibilities, int countToSatisfy)
     parameters:
     - id: possibilities
-      type: ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
       description: The possibilities that could satisfy this objective.
     - id: countToSatisfy
       type: System.Int32
@@ -164,6 +171,10 @@ items:
       description: The newly constructed optional objective.
     content.vb: Public Shared Function CreateWithPossibilities(possibilities As ReadOnlySpan(Of IPossibility), countToSatisfy As Integer) As OptionalObjective
   overload: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nIf the <code data-dev-comment-type=\"paramref\" class=\"paramref\">countToSatisfy</code> is less than 1 or is impossible with the\ngiven number of <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilities</code>.\n"
   nameWithType.vb: OptionalObjective.CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
   modifiers.csharp:
   - public
@@ -171,7 +182,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
+  fullName.vb: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
   name.vb: CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
 references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
@@ -206,12 +217,304 @@ references:
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: SudokuSpice.ConstraintBased.IOptionalObjective
   commentId: T:SudokuSpice.ConstraintBased.IOptionalObjective
   parent: SudokuSpice.ConstraintBased
   name: IOptionalObjective
   nameWithType: IOptionalObjective
   fullName: SudokuSpice.ConstraintBased.IOptionalObjective
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete*
   commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete
   name: IPossibility.IsConcrete
@@ -226,6 +529,8 @@ references:
   nameWithType: IPossibility.IsConcrete
   fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -259,25 +564,29 @@ references:
   name: OptionalObjective
   nameWithType: OptionalObjective
   fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities*
   commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities
   name: CreateWithPossibilities
   nameWithType: OptionalObjective.CreateWithPossibilities
   fullName: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities
-- uid: ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
-  commentId: '!:ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}'
-  definition: ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<IPossibility>
   nameWithType: ReadOnlySpan<IPossibility>
-  fullName: ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>
   nameWithType.vb: ReadOnlySpan(Of IPossibility)
-  fullName.vb: ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility)
   name.vb: ReadOnlySpan(Of IPossibility)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -290,10 +599,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -306,45 +615,48 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

@@ -35,7 +35,6 @@ namespace SudokuSpice.ConstraintBased
 
         private readonly int _totalCountToSatisfy;
         private readonly Stack<Link> _previousFirstPossibilityLinks;
-        private int _possibleObjectiveCount;
         private int _possibilityCount;
         private int _selectedCount;
         private Operation _currentOperation = Operation.NONE;
@@ -121,7 +120,6 @@ namespace SudokuSpice.ConstraintBased
             {
                 throw new InvalidOperationException($"Can't append a new objective to a possibility in state {_state}.");
             }
-            ++_possibleObjectiveCount;
             if (_toObjective is null)
             {
                 _toObjective = toNewObjective;
@@ -135,12 +133,9 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(_toObjective is not null,
                 "At least one objective must be attached.");
-            Debug.Assert(_possibleObjectiveCount > 0,
-                $"Cannot detach an objective from an optional objective with {nameof(_possibleObjectiveCount)} already equal to 0.");
             switch (State)
             {
                 case NodeState.DROPPED:
-                    --_possibleObjectiveCount;
                     return true;
                 case NodeState.SELECTED:
                     return false;
@@ -149,7 +144,6 @@ namespace SudokuSpice.ConstraintBased
                         "At least one possibility must be attached.");
                     if (_currentOperation == Operation.DROP)
                     {
-                        --_possibleObjectiveCount;
                         return true;
                     } else if (_currentOperation == Operation.SELECT)
                     {
@@ -169,7 +163,6 @@ namespace SudokuSpice.ConstraintBased
                     _state = NodeState.DROPPED;
                     _linkThatCausedDrop = dropSource;
                     _currentOperation = Operation.NONE;
-                    --_possibleObjectiveCount;
                     return true;
             }
         }
@@ -177,7 +170,6 @@ namespace SudokuSpice.ConstraintBased
         /// <inheritdoc />
         void IPossibility.ReturnFromObjective(Link returnSource)
         {
-            ++_possibleObjectiveCount;
             switch (State)
             {
                 case NodeState.DROPPED:

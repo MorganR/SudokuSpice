@@ -210,7 +210,7 @@ items:
     content: ReadOnlySpan<int> AllPossibleValuesSpan { get; }
     parameters: []
     return:
-      type: ReadOnlySpan{System.Int32}
+      type: System.ReadOnlySpan{System.Int32}
     content.vb: ReadOnly Property AllPossibleValuesSpan As ReadOnlySpan(Of Integer)
   overload: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan*
   modifiers.csharp:
@@ -324,7 +324,7 @@ items:
   syntax:
     content: ReadOnlySpan<Coordinate> GetUnsetCoords()
     return:
-      type: ReadOnlySpan{SudokuSpice.Coordinate}
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
     content.vb: Function GetUnsetCoords As ReadOnlySpan(Of Coordinate)
   overload: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords*
 references:
@@ -339,10 +339,18 @@ references:
   nameWithType: IReadOnlyPuzzle.Size
   fullName: SudokuSpice.IReadOnlyPuzzle.Size
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSquares*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumSquares
   name: NumSquares
@@ -363,20 +371,21 @@ references:
   name: AllPossibleValuesSpan
   nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
   fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
-- uid: ReadOnlySpan{System.Int32}
-  commentId: '!:ReadOnlySpan{System.Int32}'
-  definition: ReadOnlySpan`1
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Int32>
   nameWithType: ReadOnlySpan<Int32>
-  fullName: ReadOnlySpan<System.Int32>
+  fullName: System.ReadOnlySpan<System.Int32>
   nameWithType.vb: ReadOnlySpan(Of Int32)
-  fullName.vb: ReadOnlySpan(Of System.Int32)
+  fullName.vb: System.ReadOnlySpan(Of System.Int32)
   name.vb: ReadOnlySpan(Of Int32)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -390,10 +399,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -406,41 +415,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -450,7 +460,8 @@ references:
   nameWithType: IReadOnlyPuzzle.Item
   fullName: SudokuSpice.IReadOnlyPuzzle.Item
 - uid: System.Nullable{System.Int32}
-  commentId: '!:System.Nullable{System.Int32}'
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
   definition: System.Nullable`1
   name: Nullable<Int32>
   nameWithType: Nullable<Int32>
@@ -493,13 +504,14 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Nullable`1
+  commentId: T:System.Nullable`1
   isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -509,9 +521,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -524,9 +536,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -541,20 +553,21 @@ references:
   name: GetUnsetCoords
   nameWithType: IReadOnlyPuzzle.GetUnsetCoords
   fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
-- uid: ReadOnlySpan{SudokuSpice.Coordinate}
-  commentId: '!:ReadOnlySpan{SudokuSpice.Coordinate}'
-  definition: ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Coordinate>
   nameWithType: ReadOnlySpan<Coordinate>
-  fullName: ReadOnlySpan<SudokuSpice.Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
   nameWithType.vb: ReadOnlySpan(Of Coordinate)
-  fullName.vb: ReadOnlySpan(Of SudokuSpice.Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
   name.vb: ReadOnlySpan(Of Coordinate)
   spec.csharp:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -567,10 +580,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
