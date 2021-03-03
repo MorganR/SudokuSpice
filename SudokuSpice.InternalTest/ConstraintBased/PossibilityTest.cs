@@ -186,7 +186,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.False(concretePossibility.TrySelect());
             Assert.Equal(NodeState.UNKNOWN, parentA.State);
             Assert.Equal(NodeState.UNKNOWN, parentB.State);
-            Assert.False(required.IsSatisfied);
+            Assert.NotEqual(NodeState.SELECTED, required.State);
         }
 
         [Fact]
@@ -210,23 +210,23 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Equal(NodeState.DROPPED, possibilities[1].State);
             Assert.Equal(NodeState.UNKNOWN, optional.State);
             Assert.Empty(fakePossibility.DroppedFromObjectives);
-            Assert.True(required.IsSatisfied);
-            Assert.False(separateRequired.IsSatisfied);
+            Assert.Equal(NodeState.SELECTED, required.State);
+            Assert.NotEqual(NodeState.SELECTED, separateRequired.State);
 
             Assert.True(((IObjective)optional).TrySelectPossibility(fakeLinkToOptional));
             Assert.Equal(NodeState.SELECTED, possibilities[0].State);
             Assert.Equal(NodeState.DROPPED, possibilities[1].State);
             Assert.Equal(NodeState.SELECTED, optional.State);
-            Assert.True(required.IsSatisfied);
-            Assert.True(separateRequired.IsSatisfied);
+            Assert.Equal(NodeState.SELECTED, required.State);
+            Assert.Equal(NodeState.SELECTED, separateRequired.State);
 
             ((IObjective)optional).DeselectPossibility(fakeLinkToOptional);
             Assert.Equal(NodeState.SELECTED, possibilities[0].State);
             Assert.Equal(NodeState.DROPPED, possibilities[1].State);
             Assert.Equal(NodeState.UNKNOWN, optional.State);
             Assert.Empty(fakePossibility.DroppedFromObjectives);
-            Assert.True(required.IsSatisfied);
-            Assert.False(separateRequired.IsSatisfied);
+            Assert.Equal(NodeState.SELECTED, required.State);
+            Assert.NotEqual(NodeState.SELECTED, separateRequired.State);
 
             Assert.False(((IObjective)optional).TryDropPossibility(fakeLinkToOptional));
         }
@@ -252,16 +252,16 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Equal(NodeState.DROPPED, possibilities[1].State);
             Assert.Equal(NodeState.DROPPED, possibilities[2].State);
             Assert.Equal(NodeState.DROPPED, optional.State);
-            Assert.True(required.IsSatisfied);
-            Assert.False(separateRequired.IsSatisfied);
+            Assert.Equal(NodeState.SELECTED, required.State);
+            Assert.NotEqual(NodeState.SELECTED, separateRequired.State);
 
             possibilities[0].Deselect();
             Assert.Equal(NodeState.UNKNOWN, possibilities[0].State);
             Assert.Equal(NodeState.UNKNOWN, possibilities[1].State);
             Assert.Equal(NodeState.UNKNOWN, possibilities[2].State);
             Assert.Equal(NodeState.UNKNOWN, optional.State);
-            Assert.False(required.IsSatisfied);
-            Assert.False(separateRequired.IsSatisfied);
+            Assert.NotEqual(NodeState.SELECTED, required.State);
+            Assert.NotEqual(NodeState.SELECTED, separateRequired.State);
         }
     }
 }

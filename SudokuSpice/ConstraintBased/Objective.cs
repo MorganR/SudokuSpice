@@ -50,9 +50,7 @@ namespace SudokuSpice.ConstraintBased
         /// <summary>
         /// Whether or not all remaining unknown possibilities are required.
         /// </summary>
-        internal bool AllPossibilitiesAreRequired => _possibilityCount == _countToSatisfy;
-        // TODO: Drop this to internal state.
-        internal bool IsSatisfied => _selectedCount == _countToSatisfy;
+        internal bool AllUnknownPossibilitiesAreRequired => _possibilityCount == _countToSatisfy;
         /// <summary>
         /// The total number of possibilities that must be selected for this objective to be
         /// satisfied.
@@ -182,12 +180,11 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(_toPossibility is not null,
                 "At least one possibility must be attached.");
-            Debug.Assert(!IsSatisfied,
+            Debug.Assert(State != NodeState.SELECTED,
                 "Can't select a possiblity for an already satisfied objective.");
             Debug.Assert(_toPossibility.GetLinksOnObjective().Contains(toSelect),
                 "Tried to select a link that's not connected to this objective.");
-            ++_selectedCount;
-            if (IsSatisfied)
+            if (++_selectedCount == _countToSatisfy)
             {
                 if (!Links.TryUpdateOthersOnObjective(
                     toSelect,
@@ -211,7 +208,7 @@ namespace SudokuSpice.ConstraintBased
                 _toPossibility.GetLinksOnObjective().Count() == 1,
                 "Tried to deselect a link that's not connected to this objective.");
             _ReinsertPossibility(toDeselect);
-            if (IsSatisfied)
+            if (_selectedCount == _countToSatisfy)
             {
                 _state = NodeState.UNKNOWN;
                 _graph.ReattachObjective(this);
@@ -227,7 +224,7 @@ namespace SudokuSpice.ConstraintBased
         {
             Debug.Assert(_toPossibility?.GetLinksOnObjective().Contains(toDrop) ?? false,
                 "Tried to drop a link that's not connected to this objective.");
-            if (AllPossibilitiesAreRequired)
+            if (AllUnknownPossibilitiesAreRequired)
             {
                 return false;
             }

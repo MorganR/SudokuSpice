@@ -38,8 +38,8 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             Assert.True(objective.AllUnknownPossibilitiesAreConcrete);
             Assert.True(((IObjective)objective).IsRequired);
-            Assert.Equal(numPossibilities == numRequired, objective.AllPossibilitiesAreRequired);
-            Assert.False(objective.IsSatisfied);
+            Assert.Equal(numPossibilities == numRequired, objective.AllUnknownPossibilitiesAreRequired);
+            Assert.NotEqual(NodeState.SELECTED, objective.State);
             Assert.Equal(possibilities.Length, objective.CountUnknown);
             Assert.Equal(numRequired, objective.TotalCountToSatisfy);
             Assert.All(possibilities,
@@ -123,16 +123,16 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var droppedPossibility = possibilities[1];
             var objective = Objective.CreateFullyConnected(matrix, possibilities, 1);
 
-            Assert.False(objective.IsSatisfied);
+            Assert.NotEqual(NodeState.SELECTED, objective.State);
             ((IObjective)objective).TrySelectPossibility(selectedPossibility.AttachedObjectives.First());
-            Assert.True(objective.IsSatisfied);
+            Assert.Equal(NodeState.SELECTED, objective.State);
             Assert.DoesNotContain(objective, matrix.GetUnsatisfiedRequiredObjectives());
             Assert.Empty(((IObjective)objective).GetUnknownDirectPossibilities());
             Assert.Empty(selectedPossibility.DroppedFromObjectives);
             Assert.Single(droppedPossibility.DroppedFromObjectives);
 
             ((IObjective)objective).DeselectPossibility(selectedPossibility.AttachedObjectives.First());
-            Assert.False(objective.IsSatisfied);
+            Assert.NotEqual(NodeState.SELECTED, objective.State);
             Assert.Contains(objective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
             Assert.Empty(selectedPossibility.DroppedFromObjectives);
             Assert.Empty(droppedPossibility.DroppedFromObjectives);
@@ -155,19 +155,19 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             IObjective objective = concreteObjective;
 
             Assert.True(objective.TrySelectPossibility(firstSelected.AttachedObjectives.First()));
-            Assert.False(concreteObjective.IsSatisfied);
+            Assert.NotEqual(NodeState.SELECTED, concreteObjective.State);
             Assert.Equal(1, concreteObjective.CountUnknown);
             Assert.Single(objective.GetUnknownDirectPossibilities(), secondSelected);
             Assert.Contains(concreteObjective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());
 
             Assert.True(objective.TrySelectPossibility(secondSelected.AttachedObjectives.First()));
-            Assert.True(concreteObjective.IsSatisfied);
+            Assert.Equal(NodeState.SELECTED, concreteObjective.State);
             Assert.Equal(0, concreteObjective.CountUnknown);
             Assert.True(!matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities().Contains(concreteObjective) ||
                 matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities().Count() == 1);
 
             objective.DeselectPossibility(secondSelected.AttachedObjectives.First());
-            Assert.False(concreteObjective.IsSatisfied);
+            Assert.NotEqual(NodeState.SELECTED, concreteObjective.State);
             Assert.Equal(1, concreteObjective.CountUnknown);
             Assert.Single(objective.GetUnknownDirectPossibilities(), secondSelected);
             Assert.Contains(concreteObjective, matrix.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities());

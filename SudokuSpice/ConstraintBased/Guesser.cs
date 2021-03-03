@@ -43,7 +43,7 @@ namespace SudokuSpice.ConstraintBased
                 {
                     continue;
                 }
-                if (objective.AllPossibilitiesAreRequired)
+                if (objective.AllUnknownPossibilitiesAreRequired)
                 {
                     Possibility possibility = (Possibility)((IObjective)objective)
                         .GetUnknownDirectPossibilities().First();
@@ -103,7 +103,7 @@ namespace SudokuSpice.ConstraintBased
 
         private static int _PopulateGuessesFromObjective(Objective objective, Span<Guess> toPopulate)
         {
-            Debug.Assert(!objective.IsSatisfied, "Objective must not be satisfied.");
+            Debug.Assert(objective.State != NodeState.SELECTED, "Objective must not be satisfied.");
             Debug.Assert(objective.AllUnknownPossibilitiesAreConcrete, "All possibilities must be concrete.");
             int guessCount = 0;
             foreach (IPossibility p in ((IObjective)objective).GetUnknownDirectPossibilities())
