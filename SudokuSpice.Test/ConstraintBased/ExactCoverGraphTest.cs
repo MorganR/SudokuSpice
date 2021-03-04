@@ -1,9 +1,43 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Xunit;
 
 namespace SudokuSpice.ConstraintBased.Test
 {
     public class ExactCoverGraphTest
     {
+        [Fact]
+        public void Create_ConfiguresSquareObjectives()
+        {
+            var puzzle = new Puzzle(4);
+            var graph = ExactCoverGraph.Create(puzzle);
+
+            var objectives = graph.GetUnsatisfiedRequiredObjectives();
+            Assert.Equal(puzzle.Size * puzzle.Size, objectives.Count());
+
+            var seenCoordinates = new HashSet<Coordinate>();
+            var possibilityIndices = new HashSet<int>() { 0, 1, 2, 3 };
+            Assert.All(objectives,
+                concreteObjective =>
+                {
+                    IObjective objective = concreteObjective;
+                    var possibilities = objective.GetUnknownDirectPossibilities().Cast<Possibility>().ToArray();
+                    // Assert that each square links every possibility at that coordinate.
+                    Assert.Equal(puzzle.Size, possibilities.Length);
+                    Assert.Equal(possibilityIndices, new HashSet<int>(possibilities.Select(p => p.Index)));
+                    var firstCoord = possibilities.First().Coordinate;
+                    Assert.All(possibilities,
+                        p =>
+                        {
+                            Assert.Equal(firstCoord, p.Coordinate);
+                            Assert.Equal(NodeState.UNKNOWN, p.State);
+                        });
+                    // Assert an objective is made for each square.
+                    Assert.DoesNotContain(firstCoord, seenCoordinates);
+                    seenCoordinates.Add(firstCoord);
+                });
+        }
+
         [Fact]
         public void GetAllPossibilitiesAt_ForUnsetCoordinate_ReturnsExpectedPossibilities()
         {

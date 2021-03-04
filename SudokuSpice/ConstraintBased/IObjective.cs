@@ -13,6 +13,12 @@ namespace SudokuSpice.ConstraintBased
         public NodeState State { get; }
 
         /// <summary>
+        /// Retrieves any possibilities that are direct descendents of this objective and whose
+        /// states are unknown.
+        /// </summary>
+        public IEnumerable<IPossibility> GetUnknownDirectPossibilities();
+
+        /// <summary>
         /// Whether or not this objective is required.
         /// </summary>
         internal bool IsRequired { get; }
@@ -25,12 +31,6 @@ namespace SudokuSpice.ConstraintBased
         /// The link to the new possibility to connect to this objective.
         /// </param>
         internal void AppendPossibility(Link toNewPossibility);
-
-        /// <summary>
-        /// Retrieves any possibilities that are direct descendents of this objective and whose
-        /// states are unknown.
-        /// </summary>
-        internal IEnumerable<IPossibility> GetUnknownDirectPossibilities();
 
         /// <summary>
         /// Tries to select the linked possibility on this objective. This should be called by the
