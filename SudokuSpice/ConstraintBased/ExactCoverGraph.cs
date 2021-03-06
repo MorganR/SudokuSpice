@@ -31,7 +31,7 @@ namespace SudokuSpice.ConstraintBased
     /// coordinate in the puzzle must have one and only one value."
     /// </remarks>
     /// <seealso href="https://en.wikipedia.org/wiki/Exact_cover"/>
-    public class ExactCoverGraph
+    public sealed class ExactCoverGraph
     {
         private readonly int[] _allPossibleValues;
         private readonly Possibility?[]?[][] _possibilities;

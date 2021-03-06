@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SudokuSpice.ConstraintBased
 {
-    internal class Guesser<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
+    internal sealed class Guesser<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
         private readonly ExactCoverGraph _graph;
@@ -35,7 +35,7 @@ namespace SudokuSpice.ConstraintBased
 
         internal int PopulateBestGuesses(Span<Guess> toPopulate)
         {
-            int maxPossibleValues = _puzzle.Size + 1;
+            int maxPossibleValues = MaxGuessCount + 1;
             Objective? bestObjective = null;
             foreach (Objective? objective in _graph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities())
             {
@@ -45,7 +45,7 @@ namespace SudokuSpice.ConstraintBased
                 }
                 if (objective.AllUnknownPossibilitiesAreRequired)
                 {
-                    Possibility possibility = (Possibility)((IObjective)objective)
+                    Possibility possibility = (Possibility)objective
                         .GetUnknownDirectPossibilities().First();
                     toPopulate[0] = new Guess(possibility.Coordinate, possibility.Index);
                     return 1;
@@ -106,7 +106,9 @@ namespace SudokuSpice.ConstraintBased
             Debug.Assert(objective.State != NodeState.SELECTED, "Objective must not be satisfied.");
             Debug.Assert(objective.AllUnknownPossibilitiesAreConcrete, "All possibilities must be concrete.");
             int guessCount = 0;
-            foreach (IPossibility p in ((IObjective)objective).GetUnknownDirectPossibilities())
+            // TODO: Try removing all these casts; they're ugly and could be slowing things down
+            // See https://www.danielcrabtree.com/blog/164/c-sharp-7-micro-benchmarking-the-three-ways-to-cast-safely
+            foreach (IPossibility p in objective.GetUnknownDirectPossibilities())
             {
                 var possibility = (Possibility)p;
                 toPopulate[guessCount++] = new Guess(possibility.Coordinate, possibility.Index);

@@ -170,7 +170,6 @@ namespace SudokuSpice
         public readonly int PopulateSetBits(Span<int> setIndices)
         {
             int numRecordedSetBits = 0;
-            int maxIndex = _masks.Length;
             int maxSetBits = setIndices.Length;
             if (Popcnt.IsSupported)
             {
@@ -178,7 +177,7 @@ namespace SudokuSpice
                 maxSetBits = Math.Min(numSetBits, maxSetBits);
             }
             for (int i = 0;
-                i < maxIndex && numRecordedSetBits < maxSetBits;
+                i < _masks.Length && numRecordedSetBits < maxSetBits;
                 ++i)
             {
                 if ((Data & _masks[i]) != 0)

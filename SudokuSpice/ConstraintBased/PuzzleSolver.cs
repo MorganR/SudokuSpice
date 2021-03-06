@@ -1,7 +1,6 @@
 ﻿using SudokuSpice.ConstraintBased.Constraints;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace SudokuSpice.ConstraintBased
@@ -48,7 +47,7 @@ namespace SudokuSpice.ConstraintBased
                 };
             }
             if (!(randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzleCopy, graph)) :
+                _TrySolveRandomly(new Guesser<TPuzzle>(puzzleCopy, graph), new Random()) :
                 _TrySolve(new Guesser<TPuzzle>(puzzleCopy, graph))))
             {
                 throw new ArgumentException("Failed to solve the given puzzle.");
@@ -72,24 +71,24 @@ namespace SudokuSpice.ConstraintBased
                 }
             }
             return randomizeGuesses ?
-                _TrySolveRandomly(new Random(), new Guesser<TPuzzle>(puzzle, graph)) :
+                _TrySolveRandomly(new Guesser<TPuzzle>(puzzle, graph), new Random()) :
                 _TrySolve(new Guesser<TPuzzle>(puzzle, graph));
         }
 
         /// <inheritdoc/>
         public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
         {
-            return _ComputeStatsForAllSolutions(puzzle, validateUniquenessOnly: false, token);
+            return _ComputeStats(puzzle, validateUniquenessOnly: false, token);
         }
 
         /// <inheritdoc/>
         public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)
         {
-            return _ComputeStatsForAllSolutions(puzzle, validateUniquenessOnly: true, token)
+            return _ComputeStats(puzzle, validateUniquenessOnly: true, token)
                 .NumSolutionsFound == 1;
         }
 
-        private SolveStats _ComputeStatsForAllSolutions(TPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? token)
+        private SolveStats _ComputeStats(TPuzzle puzzle, bool validateUniquenessOnly, CancellationToken? token)
         {
             if (!_AreValuesUnique(puzzle.AllPossibleValuesSpan))
             {
@@ -122,75 +121,75 @@ namespace SudokuSpice.ConstraintBased
             return true;
         }
 
-        private static bool _TrySolve(Guesser<TPuzzle> tracker)
+        private static bool _TrySolve(Guesser<TPuzzle> guesser)
         {
-            if (tracker.IsSolved)
+            if (guesser.IsSolved)
             {
                 return true;
             }
-            Span<Guess> guesses = stackalloc Guess[tracker.MaxGuessCount];
-            var guessCount = tracker.PopulateBestGuesses(guesses);
+            Span<Guess> guesses = stackalloc Guess[guesser.MaxGuessCount];
+            var guessCount = guesser.PopulateBestGuesses(guesses);
             for (int i = 0; i < guessCount; ++i)
             {
-                if (tracker.TrySet(in guesses[i]))
+                if (guesser.TrySet(in guesses[i]))
                 {
-                    if (_TrySolve(tracker))
+                    if (_TrySolve(guesser))
                     {
                         return true;
                     }
-                    tracker.UnsetLast();
+                    guesser.UnsetLast();
                 }
             }
             return false;
         }
 
-        private static bool _TrySolveRandomly(Random rand, Guesser<TPuzzle> tracker)
+        private static bool _TrySolveRandomly(Guesser<TPuzzle> guesser, Random rand)
         {
-            if (tracker.IsSolved)
+            if (guesser.IsSolved)
             {
                 return true;
             }
-            Span<Guess> guesses = stackalloc Guess[tracker.MaxGuessCount];
-            var guessCount = tracker.PopulateBestGuesses(guesses);
+            Span<Guess> guesses = stackalloc Guess[guesser.MaxGuessCount];
+            var guessCount = guesser.PopulateBestGuesses(guesses);
             while (guessCount > 0)
             {
                 ref Guess guess = ref Spans.PopRandom(rand, guesses[0..guessCount--]);
-                if (tracker.TrySet(in guess))
+                if (guesser.TrySet(in guess))
                 {
-                    if (_TrySolveRandomly(rand, tracker))
+                    if (_TrySolveRandomly(guesser, rand))
                     {
                         return true;
                     }
-                    tracker.UnsetLast();
+                    guesser.UnsetLast();
                 }
             }
             return false;
         }
 
         private static SolveStats _TryAllSolutions(
-            Guesser<TPuzzle> tracker, bool validateUniquenessOnly, CancellationToken? cancellationToken)
+            Guesser<TPuzzle> guesser, bool validateUniquenessOnly, CancellationToken? cancellationToken)
         {
-            if (tracker.IsSolved)
+            if (guesser.IsSolved)
             {
                 return new SolveStats() { NumSolutionsFound = 1 };
             }
             cancellationToken?.ThrowIfCancellationRequested();
-            Span<Guess> guesses = stackalloc Guess[tracker.MaxGuessCount];
-            var guessCount = tracker.PopulateBestGuesses(guesses);
+            Span<Guess> guesses = stackalloc Guess[guesser.MaxGuessCount];
+            var guessCount = guesser.PopulateBestGuesses(guesses);
             if (guessCount == 1)
             {
-                if (tracker.TrySet(in guesses[0]))
+                if (guesser.TrySet(in guesses[0]))
                 {
-                    return _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);
+                    return _TryAllSolutions(guesser, validateUniquenessOnly, cancellationToken);
                 }
                 return new SolveStats();
             }
-            return _TryAllSolutionsWithGuess(guesses[0..guessCount], tracker, validateUniquenessOnly, cancellationToken);
+            return _TryAllSolutionsWithGuess(guesses[0..guessCount], guesser, validateUniquenessOnly, cancellationToken);
         }
 
         private static SolveStats _TryAllSolutionsWithGuess(
             ReadOnlySpan<Guess> guesses,
-            Guesser<TPuzzle> tracker,
+            Guesser<TPuzzle> guesser,
             bool validateUniquenessOnly,
             CancellationToken? cancellationToken)
         {
@@ -198,7 +197,7 @@ namespace SudokuSpice.ConstraintBased
             for (int i = 0; i < guesses.Length - 1; i++)
             {
                 cancellationToken?.ThrowIfCancellationRequested();
-                Guesser<TPuzzle>? trackerCopy = tracker.CopyForContinuation();
+                Guesser<TPuzzle>? trackerCopy = guesser.CopyForContinuation();
                 if (trackerCopy.TrySet(in guesses[i]))
                 {
                     SolveStats stats = _TryAllSolutions(trackerCopy, validateUniquenessOnly, cancellationToken);
@@ -211,9 +210,9 @@ namespace SudokuSpice.ConstraintBased
                     }
                 }
             }
-            if (tracker.TrySet(in guesses[^1]))
+            if (guesser.TrySet(in guesses[^1]))
             {
-                SolveStats stats = _TryAllSolutions(tracker, validateUniquenessOnly, cancellationToken);
+                SolveStats stats = _TryAllSolutions(guesser, validateUniquenessOnly, cancellationToken);
                 solveStats.NumSolutionsFound += stats.NumSolutionsFound;
                 solveStats.NumSquaresGuessed += stats.NumSquaresGuessed;
                 solveStats.NumTotalGuesses += stats.NumTotalGuesses;

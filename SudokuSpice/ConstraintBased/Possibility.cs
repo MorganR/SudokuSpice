@@ -8,7 +8,7 @@ namespace SudokuSpice.ConstraintBased
     /// A concrete possibility in the <see cref="ExactCoverGraph"/>. This represents a single
     /// possible value for a single square in the puzzle.
     /// </summary>
-    public class Possibility : IPossibility
+    public sealed class Possibility : IPossibility
     {
         private enum Operation
         {

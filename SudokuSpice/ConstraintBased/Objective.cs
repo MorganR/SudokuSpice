@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased
     /// A required objective in the <see cref="ExactCoverGraph"/>. This enforces that one or more
     /// <see cref="IPossibility"/>s must be selected.
     /// </summary>
-    public class Objective : IObjective
+    public sealed class Objective : IObjective
     {
         private readonly int _countToSatisfy;
         private readonly ExactCoverGraph _graph;
@@ -146,6 +146,16 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <inheritdoc />
+        public IEnumerable<IPossibility> GetUnknownDirectPossibilities()
+        {
+            if (State == NodeState.SELECTED)
+            {
+                return Enumerable.Empty<IPossibility>();
+            }
+            return _toPossibility!.GetPossibilitiesOnObjective();
+        }
+
+        /// <inheritdoc />
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         void IObjective.AppendPossibility(Link toNewPossibility)
         {
@@ -164,17 +174,7 @@ namespace SudokuSpice.ConstraintBased
             }
             _toPossibility.PrependToObjective(toNewPossibility);
         }
-
-        /// <inheritdoc />
-        IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities()
-        {
-            if (State == NodeState.SELECTED)
-            {
-                return Enumerable.Empty<IPossibility>();
-            }
-            return _toPossibility!.GetPossibilitiesOnObjective();
-        }
-
+        
         /// <inheritdoc />
         bool IObjective.TrySelectPossibility(Link toSelect)
         {

@@ -22,7 +22,7 @@ namespace SudokuSpice.ConstraintBased
     /// All <c>OptionalObjective</c> objects must eventually be descendents of at least one
     /// <see cref="Objective"/>.
     /// </summary>
-    public class OptionalObjective : IOptionalObjective
+    public sealed class OptionalObjective : IOptionalObjective
     {
         private enum Operation
         {
@@ -60,7 +60,7 @@ namespace SudokuSpice.ConstraintBased
         bool IObjective.IsRequired => false;
 
         /// <inheritdoc />
-        bool IPossibility.IsConcrete => false;
+        public bool IsConcrete => false;
         /// <inheritdoc />
         public NodeState State => _state;
 
@@ -104,7 +104,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         /// <inheritdoc />
-        IEnumerable<IPossibility> IObjective.GetUnknownDirectPossibilities()
+        public IEnumerable<IPossibility> GetUnknownDirectPossibilities()
         {
             if (_toPossibility is null)
             {
