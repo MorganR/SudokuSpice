@@ -8,11 +8,11 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_WithNonUniqueValuesInDiagonals_Fails()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {    1, null, null, null },
-                { null, null, null, null },
-                { null,    3,    1, null },
-                { null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {    1, null, null, null },
+                new int?[] { null, null, null, null },
+                new int?[] { null,    3,    1, null },
+                new int?[] { null, null, null, null },
             });
             var graph = ExactCoverGraph.Create(puzzle);
             var constraint = new DiagonalUniquenessConstraint();
@@ -23,11 +23,11 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_WithUniqueValuesInDiagonals_Succeeds()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {    1, null, null, null },
-                { null, null,    2, null },
-                { null,    3,    3, null },
-                {    4, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {    1, null, null, null },
+                new int?[] { null, null,    2, null },
+                new int?[] { null,    3,    3, null },
+                new int?[] {    4, null, null, null },
             });
             var graph = ExactCoverGraph.Create(puzzle);
             var constraint = new DiagonalUniquenessConstraint();

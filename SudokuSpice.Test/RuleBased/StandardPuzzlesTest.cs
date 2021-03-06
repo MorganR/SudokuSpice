@@ -7,7 +7,7 @@ namespace SudokuSpice.RuleBased.Test
     {
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void CreateSolver_CanSolveStandardPuzzles(int?[,] matrix)
+        public void CreateSolver_CanSolveStandardPuzzles(int?[][] matrix)
         {
             var solver = StandardPuzzles.CreateSolver();
 

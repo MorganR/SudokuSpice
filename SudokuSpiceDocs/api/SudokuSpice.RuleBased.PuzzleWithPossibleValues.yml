@@ -8,9 +8,10 @@ items:
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(SudokuSpice.Puzzle)
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(SudokuSpice.RuleBased.PuzzleWithPossibleValues)
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Int32)
-  - SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Nullable{System.Int32}[0:,0:])
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Nullable{System.Int32}[][])
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.AllPossibleValues
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.AllPossibleValuesSpan
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[][])
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.DeepCopy
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
@@ -49,6 +50,7 @@ items:
     content: 'public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues<PuzzleWithPossibleValues>, IPuzzle<PuzzleWithPossibleValues>, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues'
     content.vb: >-
       Public Class PuzzleWithPossibleValues
+
           Implements IPuzzleWithPossibleValues(Of PuzzleWithPossibleValues), IPuzzle(Of PuzzleWithPossibleValues), IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues
   inheritance:
   - System.Object
@@ -95,7 +97,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int Size { get; }
@@ -134,7 +135,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -173,7 +173,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -212,7 +211,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -251,7 +249,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public BitVector AllPossibleValues { get; }
@@ -290,7 +287,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -347,16 +343,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Nullable{System.Int32}[0:,0:])
-  commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Nullable{System.Int32}[0:,0:])
-  id: '#ctor(System.Nullable{System.Int32}[0:,0:])'
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(System.Nullable{System.Int32}[][])
+  id: '#ctor(System.Nullable{System.Int32}[][])'
   parent: SudokuSpice.RuleBased.PuzzleWithPossibleValues
   langs:
   - csharp
   - vb
-  name: PuzzleWithPossibleValues(Nullable<Int32>[,])
-  nameWithType: PuzzleWithPossibleValues.PuzzleWithPossibleValues(Nullable<Int32>[,])
-  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.PuzzleWithPossibleValues(System.Nullable<System.Int32>[,])
+  name: PuzzleWithPossibleValues(Nullable<Int32>[][])
+  nameWithType: PuzzleWithPossibleValues.PuzzleWithPossibleValues(Nullable<Int32>[][])
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.PuzzleWithPossibleValues(System.Nullable<System.Int32>[][])
   type: Constructor
   source:
     remote:
@@ -365,27 +361,27 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 57
+    startLine: 58
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array\nmodifies the puzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all future modifications should be done\nthrough this puzzle object, else this will be in an incorrect state.\n"
+  summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array\nmodifies the puzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b%5d%5b%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all\nfuture modifications should be done through this puzzle object, else this will be in an\nincorrect state.\n"
   example: []
   syntax:
-    content: public PuzzleWithPossibleValues(int? [, ] puzzleMatrix)
+    content: public PuzzleWithPossibleValues(int? [][] puzzleMatrix)
     parameters:
     - id: puzzleMatrix
-      type: System.Nullable{System.Int32}[,]
+      type: System.Nullable{System.Int32}[][]
       description: "\nThe data for this Sudoku puzzle. Preset squares should be set, and unset squares should\nbe null. The puzzle maintains a reference to this array.\n"
-    content.vb: Public Sub New(puzzleMatrix As Integer?(,))
+    content.vb: Public Sub New(puzzleMatrix As Integer?()())
   overload: SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor*
-  nameWithType.vb: PuzzleWithPossibleValues.PuzzleWithPossibleValues(Nullable(Of Int32)(,))
+  nameWithType.vb: PuzzleWithPossibleValues.PuzzleWithPossibleValues(Nullable(Of Int32)()())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleWithPossibleValues.PuzzleWithPossibleValues(System.Nullable(Of System.Int32)(,))
-  name.vb: PuzzleWithPossibleValues(Nullable(Of Int32)(,))
+  fullName.vb: SudokuSpice.RuleBased.PuzzleWithPossibleValues.PuzzleWithPossibleValues(System.Nullable(Of System.Int32)()())
+  name.vb: PuzzleWithPossibleValues(Nullable(Of Int32)()())
 - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(SudokuSpice.Puzzle)
   commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.#ctor(SudokuSpice.Puzzle)
   id: '#ctor(SudokuSpice.Puzzle)'
@@ -404,7 +400,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 72
+    startLine: 73
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -440,7 +436,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 83
+    startLine: 84
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -475,7 +471,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyFrom
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 90
+    startLine: 91
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -499,6 +495,48 @@ items:
   - Shared
   fullName.vb: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable(Of System.Int32)(,))
   name.vb: CopyFrom(Nullable(Of Int32)(,))
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[][])
+  id: CopyFrom(System.Nullable{System.Int32}[][])
+  parent: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(Nullable<Int32>[][])
+  nameWithType: PuzzleWithPossibleValues.CopyFrom(Nullable<Int32>[][])
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable<System.Int32>[][])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CopyFrom
+    path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
+    startLine: 97
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Creates a new puzzle with a copy of the given matrix.
+  example: []
+  syntax:
+    content: public static PuzzleWithPossibleValues CopyFrom(int? [][] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[][]
+    return:
+      type: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    content.vb: Public Shared Function CopyFrom(matrix As Integer?()()) As PuzzleWithPossibleValues
+  overload: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom*
+  nameWithType.vb: PuzzleWithPossibleValues.CopyFrom(Nullable(Of Int32)()())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable(Of System.Int32)()())
+  name.vb: CopyFrom(Nullable(Of Int32)()())
 - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.DeepCopy
   commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.DeepCopy
   id: DeepCopy
@@ -517,11 +555,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 96
+    startLine: 103
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nCreates a deep-copy of this puzzle.\n"
   example: []
   syntax:
     content: public PuzzleWithPossibleValues DeepCopy()
@@ -553,11 +590,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 99
+    startLine: 106
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nGets or sets the current value of a given square. A square can be &apos;unset&apos; by setting\nits value to <code>null</code>.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -600,21 +636,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 112
+    startLine: 119
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
-      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.RuleBased.PuzzleWithPossibleValues.Item*
   implements:
@@ -647,7 +680,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 126
+    startLine: 133
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -683,7 +716,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 132
+    startLine: 139
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -720,11 +753,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IntersectPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 135
+    startLine: 142
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nModifies the possible values for a square to be the intersect of the current possible\nvalues and the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleValues</code>.\n"
   example: []
   syntax:
     content: public void IntersectPossibleValues(in Coordinate c, BitVector possibleValues)
@@ -762,11 +794,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ResetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 138
+    startLine: 145
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nResets the possible values at the given location to be all possible values for this\npuzzle.\n"
   example: []
   syntax:
     content: public void ResetPossibleValues(in Coordinate c)
@@ -802,11 +833,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 140
+    startLine: 147
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nGets the current possible values for a given coordinate.\n\nIf the value is already set for the given coordinate, the result is undefined.\n"
   example: []
   syntax:
     content: public BitVector GetPossibleValues(in Coordinate c)
@@ -844,11 +874,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: SetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 142
+    startLine: 149
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSets the possible values for a square.\n"
   example: []
   syntax:
     content: public void SetPossibleValues(in Coordinate c, BitVector possibleValues)
@@ -1495,6 +1524,80 @@ references:
 - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   isExternal: true
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[][])
+  isExternal: true
+- uid: System.Nullable{System.Int32}[][]
+  isExternal: true
+  name: Nullable<Int32>[][]
+  nameWithType: Nullable<Int32>[][]
+  fullName: System.Nullable<System.Int32>[][]
+  nameWithType.vb: Nullable(Of Int32)()()
+  fullName.vb: System.Nullable(Of System.Int32)()()
+  name.vb: Nullable(Of Int32)()()
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: SudokuSpice.Puzzle
+  commentId: T:SudokuSpice.Puzzle
+  parent: SudokuSpice
+  name: Puzzle
+  nameWithType: Puzzle
+  fullName: SudokuSpice.Puzzle
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: PuzzleWithPossibleValues
+  nameWithType: PuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom
+  name: CopyFrom
+  nameWithType: PuzzleWithPossibleValues.CopyFrom
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom
 - uid: System.Nullable{System.Int32}[,]
   isExternal: true
   name: Nullable<Int32>[,]
@@ -1543,23 +1646,6 @@ references:
   - name: (,)
     nameWithType: (,)
     fullName: (,)
-- uid: SudokuSpice.Puzzle
-  commentId: T:SudokuSpice.Puzzle
-  parent: SudokuSpice
-  name: Puzzle
-  nameWithType: Puzzle
-  fullName: SudokuSpice.Puzzle
-- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
-  commentId: T:SudokuSpice.RuleBased.PuzzleWithPossibleValues
-  parent: SudokuSpice.RuleBased
-  name: PuzzleWithPossibleValues
-  nameWithType: PuzzleWithPossibleValues
-  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
-- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom*
-  commentId: Overload:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom
-  name: CopyFrom
-  nameWithType: PuzzleWithPossibleValues.CopyFrom
-  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom
 - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.DeepCopy*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleWithPossibleValues.DeepCopy
   name: DeepCopy

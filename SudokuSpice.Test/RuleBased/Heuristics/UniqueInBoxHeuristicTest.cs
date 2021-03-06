@@ -10,11 +10,11 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
         [Fact]
         public void UpdateAll_ModifiesRelevantPossibles()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {null /* 1 */, null /* 4 */,            3,            2},
-                {null /* 2 */, null /* 3 */, null /* 1 */,            4},
-                {null /* 4 */, null /* 1 */,            2,            3},
-                {           3, null /* 2 */,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {null /* 1 */, null /* 4 */,            3,            2},
+                new int?[] {null /* 2 */, null /* 3 */, null /* 1 */,            4},
+                new int?[] {null /* 4 */, null /* 1 */,            2,            3},
+                new int?[] {           3, null /* 2 */,            4,            1}
             });
             var ruleKeeper = new StandardRuleKeeper();
             Assert.True(ruleKeeper.TryInit(puzzle));
@@ -40,11 +40,11 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
         [Fact]
         public void CopyWithNewReferences_CreatesDeepCopy()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {null /* 1 */, null /* 4 */,            3,            2},
-                {null /* 2 */, null /* 3 */, null /* 1 */,            4},
-                {null /* 4 */, null /* 1 */,            2,            3},
-                {           3, null /* 2 */,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {null /* 1 */, null /* 4 */,            3,            2},
+                new int?[] {null /* 2 */, null /* 3 */, null /* 1 */,            4},
+                new int?[] {null /* 4 */, null /* 1 */,            2,            3},
+                new int?[] {           3, null /* 2 */,            4,            1}
             });
             var ruleKeeper = new StandardRuleKeeper();
             Assert.True(ruleKeeper.TryInit(puzzle));
@@ -69,11 +69,11 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
         [Fact]
         public void CopyWithNewReferences_WithoutIMissingBoxValuesTracker_Throws()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {null /* 1 */, null /* 4 */,            3,            2},
-                {null /* 2 */, null /* 3 */, null /* 1 */,            4},
-                {null /* 4 */, null /* 1 */,            2,            3},
-                {           3, null /* 2 */,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {null /* 1 */, null /* 4 */,            3,            2},
+                new int?[] {null /* 2 */, null /* 3 */, null /* 1 */,            4},
+                new int?[] {null /* 4 */, null /* 1 */,            2,            3},
+                new int?[] {           3, null /* 2 */,            4,            1}
             });
             var ruleKeeper = new StandardRuleKeeper();
             Assert.True(ruleKeeper.TryInit(puzzle));

@@ -125,7 +125,7 @@ inclusive.</li>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle__ctor_SudokuSpice_Puzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.%23ctor(SudokuSpice.Puzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L110">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L109">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle__ctor_" data-uid="SudokuSpice.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_Puzzle__ctor_SudokuSpice_Puzzle_" data-uid="SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)">Puzzle(Puzzle)</h4>
@@ -205,13 +205,13 @@ inclusive.</li>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle__ctor_System_Nullable_System_Int32__0__0___.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.%23ctor(System.Nullable%7BSystem.Int32%7D%5B0%3A%2C0%3A%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle__ctor_System_Nullable_System_Int32______.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.%23ctor(System.Nullable%7BSystem.Int32%7D%5B%5D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L79">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L77">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle__ctor_" data-uid="SudokuSpice.Puzzle.#ctor*"></a>
-  <h4 id="SudokuSpice_Puzzle__ctor_System_Nullable_System_Int32__0__0___" data-uid="SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])">Puzzle(Nullable&lt;Int32&gt;[,])</h4>
+  <h4 id="SudokuSpice_Puzzle__ctor_System_Nullable_System_Int32______" data-uid="SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])">Puzzle(Nullable&lt;Int32&gt;[][])</h4>
   <div class="markdown level1 summary"><p>Constructs a new puzzle backed by the given array.</p>
 <p>The puzzle is backed directly by this array (i.e. modifying the array
 modifies the puzzle, and vice-versa). If this is not what you want, see
@@ -221,7 +221,7 @@ through this puzzle object, else this will be in an incorrect state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Puzzle(int? [, ] puzzleMatrix)</code></pre>
+    <pre><code class="lang-csharp hljs">public Puzzle(int? [][] puzzleMatrix)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -234,7 +234,7 @@ through this puzzle object, else this will be in an incorrect state.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;[,]</td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;[][]</td>
         <td><span class="parametername">puzzleMatrix</span></td>
         <td><p>The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
 be null. The puzzle maintains a reference to this array.</p>
@@ -253,8 +253,7 @@ be null. The puzzle maintains a reference to this array.</p>
   </span>
   <a id="SudokuSpice_Puzzle_AllPossibleValuesSpan_" data-uid="SudokuSpice.Puzzle.AllPossibleValuesSpan*"></a>
   <h4 id="SudokuSpice_Puzzle_AllPossibleValuesSpan" data-uid="SudokuSpice.Puzzle.AllPossibleValuesSpan">AllPossibleValuesSpan</h4>
-  <div class="markdown level1 summary"><p>Gets all the possible values for this puzzle.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -280,13 +279,11 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_Item_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L144">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L154">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_Item_" data-uid="SudokuSpice.Puzzle.Item*"></a>
   <h4 id="SudokuSpice_Puzzle_Item_SudokuSpice_Coordinate__" data-uid="SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)">Item[Coordinate]</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the value of the given square, like <a class="xref" href="SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_System_Int32_System_Int32_">Item[Int32, Int32]</a>, but
-using a <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a> instead of <span class="xref">langword_csharp_int</span> accessors.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -305,8 +302,7 @@ using a <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a> instea
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td><p>The location of the square to get/set the value of.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -321,8 +317,7 @@ using a <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a> instea
     <tbody>
       <tr>
         <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td><p>The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code></p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -331,13 +326,11 @@ using a <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a> instea
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_Item_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.Item(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L129">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L139">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_Item_" data-uid="SudokuSpice.Puzzle.Item*"></a>
   <h4 id="SudokuSpice_Puzzle_Item_System_Int32_System_Int32_" data-uid="SudokuSpice.Puzzle.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the current value of a given square. A square can be 'unset' by setting
-its value to <code>null</code>.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -389,8 +382,7 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_Puzzle_NumEmptySquares_" data-uid="SudokuSpice.Puzzle.NumEmptySquares*"></a>
   <h4 id="SudokuSpice_Puzzle_NumEmptySquares" data-uid="SudokuSpice.Puzzle.NumEmptySquares">NumEmptySquares</h4>
-  <div class="markdown level1 summary"><p>The current number of empty/unknown squares in the puzzle.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -420,8 +412,7 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_Puzzle_NumSetSquares_" data-uid="SudokuSpice.Puzzle.NumSetSquares*"></a>
   <h4 id="SudokuSpice_Puzzle_NumSetSquares" data-uid="SudokuSpice.Puzzle.NumSetSquares">NumSetSquares</h4>
-  <div class="markdown level1 summary"><p>The number of set/known squares in the puzzle.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -451,8 +442,7 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_Puzzle_NumSquares_" data-uid="SudokuSpice.Puzzle.NumSquares*"></a>
   <h4 id="SudokuSpice_Puzzle_NumSquares" data-uid="SudokuSpice.Puzzle.NumSquares">NumSquares</h4>
-  <div class="markdown level1 summary"><p>The total number of squares in the puzzle.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -482,8 +472,7 @@ its value to <code>null</code>.</p>
   </span>
   <a id="SudokuSpice_Puzzle_Size_" data-uid="SudokuSpice.Puzzle.Size*"></a>
   <h4 id="SudokuSpice_Puzzle_Size" data-uid="SudokuSpice.Puzzle.Size">Size</h4>
-  <div class="markdown level1 summary"><p>The side-length of the puzzle (puzzles must be square).</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -508,10 +497,58 @@ its value to <code>null</code>.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.CopyFrom(System.Nullable%7BSystem.Int32%7D%5B%5D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L130">View Source</a>
+  </span>
+  <a id="SudokuSpice_Puzzle_CopyFrom_" data-uid="SudokuSpice.Puzzle.CopyFrom*"></a>
+  <h4 id="SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______" data-uid="SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])">CopyFrom(Nullable&lt;Int32&gt;[][])</h4>
+  <div class="markdown level1 summary"><p>Creates a new puzzle with a copy of the given matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Puzzle CopyFrom(int? [][] matrix)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;[][]</td>
+        <td><span class="parametername">matrix</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.Puzzle.html">Puzzle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0__0___.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.CopyFrom(System.Nullable%7BSystem.Int32%7D%5B0%3A%2C0%3A%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L120">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L124">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_CopyFrom_" data-uid="SudokuSpice.Puzzle.CopyFrom*"></a>
   <h4 id="SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0__0___" data-uid="SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])">CopyFrom(Nullable&lt;Int32&gt;[,])</h4>
@@ -559,12 +596,11 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_DeepCopy.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.DeepCopy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L126">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L136">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_DeepCopy_" data-uid="SudokuSpice.Puzzle.DeepCopy*"></a>
   <h4 id="SudokuSpice_Puzzle_DeepCopy" data-uid="SudokuSpice.Puzzle.DeepCopy">DeepCopy()</h4>
-  <div class="markdown level1 summary"><p>Creates a deep-copy of this puzzle.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -590,7 +626,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_GetUnsetCoords.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.GetUnsetCoords%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L152">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L162">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_GetUnsetCoords_" data-uid="SudokuSpice.Puzzle.GetUnsetCoords*"></a>
   <h4 id="SudokuSpice_Puzzle_GetUnsetCoords" data-uid="SudokuSpice.Puzzle.GetUnsetCoords">GetUnsetCoords()</h4>
@@ -621,7 +657,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_ToString.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L158">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/Puzzle.cs/#L168">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_ToString_" data-uid="SudokuSpice.Puzzle.ToString*"></a>
   <h4 id="SudokuSpice_Puzzle_ToString" data-uid="SudokuSpice.Puzzle.ToString">ToString()</h4>

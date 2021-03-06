@@ -8,11 +8,11 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_WithNonUniqueValuesInRows_Fails()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, 1, null, null },
-                { null, 2, null,    2 },
-                { null, 3, null, null },
-                { null, 4, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, 1, null, null },
+                new int?[] { null, 2, null,    2 },
+                new int?[] { null, 3, null, null },
+                new int?[] { null, 4, null, null },
             });
             var graph = ExactCoverGraph.Create(puzzle);
             var constraint = new RowUniquenessConstraint();
@@ -23,11 +23,11 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_WithUniqueValuesInRows_Succeeds()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null, null, null },
-                { null, null, null,    4 },
-                { null, null,    3,    4 },
-                {    1,    2,    3,    4 },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null, null, null },
+                new int?[] { null, null, null,    4 },
+                new int?[] { null, null,    3,    4 },
+                new int?[] {    1,    2,    3,    4 },
             });
             var graph = ExactCoverGraph.Create(puzzle);
             var constraint = new RowUniquenessConstraint();

@@ -13,7 +13,7 @@ namespace SudokuSpice
     [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional")]
     public class CoordinateTracker
     {
-        private readonly int[,] _coordToIdx;
+        private readonly int[][] _coordToIdx;
         private readonly Coordinate[] _coords;
         private int _numAdded = 0;
         /// <summary>
@@ -53,13 +53,15 @@ namespace SudokuSpice
         /// <param name="size">The side length of a square of valid coordinates.</param>
         public CoordinateTracker(int size)
         {
-            _coordToIdx = new int[size, size];
-            for (int row = 0; row < size; row++)
+            _coordToIdx = new int[size][];
+            for (int row = 0; row < size; ++row)
             {
+                var _coordToIdxRow = new int[size];
                 for (int col = 0; col < size; col++)
                 {
-                    _coordToIdx[row, col] = -1;
+                    _coordToIdxRow[col] = -1;
                 }
+                _coordToIdx[row] = _coordToIdxRow;
             }
             _coords = new Coordinate[size * size];
             Size = size;
@@ -71,8 +73,12 @@ namespace SudokuSpice
         /// <param name="existing"></param>
         public CoordinateTracker(CoordinateTracker existing)
         {
-            _coordToIdx = (int[,])existing._coordToIdx.Clone();
-            _coords = (Coordinate[])existing._coords.Clone();
+            _coordToIdx = new int[existing._coordToIdx.Length][];
+            for (int row = 0; row < _coordToIdx.Length; ++row)
+            {
+                _coordToIdx[row] = existing._coordToIdx[row].AsSpan().ToArray();
+            }
+            _coords = existing._coords.AsSpan().ToArray();
             NumTracked = existing.NumTracked;
             _numAdded = existing._numAdded;
         }
@@ -85,7 +91,7 @@ namespace SudokuSpice
         public void Add(in Coordinate c)
         {
             _coords[_numAdded] = c;
-            _coordToIdx[c.Row, c.Column] = _numAdded;
+            _coordToIdx[c.Row][c.Column] = _numAdded;
             _numAdded++;
             Track(in c);
         }
@@ -98,7 +104,7 @@ namespace SudokuSpice
         public void Track(in Coordinate c)
         {
             Debug.Assert(NumTracked != _numAdded, "The tracker is full.");
-            int idx = _coordToIdx[c.Row, c.Column];
+            int idx = _coordToIdx[c.Row][c.Column];
             _Track(in c, idx);
         }
 
@@ -110,7 +116,7 @@ namespace SudokuSpice
         /// <returns>The action that was taken.</returns>
         public AddOrTrackResult AddOrTrackIfUntracked(in Coordinate c)
         {
-            int idx = _coordToIdx[c.Row, c.Column];
+            int idx = _coordToIdx[c.Row][c.Column];
             if (idx == -1)
             {
                 Add(in c);
@@ -132,15 +138,15 @@ namespace SudokuSpice
         public void Untrack(in Coordinate c)
         {
             Debug.Assert(NumTracked > 0, "The tracker is empty");
-            int idx = _coordToIdx[c.Row, c.Column];
+            int idx = _coordToIdx[c.Row][c.Column];
             Debug.Assert(idx >= 0, $"Coordinate {c} was never added.");
             Debug.Assert(idx < NumTracked, $"Coordinate {c} is already untracked.");
             NumTracked--;
             Coordinate lastTrackedCoord = _coords[NumTracked];
             _coords[idx] = lastTrackedCoord;
             _coords[NumTracked] = c;
-            _coordToIdx[lastTrackedCoord.Row, lastTrackedCoord.Column] = idx;
-            _coordToIdx[c.Row, c.Column] = NumTracked;
+            _coordToIdx[lastTrackedCoord.Row][lastTrackedCoord.Column] = idx;
+            _coordToIdx[c.Row][c.Column] = NumTracked;
         }
 
         /// <summary>
@@ -160,8 +166,8 @@ namespace SudokuSpice
             Coordinate otherUntrackedCoord = _coords[NumTracked];
             _coords[index] = otherUntrackedCoord;
             _coords[NumTracked] = c;
-            _coordToIdx[otherUntrackedCoord.Row, otherUntrackedCoord.Column] = index;
-            _coordToIdx[c.Row, c.Column] = NumTracked;
+            _coordToIdx[otherUntrackedCoord.Row][otherUntrackedCoord.Column] = index;
+            _coordToIdx[c.Row][c.Column] = NumTracked;
             NumTracked++;
         }
     }

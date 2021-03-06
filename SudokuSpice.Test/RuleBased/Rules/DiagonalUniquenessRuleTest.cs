@@ -8,11 +8,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_ValidPuzzle_FiltersCorrectly()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,   4},
+                new int?[] {null, null,    3,   2},
+                new int?[] {   2, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
 
@@ -46,11 +46,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_WithDuplicateValueInDiagonal_Fails()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                   {   1, null, null,   4},
-                   {null,    1,    3,   2},
-                   {   2, null, null, null},
-                   {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                   new int?[] {   1, null, null,   4},
+                   new int?[] {null,    1,    3,   2},
+                   new int?[] {   2, null, null, null},
+                   new int?[] {null, null, null, null}
                });
             var rule = new DiagonalUniquenessRule();
 
@@ -60,11 +60,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void CopyWithNewReference_CreatesDeepCopy()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,    4},
-                {null, null,    3,    2},
-                {   4, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,    4},
+                new int?[] {null, null,    3,    2},
+                new int?[] {   4, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -94,11 +94,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_OnDiagonal_UpdatesSpecifiedDiagonal()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,   4},
+                new int?[] {null, null,    3,   2},
+                new int?[] {   2, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -119,11 +119,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_OnNonDiagonal_DoesNothing()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,   4},
+                new int?[] {null, null,    3,   2},
+                new int?[] {   2, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -149,11 +149,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_WithoutAffectedCoordsList_RevertsSpecifiedDiagonal()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,   4},
+                new int?[] {null, null,    3,   2},
+                new int?[] {   2, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -178,11 +178,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedDiagonal()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,   4},
+                new int?[] {null, null,    3,   2},
+                new int?[] {   2, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -212,11 +212,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_OnNonDiagonal_DoesNothing()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {   1, null, null,   4},
-                {null, null,    3,   2},
-                {   2, null, null, null},
-                {null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {   1, null, null,   4},
+                new int?[] {null, null,    3,   2},
+                new int?[] {   2, null, null, null},
+                new int?[] {null, null, null, null}
             });
             var rule = new DiagonalUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));

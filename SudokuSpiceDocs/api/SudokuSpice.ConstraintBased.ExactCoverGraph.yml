@@ -34,8 +34,8 @@ items:
   remarks: "\nThe ExactCoverGraph adds <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects for all the unset coordinates\nin a puzzle on creation, as well as <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> objects that group all the\npossible values for each location. These effectively implements the constraint: &quot;Each\ncoordinate in the puzzle must have one and only one value.&quot;\n"
   example: []
   syntax:
-    content: public class ExactCoverGraph
-    content.vb: Public Class ExactCoverGraph
+    content: public sealed class ExactCoverGraph
+    content.vb: Public NotInheritable Class ExactCoverGraph
   seealso:
   - linkType: HRef
     linkId: https://en.wikipedia.org/wiki/Exact_cover
@@ -52,9 +52,11 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
   commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues

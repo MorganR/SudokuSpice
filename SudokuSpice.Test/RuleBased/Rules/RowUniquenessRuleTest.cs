@@ -8,11 +8,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_FiltersCorrectly()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rule = new RowUniquenessRule();
 
@@ -28,11 +28,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         public void TryInitFor_WithDuplicateValueInRow_Fails()
         {
             var puzzle = new PuzzleWithPossibleValues(
-                    new int?[,] {
-                            {           1, /* INCORRECT */ 1, null /* 3 */,            2},
-                            {null /* 2 */,      null /* 3 */,            1, null /* 4 */},
-                            {null /* 4 */,      null /* 1 */, null /* 2 */, null /* 3 */},
-                            {           3,                 2,            4,            1}
+                    new int?[][] {
+                        new int?[] {           1, /* INCORRECT */ 1, null /* 3 */,            2},
+                        new int?[] {null /* 2 */,      null /* 3 */,            1, null /* 4 */},
+                        new int?[] {null /* 4 */,      null /* 1 */, null /* 2 */, null /* 3 */},
+                        new int?[] {           3,                 2,            4,            1}
                     });
             var rule = new RowUniquenessRule();
 
@@ -42,11 +42,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void CopyWithNewReference_CreatesDeepCopy()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rule = new RowUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -76,11 +76,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_UpdatesSpecifiedRow()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {3, 2, 4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -102,11 +102,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_WithoutAffectedList_RevertsSpecifiedRow()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {3, 2, 4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -127,11 +127,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedRow()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {3, 2, 4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -158,11 +158,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void GetPossibleRowValues_IsCorrect()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {3, 2, 4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -176,11 +176,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void GetPossibleValues_MatchesGetPossibleRowValues()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, 1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {3, 2, 4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */, null /* 3 */, 1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));

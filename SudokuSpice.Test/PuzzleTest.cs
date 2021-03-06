@@ -8,11 +8,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void CopyConstructor_CreatesDeepCopy()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             var puzzleCopy = new Puzzle(puzzle);
 
@@ -52,11 +52,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void Size_ReturnsPuzzleSize()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             Assert.Equal(4, puzzle.Size);
         }
@@ -64,11 +64,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void NumEmptySquares_MatchesNumNullInputs()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             Assert.Equal(10, puzzle.NumEmptySquares);
         }
@@ -76,11 +76,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void Get_ReturnsCurrentKnownValue()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             Assert.Equal(1, puzzle[0, 0]);
             Assert.Null(puzzle[1, 1]);
@@ -90,11 +90,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void Set_ModifiesValue()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             puzzle[0, 1] = 3;
             Assert.Equal(3, puzzle[0, 1]);
@@ -103,11 +103,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void Set_DecrementsNumEmptySquares()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             int initialNumUnset = puzzle.NumEmptySquares;
             puzzle[0, 1] = 3;
@@ -117,11 +117,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void Unset_PreviouslySetValue_Succeeds()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             int initialNumUnset = puzzle.NumEmptySquares;
             puzzle[0, 1] = 3;
@@ -133,11 +133,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void GetUnsetCoords_ReturnsAllUnsetCoords()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             Coordinate[] allUnset = puzzle.GetUnsetCoords().ToArray();
             foreach (Coordinate unset in allUnset)
@@ -150,11 +150,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void ToString_WithBoxes_ReturnsPrettyPuzzle()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             Assert.Equal(
                 "╔═╤═╦═╤═╗\n" +
@@ -171,12 +171,12 @@ namespace SudokuSpice.Test
         [Fact]
         public void ToString_WithNoBoxes_ReturnsPrettyPuzzle()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2, null},
-                {null, null, 1, null, null},
-                {null, 1, null, null, null},
-                {3, null, 4, null, null},
-                {null, null, null, null, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2, null},
+                new int?[] {null, null, 1, null, null},
+                new int?[] {null, 1, null, null, null},
+                new int?[] {3, null, 4, null, null},
+                new int?[] {null, null, null, null, null}
             });
             Assert.Equal(
                 "╔═╤═╤═╤═╤═╗\n" +

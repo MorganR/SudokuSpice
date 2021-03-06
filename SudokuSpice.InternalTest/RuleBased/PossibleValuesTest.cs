@@ -54,11 +54,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Intersect_ModifiedCurrentValue()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var possibleValues = new PossibleValues(puzzle.Size, _DefaultPossibleValuesForSize(puzzle.Size));
             possibleValues.Reset(puzzle.GetUnsetCoords());
@@ -74,11 +74,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void SettingByIndex_SetsValue()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var possibleValues = new PossibleValues(puzzle.Size, _DefaultPossibleValuesForSize(puzzle.Size));
             possibleValues.Reset(puzzle.GetUnsetCoords());
@@ -92,11 +92,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Reset_RevertsToAllPossibles()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var possibleValues = new PossibleValues(puzzle.Size, _DefaultPossibleValuesForSize(puzzle.Size));
             possibleValues.Reset(puzzle.GetUnsetCoords());

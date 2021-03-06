@@ -13,7 +13,7 @@ namespace SudokuSpice
     /// </summary>.
     public class Puzzle : IPuzzle<Puzzle>
     {
-        private readonly int?[,] _squares;
+        private readonly int?[][] _squares;
         private readonly CoordinateTracker _unsetCoordsTracker;
         private readonly int[] _allPossibleValues;
 
@@ -45,16 +45,14 @@ namespace SudokuSpice
             }
             Size = size;
             NumSquares = size * size;
-            _squares = new int?[size, size];
+            _squares = new int?[size][];
             _unsetCoordsTracker = new CoordinateTracker(size);
             for (int row = 0; row < Size; row++)
             {
+                _squares[row] = new int?[size];
                 for (int col = 0; col < Size; col++)
                 {
-                    if (!_squares[row, col].HasValue)
-                    {
-                        _unsetCoordsTracker.Add(new Coordinate(row, col));
-                    }
+                    _unsetCoordsTracker.Add(new Coordinate(row, col));
                 }
             }
             _allPossibleValues = new int[Size];
@@ -67,31 +65,33 @@ namespace SudokuSpice
         /// <summary>
         /// Constructs a new puzzle backed by the given array.
         ///
-        /// The puzzle is backed directly by this array (i.e. modifying the array
-        /// modifies the puzzle, and vice-versa). If this is not what you want, see
-        /// <see cref="CopyFrom(int?[,])"/>. Note that all future modifications should be done
-        /// through this puzzle object, else this will be in an incorrect state.
+        /// The puzzle is backed directly by this array (i.e. modifying the array modifies the
+        /// puzzle, and vice-versa). If this is not what you want, see
+        /// <see cref="CopyFrom(int?[,])"/> and <see cref="CopyFrom(int?[][])"/>. Note that all
+        /// future modifications should be done through this puzzle object, else this will be in an
+        /// incorrect state.
         /// </summary>
         /// <param name="puzzleMatrix">
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
         /// be null. The puzzle maintains a reference to this array.
         /// </param>
-        public Puzzle(int?[,] puzzleMatrix)
+        public Puzzle(int?[][] puzzleMatrix)
         {
             NumSquares = puzzleMatrix.Length;
-            Size = puzzleMatrix.GetLength(0);
-            if (Size != puzzleMatrix.GetLength(1))
+            Size = puzzleMatrix.Length;
+            if (Size == 0 || Size != puzzleMatrix[0].Length)
             {
-                throw new ArgumentException("Puzzle must be square.");
+                throw new ArgumentException("Puzzle must be square with non-zero dimensions.");
             }
 
             _squares = puzzleMatrix;
             _unsetCoordsTracker = new CoordinateTracker(Size);
-            for (int row = 0; row < Size; row++)
+            for (int row = 0; row < _squares.Length; row++)
             {
-                for (int col = 0; col < Size; col++)
+                var squaresRow = _squares[row];
+                for (int col = 0; col < squaresRow.Length; col++)
                 {
-                    if (!_squares[row, col].HasValue)
+                    if (!squaresRow[col].HasValue)
                     {
                         _unsetCoordsTracker.Add(new Coordinate(row, col));
                     }
@@ -111,15 +111,28 @@ namespace SudokuSpice
         {
             Size = existing.Size;
             NumSquares = existing.NumSquares;
-            _squares = (int?[,])existing._squares.Clone();
+            _squares = new int?[Size][];
+            int i = 0;
+            foreach (var row in existing._squares)
+            {
+                _squares[i++] = row.AsSpan().ToArray();
+            }
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
             _allPossibleValues = existing._allPossibleValues;
         }
 
+
         /// <summary>Creates a new puzzle with a copy of the given matrix.</summary>
+        [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Provided to ease migration.")]
         public static Puzzle CopyFrom(int?[,] matrix)
         {
-            return new Puzzle((int?[,])matrix.Clone());
+            return new Puzzle(matrix.CopyToJagged2D());
+        }
+
+        /// <summary>Creates a new puzzle with a copy of the given matrix.</summary>
+        public static Puzzle CopyFrom(int?[][] matrix)
+        {
+            return new Puzzle(matrix.Copy2D());
         }
 
         /// <inheritdoc/>
@@ -128,7 +141,7 @@ namespace SudokuSpice
         /// <inheritdoc/>
         public int? this[int row, int col]
         {
-            get => _squares[row, col];
+            get => _squares[row][col];
             set {
                 if (value.HasValue)
                 {
@@ -144,7 +157,7 @@ namespace SudokuSpice
         [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public int? this[in Coordinate c]
         {
-            get => _squares[c.Row, c.Column];
+            get => _squares[c.Row][c.Column];
             set => this[c.Row, c.Column] = value;
         }
 
@@ -160,18 +173,18 @@ namespace SudokuSpice
         /// <summary>Sets the value of a square.</summary>
         private void _Set(int row, int col, int val)
         {
-            Debug.Assert(!_squares[row, col].HasValue, $"Square ({row}, {col}) already has a value.");
-            _squares[row, col] = val;
+            Debug.Assert(!_squares[row][col].HasValue, $"Square ({row}, {col}) already has a value.");
+            _squares[row][col] = val;
             _unsetCoordsTracker.Untrack(new Coordinate(row, col));
         }
 
         /// <summary>Unsets the specified square.</summary>
         private void _Unset(int row, int col)
         {
-            Debug.Assert(_squares[row, col].HasValue,
+            Debug.Assert(_squares[row][col].HasValue,
                 $"Square ({row}, {col}) doesn't have a value, so can't be unset.");
             _unsetCoordsTracker.Track(new Coordinate(row, col));
-            _squares[row, col] = null;
+            _squares[row][col] = null;
         }
     }
 }

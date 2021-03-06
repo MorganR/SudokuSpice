@@ -11,12 +11,17 @@ Docs: https://morganr.github.io/SudokuSpice</Description>
     <PackageIcon>sudokuspice-black.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/MorganR/SudokuSpice</RepositoryUrl>
-    <PackageTags>sudoku solver generator sudokuspice spice puzzle puzzles sudokus</PackageTags>
+    <PackageTags>sudoku solver solve generator generate sudokuspice spice puzzle puzzles sudokus</PackageTags>
     <Authors>Morgan Roff</Authors>
     <Company>SudokuSpice</Company>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>

@@ -10,11 +10,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TryInitFor_UpdatesPossibles()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rules = new List<IRule>
             {
@@ -41,11 +41,11 @@ namespace SudokuSpice.RuleBased.Test
         public void TryInitFor_WhenSquareHasNoPossibleValues_Fails()
         {
             var puzzle = new PuzzleWithPossibleValues(
-                new int?[,] {
-                    {           1,    3 /* 4 */, null /* 3 */,            2},
-                    {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                    {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                    {           3,            2,            4,            1}
+                new int?[][] {
+                    new int?[] {           1,    3 /* 4 */, null /* 3 */,            2},
+                    new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                    new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                    new int?[] {           3,            2,            4,            1}
                 });
             var rules = new List<IRule>
                 {
@@ -60,11 +60,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void CopyWithNewReferences_CreatesDeepCopy()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rules = new List<IRule>
             {
@@ -97,11 +97,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithValidValue_Succeeds()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rules = new List<IRule>
                 {
@@ -126,11 +126,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithValueThatCausesNoPossiblesForOtherSquare_FailsAndLeavesUnchanged()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rules = new List<IRule>
                 {
@@ -155,11 +155,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithInvalidValue_FailsAndLeavesUnchanged()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rules = new List<IRule>
                 {
@@ -184,11 +184,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void Revert_RevertsSpecifiedCoordinate()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var rules = new List<IRule>
                 {

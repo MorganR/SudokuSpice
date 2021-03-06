@@ -6,8 +6,9 @@ items:
   parent: SudokuSpice.ConstraintBased
   children:
   - SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  - SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities
+  - SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete
   - SudokuSpice.ConstraintBased.OptionalObjective.State
-  - SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete
   langs:
   - csharp
   - vb
@@ -29,9 +30,10 @@ items:
   summary: "\nAn optional objective in an <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. An optional objective is both\nan <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> and an <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThis can be satisfied if one or more attached <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref> objects are\nselected. Once satisfied, this drops any remaining unknown possibilities, and notifies\nparent objectives that to select this possibility.\n\nUnlike <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>s, this class can be dropped. Dropping this objetive does\nnot immediately impact attached possibilities. These possibilities may still be dropped\nor selected, as long as this objective does not become satisfied. If selecting a\npossibility would satisfy a dropped optional objective, then the call to\n<xref href=\"SudokuSpice.ConstraintBased.IObjective.TrySelectPossibility(SudokuSpice.ConstraintBased.Link)\" data-throw-if-not-resolved=\"false\"></xref> will fail.\n\nAll <code>OptionalObjective</code> objects must eventually be descendents of at least one\n<xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
-    content: 'public class OptionalObjective : IOptionalObjective, IObjective, IPossibility'
+    content: 'public sealed class OptionalObjective : IOptionalObjective, IObjective, IPossibility'
     content.vb: >-
-      Public Class OptionalObjective
+      Public NotInheritable Class OptionalObjective
+
           Implements IOptionalObjective, IObjective, IPossibility
   inheritance:
   - System.Object
@@ -49,50 +51,50 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
-- uid: SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete
-  commentId: P:SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete
-  id: SudokuSpice#ConstraintBased#IPossibility#IsConcrete
-  isEii: true
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete
+  commentId: P:SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete
+  id: IsConcrete
   parent: SudokuSpice.ConstraintBased.OptionalObjective
   langs:
   - csharp
   - vb
-  name: IPossibility.IsConcrete
-  nameWithType: OptionalObjective.IPossibility.IsConcrete
-  fullName: SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  name: IsConcrete
+  nameWithType: OptionalObjective.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete
   type: Property
   source:
     remote:
       path: SudokuSpice/ConstraintBased/OptionalObjective.cs
       branch: flexible-constraints
       repo: https://github.com/MorganR/SudokuSpice.git
-    id: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+    id: IsConcrete
     path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
-    startLine: 63
+    startLine: 62
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
   example: []
   syntax:
-    content: bool IPossibility.IsConcrete { get; }
+    content: public bool IsConcrete { get; }
     parameters: []
     return:
       type: System.Boolean
-    content.vb: ReadOnly WriteOnly Property SudokuSpice.ConstraintBased.IPossibility.IsConcrete As Boolean Implements IPossibility.IsConcrete
-  overload: SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete*
+    content.vb: Public ReadOnly Property IsConcrete As Boolean
+  overload: SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete*
   implements:
   - SudokuSpice.ConstraintBased.IPossibility.IsConcrete
-  nameWithType.vb: OptionalObjective.SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   modifiers.csharp:
+  - public
   - get
   modifiers.vb:
+  - Public
   - ReadOnly
-  name.vb: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
 - uid: SudokuSpice.ConstraintBased.OptionalObjective.State
   commentId: P:SudokuSpice.ConstraintBased.OptionalObjective.State
   id: State
@@ -111,11 +113,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: State
     path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
-    startLine: 65
+    startLine: 64
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public NodeState State { get; }
@@ -151,7 +152,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CreateWithPossibilities
     path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
-    startLine: 92
+    startLine: 91
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
@@ -184,6 +185,41 @@ items:
   - Shared
   fullName.vb: SudokuSpice.ConstraintBased.OptionalObjective.CreateWithPossibilities(System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
   name.vb: CreateWithPossibilities(ReadOnlySpan(Of IPossibility), Int32)
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities
+  commentId: M:SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities
+  id: GetUnknownDirectPossibilities
+  parent: SudokuSpice.ConstraintBased.OptionalObjective
+  langs:
+  - csharp
+  - vb
+  name: GetUnknownDirectPossibilities()
+  nameWithType: OptionalObjective.GetUnknownDirectPossibilities()
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/OptionalObjective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetUnknownDirectPossibilities
+    path: ../SudokuSpice/ConstraintBased/OptionalObjective.cs
+    startLine: 106
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  example: []
+  syntax:
+    content: public IEnumerable<IPossibility> GetUnknownDirectPossibilities()
+    return:
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+    content.vb: Public Function GetUnknownDirectPossibilities As IEnumerable(Of IPossibility)
+  overload: SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities*
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
@@ -515,13 +551,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete*
-  commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice#ConstraintBased#IPossibility#IsConcrete
-  name: IPossibility.IsConcrete
-  nameWithType: OptionalObjective.IPossibility.IsConcrete
-  fullName: SudokuSpice.ConstraintBased.OptionalObjective.SudokuSpice.ConstraintBased.IPossibility.IsConcrete
-  nameWithType.vb: OptionalObjective.SudokuSpice.ConstraintBased.IPossibility.IsConcrete
-  name.vb: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete*
+  commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete
+  name: IsConcrete
+  nameWithType: OptionalObjective.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.IsConcrete
 - uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   parent: SudokuSpice.ConstraintBased.IPossibility
@@ -660,3 +694,123 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities*
+  commentId: Overload:SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities
+  name: GetUnknownDirectPossibilities
+  nameWithType: OptionalObjective.GetUnknownDirectPossibilities
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective.GetUnknownDirectPossibilities
+- uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  commentId: M:SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  parent: SudokuSpice.ConstraintBased.IObjective
+  name: GetUnknownDirectPossibilities()
+  nameWithType: IObjective.GetUnknownDirectPossibilities()
+  fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities()
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    name: GetUnknownDirectPossibilities
+    nameWithType: IObjective.GetUnknownDirectPossibilities
+    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    name: GetUnknownDirectPossibilities
+    nameWithType: IObjective.GetUnknownDirectPossibilities
+    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IPossibility>
+  nameWithType: IEnumerable<IPossibility>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.IPossibility>
+  nameWithType.vb: IEnumerable(Of IPossibility)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.IPossibility)
+  name.vb: IEnumerable(Of IPossibility)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

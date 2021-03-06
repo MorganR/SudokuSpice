@@ -10,11 +10,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithValidValue_SetsAndReturnsTrue()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
 
@@ -27,11 +27,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WhichLeadsToZeroPossibleForOtherSquare_ReturnsFalseWithNoChange()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */,            3},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */,            3},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
 
@@ -46,11 +46,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySet_WithInvalidValue_ReturnsFalseWithNoChange()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1, null /* 4 */},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
 
@@ -65,11 +65,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void GetBestCoordinateToGuess_ReturnsCoordinateWithMinimumNumPossibles()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1,            4},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1,            4},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
 
@@ -85,11 +85,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void GetPossibleValues_MatchesPossibleValues()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1,            4},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1,            4},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
             Assert.True(tracker.TrySet(new Coordinate(0, 1), 4));
@@ -103,11 +103,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void UnsetLast_UndoesPreviousUpdate()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1,            4},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1,            4},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
             var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(c => c, c => tracker.GetPossibleValues(in c));
@@ -128,11 +128,11 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void DeepCopy_Succeeds()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */, null /* 3 */,            1,            4},
-                {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
-                {           3,            2,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */, null /* 3 */,            1,            4},
+                new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
+                new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
             var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(c => c, c => tracker.GetPossibleValues(in c));

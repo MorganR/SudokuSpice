@@ -30,6 +30,7 @@ items:
   syntax:
     content: >-
       public class PuzzleGenerator<TPuzzle>
+
           where TPuzzle : class, IPuzzle<TPuzzle>
     typeParameters:
     - id: TPuzzle

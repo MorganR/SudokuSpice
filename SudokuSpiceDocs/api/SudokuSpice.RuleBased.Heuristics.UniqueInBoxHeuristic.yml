@@ -34,6 +34,7 @@ items:
     content: 'public class UniqueInBoxHeuristic : IHeuristic'
     content.vb: >-
       Public Class UniqueInBoxHeuristic
+
           Implements IHeuristic
   inheritance:
   - System.Object
@@ -155,18 +156,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nTries to initialize this heuristic for solving the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
   example: []
   syntax:
     content: public bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-      description: The puzzle to solve.
     return:
       type: System.Boolean
-      description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
     content.vb: Public Function TryInitFor(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.TryInitFor*
   implements:
@@ -197,13 +194,11 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUpdates all the current possible values.\n"
   example: []
   syntax:
     content: public bool UpdateAll()
     return:
       type: System.Boolean
-      description: Returns true if any modifications were made.
     content.vb: Public Function UpdateAll As Boolean
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInBoxHeuristic.UpdateAll*
   implements:
@@ -234,7 +229,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
-  summary: "\nUndoes the last modifications made by this heuristic.\n"
   example: []
   syntax:
     content: public void UndoLastUpdate()

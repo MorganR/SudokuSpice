@@ -13,7 +13,7 @@ namespace SudokuSpice.RuleBased.Test
     {
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void Solve_ValidPuzzle_SolvesPuzzleCopy(int?[,] matrix)
+        public void Solve_ValidPuzzle_SolvesPuzzleCopy(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -23,7 +23,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void Solve_WithInvalidPuzzle_Throws(int?[,] matrix)
+        public void Solve_WithInvalidPuzzle_Throws(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -48,7 +48,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void TrySolve_ValidPuzzle_SolvesPuzzleInPlace(int?[,] matrix)
+        public void TrySolve_ValidPuzzle_SolvesPuzzleInPlace(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -58,7 +58,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void TrySolve_WithInvalidPuzzle_ReturnsFalse(int?[,] matrix)
+        public void TrySolve_WithInvalidPuzzle_ReturnsFalse(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -68,23 +68,23 @@ namespace SudokuSpice.RuleBased.Test
         [Fact]
         public void TrySolve_MegaPuzzle_Solves()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {null, null, null, null, 10,   1,    null, 8,    null, 15,   3,    11,   null, 2,    16,   null},
-                {14,   null, 2,    null, null, 4,    3,    null, null, 13,   8,    null, null, 12,   null, null},
-                {null, null, null, 12,   null, null, null, 15,   null, null, null, 7,    null, null, 9,    10},
-                {1,    10,   15,   null, 6,    null, null, null, null, 14,   null, null, null, null, null, 11},
-                {null, 11,   14,   6,    null, null, null, 9,    13,   8,    null, null, null, null, 2,    3},
-                {12,   null, null, null, 4,    null, 7,    3,    11,   6,    null, null, 16,   null, 5,    null},
-                {13,   16,   null, 2,    null, null, null, 1,    null, null, 5,    null, 10,   9,    null, null},
-                {null, 4,    null, null, 13,   null, 2,    null, null, null, 16,   3,    11,   null, null, null},
-                {null, null, null, 10,   3,    6,    null, null, null, 9,    null, 12,   null, null, 4,    null},
-                {null, null, 12,   15,   null, 9,    null, null, 7,    null, null, null, 1,    null, 3,    14},
-                {null, 1,    null, 4,    null, null, 5,    12,   3,    10,   null, 8,    null, null, null, 2},
-                {3,    6,    null, null, null, null, 15,   10,   4,    null, null, null, 12,   5,    7,    null},
-                {2,    null, null, null, null, null, 4,    null, null, null, null, 15,   null, 16,   11,   9},
-                {4,    14,   null, null, 16,   null, null, null, 2,    null, null, null, 6,    null, null, null},
-                {null, null, 16,   null, null, 7,    8,    null, null, 4,    10,   null, null, 14,   null, 5},
-                {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {null, null, null, null, 10,   1,    null, 8,    null, 15,   3,    11,   null, 2,    16,   null},
+                new int?[] {14,   null, 2,    null, null, 4,    3,    null, null, 13,   8,    null, null, 12,   null, null},
+                new int?[] {null, null, null, 12,   null, null, null, 15,   null, null, null, 7,    null, null, 9,    10},
+                new int?[] {1,    10,   15,   null, 6,    null, null, null, null, 14,   null, null, null, null, null, 11},
+                new int?[] {null, 11,   14,   6,    null, null, null, 9,    13,   8,    null, null, null, null, 2,    3},
+                new int?[] {12,   null, null, null, 4,    null, 7,    3,    11,   6,    null, null, 16,   null, 5,    null},
+                new int?[] {13,   16,   null, 2,    null, null, null, 1,    null, null, 5,    null, 10,   9,    null, null},
+                new int?[] {null, 4,    null, null, 13,   null, 2,    null, null, null, 16,   3,    11,   null, null, null},
+                new int?[] {null, null, null, 10,   3,    6,    null, null, null, 9,    null, 12,   null, null, 4,    null},
+                new int?[] {null, null, 12,   15,   null, 9,    null, null, 7,    null, null, null, 1,    null, 3,    14},
+                new int?[] {null, 1,    null, 4,    null, null, 5,    12,   3,    10,   null, 8,    null, null, null, 2},
+                new int?[] {3,    6,    null, null, null, null, 15,   10,   4,    null, null, null, 12,   5,    7,    null},
+                new int?[] {2,    null, null, null, null, null, 4,    null, null, null, null, 15,   null, 16,   11,   9},
+                new int?[] {4,    14,   null, null, 16,   null, null, null, 2,    null, null, null, 6,    null, null, null},
+                new int?[] {null, null, 16,   null, null, 7,    8,    null, null, 4,    10,   null, null, 14,   null, 5},
+                new int?[] {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
             var rowRule = new RowUniquenessRule();
             var columnRule = new ColumnUniquenessRule();
@@ -102,7 +102,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void SolveRandomly_ValidPuzzle_SolvesPuzzleInPlace(int?[,] matrix)
+        public void SolveRandomly_ValidPuzzle_SolvesPuzzleInPlace(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -112,7 +112,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void SolveRandomly_WithInvalidPuzzle_Throws(int?[,] matrix)
+        public void SolveRandomly_WithInvalidPuzzle_Throws(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -137,7 +137,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void TrySolveRandomly_ValidPuzzle_SolvesPuzzleInPlace(int?[,] matrix)
+        public void TrySolveRandomly_ValidPuzzle_SolvesPuzzleInPlace(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -147,7 +147,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void TrySolveRandomly_WithInvalidPuzzle_ReturnsFalse(int?[,] matrix)
+        public void TrySolveRandomly_WithInvalidPuzzle_ReturnsFalse(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -157,7 +157,7 @@ namespace SudokuSpice.RuleBased.Test
         [Theory]
         [ClassData(typeof(PuzzlesWithStats))]
         public void ComputeStatsForAllSolutions_WithoutHeuristics_ReturnsExpectedResults(
-            int?[,] matrix, SolveStats expectedStats)
+            int?[][] matrix, SolveStats expectedStats)
         {
             // Skip heuristics so the stats are easy to fully define.
             var ruleKeeper = new StandardRuleKeeper();
@@ -168,7 +168,7 @@ namespace SudokuSpice.RuleBased.Test
         [Theory]
         [ClassData(typeof(PuzzlesWithStats))]
         public void ComputeStatsForAllSolutions_WithHeuristics_ReturnsExpectedNumSolutions(
-            int?[,] matrix, SolveStats expectedStats)
+            int?[][] matrix, SolveStats expectedStats)
         {
             var ruleKeeper = new StandardRuleKeeper();
             IRule rule = ruleKeeper.GetRules()[0];
@@ -183,7 +183,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void ComputeStatsForAllSolutions_WithInvalidPuzzle_ReturnsNoSolutions(int?[,] matrix)
+        public void ComputeStatsForAllSolutions_WithInvalidPuzzle_ReturnsNoSolutions(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -204,7 +204,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void HasUniqueSolution_WithUniqueSolution_ReturnsTrue(int?[,] matrix)
+        public void HasUniqueSolution_WithUniqueSolution_ReturnsTrue(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -213,7 +213,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(InvalidStandardPuzzles))]
-        public void HasUniqueSolution_WithInvalidPuzzle_ReturnsFalse(int?[,] matrix)
+        public void HasUniqueSolution_WithInvalidPuzzle_ReturnsFalse(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var solver = StandardPuzzles.CreateSolver();
@@ -222,7 +222,7 @@ namespace SudokuSpice.RuleBased.Test
 
         [Theory]
         [ClassData(typeof(ValidStandardPuzzles))]
-        public void HasUniqueSolution_LeavesPuzzleUnchanged(int?[,] matrix)
+        public void HasUniqueSolution_LeavesPuzzleUnchanged(int?[][] matrix)
         {
             var puzzle = new PuzzleWithPossibleValues(matrix);
             var puzzleCopy = new PuzzleWithPossibleValues(puzzle);

@@ -10,16 +10,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void Solve_WithManySolutions_CanSolve()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null,    3,    5, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null,    9, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null,    3,    5, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
@@ -45,16 +45,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void SolvesCorrectly()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null,    1, null },
-                { null, null, null, null, null,    5, null, null, null },
-                { null, null, null, null, null, null, null, null,    8 },
-                { null, null, null, null, null, null, null, null, null },
-                {    7, null, null, null, null, null, null, null, null },
-                { null, null, null,    3, null, null, null, null, null },
-                { null,    4, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null,    6, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null,    9, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null,    1, null },
+                new int?[] { null, null, null, null, null,    5, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null,    8 },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] {    7, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null,    3, null, null, null, null, null },
+                new int?[] { null,    4, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null,    6, null, null },
             });
 
             var boxesToConstrain = new Box[] {
@@ -86,16 +86,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void SolvesCorrectly_WithDiagonals()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null, null, null, null, null, null,    1,    2 },
-                { null,    5, null, null,    9, null, null, null, null },
-                { null, null, null, null, null,    8, null, null, null },
-                { null,    3, null, null, null, null,    5, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null,    9, null },
-                { null, null, null, null,    4,    3,    9, null, null },
-                {    6, null,    1, null, null, null,    7, null, null },
-                {    2, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null, null, null, null, null, null,    1,    2 },
+                new int?[] { null,    5, null, null,    9, null, null, null, null },
+                new int?[] { null, null, null, null, null,    8, null, null, null },
+                new int?[] { null,    3, null, null, null, null,    5, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null,    9, null },
+                new int?[] { null, null, null, null,    4,    3,    9, null, null },
+                new int?[] {    6, null,    1, null, null, null,    7, null, null },
+                new int?[] {    2, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(3, 3), 3),
@@ -118,16 +118,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_ConstrainsCorrectly()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null,    3,    5, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null,    9, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null,    3,    5, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
@@ -151,16 +151,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_IncludingDiagonals_ConstrainsCorrectly()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null,    6, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null,    3,    8, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null,    6, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null,    3,    8, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(3, 3), 3),
@@ -206,16 +206,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void TryConstrain_NotPossible_Fails()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    6, null, null, null, null, null, null },
-                {    1, null, null, null, null, null, null, null, null },
-                { null,    3,    8, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null,    6, null, null, null, null, null, null },
+                new int?[] {    1, null, null, null, null, null, null, null, null },
+                new int?[] { null,    3,    8, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
@@ -275,16 +275,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void HasUniqueSolution_NotUnique()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null,    3,    5, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null,    9, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null,    3,    5, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
@@ -319,16 +319,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void HasUniqueSolution_IsUnique()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null,    9, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null,    1, null },
-                { null, null, null, null, null,    5, null, null, null },
-                { null, null, null, null, null, null, null, null,    8 },
-                { null, null, null, null, null, null, null, null, null },
-                {    7, null, null, null, null, null, null, null, null },
-                { null, null, null,    3, null, null, null, null, null },
-                { null,    4, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null,    6, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null,    9, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null,    1, null },
+                new int?[] { null, null, null, null, null,    5, null, null, null },
+                new int?[] { null, null, null, null, null, null, null, null,    8 },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] {    7, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null,    3, null, null, null, null, null },
+                new int?[] { null,    4, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null,    6, null, null },
             });
 
             var boxesToConstrain = new Box[] {
@@ -371,16 +371,16 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
         [Fact]
         public void HasUniqueSolution_IsUniqueWithDiagonals()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                { null, null, null, null, null, null, null,    1,    2 },
-                { null,    5, null, null,    9, null, null, null, null },
-                { null, null, null, null, null,    8, null, null, null },
-                { null,    3, null, null, null, null,    5, null, null },
-                { null, null, null, null, null, null, null, null, null },
-                { null, null, null, null, null, null, null,    9, null },
-                { null, null, null, null,    4,    3,    9, null, null },
-                {    6, null,    1, null, null, null,    7, null, null },
-                {    2, null, null, null, null, null, null, null, null },
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { null, null, null, null, null, null, null,    1,    2 },
+                new int?[] { null,    5, null, null,    9, null, null, null, null },
+                new int?[] { null, null, null, null, null,    8, null, null, null },
+                new int?[] { null,    3, null, null, null, null,    5, null, null },
+                new int?[] { null, null, null, null, null, null, null, null, null },
+                new int?[] { null, null, null, null, null, null, null,    9, null },
+                new int?[] { null, null, null, null,    4,    3,    9, null, null },
+                new int?[] {    6, null,    1, null, null, null,    7, null, null },
+                new int?[] {    2, null, null, null, null, null, null, null, null },
             });
             var boxesToConstrain = new Box[] {
                 new Box(new Coordinate(3, 3), 3),

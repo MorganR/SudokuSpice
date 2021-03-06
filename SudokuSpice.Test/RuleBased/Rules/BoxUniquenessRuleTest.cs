@@ -8,11 +8,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInitFor_ValidPuzzle_FiltersCorrectly()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */,            3, null /* 1 */, null /* 4 */},
-                {null /* 4 */, null /* 1 */,            2,            3},
-                {null /* 3 */, null /* 2 */,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */,            3, null /* 1 */, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */,            2,            3},
+                new int?[] {null /* 3 */, null /* 2 */,            4,            1}
             });
             var rule = new BoxUniquenessRule();
 
@@ -28,11 +28,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         public void TryInitFor_WithDuplicateValueInBox_Fails()
         {
             var puzzle = new PuzzleWithPossibleValues(
-                    new int?[,] {
-                            {           1,      null /* 4 */, null /* 3 */,            2},
-                            {null /* 2 */, /* INCORRECT */ 1, null /* 1 */, null /* 4 */},
-                            {null /* 4 */,      null /* 1 */,            2,            3},
-                            {null /* 3 */,      null /* 2 */,            4,            1}
+                    new int?[][] {
+                        new int?[] {           1,      null /* 4 */, null /* 3 */,            2},
+                        new int?[] {null /* 2 */, /* INCORRECT */ 1, null /* 1 */, null /* 4 */},
+                        new int?[] {null /* 4 */,      null /* 1 */,            2,            3},
+                        new int?[] {null /* 3 */,      null /* 2 */,            4,            1}
                     });
             var rule = new BoxUniquenessRule();
 
@@ -42,11 +42,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void CopyWithNewReference_CreatesDeepCopy()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */,            2},
-                {null /* 2 */,            3, null /* 1 */, null /* 4 */},
-                {null /* 4 */, null /* 1 */,            2,            3},
-                {null /* 3 */, null /* 2 */,            4,            1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */,            2},
+                new int?[] {null /* 2 */,            3, null /* 1 */, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */,            2,            3},
+                new int?[] {null /* 3 */, null /* 2 */,            4,            1}
             });
             var rule = new BoxUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -76,11 +76,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Update_UpdatesSpecifiedBox()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */,            3, null /* 1 */, null /* 4 */},
-                {null /* 4 */, null /* 1 */,            2, 3},
-                {null /* 3 */, null /* 2 */,            4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */,            3, null /* 1 */, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */,            2, 3},
+                new int?[] {null /* 3 */, null /* 2 */,            4, 1}
             });
             var rule = new BoxUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -102,11 +102,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedBox()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */,            3, null /* 1 */, null /* 4 */},
-                {null /* 4 */, null /* 1 */,            2, 3},
-                {null /* 3 */, null /* 2 */,            4, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */,            3, null /* 1 */, null /* 4 */},
+                new int?[] {null /* 4 */, null /* 1 */,            2, 3},
+                new int?[] {null /* 3 */, null /* 2 */,            4, 1}
             });
             var rule = new BoxUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
@@ -133,11 +133,11 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void GetPossibleValues_MatchesGetPossibleBoxValues()
         {
-            var puzzle = new PuzzleWithPossibleValues(new int?[,] {
-                {           1, null /* 4 */, null /* 3 */, 2},
-                {null /* 2 */, null /* 3 */, null /* 1 */, 4},
-                {null /* 4 */,            1, null /* 2 */, 3},
-                {           3, null /* 2 */, null /* 4 */, 1}
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+                new int?[] {           1, null /* 4 */, null /* 3 */, 2},
+                new int?[] {null /* 2 */, null /* 3 */, null /* 1 */, 4},
+                new int?[] {null /* 4 */,            1, null /* 2 */, 3},
+                new int?[] {           3, null /* 2 */, null /* 4 */, 1}
             });
             var rule = new BoxUniquenessRule();
             Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));

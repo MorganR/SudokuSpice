@@ -7,8 +7,9 @@ items:
   children:
   - SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   - SudokuSpice.Puzzle.#ctor(System.Int32)
-  - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])
+  - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
   - SudokuSpice.Puzzle.AllPossibleValuesSpan
+  - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
   - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   - SudokuSpice.Puzzle.DeepCopy
   - SudokuSpice.Puzzle.GetUnsetCoords
@@ -43,6 +44,7 @@ items:
     content: 'public class Puzzle : IPuzzle<Puzzle>, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
+
           Implements IPuzzle(Of Puzzle), IReadOnlyPuzzle
   inheritance:
   - System.Object
@@ -84,7 +86,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The side-length of the puzzle (puzzles must be square).
   example: []
   syntax:
     content: public int Size { get; }
@@ -123,7 +124,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The total number of squares in the puzzle.
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -162,7 +162,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The current number of empty/unknown squares in the puzzle.
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -201,7 +200,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: The number of set/known squares in the puzzle.
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -240,7 +238,6 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -297,16 +294,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])
-  commentId: M:SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[0:,0:])
-  id: '#ctor(System.Nullable{System.Int32}[0:,0:])'
+- uid: SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
+  id: '#ctor(System.Nullable{System.Int32}[][])'
   parent: SudokuSpice.Puzzle
   langs:
   - csharp
   - vb
-  name: Puzzle(Nullable<Int32>[,])
-  nameWithType: Puzzle.Puzzle(Nullable<Int32>[,])
-  fullName: SudokuSpice.Puzzle.Puzzle(System.Nullable<System.Int32>[,])
+  name: Puzzle(Nullable<Int32>[][])
+  nameWithType: Puzzle.Puzzle(Nullable<Int32>[][])
+  fullName: SudokuSpice.Puzzle.Puzzle(System.Nullable<System.Int32>[][])
   type: Constructor
   source:
     remote:
@@ -315,27 +312,27 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 78
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
   summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array\nmodifies the puzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all future modifications should be done\nthrough this puzzle object, else this will be in an incorrect state.\n"
   example: []
   syntax:
-    content: public Puzzle(int? [, ] puzzleMatrix)
+    content: public Puzzle(int? [][] puzzleMatrix)
     parameters:
     - id: puzzleMatrix
-      type: System.Nullable{System.Int32}[,]
+      type: System.Nullable{System.Int32}[][]
       description: "\nThe data for this Sudoku puzzle. Preset squares should be set, and unset squares should\nbe null. The puzzle maintains a reference to this array.\n"
-    content.vb: Public Sub New(puzzleMatrix As Integer?(,))
+    content.vb: Public Sub New(puzzleMatrix As Integer?()())
   overload: SudokuSpice.Puzzle.#ctor*
-  nameWithType.vb: Puzzle.Puzzle(Nullable(Of Int32)(,))
+  nameWithType.vb: Puzzle.Puzzle(Nullable(Of Int32)()())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.Puzzle.Puzzle(System.Nullable(Of System.Int32)(,))
-  name.vb: Puzzle(Nullable(Of Int32)(,))
+  fullName.vb: SudokuSpice.Puzzle.Puzzle(System.Nullable(Of System.Int32)()())
+  name.vb: Puzzle(Nullable(Of Int32)()())
 - uid: SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   commentId: M:SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   id: '#ctor(SudokuSpice.Puzzle)'
@@ -354,7 +351,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 109
+    startLine: 108
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -389,7 +386,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyFrom
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 119
+    startLine: 123
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -413,6 +410,48 @@ items:
   - Shared
   fullName.vb: SudokuSpice.Puzzle.CopyFrom(System.Nullable(Of System.Int32)(,))
   name.vb: CopyFrom(Nullable(Of Int32)(,))
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  id: CopyFrom(System.Nullable{System.Int32}[][])
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(Nullable<Int32>[][])
+  nameWithType: Puzzle.CopyFrom(Nullable<Int32>[][])
+  fullName: SudokuSpice.Puzzle.CopyFrom(System.Nullable<System.Int32>[][])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CopyFrom
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 129
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Creates a new puzzle with a copy of the given matrix.
+  example: []
+  syntax:
+    content: public static Puzzle CopyFrom(int? [][] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[][]
+    return:
+      type: SudokuSpice.Puzzle
+    content.vb: Public Shared Function CopyFrom(matrix As Integer?()()) As Puzzle
+  overload: SudokuSpice.Puzzle.CopyFrom*
+  nameWithType.vb: Puzzle.CopyFrom(Nullable(Of Int32)()())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Puzzle.CopyFrom(System.Nullable(Of System.Int32)()())
+  name.vb: CopyFrom(Nullable(Of Int32)()())
 - uid: SudokuSpice.Puzzle.DeepCopy
   commentId: M:SudokuSpice.Puzzle.DeepCopy
   id: DeepCopy
@@ -431,11 +470,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 125
+    startLine: 135
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nCreates a deep-copy of this puzzle.\n"
   example: []
   syntax:
     content: public Puzzle DeepCopy()
@@ -467,11 +505,10 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 128
+    startLine: 138
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets or sets the current value of a given square. A square can be &apos;unset&apos; by setting\nits value to <code>null</code>.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -514,21 +551,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 143
+    startLine: 153
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets or sets the value of the given square, like <xref href=\"SudokuSpice.IPuzzle%601.Item(System.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, but\nusing a <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref uid=\"langword_csharp_int\" name=\"int\" href=\"\"></xref> accessors.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
-      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
-      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.Puzzle.Item*
   implements:
@@ -561,7 +595,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 151
+    startLine: 161
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -597,7 +631,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 157
+    startLine: 167
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -1121,6 +1155,71 @@ references:
 - uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   isExternal: true
+- uid: System.Nullable{System.Int32}[][]
+  isExternal: true
+  name: Nullable<Int32>[][]
+  nameWithType: Nullable<Int32>[][]
+  fullName: System.Nullable<System.Int32>[][]
+  nameWithType.vb: Nullable(Of Int32)()()
+  fullName.vb: System.Nullable(Of System.Int32)()()
+  name.vb: Nullable(Of Int32)()()
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: SudokuSpice.Puzzle
+  commentId: T:SudokuSpice.Puzzle
+  parent: SudokuSpice
+  name: Puzzle
+  nameWithType: Puzzle
+  fullName: SudokuSpice.Puzzle
+- uid: SudokuSpice.Puzzle.CopyFrom*
+  commentId: Overload:SudokuSpice.Puzzle.CopyFrom
+  name: CopyFrom
+  nameWithType: Puzzle.CopyFrom
+  fullName: SudokuSpice.Puzzle.CopyFrom
 - uid: System.Nullable{System.Int32}[,]
   isExternal: true
   name: Nullable<Int32>[,]
@@ -1169,17 +1268,6 @@ references:
   - name: (,)
     nameWithType: (,)
     fullName: (,)
-- uid: SudokuSpice.Puzzle
-  commentId: T:SudokuSpice.Puzzle
-  parent: SudokuSpice
-  name: Puzzle
-  nameWithType: Puzzle
-  fullName: SudokuSpice.Puzzle
-- uid: SudokuSpice.Puzzle.CopyFrom*
-  commentId: Overload:SudokuSpice.Puzzle.CopyFrom
-  name: CopyFrom
-  nameWithType: Puzzle.CopyFrom
-  fullName: SudokuSpice.Puzzle.CopyFrom
 - uid: SudokuSpice.Puzzle.DeepCopy*
   commentId: Overload:SudokuSpice.Puzzle.DeepCopy
   name: DeepCopy

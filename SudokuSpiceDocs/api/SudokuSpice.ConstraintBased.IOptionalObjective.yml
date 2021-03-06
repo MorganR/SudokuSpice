@@ -27,9 +27,11 @@ items:
     content: 'public interface IOptionalObjective : IObjective, IPossibility'
     content.vb: >-
       Public Interface IOptionalObjective
+
           Inherits IObjective, IPossibility
   inheritedMembers:
   - SudokuSpice.ConstraintBased.IObjective.State
+  - SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
   - SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   modifiers.csharp:
   - public
@@ -49,6 +51,34 @@ references:
   name: State
   nameWithType: IObjective.State
   fullName: SudokuSpice.ConstraintBased.IObjective.State
+- uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  commentId: M:SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  parent: SudokuSpice.ConstraintBased.IObjective
+  name: GetUnknownDirectPossibilities()
+  nameWithType: IObjective.GetUnknownDirectPossibilities()
+  fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities()
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    name: GetUnknownDirectPossibilities
+    nameWithType: IObjective.GetUnknownDirectPossibilities
+    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    name: GetUnknownDirectPossibilities
+    nameWithType: IObjective.GetUnknownDirectPossibilities
+    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   parent: SudokuSpice.ConstraintBased.IPossibility

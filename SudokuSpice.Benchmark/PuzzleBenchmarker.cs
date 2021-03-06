@@ -18,7 +18,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpice(PuzzleSample puzzle)
         {
-            var p = new PuzzleWithPossibleValues(puzzle.NullableMatrix);
+            var p = new PuzzleWithPossibleValues(puzzle.NullableJaggedMatrix);
             var solver = StandardPuzzles.CreateSolver();
             var result = solver.Solve(p, randomizeGuesses: true);
             return result.NumEmptySquares == 0;
@@ -28,7 +28,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceDynamicSingle(PuzzleSample puzzle)
         {
-            var p = new PuzzleWithPossibleValues(puzzle.NullableMatrix);
+            var p = new PuzzleWithPossibleValues(puzzle.NullableJaggedMatrix);
             var standardRules = new StandardRules();
             var ruleKeeper = new DynamicRuleKeeper(
                 new List<IRule> { standardRules });
@@ -43,7 +43,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceDynamicMultiple(PuzzleSample puzzle)
         {
-            var p = new PuzzleWithPossibleValues(puzzle.NullableMatrix);
+            var p = new PuzzleWithPossibleValues(puzzle.NullableJaggedMatrix);
             var rowRule = new RowUniquenessRule();
             var columnRule = new ColumnUniquenessRule();
             var boxRule = new BoxUniquenessRule();
@@ -60,7 +60,7 @@ namespace SudokuSpice.Benchmark
         [ArgumentsSource(nameof(NineByNinePuzzles))]
         public bool SudokuSpiceConstraints(PuzzleSample puzzle)
         {
-            var p = new Puzzle(puzzle.NullableMatrix);
+            var p = new Puzzle(puzzle.NullableJaggedMatrix);
             var solver = ConstraintBased.StandardPuzzles.CreateSolver();
             var result = solver.Solve(p);
             return result.NumEmptySquares == 0;

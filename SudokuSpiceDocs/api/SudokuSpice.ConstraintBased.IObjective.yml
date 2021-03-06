@@ -5,6 +5,7 @@ items:
   id: IObjective
   parent: SudokuSpice.ConstraintBased
   children:
+  - SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
   - SudokuSpice.ConstraintBased.IObjective.State
   langs:
   - csharp
@@ -70,6 +71,36 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
+- uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  commentId: M:SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  id: GetUnknownDirectPossibilities
+  parent: SudokuSpice.ConstraintBased.IObjective
+  langs:
+  - csharp
+  - vb
+  name: GetUnknownDirectPossibilities()
+  nameWithType: IObjective.GetUnknownDirectPossibilities()
+  fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/IObjective.cs
+      branch: flexible-constraints
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetUnknownDirectPossibilities
+    path: ../SudokuSpice/ConstraintBased/IObjective.cs
+    startLine: 18
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nRetrieves any possibilities that are direct descendents of this objective and whose\nstates are unknown.\n"
+  example: []
+  syntax:
+    content: IEnumerable<IPossibility> GetUnknownDirectPossibilities()
+    return:
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+    content.vb: Function GetUnknownDirectPossibilities As IEnumerable(Of IPossibility)
+  overload: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities*
 references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
@@ -93,3 +124,95 @@ references:
   name: NodeState
   nameWithType: NodeState
   fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities*
+  commentId: Overload:SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  name: GetUnknownDirectPossibilities
+  nameWithType: IObjective.GetUnknownDirectPossibilities
+  fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IPossibility>
+  nameWithType: IEnumerable<IPossibility>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.IPossibility>
+  nameWithType.vb: IEnumerable(Of IPossibility)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.IPossibility)
+  name.vb: IEnumerable(Of IPossibility)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

@@ -78,11 +78,11 @@ namespace SudokuSpice.Test
         [Fact]
         public void YieldUnsetForBox_ReturnsAllUnsetCoordsInBox()
         {
-            var puzzle = new Puzzle(new int?[,] {
-                {1, null, null, 2},
-                {null, null, 1, null},
-                {null, 1, null, null},
-                {3, null, 4, null}
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] {1, null, null, 2},
+                new int?[] {null, null, 1, null},
+                new int?[] {null, 1, null, null},
+                new int?[] {3, null, 4, null}
             });
             int box = 1;
             var allUnset = new List<Coordinate>(Boxes.YieldUnsetCoordsForBox(box, boxSize: 2, puzzle: puzzle));

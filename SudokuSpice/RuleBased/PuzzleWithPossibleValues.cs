@@ -48,14 +48,15 @@ namespace SudokuSpice.RuleBased
         ///
         /// The puzzle is backed directly by this array (i.e. modifying the array
         /// modifies the puzzle, and vice-versa). If this is not what you want, see
-        /// <see cref="CopyFrom(int?[,])"/>. Note that all future modifications should be done
-        /// through this puzzle object, else this will be in an incorrect state.
+        /// <see cref="CopyFrom(int?[,])"/> and <see cref="CopyFrom(int?[][])"/>. Note that all
+        /// future modifications should be done through this puzzle object, else this will be in an
+        /// incorrect state.
         /// </summary>
         /// <param name="puzzleMatrix">
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
         /// be null. The puzzle maintains a reference to this array.
         /// </param>
-        public PuzzleWithPossibleValues(int?[,] puzzleMatrix)
+        public PuzzleWithPossibleValues(int?[][] puzzleMatrix)
         {
             _puzzle = new Puzzle(puzzleMatrix);
             var possibleValues = BitVector.CreateWithSize(Size + 1);
@@ -88,9 +89,16 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>Creates a new puzzle with a copy of the given matrix.</summary>
+        [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Provided to ease migration.")]
         public static PuzzleWithPossibleValues CopyFrom(int?[,] matrix)
         {
-            return new PuzzleWithPossibleValues((int?[,])matrix.Clone());
+            return new PuzzleWithPossibleValues(matrix.CopyToJagged2D());
+        }
+
+        /// <summary>Creates a new puzzle with a copy of the given matrix.</summary>
+        public static PuzzleWithPossibleValues CopyFrom(int?[][] matrix)
+        {
+            return new PuzzleWithPossibleValues(matrix.Copy2D());
         }
 
         /// <inheritdoc/>
