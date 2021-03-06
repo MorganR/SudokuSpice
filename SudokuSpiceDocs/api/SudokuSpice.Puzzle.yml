@@ -44,7 +44,6 @@ items:
     content: 'public class Puzzle : IPuzzle<Puzzle>, IReadOnlyPuzzle'
     content.vb: >-
       Public Class Puzzle
-
           Implements IPuzzle(Of Puzzle), IReadOnlyPuzzle
   inheritance:
   - System.Object
@@ -86,6 +85,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The side-length of the puzzle (puzzles must be square).
   example: []
   syntax:
     content: public int Size { get; }
@@ -124,6 +124,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The total number of squares in the puzzle.
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -162,6 +163,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The current number of empty/unknown squares in the puzzle.
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -200,6 +202,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: The number of set/known squares in the puzzle.
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -238,6 +241,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -312,11 +316,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 76
+    startLine: 77
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array\nmodifies the puzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all future modifications should be done\nthrough this puzzle object, else this will be in an incorrect state.\n"
+  summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array modifies the\npuzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b%5d%5b%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all\nfuture modifications should be done through this puzzle object, else this will be in an\nincorrect state.\n"
   example: []
   syntax:
     content: public Puzzle(int? [][] puzzleMatrix)
@@ -351,7 +355,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 108
+    startLine: 109
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -386,7 +390,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyFrom
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 123
+    startLine: 125
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -428,7 +432,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyFrom
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 129
+    startLine: 132
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -470,10 +474,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 135
+    startLine: 138
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nCreates a deep-copy of this puzzle.\n"
   example: []
   syntax:
     content: public Puzzle DeepCopy()
@@ -505,10 +510,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 138
+    startLine: 141
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nGets or sets the current value of a given square. A square can be &apos;unset&apos; by setting\nits value to <code>null</code>.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -551,18 +557,21 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 153
+    startLine: 156
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nGets or sets the value of the given square, like <xref href=\"SudokuSpice.IPuzzle%601.Item(System.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, but\nusing a <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref uid=\"langword_csharp_int\" name=\"int\" href=\"\"></xref> accessors.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
+      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
+      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.Puzzle.Item*
   implements:
@@ -595,7 +604,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 161
+    startLine: 164
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -631,7 +640,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 167
+    startLine: 170
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -1154,6 +1163,9 @@ references:
   fullName: SudokuSpice.Puzzle.Puzzle
 - uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
   commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  isExternal: true
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
   isExternal: true
 - uid: System.Nullable{System.Int32}[][]
   isExternal: true

@@ -82,7 +82,7 @@ namespace SudokuSpice.RuleBased.Heuristics.Test
             Assert.True(heuristic.TryInitFor(puzzle));
 
             var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
-            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(new List<IRule> {
+            var ruleKeeperWithoutBoxTracker = new DynamicRuleKeeper(new IRule[] {
                     new ColumnUniquenessRule(),
                 });
             Assert.Throws<ArgumentException>(() => heuristic.CopyWithNewReferences(

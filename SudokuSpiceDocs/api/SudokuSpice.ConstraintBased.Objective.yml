@@ -33,7 +33,6 @@ items:
     content: 'public sealed class Objective : IObjective'
     content.vb: >-
       Public NotInheritable Class Objective
-
           Implements IObjective
   inheritance:
   - System.Object
@@ -77,6 +76,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public NodeState State { get; }
@@ -223,6 +223,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nRetrieves any possibilities that are direct descendents of this objective and whose\nstates are unknown.\n"
   example: []
   syntax:
     content: public IEnumerable<IPossibility> GetUnknownDirectPossibilities()

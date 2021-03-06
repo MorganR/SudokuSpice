@@ -5,7 +5,7 @@ items:
   id: DynamicRuleKeeper
   parent: SudokuSpice.RuleBased
   children:
-  - SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})
+  - SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.Rules.IRule[])
   - SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules
   - SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -35,7 +35,6 @@ items:
     content: 'public class DynamicRuleKeeper : IRuleKeeper'
     content.vb: >-
       Public Class DynamicRuleKeeper
-
           Implements IRuleKeeper
   inheritance:
   - System.Object
@@ -55,16 +54,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})
-  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})
-  id: '#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})'
+- uid: SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.Rules.IRule[])
+  commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.Rules.IRule[])
+  id: '#ctor(SudokuSpice.RuleBased.Rules.IRule[])'
   parent: SudokuSpice.RuleBased.DynamicRuleKeeper
   langs:
   - csharp
   - vb
-  name: DynamicRuleKeeper(IReadOnlyList<IRule>)
-  nameWithType: DynamicRuleKeeper.DynamicRuleKeeper(IReadOnlyList<IRule>)
-  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.IRule>)
+  name: DynamicRuleKeeper(IRule[])
+  nameWithType: DynamicRuleKeeper.DynamicRuleKeeper(IRule[])
+  fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.RuleBased.Rules.IRule[])
   type: Constructor
   source:
     remote:
@@ -80,20 +79,20 @@ items:
   summary: "\nConstructs a rule keeper that will enforce all the given rules.\n"
   example: []
   syntax:
-    content: public DynamicRuleKeeper(IReadOnlyList<IRule> rules)
+    content: public DynamicRuleKeeper(IRule[] rules)
     parameters:
     - id: rules
-      type: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+      type: SudokuSpice.RuleBased.Rules.IRule[]
       description: The rules to enforce.
-    content.vb: Public Sub New(rules As IReadOnlyList(Of IRule))
+    content.vb: Public Sub New(rules As IRule())
   overload: SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor*
-  nameWithType.vb: DynamicRuleKeeper.DynamicRuleKeeper(IReadOnlyList(Of IRule))
+  nameWithType.vb: DynamicRuleKeeper.DynamicRuleKeeper(IRule())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.IRule))
-  name.vb: DynamicRuleKeeper(IReadOnlyList(Of IRule))
+  fullName.vb: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper(SudokuSpice.RuleBased.Rules.IRule())
+  name.vb: DynamicRuleKeeper(IRule())
 - uid: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   commentId: M:SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -112,16 +111,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/DynamicRuleKeeper.cs
-    startLine: 38
+    startLine: 37
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nCreates a deep copy of this rule keeper, including copies of any\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s it contains, with updated internal\n<xref href=\"SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public IRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+      description: "\nThe new puzzle reference. Should contain the same data as the current puzzle instance.\n"
     return:
       type: SudokuSpice.RuleBased.IRuleKeeper
     content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As IRuleKeeper
@@ -150,18 +151,22 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TryInit
     path: ../SudokuSpice/RuleBased/DynamicRuleKeeper.cs
-    startLine: 44
+    startLine: 43
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nTries to initialize this rule keeper to solve the given puzzle.\n\nWhen reusing a rule keeper to solve multiple puzzles, this must be called with each new\npuzzle to be solved.\n"
+  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule keeper&apos;s state is\nunchanged on failure.\n"
   example: []
   syntax:
     content: public bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+      description: The puzzle to be solved.
     return:
       type: System.Boolean
+      description: "\nFalse if the rule keeper couldn&apos;t be initialized, for example if the puzzle already\nviolates one of the rules. Else returns true.\n"
     content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
   overload: SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit*
   implements:
@@ -188,10 +193,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetRules
     path: ../SudokuSpice/RuleBased/DynamicRuleKeeper.cs
-    startLine: 73
+    startLine: 72
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nGets the <xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s enforced by this rule keeper.\n"
   example: []
   syntax:
     content: public IReadOnlyList<IRule> GetRules()
@@ -223,20 +229,24 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: TrySet
     path: ../SudokuSpice/RuleBased/DynamicRuleKeeper.cs
-    startLine: 76
+    startLine: 75
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nUpdates possible values based on setting the given coordinate to the given value. If\nthis update fails (i.e. it leads to an unset square with no possible values), then it\nreturns false and leaves the possible values unchanged.\n"
   example: []
   syntax:
     content: public bool TrySet(in Coordinate c, int value)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
+      description: The coordinate to update.
     - id: value
       type: System.Int32
+      description: The value to set <code>c</code> to.
     return:
       type: System.Boolean
+      description: "\nTrue if the possible values have been updated and the rules are still satisfied.\n"
     content.vb: Public Function TrySet(ByRef c As Coordinate, value As Integer) As Boolean
   overload: SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet*
   implements:
@@ -266,18 +276,21 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Unset
     path: ../SudokuSpice/RuleBased/DynamicRuleKeeper.cs
-    startLine: 120
+    startLine: 119
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nUndoes an update for the given value at the specified coordinate.\n"
   example: []
   syntax:
     content: public void Unset(in Coordinate c, int value)
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
+      description: The coordinate where a value is being unset.
     - id: value
       type: System.Int32
+      description: The value being unset.
     content.vb: Public Sub Unset(ByRef c As Coordinate, value As Integer)
   overload: SudokuSpice.RuleBased.DynamicRuleKeeper.Unset*
   implements:
@@ -598,93 +611,30 @@ references:
   name: DynamicRuleKeeper
   nameWithType: DynamicRuleKeeper.DynamicRuleKeeper
   fullName: SudokuSpice.RuleBased.DynamicRuleKeeper.DynamicRuleKeeper
-- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
-  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyList`1
-  name: IReadOnlyList<IRule>
-  nameWithType: IReadOnlyList<IRule>
-  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.IRule>
-  nameWithType.vb: IReadOnlyList(Of IRule)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.IRule)
-  name.vb: IReadOnlyList(Of IRule)
+- uid: SudokuSpice.RuleBased.Rules.IRule[]
+  isExternal: true
+  name: IRule[]
+  nameWithType: IRule[]
+  fullName: SudokuSpice.RuleBased.Rules.IRule[]
+  nameWithType.vb: IRule()
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule()
+  name.vb: IRule()
   spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: SudokuSpice.RuleBased.Rules.IRule
     name: IRule
     nameWithType: IRule
     fullName: SudokuSpice.RuleBased.Rules.IRule
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
   spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: SudokuSpice.RuleBased.Rules.IRule
     name: IRule
     nameWithType: IRule
     fullName: SudokuSpice.RuleBased.Rules.IRule
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IReadOnlyList`1
-  commentId: T:System.Collections.Generic.IReadOnlyList`1
-  isExternal: true
-  name: IReadOnlyList<T>
-  nameWithType: IReadOnlyList<T>
-  fullName: System.Collections.Generic.IReadOnlyList<T>
-  nameWithType.vb: IReadOnlyList(Of T)
-  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
-  name.vb: IReadOnlyList(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyList`1
-    name: IReadOnlyList
-    nameWithType: IReadOnlyList
-    fullName: System.Collections.Generic.IReadOnlyList
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences*
   commentId: Overload:SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences
   name: CopyWithNewReferences
@@ -813,6 +763,93 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+  commentId: T:System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  name: IReadOnlyList<IRule>
+  nameWithType: IReadOnlyList<IRule>
+  fullName: System.Collections.Generic.IReadOnlyList<SudokuSpice.RuleBased.Rules.IRule>
+  nameWithType.vb: IReadOnlyList(Of IRule)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of SudokuSpice.RuleBased.Rules.IRule)
+  name.vb: IReadOnlyList(Of IRule)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.RuleBased.Rules.IRule
+    name: IRule
+    nameWithType: IRule
+    fullName: SudokuSpice.RuleBased.Rules.IRule
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.RuleBased.Rules.IRule
+    name: IRule
+    nameWithType: IRule
+    fullName: SudokuSpice.RuleBased.Rules.IRule
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    nameWithType: IReadOnlyList
+    fullName: System.Collections.Generic.IReadOnlyList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet*
   commentId: Overload:SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet
   name: TrySet

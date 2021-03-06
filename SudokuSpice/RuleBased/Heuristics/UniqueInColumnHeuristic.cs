@@ -54,17 +54,21 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </summary>
         public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<IRule> rules)
+            ReadOnlySpan<IRule> rules)
         {
-            try
+            IMissingColumnValuesTracker? columnValuesTracker = null;
+            foreach (var rule in rules)
             {
-                return new UniqueInColumnHeuristic(
-                    this, puzzle,
-                    (IMissingColumnValuesTracker)rules.First(r => r is IMissingColumnValuesTracker));
-            } catch (InvalidOperationException)
+                if (rule is IMissingColumnValuesTracker foundRule)
+                {
+                    columnValuesTracker = foundRule;
+                }
+            }
+            if (columnValuesTracker is null)
             {
                 throw new ArgumentException($"{nameof(rules)} must include an {nameof(IMissingColumnValuesTracker)}.");
             }
+            return new UniqueInColumnHeuristic(this, puzzle, columnValuesTracker);
         }
 
         /// <inheritdoc/>

@@ -1,5 +1,5 @@
 ﻿using SudokuSpice.RuleBased.Rules;
-using System.Collections.Generic;
+using System;
 
 namespace SudokuSpice.RuleBased
 {
@@ -19,7 +19,7 @@ namespace SudokuSpice.RuleBased
         /// <summary>
         /// Gets the <see cref="IRule"/>s enforced by this rule keeper.
         /// </summary>
-        IReadOnlyList<IRule> GetRules();
+        ReadOnlySpan<IRule> GetRules();
 
         /// <summary>
         /// Tries to initialize this rule keeper to solve the given puzzle.

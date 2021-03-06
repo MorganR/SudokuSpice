@@ -33,7 +33,6 @@ items:
     content: 'public sealed class OptionalObjective : IOptionalObjective, IObjective, IPossibility'
     content.vb: >-
       Public NotInheritable Class OptionalObjective
-
           Implements IOptionalObjective, IObjective, IPossibility
   inheritance:
   - System.Object
@@ -79,6 +78,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
   example: []
   syntax:
     content: public bool IsConcrete { get; }
@@ -117,6 +117,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public NodeState State { get; }
@@ -207,6 +208,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nRetrieves any possibilities that are direct descendents of this objective and whose\nstates are unknown.\n"
   example: []
   syntax:
     content: public IEnumerable<IPossibility> GetUnknownDirectPossibilities()

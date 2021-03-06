@@ -1,6 +1,5 @@
 ﻿using SudokuSpice.RuleBased.Rules;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -53,16 +52,21 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </summary>
         public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<IRule> rules)
+            ReadOnlySpan<IRule> rules)
         {
-            try
+            IMissingBoxValuesTracker? boxValuesTracker = null;
+            foreach (var rule in rules)
             {
-                return new UniqueInBoxHeuristic(
-                    this, puzzle, (IMissingBoxValuesTracker)rules.First(r => r is IMissingBoxValuesTracker));
-            } catch (InvalidOperationException)
+                if (rule is IMissingBoxValuesTracker foundRule)
+                {
+                    boxValuesTracker = foundRule;
+                }
+            }
+            if (boxValuesTracker is null)
             {
                 throw new ArgumentException($"{nameof(rules)} must include an {nameof(IMissingBoxValuesTracker)}.");
             }
+            return new UniqueInBoxHeuristic(this, puzzle, boxValuesTracker);
         }
 
         /// <inheritdoc/>

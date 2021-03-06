@@ -50,7 +50,6 @@ items:
     content: 'public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues<PuzzleWithPossibleValues>, IPuzzle<PuzzleWithPossibleValues>, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues'
     content.vb: >-
       Public Class PuzzleWithPossibleValues
-
           Implements IPuzzleWithPossibleValues(Of PuzzleWithPossibleValues), IPuzzle(Of PuzzleWithPossibleValues), IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues
   inheritance:
   - System.Object
@@ -97,6 +96,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int Size { get; }
@@ -135,6 +135,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSquares { get; }
@@ -173,6 +174,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumEmptySquares { get; }
@@ -211,6 +213,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public int NumSetSquares { get; }
@@ -249,6 +252,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
   example: []
   syntax:
     content: public BitVector AllPossibleValues { get; }
@@ -287,6 +291,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: Gets all the possible values for this puzzle.
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -513,7 +518,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CopyFrom
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 97
+    startLine: 98
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -555,10 +560,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: DeepCopy
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 103
+    startLine: 104
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nCreates a deep-copy of this puzzle.\n"
   example: []
   syntax:
     content: public PuzzleWithPossibleValues DeepCopy()
@@ -590,10 +596,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 106
+    startLine: 107
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nGets or sets the current value of a given square. A square can be &apos;unset&apos; by setting\nits value to <code>null</code>.\n"
   example: []
   syntax:
     content: public int? this[int row, int col] { get; set; }
@@ -636,18 +643,21 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: this[]
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 119
+    startLine: 120
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
   example: []
   syntax:
     content: public int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
+      description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
+      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
     content.vb: Public Property Item(ByRef c As Coordinate) As Integer?
   overload: SudokuSpice.RuleBased.PuzzleWithPossibleValues.Item*
   implements:
@@ -680,7 +690,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetUnsetCoords
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 133
+    startLine: 134
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -716,7 +726,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 139
+    startLine: 140
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -753,10 +763,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IntersectPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 142
+    startLine: 143
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nModifies the possible values for a square to be the intersect of the current possible\nvalues and the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleValues</code>.\n"
   example: []
   syntax:
     content: public void IntersectPossibleValues(in Coordinate c, BitVector possibleValues)
@@ -794,10 +805,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ResetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 145
+    startLine: 146
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nResets the possible values at the given location to be all possible values for this\npuzzle.\n"
   example: []
   syntax:
     content: public void ResetPossibleValues(in Coordinate c)
@@ -833,10 +845,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 147
+    startLine: 148
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nGets the current possible values for a given coordinate.\n\nIf the value is already set for the given coordinate, the result is undefined.\n"
   example: []
   syntax:
     content: public BitVector GetPossibleValues(in Coordinate c)
@@ -874,10 +887,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: SetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 149
+    startLine: 150
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nSets the possible values for a square.\n"
   example: []
   syntax:
     content: public void SetPossibleValues(in Coordinate c, BitVector possibleValues)

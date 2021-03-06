@@ -1,4 +1,5 @@
 ﻿using SudokuSpice.RuleBased.Rules;
+using System;
 using System.Collections.Generic;
 
 namespace SudokuSpice.RuleBased.Heuristics
@@ -53,7 +54,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         private StandardHeuristic(
             StandardHeuristic existing,
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<IRule> rules)
+            ReadOnlySpan<IRule> rules)
         {
             _rowHeuristic = (UniqueInRowHeuristic)existing._rowHeuristic.CopyWithNewReferences(
                 puzzle, rules);
@@ -71,7 +72,7 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </summary>
         public IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<IRule> rules) => new StandardHeuristic(this, puzzle, rules);
+            ReadOnlySpan<IRule> rules) => new StandardHeuristic(this, puzzle, rules);
 
         /// <inheritdoc/>
         public void UndoLastUpdate()

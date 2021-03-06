@@ -1,6 +1,5 @@
 ﻿using SudokuSpice.RuleBased.Rules;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SudokuSpice.RuleBased
@@ -10,7 +9,7 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     public class DynamicRuleKeeper : IRuleKeeper
     {
-        private readonly IReadOnlyList<IRule> _rules;
+        private readonly IRule[] _rules;
         private IReadOnlyPuzzleWithMutablePossibleValues? _puzzle;
         private CoordinateTracker? _coordTracker;
 
@@ -18,19 +17,18 @@ namespace SudokuSpice.RuleBased
         /// Constructs a rule keeper that will enforce all the given rules.
         /// </summary>
         /// <param name="rules">The rules to enforce.</param>
-        public DynamicRuleKeeper(IReadOnlyList<IRule> rules)
+        public DynamicRuleKeeper(IRule[] rules)
         {
             _rules = rules;
         }
 
         private DynamicRuleKeeper(DynamicRuleKeeper existing, IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
         {
-            var rules = new List<IRule>(existing._rules.Count);
-            foreach (IRule? rule in existing._rules)
+            _rules = new IRule[existing._rules.Length];
+            for (int i = 0; i < _rules.Length; ++i)
             {
-                rules.Add(rule.CopyWithNewReference(puzzle));
+                _rules[i] = existing._rules[i].CopyWithNewReference(puzzle);
             }
-            _rules = rules;
             _puzzle = puzzle;
             _coordTracker = puzzle is null ? null : new CoordinateTracker(puzzle.Size);
         }
@@ -71,7 +69,7 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <inheritdoc/>
-        public IReadOnlyList<IRule> GetRules() => _rules;
+        public ReadOnlySpan<IRule> GetRules() => _rules;
 
         /// <inheritdoc/>
         public bool TrySet(in Coordinate c, int value)

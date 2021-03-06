@@ -34,7 +34,6 @@ items:
     content: 'public sealed class Possibility : IPossibility'
     content.vb: >-
       Public NotInheritable Class Possibility
-
           Implements IPossibility
   inheritance:
   - System.Object
@@ -152,6 +151,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
   example: []
   syntax:
     content: public bool IsConcrete { get; }
@@ -190,6 +190,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public NodeState State { get; }

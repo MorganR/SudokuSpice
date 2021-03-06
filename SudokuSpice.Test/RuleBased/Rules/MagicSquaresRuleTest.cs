@@ -249,7 +249,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
-                    new List<IRule>() {
+                    new IRule[] {
                         new RowUniquenessRule(),
                         new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false),
                     }));
@@ -288,7 +288,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
-                    new List<IRule>() {
+                    new IRule[] {
                         new RowUniquenessRule(),
                         new ColumnUniquenessRule(),
                         new BoxUniquenessRule(),
@@ -321,7 +321,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
-                    new List<IRule>() {
+                    new IRule[] {
                         new RowUniquenessRule(),
                         new ColumnUniquenessRule(),
                         new BoxUniquenessRule(),
@@ -359,7 +359,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
-                    new List<IRule>() {
+                    new IRule[] {
                         new RowUniquenessRule(),
                         new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false),
                     }));
@@ -394,7 +394,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
-                    new List<IRule>() {
+                    new IRule[] {
                         new RowUniquenessRule(),
                         new ColumnUniquenessRule(),
                         new BoxUniquenessRule(),
@@ -423,7 +423,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
                 new DynamicRuleKeeper(
-                    new List<IRule>() {
+                    new IRule[] {
                         new RowUniquenessRule(),
                         new ColumnUniquenessRule(),
                         new BoxUniquenessRule(),

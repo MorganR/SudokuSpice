@@ -16,7 +16,7 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 new int?[] {           3,            2,            4,            1}
             });
-            var rules = new List<IRule>
+            var rules = new IRule[]
             {
                 new RowUniquenessRule(),
                 new ColumnUniquenessRule(),
@@ -47,7 +47,7 @@ namespace SudokuSpice.RuleBased.Test
                     new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                     new int?[] {           3,            2,            4,            1}
                 });
-            var rules = new List<IRule>
+            var rules = new IRule[]
                 {
                     new RowUniquenessRule(),
                     new ColumnUniquenessRule(),
@@ -66,7 +66,7 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 new int?[] {           3,            2,            4,            1}
             });
-            var rules = new List<IRule>
+            var rules = new IRule[]
             {
                 new RowUniquenessRule(),
                 new ColumnUniquenessRule(),
@@ -78,9 +78,9 @@ namespace SudokuSpice.RuleBased.Test
             var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRuleKeeper ruleKeeperCopy = ruleKeeper.CopyWithNewReferences(puzzleCopy);
 
-            IReadOnlyList<IRule> rulesCopy = ruleKeeperCopy.GetRules();
-            Assert.Equal(rules.Count, rulesCopy.Count);
-            for (int i = 0; i < rules.Count; i++)
+            var rulesCopy = ruleKeeperCopy.GetRules();
+            Assert.Equal(rules.Length, rulesCopy.Length);
+            for (int i = 0; i < rules.Length; i++)
             {
                 Assert.NotSame(rules[i], rulesCopy[i]);
                 Type originalType = rules[i].GetType();
@@ -103,7 +103,7 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 new int?[] {           3,            2,            4,            1}
             });
-            var rules = new List<IRule>
+            var rules = new IRule[]
                 {
                     new RowUniquenessRule(),
                     new ColumnUniquenessRule(),
@@ -132,7 +132,7 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 new int?[] {           3,            2,            4,            1}
             });
-            var rules = new List<IRule>
+            var rules = new IRule[]
                 {
                     new RowUniquenessRule(),
                     new ColumnUniquenessRule(),
@@ -161,7 +161,7 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 new int?[] {           3,            2,            4,            1}
             });
-            var rules = new List<IRule>
+            var rules = new IRule[]
                 {
                     new RowUniquenessRule(),
                     new ColumnUniquenessRule(),
@@ -190,7 +190,7 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
                 new int?[] {           3,            2,            4,            1}
             });
-            var rules = new List<IRule>
+            var rules = new IRule[]
                 {
                     new RowUniquenessRule(),
                     new ColumnUniquenessRule(),

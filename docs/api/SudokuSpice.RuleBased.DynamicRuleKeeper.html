@@ -119,19 +119,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_IRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.%23ctor(System.Collections.Generic.IReadOnlyList%7BSudokuSpice.RuleBased.Rules.IRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_SudokuSpice_RuleBased_Rules_IRule___.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.%23ctor(SudokuSpice.RuleBased.Rules.IRule%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L21">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_System_Collections_Generic_IReadOnlyList_SudokuSpice_RuleBased_Rules_IRule__" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(System.Collections.Generic.IReadOnlyList{SudokuSpice.RuleBased.Rules.IRule})">DynamicRuleKeeper(IReadOnlyList&lt;IRule&gt;)</h4>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_SudokuSpice_RuleBased_Rules_IRule___" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.Rules.IRule[])">DynamicRuleKeeper(IRule[])</h4>
   <div class="markdown level1 summary"><p>Constructs a rule keeper that will enforce all the given rules.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DynamicRuleKeeper(IReadOnlyList&lt;IRule&gt; rules)</code></pre>
+    <pre><code class="lang-csharp hljs">public DynamicRuleKeeper(IRule[] rules)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -144,7 +144,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>[]</td>
         <td><span class="parametername">rules</span></td>
         <td><p>The rules to enforce.</p>
 </td>
@@ -158,11 +158,14 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L39">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L38">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this rule keeper, including copies of any
+<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>s it contains, with updated internal
+<a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -181,7 +184,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The new puzzle reference. Should contain the same data as the current puzzle instance.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -205,11 +209,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L74">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L73">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules">GetRules()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>s enforced by this rule keeper.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -235,11 +240,14 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L45">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L44">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">TryInit(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to initialize this rule keeper to solve the given puzzle.</p>
+<p>When reusing a rule keeper to solve multiple puzzles, this must be called with each new
+puzzle to be solved.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -258,7 +266,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to be solved.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -273,20 +282,30 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>False if the rule keeper couldn't be initialized, for example if the puzzle already
+violates one of the rules. Else returns true.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the rule keeper's state is
+unchanged on failure.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L77">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L76">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)">TrySet(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates possible values based on setting the given coordinate to the given value. If
+this update fails (i.e. it leads to an unset square with no possible values), then it
+returns false and leaves the possible values unchanged.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -305,12 +324,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate to update.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value to set <code>c</code> to.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -325,7 +346,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>True if the possible values have been updated and the rules are still satisfied.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -334,11 +356,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L121">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L120">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.Unset*"></a>
   <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)">Unset(Coordinate, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -357,12 +380,14 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
-        <td></td>
+        <td><p>The coordinate where a value is being unset.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The value being unset.</p>
+</td>
       </tr>
     </tbody>
   </table>

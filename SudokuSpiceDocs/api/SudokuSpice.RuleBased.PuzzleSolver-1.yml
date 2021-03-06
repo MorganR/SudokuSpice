@@ -38,7 +38,6 @@ items:
       description: The type of puzzle to solve.
     content.vb: >-
       Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzleWithPossibleValues(Of TPuzzle)})
-
           Implements IPuzzleSolver(Of TPuzzle)
   inheritance:
   - System.Object
@@ -124,14 +123,17 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nAttempts to solve the given puzzle.\n"
   example: []
   syntax:
     content: public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
+      description: The puzzle to solve. This will be solved in place.
     - id: randomizeGuesses
       type: System.Boolean
+      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
     return:
       type: System.Boolean
     content.vb: Public Function TrySolve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As Boolean
@@ -166,18 +168,26 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nSolves the given puzzle in place.\n"
   example: []
   syntax:
     content: public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
+      description: "\nThe puzzle to solve. This will be copied instead of solved in-place.\n"
     - id: randomizeGuesses
       type: System.Boolean
+      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
     return:
       type: '{TPuzzle}'
+      description: A solved copy of the given puzzle.
     content.vb: Public Function Solve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As TPuzzle
   overload: SudokuSpice.RuleBased.PuzzleSolver`1.Solve*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if this puzzle can&apos;t be solved by this solver.\n"
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.Solve({TPuzzle},System.Boolean)
   nameWithType.vb: PuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
@@ -208,6 +218,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
   example: []
   syntax:
     content: public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
@@ -220,6 +231,10 @@ items:
       type: SudokuSpice.SolveStats
     content.vb: Public Function ComputeStatsForAllSolutions(puzzle As TPuzzle, token As CancellationToken? = Nothing) As SolveStats
   overload: SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.ComputeStatsForAllSolutions({TPuzzle},System.Nullable{System.Threading.CancellationToken})
   nameWithType.vb: PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
@@ -251,6 +266,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
+  summary: "\nDetermines if the given puzzle has a unique solution. The puzzle is left unchanged.\n"
   example: []
   syntax:
     content: public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
@@ -263,6 +279,10 @@ items:
       type: System.Boolean
     content.vb: Public Function HasUniqueSolution(puzzle As TPuzzle, token As CancellationToken? = Nothing) As Boolean
   overload: SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.HasUniqueSolution({TPuzzle},System.Nullable{System.Threading.CancellationToken})
   nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
@@ -878,6 +898,9 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
   commentId: M:SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
   isExternal: true
@@ -1013,6 +1036,9 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
 - uid: System.Nullable{System.Threading.CancellationToken}
   commentId: T:System.Nullable{System.Threading.CancellationToken}
   parent: System

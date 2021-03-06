@@ -223,7 +223,8 @@ for example.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to initialize this heuristic for solving the given puzzle.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -242,7 +243,8 @@ for example.</p>
       <tr>
         <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
         <td><span class="parametername">puzzle</span></td>
-        <td></td>
+        <td><p>The puzzle to solve.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -257,10 +259,16 @@ for example.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>False if this heuristic cannot be initialized for the given puzzle, else true.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+on failure.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -270,7 +278,8 @@ for example.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UndoLastUpdate" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Undoes the last modifications made by this heuristic.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -285,7 +294,8 @@ for example.</p>
   </span>
   <a id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UpdateAll_" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UpdateAll*"></a>
   <h4 id="SudokuSpice_RuleBased_Heuristics_UniqueInRowHeuristic_UpdateAll" data-uid="SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UpdateAll">UpdateAll()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates all the current possible values.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -302,7 +312,8 @@ for example.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Returns true if any modifications were made.</p>
+</td>
       </tr>
     </tbody>
   </table>

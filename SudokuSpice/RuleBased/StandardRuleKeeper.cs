@@ -10,6 +10,7 @@ namespace SudokuSpice.RuleBased
     /// </summary>
     public class StandardRuleKeeper : IRuleKeeper, IMissingRowValuesTracker, IMissingColumnValuesTracker, IMissingBoxValuesTracker
     {
+        private readonly IRule[] _selfArray;
         private int _boxSize;
         private BitVector[]? _unsetRowValues;
         private BitVector[]? _unsetColumnValues;
@@ -22,7 +23,28 @@ namespace SudokuSpice.RuleBased
         /// <param name="possibleValues">
         /// The shared possible values instance to use while solving.
         /// </param>
-        public StandardRuleKeeper() { }
+        public StandardRuleKeeper() {
+            _selfArray = new IRule[] { this };
+        }
+
+        private StandardRuleKeeper(
+            StandardRuleKeeper existing, IReadOnlyPuzzleWithMutablePossibleValues? puzzle) : this()
+        {
+            _boxSize = existing._boxSize;
+            _unsetRowValues = existing._unsetRowValues?.AsSpan().ToArray();
+            _unsetColumnValues = existing._unsetColumnValues?.AsSpan().ToArray();
+            _unsetBoxValues = existing._unsetBoxValues?.AsSpan().ToArray();
+            _puzzle = puzzle;
+        }
+
+        /// <inheritdoc/>
+        public IRuleKeeper CopyWithNewReferences(
+            IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
+        {
+            Debug.Assert((puzzle is null && _puzzle is null) || puzzle?.Size == _puzzle?.Size,
+                $"Puzzle size ({puzzle?.Size}) must match current rule keeper size ({_puzzle?.Size})");
+            return new StandardRuleKeeper(this, puzzle);
+        }
 
         /// <inheritdoc/>
         public bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
@@ -67,25 +89,6 @@ namespace SudokuSpice.RuleBased
                 }
             }
             return true;
-        }
-
-        private StandardRuleKeeper(
-            StandardRuleKeeper existing, IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
-        {
-            _boxSize = existing._boxSize;
-            _unsetRowValues = existing._unsetRowValues?.AsSpan().ToArray();
-            _unsetColumnValues = existing._unsetColumnValues?.AsSpan().ToArray();
-            _unsetBoxValues = existing._unsetBoxValues?.AsSpan().ToArray();
-            _puzzle = puzzle;
-        }
-
-        /// <inheritdoc/>
-        public IRuleKeeper CopyWithNewReferences(
-            IReadOnlyPuzzleWithMutablePossibleValues? puzzle)
-        {
-            Debug.Assert((puzzle is null && _puzzle is null) || puzzle?.Size == _puzzle?.Size,
-                $"Puzzle size ({puzzle?.Size}) must match current rule keeper size ({_puzzle?.Size})");
-            return new StandardRuleKeeper(this, puzzle);
         }
 
         /// <inheritdoc/>
@@ -171,9 +174,9 @@ namespace SudokuSpice.RuleBased
             }
             return true;
         }
-            
+
         /// <inheritdoc/>
-        public IReadOnlyList<IRule> GetRules() => new List<IRule>() { this };
+        public ReadOnlySpan<IRule> GetRules() => _selfArray;
 
         /// <inheritdoc/>
         public BitVector GetMissingValuesForRow(int row) => _unsetRowValues![row];

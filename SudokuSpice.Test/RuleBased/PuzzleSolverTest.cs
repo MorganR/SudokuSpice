@@ -91,7 +91,7 @@ namespace SudokuSpice.RuleBased.Test
             var boxRule = new BoxUniquenessRule();
             var diagonalRule = new DiagonalUniquenessRule();
             var ruleKeeper = new DynamicRuleKeeper(
-                new List<IRule> { rowRule, columnRule, boxRule, diagonalRule });
+                new IRule[] { rowRule, columnRule, boxRule, diagonalRule });
             var heuristic = new StandardHeuristic(
                 rowRule, columnRule, boxRule);
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(ruleKeeper, heuristic);

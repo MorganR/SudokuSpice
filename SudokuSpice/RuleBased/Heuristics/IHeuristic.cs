@@ -1,5 +1,5 @@
 ﻿using SudokuSpice.RuleBased.Rules;
-using System.Collections.Generic;
+using System;
 
 namespace SudokuSpice.RuleBased.Heuristics
 {
@@ -42,6 +42,6 @@ namespace SudokuSpice.RuleBased.Heuristics
         /// </summary>
         IHeuristic CopyWithNewReferences(
             IReadOnlyPuzzleWithMutablePossibleValues? puzzle,
-            IReadOnlyList<IRule> rules);
+            ReadOnlySpan<IRule> rules);
     }
 }

@@ -31,7 +31,7 @@ namespace SudokuSpice.Benchmark
             var p = new PuzzleWithPossibleValues(puzzle.NullableJaggedMatrix);
             var standardRules = new StandardRules();
             var ruleKeeper = new DynamicRuleKeeper(
-                new List<IRule> { standardRules });
+                new IRule[] { standardRules });
             var heuristic = new StandardHeuristic(
                 standardRules, standardRules, standardRules);
             var solver = new RuleBased.PuzzleSolver<PuzzleWithPossibleValues>(ruleKeeper, heuristic);
@@ -48,7 +48,7 @@ namespace SudokuSpice.Benchmark
             var columnRule = new ColumnUniquenessRule();
             var boxRule = new BoxUniquenessRule();
             var ruleKeeper = new DynamicRuleKeeper(
-                new List<IRule> { rowRule, columnRule, boxRule });
+                new IRule[] { rowRule, columnRule, boxRule });
             var heuristic = new StandardHeuristic(
                 rowRule, columnRule, boxRule);
             var solver = new RuleBased.PuzzleSolver<PuzzleWithPossibleValues>(ruleKeeper, heuristic);
