@@ -36,18 +36,12 @@ namespace SudokuSpice.RuleBased
             _unsetColumnValues = possibleValues.ToArray();
             _unsetBoxValues = possibleValues.ToArray();
 
-            int boxIdx = 0;
+            int boxIdx;
             for (int row = 0; row < size; row++)
             {
                 for (int col = 0; col < size; col++)
                 {
-                    if (col == 0)
-                    {
-                        boxIdx = (row / _boxSize) * _boxSize;
-                    } else if (col % _boxSize == 0)
-                    {
-                        boxIdx++;
-                    }
+                    boxIdx = Boxes.CalculateBoxIndex(new Coordinate(row, col), _boxSize);
                     int? val = puzzle[row, col];
                     if (!val.HasValue)
                     {
@@ -113,13 +107,13 @@ namespace SudokuSpice.RuleBased
             BitVector updatedPossibles;
             Coordinate workingCoord;
             int size = _puzzle.Size;
-            for (int col = 0; col < size; col++)
+            for (int col = 0; col < size; ++col)
             {
-                workingCoord = new Coordinate(c.Row, col);
-                if (col == c.Column || _puzzle[in workingCoord].HasValue)
+                if (col == c.Column || _puzzle[c.Row, col].HasValue)
                 {
                     continue;
                 }
+                workingCoord = new Coordinate(c.Row, col);
                 updatedPossibles = BitVector.FindIntersect(
                     _puzzle.GetPossibleValues(in workingCoord),
                     _unsetRowValues[c.Row]);
@@ -133,13 +127,13 @@ namespace SudokuSpice.RuleBased
                 }
                 _puzzle.SetPossibleValues(in workingCoord, updatedPossibles);
             }
-            for (int row = 0; row < size; row++)
+            for (int row = 0; row < size; ++row)
             {
-                workingCoord = new Coordinate(row, c.Column);
                 if (row == c.Row || _puzzle[row, c.Column].HasValue)
                 {
                     continue;
                 }
+                workingCoord = new Coordinate(row, c.Column);
                 updatedPossibles = BitVector.FindIntersect(
                     _puzzle.GetPossibleValues(in workingCoord),
                     _unsetColumnValues[c.Column]);
@@ -177,7 +171,7 @@ namespace SudokuSpice.RuleBased
             }
             return true;
         }
-
+            
         /// <inheritdoc/>
         public IReadOnlyList<IRule> GetRules() => new List<IRule>() { this };
 

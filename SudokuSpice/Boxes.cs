@@ -21,26 +21,12 @@ namespace SudokuSpice
         /// </exception>
         public static int IntSquareRoot(int toRoot)
         {
-            switch (toRoot)
+            int root = (int)Math.Sqrt(toRoot);
+            if (root == 0 || root * root != toRoot)
             {
-                case 1:
-                    return 1;
-                case 4:
-                    return 2;
-                case 9:
-                    return 3;
-                case 16:
-                    return 4;
-                case 25:
-                    return 5;
-                default:
-                    int root = (int)Math.Sqrt(toRoot);
-                    if (root == 0 || root * root != toRoot)
-                    {
-                        throw new ArgumentException($"{nameof(toRoot)} must be square.");
-                    }
-                    return root;
+                throw new ArgumentException($"{nameof(toRoot)} must be square.");
             }
+            return root;
         }
 
         /// <summary>
