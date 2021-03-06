@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace SudokuSpice.ConstraintBased
 {
-    internal class Link
+    internal sealed class Link
     {
         internal readonly IPossibility Possibility;
         internal readonly IObjective Objective;
