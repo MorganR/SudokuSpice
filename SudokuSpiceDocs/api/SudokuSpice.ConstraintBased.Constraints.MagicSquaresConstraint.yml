@@ -5,7 +5,7 @@ items:
   id: MagicSquaresConstraint
   parent: SudokuSpice.ConstraintBased.Constraints
   children:
-  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(SudokuSpice.ReadOnlySpan{System.Int32},IEnumerable{SudokuSpice.Box},System.Boolean)
+  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
   - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   langs:
   - csharp
@@ -18,7 +18,7 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: MagicSquaresConstraint
     path: ../SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
     startLine: 49
@@ -29,37 +29,44 @@ items:
   remarks: "\nThis makes use of <xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref> objects to construct a complicated graph.\n\nFor example, in a standard 3x3 magic square for a standard 9x9 Sudoku puzzle, the magic sum\n(i.e. required sum for each row/column/diagonal) is 15. This can be formed through various\ncombinations, eg:\n\n* 1,5,9\n* 1,6,8\n...\n\nFor each row or column or diagonal, this looks at the existing values to determine the\npossible sets. It drops impossible <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects, and groups the\nremaining possibilities as follows (using the 1,5,9 set as an example):\n\nIn this row/column/diagonal, create an optional objective to require that a single 1 is\nselected from these squares. Repeat for the 5 and the 9. \n\nThen, group each of these optional objectives into another optional objective that requires\nall of them to be satisfied. This defines an individual possible set for this\nrow/column/diagonal.\n\nRepeat this for all the possible sets on this row/column/diagonal. Reuse groups where\npossible, for example set 1,6,8 would use the same &quot;1&quot; grouping from set 1,5,8.\n\nNow group all these optional set objectives into a single required objective that can be\nsatisfied by any of these optional sets.\n\nIn the end, this results in a single required objective for each row/column/diagonal,\nenforcing that this row/column/diagonal is composed of one of the possible sets.\n"
   example: []
   syntax:
-    content: 'public class MagicSquaresConstraint : object, IConstraint'
+    content: 'public class MagicSquaresConstraint : IConstraint'
     content.vb: >-
       Public Class MagicSquaresConstraint
-          Inherits Object
           Implements IConstraint
   inheritance:
   - System.Object
   implements:
   - SudokuSpice.ConstraintBased.Constraints.IConstraint
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(SudokuSpice.ReadOnlySpan{System.Int32},IEnumerable{SudokuSpice.Box},System.Boolean)
-  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(SudokuSpice.ReadOnlySpan{System.Int32},IEnumerable{SudokuSpice.Box},System.Boolean)
-  id: '#ctor(SudokuSpice.ReadOnlySpan{System.Int32},IEnumerable{SudokuSpice.Box},System.Boolean)'
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
+  id: '#ctor(System.ReadOnlySpan{System.Int32},System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)'
   parent: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
   langs:
   - csharp
   - vb
   name: MagicSquaresConstraint(ReadOnlySpan<Int32>, IEnumerable<Box>, Boolean)
   nameWithType: MagicSquaresConstraint.MagicSquaresConstraint(ReadOnlySpan<Int32>, IEnumerable<Box>, Boolean)
-  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(SudokuSpice.ReadOnlySpan<System.Int32>, IEnumerable<SudokuSpice.Box>, System.Boolean)
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(System.ReadOnlySpan<System.Int32>, System.Collections.Generic.IEnumerable<SudokuSpice.Box>, System.Boolean)
   type: Constructor
   source:
     remote:
       path: SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
     startLine: 75
@@ -72,22 +79,26 @@ items:
     content: public MagicSquaresConstraint(ReadOnlySpan<int> possibleValues, IEnumerable<Box> squares, bool includeDiagonals = true)
     parameters:
     - id: possibleValues
-      type: SudokuSpice.ReadOnlySpan{System.Int32}
+      type: System.ReadOnlySpan{System.Int32}
       description: "\nThe possible values that can be in the magic squares.\n"
     - id: squares
-      type: IEnumerable{SudokuSpice.Box}
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
       description: "\nThe locations of the magic squares.\n"
     - id: includeDiagonals
       type: System.Boolean
       description: "\nIf true, values along the diagonals of the square must also sum to the magic number.\n"
     content.vb: Public Sub New(possibleValues As ReadOnlySpan(Of Integer), squares As IEnumerable(Of Box), includeDiagonals As Boolean = True)
   overload: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nIf the any of the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>&apos; sizes are not compatible with the\nlength of <code data-dev-comment-type=\"paramref\" class=\"paramref\">possibleValues</code>.\n"
   nameWithType.vb: MagicSquaresConstraint.MagicSquaresConstraint(ReadOnlySpan(Of Int32), IEnumerable(Of Box), Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(SudokuSpice.ReadOnlySpan(Of System.Int32), IEnumerable(Of SudokuSpice.Box), System.Boolean)
+  fullName.vb: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint(System.ReadOnlySpan(Of System.Int32), System.Collections.Generic.IEnumerable(Of SudokuSpice.Box), System.Boolean)
   name.vb: MagicSquaresConstraint(ReadOnlySpan(Of Int32), IEnumerable(Of Box), Boolean)
 - uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   commentId: M:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
@@ -104,7 +115,7 @@ items:
     remote:
       path: SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TryConstrain
     path: ../SudokuSpice/ConstraintBased/Constraints/MagicSquaresConstraint.cs
     startLine: 103
@@ -156,36 +167,332 @@ references:
   name: SudokuSpice.ConstraintBased.Constraints
   nameWithType: SudokuSpice.ConstraintBased.Constraints
   fullName: SudokuSpice.ConstraintBased.Constraints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
   commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
   parent: SudokuSpice.ConstraintBased.Constraints
   name: IConstraint
   nameWithType: IConstraint
   fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor*
   commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.#ctor
   name: MagicSquaresConstraint
   nameWithType: MagicSquaresConstraint.MagicSquaresConstraint
   fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.MagicSquaresConstraint
-- uid: SudokuSpice.ReadOnlySpan{System.Int32}
-  commentId: '!:SudokuSpice.ReadOnlySpan{System.Int32}'
-  definition: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Int32>
   nameWithType: ReadOnlySpan<Int32>
-  fullName: SudokuSpice.ReadOnlySpan<System.Int32>
+  fullName: System.ReadOnlySpan<System.Int32>
   nameWithType.vb: ReadOnlySpan(Of Int32)
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of System.Int32)
+  fullName.vb: System.ReadOnlySpan(Of System.Int32)
   name.vb: ReadOnlySpan(Of Int32)
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -199,10 +506,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -215,20 +522,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEnumerable{SudokuSpice.Box}
-  commentId: '!:IEnumerable{SudokuSpice.Box}'
-  definition: IEnumerable`1
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Box}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<Box>
   nameWithType: IEnumerable<Box>
-  fullName: IEnumerable<SudokuSpice.Box>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Box>
   nameWithType.vb: IEnumerable(Of Box)
-  fullName.vb: IEnumerable(Of SudokuSpice.Box)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.Box)
   name.vb: IEnumerable(Of Box)
   spec.csharp:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -241,10 +549,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -257,86 +565,96 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: SudokuSpice.ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEnumerable`1
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: IEnumerable<>
-  nameWithType: IEnumerable<>
-  fullName: IEnumerable<>
-  nameWithType.vb: IEnumerable(Of )
-  fullName.vb: IEnumerable(Of )
-  name.vb: IEnumerable(Of )
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
   spec.csharp:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain*
   commentId: Overload:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.TryConstrain
   name: TryConstrain
