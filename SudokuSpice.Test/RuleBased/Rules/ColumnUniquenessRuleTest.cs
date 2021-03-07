@@ -67,10 +67,10 @@ namespace SudokuSpice.RuleBased.Rules.Test
             rule.Update(secondCoord, secondVal, originalCoordTracker);
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 2) },
-                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
+                new HashSet<Coordinate>(coordTracker.TrackedCoords.ToArray()));
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 2), new Coordinate(1, 2), new Coordinate(3, 2) },
-                new HashSet<Coordinate>(originalCoordTracker.GetTrackedCoords().ToArray()));
+                new HashSet<Coordinate>(originalCoordTracker.TrackedCoords.ToArray()));
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
 
             Assert.Equal(
                 new HashSet<Coordinate> { new Coordinate(0, 1), new Coordinate(3, 1) },
-                new HashSet<Coordinate>(coordTracker.GetTrackedCoords().ToArray()));
+                new HashSet<Coordinate>(coordTracker.TrackedCoords.ToArray()));
             Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b10100), rule.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(new BitVector(0b11110), rule.GetPossibleValues(new Coordinate(0, 2)));
@@ -146,8 +146,8 @@ namespace SudokuSpice.RuleBased.Rules.Test
             rule.Revert(coord, val, revertedCoordTracker);
 
             Assert.Equal(
-                updatedCoordTracker.GetTrackedCoords().ToArray(),
-                revertedCoordTracker.GetTrackedCoords().ToArray());
+                updatedCoordTracker.TrackedCoords.ToArray(),
+                revertedCoordTracker.TrackedCoords.ToArray());
             for (int column = 0; column < initialPossibleValuesByColumn.Count; column++)
             {
                 Assert.Equal(

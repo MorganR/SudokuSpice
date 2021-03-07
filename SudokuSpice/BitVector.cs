@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.Intrinsics.X86;
 
@@ -22,6 +21,11 @@ namespace SudokuSpice
             }
             return masks;
         }
+
+        /// <summary>
+        /// The number of bits (i.e. the capacity) contained by a BitVector.
+        /// </summary>
+        public const int NumBits = sizeof(uint) << 3;
 
         /// <summary>
         /// Gets the data stored in this bit vector as an unsigned int.
@@ -112,40 +116,6 @@ namespace SudokuSpice
         /// <param name="bit">The zero-based index of the bit to check.</param>
         /// <returns>True if set.</returns>
         public readonly bool IsBitSet(int bit) => Convert.ToBoolean(Data & _masks[bit]);
-
-        /// <summary>
-        /// Gets a list of the bits set in this bit vector.
-        /// </summary>
-        /// <remarks>
-        /// This operation is slightly more efficient on average when <see cref="Popcnt"/> is
-        /// supported. Worst case performance is roughly the same.
-        /// </remarks>
-        /// <returns>A list of the bits that are set.</returns>
-        public readonly List<int> GetSetBits()
-        {
-            if (Popcnt.IsSupported)
-            {
-                int numSetBits = ComputeCount();
-                var setBits = new List<int>(numSetBits);
-                for (int i = 0; setBits.Count < numSetBits; i++)
-                {
-                    if ((Data & _masks[i]) != 0)
-                    {
-                        setBits.Add(i);
-                    }
-                }
-                return setBits;
-            }
-            var bits = new List<int>(32);
-            for (int i = 0; i < _masks.Length; i++)
-            {
-                if ((Data & _masks[i]) != 0)
-                {
-                    bits.Add(i);
-                }
-            }
-            return bits;
-        }
 
         /// <summary>
         /// Populates a provided Span with the indices of set bits, and returns the number of set 

@@ -17,6 +17,12 @@ namespace SudokuSpice.Test
             Assert.Equal(data, vector.Data);
         }
 
+        [Fact]
+        public void NumBits_IsCorrect()
+        {
+            Assert.Equal(32, BitVector.NumBits);
+        }
+
         [Theory]
         [InlineData(0, 0)]
         [InlineData(1, 1)]
@@ -170,16 +176,6 @@ namespace SudokuSpice.Test
             var subset = new BitVector(subsetData);
             var notSuperset = new BitVector(supersetData);
             Assert.False(subset.IsSubsetOf(notSuperset));
-        }
-
-        [Theory]
-        [InlineData(0, new int[] { })]
-        [InlineData(0b100, new int[] { 2 })]
-        [InlineData(0b0011_1101, new int[] { 0, 2, 3, 4, 5 })]
-        public void GetSetBits_Succeeds(uint data, int[] setBits)
-        {
-            var vector = new BitVector(data);
-            Assert.Equal(setBits, vector.GetSetBits());
         }
 
         [Theory]

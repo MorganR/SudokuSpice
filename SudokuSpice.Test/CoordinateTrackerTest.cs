@@ -18,9 +18,9 @@ namespace SudokuSpice.Test
 
             Assert.Equal(1, tracker.NumTracked);
             Assert.Equal(2, trackerCopy.NumTracked);
-            Assert.Equal(new Coordinate[] { new Coordinate(0, 0) }, tracker.GetTrackedCoords().ToArray());
+            Assert.Equal(new Coordinate[] { new Coordinate(0, 0) }, tracker.TrackedCoords.ToArray());
             Assert.Equal(new HashSet<Coordinate> { new Coordinate(0, 0), new Coordinate(1, 1) },
-                new HashSet<Coordinate>(trackerCopy.GetTrackedCoords().ToArray()));
+                new HashSet<Coordinate>(trackerCopy.TrackedCoords.ToArray()));
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace SudokuSpice.Test
                 tracker.Add(c);
             }
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(coords.Count, trackedCoords.Length);
             for (int i = 0; i < coords.Count; i++)
             {
@@ -73,7 +73,7 @@ namespace SudokuSpice.Test
 
             tracker.Untrack(in untrackedCoord);
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(coords.Count - 1, trackedCoords.Length);
             Assert.DoesNotContain(untrackedCoord, trackedCoords.ToArray());
         }
@@ -94,7 +94,7 @@ namespace SudokuSpice.Test
                 tracker.Untrack(in c);
             }
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(0, trackedCoords.Length);
         }
 
@@ -112,7 +112,7 @@ namespace SudokuSpice.Test
             tracker.UntrackAll();
 
             Assert.Equal(0, tracker.NumTracked);
-            Assert.Equal(0, tracker.GetTrackedCoords().Length);
+            Assert.Equal(0, tracker.TrackedCoords.Length);
 
             foreach (Coordinate c in coords)
             {
@@ -120,7 +120,7 @@ namespace SudokuSpice.Test
             }
 
             Assert.Equal(coords.Count, tracker.NumTracked);
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(coords.Count, trackedCoords.Length);
             Assert.Equal(
                 new HashSet<Coordinate>(coords), new HashSet<Coordinate>(trackedCoords.ToArray()));
@@ -142,7 +142,7 @@ namespace SudokuSpice.Test
             tracker.Untrack(in trackedCoord);
             tracker.Track(in trackedCoord);
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(coords.Count, trackedCoords.Length);
             Assert.Contains(trackedCoord, trackedCoords.ToArray());
         }
@@ -169,7 +169,7 @@ namespace SudokuSpice.Test
                 tracker.Track(coords[i]);
             }
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(7, trackedCoords.Length);
             Assert.Contains(coords[0], trackedCoords.ToArray());
             Assert.Contains(coords[1], trackedCoords.ToArray());
@@ -188,7 +188,7 @@ namespace SudokuSpice.Test
                 CoordinateTracker.AddOrTrackResult.AddedAndTracked,
                 tracker.AddOrTrackIfUntracked(coord));
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(1, trackedCoords.Length);
             Assert.Contains(coord, trackedCoords.ToArray());
         }
@@ -207,7 +207,7 @@ namespace SudokuSpice.Test
                 CoordinateTracker.AddOrTrackResult.Tracked,
                 tracker.AddOrTrackIfUntracked(coord));
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(1, trackedCoords.Length);
             Assert.Contains(coord, trackedCoords.ToArray());
         }
@@ -225,7 +225,7 @@ namespace SudokuSpice.Test
                 CoordinateTracker.AddOrTrackResult.Unchanged,
                 tracker.AddOrTrackIfUntracked(coord));
 
-            ReadOnlySpan<Coordinate> trackedCoords = tracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = tracker.TrackedCoords;
             Assert.Equal(1, trackedCoords.Length);
             Assert.Contains(coord, trackedCoords.ToArray());
         }

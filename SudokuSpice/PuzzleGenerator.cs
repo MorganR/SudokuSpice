@@ -21,7 +21,7 @@ namespace SudokuSpice
         /// A function that constructs an empty <see cref="IPuzzle{TPuzzle}"/> of the desired type and shape.
         /// The requested puzzle size (i.e. side-length) is provided as an argument.
         /// </param>
-        /// <param name=solver">
+        /// <param name="solver">
         /// A solver to be used to generate puzzles. The solver determines the rules or constraints
         /// a puzzle must satisfy.
         /// </param>
@@ -92,7 +92,7 @@ namespace SudokuSpice
             }
             if (puzzleTask.Exception is null)
             {
-                throw new ApplicationException("Something went wrong while trying to generate the puzzle.");
+                throw new InvalidOperationException("Something went wrong while trying to generate the puzzle.");
             }
             throw puzzleTask.Exception;
         }
@@ -147,7 +147,7 @@ namespace SudokuSpice
             return false;
         }
 
-        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.GetTrackedCoords()[_random.Next(0, tracker.NumTracked)];
+        private Coordinate _GetRandomTrackedCoordinate(CoordinateTracker tracker) => tracker.TrackedCoords[_random.Next(0, tracker.NumTracked)];
 
         private void _FillPuzzle(TPuzzle puzzle) => _solver.TrySolve(puzzle, randomizeGuesses: true);
 

@@ -224,9 +224,13 @@ namespace SudokuSpice.ConstraintBased.Constraints
             var unsetRelevantValues = BitVector.FindDifference(relevantValues, alreadySet);
             // Drop all the values that are already set or are not part of any relevant sets.
             var valuesToDrop = BitVector.FindDifference(_allPossibleValues, unsetRelevantValues);
-            foreach (var value in valuesToDrop.GetSetBits())
+            Span<int> setBitsBuffer = stackalloc int[_size];
+            int numValuesToDrop = valuesToDrop.PopulateSetBits(setBitsBuffer);
+            foreach (var value in setBitsBuffer.Slice(0, numValuesToDrop))
             {
-                if (!ConstraintUtil.TryDropPossibilitiesAtIndex(unsetSquares[0..numUnset], graph.ValuesToIndices[value]))
+                if (!ConstraintUtil.TryDropPossibilitiesAtIndex(
+                    new ReadOnlySpan<Possibility?[]?>(unsetSquares, 0, numUnset),
+                    graph.ValuesToIndices[value]))
                 {
                     return false;
                 }
@@ -234,10 +238,11 @@ namespace SudokuSpice.ConstraintBased.Constraints
 
             Dictionary<int, OptionalObjective> objectivesByPossibleValue = new();
             BitVector failedValues = new();
-            foreach (var possibleValue in relevantValues.GetSetBits())
+            int numRelevantValues = relevantValues.PopulateSetBits(setBitsBuffer);
+            foreach (var possibleValue in setBitsBuffer.Slice(0, numRelevantValues))
             {
                 if (!ConstraintUtil.TryAddOptionalObjectiveForPossibilityIndex(
-                    unsetSquares[0..numUnset],
+                    new ReadOnlySpan<Possibility?[]?>(unsetSquares, 0, numUnset),
                     graph.ValuesToIndices[possibleValue],
                     requiredCount: 1,
                     objective: out OptionalObjective? objective))
@@ -262,7 +267,8 @@ namespace SudokuSpice.ConstraintBased.Constraints
                     continue;
                 }
                 // Create a requirement for each possible value.
-                foreach (var possibleValue in unsetPossibleValuesInSet.GetSetBits())
+                int numUnsetPossibleValuesInSet = unsetPossibleValuesInSet.PopulateSetBits(setBitsBuffer);
+                foreach (var possibleValue in setBitsBuffer.Slice(0, numUnsetPossibleValuesInSet))
                 {
                     usedValues.SetBit(possibleValue);
                     valuesToConnect[countToConnect++] = objectivesByPossibleValue[possibleValue];
@@ -281,10 +287,12 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 // These values were grouped into an optional objective, but that objective is not
                 // connected up to a required objective. That means these values are actually
                 // impossible, so drop the possible values altogether.
-                foreach (var valueToDrop in groupedValuesToDrop.GetSetBits())
+                int numGroupedValuesToDrop = groupedValuesToDrop.PopulateSetBits(setBitsBuffer);
+                foreach (var valueToDrop in setBitsBuffer.Slice(0, numGroupedValuesToDrop))
                 {
                     if (!ConstraintUtil.TryDropPossibilitiesAtIndex(
-                        unsetSquares[0..numUnset], graph.ValuesToIndices[valueToDrop]))
+                        new ReadOnlySpan<Possibility?[]?>(unsetSquares, 0, numUnset),
+                        graph.ValuesToIndices[valueToDrop]))
                     {
                         return false;
                     }

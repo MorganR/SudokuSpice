@@ -222,7 +222,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void ReattachObjective(Objective toReattach)
+        internal static void ReattachObjective(Objective toReattach)
         {
             toReattach.ReinsertToGraph();
         }

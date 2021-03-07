@@ -37,10 +37,13 @@ namespace SudokuSpice.RuleBased.Test
 
             var coord = new Coordinate(0, 2);
             int val = 4;
-            List<int> expectedPossibleValues = tracker.GetPossibleValues(in coord);
+            var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+            int numPossible = tracker.PopulatePossibleValues(in coord, possibleValuesBuffer);
+            var expectedPossibleValues = possibleValuesBuffer[0..numPossible];
             Assert.False(tracker.TrySet(in coord, val));
             Assert.False(puzzle[in coord].HasValue);
-            Assert.Equal(expectedPossibleValues, tracker.GetPossibleValues(in coord));
+            numPossible = tracker.PopulatePossibleValues(in coord, possibleValuesBuffer);
+            Assert.Equal(expectedPossibleValues, possibleValuesBuffer[0..numPossible]);
         }
 
         [Fact]
@@ -56,10 +59,13 @@ namespace SudokuSpice.RuleBased.Test
 
             var coord = new Coordinate(1, 1);
             int val = 2;
-            List<int> expectedPossibleValues = tracker.GetPossibleValues(in coord);
+            var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+            int numPossible = tracker.PopulatePossibleValues(in coord, possibleValuesBuffer);
+            var expectedPossibleValues = possibleValuesBuffer[0..numPossible];
             Assert.False(tracker.TrySet(in coord, val));
             Assert.False(puzzle[in coord].HasValue);
-            Assert.Equal(expectedPossibleValues, tracker.GetPossibleValues(in coord));
+            numPossible = tracker.PopulatePossibleValues(in coord, possibleValuesBuffer);
+            Assert.Equal(expectedPossibleValues, possibleValuesBuffer[0..numPossible]);
         }
 
         [Fact]
@@ -96,7 +102,13 @@ namespace SudokuSpice.RuleBased.Test
 
             foreach (Coordinate coord in puzzle.GetUnsetCoords())
             {
-                Assert.Equal(puzzle.GetPossibleValues(in coord).GetSetBits(), tracker.GetPossibleValues(in coord));
+                var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+                int numPossible = tracker.PopulatePossibleValues(in coord, possibleValuesBuffer);
+                var expectedPossibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+                int numExpected = puzzle.GetPossibleValues(in coord).PopulateSetBits(expectedPossibleValuesBuffer);
+                Assert.Equal(
+                    expectedPossibleValuesBuffer[0..numExpected],
+                    possibleValuesBuffer[0..numPossible]);
             }
         }
 
@@ -110,7 +122,14 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
-            var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(c => c, c => tracker.GetPossibleValues(in c));
+            var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(
+                c => c,
+                c =>
+                {
+                    var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+                    int numPossibleValues = tracker.PopulatePossibleValues(in c, possibleValuesBuffer);
+                    return possibleValuesBuffer[0..numPossibleValues];
+                });
 
             var coord = new Coordinate(0, 1);
             Assert.True(tracker.TrySet(in coord, 4));
@@ -121,7 +140,9 @@ namespace SudokuSpice.RuleBased.Test
             Assert.Equal(expectedPossibles.Count, unsetCoords.Length);
             foreach (Coordinate c in unsetCoords)
             {
-                Assert.Equal(expectedPossibles[c], tracker.GetPossibleValues(in c));
+                var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+                int numPossible = tracker.PopulatePossibleValues(in c, possibleValuesBuffer);
+                Assert.Equal(expectedPossibles[c], possibleValuesBuffer[0..numPossible]);
             }
         }
 
@@ -135,7 +156,14 @@ namespace SudokuSpice.RuleBased.Test
                 new int?[] {           3,            2,            4,            1}
             });
             var tracker = _CreateStandardTracker(puzzle);
-            var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(c => c, c => tracker.GetPossibleValues(in c));
+            var expectedPossibles = puzzle.GetUnsetCoords().ToArray().ToDictionary(
+                c => c,
+                c =>
+                {
+                    var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+                    int numPossible = tracker.PopulatePossibleValues(in c, possibleValuesBuffer);
+                    return possibleValuesBuffer[0..numPossible];
+                });
 
             var trackerCopy = new SquareTracker<PuzzleWithPossibleValues>(tracker);
 
@@ -145,7 +173,9 @@ namespace SudokuSpice.RuleBased.Test
 
             foreach (Coordinate c in expectedPossibles.Keys)
             {
-                Assert.Equal(expectedPossibles[c], trackerCopy.GetPossibleValues(in c));
+                var possibleValuesBuffer = new int[puzzle.AllPossibleValuesSpan.Length];
+                int numPossible = trackerCopy.PopulatePossibleValues(in c, possibleValuesBuffer);
+                Assert.Equal(expectedPossibles[c], possibleValuesBuffer[0..numPossible]);
             }
         }
 

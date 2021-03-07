@@ -162,7 +162,7 @@ namespace SudokuSpice
         }
 
         /// <summary>Gets a span of coordinates for all the unset squares.</summary>
-        public ReadOnlySpan<Coordinate> GetUnsetCoords() => _unsetCoordsTracker.GetTrackedCoords();
+        public ReadOnlySpan<Coordinate> GetUnsetCoords() => _unsetCoordsTracker.TrackedCoords;
 
         /// <summary>
         /// Returns the puzzle in a pretty string format, with boxes and rows separated by pipes

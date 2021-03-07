@@ -35,14 +35,6 @@ Docs: https://www.sudokuspice.dev/</Description>
 * Loads of other little changes.</PackageReleaseNotes>
   </PropertyGroup>
 
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
   <ItemGroup>
     <None Include="..\SudokuSpiceDocs\images\sudokuspice-black.png">
       <Pack>True</Pack>
@@ -53,5 +45,9 @@ Docs: https://www.sudokuspice.dev/</Description>
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+
+  <PropertyGroup>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+  </PropertyGroup>
   
 </Project>
