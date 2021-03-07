@@ -51,7 +51,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    - name: Install dependencies
     - name: Get package paths
       run: |
         pkg_path=$(ls SudokuSpice*.nupkg)
