@@ -80,7 +80,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             _squareSize = Boxes.IntSquareRoot(_size);
             _includeDiagonals = includeDiagonals;
             if (_magicSquares.Any(
-                b => 
+                b =>
                 b.TopLeft.Row < 0 || b.TopLeft.Column < 0 ||
                 b.TopLeft.Row + b.Size > _size || b.TopLeft.Column + b.Size > _size ||
                 b.Size != _squareSize))
@@ -291,7 +291,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
             }
             return setsToOr.Count > 0;
-        } 
+        }
 
         private static void _ConstrainAndClearOverlappingSets(ExactCoverGraph graph, List<OptionalObjective> setsToOr)
         {

@@ -291,7 +291,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                 fakesOnParentToSelect.Cast<IPossibility>().Prepend(optional).ToArray(), 2);
             var fakeOnParentToDrop = new FakePossibility();
             var parentToDrop = OptionalObjective.CreateWithPossibilities(
-                new IPossibility[] { 
+                new IPossibility[] {
                     fakeOnParentToDrop,
                     optional,
                 }, 2);
@@ -300,7 +300,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                 new IPossibility[] { parentToSelect, parentToDrop },
                 1);
             IObjective objective = optional;
-;
+            ;
             // Select one fake on parentToSelect so that selecting this optional will satisfy the
             // objective.
             Assert.True(((IObjective)parentToSelect).TrySelectPossibility(fakesOnParentToSelect[0].AttachedObjectives.First()));
@@ -322,7 +322,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
 
             // Select a possibility on parentToDrop first. This should result in no change overall.
             Assert.True(((IObjective)parentToDrop).TrySelectPossibility(fakeOnParentToDrop.AttachedObjectives.First()));
-            
+
             // Selecting the objective would satisfy both optional parents, which violates the
             // required objective.
             Assert.False(objective.TrySelectPossibility(fakePossibilities[0].AttachedObjectives.First()));

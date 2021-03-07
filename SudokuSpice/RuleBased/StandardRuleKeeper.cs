@@ -23,7 +23,8 @@ namespace SudokuSpice.RuleBased
         /// <param name="possibleValues">
         /// The shared possible values instance to use while solving.
         /// </param>
-        public StandardRuleKeeper() {
+        public StandardRuleKeeper()
+        {
             _selfArray = new IRule[] { this };
         }
 

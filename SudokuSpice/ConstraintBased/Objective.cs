@@ -174,7 +174,7 @@ namespace SudokuSpice.ConstraintBased
             }
             _toPossibility.PrependToObjective(toNewPossibility);
         }
-        
+
         /// <inheritdoc />
         bool IObjective.TrySelectPossibility(Link toSelect)
         {

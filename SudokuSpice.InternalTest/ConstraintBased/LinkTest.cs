@@ -236,7 +236,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         {
             public bool IsConcrete { get; set; }
             public NodeState State { get; set; }
-            
+
             void IPossibility.AppendObjective(Link toNewObjective) { }
             void IPossibility.ReturnFromObjective(Link toReattach) => throw new System.NotImplementedException();
             bool IPossibility.TryDropFromObjective(Link toDetach) => throw new System.NotImplementedException();

@@ -234,12 +234,13 @@ namespace SudokuSpice.RuleBased.Rules
                     for (
                         Coordinate toCheck = _box.TopLeft;
                         toCheck != endCoord;
-                        toCheck = new Coordinate(toCheck.Row + 1, toCheck.Column + 1)) {
+                        toCheck = new Coordinate(toCheck.Row + 1, toCheck.Column + 1))
+                    {
                         if (toCheck != coord && !_puzzle[in toCheck].HasValue)
                         {
                             affectedCoordinates.AddOrTrackIfUntracked(in toCheck);
                         }
-                    } 
+                    }
                 }
                 if (_IsOnForwardDiagonal(relativeCoord))
                 {
@@ -247,7 +248,8 @@ namespace SudokuSpice.RuleBased.Rules
                     for (
                         Coordinate toCheck = new Coordinate(_box.TopLeft.Row, _box.TopLeft.Column + _box.Size - 1);
                         toCheck != endCoord;
-                        toCheck = new Coordinate(toCheck.Row + 1, toCheck.Column - 1)) {
+                        toCheck = new Coordinate(toCheck.Row + 1, toCheck.Column - 1))
+                    {
                         if (toCheck != coord && !_puzzle[in toCheck].HasValue)
                         {
                             affectedCoordinates.AddOrTrackIfUntracked(in toCheck);
@@ -258,7 +260,7 @@ namespace SudokuSpice.RuleBased.Rules
 
             private Coordinate _GetRelative(in Coordinate coord)
             {
-                return  new Coordinate(
+                return new Coordinate(
                     coord.Row - _box.TopLeft.Row, coord.Column - _box.TopLeft.Column);
             }
 
@@ -278,7 +280,7 @@ namespace SudokuSpice.RuleBased.Rules
             }
         }
 
-        private readonly Box[] _boxes; 
+        private readonly Box[] _boxes;
         private readonly int _size;
         private readonly int _boxSize;
         private readonly bool _includeDiagonals;

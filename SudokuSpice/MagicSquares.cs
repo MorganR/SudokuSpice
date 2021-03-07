@@ -44,7 +44,7 @@ namespace SudokuSpice
                 set.SetBit(possibleValue);
                 BitVector possibleValues = allPossibleValues;
                 possibleValues.UnsetBit(possibleValue);
-                sets = new (sets.Union(_ComputeMagicSetsForRemainder(boxSize - 1, magicSum - possibleValue, possibleValues, set)));
+                sets = new(sets.Union(_ComputeMagicSetsForRemainder(boxSize - 1, magicSum - possibleValue, possibleValues, set)));
             }
             return sets;
         }
@@ -84,7 +84,7 @@ namespace SudokuSpice
                     set.SetBit(possibleValue);
                     BitVector reducedPossibleValues = possibleValues;
                     reducedPossibleValues.UnsetBit(possibleValue);
-                    result = new (result.Union(_ComputeMagicSetsForRemainder(remainingSize - 1, remainder - possibleValue, reducedPossibleValues, set)));
+                    result = new(result.Union(_ComputeMagicSetsForRemainder(remainingSize - 1, remainder - possibleValue, reducedPossibleValues, set)));
                 }
             }
             return result;

@@ -247,7 +247,7 @@ namespace SudokuSpice.ConstraintBased
                         copiedSquare = new Possibility[_allPossibleValues.Length];
                         copiedRow[coord.Column] = copiedSquare;
                     }
-                    
+
                     var copiedPossibility = copiedSquare[concretePossibility.Index];
                     if (copiedPossibility is null)
                     {

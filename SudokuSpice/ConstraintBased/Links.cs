@@ -39,7 +39,7 @@ namespace SudokuSpice.ConstraintBased
                 link = link.NextOnPossibility;
             } while (link != sourceLink);
             return true;
-        } 
+        }
 
         /// <summary>
         /// Performs <paramref name="fn"/> on all the links on the possibility dimension, iterating
@@ -91,7 +91,7 @@ namespace SudokuSpice.ConstraintBased
         internal static bool TryUpdateOthersOnPossibility(
             Link sourceLink,
             Func<Link, bool> tryFn,
-            Action<Link> undoFn) 
+            Action<Link> undoFn)
         {
             for (Link? toUpdate = sourceLink.NextOnPossibility;
                 toUpdate != sourceLink;
@@ -129,7 +129,7 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="fn">The operation to perform.</param>
         internal static void RevertOthersOnPossibility(
             Link sourceLink,
-            Action<Link> fn) 
+            Action<Link> fn)
         {
             for (
                 Link? toRevert = sourceLink.PreviousOnPossibility;
@@ -175,7 +175,7 @@ namespace SudokuSpice.ConstraintBased
                 link = link.NextOnObjective;
             } while (link != sourceLink);
             return true;
-        } 
+        }
 
 
 
@@ -197,7 +197,7 @@ namespace SudokuSpice.ConstraintBased
                 fn(link);
                 link = link.NextOnObjective;
             } while (link != sourceLink);
-        } 
+        }
 
         /// <summary>
         /// Performs <paramref name="fn"/> on all the links on the objective dimension, iterating
@@ -246,7 +246,7 @@ namespace SudokuSpice.ConstraintBased
         internal static bool TryUpdateOthersOnObjective(
             Link sourceLink,
             Func<Link, bool> tryFn,
-            Action<Link> undoFn) 
+            Action<Link> undoFn)
         {
             for (Link? toUpdate = sourceLink.NextOnObjective;
                 toUpdate != sourceLink;
@@ -276,7 +276,7 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="fn">The operation to perform.</param>
         internal static void UpdateOthersOnObjective(
             Link sourceLink,
-            Action<Link> fn) 
+            Action<Link> fn)
         {
             for (Link? toUpdate = sourceLink.NextOnObjective;
                 toUpdate != sourceLink;
@@ -304,7 +304,7 @@ namespace SudokuSpice.ConstraintBased
         /// <param name="fn">The operation to perform.</param>
         internal static void RevertOthersOnObjective(
             Link sourceLink,
-            Action<Link> fn) 
+            Action<Link> fn)
         {
             for (
                 Link? toRevert = sourceLink.PreviousOnObjective;

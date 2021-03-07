@@ -11,7 +11,8 @@ namespace SudokuSpice
             var numRows = matrix.GetLength(0);
             var numCols = matrix.GetLength(1);
             var copy = new int?[numRows][];
-            for (int row = 0; row < copy.Length; ++row) {
+            for (int row = 0; row < copy.Length; ++row)
+            {
                 var rowCopy = new int?[numCols];
                 for (int col = 0; col < rowCopy.Length; ++col)
                 {
@@ -24,8 +25,9 @@ namespace SudokuSpice
 
         public static int?[][] Copy2D(this int?[][] matrix)
         {
-             var copy = new int?[matrix.GetLength(0)][];
-            for (int row = 0; row < copy.Length; ++row) {
+            var copy = new int?[matrix.GetLength(0)][];
+            for (int row = 0; row < copy.Length; ++row)
+            {
                 copy[row] = matrix[row].AsSpan().ToArray();
             }
             return copy;

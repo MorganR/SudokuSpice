@@ -69,7 +69,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void TryInit_NotPossible_Fails()
         {
-           var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null,    6, null, null, null, null, null, null },
                 new int?[] {    1, null, null, null, null, null, null, null, null },
                 new int?[] { null,    3,    8, null, null, null, null, null, null },
@@ -194,7 +194,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Revert_RevertsSpecifiedRow()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] {1, null /* 4 */, null /* 3 */, 2},
                 new int?[] {null /* 2 */, null /* 3 */, 1, null /* 4 */},
                 new int?[] {null /* 4 */, null /* 1 */, null /* 2 */, null /* 3 */},
@@ -231,7 +231,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Solve_WithManySolutions_Works()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null,    9, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null, null, null, null },
                 new int?[] { null,    3,    5, null, null, null, null, null, null },
@@ -242,7 +242,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] { null, null, null, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Box[] { 
+            var magicSquares = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
                 new Box(new Coordinate(3, 3), 3),
                 new Box(new Coordinate(6, 6), 3),
@@ -264,7 +264,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Solve_WithOneSolution_Works()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null,    9, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null, null,    1, null },
                 new int?[] { null, null, null, null, null,    5, null, null, null },
@@ -275,7 +275,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] { null,    4, null, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null,    6, null, null },
             });
-            var magicSquares = new Box[] { 
+            var magicSquares = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
                 new Box(new Coordinate(0, 3), 3),
                 new Box(new Coordinate(0, 6), 3),
@@ -305,7 +305,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void Solve_WithOneSolutionUsingDiagonals_Works()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null, null, null, null, null, null,    1,    2 },
                 new int?[] { null,    5, null, null,    9, null, null, null, null },
                 new int?[] { null, null, null, null, null,    8, null, null, null },
@@ -316,7 +316,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] {    6, null,    1, null, null, null,    7, null, null },
                 new int?[] {    2, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Box[] { 
+            var magicSquares = new Box[] {
                 new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(
@@ -341,7 +341,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void HasUniqueSolution_WithManySolutions_IsFalse()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null,    9, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null, null, null, null },
                 new int?[] { null,    3,    5, null, null, null, null, null, null },
@@ -352,7 +352,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] { null, null, null, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Box[] { 
+            var magicSquares = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
                 new Box(new Coordinate(3, 3), 3),
                 new Box(new Coordinate(6, 6), 3),
@@ -370,7 +370,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void HasUniqueSolution_WithUniqueSolution_IsTrue()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null,    9, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null, null,    1, null },
                 new int?[] { null, null, null, null, null,    5, null, null, null },
@@ -381,7 +381,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] { null,    4, null, null, null, null, null, null, null },
                 new int?[] { null, null, null, null, null, null,    6, null, null },
             });
-            var magicSquares = new Box[] { 
+            var magicSquares = new Box[] {
                 new Box(new Coordinate(0, 0), 3),
                 new Box(new Coordinate(0, 3), 3),
                 new Box(new Coordinate(0, 6), 3),
@@ -407,7 +407,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         [Fact]
         public void HasUniqueSolution_WithOneSolutionUsingDiagonals_IsTrue()
         {
-             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
+            var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] { null, null, null, null, null, null, null,    1,    2 },
                 new int?[] { null,    5, null, null,    9, null, null, null, null },
                 new int?[] { null, null, null, null, null,    8, null, null, null },
@@ -418,7 +418,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] {    6, null,    1, null, null, null,    7, null, null },
                 new int?[] {    2, null, null, null, null, null, null, null, null },
             });
-            var magicSquares = new Box[] { 
+            var magicSquares = new Box[] {
                 new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<PuzzleWithPossibleValues>(

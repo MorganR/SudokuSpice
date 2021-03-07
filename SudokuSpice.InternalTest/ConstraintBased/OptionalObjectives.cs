@@ -5,7 +5,7 @@
         internal static OptionalObjective[] CreateIndependentOptionalObjectives(int objectivesCount, int countToSatisfy)
         {
             var objectives = new OptionalObjective[objectivesCount];
-            for(--objectivesCount; objectivesCount >= 0; --objectivesCount)
+            for (--objectivesCount; objectivesCount >= 0; --objectivesCount)
             {
                 objectives[objectivesCount] = OptionalObjective.CreateWithPossibilities(
                    Possibilities.CreatePossibilities(new Coordinate(objectivesCount, 0), 3), countToSatisfy);

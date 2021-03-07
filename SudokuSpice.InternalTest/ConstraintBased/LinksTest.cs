@@ -322,7 +322,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             var objective = new FakeObjective();
             return new List<Link> {
                 Link.CreateConnectedLink(new FakePossibility(), objective),
-                Link.CreateConnectedLink(new FakePossibility(), objective), 
+                Link.CreateConnectedLink(new FakePossibility(), objective),
                 Link.CreateConnectedLink(new FakePossibility(), objective),
             };
         }
