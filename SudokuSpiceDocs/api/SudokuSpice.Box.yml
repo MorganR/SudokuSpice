@@ -8,7 +8,7 @@ items:
   - SudokuSpice.Box.#ctor(SudokuSpice.Coordinate,System.Int32)
   - SudokuSpice.Box.Contains(SudokuSpice.Coordinate@)
   - SudokuSpice.Box.Equals(SudokuSpice.Box)
-  - SudokuSpice.Box.Equals(System.Nullable{System.Object})
+  - SudokuSpice.Box.Equals(System.Object)
   - SudokuSpice.Box.GetHashCode
   - SudokuSpice.Box.op_Equality(SudokuSpice.Box,SudokuSpice.Box)
   - SudokuSpice.Box.op_Inequality(SudokuSpice.Box,SudokuSpice.Box)
@@ -25,7 +25,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Box
     path: ../SudokuSpice/Box.cs
     startLine: 7
@@ -40,7 +40,12 @@ items:
       Public Structure Box
           Implements IEquatable(Of Box)
   implements:
-  - IEquatable{SudokuSpice.Box}
+  - System.IEquatable{SudokuSpice.Box}
+  inheritedMembers:
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   modifiers.csharp:
   - public
   - struct
@@ -62,7 +67,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TopLeft
     path: ../SudokuSpice/Box.cs
     startLine: 12
@@ -99,7 +104,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Size
     path: ../SudokuSpice/Box.cs
     startLine: 16
@@ -136,7 +141,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/Box.cs
     startLine: 22
@@ -173,7 +178,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Contains
     path: ../SudokuSpice/Box.cs
     startLine: 35
@@ -198,22 +203,22 @@ items:
   - Public
   fullName.vb: SudokuSpice.Box.Contains(ByRef SudokuSpice.Coordinate)
   name.vb: Contains(ByRef Coordinate)
-- uid: SudokuSpice.Box.Equals(System.Nullable{System.Object})
-  commentId: M:SudokuSpice.Box.Equals(System.Nullable{System.Object})
-  id: Equals(System.Nullable{System.Object})
+- uid: SudokuSpice.Box.Equals(System.Object)
+  commentId: M:SudokuSpice.Box.Equals(System.Object)
+  id: Equals(System.Object)
   parent: SudokuSpice.Box
   langs:
   - csharp
   - vb
-  name: Equals(Nullable<Object>)
-  nameWithType: Box.Equals(Nullable<Object>)
-  fullName: SudokuSpice.Box.Equals(System.Nullable<System.Object>)
+  name: Equals(Object)
+  nameWithType: Box.Equals(Object)
+  fullName: SudokuSpice.Box.Equals(System.Object)
   type: Method
   source:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/Box.cs
     startLine: 43
@@ -221,23 +226,21 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   syntax:
-    content: public override bool Equals(object? obj)
+    content: public override bool Equals(object obj)
     parameters:
     - id: obj
-      type: System.Nullable{System.Object}
+      type: System.Object
     return:
       type: System.Boolean
-    content.vb: Public Overrides Function Equals(obj As Object?) As Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
   overload: SudokuSpice.Box.Equals*
-  nameWithType.vb: Box.Equals(Nullable(Of Object))
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: SudokuSpice.Box.Equals(System.Nullable(Of System.Object))
-  name.vb: Equals(Nullable(Of Object))
 - uid: SudokuSpice.Box.Equals(SudokuSpice.Box)
   commentId: M:SudokuSpice.Box.Equals(SudokuSpice.Box)
   id: Equals(SudokuSpice.Box)
@@ -253,7 +256,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/Box.cs
     startLine: 52
@@ -269,6 +272,8 @@ items:
       type: System.Boolean
     content.vb: Public Function Equals(other As Box) As Boolean
   overload: SudokuSpice.Box.Equals*
+  implements:
+  - System.IEquatable{SudokuSpice.Box}.Equals(SudokuSpice.Box)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -288,7 +293,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetHashCode
     path: ../SudokuSpice/Box.cs
     startLine: 57
@@ -300,6 +305,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
   overload: SudokuSpice.Box.GetHashCode*
   modifiers.csharp:
   - public
@@ -322,7 +328,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: op_Equality
     path: ../SudokuSpice/Box.cs
     startLine: 62
@@ -361,7 +367,7 @@ items:
     remote:
       path: SudokuSpice/Box.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: op_Inequality
     path: ../SudokuSpice/Box.cs
     startLine: 67
@@ -391,20 +397,21 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: IEquatable{SudokuSpice.Box}
-  commentId: '!:IEquatable{SudokuSpice.Box}'
-  definition: IEquatable`1
+- uid: System.IEquatable{SudokuSpice.Box}
+  commentId: T:System.IEquatable{SudokuSpice.Box}
+  parent: System
+  definition: System.IEquatable`1
   name: IEquatable<Box>
   nameWithType: IEquatable<Box>
-  fullName: IEquatable<SudokuSpice.Box>
+  fullName: System.IEquatable<SudokuSpice.Box>
   nameWithType.vb: IEquatable(Of Box)
-  fullName.vb: IEquatable(Of SudokuSpice.Box)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Box)
   name.vb: IEquatable(Of Box)
   spec.csharp:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: <
     nameWithType: <
@@ -417,10 +424,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -432,44 +439,241 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEquatable`1
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
   isExternal: true
-  name: IEquatable<>
-  nameWithType: IEquatable<>
-  fullName: IEquatable<>
-  nameWithType.vb: IEquatable(Of )
-  fullName.vb: IEquatable(Of )
-  name.vb: IEquatable(Of )
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
   spec.csharp:
-  - uid: IEquatable`1
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: SudokuSpice.Box.TopLeft*
   commentId: Overload:SudokuSpice.Box.TopLeft
   name: TopLeft
@@ -487,6 +691,8 @@ references:
   nameWithType: Box.Size
   fullName: SudokuSpice.Box.Size
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -502,50 +708,28 @@ references:
   nameWithType: Box.Contains
   fullName: SudokuSpice.Box.Contains
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.Box.Equals*
-  commentId: Overload:SudokuSpice.Box.Equals
-  name: Equals
-  nameWithType: Box.Equals
-  fullName: SudokuSpice.Box.Equals
-- uid: System.Nullable{System.Object}
-  commentId: '!:System.Nullable{System.Object}'
-  definition: System.Nullable`1
-  name: Nullable<Object>
-  nameWithType: Nullable<Object>
-  fullName: System.Nullable<System.Object>
-  nameWithType.vb: Nullable(Of Object)
-  fullName.vb: System.Nullable(Of System.Object)
-  name.vb: Nullable(Of Object)
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+    nameWithType: (
+    fullName: (
   - uid: System.Object
     name: Object
     nameWithType: Object
@@ -554,41 +738,66 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Nullable`1
-  isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Box.Equals*
+  commentId: Overload:SudokuSpice.Box.Equals
+  name: Equals
+  nameWithType: Box.Equals
+  fullName: SudokuSpice.Box.Equals
+- uid: System.IEquatable{SudokuSpice.Box}.Equals(SudokuSpice.Box)
+  commentId: M:System.IEquatable{SudokuSpice.Box}.Equals(SudokuSpice.Box)
+  parent: System.IEquatable{SudokuSpice.Box}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(Box)
+  nameWithType: IEquatable<Box>.Equals(Box)
+  fullName: System.IEquatable<SudokuSpice.Box>.Equals(SudokuSpice.Box)
+  nameWithType.vb: IEquatable(Of Box).Equals(Box)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Box).Equals(SudokuSpice.Box)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<Box>.Equals
+    fullName: System.IEquatable<SudokuSpice.Box>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of Box).Equals
+    fullName: System.IEquatable(Of SudokuSpice.Box).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Box
+    name: Box
+    nameWithType: Box
+    fullName: SudokuSpice.Box
   - name: )
     nameWithType: )
     fullName: )
@@ -598,6 +807,75 @@ references:
   name: Box
   nameWithType: Box
   fullName: SudokuSpice.Box
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Box.GetHashCode*
   commentId: Overload:SudokuSpice.Box.GetHashCode
   name: GetHashCode
