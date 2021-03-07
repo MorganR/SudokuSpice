@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace SudokuSpice.ConstraintBased
+   | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace SudokuSpice.ConstraintBased
+   | SudokuSpice ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v3.0.0">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.ConstraintBased">
+  
+  <h1 id="SudokuSpice_ConstraintBased" data-uid="SudokuSpice.ConstraintBased" class="text-break">Namespace SudokuSpice.ConstraintBased
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a></h4>
+      <section><p>Holds an exact-cover graph for the current puzzle being solved.</p>
+<p>This is an extension of the
+<a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a> concept. Rows of
+the exact-cover matrix, i.e. a specific location and possible value for that location, are
+represented by <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a> objects. These are linked together by
+<a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a> objects, which represent the columns of an exact-cover matrix.</p>
+<p>For example, the <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html">RowUniquenessConstraint</a> uses a required
+<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a> to link all the <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a> objects on a single row
+that have the same possible value. This way, when one of these possibilities is selected,
+then the others are all dropped.</p>
+<p>To extend the concept into a larger graph, this also uses <a class="xref" href="SudokuSpice.ConstraintBased.OptionalObjective.html">OptionalObjective</a>s
+to create subgroups over <a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a> objects and/or other
+<a class="xref" href="SudokuSpice.ConstraintBased.OptionalObjective.html">OptionalObjective</a> objects. This allows for much more complex constraints,
+such as the <a class="xref" href="SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.html">MagicSquaresConstraint</a>.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a></h4>
+      <section><p>A required objective in the <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a>. This enforces that one or more
+<a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a>s must be selected.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.OptionalObjective.html">OptionalObjective</a></h4>
+      <section><p>An optional objective in an <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a>. An optional objective is both
+an <a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a> and an <a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a>.</p>
+<p>This can be satisfied if one or more attached <a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a> objects are
+selected. Once satisfied, this drops any remaining unknown possibilities, and notifies
+parent objectives that to select this possibility.</p>
+<p>Unlike <a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>s, this class can be dropped. Dropping this objetive does
+not immediately impact attached possibilities. These possibilities may still be dropped
+or selected, as long as this objective does not become satisfied. If selecting a
+possibility would satisfy a dropped optional objective, then the call to
+<span class="xref">SudokuSpice.ConstraintBased.IObjective.TrySelectPossibility(SudokuSpice.ConstraintBased.Link)</span> will fail.</p>
+<p>All <code>OptionalObjective</code> objects must eventually be descendents of at least one
+<a class="xref" href="SudokuSpice.ConstraintBased.Objective.html">Objective</a>.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.Possibility.html">Possibility</a></h4>
+      <section><p>A concrete possibility in the <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a>. This represents a single
+possible value for a single square in the puzzle.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.PuzzleSolver-1.html">PuzzleSolver&lt;TPuzzle&gt;</a></h4>
+      <section><p>Solves puzzles of the given type using an <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a>.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.StandardPuzzles.html">StandardPuzzles</a></h4>
+      <section><p>Provides utilities for interacting with standard Sudoku puzzles.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a></h4>
+      <section><p>Defines an objective in the <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a> graph.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.IOptionalObjective.html">IOptionalObjective</a></h4>
+      <section></section>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a></h4>
+      <section><p>Defines a possibility in the <a class="xref" href="SudokuSpice.ConstraintBased.ExactCoverGraph.html">ExactCoverGraph</a>.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="SudokuSpice.ConstraintBased.NodeState.html">NodeState</a></h4>
+      <section><p>Indicates if an <a class="xref" href="SudokuSpice.ConstraintBased.IPossibility.html">IPossibility</a> or <a class="xref" href="SudokuSpice.ConstraintBased.IObjective.html">IObjective</a> is still possible,
+selected, or dropped.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
