@@ -2,7 +2,7 @@
 
 Select a release from below:
 
-### [3.0.0](/releases/v3.0.0/) - 2021-03-07
+## [3.0.0](/releases/v3.0.0/) - 2021-03-07
 
 * Updated to .NET 5 (dropped support for older versions)
 * The rule-based and constraint-based APIs have been unified as much as possible (note: many breaking changes).
