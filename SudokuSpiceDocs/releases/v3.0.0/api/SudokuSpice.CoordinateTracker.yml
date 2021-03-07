@@ -9,10 +9,10 @@ items:
   - SudokuSpice.CoordinateTracker.#ctor(System.Int32)
   - SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate@)
   - SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
-  - SudokuSpice.CoordinateTracker.GetTrackedCoords
   - SudokuSpice.CoordinateTracker.NumTracked
   - SudokuSpice.CoordinateTracker.Size
   - SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate@)
+  - SudokuSpice.CoordinateTracker.TrackedCoords
   - SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate@)
   - SudokuSpice.CoordinateTracker.UntrackAll
   langs:
@@ -121,6 +121,43 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: SudokuSpice.CoordinateTracker.TrackedCoords
+  commentId: P:SudokuSpice.CoordinateTracker.TrackedCoords
+  id: TrackedCoords
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: TrackedCoords
+  nameWithType: CoordinateTracker.TrackedCoords
+  fullName: SudokuSpice.CoordinateTracker.TrackedCoords
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TrackedCoords
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 28
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nProvides readonly access to the currently tracked <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  example: []
+  syntax:
+    content: public ReadOnlySpan<Coordinate> TrackedCoords { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate}
+    content.vb: Public ReadOnly Property TrackedCoords As ReadOnlySpan(Of Coordinate)
+  overload: SudokuSpice.CoordinateTracker.TrackedCoords*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: SudokuSpice.CoordinateTracker.#ctor(System.Int32)
   commentId: M:SudokuSpice.CoordinateTracker.#ctor(System.Int32)
   id: '#ctor(System.Int32)'
@@ -139,7 +176,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 53
+    startLine: 58
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -175,7 +212,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 73
+    startLine: 78
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -211,7 +248,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Add
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 90
+    startLine: 95
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -250,7 +287,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Track
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 103
+    startLine: 108
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -289,7 +326,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: AddOrTrackIfUntracked
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 116
+    startLine: 121
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -331,7 +368,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Untrack
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 137
+    startLine: 142
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -370,7 +407,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: UntrackAll
     path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 154
+    startLine: 159
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -380,40 +417,6 @@ items:
     content: public void UntrackAll()
     content.vb: Public Sub UntrackAll
   overload: SudokuSpice.CoordinateTracker.UntrackAll*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.CoordinateTracker.GetTrackedCoords
-  commentId: M:SudokuSpice.CoordinateTracker.GetTrackedCoords
-  id: GetTrackedCoords
-  parent: SudokuSpice.CoordinateTracker
-  langs:
-  - csharp
-  - vb
-  name: GetTrackedCoords()
-  nameWithType: CoordinateTracker.GetTrackedCoords()
-  fullName: SudokuSpice.CoordinateTracker.GetTrackedCoords()
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/CoordinateTracker.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: GetTrackedCoords
-    path: ../SudokuSpice/CoordinateTracker.cs
-    startLine: 159
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nProvides readonly access to the currently tracked <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
-  example: []
-  syntax:
-    content: public ReadOnlySpan<Coordinate> GetTrackedCoords()
-    return:
-      type: SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate}
-    content.vb: Public Function GetTrackedCoords As ReadOnlySpan(Of Coordinate)
-  overload: SudokuSpice.CoordinateTracker.GetTrackedCoords*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -445,53 +448,11 @@ references:
   name: Size
   nameWithType: CoordinateTracker.Size
   fullName: SudokuSpice.CoordinateTracker.Size
-- uid: SudokuSpice.CoordinateTracker.#ctor*
-  commentId: Overload:SudokuSpice.CoordinateTracker.#ctor
-  name: CoordinateTracker
-  nameWithType: CoordinateTracker.CoordinateTracker
-  fullName: SudokuSpice.CoordinateTracker.CoordinateTracker
-- uid: SudokuSpice.CoordinateTracker
-  commentId: T:SudokuSpice.CoordinateTracker
-  parent: SudokuSpice
-  name: CoordinateTracker
-  nameWithType: CoordinateTracker
-  fullName: SudokuSpice.CoordinateTracker
-- uid: SudokuSpice.CoordinateTracker.Add*
-  commentId: Overload:SudokuSpice.CoordinateTracker.Add
-  name: Add
-  nameWithType: CoordinateTracker.Add
-  fullName: SudokuSpice.CoordinateTracker.Add
-- uid: SudokuSpice.CoordinateTracker.Track*
-  commentId: Overload:SudokuSpice.CoordinateTracker.Track
-  name: Track
-  nameWithType: CoordinateTracker.Track
-  fullName: SudokuSpice.CoordinateTracker.Track
-- uid: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked*
-  commentId: Overload:SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked
-  name: AddOrTrackIfUntracked
-  nameWithType: CoordinateTracker.AddOrTrackIfUntracked
-  fullName: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked
-- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
-  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
-  parent: SudokuSpice
-  name: CoordinateTracker.AddOrTrackResult
-  nameWithType: CoordinateTracker.AddOrTrackResult
-  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult
-- uid: SudokuSpice.CoordinateTracker.Untrack*
-  commentId: Overload:SudokuSpice.CoordinateTracker.Untrack
-  name: Untrack
-  nameWithType: CoordinateTracker.Untrack
-  fullName: SudokuSpice.CoordinateTracker.Untrack
-- uid: SudokuSpice.CoordinateTracker.UntrackAll*
-  commentId: Overload:SudokuSpice.CoordinateTracker.UntrackAll
-  name: UntrackAll
-  nameWithType: CoordinateTracker.UntrackAll
-  fullName: SudokuSpice.CoordinateTracker.UntrackAll
-- uid: SudokuSpice.CoordinateTracker.GetTrackedCoords*
-  commentId: Overload:SudokuSpice.CoordinateTracker.GetTrackedCoords
-  name: GetTrackedCoords
-  nameWithType: CoordinateTracker.GetTrackedCoords
-  fullName: SudokuSpice.CoordinateTracker.GetTrackedCoords
+- uid: SudokuSpice.CoordinateTracker.TrackedCoords*
+  commentId: Overload:SudokuSpice.CoordinateTracker.TrackedCoords
+  name: TrackedCoords
+  nameWithType: CoordinateTracker.TrackedCoords
+  fullName: SudokuSpice.CoordinateTracker.TrackedCoords
 - uid: SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate}
   commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate}'
   definition: SudokuSpice.ReadOnlySpan`1
@@ -571,3 +532,45 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.CoordinateTracker.#ctor*
+  commentId: Overload:SudokuSpice.CoordinateTracker.#ctor
+  name: CoordinateTracker
+  nameWithType: CoordinateTracker.CoordinateTracker
+  fullName: SudokuSpice.CoordinateTracker.CoordinateTracker
+- uid: SudokuSpice.CoordinateTracker
+  commentId: T:SudokuSpice.CoordinateTracker
+  parent: SudokuSpice
+  name: CoordinateTracker
+  nameWithType: CoordinateTracker
+  fullName: SudokuSpice.CoordinateTracker
+- uid: SudokuSpice.CoordinateTracker.Add*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Add
+  name: Add
+  nameWithType: CoordinateTracker.Add
+  fullName: SudokuSpice.CoordinateTracker.Add
+- uid: SudokuSpice.CoordinateTracker.Track*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Track
+  name: Track
+  nameWithType: CoordinateTracker.Track
+  fullName: SudokuSpice.CoordinateTracker.Track
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked*
+  commentId: Overload:SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked
+  name: AddOrTrackIfUntracked
+  nameWithType: CoordinateTracker.AddOrTrackIfUntracked
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice
+  name: CoordinateTracker.AddOrTrackResult
+  nameWithType: CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult
+- uid: SudokuSpice.CoordinateTracker.Untrack*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Untrack
+  name: Untrack
+  nameWithType: CoordinateTracker.Untrack
+  fullName: SudokuSpice.CoordinateTracker.Untrack
+- uid: SudokuSpice.CoordinateTracker.UntrackAll*
+  commentId: Overload:SudokuSpice.CoordinateTracker.UntrackAll
+  name: UntrackAll
+  nameWithType: CoordinateTracker.UntrackAll
+  fullName: SudokuSpice.CoordinateTracker.UntrackAll

@@ -15,10 +15,10 @@ items:
   - SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.GetHashCode
-  - SudokuSpice.BitVector.GetSetBits
   - SudokuSpice.BitVector.IsBitSet(System.Int32)
   - SudokuSpice.BitVector.IsEmpty
   - SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.NumBits
   - SudokuSpice.BitVector.op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.PopulateSetBits(Span{System.Int32})
@@ -39,7 +39,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: BitVector
     path: ../SudokuSpice/BitVector.cs
-    startLine: 10
+    startLine: 9
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -58,6 +58,41 @@ items:
   modifiers.vb:
   - Public
   - Structure
+- uid: SudokuSpice.BitVector.NumBits
+  commentId: F:SudokuSpice.BitVector.NumBits
+  id: NumBits
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: NumBits
+  nameWithType: BitVector.NumBits
+  fullName: SudokuSpice.BitVector.NumBits
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: NumBits
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 27
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe number of bits (i.e. the capacity) contained by a BitVector.\n"
+  example: []
+  syntax:
+    content: public const int NumBits = null
+    return:
+      type: System.Int32
+    content.vb: Public Const NumBits As Integer = Nothing
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
 - uid: SudokuSpice.BitVector.Data
   commentId: P:SudokuSpice.BitVector.Data
   id: Data
@@ -76,7 +111,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Data
     path: ../SudokuSpice/BitVector.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -113,7 +148,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IsEmpty
     path: ../SudokuSpice/BitVector.cs
-    startLine: 34
+    startLine: 38
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -151,7 +186,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: .ctor
     path: ../SudokuSpice/BitVector.cs
-    startLine: 40
+    startLine: 44
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -187,7 +222,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: CreateWithSize
     path: ../SudokuSpice/BitVector.cs
-    startLine: 49
+    startLine: 53
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -227,7 +262,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: FindIntersect
     path: ../SudokuSpice/BitVector.cs
-    startLine: 68
+    startLine: 72
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -271,7 +306,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: FindUnion
     path: ../SudokuSpice/BitVector.cs
-    startLine: 76
+    startLine: 80
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -315,7 +350,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: FindDifference
     path: ../SudokuSpice/BitVector.cs
-    startLine: 84
+    startLine: 88
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -359,7 +394,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: UnsetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 90
+    startLine: 94
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -395,7 +430,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: SetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 96
+    startLine: 100
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -431,7 +466,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ComputeCount
     path: ../SudokuSpice/BitVector.cs
-    startLine: 106
+    startLine: 110
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -466,7 +501,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IsBitSet
     path: ../SudokuSpice/BitVector.cs
-    startLine: 113
+    startLine: 117
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -483,42 +518,6 @@ items:
       description: True if set.
     content.vb: Public Function IsBitSet(bit As Integer) As Boolean
   overload: SudokuSpice.BitVector.IsBitSet*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.BitVector.GetSetBits
-  commentId: M:SudokuSpice.BitVector.GetSetBits
-  id: GetSetBits
-  parent: SudokuSpice.BitVector
-  langs:
-  - csharp
-  - vb
-  name: GetSetBits()
-  nameWithType: BitVector.GetSetBits()
-  fullName: SudokuSpice.BitVector.GetSetBits()
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/BitVector.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: GetSetBits
-    path: ../SudokuSpice/BitVector.cs
-    startLine: 123
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nGets a list of the bits set in this bit vector.\n"
-  remarks: "\nThis operation is slightly more efficient on average when <see cref=\"!:Popcnt\"></see> is\nsupported. Worst case performance is roughly the same.\n"
-  example: []
-  syntax:
-    content: public List<int> GetSetBits()
-    return:
-      type: List{System.Int32}
-      description: A list of the bits that are set.
-    content.vb: Public Function GetSetBits As List(Of Integer)
-  overload: SudokuSpice.BitVector.GetSetBits*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -541,7 +540,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: PopulateSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 169
+    startLine: 139
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -584,7 +583,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: IsSubsetOf
     path: ../SudokuSpice/BitVector.cs
-    startLine: 196
+    startLine: 166
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -623,7 +622,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 202
+    startLine: 172
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -658,7 +657,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 204
+    startLine: 174
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -698,7 +697,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: GetHashCode
     path: ../SudokuSpice/BitVector.cs
-    startLine: 213
+    startLine: 183
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -732,7 +731,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: ToString
     path: ../SudokuSpice/BitVector.cs
-    startLine: 218
+    startLine: 188
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -768,7 +767,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: op_Equality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 220
+    startLine: 190
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -807,7 +806,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice.git
     id: op_Inequality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 221
+    startLine: 191
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -913,6 +912,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: SudokuSpice.BitVector.Data*
   commentId: Overload:SudokuSpice.BitVector.Data
   name: Data
@@ -943,11 +947,6 @@ references:
   name: CreateWithSize
   nameWithType: BitVector.CreateWithSize
   fullName: SudokuSpice.BitVector.CreateWithSize
-- uid: System.Int32
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
@@ -989,93 +988,6 @@ references:
   name: IsBitSet
   nameWithType: BitVector.IsBitSet
   fullName: SudokuSpice.BitVector.IsBitSet
-- uid: SudokuSpice.BitVector.GetSetBits*
-  commentId: Overload:SudokuSpice.BitVector.GetSetBits
-  name: GetSetBits
-  nameWithType: BitVector.GetSetBits
-  fullName: SudokuSpice.BitVector.GetSetBits
-- uid: List{System.Int32}
-  commentId: '!:List{System.Int32}'
-  definition: List`1
-  name: List<Int32>
-  nameWithType: List<Int32>
-  fullName: List<System.Int32>
-  nameWithType.vb: List(Of Int32)
-  fullName.vb: List(Of System.Int32)
-  name.vb: List(Of Int32)
-  spec.csharp:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: List`1
-  commentId: '!:List`1'
-  isExternal: true
-  name: List<>
-  nameWithType: List<>
-  fullName: List<>
-  nameWithType.vb: List(Of )
-  fullName.vb: List(Of )
-  name.vb: List(Of )
-  spec.csharp:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.BitVector.PopulateSetBits*
   commentId: Overload:SudokuSpice.BitVector.PopulateSetBits
   name: PopulateSetBits

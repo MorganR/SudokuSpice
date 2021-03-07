@@ -202,13 +202,13 @@ items:
   summary: "\nReturns all the values that still need to be set in the given column.\n"
   example: []
   syntax:
-    content: public BitVector GetMissingValuesForColumn(int col)
+    content: public BitVector GetMissingValuesForColumn(int column)
     parameters:
-    - id: col
+    - id: column
       type: System.Int32
     return:
       type: SudokuSpice.BitVector
-    content.vb: Public Function GetMissingValuesForColumn(col As Integer) As BitVector
+    content.vb: Public Function GetMissingValuesForColumn(column As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.GetMissingValuesForColumn*
   implements:
   - SudokuSpice.RuleBased.Rules.IMissingColumnValuesTracker.GetMissingValuesForColumn(System.Int32)

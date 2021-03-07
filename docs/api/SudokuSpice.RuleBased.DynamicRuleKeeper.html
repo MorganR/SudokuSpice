@@ -85,35 +85,11 @@
     <h5>Implements</h5>
     <div><a class="xref" href="SudokuSpice.RuleBased.IRuleKeeper.html">IRuleKeeper</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_DynamicRuleKeeper_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DynamicRuleKeeper : IRuleKeeper</code></pre>
+    <pre><code class="lang-csharp hljs">public class DynamicRuleKeeper : object, IRuleKeeper</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -230,7 +206,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
+        <td><span class="xref">SudokuSpice.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

@@ -115,7 +115,8 @@
   </span>
   <a id="SudokuSpice_PuzzleGenerator_1__ctor_" data-uid="SudokuSpice.PuzzleGenerator`1.#ctor*"></a>
   <h4 id="SudokuSpice_PuzzleGenerator_1__ctor_Func_System_Int32__0__SudokuSpice_IPuzzleSolver__0__" data-uid="SudokuSpice.PuzzleGenerator`1.#ctor(Func{System.Int32,`0},SudokuSpice.IPuzzleSolver{`0})">PuzzleGenerator(Func&lt;Int32, TPuzzle&gt;, IPuzzleSolver&lt;TPuzzle&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a puzzle generator for generating puzzles.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -134,12 +135,16 @@
       <tr>
         <td><span class="xref">Func</span>&lt;<span class="xref">System.Int32</span>, TPuzzle&gt;</td>
         <td><span class="parametername">puzzleFromSize</span></td>
-        <td></td>
+        <td><p>A function that constructs an empty <a class="xref" href="SudokuSpice.IPuzzle-1.html">IPuzzle&lt;T&gt;</a> of the desired type and shape.
+The requested puzzle size (i.e. side-length) is provided as an argument.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.IPuzzleSolver-1.html">IPuzzleSolver</a>&lt;TPuzzle&gt;</td>
         <td><span class="parametername">solver</span></td>
-        <td></td>
+        <td><p>A solver to be used to generate puzzles. The solver determines the rules or constraints
+a puzzle must satisfy.</p>
+</td>
       </tr>
     </tbody>
   </table>
