@@ -6,7 +6,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
     internal class FakeObjective : IObjective
     {
         private readonly bool _isRequired;
-        private HashSet<IObjective>? _requiredObjectives;
+        private readonly HashSet<IObjective>? _requiredObjectives;
         internal bool CanDropPossibilities = true;
         internal bool CanSelectPossibilities = true;
         internal List<Link> AttachedPossibilities = new();

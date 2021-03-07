@@ -5,18 +5,33 @@
     <Nullable>enable</Nullable>
     <Description>An efficient sudoku solving and generating library targeting .NET 5.
 
+This library is designed to work as a framework for solving or generating any Sudoku-style puzzles. For example, you can implement custom rules, or mix-and-match the provided rules, to solve or generate whatever puzzle you need.
+
 Docs: https://www.sudokuspice.dev/</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/MorganR/SudokuSpice</PackageProjectUrl>
     <PackageIcon>sudokuspice-black.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/MorganR/SudokuSpice</RepositoryUrl>
-    <PackageTags>sudoku solver solve generator generate sudokuspice spice puzzle puzzles sudokus</PackageTags>
+    <PackageTags>sudoku solver solve solving generator generate generating sudokuspice spice puzzle puzzles sudokus framework generic sudoku-style</PackageTags>
     <Authors>Morgan Roff</Authors>
     <Company>SudokuSpice</Company>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Version>3.0.0</Version>
+    <Copyright>Morgan Roff</Copyright>
+    <PackageReleaseNotes>Version 3 has lots of changes!
+
+* The rule-based and constraint-based APIs have been unified as much as possible (note: many breaking changes).
+* There is now a single PuzzleGenerator that works with any IPuzzleSolver implementation.
+* Solvers and generators are now generic to reduce casting.
+* Performance has been improved across the board.
+* The constraint-based library has been simplified around the concepts of Objectives and Possibilities, and extended from an exact-cover matrix to a more expressive exact-cover graph. This enables more complex constraints.
+* Added a rule and constraint for implementing magic squares.
+* Rule-based code now uses a new puzzle type that combines IPuzzle and IPossibleValues: PuzzleWithPossibleValues!
+* More tests.
+* Loads of other little changes.</PackageReleaseNotes>
   </PropertyGroup>
 
 

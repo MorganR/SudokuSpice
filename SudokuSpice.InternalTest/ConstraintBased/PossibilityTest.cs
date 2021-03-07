@@ -130,8 +130,8 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             IPossibility possibility = concretePossibility;
             var objectiveToDropFrom = new FakeObjective();
             var objectiveToDetach = new FakeObjective();
-            var sharedParent = new FakeObjective(isRequired: false);
-            var uniqueParent = new FakeObjective(isRequired: true);
+            _ = new FakeObjective(isRequired: false);
+            _ = new FakeObjective(isRequired: true);
             var linkToDrop = Link.CreateConnectedLink(possibility, objectiveToDropFrom);
             var linkToDetach = Link.CreateConnectedLink(possibility, objectiveToDetach);
 
