@@ -10,7 +10,7 @@ items:
   - SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
   - SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
   - SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
-  - SudokuSpice.Coordinate.Equals(System.Nullable{System.Object})
+  - SudokuSpice.Coordinate.Equals(System.Object)
   - SudokuSpice.Coordinate.GetHashCode
   - SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
   - SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
@@ -27,7 +27,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Coordinate
     path: ../SudokuSpice/Coordinate.cs
     startLine: 11
@@ -43,7 +43,11 @@ items:
       Public Structure Coordinate
           Implements IEquatable(Of Coordinate)
   implements:
-  - IEquatable{SudokuSpice.Coordinate}
+  - System.IEquatable{SudokuSpice.Coordinate}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   modifiers.csharp:
   - public
   - struct
@@ -65,7 +69,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Row
     path: ../SudokuSpice/Coordinate.cs
     startLine: 16
@@ -102,7 +106,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Column
     path: ../SudokuSpice/Coordinate.cs
     startLine: 20
@@ -139,7 +143,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/Coordinate.cs
     startLine: 22
@@ -174,7 +178,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Deconstruct
     path: ../SudokuSpice/Coordinate.cs
     startLine: 28
@@ -212,7 +216,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: ToString
     path: ../SudokuSpice/Coordinate.cs
     startLine: 30
@@ -224,6 +228,7 @@ items:
     return:
       type: System.String
     content.vb: Public Overrides Function ToString As String
+  overridden: System.ValueType.ToString
   overload: SudokuSpice.Coordinate.ToString*
   modifiers.csharp:
   - public
@@ -231,22 +236,22 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: SudokuSpice.Coordinate.Equals(System.Nullable{System.Object})
-  commentId: M:SudokuSpice.Coordinate.Equals(System.Nullable{System.Object})
-  id: Equals(System.Nullable{System.Object})
+- uid: SudokuSpice.Coordinate.Equals(System.Object)
+  commentId: M:SudokuSpice.Coordinate.Equals(System.Object)
+  id: Equals(System.Object)
   parent: SudokuSpice.Coordinate
   langs:
   - csharp
   - vb
-  name: Equals(Nullable<Object>)
-  nameWithType: Coordinate.Equals(Nullable<Object>)
-  fullName: SudokuSpice.Coordinate.Equals(System.Nullable<System.Object>)
+  name: Equals(Object)
+  nameWithType: Coordinate.Equals(Object)
+  fullName: SudokuSpice.Coordinate.Equals(System.Object)
   type: Method
   source:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/Coordinate.cs
     startLine: 32
@@ -254,23 +259,21 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   syntax:
-    content: public override bool Equals(object? obj)
+    content: public override bool Equals(object obj)
     parameters:
     - id: obj
-      type: System.Nullable{System.Object}
+      type: System.Object
     return:
       type: System.Boolean
-    content.vb: Public Overrides Function Equals(obj As Object?) As Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
   overload: SudokuSpice.Coordinate.Equals*
-  nameWithType.vb: Coordinate.Equals(Nullable(Of Object))
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: SudokuSpice.Coordinate.Equals(System.Nullable(Of System.Object))
-  name.vb: Equals(Nullable(Of Object))
 - uid: SudokuSpice.Coordinate.GetHashCode
   commentId: M:SudokuSpice.Coordinate.GetHashCode
   id: GetHashCode
@@ -286,7 +289,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetHashCode
     path: ../SudokuSpice/Coordinate.cs
     startLine: 41
@@ -298,6 +301,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
   overload: SudokuSpice.Coordinate.GetHashCode*
   modifiers.csharp:
   - public
@@ -320,7 +324,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/Coordinate.cs
     startLine: 43
@@ -336,6 +340,8 @@ items:
       type: System.Boolean
     content.vb: Public Function Equals(other As Coordinate) As Boolean
   overload: SudokuSpice.Coordinate.Equals*
+  implements:
+  - System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -355,7 +361,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/Coordinate.cs
     startLine: 45
@@ -393,7 +399,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: op_Equality
     path: ../SudokuSpice/Coordinate.cs
     startLine: 47
@@ -435,7 +441,7 @@ items:
     remote:
       path: SudokuSpice/Coordinate.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: op_Inequality
     path: ../SudokuSpice/Coordinate.cs
     startLine: 49
@@ -468,20 +474,21 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: IEquatable{SudokuSpice.Coordinate}
-  commentId: '!:IEquatable{SudokuSpice.Coordinate}'
-  definition: IEquatable`1
+- uid: System.IEquatable{SudokuSpice.Coordinate}
+  commentId: T:System.IEquatable{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.IEquatable`1
   name: IEquatable<Coordinate>
   nameWithType: IEquatable<Coordinate>
-  fullName: IEquatable<SudokuSpice.Coordinate>
+  fullName: System.IEquatable<SudokuSpice.Coordinate>
   nameWithType.vb: IEquatable(Of Coordinate)
-  fullName.vb: IEquatable(Of SudokuSpice.Coordinate)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Coordinate)
   name.vb: IEquatable(Of Coordinate)
   spec.csharp:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: <
     nameWithType: <
@@ -494,10 +501,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -509,50 +516,211 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEquatable`1
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
   isExternal: true
-  name: IEquatable<>
-  nameWithType: IEquatable<>
-  fullName: IEquatable<>
-  nameWithType.vb: IEquatable(Of )
-  fullName.vb: IEquatable(Of )
-  name.vb: IEquatable(Of )
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
   spec.csharp:
-  - uid: IEquatable`1
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: SudokuSpice.Coordinate.Row*
   commentId: Overload:SudokuSpice.Coordinate.Row
   name: Row
   nameWithType: Coordinate.Row
   fullName: SudokuSpice.Coordinate.Row
 - uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -572,56 +740,72 @@ references:
   name: Deconstruct
   nameWithType: Coordinate.Deconstruct
   fullName: SudokuSpice.Coordinate.Deconstruct
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Coordinate.ToString*
   commentId: Overload:SudokuSpice.Coordinate.ToString
   name: ToString
   nameWithType: Coordinate.ToString
   fullName: SudokuSpice.Coordinate.ToString
 - uid: System.String
+  commentId: T:System.String
+  parent: System
   isExternal: true
   name: String
   nameWithType: String
   fullName: System.String
-- uid: SudokuSpice.Coordinate.Equals*
-  commentId: Overload:SudokuSpice.Coordinate.Equals
-  name: Equals
-  nameWithType: Coordinate.Equals
-  fullName: SudokuSpice.Coordinate.Equals
-- uid: System.Nullable{System.Object}
-  commentId: '!:System.Nullable{System.Object}'
-  definition: System.Nullable`1
-  name: Nullable<Object>
-  nameWithType: Nullable<Object>
-  fullName: System.Nullable<System.Object>
-  nameWithType.vb: Nullable(Of Object)
-  fullName.vb: System.Nullable(Of System.Object)
-  name.vb: Nullable(Of Object)
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+    nameWithType: (
+    fullName: (
   - uid: System.Object
     name: Object
     nameWithType: Object
@@ -630,46 +814,63 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.Coordinate.Equals*
+  commentId: Overload:SudokuSpice.Coordinate.Equals
+  name: Equals
+  nameWithType: Coordinate.Equals
+  fullName: SudokuSpice.Coordinate.Equals
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: System.Nullable`1
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
   isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -678,12 +879,91 @@ references:
   name: GetHashCode
   nameWithType: Coordinate.GetHashCode
   fullName: SudokuSpice.Coordinate.GetHashCode
+- uid: System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+  commentId: M:System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+  parent: System.IEquatable{SudokuSpice.Coordinate}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(Coordinate)
+  nameWithType: IEquatable<Coordinate>.Equals(Coordinate)
+  fullName: System.IEquatable<SudokuSpice.Coordinate>.Equals(SudokuSpice.Coordinate)
+  nameWithType.vb: IEquatable(Of Coordinate).Equals(Coordinate)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Coordinate).Equals(SudokuSpice.Coordinate)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<Coordinate>.Equals
+    fullName: System.IEquatable<SudokuSpice.Coordinate>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of Coordinate).Equals
+    fullName: System.IEquatable(Of SudokuSpice.Coordinate).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.Coordinate.op_Equality*
   commentId: Overload:SudokuSpice.Coordinate.op_Equality
   name: Equality
