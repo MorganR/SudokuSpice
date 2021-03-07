@@ -3,6 +3,11 @@ name: Publish to NuGet
 on:
   release:
     types: [ created ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
 
 jobs:
   package:
@@ -14,6 +19,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: "${{ github.event.inputs.tag }}"
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
