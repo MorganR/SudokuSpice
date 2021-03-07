@@ -30,24 +30,6 @@ namespace SudokuSpice.ConstraintBased
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void AppendToPossibility(Link toAppend)
-        {
-            toAppend.NextOnPossibility = NextOnPossibility;
-            toAppend.PreviousOnPossibility = this;
-            NextOnPossibility.PreviousOnPossibility = toAppend;
-            NextOnPossibility = toAppend;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void AppendToObjective(Link toAppend)
-        {
-            toAppend.NextOnObjective = NextOnObjective;
-            toAppend.PreviousOnObjective = this;
-            NextOnObjective.PreviousOnObjective = toAppend;
-            NextOnObjective = toAppend;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal void PrependToPossibility(Link toPrepend)
         {
             toPrepend.NextOnPossibility = this;

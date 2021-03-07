@@ -152,27 +152,6 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(poppedLink, possibility.AttachedObjectives.First());
         }
 
-
-        [Fact]
-        public void AppendToPossibility_AppendsImmediatelyAfterLink()
-        {
-            var possibility = new NoopPossibility();
-            var objective = new NoopObjective();
-            var firstLink = Link.CreateConnectedLink(possibility, objective);
-            var secondLink = Link.CreateConnectedLink(possibility, objective);
-            var thirdLink = Link.CreateConnectedLink(possibility, objective);
-
-            firstLink.AppendToPossibility(secondLink);
-            firstLink.AppendToPossibility(thirdLink);
-
-            Assert.Same(thirdLink, firstLink.NextOnPossibility);
-            Assert.Same(secondLink, thirdLink.NextOnPossibility);
-            Assert.Same(firstLink, secondLink.NextOnPossibility);
-            Assert.Same(secondLink, firstLink.PreviousOnPossibility);
-            Assert.Same(thirdLink, secondLink.PreviousOnPossibility);
-            Assert.Same(firstLink, thirdLink.PreviousOnPossibility);
-        }
-
         [Fact]
         public void PrependToPossibility_PrependsImmediatelyBeforeLink()
         {
@@ -191,26 +170,6 @@ namespace SudokuSpice.ConstraintBased.InternalTest
             Assert.Same(thirdLink, firstLink.PreviousOnPossibility);
             Assert.Same(secondLink, thirdLink.PreviousOnPossibility);
             Assert.Same(firstLink, secondLink.PreviousOnPossibility);
-        }
-
-        [Fact]
-        public void AppendToObjective_AppendsImmediatelyAfterLink()
-        {
-            var possibility = new NoopPossibility();
-            var objective = new NoopObjective();
-            var firstLink = Link.CreateConnectedLink(possibility, objective);
-            var secondLink = Link.CreateConnectedLink(possibility, objective);
-            var thirdLink = Link.CreateConnectedLink(possibility, objective);
-
-            firstLink.AppendToObjective(secondLink);
-            firstLink.AppendToObjective(thirdLink);
-
-            Assert.Same(thirdLink, firstLink.NextOnObjective);
-            Assert.Same(secondLink, thirdLink.NextOnObjective);
-            Assert.Same(firstLink, secondLink.NextOnObjective);
-            Assert.Same(secondLink, firstLink.PreviousOnObjective);
-            Assert.Same(thirdLink, secondLink.PreviousOnObjective);
-            Assert.Same(firstLink, thirdLink.PreviousOnObjective);
         }
 
         [Fact]
