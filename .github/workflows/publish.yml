@@ -1,0 +1,63 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  package:
+
+    runs-on: ubuntu-latest
+
+    env:
+      DOTNET_NOLOGO: true
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - name: Install dependencies
+      run: dotnet restore
+    - id: pkgs
+      name: Build packages
+      run: |
+        dotnet pack SudokuSpice/SudokuSpice.csproj -c Release -o /tmp/packages/sudoku
+    - id: upload-nuget-pkg
+      name: Upload package artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: latest-sudokuspice-pkgs
+        path: /tmp/packages/sudoku/SudokuSpice*
+        retention-days: 7
+        if-no-files-found: error # defaults to `warn` 
+
+  release:
+    needs: package
+
+    runs-on: ubuntu-latest
+
+    env:
+      DOTNET_NOLOGO: true
+      NUGET_KEY: ${{secrets.NUGET_KEY}}
+
+    steps:
+    - name: Download package
+      uses: actions/download-artifact@v2
+      with: 
+        name: latest-sudokuspice-pkgs
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - name: Install dependencies
+    - name: Get package paths
+      run: |
+        pkg_path=$(ls SudokuSpice*.nupkg)
+        symbol_path=$(ls SudokuSpice*.snupkg)
+    - name: Push package to NuGet
+      run: dotnet nuget push "${pkg_path}"" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
+    - name: Push symbols to NuGet
+      run: dotnet nuget push "${symbol_path}"" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
+
