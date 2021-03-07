@@ -6,7 +6,7 @@ items:
   parent: SudokuSpice.RuleBased.Heuristics
   children:
   - SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.#ctor(SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker)
-  - SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  - SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
   - SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UndoLastUpdate
   - SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.UpdateAll
@@ -21,7 +21,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UniqueInRowHeuristic
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
     startLine: 17
@@ -32,15 +32,22 @@ items:
   remarks: "\nFor example, if a row had three unset squares with possible values: <code>A: [1, 2]</code>,\n<code>B: [1, 2]</code>, and <code>C: [1, 2, 3]</code>, then this would set <code>C</code>&apos;s possible values\nto <code>[3]</code>.\n"
   example: []
   syntax:
-    content: 'public class UniqueInRowHeuristic : object, IHeuristic'
+    content: 'public class UniqueInRowHeuristic : IHeuristic'
     content.vb: >-
       Public Class UniqueInRowHeuristic
-          Inherits Object
           Implements IHeuristic
   inheritance:
   - System.Object
   implements:
   - SudokuSpice.RuleBased.Heuristics.IHeuristic
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -62,7 +69,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
     startLine: 30
@@ -83,22 +90,22 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
-  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic
   langs:
   - csharp
   - vb
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan<IRule>)
   nameWithType: UniqueInRowHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan<IRule>)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, SudokuSpice.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReferences
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
     startLine: 53
@@ -113,19 +120,19 @@ items:
     - id: puzzle
       type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
     - id: rules
-      type: SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
+      type: System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
     return:
       type: SudokuSpice.RuleBased.Heuristics.IHeuristic
     content.vb: Public Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues, rules As ReadOnlySpan(Of IRule)) As IHeuristic
   overload: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences*
   implements:
-  - SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  - SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
   nameWithType.vb: UniqueInRowHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan(Of IRule))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, SudokuSpice.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan(Of IRule))
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
@@ -142,7 +149,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: TryInitFor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
     startLine: 72
@@ -184,7 +191,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UpdateAll
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
     startLine: 80
@@ -221,7 +228,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInRowHeuristic.cs
     startLine: 97
@@ -246,12 +253,304 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: SudokuSpice.RuleBased.Heuristics.IHeuristic
   commentId: T:SudokuSpice.RuleBased.Heuristics.IHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
   name: IHeuristic
   nameWithType: IHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.#ctor
   name: UniqueInRowHeuristic
@@ -273,18 +572,18 @@ references:
   name: CopyWithNewReferences
   nameWithType: UniqueInRowHeuristic.CopyWithNewReferences
   fullName: SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.CopyWithNewReferences
-- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
   parent: SudokuSpice.RuleBased.Heuristics.IHeuristic
   isExternal: true
   name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan<IRule>)
   nameWithType: IHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan<IRule>)
-  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, SudokuSpice.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>)
   nameWithType.vb: IHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan(Of IRule))
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, SudokuSpice.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, System.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule))
   name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan(Of IRule))
   spec.csharp:
-  - uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  - uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
     name: CopyWithNewReferences
     nameWithType: IHeuristic.CopyWithNewReferences
     fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences
@@ -298,10 +597,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -317,7 +616,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  - uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
     name: CopyWithNewReferences
     nameWithType: IHeuristic.CopyWithNewReferences
     fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences
@@ -331,10 +630,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -355,20 +654,21 @@ references:
   name: IReadOnlyPuzzleWithMutablePossibleValues
   nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
-- uid: SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
-  commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}'
-  definition: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<IRule>
   nameWithType: ReadOnlySpan<IRule>
-  fullName: SudokuSpice.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>
+  fullName: System.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>
   nameWithType.vb: ReadOnlySpan(Of IRule)
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule)
   name.vb: ReadOnlySpan(Of IRule)
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -381,10 +681,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -401,41 +701,42 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
-- uid: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: SudokuSpice.ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -481,6 +782,8 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
