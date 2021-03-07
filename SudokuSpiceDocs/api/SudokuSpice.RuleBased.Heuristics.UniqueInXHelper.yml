@@ -8,7 +8,7 @@ items:
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.#ctor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.CopyWithNewReference(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
   - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UndoLastUpdate
-  - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector},SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]})
+  - SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
   langs:
   - csharp
   - vb
@@ -20,7 +20,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UniqueInXHelper
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
     startLine: 5
@@ -28,12 +28,18 @@ items:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Heuristics
   syntax:
-    content: 'public class UniqueInXHelper : object'
-    content.vb: >-
-      Public Class UniqueInXHelper
-          Inherits Object
+    content: public class UniqueInXHelper
+    content.vb: Public Class UniqueInXHelper
   inheritance:
   - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
@@ -55,7 +61,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
     startLine: 11
@@ -88,7 +94,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
     startLine: 25
@@ -123,7 +129,7 @@ items:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UndoLastUpdate
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
     startLine: 30
@@ -138,22 +144,22 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector},SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]})
-  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector},SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]})
-  id: UpdateIfUnique(SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector},SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]})
+- uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
+  id: UpdateIfUnique(System.ReadOnlySpan{SudokuSpice.BitVector},System.ReadOnlySpan{SudokuSpice.Coordinate[]})
   parent: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper
   langs:
   - csharp
   - vb
   name: UpdateIfUnique(ReadOnlySpan<BitVector>, ReadOnlySpan<Coordinate[]>)
   nameWithType: UniqueInXHelper.UpdateIfUnique(ReadOnlySpan<BitVector>, ReadOnlySpan<Coordinate[]>)
-  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(SudokuSpice.ReadOnlySpan<SudokuSpice.BitVector>, SudokuSpice.ReadOnlySpan<SudokuSpice.Coordinate[]>)
+  fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan<SudokuSpice.BitVector>, System.ReadOnlySpan<SudokuSpice.Coordinate[]>)
   type: Method
   source:
     remote:
       path: SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UpdateIfUnique
     path: ../SudokuSpice/RuleBased/Heuristics/UniqueInXHelper.cs
     startLine: 39
@@ -164,9 +170,9 @@ items:
     content: public bool UpdateIfUnique(ReadOnlySpan<BitVector> possibleValuesToCheck, ReadOnlySpan<Coordinate[]> coordinatesToCheck)
     parameters:
     - id: possibleValuesToCheck
-      type: SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector}
+      type: System.ReadOnlySpan{SudokuSpice.BitVector}
     - id: coordinatesToCheck
-      type: SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]}
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate[]}
     return:
       type: System.Boolean
     content.vb: Public Function UpdateIfUnique(possibleValuesToCheck As ReadOnlySpan(Of BitVector), coordinatesToCheck As ReadOnlySpan(Of Coordinate())) As Boolean
@@ -176,7 +182,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(SudokuSpice.ReadOnlySpan(Of SudokuSpice.BitVector), SudokuSpice.ReadOnlySpan(Of SudokuSpice.Coordinate()))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique(System.ReadOnlySpan(Of SudokuSpice.BitVector), System.ReadOnlySpan(Of SudokuSpice.Coordinate()))
   name.vb: UpdateIfUnique(ReadOnlySpan(Of BitVector), ReadOnlySpan(Of Coordinate()))
 references:
 - uid: SudokuSpice.RuleBased.Heuristics
@@ -184,6 +190,298 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.#ctor
   name: UniqueInXHelper
@@ -221,20 +519,21 @@ references:
   name: UpdateIfUnique
   nameWithType: UniqueInXHelper.UpdateIfUnique
   fullName: SudokuSpice.RuleBased.Heuristics.UniqueInXHelper.UpdateIfUnique
-- uid: SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector}
-  commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.BitVector}'
-  definition: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.BitVector}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.BitVector}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<BitVector>
   nameWithType: ReadOnlySpan<BitVector>
-  fullName: SudokuSpice.ReadOnlySpan<SudokuSpice.BitVector>
+  fullName: System.ReadOnlySpan<SudokuSpice.BitVector>
   nameWithType.vb: ReadOnlySpan(Of BitVector)
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of SudokuSpice.BitVector)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.BitVector)
   name.vb: ReadOnlySpan(Of BitVector)
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -247,10 +546,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -262,20 +561,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]}
-  commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.Coordinate[]}'
-  definition: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate[]}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate[]}
+  parent: System
+  definition: System.ReadOnlySpan`1
   name: ReadOnlySpan<Coordinate[]>
   nameWithType: ReadOnlySpan<Coordinate[]>
-  fullName: SudokuSpice.ReadOnlySpan<SudokuSpice.Coordinate[]>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate[]>
   nameWithType.vb: ReadOnlySpan(Of Coordinate())
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of SudokuSpice.Coordinate())
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate())
   name.vb: ReadOnlySpan(Of Coordinate())
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
@@ -291,10 +591,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -310,45 +610,48 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.ReadOnlySpan`1
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
   isExternal: true
-  name: ReadOnlySpan<>
-  nameWithType: ReadOnlySpan<>
-  fullName: SudokuSpice.ReadOnlySpan<>
-  nameWithType.vb: ReadOnlySpan(Of )
-  fullName.vb: SudokuSpice.ReadOnlySpan(Of )
-  name.vb: ReadOnlySpan(Of )
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
   spec.csharp:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: SudokuSpice.ReadOnlySpan`1
+  - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
     nameWithType: ReadOnlySpan
-    fullName: SudokuSpice.ReadOnlySpan
+    fullName: System.ReadOnlySpan
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
