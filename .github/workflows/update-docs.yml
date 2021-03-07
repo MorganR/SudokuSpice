@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  update-docs:
 
     runs-on: windows-latest
 
@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore SudokuSpiceDocs/SudokuSpiceDocs.csproj 
     - name: Build
-      run: dotnet build SudokuSpice/SudokuSpiceDocs.csproj --no-restore
+      run: dotnet build SudokuSpiceDocs/SudokuSpiceDocs.csproj --no-restore
     - name: Commit
       run: |
         git add .
