@@ -17,14 +17,14 @@ namespace SudokuSpice.ConstraintBased
     /// <typeparam name="TPuzzle">The type of puzzle to solve.</typeparam>
     public class PuzzleSolver<TPuzzle> : IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>
     {
-        private readonly IReadOnlyList<IConstraint> _constraints;
+        private readonly IConstraint[] _constraints;
 
         /// <summary>
         /// Creates a solver that can solve puzzles using the given
         /// <see cref="IConstraint"/>s. The same solver can be reused for multiple puzzles.
         /// </summary>
         /// <param name="constraints">The constraints to satisfy when solving puzzles.</param>
-        public PuzzleSolver(IReadOnlyList<IConstraint> constraints)
+        public PuzzleSolver(IConstraint[] constraints)
         {
             _constraints = constraints;
         }

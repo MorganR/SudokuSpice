@@ -10,7 +10,7 @@ namespace SudokuSpice.ConstraintBased
         public static PuzzleSolver<Puzzle> CreateSolver()
         {
             return new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),

@@ -23,13 +23,7 @@ namespace SudokuSpice.Benchmark
         {
             var generator = new PuzzleGenerator<Puzzle>(
                 size => new Puzzle(size),
-                new ConstraintBased.PuzzleSolver<Puzzle>(
-                    new List<IConstraint>
-                    {
-                        new RowUniquenessConstraint(),
-                        new ColumnUniquenessConstraint(),
-                        new BoxUniquenessConstraint(),
-                    }));
+                ConstraintBased.StandardPuzzles.CreateSolver());
             Puzzle puzzle = generator.Generate(9, 30, TimeSpan.FromSeconds(10));
             return puzzle.NumEmptySquares;
         }

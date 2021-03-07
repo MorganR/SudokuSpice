@@ -30,7 +30,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     constraint,
                 });
@@ -69,7 +69,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
@@ -101,7 +101,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
@@ -295,7 +295,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 _CreateStandardPossibleValues(9),
                 boxesToConstrain, includeDiagonals: false);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     constraint,
                 });
@@ -343,7 +343,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 new Box(new Coordinate(6, 6), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),
@@ -386,7 +386,7 @@ namespace SudokuSpice.ConstraintBased.Constraints.Test
                 new Box(new Coordinate(3, 3), 3),
             };
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> {
+                new IConstraint[] {
                     new RowUniquenessConstraint(),
                     new ColumnUniquenessConstraint(),
                     new BoxUniquenessConstraint(),

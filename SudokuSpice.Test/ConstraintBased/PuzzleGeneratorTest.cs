@@ -12,7 +12,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var generator = new PuzzleGenerator<Puzzle>(
                 size => new Puzzle(size),
-                new PuzzleSolver<Puzzle>(new List<IConstraint> { new RowUniquenessConstraint() }));
+                new PuzzleSolver<Puzzle>(new IConstraint[] { new RowUniquenessConstraint() }));
         }
 
         [Theory]
@@ -24,7 +24,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var generator = new PuzzleGenerator<Puzzle>(
                 size => new Puzzle(size),
                 new PuzzleSolver<Puzzle>(
-                    new List<IConstraint> {
+                    new IConstraint[] {
                         new RowUniquenessConstraint(),
                         new ColumnUniquenessConstraint(),
                         new BoxUniquenessConstraint()
@@ -44,7 +44,7 @@ namespace SudokuSpice.ConstraintBased.Test
             var generator = new PuzzleGenerator<Puzzle>(
                 size => new Puzzle(size),
                 new PuzzleSolver<Puzzle>(
-                    new List<IConstraint> {
+                    new IConstraint[] {
                         new RowUniquenessConstraint(),
                         new ColumnUniquenessConstraint(),
                         new BoxUniquenessConstraint()

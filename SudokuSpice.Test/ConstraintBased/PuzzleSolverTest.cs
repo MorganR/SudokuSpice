@@ -14,7 +14,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = Puzzle.CopyFrom(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             var solved = solver.Solve(puzzle);
             PuzzleTestUtils.AssertStandardPuzzleSolved(solved);
         }
@@ -41,7 +41,7 @@ namespace SudokuSpice.ConstraintBased.Test
                 new int?[] {null, 3,    6,    null, 9,    12,   14,   null, 8,    null, 13,   16,   null, null, null, null}
             });
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint(), new DiagonalUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint(), new DiagonalUniquenessConstraint() });
 
             var solved = solver.Solve(puzzle);
 
@@ -54,7 +54,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
 
             var solved = solver.Solve(puzzle);
 
@@ -67,7 +67,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Throws<ArgumentException>(() => solver.Solve(puzzle));
         }
 
@@ -77,7 +77,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Throws<ArgumentException>(() => solver.Solve(puzzle, randomizeGuesses: true));
         }
 
@@ -87,7 +87,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.True(solver.TrySolve(puzzle));
             PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
         }
@@ -98,7 +98,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.True(solver.TrySolve(puzzle, randomizeGuesses: true));
             PuzzleTestUtils.AssertStandardPuzzleSolved(puzzle);
         }
@@ -109,7 +109,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.False(solver.TrySolve(puzzle));
         }
 
@@ -119,7 +119,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.False(solver.TrySolve(puzzle, randomizeGuesses: true));
         }
 
@@ -128,7 +128,7 @@ namespace SudokuSpice.ConstraintBased.Test
         public void ComputeStatsForAllSolutions_ReturnsExpectedNumSolutions(int?[][] matrix, SolveStats expectedStats)
         {
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Equal(
                 expectedStats.NumSolutionsFound,
                 solver.ComputeStatsForAllSolutions(new Puzzle(matrix)).NumSolutionsFound);
@@ -140,7 +140,7 @@ namespace SudokuSpice.ConstraintBased.Test
         {
             var puzzle = new Puzzle(matrix);
             var solver = new PuzzleSolver<Puzzle>(
-                new List<IConstraint> { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
+                new IConstraint[] { new RowUniquenessConstraint(), new ColumnUniquenessConstraint(), new BoxUniquenessConstraint() });
             Assert.Equal(0, solver.ComputeStatsForAllSolutions(puzzle).NumSolutionsFound);
         }
     }
