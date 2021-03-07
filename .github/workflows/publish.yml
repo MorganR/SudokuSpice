@@ -64,9 +64,3 @@ jobs:
         pkg_path=$(ls SudokuSpice*.nupkg)
         echo "Found package path: ${pkg_path}"
         dotnet nuget push "${pkg_path}" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
-    - name: Push symbols to NuGet
-      run: |
-        symbol_path=$(ls SudokuSpice*.snupkg)
-        echo "Found symbols path: ${symbol_path}"
-        dotnet nuget push "${symbol_path}"" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
-
