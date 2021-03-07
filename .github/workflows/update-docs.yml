@@ -1,0 +1,26 @@
+name: Update docs
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 5.x
+    - name: Install dependencies
+      run: dotnet restore SudokuSpiceDocs/SudokuSpiceDocs.csproj 
+    - name: Build
+      run: dotnet build SudokuSpice/SudokuSpiceDocs.csproj --no-restore
+    - name: Commit
+      run: |
+        git add .
+        git commit -m "Automated docs update"
+        git push
