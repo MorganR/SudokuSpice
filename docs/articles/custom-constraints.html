@@ -90,9 +90,9 @@ state this constraint as follows:</p>
 <blockquote>
 <p>Each forward diagonal, and each backward diagonal, needs to contain all possible values.</p>
 </blockquote>
-<p>We can implement this by adding a constraint header for each possible value on each diagonal.</p>
-<h4 id="determine-unique-coordinates">Determine unique coordinates</h4>
-<p>The unique coordinates here are those on the forward diagonal, and those on the backward diagonal.
+<p>We can implement this by adding an objective for each possible value on each diagonal.</p>
+<h4 id="determine-possible-coordinates">Determine possible coordinates</h4>
+<p>The possible coordinates here are those on the forward diagonal, and those on the backward diagonal.
 We can find all the coordinates on the forward diagonal as follows:</p>
 <pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
 {

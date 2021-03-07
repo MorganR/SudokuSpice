@@ -29,11 +29,11 @@ state this constraint as follows:
 
 > Each forward diagonal, and each backward diagonal, needs to contain all possible values.
 
-We can implement this by adding a constraint header for each possible value on each diagonal.
+We can implement this by adding an objective for each possible value on each diagonal.
 
-#### Determine unique coordinates
+#### Determine possible coordinates
 
-The unique coordinates here are those on the forward diagonal, and those on the backward diagonal.
+The possible coordinates here are those on the forward diagonal, and those on the backward diagonal.
 We can find all the coordinates on the forward diagonal as follows:
 
 ```csharp

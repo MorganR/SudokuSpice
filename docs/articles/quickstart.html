@@ -97,7 +97,7 @@ var value = solved[row, column]; // Returns 2
 // With custom rules
 var customSolver = new RuleBased.PuzzleSolver&lt;Puzzle&gt;(
     new DynamicRuleKeeper(
-        new List&lt;IRule&gt; {
+        new IRule[] {
             // Custom rules here
         }
     ));
@@ -134,7 +134,7 @@ var solved = solver.Solve(puzzle);
 
 // With custom constraints
 var customSolver = new ConstraintBased.PuzzleSolver&lt;Puzzle&gt;(
-    new List&lt;IConstraint&gt; {
+    new IConstraint[] {
         // Custom constraints go here
     });
 </code></pre>

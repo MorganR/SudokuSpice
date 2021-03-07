@@ -32,7 +32,7 @@ var value = solved[row, column]; // Returns 2
 // With custom rules
 var customSolver = new RuleBased.PuzzleSolver<Puzzle>(
     new DynamicRuleKeeper(
-        new List<IRule> {
+        new IRule[] {
             // Custom rules here
         }
     ));
@@ -78,7 +78,7 @@ var solved = solver.Solve(puzzle);
 
 // With custom constraints
 var customSolver = new ConstraintBased.PuzzleSolver<Puzzle>(
-    new List<IConstraint> {
+    new IConstraint[] {
         // Custom constraints go here
     });
 ```

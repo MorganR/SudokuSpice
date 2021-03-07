@@ -92,47 +92,23 @@ diagonal uniqueness.</p>
     <h5>Implements</h5>
     <div><a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Rules.html">SudokuSpice.RuleBased.Rules</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MagicSquaresRule : IRule</code></pre>
+    <pre><code class="lang-csharp hljs">public class MagicSquaresRule : object, IRule</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule__ctor_System_Int32_System_Collections_Generic_IEnumerable_SudokuSpice_Box__System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.%23ctor(System.Int32%2CSystem.Collections.Generic.IEnumerable%7BSudokuSpice.Box%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule__ctor_System_Int32_IEnumerable_SudokuSpice_Box__System_Boolean_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.%23ctor(System.Int32%2CIEnumerable%7BSudokuSpice.Box%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L311">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L313">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule__ctor_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule__ctor_System_Int32_System_Collections_Generic_IEnumerable_SudokuSpice_Box__System_Boolean_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)">MagicSquaresRule(Int32, IEnumerable&lt;Box&gt;, Boolean)</h4>
+  <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule__ctor_System_Int32_IEnumerable_SudokuSpice_Box__System_Boolean_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,IEnumerable{SudokuSpice.Box},System.Boolean)">MagicSquaresRule(Int32, IEnumerable&lt;Box&gt;, Boolean)</h4>
   <div class="markdown level1 summary"><p>Constructs a rule that will enforce that the given <code data-dev-comment-type="paramref" class="paramref">squares</code> are
 magic squares based on the rows, columns, and, optionally, the diagonals.</p>
 <p>Unlike other rules, this rule can only be constructed for a specific puzzle size.
@@ -160,7 +136,7 @@ Attempting to initialize this rule with an incompatible puzzle will fail.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.Box.html">Box</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="SudokuSpice.Box.html">Box</a>&gt;</td>
         <td><span class="parametername">squares</span></td>
         <td><p>The locations of the magic squares. The squares' size must be the square root of the
 puzzle <code data-dev-comment-type="paramref" class="paramref">size</code>.</p>
@@ -174,23 +150,6 @@ puzzle <code data-dev-comment-type="paramref" class="paramref">size</code>.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>If the any of the given <code data-dev-comment-type="paramref" class="paramref">squares</code>' sizes are not compatible with the
-given puzzle's <code data-dev-comment-type="paramref" class="paramref">size</code>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -198,7 +157,7 @@ given puzzle's <code data-dev-comment-type="paramref" class="paramref">size</cod
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L332">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L334">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_CopyWithNewReference_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
@@ -249,7 +208,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L393">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L395">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_GetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate@)">GetPossibleValues(Coordinate)</h4>
@@ -306,7 +265,7 @@ be called before or after modifying the underlying puzzle's data.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L407">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L409">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
@@ -355,7 +314,7 @@ where the caller already knows all the possible coordinates that could be affect
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L421">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L423">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
@@ -406,7 +365,7 @@ tracker.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L350">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L352">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_TryInit_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)">TryInit(IReadOnlyPuzzle, BitVector)</h4>
@@ -467,7 +426,7 @@ failure.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MagicSquaresRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L435">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/flexible-constraints/SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs/#L437">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_Update_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update*"></a>
   <h4 id="SudokuSpice_RuleBased_Rules_MagicSquaresRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>

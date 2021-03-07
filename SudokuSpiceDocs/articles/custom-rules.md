@@ -183,7 +183,7 @@ as follows:
 ```csharp
 var solver = new PuzzleSolver(
     new DynamicRuleKeeper(
-        new List<IRule>()
+        new IRule[]
         {
             new StandardRules(puzzle, possibleValues.AllPossible),
             new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
@@ -198,7 +198,7 @@ var generator = new PuzzleGenerator<Puzzle>(
     size => new Puzzle(size),
     new Solver(
 		new DynamicRuleKeeper(
-			new List<IRule>()
+			new IRule[]
 			{
 				new StandardRules(puzzle, possibleValues.AllPossible),
 				new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),

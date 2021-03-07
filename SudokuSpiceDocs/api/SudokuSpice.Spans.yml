@@ -5,7 +5,7 @@ items:
   id: Spans
   parent: SudokuSpice
   children:
-  - SudokuSpice.Spans.PopRandom``1(System.Random,System.Span{``0})
+  - SudokuSpice.Spans.PopRandom``1(Random,Span{``0})
   langs:
   - csharp
   - vb
@@ -24,21 +24,15 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nUtilities for working with <xref href=\"System.Span%601\" data-throw-if-not-resolved=\"false\"></xref> objects.\n"
+  summary: "\nUtilities for working with <see cref=\"!:System.Span&lt;T>\"></see> objects.\n"
   example: []
   syntax:
-    content: public static class Spans
-    content.vb: Public Module Spans
+    content: 'public static class Spans : object'
+    content.vb: >-
+      Public Module Spans
+          Inherits Object
   inheritance:
   - System.Object
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   modifiers.csharp:
   - public
   - static
@@ -46,16 +40,16 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: SudokuSpice.Spans.PopRandom``1(System.Random,System.Span{``0})
-  commentId: M:SudokuSpice.Spans.PopRandom``1(System.Random,System.Span{``0})
-  id: PopRandom``1(System.Random,System.Span{``0})
+- uid: SudokuSpice.Spans.PopRandom``1(Random,Span{``0})
+  commentId: M:SudokuSpice.Spans.PopRandom``1(Random,Span{``0})
+  id: PopRandom``1(Random,Span{``0})
   parent: SudokuSpice.Spans
   langs:
   - csharp
   - vb
   name: PopRandom<T>(Random, Span<T>)
   nameWithType: Spans.PopRandom<T>(Random, Span<T>)
-  fullName: SudokuSpice.Spans.PopRandom<T>(System.Random, System.Span<T>)
+  fullName: SudokuSpice.Spans.PopRandom<T>(Random, Span<T>)
   type: Method
   source:
     remote:
@@ -74,10 +68,10 @@ items:
     content: public static T PopRandom<T>(Random rand, Span<T> data)
     parameters:
     - id: rand
-      type: System.Random
+      type: Random
       description: The random instance to use.
     - id: data
-      type: System.Span{{T}}
+      type: Span{{T}}
       description: The span to pop from.
     typeParameters:
     - id: T
@@ -94,372 +88,39 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: SudokuSpice.Spans.PopRandom(Of T)(System.Random, System.Span(Of T))
+  fullName.vb: SudokuSpice.Spans.PopRandom(Of T)(Random, Span(Of T))
   name.vb: PopRandom(Of T)(Random, Span(Of T))
 references:
-- uid: System.Span`1
-  commentId: T:System.Span`1
-  isExternal: true
-  name: Span<T>
-  nameWithType: Span<T>
-  fullName: System.Span<T>
-  nameWithType.vb: Span(Of T)
-  fullName.vb: System.Span(Of T)
-  name.vb: Span(Of T)
-  spec.csharp:
-  - uid: System.Span`1
-    name: Span
-    nameWithType: Span
-    fullName: System.Span
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Span`1
-    name: Span
-    nameWithType: Span
-    fullName: System.Span
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: System.Object
-  commentId: T:System.Object
-  parent: System
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: SudokuSpice.Spans.PopRandom*
   commentId: Overload:SudokuSpice.Spans.PopRandom
   name: PopRandom
   nameWithType: Spans.PopRandom
   fullName: SudokuSpice.Spans.PopRandom
-- uid: System.Random
-  commentId: T:System.Random
-  parent: System
+- uid: Random
+  commentId: '!:Random'
   isExternal: true
   name: Random
   nameWithType: Random
-  fullName: System.Random
-- uid: System.Span{{T}}
-  commentId: T:System.Span{``0}
-  parent: System
-  definition: System.Span`1
+  fullName: Random
+- uid: Span{{T}}
+  commentId: '!:Span{``0}'
+  definition: Span`1
   name: Span<T>
   nameWithType: Span<T>
-  fullName: System.Span<T>
+  fullName: Span<T>
   nameWithType.vb: Span(Of T)
-  fullName.vb: System.Span(Of T)
+  fullName.vb: Span(Of T)
   name.vb: Span(Of T)
   spec.csharp:
-  - uid: System.Span`1
+  - uid: Span`1
     name: Span
     nameWithType: Span
-    fullName: System.Span
+    fullName: Span
     isExternal: true
   - name: <
     nameWithType: <
@@ -471,10 +132,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Span`1
+  - uid: Span`1
     name: Span
     nameWithType: Span
-    fullName: System.Span
+    fullName: Span
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -491,6 +152,44 @@ references:
   name: T
   nameWithType: T
   fullName: T
+- uid: Span`1
+  isExternal: true
+  name: Span<>
+  nameWithType: Span<>
+  fullName: Span<>
+  nameWithType.vb: Span(Of )
+  fullName.vb: Span(Of )
+  name.vb: Span(Of )
+  spec.csharp:
+  - uid: Span`1
+    name: Span
+    nameWithType: Span
+    fullName: Span
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Span`1
+    name: Span
+    nameWithType: Span
+    fullName: Span
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: T
   name: T
   nameWithType: T

@@ -225,7 +225,7 @@ private DiagonalUniquenessRule(DiagonalUniquenessRule existing, IReadOnlyPuzzle?
 as follows:</p>
 <pre><code class="lang-csharp">var solver = new PuzzleSolver(
     new DynamicRuleKeeper(
-        new List&lt;IRule&gt;()
+        new IRule[]
         {
             new StandardRules(puzzle, possibleValues.AllPossible),
             new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
@@ -237,7 +237,7 @@ var solved = solver.Solve(puzzle);
     size =&gt; new Puzzle(size),
     new Solver(
 		new DynamicRuleKeeper(
-			new List&lt;IRule&gt;()
+			new IRule[]
 			{
 				new StandardRules(puzzle, possibleValues.AllPossible),
 				new DiagonalUniquenessRule(puzzle, possibleValues.AllPossible),
