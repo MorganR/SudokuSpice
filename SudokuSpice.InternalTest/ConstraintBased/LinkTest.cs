@@ -116,43 +116,6 @@ namespace SudokuSpice.ConstraintBased.InternalTest
         }
 
         [Fact]
-        public void PopFromPossibility_OnlyUpdatesLinkReferences()
-        {
-            var possibility = new FakePossibility();
-            var poppedObjective = new FakeObjective();
-            var secondObjective = new FakeObjective();
-            var poppedLink = Link.CreateConnectedLink(possibility, poppedObjective);
-            var secondLink = Link.CreateConnectedLink(possibility, secondObjective);
-
-            poppedLink.PopFromPossibility();
-
-            Assert.Same(secondLink, poppedLink.NextOnPossibility);
-            Assert.Same(secondLink, poppedLink.PreviousOnPossibility);
-            Assert.Same(secondLink, secondLink.NextOnPossibility);
-            Assert.Same(secondLink, secondLink.PreviousOnPossibility);
-            Assert.Same(poppedLink, possibility.AttachedObjectives.First());
-        }
-
-        [Fact]
-        public void ReinsertToPossibility_UndoesPop()
-        {
-            var possibility = new FakePossibility();
-            var poppedObjective = new FakeObjective();
-            var secondObjective = new FakeObjective();
-            var poppedLink = Link.CreateConnectedLink(possibility, poppedObjective);
-            var secondLink = Link.CreateConnectedLink(possibility, secondObjective);
-
-            poppedLink.PopFromPossibility();
-            poppedLink.ReinsertToPossibility();
-
-            Assert.Same(secondLink, poppedLink.NextOnPossibility);
-            Assert.Same(secondLink, poppedLink.PreviousOnPossibility);
-            Assert.Same(poppedLink, secondLink.NextOnPossibility);
-            Assert.Same(poppedLink, secondLink.PreviousOnPossibility);
-            Assert.Same(poppedLink, possibility.AttachedObjectives.First());
-        }
-
-        [Fact]
         public void PrependToPossibility_PrependsImmediatelyBeforeLink()
         {
             var possibility = new NoopPossibility();

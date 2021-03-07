@@ -61,20 +61,6 @@ namespace SudokuSpice.ConstraintBased
             NextOnObjective.PreviousOnObjective = this;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void PopFromPossibility()
-        {
-            PreviousOnPossibility.NextOnPossibility = NextOnPossibility;
-            NextOnPossibility.PreviousOnPossibility = PreviousOnPossibility;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal void ReinsertToPossibility()
-        {
-            PreviousOnPossibility.NextOnPossibility = this;
-            NextOnPossibility.PreviousOnPossibility = this;
-        }
-
         internal IEnumerable<Link> GetLinksOnPossibility()
         {
             var link = this;
