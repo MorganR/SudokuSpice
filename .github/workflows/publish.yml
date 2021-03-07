@@ -31,6 +31,7 @@ jobs:
       name: Build packages
       run: |
         dotnet pack SudokuSpice/SudokuSpice.csproj -c Release -o /tmp/packages/sudoku
+        ls -l /tmp/packages/sudoku
     - id: upload-nuget-pkg
       name: Upload package artifacts
       uses: actions/upload-artifact@v2
@@ -58,12 +59,14 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    - name: Get package paths
+    - name: Push package to NuGet
       run: |
         pkg_path=$(ls SudokuSpice*.nupkg)
-        symbol_path=$(ls SudokuSpice*.snupkg)
-    - name: Push package to NuGet
-      run: dotnet nuget push "${pkg_path}" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
+        echo "Found package path: ${pkg_path}"
+        dotnet nuget push "${pkg_path}" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
     - name: Push symbols to NuGet
-      run: dotnet nuget push "${symbol_path}"" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
+      run: |
+        symbol_path=$(ls SudokuSpice*.snupkg)
+        echo "Found symbols path: ${symbol_path}"
+        dotnet nuget push "${symbol_path}"" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
 
