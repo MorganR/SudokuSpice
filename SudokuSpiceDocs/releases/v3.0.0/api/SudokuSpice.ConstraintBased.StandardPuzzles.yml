@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.StandardPuzzles
+  commentId: T:SudokuSpice.ConstraintBased.StandardPuzzles
+  id: StandardPuzzles
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver
+  langs:
+  - csharp
+  - vb
+  name: StandardPuzzles
+  nameWithType: StandardPuzzles
+  fullName: SudokuSpice.ConstraintBased.StandardPuzzles
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/StandardPuzzles.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: StandardPuzzles
+    path: ../SudokuSpice/ConstraintBased/StandardPuzzles.cs
+    startLine: 6
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: Provides utilities for interacting with standard Sudoku puzzles.
+  example: []
+  syntax:
+    content: 'public static class StandardPuzzles : object'
+    content.vb: >-
+      Public Module StandardPuzzles
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver
+  commentId: M:SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver
+  id: CreateSolver
+  parent: SudokuSpice.ConstraintBased.StandardPuzzles
+  langs:
+  - csharp
+  - vb
+  name: CreateSolver()
+  nameWithType: StandardPuzzles.CreateSolver()
+  fullName: SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/StandardPuzzles.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateSolver
+    path: ../SudokuSpice/ConstraintBased/StandardPuzzles.cs
+    startLine: 9
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: Creates an efficient solver for solving standard Sudoku puzzles.
+  example: []
+  syntax:
+    content: public static PuzzleSolver<Puzzle> CreateSolver()
+    return:
+      type: SudokuSpice.ConstraintBased.PuzzleSolver{SudokuSpice.Puzzle}
+    content.vb: Public Shared Function CreateSolver As PuzzleSolver(Of Puzzle)
+  overload: SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver*
+  commentId: Overload:SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver
+  name: CreateSolver
+  nameWithType: StandardPuzzles.CreateSolver
+  fullName: SudokuSpice.ConstraintBased.StandardPuzzles.CreateSolver
+- uid: SudokuSpice.ConstraintBased.PuzzleSolver{SudokuSpice.Puzzle}
+  commentId: T:SudokuSpice.ConstraintBased.PuzzleSolver{SudokuSpice.Puzzle}
+  parent: SudokuSpice.ConstraintBased
+  definition: SudokuSpice.ConstraintBased.PuzzleSolver`1
+  name: PuzzleSolver<Puzzle>
+  nameWithType: PuzzleSolver<Puzzle>
+  fullName: SudokuSpice.ConstraintBased.PuzzleSolver<SudokuSpice.Puzzle>
+  nameWithType.vb: PuzzleSolver(Of Puzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of SudokuSpice.Puzzle)
+  name.vb: PuzzleSolver(Of Puzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.ConstraintBased.PuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Puzzle
+    name: Puzzle
+    nameWithType: Puzzle
+    fullName: SudokuSpice.Puzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.ConstraintBased.PuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Puzzle
+    name: Puzzle
+    nameWithType: Puzzle
+    fullName: SudokuSpice.Puzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
+  commentId: T:SudokuSpice.ConstraintBased.PuzzleSolver`1
+  name: PuzzleSolver<TPuzzle>
+  nameWithType: PuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.ConstraintBased.PuzzleSolver<TPuzzle>
+  nameWithType.vb: PuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.ConstraintBased.PuzzleSolver(Of TPuzzle)
+  name.vb: PuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.ConstraintBased.PuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.ConstraintBased.PuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )

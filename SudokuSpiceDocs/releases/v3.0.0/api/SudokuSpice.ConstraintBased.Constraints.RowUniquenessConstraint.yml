@@ -1,0 +1,183 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  id: RowUniquenessConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
+  children:
+  - SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  langs:
+  - csharp
+  - vb
+  name: RowUniquenessConstraint
+  nameWithType: RowUniquenessConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Constraints/RowUniquenessConstraint.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: RowUniquenessConstraint
+    path: ../SudokuSpice/ConstraintBased/Constraints/RowUniquenessConstraint.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nEnforces the constraint that all values in a row must be unique.\n"
+  example: []
+  syntax:
+    content: 'public class RowUniquenessConstraint : object, IConstraint'
+    content.vb: >-
+      Public Class RowUniquenessConstraint
+          Inherits Object
+          Implements IConstraint
+  inheritance:
+  - System.Object
+  implements:
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  id: TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  parent: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  langs:
+  - csharp
+  - vb
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  nameWithType: RowUniquenessConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  fullName: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverGraph)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Constraints/RowUniquenessConstraint.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TryConstrain
+    path: ../SudokuSpice/ConstraintBased/Constraints/RowUniquenessConstraint.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased.Constraints
+  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">graph</code> in order to solve the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>\naccording to this constraint. The details here are implementation-specific.\n"
+  remarks: "\nThis should skip adding objectives that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it should drop the relevant\n<xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref> to understand how the graph works.\n"
+  example: []
+  syntax:
+    content: public bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
+    - id: graph
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
+      description: The exact-cover graph to constrain.
+    return:
+      type: System.Boolean
+      description: "\nFalse if the constraint could not be satisfied by the given puzzle, else true.\n"
+    content.vb: Public Function TryConstrain(puzzle As IReadOnlyPuzzle, graph As ExactCoverGraph) As Boolean
+  overload: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain*
+  implements:
+  - SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SudokuSpice.ConstraintBased.Constraints
+  commentId: N:SudokuSpice.ConstraintBased.Constraints
+  name: SudokuSpice.ConstraintBased.Constraints
+  nameWithType: SudokuSpice.ConstraintBased.Constraints
+  fullName: SudokuSpice.ConstraintBased.Constraints
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.IConstraint
+  parent: SudokuSpice.ConstraintBased.Constraints
+  name: IConstraint
+  nameWithType: IConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint
+- uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain*
+  commentId: Overload:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain
+  name: TryConstrain
+  nameWithType: RowUniquenessConstraint.TryConstrain
+  fullName: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.TryConstrain
+- uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+  parent: SudokuSpice.ConstraintBased.Constraints.IConstraint
+  name: TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  nameWithType: IConstraint.TryConstrain(IReadOnlyPuzzle, ExactCoverGraph)
+  fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.ConstraintBased.ExactCoverGraph)
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+    name: TryConstrain
+    nameWithType: IConstraint.TryConstrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+    name: ExactCoverGraph
+    nameWithType: ExactCoverGraph
+    fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
+    name: TryConstrain
+    nameWithType: IConstraint.TryConstrain
+    fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.IReadOnlyPuzzle
+    name: IReadOnlyPuzzle
+    nameWithType: IReadOnlyPuzzle
+    fullName: SudokuSpice.IReadOnlyPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+    name: ExactCoverGraph
+    nameWithType: ExactCoverGraph
+    fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased

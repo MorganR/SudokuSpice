@@ -1,0 +1,392 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Boxes
+  commentId: T:SudokuSpice.Boxes
+  id: Boxes
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
+  - SudokuSpice.Boxes.IntSquareRoot(System.Int32)
+  - SudokuSpice.Boxes.TryIntSquareRoot(System.Int32,System.Int32@)
+  - SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  langs:
+  - csharp
+  - vb
+  name: Boxes
+  nameWithType: Boxes
+  fullName: SudokuSpice.Boxes
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/Boxes.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Boxes
+    path: ../SudokuSpice/Boxes.cs
+    startLine: 8
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nProvides utilities for working with &quot;boxes&quot;, i.e. square regions within standard Sudokus.\n"
+  example: []
+  syntax:
+    content: 'public static class Boxes : object'
+    content.vb: >-
+      Public Module Boxes
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.Boxes.IntSquareRoot(System.Int32)
+  commentId: M:SudokuSpice.Boxes.IntSquareRoot(System.Int32)
+  id: IntSquareRoot(System.Int32)
+  parent: SudokuSpice.Boxes
+  langs:
+  - csharp
+  - vb
+  name: IntSquareRoot(Int32)
+  nameWithType: Boxes.IntSquareRoot(Int32)
+  fullName: SudokuSpice.Boxes.IntSquareRoot(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Boxes.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IntSquareRoot
+    path: ../SudokuSpice/Boxes.cs
+    startLine: 21
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nCalculates the square root of a number. Only works for integers that have integer\nsquare roots.\n\nThis is useful for determining the standard box-size for a puzzle (i.e.\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> would be the size of the puzzle, and the result would be the\nsize of each box.\n"
+  example: []
+  syntax:
+    content: public static int IntSquareRoot(int toRoot)
+    parameters:
+    - id: toRoot
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function IntSquareRoot(toRoot As Integer) As Integer
+  overload: SudokuSpice.Boxes.IntSquareRoot*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: SudokuSpice.Boxes.TryIntSquareRoot(System.Int32,System.Int32@)
+  commentId: M:SudokuSpice.Boxes.TryIntSquareRoot(System.Int32,System.Int32@)
+  id: TryIntSquareRoot(System.Int32,System.Int32@)
+  parent: SudokuSpice.Boxes
+  langs:
+  - csharp
+  - vb
+  name: TryIntSquareRoot(Int32, out Int32)
+  nameWithType: Boxes.TryIntSquareRoot(Int32, out Int32)
+  fullName: SudokuSpice.Boxes.TryIntSquareRoot(System.Int32, out System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Boxes.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TryIntSquareRoot
+    path: ../SudokuSpice/Boxes.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nCalculates the square root of a number. Only works for integers that have integer\nsquare roots.\n\nThis is useful for determining the standard box-size for a puzzle (i.e.\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> would be the size of the puzzle, and\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">root</code> would be the size of each box).\n"
+  example: []
+  syntax:
+    content: public static bool TryIntSquareRoot(int toRoot, out int root)
+    parameters:
+    - id: toRoot
+      type: System.Int32
+      description: "\nThe number to root. Should be the square of another integer.\n"
+    - id: root
+      type: System.Int32
+      description: 'Out parameter: the square root of <code data-dev-comment-type="paramref" class="paramref">toRoot</code>.'
+    return:
+      type: System.Boolean
+      description: "\nFalse if <code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> is not the square of a whole number.\n"
+    content.vb: Public Shared Function TryIntSquareRoot(toRoot As Integer, ByRef root As Integer) As Boolean
+  overload: SudokuSpice.Boxes.TryIntSquareRoot*
+  nameWithType.vb: Boxes.TryIntSquareRoot(Int32, ByRef Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Boxes.TryIntSquareRoot(System.Int32, ByRef System.Int32)
+  name.vb: TryIntSquareRoot(Int32, ByRef Int32)
+- uid: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+  id: CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
+  parent: SudokuSpice.Boxes
+  langs:
+  - csharp
+  - vb
+  name: CalculateBoxIndex(Coordinate, Int32)
+  nameWithType: Boxes.CalculateBoxIndex(Coordinate, Int32)
+  fullName: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Boxes.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CalculateBoxIndex
+    path: ../SudokuSpice/Boxes.cs
+    startLine: 79
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nCalculate the zero-based box-index of the given coordinate, starting at the top-left.\n"
+  example: []
+  syntax:
+    content: public static int CalculateBoxIndex(in Coordinate c, int boxSize)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+    - id: boxSize
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function CalculateBoxIndex(ByRef c As Coordinate, boxSize As Integer) As Integer
+  overload: SudokuSpice.Boxes.CalculateBoxIndex*
+  nameWithType.vb: Boxes.CalculateBoxIndex(ByRef Coordinate, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Boxes.CalculateBoxIndex(ByRef SudokuSpice.Coordinate, System.Int32)
+  name.vb: CalculateBoxIndex(ByRef Coordinate, Int32)
+- uid: SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
+  commentId: M:SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
+  id: GetStartingBoxCoordinate(System.Int32,System.Int32)
+  parent: SudokuSpice.Boxes
+  langs:
+  - csharp
+  - vb
+  name: GetStartingBoxCoordinate(Int32, Int32)
+  nameWithType: Boxes.GetStartingBoxCoordinate(Int32, Int32)
+  fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Boxes.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetStartingBoxCoordinate
+    path: ../SudokuSpice/Boxes.cs
+    startLine: 85
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Returns the top-left coordinate for the given box.
+  example: []
+  syntax:
+    content: public static Coordinate GetStartingBoxCoordinate(int box, int boxSize)
+    parameters:
+    - id: box
+      type: System.Int32
+    - id: boxSize
+      type: System.Int32
+    return:
+      type: SudokuSpice.Coordinate
+    content.vb: Public Shared Function GetStartingBoxCoordinate(box As Integer, boxSize As Integer) As Coordinate
+  overload: SudokuSpice.Boxes.GetStartingBoxCoordinate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  id: YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.Boxes
+  langs:
+  - csharp
+  - vb
+  name: YieldUnsetCoordsForBox(Int32, Int32, IReadOnlyPuzzle)
+  nameWithType: Boxes.YieldUnsetCoordsForBox(Int32, Int32, IReadOnlyPuzzle)
+  fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32, System.Int32, SudokuSpice.IReadOnlyPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Boxes.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: YieldUnsetCoordsForBox
+    path: ../SudokuSpice/Boxes.cs
+    startLine: 93
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nYields an enumerable of coordinates for all the unset squares in the given box.\n"
+  example: []
+  syntax:
+    content: public static IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box, int boxSize, IReadOnlyPuzzle puzzle)
+    parameters:
+    - id: box
+      type: System.Int32
+    - id: boxSize
+      type: System.Int32
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+    return:
+      type: IEnumerable{SudokuSpice.Coordinate}
+    content.vb: Public Shared Function YieldUnsetCoordsForBox(box As Integer, boxSize As Integer, puzzle As IReadOnlyPuzzle) As IEnumerable(Of Coordinate)
+  overload: SudokuSpice.Boxes.YieldUnsetCoordsForBox*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.Boxes.IntSquareRoot*
+  commentId: Overload:SudokuSpice.Boxes.IntSquareRoot
+  name: IntSquareRoot
+  nameWithType: Boxes.IntSquareRoot
+  fullName: SudokuSpice.Boxes.IntSquareRoot
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.Boxes.TryIntSquareRoot*
+  commentId: Overload:SudokuSpice.Boxes.TryIntSquareRoot
+  name: TryIntSquareRoot
+  nameWithType: Boxes.TryIntSquareRoot
+  fullName: SudokuSpice.Boxes.TryIntSquareRoot
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice.Boxes.CalculateBoxIndex*
+  commentId: Overload:SudokuSpice.Boxes.CalculateBoxIndex
+  name: CalculateBoxIndex
+  nameWithType: Boxes.CalculateBoxIndex
+  fullName: SudokuSpice.Boxes.CalculateBoxIndex
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.Boxes.GetStartingBoxCoordinate*
+  commentId: Overload:SudokuSpice.Boxes.GetStartingBoxCoordinate
+  name: GetStartingBoxCoordinate
+  nameWithType: Boxes.GetStartingBoxCoordinate
+  fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate
+- uid: SudokuSpice.Boxes.YieldUnsetCoordsForBox*
+  commentId: Overload:SudokuSpice.Boxes.YieldUnsetCoordsForBox
+  name: YieldUnsetCoordsForBox
+  nameWithType: Boxes.YieldUnsetCoordsForBox
+  fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: IEnumerable{SudokuSpice.Coordinate}
+  commentId: '!:IEnumerable{SudokuSpice.Coordinate}'
+  definition: IEnumerable`1
+  name: IEnumerable<Coordinate>
+  nameWithType: IEnumerable<Coordinate>
+  fullName: IEnumerable<SudokuSpice.Coordinate>
+  nameWithType.vb: IEnumerable(Of Coordinate)
+  fullName.vb: IEnumerable(Of SudokuSpice.Coordinate)
+  name.vb: IEnumerable(Of Coordinate)
+  spec.csharp:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IEnumerable`1
+  isExternal: true
+  name: IEnumerable<>
+  nameWithType: IEnumerable<>
+  fullName: IEnumerable<>
+  nameWithType.vb: IEnumerable(Of )
+  fullName.vb: IEnumerable(Of )
+  name.vb: IEnumerable(Of )
+  spec.csharp:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

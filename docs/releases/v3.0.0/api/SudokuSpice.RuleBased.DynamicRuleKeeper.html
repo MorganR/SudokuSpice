@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DynamicRuleKeeper
+   | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DynamicRuleKeeper
+   | SudokuSpice ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v3.0.0">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper">
+  
+  
+  <h1 id="SudokuSpice_RuleBased_DynamicRuleKeeper" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper" class="text-break">Class DynamicRuleKeeper
+  </h1>
+  <div class="markdown level0 summary"><p>Enforces an arbitrary injected set of rules.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DynamicRuleKeeper</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SudokuSpice.RuleBased.IRuleKeeper.html">IRuleKeeper</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
+  <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
+  <h5 id="SudokuSpice_RuleBased_DynamicRuleKeeper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DynamicRuleKeeper : object, IRuleKeeper</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_SudokuSpice_RuleBased_Rules_IRule___.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.%23ctor(SudokuSpice.RuleBased.Rules.IRule%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L20">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor*"></a>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper__ctor_SudokuSpice_RuleBased_Rules_IRule___" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.#ctor(SudokuSpice.RuleBased.Rules.IRule[])">DynamicRuleKeeper(IRule[])</h4>
+  <div class="markdown level1 summary"><p>Constructs a rule keeper that will enforce all the given rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DynamicRuleKeeper(IRule[] rules)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>[]</td>
+        <td><span class="parametername">rules</span></td>
+        <td><p>The rules to enforce.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L37">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences*"></a>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this rule keeper, including copies of any
+<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>s it contains, with updated internal
+<a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRuleKeeper CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td><p>The new puzzle reference. Should contain the same data as the current puzzle instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IRuleKeeper.html">IRuleKeeper</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L72">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules*"></a>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_GetRules" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.GetRules">GetRules()</h4>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>s enforced by this rule keeper.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;IRule&gt; GetRules()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">SudokuSpice.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L43">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit*"></a>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TryInit(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">TryInit(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
+  <div class="markdown level1 summary"><p>Tries to initialize this rule keeper to solve the given puzzle.</p>
+<p>When reusing a rule keeper to solve multiple puzzles, this must be called with each new
+puzzle to be solved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td><p>The puzzle to be solved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>False if the rule keeper couldn't be initialized, for example if the puzzle already
+violates one of the rules. Else returns true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TryInit_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the rule keeper's state is
+unchanged on failure.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L75">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet*"></a>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_TrySet_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.TrySet(SudokuSpice.Coordinate@,System.Int32)">TrySet(Coordinate, Int32)</h4>
+  <div class="markdown level1 summary"><p>Updates possible values based on setting the given coordinate to the given value. If
+this update fails (i.e. it leads to an unset square with no possible values), then it
+returns false and leaves the possible values unchanged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TrySet(in Coordinate c, int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td><p>The coordinate to update.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set <code>c</code> to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the possible values have been updated and the rules are still satisfied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L119">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.Unset*"></a>
+  <h4 id="SudokuSpice_RuleBased_DynamicRuleKeeper_Unset_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.DynamicRuleKeeper.Unset(SudokuSpice.Coordinate@,System.Int32)">Unset(Coordinate, Int32)</h4>
+  <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unset(in Coordinate c, int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td><p>The coordinate where a value is being unset.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value being unset.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SudokuSpice.RuleBased.IRuleKeeper.html">IRuleKeeper</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_DynamicRuleKeeper.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.DynamicRuleKeeper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/DynamicRuleKeeper.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

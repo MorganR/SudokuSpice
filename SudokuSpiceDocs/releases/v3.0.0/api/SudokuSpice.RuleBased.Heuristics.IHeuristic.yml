@@ -1,0 +1,311 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  commentId: T:SudokuSpice.RuleBased.Heuristics.IHeuristic
+  id: IHeuristic
+  parent: SudokuSpice.RuleBased.Heuristics
+  children:
+  - SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  - SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  - SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate
+  - SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll
+  langs:
+  - csharp
+  - vb
+  name: IHeuristic
+  nameWithType: IHeuristic
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IHeuristic
+    path: ../SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nPerforms some logical trickery to reduce the number of possible values for a square. Unlike\nan <xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>, this depends on the current possible values in the puzzle, not\njust the currently set values.\n"
+  example: []
+  syntax:
+    content: public interface IHeuristic
+    content.vb: Public Interface IHeuristic
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  commentId: M:SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  id: TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  parent: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  langs:
+  - csharp
+  - vb
+  name: TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)
+  nameWithType: IHeuristic.TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TryInitFor
+    path: ../SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+    startLine: 24
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nTries to initialize this heuristic for solving the given puzzle.\n"
+  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the heuristic&apos;s state is unchanged\non failure.\n"
+  example: []
+  syntax:
+    content: bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+      description: The puzzle to solve.
+    return:
+      type: System.Boolean
+      description: "\nFalse if this heuristic cannot be initialized for the given puzzle, else true.\n"
+    content.vb: Function TryInitFor(puzzle As IReadOnlyPuzzleWithMutablePossibleValues) As Boolean
+  overload: SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor*
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll
+  commentId: M:SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll
+  id: UpdateAll
+  parent: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  langs:
+  - csharp
+  - vb
+  name: UpdateAll()
+  nameWithType: IHeuristic.UpdateAll()
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: UpdateAll
+    path: ../SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+    startLine: 30
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nUpdates all the current possible values.\n"
+  example: []
+  syntax:
+    content: bool UpdateAll()
+    return:
+      type: System.Boolean
+      description: Returns true if any modifications were made.
+    content.vb: Function UpdateAll As Boolean
+  overload: SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll*
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate
+  commentId: M:SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate
+  id: UndoLastUpdate
+  parent: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  langs:
+  - csharp
+  - vb
+  name: UndoLastUpdate()
+  nameWithType: IHeuristic.UndoLastUpdate()
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: UndoLastUpdate
+    path: ../SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nUndoes the last modifications made by this heuristic.\n"
+  example: []
+  syntax:
+    content: void UndoLastUpdate()
+    content.vb: Sub UndoLastUpdate
+  overload: SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate*
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  commentId: M:SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  id: CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})
+  parent: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  langs:
+  - csharp
+  - vb
+  name: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan<IRule>)
+  nameWithType: IHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan<IRule>)
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, SudokuSpice.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CopyWithNewReferences
+    path: ../SudokuSpice/RuleBased/Heuristics/IHeuristic.cs
+    startLine: 42
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased.Heuristics
+  summary: "\nCreates a deep copy of this heuristic, replacing internal references with the ones\nprovided. These references may or may not be used during the copy, depending on the\nimplementation of the heuristic.\n"
+  example: []
+  syntax:
+    content: IHeuristic CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle, ReadOnlySpan<IRule> rules)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+    - id: rules
+      type: SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
+    return:
+      type: SudokuSpice.RuleBased.Heuristics.IHeuristic
+    content.vb: Function CopyWithNewReferences(puzzle As IReadOnlyPuzzleWithMutablePossibleValues, rules As ReadOnlySpan(Of IRule)) As IHeuristic
+  overload: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences*
+  nameWithType.vb: IHeuristic.CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan(Of IRule))
+  fullName.vb: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues, SudokuSpice.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule))
+  name.vb: CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan(Of IRule))
+references:
+- uid: SudokuSpice.RuleBased.Rules.IRule
+  commentId: T:SudokuSpice.RuleBased.Rules.IRule
+  parent: SudokuSpice.RuleBased.Rules
+  name: IRule
+  nameWithType: IRule
+  fullName: SudokuSpice.RuleBased.Rules.IRule
+- uid: SudokuSpice.RuleBased.Heuristics
+  commentId: N:SudokuSpice.RuleBased.Heuristics
+  name: SudokuSpice.RuleBased.Heuristics
+  nameWithType: SudokuSpice.RuleBased.Heuristics
+  fullName: SudokuSpice.RuleBased.Heuristics
+- uid: SudokuSpice.RuleBased.Rules
+  commentId: N:SudokuSpice.RuleBased.Rules
+  name: SudokuSpice.RuleBased.Rules
+  nameWithType: SudokuSpice.RuleBased.Rules
+  fullName: SudokuSpice.RuleBased.Rules
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor
+  name: TryInitFor
+  nameWithType: IHeuristic.TryInitFor
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor
+- uid: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+  commentId: T:SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+  parent: SudokuSpice.RuleBased
+  name: IReadOnlyPuzzleWithMutablePossibleValues
+  nameWithType: IReadOnlyPuzzleWithMutablePossibleValues
+  fullName: SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll
+  name: UpdateAll
+  nameWithType: IHeuristic.UpdateAll
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate
+  name: UndoLastUpdate
+  nameWithType: IHeuristic.UndoLastUpdate
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences*
+  commentId: Overload:SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences
+  name: CopyWithNewReferences
+  nameWithType: IHeuristic.CopyWithNewReferences
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences
+- uid: SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}
+  commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule}'
+  definition: SudokuSpice.ReadOnlySpan`1
+  name: ReadOnlySpan<IRule>
+  nameWithType: ReadOnlySpan<IRule>
+  fullName: SudokuSpice.ReadOnlySpan<SudokuSpice.RuleBased.Rules.IRule>
+  nameWithType.vb: ReadOnlySpan(Of IRule)
+  fullName.vb: SudokuSpice.ReadOnlySpan(Of SudokuSpice.RuleBased.Rules.IRule)
+  name.vb: ReadOnlySpan(Of IRule)
+  spec.csharp:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.RuleBased.Rules.IRule
+    name: IRule
+    nameWithType: IRule
+    fullName: SudokuSpice.RuleBased.Rules.IRule
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.RuleBased.Rules.IRule
+    name: IRule
+    nameWithType: IRule
+    fullName: SudokuSpice.RuleBased.Rules.IRule
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  commentId: T:SudokuSpice.RuleBased.Heuristics.IHeuristic
+  parent: SudokuSpice.RuleBased.Heuristics
+  name: IHeuristic
+  nameWithType: IHeuristic
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic
+- uid: SudokuSpice.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<>
+  nameWithType: ReadOnlySpan<>
+  fullName: SudokuSpice.ReadOnlySpan<>
+  nameWithType.vb: ReadOnlySpan(Of )
+  fullName.vb: SudokuSpice.ReadOnlySpan(Of )
+  name.vb: ReadOnlySpan(Of )
+  spec.csharp:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

@@ -15,13 +15,18 @@ namespace SudokuSpice
     {
         private readonly int[][] _coordToIdx;
         private readonly Coordinate[] _coords;
-        private int _numAdded = 0;
+        private int _numAdded;
         /// <summary>
         /// The number of coordinates currently considered to be 'tracked'.
         /// </summary>
         public int NumTracked { get; private set; }
 
         public int Size { get; }
+
+        /// <summary>
+        /// Provides readonly access to the currently tracked <see cref="Coordinate"/>s.
+        /// </summary>
+        public ReadOnlySpan<Coordinate> TrackedCoords => new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);
 
         /// <summary>
         /// Indicates the action taken during an
@@ -153,11 +158,6 @@ namespace SudokuSpice
         /// Untracks all <see cref="Coordinate"/>s.
         /// </summary>
         public void UntrackAll() => NumTracked = 0;
-
-        /// <summary>
-        /// Provides readonly access to the currently tracked <see cref="Coordinate"/>s.
-        /// </summary>
-        public ReadOnlySpan<Coordinate> GetTrackedCoords() => new ReadOnlySpan<Coordinate>(_coords, 0, NumTracked);
 
         private void _Track(in Coordinate c, int index)
         {

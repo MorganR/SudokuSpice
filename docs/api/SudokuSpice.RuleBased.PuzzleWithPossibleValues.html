@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class PuzzleWithPossibleValues
    | SudokuSpice ">
-    <meta name="generator" content="docfx 2.56.5.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../images/sudokuspice-black.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,11 +91,32 @@
     <div><a class="xref" href="SudokuSpice.RuleBased.IPossibleValues.html">IPossibleValues</a></div>
     <div><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPossibleValues.html">IReadOnlyPossibleValues</a></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
   <h5 id="SudokuSpice_RuleBased_PuzzleWithPossibleValues_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PuzzleWithPossibleValues : object, IPuzzleWithPossibleValues&lt;PuzzleWithPossibleValues&gt;, IPuzzle&lt;PuzzleWithPossibleValues&gt;, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues</code></pre>
+    <pre><code class="lang-csharp hljs">public class PuzzleWithPossibleValues : IPuzzleWithPossibleValues&lt;PuzzleWithPossibleValues&gt;, IPuzzle&lt;PuzzleWithPossibleValues&gt;, IReadOnlyPuzzleWithMutablePossibleValues, IReadOnlyPuzzleWithPossibleValues, IReadOnlyPuzzle, IPossibleValues, IReadOnlyPossibleValues</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -201,6 +222,22 @@ ability to track possible values.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if size is not the square of a whole number, or is outside the range [1, 31].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PuzzleWithPossibleValues__ctor_System_Nullable_System_Int32______.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PuzzleWithPossibleValues.%23ctor(System.Nullable%7BSystem.Int32%7D%5B%5D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -300,7 +337,7 @@ be null. The puzzle maintains a reference to this array.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">SudokuSpice.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -737,7 +774,7 @@ its value to <code>null</code>.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">SudokuSpice.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -885,6 +922,8 @@ and dashes.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="SudokuSpice.RuleBased.IPuzzleWithPossibleValues-1.html">IPuzzleWithPossibleValues&lt;T&gt;</a>

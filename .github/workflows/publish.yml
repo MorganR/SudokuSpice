@@ -1,0 +1,66 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [ created ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
+
+jobs:
+  package:
+
+    runs-on: ubuntu-latest
+
+    env:
+      DOTNET_NOLOGO: true
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "${{ github.event.inputs.tag }}"
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - name: Install dependencies
+      run: dotnet restore SudokuSpice/SudokuSpice.csproj
+    - id: pkgs
+      name: Build packages
+      run: |
+        dotnet pack SudokuSpice/SudokuSpice.csproj -c Release -o /tmp/packages/sudoku
+        ls -l /tmp/packages/sudoku
+    - id: upload-nuget-pkg
+      name: Upload package artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: latest-sudokuspice-pkgs
+        path: /tmp/packages/sudoku/SudokuSpice*
+        retention-days: 7
+        if-no-files-found: error # defaults to `warn` 
+
+  release:
+    needs: package
+
+    runs-on: ubuntu-latest
+
+    env:
+      DOTNET_NOLOGO: true
+      NUGET_KEY: ${{secrets.NUGET_KEY}}
+
+    steps:
+    - name: Download package
+      uses: actions/download-artifact@v2
+      with: 
+        name: latest-sudokuspice-pkgs
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - name: Push package to NuGet
+      run: |
+        pkg_path=$(ls SudokuSpice*.nupkg)
+        echo "Found package path: ${pkg_path}"
+        dotnet nuget push "${pkg_path}" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json

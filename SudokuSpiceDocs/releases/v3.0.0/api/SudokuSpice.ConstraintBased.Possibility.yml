@@ -1,0 +1,322 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  id: Possibility
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.Possibility.Coordinate
+  - SudokuSpice.ConstraintBased.Possibility.Index
+  - SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  - SudokuSpice.ConstraintBased.Possibility.State
+  - SudokuSpice.ConstraintBased.Possibility.TryDrop
+  langs:
+  - csharp
+  - vb
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Possibility
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nA concrete possibility in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. This represents a single\npossible value for a single square in the puzzle.\n"
+  example: []
+  syntax:
+    content: 'public sealed class Possibility : object, IPossibility'
+    content.vb: >-
+      Public NotInheritable Class Possibility
+          Inherits Object
+          Implements IPossibility
+  inheritance:
+  - System.Object
+  implements:
+  - SudokuSpice.ConstraintBased.IPossibility
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: SudokuSpice.ConstraintBased.Possibility.Coordinate
+  commentId: P:SudokuSpice.ConstraintBased.Possibility.Coordinate
+  id: Coordinate
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: Coordinate
+  nameWithType: Possibility.Coordinate
+  fullName: SudokuSpice.ConstraintBased.Possibility.Coordinate
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Coordinate
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 28
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe square this possibility is for.\n"
+  example: []
+  syntax:
+    content: public Coordinate Coordinate { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.Coordinate
+    content.vb: Public ReadOnly Property Coordinate As Coordinate
+  overload: SudokuSpice.ConstraintBased.Possibility.Coordinate*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Possibility.Index
+  commentId: P:SudokuSpice.ConstraintBased.Possibility.Index
+  id: Index
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: Index
+  nameWithType: Possibility.Index
+  fullName: SudokuSpice.ConstraintBased.Possibility.Index
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Index
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 33
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe value index this possibility is for (corresponds to the values in\n<xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>).\n"
+  example: []
+  syntax:
+    content: public int Index { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Index As Integer
+  overload: SudokuSpice.ConstraintBased.Possibility.Index*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  commentId: P:SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  id: IsConcrete
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: IsConcrete
+  nameWithType: Possibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: IsConcrete
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
+  example: []
+  syntax:
+    content: public bool IsConcrete { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsConcrete As Boolean
+  overload: SudokuSpice.ConstraintBased.Possibility.IsConcrete*
+  implements:
+  - SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Possibility.State
+  commentId: P:SudokuSpice.ConstraintBased.Possibility.State
+  id: State
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: Possibility.State
+  fullName: SudokuSpice.ConstraintBased.Possibility.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: State
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 37
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public NodeState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: Public ReadOnly Property State As NodeState
+  overload: SudokuSpice.ConstraintBased.Possibility.State*
+  implements:
+  - SudokuSpice.ConstraintBased.IPossibility.State
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Possibility.TryDrop
+  commentId: M:SudokuSpice.ConstraintBased.Possibility.TryDrop
+  id: TryDrop
+  parent: SudokuSpice.ConstraintBased.Possibility
+  langs:
+  - csharp
+  - vb
+  name: TryDrop()
+  nameWithType: Possibility.TryDrop()
+  fullName: SudokuSpice.ConstraintBased.Possibility.TryDrop()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Possibility.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TryDrop
+    path: ../SudokuSpice/ConstraintBased/Possibility.cs
+    startLine: 75
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nTries to drop this possibility, if that is compatible with existing objectives.\n\nThis is meant to be checked during matrix construction so that constraints can drop\npossibilities that violate the puzzle&apos;s preset values.\n\nIf this method fails, it suggests that the current puzzle cannot satisfy all the current\nconstraints.\n"
+  example: []
+  syntax:
+    content: public bool TryDrop()
+    return:
+      type: System.Boolean
+      description: "\nTrue if the possibility is already dropped or was successfully dropped from all\nexisting objectives, else false.\n"
+    content.vb: Public Function TryDrop As Boolean
+  overload: SudokuSpice.ConstraintBased.Possibility.TryDrop*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  parent: SudokuSpice.ConstraintBased
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
+- uid: SudokuSpice.ConstraintBased.Possibility.Coordinate*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.Coordinate
+  name: Coordinate
+  nameWithType: Possibility.Coordinate
+  fullName: SudokuSpice.ConstraintBased.Possibility.Coordinate
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  isExternal: true
+- uid: SudokuSpice.ConstraintBased.Possibility.Index*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.Index
+  name: Index
+  nameWithType: Possibility.Index
+  fullName: SudokuSpice.ConstraintBased.Possibility.Index
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.ConstraintBased.Possibility.IsConcrete*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.IsConcrete
+  name: IsConcrete
+  nameWithType: Possibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.Possibility.IsConcrete
+- uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  name: IsConcrete
+  nameWithType: IPossibility.IsConcrete
+  fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice.ConstraintBased.Possibility.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.State
+  name: State
+  nameWithType: Possibility.State
+  fullName: SudokuSpice.ConstraintBased.Possibility.State
+- uid: SudokuSpice.ConstraintBased.IPossibility.State
+  commentId: P:SudokuSpice.ConstraintBased.IPossibility.State
+  parent: SudokuSpice.ConstraintBased.IPossibility
+  name: State
+  nameWithType: IPossibility.State
+  fullName: SudokuSpice.ConstraintBased.IPossibility.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.Possibility.TryDrop*
+  commentId: Overload:SudokuSpice.ConstraintBased.Possibility.TryDrop
+  name: TryDrop
+  nameWithType: Possibility.TryDrop
+  fullName: SudokuSpice.ConstraintBased.Possibility.TryDrop

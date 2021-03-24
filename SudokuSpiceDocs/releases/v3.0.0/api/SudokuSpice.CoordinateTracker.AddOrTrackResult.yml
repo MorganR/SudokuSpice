@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
+  id: CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
+  - SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
+  langs:
+  - csharp
+  - vb
+  name: CoordinateTracker.AddOrTrackResult
+  nameWithType: CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  type: Enum
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: AddOrTrackResult
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nIndicates the action taken during an\n<xref href=\"SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate%40)\" data-throw-if-not-resolved=\"false\"></xref>\noperation.\n"
+  example: []
+  syntax:
+    content: 'public enum AddOrTrackResult : int'
+    content.vb: Public Enum AddOrTrackResult As Integer
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  commentId: F:SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  id: AddedAndTracked
+  parent: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  langs:
+  - csharp
+  - vb
+  name: AddedAndTracked
+  nameWithType: CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult.AddedAndTracked
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: AddedAndTracked
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 41
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was previously unknown, and has been added and\ntracked.\n"
+  example: []
+  syntax:
+    content: AddedAndTracked = null
+    return:
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
+    content.vb: AddedAndTracked = Nothing
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
+  commentId: F:SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
+  id: Tracked
+  parent: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  langs:
+  - csharp
+  - vb
+  name: Tracked
+  nameWithType: CoordinateTracker.AddOrTrackResult.Tracked
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult.Tracked
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Tracked
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already added but was untracked, and is now\ntracked.\n"
+  example: []
+  syntax:
+    content: Tracked = null
+    return:
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
+    content.vb: Tracked = Nothing
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
+  commentId: F:SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
+  id: Unchanged
+  parent: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  langs:
+  - csharp
+  - vb
+  name: Unchanged
+  nameWithType: CoordinateTracker.AddOrTrackResult.Unchanged
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult.Unchanged
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Unchanged
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 50
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> was already tracked. No changes were needed.\n"
+  example: []
+  syntax:
+    content: Unchanged = null
+    return:
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
+    content.vb: Unchanged = Nothing
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  isExternal: true
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice
+  name: CoordinateTracker.AddOrTrackResult
+  nameWithType: CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult

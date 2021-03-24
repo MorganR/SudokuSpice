@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.Intrinsics.X86;
 
@@ -14,14 +13,19 @@ namespace SudokuSpice
 
         private static uint[] _CreateMasks()
         {
-            uint[]? masks = new uint[32];
+            uint[]? masks = new uint[NumBits];
             masks[0] = 1;
-            for (int i = 1; i < 32; i++)
+            for (int i = 1; i < NumBits; i++)
             {
                 masks[i] = masks[i - 1] << 1;
             }
             return masks;
         }
+
+        /// <summary>
+        /// The number of bits (i.e. the capacity) contained by a BitVector.
+        /// </summary>
+        public const int NumBits = sizeof(uint) << 3;
 
         /// <summary>
         /// Gets the data stored in this bit vector as an unsigned int.
@@ -49,7 +53,7 @@ namespace SudokuSpice
         /// <param name="size">The number of bits to set.</param>
         public static BitVector CreateWithSize(int size)
         {
-            if (size < 0 || size > 32)
+            if (size < 0 || size > NumBits)
             {
                 throw new ArgumentOutOfRangeException(nameof(size), size, "Must be between 0 and 32 inclusive.");
             }
@@ -57,7 +61,7 @@ namespace SudokuSpice
             {
                 return new BitVector(Bmi2.ZeroHighBits(uint.MaxValue, (uint)size));
             }
-            return new BitVector((uint)((1 << size) - 1));
+            return new BitVector((1u << size) - 1);
         }
 
         /// <summary>
@@ -112,40 +116,6 @@ namespace SudokuSpice
         /// <param name="bit">The zero-based index of the bit to check.</param>
         /// <returns>True if set.</returns>
         public readonly bool IsBitSet(int bit) => Convert.ToBoolean(Data & _masks[bit]);
-
-        /// <summary>
-        /// Gets a list of the bits set in this bit vector.
-        /// </summary>
-        /// <remarks>
-        /// This operation is slightly more efficient on average when <see cref="Popcnt"/> is
-        /// supported. Worst case performance is roughly the same.
-        /// </remarks>
-        /// <returns>A list of the bits that are set.</returns>
-        public readonly List<int> GetSetBits()
-        {
-            if (Popcnt.IsSupported)
-            {
-                int numSetBits = ComputeCount();
-                var setBits = new List<int>(numSetBits);
-                for (int i = 0; setBits.Count < numSetBits; i++)
-                {
-                    if ((Data & _masks[i]) != 0)
-                    {
-                        setBits.Add(i);
-                    }
-                }
-                return setBits;
-            }
-            var bits = new List<int>(32);
-            for (int i = 0; i < _masks.Length; i++)
-            {
-                if ((Data & _masks[i]) != 0)
-                {
-                    bits.Add(i);
-                }
-            }
-            return bits;
-        }
 
         /// <summary>
         /// Populates a provided Span with the indices of set bits, and returns the number of set 

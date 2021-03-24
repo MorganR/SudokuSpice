@@ -211,7 +211,7 @@ namespace SudokuSpice.ConstraintBased
             if (_selectedCount == _countToSatisfy)
             {
                 _state = NodeState.UNKNOWN;
-                _graph.ReattachObjective(this);
+                ExactCoverGraph.ReattachObjective(this);
                 Links.RevertOthersOnObjective(
                     toDeselect,
                     toReattach => toReattach.Possibility.ReturnFromObjective(toReattach));
@@ -286,7 +286,7 @@ namespace SudokuSpice.ConstraintBased
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void _ReinsertPossibility(Link toReinsert)
+        private static void _ReinsertPossibility(Link toReinsert)
         {
             toReinsert.ReinsertToObjective();
         }

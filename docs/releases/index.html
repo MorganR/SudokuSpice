@@ -8,7 +8,7 @@
     <title>Releases | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Releases | SudokuSpice ">
-    <meta name="generator" content="docfx 2.56.5.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../images/sudokuspice-black.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -63,6 +63,20 @@
 <h1 id="releases">Releases</h1>
 
 <p>Select a release from below:</p>
+<h2 id="300---2021-03-07"><a href="/releases/v3.0.0/">3.0.0</a> - 2021-03-07</h2>
+<ul>
+<li>Updated to .NET 5 (dropped support for older versions)</li>
+<li>The rule-based and constraint-based APIs have been unified as much as possible (note: many breaking changes).</li>
+<li>There is now a single PuzzleGenerator that works with any IPuzzleSolver implementation.</li>
+<li>Solvers and generators are now generic to reduce casting.</li>
+<li>Performance has been improved across the board.</li>
+<li>The constraint-based library has been simplified around the concepts of Objectives and Possibilities, and extended from an exact-cover matrix to a more expressive exact-cover graph. This enables more complex constraints.</li>
+<li>Added a rule and constraint for implementing magic squares.</li>
+<li>Rule-based code now uses a new puzzle type that combines IPuzzle and IPossibleValues: PuzzleWithPossibleValues!</li>
+<li>More tests.</li>
+<li>Loads of other little changes.</li>
+</ul>
+<p>Warning: This release <em>does</em> introduce large-scale breaking changes.</p>
 <h2 id="200---2020-05-12"><a href="/releases/v2.0.0/">2.0.0</a> - 2020-05-12</h2>
 <ul>
 <li>Adds ConstraintBasedSolver and ConstraintBasedGenerator.</li>

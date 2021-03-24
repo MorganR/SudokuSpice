@@ -106,13 +106,6 @@ namespace SudokuSpice.RuleBased
         }
 
         /// <summary>
-        /// Gets the possible values at the given internal index.
-        /// </summary>
-        /// <param name="c">The coordinate of the square to retrieve possible values for.</param>
-        /// <returns>A list of those possible values.</returns>
-        internal List<int> GetPossibleValues(in Coordinate c) => _puzzle.GetPossibleValues(in c).GetSetBits();
-
-        /// <summary>
         /// Populates a provided Span with the possible values at the given coordinate, and returns
         /// the number of possible values that were populated.
         ///

@@ -33,7 +33,7 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public BitVector GetMissingValuesForColumn(int col) => GetPossibleValues(col);
+        public BitVector GetMissingValuesForColumn(int column) => GetPossibleValues(column);
 
         /// <inheritdoc/>
         protected override int GetNumDimensions(IReadOnlyPuzzle puzzle) => puzzle.Size;

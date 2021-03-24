@@ -1,0 +1,613 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  id: SolveStats
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.Equals(System.Nullable{System.Object})
+  - SudokuSpice.SolveStats.GetHashCode
+  - SudokuSpice.SolveStats.NumSolutionsFound
+  - SudokuSpice.SolveStats.NumSquaresGuessed
+  - SudokuSpice.SolveStats.NumTotalGuesses
+  - SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.ToString
+  langs:
+  - csharp
+  - vb
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
+  type: Struct
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: SolveStats
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nContains statistics about an attempt to solve a puzzle.\n"
+  example: []
+  syntax:
+    content: 'public struct SolveStats : IEquatable<SolveStats>'
+    content.vb: >-
+      Public Structure SolveStats
+          Implements IEquatable(Of SolveStats)
+  implements:
+  - IEquatable{SudokuSpice.SolveStats}
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+- uid: SudokuSpice.SolveStats.NumSolutionsFound
+  commentId: P:SudokuSpice.SolveStats.NumSolutionsFound
+  id: NumSolutionsFound
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: NumSolutionsFound
+  nameWithType: SolveStats.NumSolutionsFound
+  fullName: SudokuSpice.SolveStats.NumSolutionsFound
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: NumSolutionsFound
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 13
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe number of solutions found for this puzzle. For any real Sudoku puzzle, this should\nbe 1.\n"
+  example: []
+  syntax:
+    content: public int NumSolutionsFound { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NumSolutionsFound As Integer
+  overload: SudokuSpice.SolveStats.NumSolutionsFound*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.SolveStats.NumSquaresGuessed
+  commentId: P:SudokuSpice.SolveStats.NumSquaresGuessed
+  id: NumSquaresGuessed
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: NumSquaresGuessed
+  nameWithType: SolveStats.NumSquaresGuessed
+  fullName: SudokuSpice.SolveStats.NumSquaresGuessed
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: NumSquaresGuessed
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 23
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe number of squares for which the solver had to guess while finding a solution.\n"
+  remarks: "\nUnlike <xref href=\"SudokuSpice.SolveStats.NumTotalGuesses\" data-throw-if-not-resolved=\"false\"></xref>, if the solver was\nsetting a square that had three possible values, this would only add 1 to\n<code>NumSquaresGuessed</code>. If NumSolutionsFound is greater than 1, then the precise\nmeaning of this value is undefined.\n"
+  example: []
+  syntax:
+    content: public int NumSquaresGuessed { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NumSquaresGuessed As Integer
+  overload: SudokuSpice.SolveStats.NumSquaresGuessed*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.SolveStats.NumTotalGuesses
+  commentId: P:SudokuSpice.SolveStats.NumTotalGuesses
+  id: NumTotalGuesses
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: NumTotalGuesses
+  nameWithType: SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: NumTotalGuesses
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe total number of guesses used to solve the puzzle. A &apos;guess&apos; is any time the\nsolver tries setting a square to one value when there are multiple possible values\nfor that square.\n"
+  remarks: "\nExample Guesses: if the solver tried to set square (0,1) with possible values [2, 3, 5]\nthen this would add three total guesses since there were three possible values for this\ncoordinate. This would be true even if only one of the values actually led to a\nsolution.\n"
+  example: []
+  syntax:
+    content: public int NumTotalGuesses { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NumTotalGuesses As Integer
+  overload: SudokuSpice.SolveStats.NumTotalGuesses*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.SolveStats.Equals(System.Nullable{System.Object})
+  commentId: M:SudokuSpice.SolveStats.Equals(System.Nullable{System.Object})
+  id: Equals(System.Nullable{System.Object})
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: Equals(Nullable<Object>)
+  nameWithType: SolveStats.Equals(Nullable<Object>)
+  fullName: SudokuSpice.SolveStats.Equals(System.Nullable<System.Object>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 37
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Nullable{System.Object}
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object?) As Boolean
+  overload: SudokuSpice.SolveStats.Equals*
+  nameWithType.vb: SolveStats.Equals(Nullable(Of Object))
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: SudokuSpice.SolveStats.Equals(System.Nullable(Of System.Object))
+  name.vb: Equals(Nullable(Of Object))
+- uid: SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  id: Equals(SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: Equals(SolveStats)
+  nameWithType: SolveStats.Equals(SolveStats)
+  fullName: SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public bool Equals(SolveStats other)
+    parameters:
+    - id: other
+      type: SudokuSpice.SolveStats
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As SolveStats) As Boolean
+  overload: SudokuSpice.SolveStats.Equals*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.SolveStats.GetHashCode
+  commentId: M:SudokuSpice.SolveStats.GetHashCode
+  id: GetHashCode
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: SolveStats.GetHashCode()
+  fullName: SudokuSpice.SolveStats.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetHashCode
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 53
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overload: SudokuSpice.SolveStats.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  id: op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: Equality(SolveStats, SolveStats)
+  nameWithType: SolveStats.Equality(SolveStats, SolveStats)
+  fullName: SudokuSpice.SolveStats.Equality(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: op_Equality
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 55
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator ==(SolveStats left, SolveStats right)
+    parameters:
+    - id: left
+      type: SudokuSpice.SolveStats
+    - id: right
+      type: SudokuSpice.SolveStats
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As SolveStats, right As SolveStats) As Boolean
+  overload: SudokuSpice.SolveStats.op_Equality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  id: op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: Inequality(SolveStats, SolveStats)
+  nameWithType: SolveStats.Inequality(SolveStats, SolveStats)
+  fullName: SudokuSpice.SolveStats.Inequality(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: op_Inequality
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 57
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator !=(SolveStats left, SolveStats right)
+    parameters:
+    - id: left
+      type: SudokuSpice.SolveStats
+    - id: right
+      type: SudokuSpice.SolveStats
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As SolveStats, right As SolveStats) As Boolean
+  overload: SudokuSpice.SolveStats.op_Inequality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: SudokuSpice.SolveStats.ToString
+  commentId: M:SudokuSpice.SolveStats.ToString
+  id: ToString
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: SolveStats.ToString()
+  fullName: SudokuSpice.SolveStats.ToString()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: ToString
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 59
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overload: SudokuSpice.SolveStats.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: IEquatable{SudokuSpice.SolveStats}
+  commentId: '!:IEquatable{SudokuSpice.SolveStats}'
+  definition: IEquatable`1
+  name: IEquatable<SolveStats>
+  nameWithType: IEquatable<SolveStats>
+  fullName: IEquatable<SudokuSpice.SolveStats>
+  nameWithType.vb: IEquatable(Of SolveStats)
+  fullName.vb: IEquatable(Of SudokuSpice.SolveStats)
+  name.vb: IEquatable(Of SolveStats)
+  spec.csharp:
+  - uid: IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+    nameWithType: SolveStats
+    fullName: SudokuSpice.SolveStats
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+    nameWithType: SolveStats
+    fullName: SudokuSpice.SolveStats
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IEquatable`1
+  isExternal: true
+  name: IEquatable<>
+  nameWithType: IEquatable<>
+  fullName: IEquatable<>
+  nameWithType.vb: IEquatable(Of )
+  fullName.vb: IEquatable(Of )
+  name.vb: IEquatable(Of )
+  spec.csharp:
+  - uid: IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.SolveStats.NumSolutionsFound*
+  commentId: Overload:SudokuSpice.SolveStats.NumSolutionsFound
+  name: NumSolutionsFound
+  nameWithType: SolveStats.NumSolutionsFound
+  fullName: SudokuSpice.SolveStats.NumSolutionsFound
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.SolveStats.NumTotalGuesses
+  commentId: P:SudokuSpice.SolveStats.NumTotalGuesses
+  isExternal: true
+- uid: SudokuSpice.SolveStats.NumSquaresGuessed*
+  commentId: Overload:SudokuSpice.SolveStats.NumSquaresGuessed
+  name: NumSquaresGuessed
+  nameWithType: SolveStats.NumSquaresGuessed
+  fullName: SudokuSpice.SolveStats.NumSquaresGuessed
+- uid: SudokuSpice.SolveStats.NumTotalGuesses*
+  commentId: Overload:SudokuSpice.SolveStats.NumTotalGuesses
+  name: NumTotalGuesses
+  nameWithType: SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
+- uid: SudokuSpice.SolveStats.Equals*
+  commentId: Overload:SudokuSpice.SolveStats.Equals
+  name: Equals
+  nameWithType: SolveStats.Equals
+  fullName: SudokuSpice.SolveStats.Equals
+- uid: System.Nullable{System.Object}
+  commentId: '!:System.Nullable{System.Object}'
+  definition: System.Nullable`1
+  name: Nullable<Object>
+  nameWithType: Nullable<Object>
+  fullName: System.Nullable<System.Object>
+  nameWithType.vb: Nullable(Of Object)
+  fullName.vb: System.Nullable(Of System.Object)
+  name.vb: Nullable(Of Object)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Nullable`1
+  isExternal: true
+  name: Nullable<>
+  nameWithType: Nullable<>
+  fullName: System.Nullable<>
+  nameWithType.vb: Nullable(Of )
+  fullName.vb: System.Nullable(Of )
+  name.vb: Nullable(Of )
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
+- uid: SudokuSpice.SolveStats.GetHashCode*
+  commentId: Overload:SudokuSpice.SolveStats.GetHashCode
+  name: GetHashCode
+  nameWithType: SolveStats.GetHashCode
+  fullName: SudokuSpice.SolveStats.GetHashCode
+- uid: SudokuSpice.SolveStats.op_Equality*
+  commentId: Overload:SudokuSpice.SolveStats.op_Equality
+  name: Equality
+  nameWithType: SolveStats.Equality
+  fullName: SudokuSpice.SolveStats.Equality
+- uid: SudokuSpice.SolveStats.op_Inequality*
+  commentId: Overload:SudokuSpice.SolveStats.op_Inequality
+  name: Inequality
+  nameWithType: SolveStats.Inequality
+  fullName: SudokuSpice.SolveStats.Inequality
+- uid: SudokuSpice.SolveStats.ToString*
+  commentId: Overload:SudokuSpice.SolveStats.ToString
+  name: ToString
+  nameWithType: SolveStats.ToString
+  fullName: SudokuSpice.SolveStats.ToString
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

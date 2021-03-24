@@ -1,0 +1,513 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  id: Objective
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  - SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  - SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities
+  - SudokuSpice.ConstraintBased.Objective.State
+  langs:
+  - csharp
+  - vb
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Objective
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nA required objective in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>. This enforces that one or more\n<xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref>s must be selected.\n"
+  example: []
+  syntax:
+    content: 'public sealed class Objective : object, IObjective'
+    content.vb: >-
+      Public NotInheritable Class Objective
+          Inherits Object
+          Implements IObjective
+  inheritance:
+  - System.Object
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: SudokuSpice.ConstraintBased.Objective.State
+  commentId: P:SudokuSpice.ConstraintBased.Objective.State
+  id: State
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: Objective.State
+  fullName: SudokuSpice.ConstraintBased.Objective.State
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: State
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 28
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public NodeState State { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.ConstraintBased.NodeState
+    content.vb: Public ReadOnly Property State As NodeState
+  overload: SudokuSpice.ConstraintBased.Objective.State*
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective.State
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  id: CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility},System.Int32)
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan<IPossibility>, Int32)
+  nameWithType: Objective.CreateFullyConnected(ExactCoverGraph, ReadOnlySpan<IPossibility>, Int32)
+  fullName: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, SudokuSpice.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateFullyConnected
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 93
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nConstructs an objective that&apos;s fully connected to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilities</code> and into the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">graph</code>.\n"
+  example: []
+  syntax:
+    content: public static Objective CreateFullyConnected(ExactCoverGraph graph, ReadOnlySpan<IPossibility> possibilities, int countToSatisfy)
+    parameters:
+    - id: graph
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
+      description: The graph to attach this to.
+    - id: possibilities
+      type: SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+      description: The possibilities that could satisfy this objective.
+    - id: countToSatisfy
+      type: System.Int32
+      description: "\nThe number of possibilities that must be satisfied in order to satisfy this objective.\nOnce this number of possibilities are selected, all other possibilities on this\nobjective will be dropped.\n"
+    return:
+      type: SudokuSpice.ConstraintBased.Objective
+      description: The newly constructed objective.
+    content.vb: Public Shared Function CreateFullyConnected(graph As ExactCoverGraph, possibilities As ReadOnlySpan(Of IPossibility), countToSatisfy As Integer) As Objective
+  overload: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*
+  nameWithType.vb: Objective.CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of IPossibility), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, SudokuSpice.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility), System.Int32)
+  name.vb: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of IPossibility), Int32)
+- uid: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  id: CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph,SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility},System.Int32)
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan<Possibility>, Int32)
+  nameWithType: Objective.CreateFullyConnected(ExactCoverGraph, ReadOnlySpan<Possibility>, Int32)
+  fullName: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, SudokuSpice.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateFullyConnected
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 128
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nConstructs an objective that&apos;s fully connected to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">possibilities</code> and into the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">graph</code>.\n"
+  example: []
+  syntax:
+    content: public static Objective CreateFullyConnected(ExactCoverGraph graph, ReadOnlySpan<Possibility> possibilities, int countToSatisfy)
+    parameters:
+    - id: graph
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
+      description: The graph to attach this to.
+    - id: possibilities
+      type: SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
+      description: The possibilities that could satisfy this objective.
+    - id: countToSatisfy
+      type: System.Int32
+      description: "\nThe number of possibilities that must be satisfied in order to satisfy this objective.\nOnce this number of possibilities are selected, all other possibilities on this\nobjective will be dropped.\n"
+    return:
+      type: SudokuSpice.ConstraintBased.Objective
+      description: The newly constructed objective.
+    content.vb: Public Shared Function CreateFullyConnected(graph As ExactCoverGraph, possibilities As ReadOnlySpan(Of Possibility), countToSatisfy As Integer) As Objective
+  overload: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*
+  nameWithType.vb: Objective.CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of Possibility), Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected(SudokuSpice.ConstraintBased.ExactCoverGraph, SudokuSpice.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility), System.Int32)
+  name.vb: CreateFullyConnected(ExactCoverGraph, ReadOnlySpan(Of Possibility), Int32)
+- uid: SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities
+  commentId: M:SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities
+  id: GetUnknownDirectPossibilities
+  parent: SudokuSpice.ConstraintBased.Objective
+  langs:
+  - csharp
+  - vb
+  name: GetUnknownDirectPossibilities()
+  nameWithType: Objective.GetUnknownDirectPossibilities()
+  fullName: SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/Objective.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: GetUnknownDirectPossibilities
+    path: ../SudokuSpice/ConstraintBased/Objective.cs
+    startLine: 148
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nRetrieves any possibilities that are direct descendents of this objective and whose\nstates are unknown.\n"
+  example: []
+  syntax:
+    content: public IEnumerable<IPossibility> GetUnknownDirectPossibilities()
+    return:
+      type: IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+    content.vb: Public Function GetUnknownDirectPossibilities As IEnumerable(Of IPossibility)
+  overload: SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities*
+  implements:
+  - SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: SudokuSpice.ConstraintBased.IPossibility
+  commentId: T:SudokuSpice.ConstraintBased.IPossibility
+  parent: SudokuSpice.ConstraintBased
+  name: IPossibility
+  nameWithType: IPossibility
+  fullName: SudokuSpice.ConstraintBased.IPossibility
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.Objective.State*
+  commentId: Overload:SudokuSpice.ConstraintBased.Objective.State
+  name: State
+  nameWithType: Objective.State
+  fullName: SudokuSpice.ConstraintBased.Objective.State
+- uid: SudokuSpice.ConstraintBased.IObjective.State
+  commentId: P:SudokuSpice.ConstraintBased.IObjective.State
+  parent: SudokuSpice.ConstraintBased.IObjective
+  name: State
+  nameWithType: IObjective.State
+  fullName: SudokuSpice.ConstraintBased.IObjective.State
+- uid: SudokuSpice.ConstraintBased.NodeState
+  commentId: T:SudokuSpice.ConstraintBased.NodeState
+  parent: SudokuSpice.ConstraintBased
+  name: NodeState
+  nameWithType: NodeState
+  fullName: SudokuSpice.ConstraintBased.NodeState
+- uid: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected*
+  commentId: Overload:SudokuSpice.ConstraintBased.Objective.CreateFullyConnected
+  name: CreateFullyConnected
+  nameWithType: Objective.CreateFullyConnected
+  fullName: SudokuSpice.ConstraintBased.Objective.CreateFullyConnected
+- uid: SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.IPossibility}'
+  definition: SudokuSpice.ReadOnlySpan`1
+  name: ReadOnlySpan<IPossibility>
+  nameWithType: ReadOnlySpan<IPossibility>
+  fullName: SudokuSpice.ReadOnlySpan<SudokuSpice.ConstraintBased.IPossibility>
+  nameWithType.vb: ReadOnlySpan(Of IPossibility)
+  fullName.vb: SudokuSpice.ReadOnlySpan(Of SudokuSpice.ConstraintBased.IPossibility)
+  name.vb: ReadOnlySpan(Of IPossibility)
+  spec.csharp:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  parent: SudokuSpice.ConstraintBased
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: SudokuSpice.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<>
+  nameWithType: ReadOnlySpan<>
+  fullName: SudokuSpice.ReadOnlySpan<>
+  nameWithType.vb: ReadOnlySpan(Of )
+  fullName.vb: SudokuSpice.ReadOnlySpan(Of )
+  name.vb: ReadOnlySpan(Of )
+  spec.csharp:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}
+  commentId: '!:SudokuSpice.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility}'
+  definition: SudokuSpice.ReadOnlySpan`1
+  name: ReadOnlySpan<Possibility>
+  nameWithType: ReadOnlySpan<Possibility>
+  fullName: SudokuSpice.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility>
+  nameWithType.vb: ReadOnlySpan(Of Possibility)
+  fullName.vb: SudokuSpice.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility)
+  name.vb: ReadOnlySpan(Of Possibility)
+  spec.csharp:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: SudokuSpice.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities*
+  commentId: Overload:SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities
+  name: GetUnknownDirectPossibilities
+  nameWithType: Objective.GetUnknownDirectPossibilities
+  fullName: SudokuSpice.ConstraintBased.Objective.GetUnknownDirectPossibilities
+- uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  commentId: M:SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  parent: SudokuSpice.ConstraintBased.IObjective
+  name: GetUnknownDirectPossibilities()
+  nameWithType: IObjective.GetUnknownDirectPossibilities()
+  fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities()
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    name: GetUnknownDirectPossibilities
+    nameWithType: IObjective.GetUnknownDirectPossibilities
+    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    name: GetUnknownDirectPossibilities
+    nameWithType: IObjective.GetUnknownDirectPossibilities
+    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IEnumerable{SudokuSpice.ConstraintBased.IPossibility}
+  commentId: '!:IEnumerable{SudokuSpice.ConstraintBased.IPossibility}'
+  definition: IEnumerable`1
+  name: IEnumerable<IPossibility>
+  nameWithType: IEnumerable<IPossibility>
+  fullName: IEnumerable<SudokuSpice.ConstraintBased.IPossibility>
+  nameWithType.vb: IEnumerable(Of IPossibility)
+  fullName.vb: IEnumerable(Of SudokuSpice.ConstraintBased.IPossibility)
+  name.vb: IEnumerable(Of IPossibility)
+  spec.csharp:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.IPossibility
+    name: IPossibility
+    nameWithType: IPossibility
+    fullName: SudokuSpice.ConstraintBased.IPossibility
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IEnumerable`1
+  isExternal: true
+  name: IEnumerable<>
+  nameWithType: IEnumerable<>
+  fullName: IEnumerable<>
+  nameWithType.vb: IEnumerable(Of )
+  fullName.vb: IEnumerable(Of )
+  name.vb: IEnumerable(Of )
+  spec.csharp:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

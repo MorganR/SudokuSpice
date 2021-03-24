@@ -10,18 +10,18 @@ items:
   - SudokuSpice.BitVector.CreateWithSize(System.Int32)
   - SudokuSpice.BitVector.Data
   - SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
-  - SudokuSpice.BitVector.Equals(System.Nullable{System.Object})
+  - SudokuSpice.BitVector.Equals(System.Object)
   - SudokuSpice.BitVector.FindDifference(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.FindIntersect(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.FindUnion(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.GetHashCode
-  - SudokuSpice.BitVector.GetSetBits
   - SudokuSpice.BitVector.IsBitSet(System.Int32)
   - SudokuSpice.BitVector.IsEmpty
   - SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
+  - SudokuSpice.BitVector.NumBits
   - SudokuSpice.BitVector.op_Equality(SudokuSpice.BitVector,SudokuSpice.BitVector)
   - SudokuSpice.BitVector.op_Inequality(SudokuSpice.BitVector,SudokuSpice.BitVector)
-  - SudokuSpice.BitVector.PopulateSetBits(Span{System.Int32})
+  - SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
   - SudokuSpice.BitVector.SetBit(System.Int32)
   - SudokuSpice.BitVector.ToString
   - SudokuSpice.BitVector.UnsetBit(System.Int32)
@@ -36,10 +36,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: BitVector
     path: ../SudokuSpice/BitVector.cs
-    startLine: 10
+    startLine: 9
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -51,13 +51,52 @@ items:
       Public Structure BitVector
           Implements IEquatable(Of BitVector)
   implements:
-  - IEquatable{SudokuSpice.BitVector}
+  - System.IEquatable{SudokuSpice.BitVector}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
   modifiers.csharp:
   - public
   - struct
   modifiers.vb:
   - Public
   - Structure
+- uid: SudokuSpice.BitVector.NumBits
+  commentId: F:SudokuSpice.BitVector.NumBits
+  id: NumBits
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: NumBits
+  nameWithType: BitVector.NumBits
+  fullName: SudokuSpice.BitVector.NumBits
+  type: Field
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: NumBits
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 27
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe number of bits (i.e. the capacity) contained by a BitVector.\n"
+  example: []
+  syntax:
+    content: public const int NumBits = 32
+    return:
+      type: System.Int32
+    content.vb: Public Const NumBits As Integer = 32
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
 - uid: SudokuSpice.BitVector.Data
   commentId: P:SudokuSpice.BitVector.Data
   id: Data
@@ -73,10 +112,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Data
     path: ../SudokuSpice/BitVector.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -110,10 +149,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: IsEmpty
     path: ../SudokuSpice/BitVector.cs
-    startLine: 34
+    startLine: 38
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -148,10 +187,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/BitVector.cs
-    startLine: 40
+    startLine: 44
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -184,10 +223,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: CreateWithSize
     path: ../SudokuSpice/BitVector.cs
-    startLine: 49
+    startLine: 53
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -224,10 +263,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: FindIntersect
     path: ../SudokuSpice/BitVector.cs
-    startLine: 68
+    startLine: 72
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -268,10 +307,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: FindUnion
     path: ../SudokuSpice/BitVector.cs
-    startLine: 76
+    startLine: 80
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -312,10 +351,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: FindDifference
     path: ../SudokuSpice/BitVector.cs
-    startLine: 84
+    startLine: 88
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -356,10 +395,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: UnsetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 90
+    startLine: 94
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -392,10 +431,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: SetBit
     path: ../SudokuSpice/BitVector.cs
-    startLine: 96
+    startLine: 100
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -428,15 +467,15 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: ComputeCount
     path: ../SudokuSpice/BitVector.cs
-    startLine: 106
+    startLine: 110
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
   summary: "\nGets the count of bits that are set.\n"
-  remarks: "\nThis relies on the <see cref=\"!:Popcnt\"></see> hardware intrinsic to be efficient. If this\noperation is not available on your hardware, then this function falls back to a\nless efficient software-based approach.\n"
+  remarks: "\nThis relies on the <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> hardware intrinsic to be efficient. If this\noperation is not available on your hardware, then this function falls back to a\nless efficient software-based approach.\n"
   example: []
   syntax:
     content: public int ComputeCount()
@@ -463,10 +502,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: IsBitSet
     path: ../SudokuSpice/BitVector.cs
-    startLine: 113
+    startLine: 117
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -487,72 +526,36 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.BitVector.GetSetBits
-  commentId: M:SudokuSpice.BitVector.GetSetBits
-  id: GetSetBits
-  parent: SudokuSpice.BitVector
-  langs:
-  - csharp
-  - vb
-  name: GetSetBits()
-  nameWithType: BitVector.GetSetBits()
-  fullName: SudokuSpice.BitVector.GetSetBits()
-  type: Method
-  source:
-    remote:
-      path: SudokuSpice/BitVector.cs
-      branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
-    id: GetSetBits
-    path: ../SudokuSpice/BitVector.cs
-    startLine: 123
-  assemblies:
-  - SudokuSpice
-  namespace: SudokuSpice
-  summary: "\nGets a list of the bits set in this bit vector.\n"
-  remarks: "\nThis operation is slightly more efficient on average when <see cref=\"!:Popcnt\"></see> is\nsupported. Worst case performance is roughly the same.\n"
-  example: []
-  syntax:
-    content: public List<int> GetSetBits()
-    return:
-      type: List{System.Int32}
-      description: A list of the bits that are set.
-    content.vb: Public Function GetSetBits As List(Of Integer)
-  overload: SudokuSpice.BitVector.GetSetBits*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: SudokuSpice.BitVector.PopulateSetBits(Span{System.Int32})
-  commentId: M:SudokuSpice.BitVector.PopulateSetBits(Span{System.Int32})
-  id: PopulateSetBits(Span{System.Int32})
+- uid: SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
+  commentId: M:SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
+  id: PopulateSetBits(System.Span{System.Int32})
   parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
   name: PopulateSetBits(Span<Int32>)
   nameWithType: BitVector.PopulateSetBits(Span<Int32>)
-  fullName: SudokuSpice.BitVector.PopulateSetBits(Span<System.Int32>)
+  fullName: SudokuSpice.BitVector.PopulateSetBits(System.Span<System.Int32>)
   type: Method
   source:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: PopulateSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 169
+    startLine: 139
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
   summary: "\nPopulates a provided Span with the indices of set bits, and returns the number of set \nbits it populated.\n\nThis method will return if it reaches the end of the provided\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code> span, so if <code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code> has size N,\nthen this will only populate the indices for the first N set bits, and will return N.\nIf there are less setBits than N, say M, the values of <code data-dev-comment-type=\"paramref\" class=\"paramref\">setIndices</code>\nfrom setIndices[M] to setIndices[N-1] are left unchanged.\n"
-  remarks: "\nThis operation is slightly more efficient on average when <see cref=\"!:Popcnt\"></see> is\nsupported. Worst case performance is roughly the same.\n"
+  remarks: "\nThis operation is slightly more efficient on average when <xref href=\"System.Runtime.Intrinsics.X86.Popcnt\" data-throw-if-not-resolved=\"false\"></xref> is\nsupported. Worst case performance is roughly the same.\n"
   example: []
   syntax:
     content: public int PopulateSetBits(Span<int> setIndices)
     parameters:
     - id: setIndices
-      type: Span{System.Int32}
+      type: System.Span{System.Int32}
       description: "\nA span to fill with the indices of set bits. All values will be written to \n"
     return:
       type: System.Int32
@@ -564,7 +567,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.BitVector.PopulateSetBits(Span(Of System.Int32))
+  fullName.vb: SudokuSpice.BitVector.PopulateSetBits(System.Span(Of System.Int32))
   name.vb: PopulateSetBits(Span(Of Int32))
 - uid: SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
   commentId: M:SudokuSpice.BitVector.IsSubsetOf(SudokuSpice.BitVector)
@@ -581,10 +584,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: IsSubsetOf
     path: ../SudokuSpice/BitVector.cs
-    startLine: 196
+    startLine: 166
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -620,10 +623,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 202
+    startLine: 172
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -636,50 +639,50 @@ items:
       type: System.Boolean
     content.vb: Public Function Equals(other As BitVector) As Boolean
   overload: SudokuSpice.BitVector.Equals*
+  implements:
+  - System.IEquatable{SudokuSpice.BitVector}.Equals(SudokuSpice.BitVector)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: SudokuSpice.BitVector.Equals(System.Nullable{System.Object})
-  commentId: M:SudokuSpice.BitVector.Equals(System.Nullable{System.Object})
-  id: Equals(System.Nullable{System.Object})
+- uid: SudokuSpice.BitVector.Equals(System.Object)
+  commentId: M:SudokuSpice.BitVector.Equals(System.Object)
+  id: Equals(System.Object)
   parent: SudokuSpice.BitVector
   langs:
   - csharp
   - vb
-  name: Equals(Nullable<Object>)
-  nameWithType: BitVector.Equals(Nullable<Object>)
-  fullName: SudokuSpice.BitVector.Equals(System.Nullable<System.Object>)
+  name: Equals(Object)
+  nameWithType: BitVector.Equals(Object)
+  fullName: SudokuSpice.BitVector.Equals(System.Object)
   type: Method
   source:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 204
+    startLine: 174
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
   syntax:
-    content: public override bool Equals(object? obj)
+    content: public override bool Equals(object obj)
     parameters:
     - id: obj
-      type: System.Nullable{System.Object}
+      type: System.Object
     return:
       type: System.Boolean
-    content.vb: Public Overrides Function Equals(obj As Object?) As Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
   overload: SudokuSpice.BitVector.Equals*
-  nameWithType.vb: BitVector.Equals(Nullable(Of Object))
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-  fullName.vb: SudokuSpice.BitVector.Equals(System.Nullable(Of System.Object))
-  name.vb: Equals(Nullable(Of Object))
 - uid: SudokuSpice.BitVector.GetHashCode
   commentId: M:SudokuSpice.BitVector.GetHashCode
   id: GetHashCode
@@ -695,10 +698,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: GetHashCode
     path: ../SudokuSpice/BitVector.cs
-    startLine: 213
+    startLine: 183
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -707,6 +710,7 @@ items:
     return:
       type: System.Int32
     content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
   overload: SudokuSpice.BitVector.GetHashCode*
   modifiers.csharp:
   - public
@@ -729,10 +733,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: ToString
     path: ../SudokuSpice/BitVector.cs
-    startLine: 218
+    startLine: 188
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -743,6 +747,7 @@ items:
     return:
       type: System.String
     content.vb: Public Overrides Function ToString As String
+  overridden: System.ValueType.ToString
   overload: SudokuSpice.BitVector.ToString*
   modifiers.csharp:
   - public
@@ -765,10 +770,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: op_Equality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 220
+    startLine: 190
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -804,10 +809,10 @@ items:
     remote:
       path: SudokuSpice/BitVector.cs
       branch: master
-      repo: https://github.com/MorganR/SudokuSpice.git
+      repo: https://github.com/MorganR/SudokuSpice
     id: op_Inequality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 221
+    startLine: 191
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -834,20 +839,21 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: IEquatable{SudokuSpice.BitVector}
-  commentId: '!:IEquatable{SudokuSpice.BitVector}'
-  definition: IEquatable`1
+- uid: System.IEquatable{SudokuSpice.BitVector}
+  commentId: T:System.IEquatable{SudokuSpice.BitVector}
+  parent: System
+  definition: System.IEquatable`1
   name: IEquatable<BitVector>
   nameWithType: IEquatable<BitVector>
-  fullName: IEquatable<SudokuSpice.BitVector>
+  fullName: System.IEquatable<SudokuSpice.BitVector>
   nameWithType.vb: IEquatable(Of BitVector)
-  fullName.vb: IEquatable(Of SudokuSpice.BitVector)
+  fullName.vb: System.IEquatable(Of SudokuSpice.BitVector)
   name.vb: IEquatable(Of BitVector)
   spec.csharp:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: <
     nameWithType: <
@@ -860,10 +866,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -875,50 +881,218 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: IEquatable`1
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
   isExternal: true
-  name: IEquatable<>
-  nameWithType: IEquatable<>
-  fullName: IEquatable<>
-  nameWithType.vb: IEquatable(Of )
-  fullName.vb: IEquatable(Of )
-  name.vb: IEquatable(Of )
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
   spec.csharp:
-  - uid: IEquatable`1
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: IEquatable`1
+  - uid: System.IEquatable`1
     name: IEquatable
     nameWithType: IEquatable
-    fullName: IEquatable
+    fullName: System.IEquatable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: SudokuSpice.BitVector.Data*
   commentId: Overload:SudokuSpice.BitVector.Data
   name: Data
   nameWithType: BitVector.Data
   fullName: SudokuSpice.BitVector.Data
 - uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
   isExternal: true
   name: UInt32
   nameWithType: UInt32
@@ -929,6 +1103,8 @@ references:
   nameWithType: BitVector.IsEmpty
   fullName: SudokuSpice.BitVector.IsEmpty
 - uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -943,11 +1119,6 @@ references:
   name: CreateWithSize
   nameWithType: BitVector.CreateWithSize
   fullName: SudokuSpice.BitVector.CreateWithSize
-- uid: System.Int32
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
@@ -979,6 +1150,9 @@ references:
   name: SetBit
   nameWithType: BitVector.SetBit
   fullName: SudokuSpice.BitVector.SetBit
+- uid: System.Runtime.Intrinsics.X86.Popcnt
+  commentId: T:System.Runtime.Intrinsics.X86.Popcnt
+  isExternal: true
 - uid: SudokuSpice.BitVector.ComputeCount*
   commentId: Overload:SudokuSpice.BitVector.ComputeCount
   name: ComputeCount
@@ -989,112 +1163,26 @@ references:
   name: IsBitSet
   nameWithType: BitVector.IsBitSet
   fullName: SudokuSpice.BitVector.IsBitSet
-- uid: SudokuSpice.BitVector.GetSetBits*
-  commentId: Overload:SudokuSpice.BitVector.GetSetBits
-  name: GetSetBits
-  nameWithType: BitVector.GetSetBits
-  fullName: SudokuSpice.BitVector.GetSetBits
-- uid: List{System.Int32}
-  commentId: '!:List{System.Int32}'
-  definition: List`1
-  name: List<Int32>
-  nameWithType: List<Int32>
-  fullName: List<System.Int32>
-  nameWithType.vb: List(Of Int32)
-  fullName.vb: List(Of System.Int32)
-  name.vb: List(Of Int32)
-  spec.csharp:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: List`1
-  commentId: '!:List`1'
-  isExternal: true
-  name: List<>
-  nameWithType: List<>
-  fullName: List<>
-  nameWithType.vb: List(Of )
-  fullName.vb: List(Of )
-  name.vb: List(Of )
-  spec.csharp:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: List`1
-    name: List
-    nameWithType: List
-    fullName: List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.BitVector.PopulateSetBits*
   commentId: Overload:SudokuSpice.BitVector.PopulateSetBits
   name: PopulateSetBits
   nameWithType: BitVector.PopulateSetBits
   fullName: SudokuSpice.BitVector.PopulateSetBits
-- uid: Span{System.Int32}
-  commentId: '!:Span{System.Int32}'
-  definition: Span`1
+- uid: System.Span{System.Int32}
+  commentId: T:System.Span{System.Int32}
+  parent: System
+  definition: System.Span`1
   name: Span<Int32>
   nameWithType: Span<Int32>
-  fullName: Span<System.Int32>
+  fullName: System.Span<System.Int32>
   nameWithType.vb: Span(Of Int32)
-  fullName.vb: Span(Of System.Int32)
+  fullName.vb: System.Span(Of System.Int32)
   name.vb: Span(Of Int32)
   spec.csharp:
-  - uid: Span`1
+  - uid: System.Span`1
     name: Span
     nameWithType: Span
-    fullName: Span
+    fullName: System.Span
     isExternal: true
   - name: <
     nameWithType: <
@@ -1108,10 +1196,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Span`1
+  - uid: System.Span`1
     name: Span
     nameWithType: Span
-    fullName: Span
+    fullName: System.Span
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1124,41 +1212,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Span`1
+- uid: System.Span`1
+  commentId: T:System.Span`1
   isExternal: true
-  name: Span<>
-  nameWithType: Span<>
-  fullName: Span<>
-  nameWithType.vb: Span(Of )
-  fullName.vb: Span(Of )
-  name.vb: Span(Of )
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
   spec.csharp:
-  - uid: Span`1
+  - uid: System.Span`1
     name: Span
     nameWithType: Span
-    fullName: Span
+    fullName: System.Span
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Span`1
+  - uid: System.Span`1
     name: Span
     nameWithType: Span
-    fullName: Span
+    fullName: System.Span
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -1172,41 +1261,101 @@ references:
   name: Equals
   nameWithType: BitVector.Equals
   fullName: SudokuSpice.BitVector.Equals
-- uid: System.Nullable{System.Object}
-  commentId: '!:System.Nullable{System.Object}'
-  definition: System.Nullable`1
-  name: Nullable<Object>
-  nameWithType: Nullable<Object>
-  fullName: System.Nullable<System.Object>
-  nameWithType.vb: Nullable(Of Object)
-  fullName.vb: System.Nullable(Of System.Object)
-  name.vb: Nullable(Of Object)
+- uid: System.IEquatable{SudokuSpice.BitVector}.Equals(SudokuSpice.BitVector)
+  commentId: M:System.IEquatable{SudokuSpice.BitVector}.Equals(SudokuSpice.BitVector)
+  parent: System.IEquatable{SudokuSpice.BitVector}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(BitVector)
+  nameWithType: IEquatable<BitVector>.Equals(BitVector)
+  fullName: System.IEquatable<SudokuSpice.BitVector>.Equals(SudokuSpice.BitVector)
+  nameWithType.vb: IEquatable(Of BitVector).Equals(BitVector)
+  fullName.vb: System.IEquatable(Of SudokuSpice.BitVector).Equals(SudokuSpice.BitVector)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<BitVector>.Equals
+    fullName: System.IEquatable<SudokuSpice.BitVector>.Equals
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of BitVector).Equals
+    fullName: System.IEquatable(Of SudokuSpice.BitVector).Equals
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - uid: System.Object
     name: Object
     nameWithType: Object
@@ -1215,41 +1364,58 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Nullable`1
-  isExternal: true
-  name: Nullable<>
-  nameWithType: Nullable<>
-  fullName: System.Nullable<>
-  nameWithType.vb: Nullable(Of )
-  fullName.vb: System.Nullable(Of )
-  name.vb: Nullable(Of )
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1258,12 +1424,45 @@ references:
   name: GetHashCode
   nameWithType: BitVector.GetHashCode
   fullName: SudokuSpice.BitVector.GetHashCode
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: SudokuSpice.BitVector.ToString*
   commentId: Overload:SudokuSpice.BitVector.ToString
   name: ToString
   nameWithType: BitVector.ToString
   fullName: SudokuSpice.BitVector.ToString
 - uid: System.String
+  commentId: T:System.String
+  parent: System
   isExternal: true
   name: String
   nameWithType: String

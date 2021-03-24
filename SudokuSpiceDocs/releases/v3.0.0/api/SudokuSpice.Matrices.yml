@@ -1,0 +1,247 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Matrices
+  commentId: T:SudokuSpice.Matrices
+  id: Matrices
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.Matrices.Copy2D(System.Nullable{System.Int32}[][])
+  - SudokuSpice.Matrices.CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
+  langs:
+  - csharp
+  - vb
+  name: Matrices
+  nameWithType: Matrices
+  fullName: SudokuSpice.Matrices
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/Matrices.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Matrices
+    path: ../SudokuSpice/Matrices.cs
+    startLine: 5
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: 'public static class Matrices : object'
+    content.vb: >-
+      Public Module Matrices
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.Matrices.CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
+  commentId: M:SudokuSpice.Matrices.CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
+  id: CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
+  isExtensionMethod: true
+  parent: SudokuSpice.Matrices
+  langs:
+  - csharp
+  - vb
+  name: CopyToJagged2D(Nullable<Int32>[,])
+  nameWithType: Matrices.CopyToJagged2D(Nullable<Int32>[,])
+  fullName: SudokuSpice.Matrices.CopyToJagged2D(System.Nullable<System.Int32>[,])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Matrices.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CopyToJagged2D
+    path: ../SudokuSpice/Matrices.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static int? [][] CopyToJagged2D(this int? [, ] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[,]
+    return:
+      type: System.Nullable{System.Int32}[][]
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function CopyToJagged2D(matrix As Integer?(,)) As Integer?()()
+  overload: SudokuSpice.Matrices.CopyToJagged2D*
+  nameWithType.vb: Matrices.CopyToJagged2D(Nullable(Of Int32)(,))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Matrices.CopyToJagged2D(System.Nullable(Of System.Int32)(,))
+  name.vb: CopyToJagged2D(Nullable(Of Int32)(,))
+- uid: SudokuSpice.Matrices.Copy2D(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Matrices.Copy2D(System.Nullable{System.Int32}[][])
+  id: Copy2D(System.Nullable{System.Int32}[][])
+  isExtensionMethod: true
+  parent: SudokuSpice.Matrices
+  langs:
+  - csharp
+  - vb
+  name: Copy2D(Nullable<Int32>[][])
+  nameWithType: Matrices.Copy2D(Nullable<Int32>[][])
+  fullName: SudokuSpice.Matrices.Copy2D(System.Nullable<System.Int32>[][])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Matrices.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Copy2D
+    path: ../SudokuSpice/Matrices.cs
+    startLine: 25
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static int? [][] Copy2D(this int? [][] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[][]
+    return:
+      type: System.Nullable{System.Int32}[][]
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Copy2D(matrix As Integer?()()) As Integer?()()
+  overload: SudokuSpice.Matrices.Copy2D*
+  nameWithType.vb: Matrices.Copy2D(Nullable(Of Int32)()())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.Matrices.Copy2D(System.Nullable(Of System.Int32)()())
+  name.vb: Copy2D(Nullable(Of Int32)()())
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.Matrices.CopyToJagged2D*
+  commentId: Overload:SudokuSpice.Matrices.CopyToJagged2D
+  name: CopyToJagged2D
+  nameWithType: Matrices.CopyToJagged2D
+  fullName: SudokuSpice.Matrices.CopyToJagged2D
+- uid: System.Nullable{System.Int32}[,]
+  isExternal: true
+  name: Nullable<Int32>[,]
+  nameWithType: Nullable<Int32>[,]
+  fullName: System.Nullable<System.Int32>[,]
+  nameWithType.vb: Nullable(Of Int32)(,)
+  fullName.vb: System.Nullable(Of System.Int32)(,)
+  name.vb: Nullable(Of Int32)(,)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: System.Nullable{System.Int32}[][]
+  isExternal: true
+  name: Nullable<Int32>[][]
+  nameWithType: Nullable<Int32>[][]
+  fullName: System.Nullable<System.Int32>[][]
+  nameWithType.vb: Nullable(Of Int32)()()
+  fullName.vb: System.Nullable(Of System.Int32)()()
+  name.vb: Nullable(Of Int32)()()
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: SudokuSpice.Matrices.Copy2D*
+  commentId: Overload:SudokuSpice.Matrices.Copy2D
+  name: Copy2D
+  nameWithType: Matrices.Copy2D
+  fullName: SudokuSpice.Matrices.Copy2D

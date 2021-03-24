@@ -23,6 +23,7 @@ Docs: https://www.sudokuspice.dev/</Description>
     <Copyright>Morgan Roff</Copyright>
     <PackageReleaseNotes>Version 3 has lots of changes!
 
+* Updated to .NET 5 (dropped support for older versions)
 * The rule-based and constraint-based APIs have been unified as much as possible (note: many breaking changes).
 * There is now a single PuzzleGenerator that works with any IPuzzleSolver implementation.
 * Solvers and generators are now generic to reduce casting.
@@ -34,14 +35,6 @@ Docs: https://www.sudokuspice.dev/</Description>
 * Loads of other little changes.</PackageReleaseNotes>
   </PropertyGroup>
 
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
   <ItemGroup>
     <None Include="..\SudokuSpiceDocs\images\sudokuspice-black.png">
       <Pack>True</Pack>
@@ -52,5 +45,9 @@ Docs: https://www.sudokuspice.dev/</Description>
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+
+  <PropertyGroup>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+  </PropertyGroup>
   
 </Project>

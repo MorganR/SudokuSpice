@@ -86,7 +86,7 @@ namespace SudokuSpice.RuleBased
             {
                 r.Update(in c, value, _coordTracker);
             }
-            ReadOnlySpan<Coordinate> trackedCoords = _coordTracker.GetTrackedCoords();
+            ReadOnlySpan<Coordinate> trackedCoords = _coordTracker.TrackedCoords;
             for (int i = 0; i < trackedCoords.Length; i++)
             {
                 Coordinate affectedCoord = trackedCoords[i];
@@ -126,7 +126,7 @@ namespace SudokuSpice.RuleBased
             {
                 r.Revert(in c, value, _coordTracker);
             }
-            foreach (Coordinate affectedCoord in _coordTracker.GetTrackedCoords())
+            foreach (Coordinate affectedCoord in _coordTracker.TrackedCoords)
             {
                 _puzzle.ResetPossibleValues(in affectedCoord);
                 foreach (IRule? r in _rules)

@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.StandardPuzzles
+  commentId: T:SudokuSpice.RuleBased.StandardPuzzles
+  id: StandardPuzzles
+  parent: SudokuSpice.RuleBased
+  children:
+  - SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+  langs:
+  - csharp
+  - vb
+  name: StandardPuzzles
+  nameWithType: StandardPuzzles
+  fullName: SudokuSpice.RuleBased.StandardPuzzles
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/StandardPuzzles.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: StandardPuzzles
+    path: ../SudokuSpice/RuleBased/StandardPuzzles.cs
+    startLine: 5
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Provides utilities for interacting with standard Sudoku puzzles.
+  example: []
+  syntax:
+    content: 'public static class StandardPuzzles : object'
+    content.vb: >-
+      Public Module StandardPuzzles
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+  commentId: M:SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+  id: CreateSolver
+  parent: SudokuSpice.RuleBased.StandardPuzzles
+  langs:
+  - csharp
+  - vb
+  name: CreateSolver()
+  nameWithType: StandardPuzzles.CreateSolver()
+  fullName: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/StandardPuzzles.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: CreateSolver
+    path: ../SudokuSpice/RuleBased/StandardPuzzles.cs
+    startLine: 8
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Creates an efficient solver for solving standard Sudoku puzzles.
+  example: []
+  syntax:
+    content: public static PuzzleSolver<PuzzleWithPossibleValues> CreateSolver()
+    return:
+      type: SudokuSpice.RuleBased.PuzzleSolver{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+    content.vb: Public Shared Function CreateSolver As PuzzleSolver(Of PuzzleWithPossibleValues)
+  overload: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver*
+  commentId: Overload:SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+  name: CreateSolver
+  nameWithType: StandardPuzzles.CreateSolver
+  fullName: SudokuSpice.RuleBased.StandardPuzzles.CreateSolver
+- uid: SudokuSpice.RuleBased.PuzzleSolver{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  parent: SudokuSpice.RuleBased
+  definition: SudokuSpice.RuleBased.PuzzleSolver`1
+  name: PuzzleSolver<PuzzleWithPossibleValues>
+  nameWithType: PuzzleSolver<PuzzleWithPossibleValues>
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<SudokuSpice.RuleBased.PuzzleWithPossibleValues>
+  nameWithType.vb: PuzzleSolver(Of PuzzleWithPossibleValues)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of SudokuSpice.RuleBased.PuzzleWithPossibleValues)
+  name.vb: PuzzleSolver(Of PuzzleWithPossibleValues)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver`1
+  name: PuzzleSolver<TPuzzle>
+  nameWithType: PuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>
+  nameWithType.vb: PuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle)
+  name.vb: PuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.PuzzleSolver`1
+    name: PuzzleSolver
+    nameWithType: PuzzleSolver
+    fullName: SudokuSpice.RuleBased.PuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )

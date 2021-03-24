@@ -1,0 +1,1042 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1
+  commentId: T:SudokuSpice.RuleBased.PuzzleSolver`1
+  id: PuzzleSolver`1
+  parent: SudokuSpice.RuleBased
+  children:
+  - SudokuSpice.RuleBased.PuzzleSolver`1.#ctor(SudokuSpice.RuleBased.IRuleKeeper,SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  - SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  - SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  - SudokuSpice.RuleBased.PuzzleSolver`1.Solve(`0,System.Boolean)
+  - SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: PuzzleSolver<TPuzzle>
+  nameWithType: PuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: PuzzleSolver
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 15
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nSolves puzzles of the given type.\n\nThis solver uses a rule-based approach based on the <xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s provided in\nthe constructor. An optional heuristic can also be provided.\n"
+  remarks: This solver is not thread-safe.
+  example: []
+  syntax:
+    content: 'public class PuzzleSolver<TPuzzle> : object, IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>'
+    typeParameters:
+    - id: TPuzzle
+      description: The type of puzzle to solve.
+    content.vb: >-
+      Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzleWithPossibleValues(Of TPuzzle)})
+          Inherits Object
+          Implements IPuzzleSolver(Of TPuzzle)
+  inheritance:
+  - System.Object
+  implements:
+  - SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  nameWithType.vb: PuzzleSolver(Of TPuzzle)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle)
+  name.vb: PuzzleSolver(Of TPuzzle)
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor(SudokuSpice.RuleBased.IRuleKeeper,SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.#ctor(SudokuSpice.RuleBased.IRuleKeeper,SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  id: '#ctor(SudokuSpice.RuleBased.IRuleKeeper,SudokuSpice.RuleBased.Heuristics.IHeuristic)'
+  parent: SudokuSpice.RuleBased.PuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: PuzzleSolver(IRuleKeeper, IHeuristic)
+  nameWithType: PuzzleSolver<TPuzzle>.PuzzleSolver(IRuleKeeper, IHeuristic)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.PuzzleSolver(SudokuSpice.RuleBased.IRuleKeeper, SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 32
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nConstructs a solver with the given rules and optional heuristic.\n\nThis solver can be used to solve multiple puzzles.\n"
+  example: []
+  syntax:
+    content: public PuzzleSolver(IRuleKeeper ruleKeeper, IHeuristic heuristic = null)
+    parameters:
+    - id: ruleKeeper
+      type: SudokuSpice.RuleBased.IRuleKeeper
+      description: The rule keeper to satisfy when solving puzzles.
+    - id: heuristic
+      type: SudokuSpice.RuleBased.Heuristics.IHeuristic
+      description: "\nA heuristic to use to solve this puzzle efficiently. Can be set to null to skip using\nheuristics.\nNote that only one heuristic can be provided. To use multiple heuristics, create a\nwrapper heuristic like <xref href=\"SudokuSpice.RuleBased.Heuristics.StandardHeuristic\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: Public Sub New(ruleKeeper As IRuleKeeper, heuristic As IHeuristic = Nothing)
+  overload: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor*
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).PuzzleSolver(IRuleKeeper, IHeuristic)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).PuzzleSolver(SudokuSpice.RuleBased.IRuleKeeper, SudokuSpice.RuleBased.Heuristics.IHeuristic)
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)
+  id: TrySolve(`0,System.Boolean)
+  parent: SudokuSpice.RuleBased.PuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: TrySolve(TPuzzle, Boolean)
+  nameWithType: PuzzleSolver<TPuzzle>.TrySolve(TPuzzle, Boolean)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.TrySolve(TPuzzle, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: TrySolve
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 41
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nAttempts to solve the given puzzle.\n"
+  example: []
+  syntax:
+    content: public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+      description: The puzzle to solve. This will be solved in place.
+    - id: randomizeGuesses
+      type: System.Boolean
+      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
+    return:
+      type: System.Boolean
+    content.vb: Public Function TrySolve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As Boolean
+  overload: SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve*
+  implements:
+  - SudokuSpice.IPuzzleSolver{{TPuzzle}}.TrySolve({TPuzzle},System.Boolean)
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, System.Boolean)
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.Solve(`0,System.Boolean)
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.Solve(`0,System.Boolean)
+  id: Solve(`0,System.Boolean)
+  parent: SudokuSpice.RuleBased.PuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: Solve(TPuzzle, Boolean)
+  nameWithType: PuzzleSolver<TPuzzle>.Solve(TPuzzle, Boolean)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.Solve(TPuzzle, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: Solve
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 51
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nSolves the given puzzle in place.\n"
+  example: []
+  syntax:
+    content: public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+      description: "\nThe puzzle to solve. This will be copied instead of solved in-place.\n"
+    - id: randomizeGuesses
+      type: System.Boolean
+      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
+    return:
+      type: '{TPuzzle}'
+      description: A solved copy of the given puzzle.
+    content.vb: Public Function Solve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As TPuzzle
+  overload: SudokuSpice.RuleBased.PuzzleSolver`1.Solve*
+  implements:
+  - SudokuSpice.IPuzzleSolver{{TPuzzle}}.Solve({TPuzzle},System.Boolean)
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).Solve(TPuzzle, System.Boolean)
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  id: ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  parent: SudokuSpice.RuleBased.PuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Nullable<CancellationToken>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: ComputeStatsForAllSolutions
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 62
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
+  example: []
+  syntax:
+    content: public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    - id: token
+      type: System.Nullable{CancellationToken}
+    return:
+      type: SudokuSpice.SolveStats
+    content.vb: Public Function ComputeStatsForAllSolutions(puzzle As TPuzzle, token As CancellationToken? = Nothing) As SolveStats
+  overload: SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions*
+  implements:
+  - SudokuSpice.IPuzzleSolver{{TPuzzle}}.ComputeStatsForAllSolutions({TPuzzle},System.Nullable{CancellationToken})
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  id: HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  parent: SudokuSpice.RuleBased.PuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<CancellationToken>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleSolver.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice.git
+    id: HasUniqueSolution
+    path: ../SudokuSpice/RuleBased/PuzzleSolver.cs
+    startLine: 68
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nDetermines if the given puzzle has a unique solution. The puzzle is left unchanged.\n"
+  example: []
+  syntax:
+    content: public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    - id: token
+      type: System.Nullable{CancellationToken}
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasUniqueSolution(puzzle As TPuzzle, token As CancellationToken? = Nothing) As Boolean
+  overload: SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution*
+  implements:
+  - SudokuSpice.IPuzzleSolver{{TPuzzle}}.HasUniqueSolution({TPuzzle},System.Nullable{CancellationToken})
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+references:
+- uid: SudokuSpice.RuleBased.Rules.IRule
+  commentId: T:SudokuSpice.RuleBased.Rules.IRule
+  parent: SudokuSpice.RuleBased.Rules
+  name: IRule
+  nameWithType: IRule
+  fullName: SudokuSpice.RuleBased.Rules.IRule
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  commentId: T:SudokuSpice.IPuzzleSolver{`0}
+  parent: SudokuSpice
+  definition: SudokuSpice.IPuzzleSolver`1
+  name: IPuzzleSolver<TPuzzle>
+  nameWithType: IPuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle)
+  name.vb: IPuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    nameWithType: IPuzzleSolver
+    fullName: SudokuSpice.IPuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    nameWithType: IPuzzleSolver
+    fullName: SudokuSpice.IPuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.Rules
+  commentId: N:SudokuSpice.RuleBased.Rules
+  name: SudokuSpice.RuleBased.Rules
+  nameWithType: SudokuSpice.RuleBased.Rules
+  fullName: SudokuSpice.RuleBased.Rules
+- uid: SudokuSpice.IPuzzleSolver`1
+  commentId: T:SudokuSpice.IPuzzleSolver`1
+  name: IPuzzleSolver<TPuzzle>
+  nameWithType: IPuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle)
+  name.vb: IPuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    nameWithType: IPuzzleSolver
+    fullName: SudokuSpice.IPuzzleSolver
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    nameWithType: IPuzzleSolver
+    fullName: SudokuSpice.IPuzzleSolver
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+  commentId: T:SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+  name: StandardHeuristic
+  nameWithType: StandardHeuristic
+  fullName: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.#ctor
+  name: PuzzleSolver
+  nameWithType: PuzzleSolver<TPuzzle>.PuzzleSolver
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.PuzzleSolver
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).PuzzleSolver
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).PuzzleSolver
+- uid: SudokuSpice.RuleBased.IRuleKeeper
+  commentId: T:SudokuSpice.RuleBased.IRuleKeeper
+  parent: SudokuSpice.RuleBased
+  name: IRuleKeeper
+  nameWithType: IRuleKeeper
+  fullName: SudokuSpice.RuleBased.IRuleKeeper
+- uid: SudokuSpice.RuleBased.Heuristics.IHeuristic
+  commentId: T:SudokuSpice.RuleBased.Heuristics.IHeuristic
+  parent: SudokuSpice.RuleBased.Heuristics
+  name: IHeuristic
+  nameWithType: IHeuristic
+  fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic
+- uid: SudokuSpice.RuleBased.Heuristics
+  commentId: N:SudokuSpice.RuleBased.Heuristics
+  name: SudokuSpice.RuleBased.Heuristics
+  nameWithType: SudokuSpice.RuleBased.Heuristics
+  fullName: SudokuSpice.RuleBased.Heuristics
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve
+  name: TrySolve
+  nameWithType: PuzzleSolver<TPuzzle>.TrySolve
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.TrySolve
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).TrySolve
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).TrySolve
+- uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}.TrySolve({TPuzzle},System.Boolean)
+  commentId: M:SudokuSpice.IPuzzleSolver{`0}.TrySolve(`0,System.Boolean)
+  parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  definition: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  name: TrySolve(TPuzzle, Boolean)
+  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, Boolean)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, System.Boolean)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, System.Boolean)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+    name: TrySolve
+    nameWithType: IPuzzleSolver<TPuzzle>.TrySolve
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+    name: TrySolve
+    nameWithType: IPuzzleSolver(Of TPuzzle).TrySolve
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TPuzzle}'
+  commentId: '!:TPuzzle'
+  definition: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  commentId: M:SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  isExternal: true
+  name: TrySolve(TPuzzle, Boolean)
+  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, Boolean)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, System.Boolean)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, System.Boolean)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+    name: TrySolve
+    nameWithType: IPuzzleSolver<TPuzzle>.TrySolve
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+    name: TrySolve
+    nameWithType: IPuzzleSolver(Of TPuzzle).TrySolve
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.Solve*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.Solve
+  name: Solve
+  nameWithType: PuzzleSolver<TPuzzle>.Solve
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.Solve
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).Solve
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).Solve
+- uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}.Solve({TPuzzle},System.Boolean)
+  commentId: M:SudokuSpice.IPuzzleSolver{`0}.Solve(`0,System.Boolean)
+  parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  definition: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  name: Solve(TPuzzle, Boolean)
+  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, Boolean)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, System.Boolean)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, System.Boolean)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+    name: Solve
+    nameWithType: IPuzzleSolver<TPuzzle>.Solve
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+    name: Solve
+    nameWithType: IPuzzleSolver(Of TPuzzle).Solve
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  commentId: M:SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  isExternal: true
+  name: Solve(TPuzzle, Boolean)
+  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, Boolean)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, System.Boolean)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, System.Boolean)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+    name: Solve
+    nameWithType: IPuzzleSolver<TPuzzle>.Solve
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+    name: Solve
+    nameWithType: IPuzzleSolver(Of TPuzzle).Solve
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions
+  name: ComputeStatsForAllSolutions
+  nameWithType: PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+- uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}.ComputeStatsForAllSolutions({TPuzzle},System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.IPuzzleSolver{`0}.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  definition: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  name: ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Nullable<CancellationToken>)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+    name: ComputeStatsForAllSolutions
+    nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+    name: ComputeStatsForAllSolutions
+    nameWithType: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable{CancellationToken}
+  commentId: '!:System.Nullable{CancellationToken}'
+  definition: System.Nullable`1
+  name: Nullable<CancellationToken>
+  nameWithType: Nullable<CancellationToken>
+  fullName: System.Nullable<CancellationToken>
+  nameWithType.vb: Nullable(Of CancellationToken)
+  fullName.vb: System.Nullable(Of CancellationToken)
+  name.vb: Nullable(Of CancellationToken)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
+- uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+  isExternal: true
+  name: ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Nullable<CancellationToken>)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+    name: ComputeStatsForAllSolutions
+    nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{CancellationToken})
+    name: ComputeStatsForAllSolutions
+    nameWithType: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  isExternal: true
+  name: Nullable<>
+  nameWithType: Nullable<>
+  fullName: System.Nullable<>
+  nameWithType.vb: Nullable(Of )
+  fullName.vb: System.Nullable(Of )
+  name.vb: Nullable(Of )
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution
+  name: HasUniqueSolution
+  nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.HasUniqueSolution
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution
+- uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}.HasUniqueSolution({TPuzzle},System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.IPuzzleSolver{`0}.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  definition: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<CancellationToken>)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+    name: HasUniqueSolution
+    nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+    name: HasUniqueSolution
+    nameWithType: IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  commentId: M:SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+  isExternal: true
+  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<CancellationToken>)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of CancellationToken))
+  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+    name: HasUniqueSolution
+    nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution
+    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{CancellationToken})
+    name: HasUniqueSolution
+    nameWithType: IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )

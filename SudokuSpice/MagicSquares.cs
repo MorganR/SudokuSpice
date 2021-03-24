@@ -76,7 +76,9 @@ namespace SudokuSpice
                 }
                 return result;
             }
-            foreach (var possibleValue in possibleValues.GetSetBits())
+            Span<int> setBits = stackalloc int[BitVector.NumBits];
+            int numSetBits = possibleValues.PopulateSetBits(setBits);
+            foreach (var possibleValue in setBits.Slice(0, numSetBits))
             {
                 if (remainder - possibleValue >= 0)
                 {
