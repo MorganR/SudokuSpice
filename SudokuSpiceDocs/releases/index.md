@@ -2,6 +2,10 @@
 
 Select a release from below:
 
+## [3.1.0](/releases/v3.1.0/) - 2021-08-23
+
+* Made PossibleValues public
+
 ## [3.0.0](/releases/v3.0.0/) - 2021-03-07
 
 * Updated to .NET 5 (dropped support for older versions)

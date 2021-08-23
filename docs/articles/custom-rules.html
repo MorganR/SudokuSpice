@@ -106,8 +106,8 @@ or acted on from multiple threads.</p>
             {
                 if (!_unsetBackwardDiag.IsBitSet(val.Value))
                 {
-                    // Puzzle has a duplicate value on this diagonal, so it already violates the
-                    // rule.
+                    // Puzzle has a duplicate value on this diagonal, so it already violates
+                    // the rule.
                     return false;
                 }
                 _unsetBackwardDiag.UnsetBit(val.Value);
@@ -169,7 +169,8 @@ private void _AddUnsetFromBackwardDiag(in Coordinate c, CoordinateTracker coordT
     // Iterate along the backward diagonal, tracking the coordinates of any unset squares.
     for (int row = 0, col = 0; row &lt; _puzzle.Size; row++, col++)
     {
-        // Make sure to skip the square that is currently being updated! Its value is still unset.
+        // Make sure to skip the square that is currently being updated! Its value is still
+        // unset.
         if ((row == c.Row &amp;&amp; col == c.Column) || _puzzle[row, col].HasValue)
         {
             continue;

@@ -148,7 +148,10 @@ longer possible, and add constraint headers for the rest.</p>
     {
 		squares[i] = graph.GetAllPossibilitiesAt(in squareCoordinates[i]);
     }
-    for (int possibilityIndex = 0; possibilityIndex &lt; isConstraintSatisfiedAtIndex.Length; possibilityIndex++)
+    for (
+        int possibilityIndex = 0;
+        possibilityIndex &lt; isConstraintSatisfiedAtIndex.Length;
+        possibilityIndex++)
     {
         if (isConstraintSatisfiedAtIndex[possibilityIndex])
         {
@@ -158,9 +161,11 @@ longer possible, and add constraint headers for the rest.</p>
 			}
 			continue;
         }
-        // Each possible value should only be present once on the diagonal, so set requiredCount to
-        // 1. The objective will be linked into the graph, so discard the out parameter.
-		if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(squares, possibilityIndex, graph, requiredCount: 1, objective: out _))
+        // Each possible value should only be present once on the diagonal, so set
+        // requiredCount to 1. The objective will be linked into the graph, so discard the out
+        // parameter.
+		if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(
+            squares, possibilityIndex, graph, requiredCount: 1, objective: out _))
 		{
 			return false;
 		}

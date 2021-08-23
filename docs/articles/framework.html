@@ -81,10 +81,10 @@ implementing custom rules or constraints.</p>
 <ol>
 <li><p>The <a class="xref" href="../api/SudokuSpice.IPuzzle-1.html"><code>IPuzzle</code></a></p>
 <p>Puzzles store the underlying Sudoku data. You likely only need the standard implementations,
-<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> for constraint-based tools, and [<code>PuzzleWithPossibleValues</code>]
-for rule-based tools. However, the interface is provided in case you need to do something a
-little different, like work with a puzzle with jagged regions instead of the normal square box
-regions.</p>
+<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> for constraint-based tools, and
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleWithPossibleValues.html"><code>PuzzleWithPossibleValues</code></a> for rule-based
+tools. However, the interface is provided in case you need to do something a little different,
+like work with a puzzle with jagged regions instead of the normal square box regions.</p>
 </li>
 <li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a></p>
 <p>Rules define - you guessed it - the rules for a puzzle. For example, standard Sudokus use the

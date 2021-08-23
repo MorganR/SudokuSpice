@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IHeuristic
+   | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IHeuristic
+   | SudokuSpice ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v3.1.0">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic">
+  
+  
+  <h1 id="SudokuSpice_RuleBased_Heuristics_IHeuristic" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic" class="text-break">Interface IHeuristic
+  </h1>
+  <div class="markdown level0 summary"><p>Performs some logical trickery to reduce the number of possible values for a square. Unlike
+an <a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>, this depends on the current possible values in the puzzle, not
+just the currently set values.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Heuristics.html">SudokuSpice.RuleBased.Heuristics</a></h6>
+  <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
+  <h5 id="SudokuSpice_RuleBased_Heuristics_IHeuristic_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IHeuristic</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_IHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_ReadOnlySpan_SudokuSpice_RuleBased_Rules_IRule__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues%2CSystem.ReadOnlySpan%7BSudokuSpice.RuleBased.Rules.IRule%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/IHeuristic.cs/#L43">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_IHeuristic_CopyWithNewReferences_" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_IHeuristic_CopyWithNewReferences_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_System_ReadOnlySpan_SudokuSpice_RuleBased_Rules_IRule__" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.CopyWithNewReferences(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues,System.ReadOnlySpan{SudokuSpice.RuleBased.Rules.IRule})">CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues, ReadOnlySpan&lt;IRule&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a deep copy of this heuristic, replacing internal references with the ones
+provided. These references may or may not be used during the copy, depending on the
+implementation of the heuristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IHeuristic CopyWithNewReferences(IReadOnlyPuzzleWithMutablePossibleValues puzzle, ReadOnlySpan&lt;IRule&gt; rules)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<a class="xref" href="SudokuSpice.RuleBased.Rules.IRule.html">IRule</a>&gt;</td>
+        <td><span class="parametername">rules</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.Heuristics.IHeuristic.html">IHeuristic</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_IHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/IHeuristic.cs/#L25">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_IHeuristic_TryInitFor_" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_IHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues_" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.TryInitFor(SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues)">TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues)</h4>
+  <div class="markdown level1 summary"><p>Tries to initialize this heuristic for solving the given puzzle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryInitFor(IReadOnlyPuzzleWithMutablePossibleValues puzzle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html">IReadOnlyPuzzleWithMutablePossibleValues</a></td>
+        <td><span class="parametername">puzzle</span></td>
+        <td><p>The puzzle to solve.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>False if this heuristic cannot be initialized for the given puzzle, else true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SudokuSpice_RuleBased_Heuristics_IHeuristic_TryInitFor_SudokuSpice_RuleBased_IReadOnlyPuzzleWithMutablePossibleValues__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
+fails. Therefore, it is <em>not</em> guaranteed that the heuristic's state is unchanged
+on failure.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_IHeuristic_UndoLastUpdate.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/IHeuristic.cs/#L36">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_IHeuristic_UndoLastUpdate_" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_IHeuristic_UndoLastUpdate" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.UndoLastUpdate">UndoLastUpdate()</h4>
+  <div class="markdown level1 summary"><p>Undoes the last modifications made by this heuristic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void UndoLastUpdate()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_IHeuristic_UpdateAll.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/IHeuristic.cs/#L31">View Source</a>
+  </span>
+  <a id="SudokuSpice_RuleBased_Heuristics_IHeuristic_UpdateAll_" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll*"></a>
+  <h4 id="SudokuSpice_RuleBased_Heuristics_IHeuristic_UpdateAll" data-uid="SudokuSpice.RuleBased.Heuristics.IHeuristic.UpdateAll">UpdateAll()</h4>
+  <div class="markdown level1 summary"><p>Updates all the current possible values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool UpdateAll()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Returns true if any modifications were made.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Heuristics_IHeuristic.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Heuristics.IHeuristic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Heuristics/IHeuristic.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
