@@ -349,22 +349,22 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc />
-        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
         {
             if (_size != puzzle.Size)
             {
                 return false;
             }
-            if (_allPossibleValues != allPossibleValues)
+            if (_allPossibleValues != uniquePossibleValues)
             {
-                _allPossibleValues = allPossibleValues;
+                _allPossibleValues = uniquePossibleValues;
                 _possibleSets = MagicSquares.ComputeSets(puzzle.AllPossibleValuesSpan);
             }
             _boxPossibleValues = new BoxPossibleValues[_boxes.Length];
             for (int i = 0; i < _boxPossibleValues.Length; ++i)
             {
                 _boxPossibleValues[i] = new BoxPossibleValues(
-                    _boxes[i], allPossibleValues, _possibleSets!, puzzle, _includeDiagonals);
+                    _boxes[i], uniquePossibleValues, _possibleSets!, puzzle, _includeDiagonals);
             }
             for (int row = 0; row < _size; ++row)
             {

@@ -22,9 +22,9 @@ namespace SudokuSpice.RuleBased.Rules
             new ColumnUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
-        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
         {
-            if (!base.TryInit(puzzle, allPossibleValues))
+            if (!base.TryInit(puzzle, uniquePossibleValues))
             {
                 return false;
             }

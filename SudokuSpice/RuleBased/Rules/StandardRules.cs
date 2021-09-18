@@ -43,21 +43,21 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
         {
             int size = puzzle.Size;
             _boxSize = Boxes.IntSquareRoot(size);
             if (size != _unsetRowValues?.Length)
             {
                 _unsetRowValues = new BitVector[size];
-                _unsetRowValues.AsSpan().Fill(allPossibleValues);
+                _unsetRowValues.AsSpan().Fill(uniquePossibleValues);
                 _unsetColValues = _unsetRowValues.AsSpan().ToArray();
                 _unsetBoxValues = _unsetRowValues.AsSpan().ToArray();
             } else
             {
-                _unsetRowValues.AsSpan().Fill(allPossibleValues);
-                _unsetColValues.AsSpan().Fill(allPossibleValues);
-                _unsetBoxValues.AsSpan().Fill(allPossibleValues);
+                _unsetRowValues.AsSpan().Fill(uniquePossibleValues);
+                _unsetColValues.AsSpan().Fill(uniquePossibleValues);
+                _unsetBoxValues.AsSpan().Fill(uniquePossibleValues);
             }
             int boxIdx = 0;
             for (int row = 0; row < size; row++)

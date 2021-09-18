@@ -26,11 +26,11 @@ namespace SudokuSpice.RuleBased.Rules
         }
 
         /// <inheritdoc/>
-        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
         {
             _boxSize = Boxes.IntSquareRoot(puzzle.Size);
             _puzzle = puzzle;
-            if (!base.TryInit(puzzle, allPossibleValues))
+            if (!base.TryInit(puzzle, uniquePossibleValues))
             {
                 _puzzle = null;
                 return false;

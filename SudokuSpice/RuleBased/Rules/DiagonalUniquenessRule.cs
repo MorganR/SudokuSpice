@@ -15,9 +15,9 @@ namespace SudokuSpice.RuleBased.Rules
         public DiagonalUniquenessRule() { }
 
         /// <inheritdoc/>
-        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
         {
-            _unsetForwardDiag = _unsetBackwardDiag = _allPossibleValues = allPossibleValues;
+            _unsetForwardDiag = _unsetBackwardDiag = _allPossibleValues = uniquePossibleValues;
             int size = puzzle.Size;
             // Iterate through the backward diagonal (like a backslash '\')
             for (int row = 0, col = 0; row < size; row++, col++)

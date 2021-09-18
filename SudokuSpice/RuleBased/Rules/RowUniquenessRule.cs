@@ -21,9 +21,9 @@ namespace SudokuSpice.RuleBased.Rules
         public override IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle) => new RowUniquenessRule(this, puzzle);
 
         /// <inheritdoc/>
-        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+        public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
         {
-            if (!base.TryInit(puzzle, allPossibleValues))
+            if (!base.TryInit(puzzle, uniquePossibleValues))
             {
                 return false;
             }
@@ -43,7 +43,8 @@ namespace SudokuSpice.RuleBased.Rules
         /// <inheritdoc/>
         protected override void TrackUnsetCoordinatesOnSameDimension(int dimension, in Coordinate source, CoordinateTracker tracker)
         {
-            Debug.Assert(_puzzle is not null, "Cannot call RowUniquenessRule._AddUnsetFromRow when puzzle is null.");
+            Debug.Assert(_puzzle is not null,
+                $"Cannot call {nameof(TrackUnsetCoordinatesOnSameDimension)} when puzzle is null.");
             int size = _puzzle.Size;
             for (int col = 0; col < size; col++)
             {
