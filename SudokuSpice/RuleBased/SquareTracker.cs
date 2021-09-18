@@ -151,10 +151,8 @@ namespace SudokuSpice.RuleBased
         internal void UnsetLast()
         {
             Coordinate lastCoord = _setCoords.Pop();
-            // If this is null, then we want to throw because this method is being misused.
-            int value = _puzzle[in lastCoord]!.Value;
-            _puzzle[in lastCoord] = null;
-            _ruleKeeper.Unset(in lastCoord, value);
+            // Undo heuristics first, since these were run during GetBestCoordinateToGuess, after
+            // TrySet had already succeeded.
             if (_coordsThatUsedHeuristics?.Count > 0
                 && _coordsThatUsedHeuristics.Peek().Equals(lastCoord))
             {
@@ -162,6 +160,10 @@ namespace SudokuSpice.RuleBased
                 // Protected by _coordsThatUsedHeuristics.
                 _heuristic!.UndoLastUpdate();
             }
+            // If this is null, then we want to throw because this method is being misused.
+            int value = _puzzle[in lastCoord]!.Value;
+            _puzzle[in lastCoord] = null;
+            _ruleKeeper.Unset(in lastCoord, value);
         }
 
         private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()
