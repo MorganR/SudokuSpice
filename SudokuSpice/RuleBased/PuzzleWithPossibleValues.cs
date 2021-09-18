@@ -36,14 +36,14 @@ namespace SudokuSpice.RuleBased
         /// </exception>
         public PuzzleWithPossibleValues(int size)
         {
-            if (size < 1 || size > 31)
+            if (size < 1 || size >= BitVector.NumBits)
             {
-                throw new ArgumentException("Puzzle size must be in the range [1, 31].");
+                throw new ArgumentException($"Puzzle size must be in the range [1, {BitVector.NumBits - 1}].");
             }
             _puzzle = new Puzzle(size);
-            var possibleValues = BitVector.CreateWithSize(Size + 1);
+            var possibleValues = BitVector.CreateWithSize(size + 1);
             possibleValues.UnsetBit(0);
-            _possibleValues = new PossibleValues(Size, possibleValues);
+            _possibleValues = new PossibleValues(size, possibleValues);
         }
 
         /// <summary>
@@ -62,9 +62,14 @@ namespace SudokuSpice.RuleBased
         public PuzzleWithPossibleValues(int?[][] puzzleMatrix)
         {
             _puzzle = new Puzzle(puzzleMatrix);
-            var possibleValues = BitVector.CreateWithSize(Size + 1);
+            int size = _puzzle.Size;
+            if (size < 1 || size >= BitVector.NumBits)
+            {
+                throw new ArgumentException($"Puzzle size must be in the range [1, {BitVector.NumBits - 1}].");
+            }
+            var possibleValues = BitVector.CreateWithSize(size + 1);
             possibleValues.UnsetBit(0);
-            _possibleValues = new PossibleValues(Size, possibleValues);
+            _possibleValues = new PossibleValues(size, possibleValues);
         }
 
         /// <summary>
@@ -77,8 +82,16 @@ namespace SudokuSpice.RuleBased
         public PuzzleWithPossibleValues(Puzzle puzzle)
         {
             _puzzle = puzzle;
-            var possibleValues = BitVector.CreateWithSize(Size + 1);
-            possibleValues.UnsetBit(0);
+            var possibleValues = new BitVector();
+            foreach (var possibleValue in puzzle.AllPossibleValuesSpan)
+            {
+                if (possibleValue >= BitVector.NumBits)
+                {
+                    throw new ArgumentException(
+                        $"Puzzle must have possible values in the range [0, {BitVector.NumBits - 1}]. Received value {possibleValue}.");
+                }
+                possibleValues.SetBit(possibleValue);
+            }
             _possibleValues = new PossibleValues(Size, possibleValues);
         }
 

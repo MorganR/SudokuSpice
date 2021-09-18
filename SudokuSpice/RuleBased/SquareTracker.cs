@@ -160,7 +160,7 @@ namespace SudokuSpice.RuleBased
                 // Protected by _coordsThatUsedHeuristics.
                 _heuristic!.UndoLastUpdate();
             }
-            // If this is null, then we want to throw because this method is being misused.
+            // If puzzle is null, then we want to throw because this method is being misused.
             int value = _puzzle[in lastCoord]!.Value;
             _puzzle[in lastCoord] = null;
             _ruleKeeper.Unset(in lastCoord, value);

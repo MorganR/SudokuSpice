@@ -167,8 +167,8 @@ namespace SudokuSpice.RuleBased
                     _unsetColumnValues[c.Column].SetBit(value);
                     _unsetBoxValues[boxIdx].SetBit(value);
                     _UnsetBoxValues(in c, boxIdx);
-                    _UnsetColumnValues(in c, _puzzle.Size);
-                    _UnsetRowValues(in c, _puzzle.Size);
+                    _UnsetColumnValues(in c, size);
+                    _UnsetRowValues(in c, size);
                     return false;
                 }
                 _puzzle.SetPossibleValues(in inBoxCoord, updatedPossibles);

@@ -30,9 +30,6 @@ namespace SudokuSpice.RuleBased
         /// </param>
         public PossibleValues(int size, BitVector uniquePossibleValues)
         {
-            Debug.Assert(
-                size == uniquePossibleValues.ComputeCount(),
-                $"Size ({size}) must match all possible values count ({uniquePossibleValues.ComputeCount()}).");
             AllPossible = uniquePossibleValues;
             _possibleValues = new BitVector[size][];
             for (int row = 0; row < size; ++row)
