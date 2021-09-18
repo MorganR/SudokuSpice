@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.RuleBased
 {
@@ -18,26 +19,26 @@ namespace SudokuSpice.RuleBased
 
         /// <summary>
         /// Constructs a <c>PossibleValues</c> object to track possible values for a size-x-size
-        /// puzzle. All coordinates are initialized to <paramref name="allPossible"/> possible
-        /// values.
+        /// puzzle. All coordinates are initialized to <paramref name="uniquePossibleValues"/>
+        /// possible values.
         /// </summary>
         /// <param name="size">
         /// The size of the puzzle for which we want to track possible values.
         /// </param>
-        /// <param name="allPossible">
+        /// <param name="uniquePossibleValues">
         /// The full set of possible values for any given square in this puzzle.
         /// </param>
-        public PossibleValues(int size, BitVector allPossible)
+        public PossibleValues(int size, BitVector uniquePossibleValues)
         {
             Debug.Assert(
-                size == allPossible.ComputeCount(),
-                $"Size ({size}) must match all possible values count ({allPossible.ComputeCount()}).");
-            AllPossible = allPossible;
+                size == uniquePossibleValues.ComputeCount(),
+                $"Size ({size}) must match all possible values count ({uniquePossibleValues.ComputeCount()}).");
+            AllPossible = uniquePossibleValues;
             _possibleValues = new BitVector[size][];
             for (int row = 0; row < size; ++row)
             {
                 _possibleValues[row] = new BitVector[size];
-                _possibleValues[row].AsSpan().Fill(allPossible);
+                _possibleValues[row].AsSpan().Fill(uniquePossibleValues);
             }
         }
 
@@ -63,6 +64,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         /// <param name="c">The <see cref="Coordinate"/> of the square.</param>
         /// <returns>The possible values for that square as a <see cref="BitVector"/>.</returns>
+        [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
         public BitVector this[in Coordinate c]
         {
             get => _possibleValues[c.Row][c.Column];

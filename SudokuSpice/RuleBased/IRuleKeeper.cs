@@ -40,9 +40,10 @@ namespace SudokuSpice.RuleBased
         bool TryInit(IReadOnlyPuzzleWithMutablePossibleValues puzzle);
 
         /// <summary>
-        /// Updates possible values based on setting the given coordinate to the given value. If
-        /// this update fails (i.e. it leads to an unset square with no possible values), then it
-        /// returns false and leaves the possible values unchanged.
+        /// Updates possible values based on setting the given coordinate to the given value.
+        /// 
+        /// If this update fails (i.e. it leads to an unset square with no possible values), then it
+        /// returns false and leaves all possible values unchanged.
         /// </summary>
         /// <param name="c">The coordinate to update.</param>
         /// <param name="value">The value to set <c>c</c> to.</param>
