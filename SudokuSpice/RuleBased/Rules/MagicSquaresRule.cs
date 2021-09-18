@@ -309,7 +309,6 @@ namespace SudokuSpice.RuleBased.Rules
         /// If the any of the given <paramref name="squares"/>' sizes are not compatible with the
         /// given puzzle's <paramref name="size"/>.
         /// </exception>
-
         public MagicSquaresRule(int size, IEnumerable<Box> squares, bool includeDiagonals)
         {
             _size = size;
