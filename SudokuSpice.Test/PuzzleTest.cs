@@ -18,6 +18,7 @@ namespace SudokuSpice.Test
 
             Assert.Equal(puzzle.Size, puzzleCopy.Size);
             Assert.Equal(puzzle.NumEmptySquares, puzzleCopy.NumEmptySquares);
+            Assert.Equal(puzzle.CountPerUniqueValue, puzzleCopy.CountPerUniqueValue);
             for (int row = 0; row < puzzle.Size; row++)
             {
                 for (int col = 0; col < puzzle.Size; col++)
@@ -47,13 +48,71 @@ namespace SudokuSpice.Test
         [Theory]
         [InlineData(-1)]
         [InlineData(0)]
-        public void Constructor_WithInvalidSize_Throws(int size) => Assert.Throws<ArgumentException>(() => new Puzzle(size));
+        public void Constructor_WithInvalidSize_Throws(int size)
+        {
+            Assert.Throws<ArgumentException>(() => new Puzzle(size));
+            Assert.Throws<ArgumentException>(() => new Puzzle(size, new int[1]));
+        }
 
         [Fact]
-        public void CountPerUniqueValue_IsAlwaysOne()
+        public void Constructor_WithValidSizeAndPossibleValues_Works()
         {
-            var puzzle = new Puzzle(9);
-            for (int i = 1; i <= 9; ++i)
+            var size = 4;
+            var possibleValues = new int[] { 0, 0, 1, 2 };
+            var puzzle = new Puzzle(size, possibleValues);
+            Assert.Equal(size, puzzle.Size);
+            Assert.Equal(2, puzzle.CountPerUniqueValue[0]);
+            Assert.Equal(1, puzzle.CountPerUniqueValue[1]);
+            Assert.Equal(1, puzzle.CountPerUniqueValue[2]);
+            Assert.False(puzzle.CountPerUniqueValue.ContainsKey(3));
+            Assert.False(puzzle[0, 0].HasValue);
+        }
+
+        [Fact]
+        public void Constructor_WithMatrixAndPossibleValues_Works()
+        {
+            var size = 4;
+            var possibleValues = new int[] { 0, 0, 1, 2 };
+            var puzzle = new Puzzle(new int?[][] {
+                new int?[] { 0, null, null, null },
+                new int?[] { 1, null,    0, null },
+                new int?[] { 2, null, null,    1 },
+                new int?[] { 0, null,    2, null },
+            }, possibleValues);
+            Assert.Equal(size, puzzle.Size);
+            Assert.Equal(2, puzzle.CountPerUniqueValue[0]);
+            Assert.Equal(1, puzzle.CountPerUniqueValue[1]);
+            Assert.Equal(1, puzzle.CountPerUniqueValue[2]);
+            Assert.False(puzzle.CountPerUniqueValue.ContainsKey(3));
+            Assert.True(puzzle[0, 0].HasValue);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(9)]
+        public void CountPerUniqueValue_IsOneByDefaultWithSizeConstructor(int size)
+        {
+            var puzzle = new Puzzle(size);
+            for (int i = 1; i <= size; ++i)
+            {
+                Assert.Equal(1, puzzle.CountPerUniqueValue[i]);
+            }
+            Assert.False(puzzle.CountPerUniqueValue.ContainsKey(0));
+            Assert.False(puzzle.CountPerUniqueValue.ContainsKey(size + 1));
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(9)]
+        public void CountPerUniqueValue_IsOneByDefaultWithMatrixConstructor(int size)
+        {
+            var matrix = new int?[size][];
+            for (int row = 0; row < size; ++row)
+            {
+                matrix[row] = new int?[size];
+            }
+            var puzzle = new Puzzle(matrix);
+            for (int i = 1; i <= size; ++i)
             {
                 Assert.Equal(1, puzzle.CountPerUniqueValue[i]);
             }

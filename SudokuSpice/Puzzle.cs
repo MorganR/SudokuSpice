@@ -6,11 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace SudokuSpice
 {
     /// <summary>
-    /// Represents a puzzle with the following assumptions:
-    ///
-    /// * Puzzles must be square, of shape size-by-size.
-    /// * The possible values for any square in the puzzle are the numbers from 1 to size,
-    ///   inclusive.
+    /// Represents a square puzzle of shape size-by-size.
     /// </summary>.
     public class Puzzle : IPuzzle<Puzzle>
     {
@@ -36,11 +32,10 @@ namespace SudokuSpice
         /// for each region (i.e. the numbers from [1, size]).
         /// </summary>
         /// <param name="size">
-        /// The side-length for this Sudoku puzzle. Must be a square of a whole number in the range
-        /// [1, 25].
+        /// The side-length for this Sudoku puzzle.
         /// </param>
         /// <exception cref="ArgumentException">
-        /// Thrown if size is not the square of a whole number, or is outside the range [1, 25].
+        /// Thrown if size is less than 1.
         /// </exception>
         public Puzzle(int size)
         {
@@ -52,21 +47,40 @@ namespace SudokuSpice
             NumSquares = size * size;
             _squares = new int?[size][];
             _unsetCoordsTracker = new CoordinateTracker(size);
-            for (int row = 0; row < Size; row++)
-            {
-                _squares[row] = new int?[size];
-                for (int col = 0; col < Size; col++)
-                {
-                    _unsetCoordsTracker.Add(new Coordinate(row, col));
-                }
-            }
+            _InitUnsetCoordsTrackerAndSquares(_unsetCoordsTracker, _squares);
             _allPossibleValues = new int[Size];
             var countPerUniqueValue = new Dictionary<int, int>(size);
-            for (int i = 0; i < Size; ++i)
+            _InitStandardPossibleValues(_allPossibleValues, countPerUniqueValue);
+            CountPerUniqueValue = countPerUniqueValue;
+        }
+
+        /// <summary>
+        /// Constructs a new puzzle of the given side length and possible values for each region.
+        /// </summary>
+        /// <param name="size">
+        /// The side-length for this Sudoku puzzle.
+        /// </param>
+        /// <param name="allPossibleValues">
+        /// List the possible values for a given region in the puzzle. A value should be repeated
+        /// as many times as it can be used.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if size is less than 1.
+        /// </exception>
+        public Puzzle(int size, ReadOnlySpan<int> allPossibleValues)
+        {
+            if (size < 1)
             {
-                _allPossibleValues[i] = i + 1;
-                countPerUniqueValue[i + 1] = 1;
+                throw new ArgumentException($"{nameof(size)} must be >= 1.");
             }
+            Size = size;
+            NumSquares = size * size;
+            _squares = new int?[size][];
+            _unsetCoordsTracker = new CoordinateTracker(size);
+            _InitUnsetCoordsTrackerAndSquares(_unsetCoordsTracker, _squares);
+            _allPossibleValues = allPossibleValues.ToArray();
+            var countPerUniqueValue = new Dictionary<int, int>(size);
+            _InitCustomPossibleValues(allPossibleValues, countPerUniqueValue);
             CountPerUniqueValue = countPerUniqueValue;
         }
 
@@ -83,6 +97,9 @@ namespace SudokuSpice
         /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
         /// be null. The puzzle maintains a reference to this array.
         /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if the given matrix is not square.
+        /// </exception>
         public Puzzle(int?[][] puzzleMatrix)
         {
             NumSquares = puzzleMatrix.Length;
@@ -94,25 +111,100 @@ namespace SudokuSpice
 
             _squares = puzzleMatrix;
             _unsetCoordsTracker = new CoordinateTracker(Size);
-            for (int row = 0; row < _squares.Length; row++)
+            _InitUnsetCoordsTracker(_unsetCoordsTracker, _squares);
+            _allPossibleValues = new int[Size];
+            var countPerUniqueValue = new Dictionary<int, int>(Size);
+            _InitStandardPossibleValues(_allPossibleValues, countPerUniqueValue);
+            CountPerUniqueValue = countPerUniqueValue;
+        }
+
+        /// <summary>
+        /// Constructs a new puzzle backed by the given array.
+        ///
+        /// The puzzle is backed directly by this array (i.e. modifying the array modifies the
+        /// puzzle, and vice-versa). If this is not what you want, see
+        /// <see cref="CopyFrom(int?[,])"/> and <see cref="CopyFrom(int?[][])"/>. Note that all
+        /// future modifications should be done through this puzzle object, else this will be in an
+        /// incorrect state.
+        /// </summary>
+        /// <param name="puzzleMatrix">
+        /// The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
+        /// be null. The puzzle maintains a reference to this array.
+        /// </param>
+        /// <param name="allPossibleValues">
+        /// List the possible values for a given region in the puzzle. A value should be repeated
+        /// as many times as it can be used.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if the given matrix is not square.
+        /// </exception>
+        public Puzzle(int?[][] puzzleMatrix, ReadOnlySpan<int> allPossibleValues)
+        {
+            NumSquares = puzzleMatrix.Length;
+            Size = puzzleMatrix.Length;
+            if (Size == 0 || Size != puzzleMatrix[0].Length)
             {
-                var squaresRow = _squares[row];
+                throw new ArgumentException("Puzzle must be square with non-zero dimensions.");
+            }
+
+            _squares = puzzleMatrix;
+            _unsetCoordsTracker = new CoordinateTracker(Size);
+            _InitUnsetCoordsTracker(_unsetCoordsTracker, _squares);
+            _allPossibleValues = allPossibleValues.ToArray();
+            var countPerUniqueValue = new Dictionary<int, int>(Size);
+            _InitCustomPossibleValues(allPossibleValues, countPerUniqueValue);
+            CountPerUniqueValue = countPerUniqueValue;
+        }
+
+        private static void _InitUnsetCoordsTrackerAndSquares(CoordinateTracker unsetCoordsTracker, Span<int?[]> squares)
+        {
+            for (int row = 0; row < squares.Length; row++)
+            {
+                squares[row] = new int?[squares.Length];
+                for (int col = 0; col < squares.Length; col++)
+                {
+                    unsetCoordsTracker.Add(new Coordinate(row, col));
+                }
+            }
+        }
+
+        private static void _InitUnsetCoordsTracker(CoordinateTracker unsetCoordsTracker, ReadOnlySpan<int?[]> squares)
+        {
+            for (int row = 0; row < squares.Length; row++)
+            {
+                var squaresRow = squares[row];
                 for (int col = 0; col < squaresRow.Length; col++)
                 {
                     if (!squaresRow[col].HasValue)
                     {
-                        _unsetCoordsTracker.Add(new Coordinate(row, col));
+                        unsetCoordsTracker.Add(new Coordinate(row, col));
                     }
                 }
             }
-            _allPossibleValues = new int[Size];
-            var countPerUniqueValue = new Dictionary<int, int>(Size);
-            for (int i = 0; i < Size; ++i)
+        }
+
+        private static void _InitStandardPossibleValues(Span<int> allPossibleValues, Dictionary<int, int> countPerUniqueValue)
+        {
+            for (int i = 0; i < allPossibleValues.Length; ++i)
             {
-                _allPossibleValues[i] = i + 1;
+                allPossibleValues[i] = i + 1;
                 countPerUniqueValue[i + 1] = 1;
             }
-            CountPerUniqueValue = countPerUniqueValue;
+        }
+
+        private static void _InitCustomPossibleValues(ReadOnlySpan<int> allPossibleValues, Dictionary<int, int> countPerUniqueValue)
+        {
+            for (int i = 0; i < allPossibleValues.Length; ++i)
+            {
+                int value = allPossibleValues[i];
+                if (countPerUniqueValue.ContainsKey(value))
+                {
+                    ++countPerUniqueValue[value];
+                } else
+                {
+                    countPerUniqueValue[value] = 1;
+                }
+            }
         }
 
         /// <summary>
@@ -132,7 +224,6 @@ namespace SudokuSpice
             _allPossibleValues = existing._allPossibleValues;
             CountPerUniqueValue = existing.CountPerUniqueValue;
         }
-
 
         /// <summary>Creates a new puzzle with a copy of the given matrix.</summary>
         [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Provided to ease migration.")]
