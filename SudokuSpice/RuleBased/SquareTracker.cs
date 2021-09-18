@@ -153,9 +153,8 @@ namespace SudokuSpice.RuleBased
             Coordinate lastCoord = _setCoords.Pop();
             // If this is null, then we want to throw because this method is being misused.
             int value = _puzzle[in lastCoord]!.Value;
-            BitVector possibleValues = _puzzle.GetPossibleValues(in lastCoord);
             _puzzle[in lastCoord] = null;
-            _puzzle.SetPossibleValues(in lastCoord, possibleValues);
+            _ruleKeeper.Unset(in lastCoord, value);
             if (_coordsThatUsedHeuristics?.Count > 0
                 && _coordsThatUsedHeuristics.Peek().Equals(lastCoord))
             {
@@ -163,7 +162,6 @@ namespace SudokuSpice.RuleBased
                 // Protected by _coordsThatUsedHeuristics.
                 _heuristic!.UndoLastUpdate();
             }
-            _ruleKeeper.Unset(in lastCoord, value);
         }
 
         private (Coordinate coord, int numPossibles) _GetCoordinateWithFewestPossibleValues()
