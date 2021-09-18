@@ -111,13 +111,7 @@ namespace SudokuSpice.RuleBased
         public int? this[int row, int col]
         {
             get => _puzzle[row, col];
-            set {
-                _puzzle[row, col] = value;
-                if (value is null)
-                {
-                    _possibleValues.Reset(new Coordinate(row, col));
-                }
-            }
+            set => _puzzle[row, col] = value;
         }
 
         /// <inheritdoc cref="IPuzzle{T}"/>
@@ -125,13 +119,7 @@ namespace SudokuSpice.RuleBased
         public int? this[in Coordinate c]
         {
             get => _puzzle[in c];
-            set {
-                _puzzle[in c] = value;
-                if (value is null)
-                {
-                    _possibleValues.Reset(in c);
-                }
-            }
+            set => _puzzle[in c] = value;
         }
 
         /// <summary>Gets a span of coordinates for all the unset squares.</summary>
