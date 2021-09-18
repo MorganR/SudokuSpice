@@ -108,6 +108,17 @@ namespace SudokuSpice.Test
         }
 
         [Theory]
+        [InlineData(0, -1)]
+        [InlineData(1, 0)]
+        [InlineData(0b10101, 4)]
+        [InlineData(uint.MaxValue, 31)]
+        public void ComputeLastSetBit_IsCorrect(uint data, int lastBit)
+        {
+            var vector = new BitVector(data);
+            Assert.Equal(lastBit, vector.ComputeLastSetBit());
+        }
+
+        [Theory]
         [InlineData(0, 0)]
         [InlineData(0b100, 1)]
         [InlineData(0b0011_1101, 5)]

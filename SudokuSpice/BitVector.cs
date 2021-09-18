@@ -118,6 +118,11 @@ namespace SudokuSpice
         public readonly bool IsBitSet(int bit) => Convert.ToBoolean(Data & _masks[bit]);
 
         /// <summary>
+        /// Computes the last bit that is set, or -1 if none are set.
+        /// </summary>
+        public int ComputeLastSetBit() => NumBits - 1 - BitOperations.LeadingZeroCount(Data);
+
+        /// <summary>
         /// Populates a provided Span with the indices of set bits, and returns the number of set 
         /// bits it populated.
         ///
