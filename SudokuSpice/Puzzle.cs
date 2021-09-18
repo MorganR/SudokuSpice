@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
@@ -27,12 +28,16 @@ namespace SudokuSpice
         public int NumSetSquares => NumSquares - NumEmptySquares;
         /// <inheritdoc/>
         public ReadOnlySpan<int> AllPossibleValuesSpan => _allPossibleValues;
+        /// <inheritdoc/>
+        public IReadOnlyDictionary<int, int> CountPerUniqueValue { get; }
 
         /// <summary>
-        /// Constructs a new puzzle of the given side length.
+        /// Constructs a new puzzle of the given side length. Assumes the standard possible values
+        /// for each region (i.e. the numbers from [1, size]).
         /// </summary>
         /// <param name="size">
-        /// The side-length for this Sudoku puzzle. Must be a square of a whole number in the range [1, 25].
+        /// The side-length for this Sudoku puzzle. Must be a square of a whole number in the range
+        /// [1, 25].
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown if size is not the square of a whole number, or is outside the range [1, 25].
@@ -56,10 +61,13 @@ namespace SudokuSpice
                 }
             }
             _allPossibleValues = new int[Size];
+            var countPerUniqueValue = new Dictionary<int, int>(size);
             for (int i = 0; i < Size; ++i)
             {
                 _allPossibleValues[i] = i + 1;
+                countPerUniqueValue[i + 1] = 1;
             }
+            CountPerUniqueValue = countPerUniqueValue;
         }
 
         /// <summary>
@@ -98,10 +106,13 @@ namespace SudokuSpice
                 }
             }
             _allPossibleValues = new int[Size];
+            var countPerUniqueValue = new Dictionary<int, int>(Size);
             for (int i = 0; i < Size; ++i)
             {
                 _allPossibleValues[i] = i + 1;
+                countPerUniqueValue[i + 1] = 1;
             }
+            CountPerUniqueValue = countPerUniqueValue;
         }
 
         /// <summary>
@@ -119,6 +130,7 @@ namespace SudokuSpice
             }
             _unsetCoordsTracker = new CoordinateTracker(existing._unsetCoordsTracker);
             _allPossibleValues = existing._allPossibleValues;
+            CountPerUniqueValue = existing.CountPerUniqueValue;
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice.RuleBased
@@ -21,6 +22,8 @@ namespace SudokuSpice.RuleBased
         public BitVector AllPossibleValues => _possibleValues.AllPossible;
         /// <inheritdoc/>
         public ReadOnlySpan<int> AllPossibleValuesSpan => _puzzle.AllPossibleValuesSpan;
+        /// <inheritdoc/>
+        public IReadOnlyDictionary<int, int> CountPerUniqueValue => _puzzle.CountPerUniqueValue;
 
         /// <summary>
         /// Constructs a new puzzle of the given side length.

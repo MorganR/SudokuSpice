@@ -13,6 +13,7 @@ items:
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.AllPossibleValuesSpan
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[][])
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.DeepCopy
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
   - SudokuSpice.RuleBased.PuzzleWithPossibleValues.GetUnsetCoords
@@ -40,7 +41,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: PuzzleWithPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 6
+    startLine: 7
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -92,7 +93,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Size
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -131,7 +132,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumSquares
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -170,7 +171,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumEmptySquares
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -209,7 +210,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumSetSquares
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -248,7 +249,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: AllPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -287,11 +288,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: AllPossibleValuesSpan
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: Gets all the possible values for this puzzle.
+  summary: "\nGets all the possible values for this puzzle.\n\nIf a value can be repeated n times in a region, then there should be n instances of it\nin the span.\n"
   example: []
   syntax:
     content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -302,6 +303,45 @@ items:
   overload: SudokuSpice.RuleBased.PuzzleWithPossibleValues.AllPossibleValuesSpan*
   implements:
   - SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue
+  commentId: P:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue
+  id: CountPerUniqueValue
+  parent: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  langs:
+  - csharp
+  - vb
+  name: CountPerUniqueValue
+  nameWithType: PuzzleWithPossibleValues.CountPerUniqueValue
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: CountPerUniqueValue
+    path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
+    startLine: 25
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nThe count of times each unique value is expected to be included in a region.\n"
+  example: []
+  syntax:
+    content: public IReadOnlyDictionary<int, int> CountPerUniqueValue { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+    content.vb: Public ReadOnly Property CountPerUniqueValue As IReadOnlyDictionary(Of Integer, Integer)
+  overload: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   modifiers.csharp:
   - public
   - get
@@ -326,7 +366,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 33
+    startLine: 36
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -366,7 +406,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 58
+    startLine: 61
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -405,7 +445,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 73
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -441,7 +481,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 84
+    startLine: 87
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -476,7 +516,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyFrom
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 91
+    startLine: 94
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -518,7 +558,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyFrom
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 98
+    startLine: 101
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -560,7 +600,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: DeepCopy
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 104
+    startLine: 107
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -596,7 +636,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 107
+    startLine: 110
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -643,7 +683,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 120
+    startLine: 123
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -690,7 +730,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetUnsetCoords
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 134
+    startLine: 137
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -726,7 +766,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ToString
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 140
+    startLine: 143
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -763,7 +803,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: IntersectPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 143
+    startLine: 146
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -805,7 +845,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ResetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 146
+    startLine: 149
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -845,7 +885,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 148
+    startLine: 151
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -887,7 +927,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: SetPossibleValues
     path: ../SudokuSpice/RuleBased/PuzzleWithPossibleValues.cs
-    startLine: 150
+    startLine: 153
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -1527,6 +1567,134 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue*
+  commentId: Overload:SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue
+  name: CountPerUniqueValue
+  nameWithType: PuzzleWithPossibleValues.CountPerUniqueValue
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues.CountPerUniqueValue
+- uid: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+  parent: SudokuSpice.IReadOnlyPuzzle
+  name: CountPerUniqueValue
+  nameWithType: IReadOnlyPuzzle.CountPerUniqueValue
+  fullName: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  name: IReadOnlyDictionary<Int32, Int32>
+  nameWithType: IReadOnlyDictionary<Int32, Int32>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<System.Int32, System.Int32>
+  nameWithType.vb: IReadOnlyDictionary(Of Int32, Int32)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.Int32, System.Int32)
+  name.vb: IReadOnlyDictionary(Of Int32, Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true

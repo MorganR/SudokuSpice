@@ -50,6 +50,18 @@ namespace SudokuSpice.Test
         public void Constructor_WithInvalidSize_Throws(int size) => Assert.Throws<ArgumentException>(() => new Puzzle(size));
 
         [Fact]
+        public void CountPerUniqueValue_IsAlwaysOne()
+        {
+            var puzzle = new Puzzle(9);
+            for (int i = 1; i <= 9; ++i)
+            {
+                Assert.Equal(1, puzzle.CountPerUniqueValue[i]);
+            }
+            Assert.False(puzzle.CountPerUniqueValue.ContainsKey(0));
+            Assert.False(puzzle.CountPerUniqueValue.ContainsKey(10));
+        }
+
+        [Fact]
         public void Size_ReturnsPuzzleSize()
         {
             var puzzle = new Puzzle(new int?[][] {

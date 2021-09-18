@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SudokuSpice
@@ -16,8 +17,17 @@ namespace SudokuSpice
         int NumEmptySquares { get; }
         /// <summary>The number of set/known squares in the puzzle.</summary>
         int NumSetSquares { get; }
-        /// <summary>Gets all the possible values for this puzzle.</summary>
+        /// <summary>
+        /// Gets all the possible values for this puzzle.
+        /// 
+        /// If a value can be repeated n times in a region, then there should be n instances of it
+        /// in the span.
+        /// </summary>
         ReadOnlySpan<int> AllPossibleValuesSpan { get; }
+        /// <summary>
+        /// The count of times each unique value is expected to be included in a region.
+        /// </summary>
+        IReadOnlyDictionary<int,int> CountPerUniqueValue { get; }
 
         /// <summary>
         /// Gets the current value of a given square.

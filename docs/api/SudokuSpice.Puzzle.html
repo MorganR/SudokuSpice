@@ -125,7 +125,7 @@ inclusive.</li>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle__ctor_SudokuSpice_Puzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.%23ctor(SudokuSpice.Puzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L110">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L121">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle__ctor_" data-uid="SudokuSpice.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_Puzzle__ctor_SudokuSpice_Puzzle_" data-uid="SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)">Puzzle(Puzzle)</h4>
@@ -158,11 +158,12 @@ inclusive.</li>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L40">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L45">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle__ctor_" data-uid="SudokuSpice.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_Puzzle__ctor_System_Int32_" data-uid="SudokuSpice.Puzzle.#ctor(System.Int32)">Puzzle(Int32)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new puzzle of the given side length.</p>
+  <div class="markdown level1 summary"><p>Constructs a new puzzle of the given side length. Assumes the standard possible values
+for each region (i.e. the numbers from [1, size]).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -182,7 +183,8 @@ inclusive.</li>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">size</span></td>
-        <td><p>The side-length for this Sudoku puzzle. Must be a square of a whole number in the range [1, 25].</p>
+        <td><p>The side-length for this Sudoku puzzle. Must be a square of a whole number in the range
+[1, 25].</p>
 </td>
       </tr>
     </tbody>
@@ -208,7 +210,7 @@ inclusive.</li>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle__ctor_System_Nullable_System_Int32______.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.%23ctor(System.Nullable%7BSystem.Int32%7D%5B%5D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L78">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L86">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle__ctor_" data-uid="SudokuSpice.Puzzle.#ctor*"></a>
   <h4 id="SudokuSpice_Puzzle__ctor_System_Nullable_System_Int32______" data-uid="SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])">Puzzle(Nullable&lt;Int32&gt;[][])</h4>
@@ -250,11 +252,13 @@ be null. The puzzle maintains a reference to this array.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_AllPossibleValuesSpan.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.AllPossibleValuesSpan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L29">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L30">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_AllPossibleValuesSpan_" data-uid="SudokuSpice.Puzzle.AllPossibleValuesSpan*"></a>
   <h4 id="SudokuSpice_Puzzle_AllPossibleValuesSpan" data-uid="SudokuSpice.Puzzle.AllPossibleValuesSpan">AllPossibleValuesSpan</h4>
   <div class="markdown level1 summary"><p>Gets all the possible values for this puzzle.</p>
+<p>If a value can be repeated n times in a region, then there should be n instances of it
+in the span.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -278,10 +282,41 @@ be null. The puzzle maintains a reference to this array.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_CountPerUniqueValue.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.CountPerUniqueValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L32">View Source</a>
+  </span>
+  <a id="SudokuSpice_Puzzle_CountPerUniqueValue_" data-uid="SudokuSpice.Puzzle.CountPerUniqueValue*"></a>
+  <h4 id="SudokuSpice_Puzzle_CountPerUniqueValue" data-uid="SudokuSpice.Puzzle.CountPerUniqueValue">CountPerUniqueValue</h4>
+  <div class="markdown level1 summary"><p>The count of times each unique value is expected to be included in a region.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;int, int&gt; CountPerUniqueValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_Item_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L157">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L169">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_Item_" data-uid="SudokuSpice.Puzzle.Item*"></a>
   <h4 id="SudokuSpice_Puzzle_Item_SudokuSpice_Coordinate__" data-uid="SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)">Item[Coordinate]</h4>
@@ -332,7 +367,7 @@ using a <a class="xref" href="SudokuSpice.Coordinate.html">Coordinate</a> instea
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_Item_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.Item(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L142">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L154">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_Item_" data-uid="SudokuSpice.Puzzle.Item*"></a>
   <h4 id="SudokuSpice_Puzzle_Item_System_Int32_System_Int32_" data-uid="SudokuSpice.Puzzle.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
@@ -386,7 +421,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_NumEmptySquares.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.NumEmptySquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L25">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L26">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_NumEmptySquares_" data-uid="SudokuSpice.Puzzle.NumEmptySquares*"></a>
   <h4 id="SudokuSpice_Puzzle_NumEmptySquares" data-uid="SudokuSpice.Puzzle.NumEmptySquares">NumEmptySquares</h4>
@@ -417,7 +452,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_NumSetSquares.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.NumSetSquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L27">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L28">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_NumSetSquares_" data-uid="SudokuSpice.Puzzle.NumSetSquares*"></a>
   <h4 id="SudokuSpice_Puzzle_NumSetSquares" data-uid="SudokuSpice.Puzzle.NumSetSquares">NumSetSquares</h4>
@@ -448,7 +483,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_NumSquares.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.NumSquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L23">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L24">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_NumSquares_" data-uid="SudokuSpice.Puzzle.NumSquares*"></a>
   <h4 id="SudokuSpice_Puzzle_NumSquares" data-uid="SudokuSpice.Puzzle.NumSquares">NumSquares</h4>
@@ -479,7 +514,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_Size.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L21">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L22">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_Size_" data-uid="SudokuSpice.Puzzle.Size*"></a>
   <h4 id="SudokuSpice_Puzzle_Size" data-uid="SudokuSpice.Puzzle.Size">Size</h4>
@@ -512,7 +547,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.CopyFrom(System.Nullable%7BSystem.Int32%7D%5B%5D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L133">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L145">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_CopyFrom_" data-uid="SudokuSpice.Puzzle.CopyFrom*"></a>
   <h4 id="SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______" data-uid="SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])">CopyFrom(Nullable&lt;Int32&gt;[][])</h4>
@@ -560,7 +595,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0__0___.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.CopyFrom(System.Nullable%7BSystem.Int32%7D%5B0%3A%2C0%3A%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L126">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L138">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_CopyFrom_" data-uid="SudokuSpice.Puzzle.CopyFrom*"></a>
   <h4 id="SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0__0___" data-uid="SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])">CopyFrom(Nullable&lt;Int32&gt;[,])</h4>
@@ -608,7 +643,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_DeepCopy.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.DeepCopy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L139">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L151">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_DeepCopy_" data-uid="SudokuSpice.Puzzle.DeepCopy*"></a>
   <h4 id="SudokuSpice_Puzzle_DeepCopy" data-uid="SudokuSpice.Puzzle.DeepCopy">DeepCopy()</h4>
@@ -639,7 +674,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_GetUnsetCoords.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.GetUnsetCoords%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L165">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L177">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_GetUnsetCoords_" data-uid="SudokuSpice.Puzzle.GetUnsetCoords*"></a>
   <h4 id="SudokuSpice_Puzzle_GetUnsetCoords" data-uid="SudokuSpice.Puzzle.GetUnsetCoords">GetUnsetCoords()</h4>
@@ -670,7 +705,7 @@ its value to <code>null</code>.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle_ToString.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L171">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L183">View Source</a>
   </span>
   <a id="SudokuSpice_Puzzle_ToString_" data-uid="SudokuSpice.Puzzle.ToString*"></a>
   <h4 id="SudokuSpice_Puzzle_ToString" data-uid="SudokuSpice.Puzzle.ToString">ToString()</h4>
@@ -717,7 +752,7 @@ and dashes.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Puzzle.md&amp;value=---%0Auid%3A%20SudokuSpice.Puzzle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L14" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Puzzle.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
