@@ -4,20 +4,18 @@
 
 **Docs:** https://www.sudokuspice.dev
 
-SudokuSpice is a [highly efficient](articles/performance.md) sudoku solving and generating library
-for .NET.
+SudokuSpice is a [highly efficient](https://www.sudokuspice.dev/articles/performance.html) sudoku
+solving and generating library for .NET.
 
 In addition to working with standard Sudoku puzzles, *SudokuSpice* focuses on ease-of-use and
 customizability. Want to solve or generate a Sudoku puzzle that also enforces unique values on
-the diagonals? Just add the
-[`DiagonalUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule) to your solver.
+the diagonals? Just add the `DiagonalUniquenessRule` to your solver.
+
 Want to do something more complicated, like to enforce unique values within arbitrary regions? Key
 parts of the framework are exposed as interfaces so you can solve and generate truely custom
-puzzles. In this example, maybe you need a custom implementation of
-[`IPuzzle`](xref:SudokuSpice.IPuzzle`1) as well as a custom
-[`IRule`](xref:SudokuSpice.RuleBased.Rules.IRule) or
-[`IConstraint`](xref:SudokuSpice.ConstraintBased.Constraints.IConstraint). See the
-[framework overview](articles/framework.md) for more details.
+puzzles. In this example, maybe you need a custom implementation of `IPuzzle` as well as a custom
+`IRule` or `IConstraint`. See the
+[framework overview](https://www.sudokuspice.dev/articles/framework.html) for more details.
 
 ## Quick start
 
@@ -65,7 +63,8 @@ If you need to generate Sudoku puzzles, simply create a `StandardPuzzleGenerator
 // Create a 9x9 puzzle generator.
 var generator = new StandardPuzzleGenerator();
 // Generate a 9x9 puzzle with 30 preset square values.
-var puzzle = generator.Generate(/*puzzleSize=*/9, /*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
+var puzzle = generator.Generate(
+    /*puzzleSize=*/9, /*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
 
 // For custom solvers:
 var customGenerator = new PuzzleGenerator<MyPuzzle>(
@@ -101,6 +100,10 @@ var customSolver = new ConstraintBased.PuzzleSolver<Puzzle>(
 See [the docs](https://www.sudokuspice.dev) for more information.
 
 ## Releases
+
+## [3.1.0](/releases/v3.1.0/) - 2021-08-23
+
+* Made PossibleValues public
 
 ### 3.0.0 - 2021-03-07
 
