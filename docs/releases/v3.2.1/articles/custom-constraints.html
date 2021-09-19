@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Custom Constraints | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Custom Constraints | SudokuSpice ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v3.2.1">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="custom-constraints">Custom Constraints</h1>
+
+<p>Let's continue the <a href="custom-rules.html">custom rules example</a>, where we want to solve a puzzle that also enforces
+that the diagonals contain all unique values. In this case, however, we'll solve this by adding a
+new constraint: the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint.html"><code>DiagonalUniquenessConstraint</code></a>.</p>
+<p>If you haven't yet read the <a href="framework.html#important-concepts">constraints summary</a>, read that first!</p>
+<h2 id="creating-a-constraint">Creating a constraint</h2>
+<p>A single constraint object can be used to solve multiple puzzles. Where possible, a constraint
+should be flexible to multiple puzzle sizes.</p>
+<h3 id="the-tryconstrain-method">The <code>TryConstrain</code> method</h3>
+<p>The <code>IConstraint.TryConstrain</code> operation adds new
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Objective.html"><code>Objective</code>s</a> to the given
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ExactCoverGraph.html"><code>ExactCoverGraph</code></a>. It must also drop any
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Possibility.html"><code>Possibility</code>s</a> that are now impossible based on
+applying this constraint to the puzzle's preset values.</p>
+<p>It should return false if the given puzzle cannot satisfy this constraint, else true.</p>
+<h4 id="define-your-objectives">Define your objectives</h4>
+<p>The first thing we need to identify is what an objective looks like for this constraint. We could
+state this constraint as follows:</p>
+<blockquote>
+<p>Each forward diagonal, and each backward diagonal, needs to contain all possible values.</p>
+</blockquote>
+<p>We can implement this by adding an objective for each possible value on each diagonal.</p>
+<h4 id="determine-possible-coordinates">Determine possible coordinates</h4>
+<p>The possible coordinates here are those on the forward diagonal, and those on the backward diagonal.
+We can find all the coordinates on the forward diagonal as follows:</p>
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
+{
+    Span&lt;Coordinate&gt; forwardDiagonalCoordinates = stackalloc Coordinate[puzzle.Size];
+    for (int row = 0, col = puzzle.Size - 1;  row &lt; puzzle.Size; row++, col--)
+    {
+        forwardDiagonalCoordinates[row] = new Coordinate(row, col);
+    }
+
+    // TODO: Get backward diagonal coordinates.
+}
+</code></pre>
+<h4 id="identify-possible-values">Identify possible values</h4>
+<p>We need to identify which values are actually possible on each diagonal based on the preset
+values. Within the constraint-based solver, we map a puzzle's possible values to zero-based indices
+based on the order they are returned when we first call <code>puzzle.AllPossibleValues</code>. This mapping is
+handled by the <code>ExactCoverGraph</code>.</p>
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
+{
+    ...
+
+    Span&lt;bool&gt; isConstraintSatisfiedAtIndex =
+            stackalloc bool[graph.AllPossibleValues.Length];
+    // Zero the array since stackalloc does not guarantee this.
+    isConstraintSatisfiedAtIndex.Clear();
+    for (int i = 0; i &lt; forwardDiagonalCoordinates.Length; i++)
+    {
+        var puzzleValue = puzzle[forwardDiagonalCoordinates[i]];
+        if (puzzleValue.HasValue)
+        {
+            var possibilityIndex = graph.ValuesToIndices[puzzleValue.Value];
+            if (isConstraintSatisfiedAtIndex[possibilityIndex])
+            {
+                // This value is duplicated on the diagonal. This is not allowed.
+                return false;
+            }
+            isConstraintSatisfiedAtIndex[possibilityIndex] = true;
+        }
+    }
+
+    // TODO: Check this for backward diagonal coordinates.
+}
+</code></pre>
+<h4 id="add-objectives-and-drop-impossible-possibilities">Add objectives and drop impossible possibilities</h4>
+<p>Now we can iterate through each possible value on each diagonal, drop possibilities that are no
+longer possible, and add constraint headers for the rest.</p>
+<pre><code class="lang-csharp">public bool TryConstrain(TPuzzle puzzle, ExactCoverGraph graph)
+{
+    ...
+
+	Possibility?[]?[] squares = new Possibility[forwardDiagonalCoordinates.Length][];
+    for (int i = 0; i &lt; squares.Length; i++)
+    {
+		squares[i] = graph.GetAllPossibilitiesAt(in squareCoordinates[i]);
+    }
+    for (
+        int possibilityIndex = 0;
+        possibilityIndex &lt; isConstraintSatisfiedAtIndex.Length;
+        possibilityIndex++)
+    {
+        if (isConstraintSatisfiedAtIndex[possibilityIndex])
+        {
+			if (!ConstraintUtil.TryDropPossibilitiesAtIndex(squares, possibilityIndex))
+			{
+				return false;
+			}
+			continue;
+        }
+        // Each possible value should only be present once on the diagonal, so set
+        // requiredCount to 1. The objective will be linked into the graph, so discard the out
+        // parameter.
+		if (!ConstraintUtil.TryAddObjectiveForPossibilityIndex(
+            squares, possibilityIndex, graph, requiredCount: 1, objective: out _))
+		{
+			return false;
+		}
+    }
+
+    // TODO: Add objectives and drop possibilities for the backward diagonal.
+
+    ...
+
+    return true;
+}
+</code></pre>
+<p>Note that here we made use of the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.ConstraintUtil.html"><code>ConstraintUtil</code></a> to easily
+add objectives and drop possibilities. This provides a few useful functions for implementing
+constraints. In fact, we could have replaced all of this work for handling the forward diagonal
+with the following:</p>
+<pre><code class="lang-csharp">Span&lt;Coordinate&gt; coordinates = stackalloc Coordinate[puzzle.Size];
+for (int row = 0, col = puzzle.Size - 1;  row &lt; puzzle.Size; row++, col--)
+{
+    coordinates[row] = new Coordinate(row, col);
+}
+return ConstraintUtil.TryImplementUniquenessConstraintForSquares(puzzle, coordinates, graph);
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v3.2.1/articles/custom-constraints.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
