@@ -73,7 +73,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 312
+    startLine: 311
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -122,7 +122,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 333
+    startLine: 332
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -162,7 +162,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TryInit
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 351
+    startLine: 350
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -170,18 +170,18 @@ items:
   remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
   example: []
   syntax:
-    content: public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+    content: public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to be solved.
-    - id: allPossibleValues
+    - id: uniquePossibleValues
       type: SudokuSpice.BitVector
-      description: All the possible values for this puzzle.
+      description: All the unique possible values for this puzzle.
     return:
       type: System.Boolean
       description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
-    content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle, allPossibleValues As BitVector) As Boolean
+    content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle, uniquePossibleValues As BitVector) As Boolean
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
@@ -207,7 +207,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 394
+    startLine: 393
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -251,7 +251,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 408
+    startLine: 407
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -296,7 +296,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 422
+    startLine: 421
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -344,7 +344,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Update
     path: ../SudokuSpice/RuleBased/Rules/MagicSquaresRule.cs
-    startLine: 436
+    startLine: 435
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules

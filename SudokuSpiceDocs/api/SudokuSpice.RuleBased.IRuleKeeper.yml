@@ -155,11 +155,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: TrySet
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 51
+    startLine: 52
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nUpdates possible values based on setting the given coordinate to the given value. If\nthis update fails (i.e. it leads to an unset square with no possible values), then it\nreturns false and leaves the possible values unchanged.\n"
+  summary: "\nUpdates possible values based on setting the given coordinate to the given value.\n\nIf this update fails (i.e. it leads to an unset square with no possible values), then it\nreturns false and leaves all possible values unchanged.\n"
   example: []
   syntax:
     content: bool TrySet(in Coordinate c, int value)
@@ -196,7 +196,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Unset
     path: ../SudokuSpice/RuleBased/IRuleKeeper.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased

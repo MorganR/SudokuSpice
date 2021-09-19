@@ -111,18 +111,18 @@ items:
   remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
   example: []
   syntax:
-    content: public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+    content: public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
       description: The puzzle to be solved.
-    - id: allPossibleValues
+    - id: uniquePossibleValues
       type: SudokuSpice.BitVector
-      description: All the possible values for this puzzle.
+      description: All the unique possible values for this puzzle.
     return:
       type: System.Boolean
       description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
-    content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle, allPossibleValues As BitVector) As Boolean
+    content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle, uniquePossibleValues As BitVector) As Boolean
   overload: SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.TryInit*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)

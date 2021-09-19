@@ -1,53 +1,53 @@
 ### YamlMime:ManagedReference
 items:
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule
-  commentId: T:SudokuSpice.RuleBased.Rules.UniquenessRule
-  id: UniquenessRule
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule
+  commentId: T:SudokuSpice.RuleBased.Rules.MaxCountRule
+  id: MaxCountRule
   parent: SudokuSpice.RuleBased.Rules
   children:
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor(SudokuSpice.RuleBased.Rules.UniquenessRule)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  - SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor(SudokuSpice.RuleBased.Rules.MaxCountRule)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   langs:
   - csharp
   - vb
-  name: UniquenessRule
-  nameWithType: UniquenessRule
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule
+  name: MaxCountRule
+  nameWithType: MaxCountRule
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule
   type: Class
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
-    id: UniquenessRule
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 9
+    id: MaxCountRule
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 10
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nSimplifies the logic needed to implement a uniqueness rule, such as &quot;all values in a row\nmust be unique.&quot;\n"
+  summary: "\nSimplifies the logic needed to implement a &quot;max-count&quot; rule, such as &quot;each row must contain\nn copies of value m.&quot; In this case, the count n can vary for each value m.\n"
   example: []
   syntax:
-    content: 'public abstract class UniquenessRule : IRule'
+    content: 'public abstract class MaxCountRule : IRule'
     content.vb: >-
-      Public MustInherit Class UniquenessRule
+      Public MustInherit Class MaxCountRule
           Implements IRule
   inheritance:
   - System.Object
   derivedClasses:
-  - SudokuSpice.RuleBased.Rules.BoxUniquenessRule
-  - SudokuSpice.RuleBased.Rules.ColumnUniquenessRule
-  - SudokuSpice.RuleBased.Rules.RowUniquenessRule
+  - SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule
+  - SudokuSpice.RuleBased.Rules.MaxCountPerColumnRule
+  - SudokuSpice.RuleBased.Rules.MaxCountPerRowRule
   implements:
   - SudokuSpice.RuleBased.Rules.IRule
   inheritedMembers:
@@ -66,88 +66,88 @@ items:
   - Public
   - MustInherit
   - Class
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor
   id: '#ctor'
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
-  name: UniquenessRule()
-  nameWithType: UniquenessRule.UniquenessRule()
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.UniquenessRule()
+  name: MaxCountRule()
+  nameWithType: MaxCountRule.MaxCountRule()
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.MaxCountRule()
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 13
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 16
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   syntax:
-    content: protected UniquenessRule()
+    content: protected MaxCountRule()
     content.vb: Protected Sub New
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor*
   modifiers.csharp:
   - protected
   modifiers.vb:
   - Protected
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor(SudokuSpice.RuleBased.Rules.UniquenessRule)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor(SudokuSpice.RuleBased.Rules.UniquenessRule)
-  id: '#ctor(SudokuSpice.RuleBased.Rules.UniquenessRule)'
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor(SudokuSpice.RuleBased.Rules.MaxCountRule)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor(SudokuSpice.RuleBased.Rules.MaxCountRule)
+  id: '#ctor(SudokuSpice.RuleBased.Rules.MaxCountRule)'
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
-  name: UniquenessRule(UniquenessRule)
-  nameWithType: UniquenessRule.UniquenessRule(UniquenessRule)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.UniquenessRule(SudokuSpice.RuleBased.Rules.UniquenessRule)
+  name: MaxCountRule(MaxCountRule)
+  nameWithType: MaxCountRule.MaxCountRule(MaxCountRule)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.MaxCountRule(SudokuSpice.RuleBased.Rules.MaxCountRule)
   type: Constructor
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 15
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 18
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
   syntax:
-    content: protected UniquenessRule(UniquenessRule existing)
+    content: protected MaxCountRule(MaxCountRule existing)
     parameters:
     - id: existing
-      type: SudokuSpice.RuleBased.Rules.UniquenessRule
-    content.vb: Protected Sub New(existing As UniquenessRule)
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor*
+      type: SudokuSpice.RuleBased.Rules.MaxCountRule
+    content.vb: Protected Sub New(existing As MaxCountRule)
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor*
   modifiers.csharp:
   - protected
   modifiers.vb:
   - Protected
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: CopyWithNewReference(IReadOnlyPuzzle)
-  nameWithType: UniquenessRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  nameWithType: MaxCountRule.CopyWithNewReference(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyWithNewReference
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 21
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 33
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -162,7 +162,7 @@ items:
     return:
       type: SudokuSpice.RuleBased.Rules.IRule
     content.vb: Public MustOverride Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As IRule
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   modifiers.csharp:
@@ -171,25 +171,25 @@ items:
   modifiers.vb:
   - Public
   - MustOverride
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: TryInit(IReadOnlyPuzzle, BitVector)
-  nameWithType: UniquenessRule.TryInit(IReadOnlyPuzzle, BitVector)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
+  nameWithType: MaxCountRule.TryInit(IReadOnlyPuzzle, BitVector)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: TryInit
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 24
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 36
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -209,7 +209,7 @@ items:
       type: System.Boolean
       description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
     content.vb: Public Overridable Function TryInit(puzzle As IReadOnlyPuzzle, uniquePossibleValues As BitVector) As Boolean
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   modifiers.csharp:
@@ -218,25 +218,25 @@ items:
   modifiers.vb:
   - Public
   - Overridable
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
   id: GetPossibleValues(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: GetPossibleValues(Coordinate)
-  nameWithType: UniquenessRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate)
+  nameWithType: MaxCountRule.GetPossibleValues(Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 55
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 80
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -252,35 +252,35 @@ items:
       type: SudokuSpice.BitVector
       description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  nameWithType.vb: UniquenessRule.GetPossibleValues(ByRef Coordinate)
+  nameWithType.vb: MaxCountRule.GetPossibleValues(ByRef Coordinate)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(ByRef SudokuSpice.Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(ByRef SudokuSpice.Coordinate)
   name.vb: GetPossibleValues(ByRef Coordinate)
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   id: Revert(SudokuSpice.Coordinate@,System.Int32)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: Revert(Coordinate, Int32)
-  nameWithType: UniquenessRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  nameWithType: MaxCountRule.Revert(Coordinate, Int32)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate, System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 62
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 87
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -297,35 +297,35 @@ items:
       type: System.Int32
       description: The value being unset.
     content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer)
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  nameWithType.vb: UniquenessRule.Revert(ByRef Coordinate, Int32)
+  nameWithType.vb: MaxCountRule.Revert(ByRef Coordinate, Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32)
   name.vb: Revert(ByRef Coordinate, Int32)
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   id: Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: UniquenessRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  nameWithType: MaxCountRule.Revert(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: Revert
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 69
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 94
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -345,35 +345,35 @@ items:
       type: SudokuSpice.CoordinateTracker
       description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
     content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  nameWithType.vb: UniquenessRule.Revert(ByRef Coordinate, Int32, CoordinateTracker)
+  nameWithType.vb: MaxCountRule.Revert(ByRef Coordinate, Int32, CoordinateTracker)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   name.vb: Revert(ByRef Coordinate, Int32, CoordinateTracker)
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   id: Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: UniquenessRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  nameWithType: MaxCountRule.Update(Coordinate, Int32, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: Update
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 78
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 103
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -393,35 +393,35 @@ items:
       type: SudokuSpice.CoordinateTracker
       description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
     content.vb: Public Sub Update(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.Update*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.Update*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  nameWithType.vb: UniquenessRule.Update(ByRef Coordinate, Int32, CoordinateTracker)
+  nameWithType.vb: MaxCountRule.Update(ByRef Coordinate, Int32, CoordinateTracker)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.UniquenessRule.Update(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
   name.vb: Update(ByRef Coordinate, Int32, CoordinateTracker)
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   id: GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: GetNumDimensions(IReadOnlyPuzzle)
-  nameWithType: UniquenessRule.GetNumDimensions(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
+  nameWithType: MaxCountRule.GetNumDimensions(IReadOnlyPuzzle)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetNumDimensions
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 90
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 115
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -436,32 +436,32 @@ items:
     return:
       type: System.Int32
     content.vb: Protected MustOverride Function GetNumDimensions(puzzle As IReadOnlyPuzzle) As Integer
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions*
   modifiers.csharp:
   - protected
   - abstract
   modifiers.vb:
   - Protected
   - MustOverride
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
   id: GetDimension(SudokuSpice.Coordinate@)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: GetDimension(Coordinate)
-  nameWithType: UniquenessRule.GetDimension(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate)
+  nameWithType: MaxCountRule.GetDimension(Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetDimension
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 94
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 119
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -475,35 +475,35 @@ items:
     return:
       type: System.Int32
     content.vb: Protected MustOverride Function GetDimension(ByRef c As Coordinate) As Integer
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension*
-  nameWithType.vb: UniquenessRule.GetDimension(ByRef Coordinate)
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension*
+  nameWithType.vb: MaxCountRule.GetDimension(ByRef Coordinate)
   modifiers.csharp:
   - protected
   - abstract
   modifiers.vb:
   - Protected
   - MustOverride
-  fullName.vb: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(ByRef SudokuSpice.Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(ByRef SudokuSpice.Coordinate)
   name.vb: GetDimension(ByRef Coordinate)
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   id: TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
-  nameWithType: UniquenessRule.TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  nameWithType: MaxCountRule.TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: TrackUnsetCoordinatesOnSameDimension
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 101
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 126
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -522,35 +522,35 @@ items:
       type: SudokuSpice.CoordinateTracker
       description: The tracker to add coordiantes to.
     content.vb: Protected MustOverride Sub TrackUnsetCoordinatesOnSameDimension(dimension As Integer, ByRef source As Coordinate, tracker As CoordinateTracker)
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension*
-  nameWithType.vb: UniquenessRule.TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension*
+  nameWithType.vb: MaxCountRule.TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
   modifiers.csharp:
   - protected
   - abstract
   modifiers.vb:
   - Protected
   - MustOverride
-  fullName.vb: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, ByRef SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, ByRef SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
   name.vb: TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
-  commentId: M:SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
+  commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
   id: GetPossibleValues(System.Int32)
-  parent: SudokuSpice.RuleBased.Rules.UniquenessRule
+  parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   langs:
   - csharp
   - vb
   name: GetPossibleValues(Int32)
-  nameWithType: UniquenessRule.GetPossibleValues(Int32)
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)
+  nameWithType: MaxCountRule.GetPossibleValues(Int32)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
   type: Method
   source:
     remote:
-      path: SudokuSpice/RuleBased/Rules/UniquenessRule.cs
+      path: SudokuSpice/RuleBased/Rules/MaxCountRule.cs
       branch: master
       repo: https://github.com/MorganR/SudokuSpice
     id: GetPossibleValues
-    path: ../SudokuSpice/RuleBased/Rules/UniquenessRule.cs
-    startLine: 103
+    path: ../SudokuSpice/RuleBased/Rules/MaxCountRule.cs
+    startLine: 128
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
@@ -562,7 +562,7 @@ items:
     return:
       type: SudokuSpice.BitVector
     content.vb: Protected Function GetPossibleValues(dimension As Integer) As BitVector
-  overload: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues*
+  overload: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues*
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -871,22 +871,22 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor
-  name: UniquenessRule
-  nameWithType: UniquenessRule.UniquenessRule
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.UniquenessRule
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule
-  commentId: T:SudokuSpice.RuleBased.Rules.UniquenessRule
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor
+  name: MaxCountRule
+  nameWithType: MaxCountRule.MaxCountRule
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.MaxCountRule
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule
+  commentId: T:SudokuSpice.RuleBased.Rules.MaxCountRule
   parent: SudokuSpice.RuleBased.Rules
-  name: UniquenessRule
-  nameWithType: UniquenessRule
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference
+  name: MaxCountRule
+  nameWithType: MaxCountRule
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference
   name: CopyWithNewReference
-  nameWithType: UniquenessRule.CopyWithNewReference
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference
+  nameWithType: MaxCountRule.CopyWithNewReference
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference
 - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.IRule
@@ -934,11 +934,11 @@ references:
   name: SudokuSpice
   nameWithType: SudokuSpice
   fullName: SudokuSpice
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit
   name: TryInit
-  nameWithType: UniquenessRule.TryInit
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit
+  nameWithType: MaxCountRule.TryInit
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit
 - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
@@ -1002,11 +1002,11 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues
   name: GetPossibleValues
-  nameWithType: UniquenessRule.GetPossibleValues
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues
+  nameWithType: MaxCountRule.GetPossibleValues
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues
 - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   parent: SudokuSpice.RuleBased.Rules.IRule
@@ -1049,11 +1049,11 @@ references:
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.Revert
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.Revert
   name: Revert
-  nameWithType: UniquenessRule.Revert
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Revert
+  nameWithType: MaxCountRule.Revert
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert
 - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.RuleBased.Rules.IRule
@@ -1187,11 +1187,11 @@ references:
   name: CoordinateTracker
   nameWithType: CoordinateTracker
   fullName: SudokuSpice.CoordinateTracker
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.Update*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.Update
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Update*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.Update
   name: Update
-  nameWithType: UniquenessRule.Update
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.Update
+  nameWithType: MaxCountRule.Update
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Update
 - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.IRule
@@ -1259,18 +1259,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions
   name: GetNumDimensions
-  nameWithType: UniquenessRule.GetNumDimensions
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension
+  nameWithType: MaxCountRule.GetNumDimensions
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension
   name: GetDimension
-  nameWithType: UniquenessRule.GetDimension
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension
-- uid: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension*
-  commentId: Overload:SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension
+  nameWithType: MaxCountRule.GetDimension
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension
+- uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension*
+  commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension
   name: TrackUnsetCoordinatesOnSameDimension
-  nameWithType: UniquenessRule.TrackUnsetCoordinatesOnSameDimension
-  fullName: SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension
+  nameWithType: MaxCountRule.TrackUnsetCoordinatesOnSameDimension
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension

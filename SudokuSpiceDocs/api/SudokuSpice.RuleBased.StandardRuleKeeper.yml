@@ -203,7 +203,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nUpdates possible values based on setting the given coordinate to the given value. If\nthis update fails (i.e. it leads to an unset square with no possible values), then it\nreturns false and leaves the possible values unchanged.\n"
+  summary: "\nUpdates possible values based on setting the given coordinate to the given value.\n\nIf this update fails (i.e. it leads to an unset square with no possible values), then it\nreturns false and leaves all possible values unchanged.\n"
   example: []
   syntax:
     content: public bool TrySet(in Coordinate c, int value)

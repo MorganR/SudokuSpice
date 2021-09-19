@@ -118,7 +118,7 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues__ctor_SudokuSpice_RuleBased_PossibleValues_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.%23ctor(SudokuSpice.RuleBased.PossibleValues)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L50">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L48">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues__ctor_" data-uid="SudokuSpice.RuleBased.PossibleValues.#ctor*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues__ctor_SudokuSpice_RuleBased_PossibleValues_" data-uid="SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.RuleBased.PossibleValues)">PossibleValues(PossibleValues)</h4>
@@ -152,18 +152,18 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues__ctor_System_Int32_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.%23ctor(System.Int32%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L30">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L31">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues__ctor_" data-uid="SudokuSpice.RuleBased.PossibleValues.#ctor*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues__ctor_System_Int32_SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.BitVector)">PossibleValues(Int32, BitVector)</h4>
   <div class="markdown level1 summary"><p>Constructs a <code>PossibleValues</code> object to track possible values for a size-x-size
-puzzle. All coordinates are initialized to <code data-dev-comment-type="paramref" class="paramref">allPossible</code> possible
-values.</p>
+puzzle. All coordinates are initialized to <code data-dev-comment-type="paramref" class="paramref">uniquePossibleValues</code>
+possible values.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PossibleValues(int size, BitVector allPossible)</code></pre>
+    <pre><code class="lang-csharp hljs">public PossibleValues(int size, BitVector uniquePossibleValues)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -183,7 +183,7 @@ values.</p>
       </tr>
       <tr>
         <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
-        <td><span class="parametername">allPossible</span></td>
+        <td><span class="parametername">uniquePossibleValues</span></td>
         <td><p>The full set of possible values for any given square in this puzzle.</p>
 </td>
       </tr>
@@ -196,7 +196,7 @@ values.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues_AllPossible.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.AllPossible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L17">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L18">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues_AllPossible_" data-uid="SudokuSpice.RuleBased.PossibleValues.AllPossible*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues_AllPossible" data-uid="SudokuSpice.RuleBased.PossibleValues.AllPossible">AllPossible</h4>
@@ -228,7 +228,7 @@ square in the puzzle represented by this <code>PossibleValues</code> object.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues_Item_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L66">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L64">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues_Item_" data-uid="SudokuSpice.RuleBased.PossibleValues.Item*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues_Item_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)">Item[Coordinate]</h4>
@@ -280,7 +280,7 @@ square in the puzzle represented by this <code>PossibleValues</code> object.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues_Intersect_SudokuSpice_Coordinate__SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate%40%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L78">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L77">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues_Intersect_" data-uid="SudokuSpice.RuleBased.PossibleValues.Intersect*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues_Intersect_SudokuSpice_Coordinate__SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)">Intersect(Coordinate, BitVector)</h4>
@@ -321,7 +321,7 @@ the intersect of their current value and the given <code>possibleValues</code>.<
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues_Reset_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L89">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L88">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues_Reset_" data-uid="SudokuSpice.RuleBased.PossibleValues.Reset*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues_Reset_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)">Reset(Coordinate)</h4>
@@ -356,7 +356,7 @@ possible values for this puzzle.</p>
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues_Reset_System_ReadOnlySpan_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan%7BSudokuSpice.Coordinate%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L94">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L93">View Source</a>
   </span>
   <a id="SudokuSpice_RuleBased_PossibleValues_Reset_" data-uid="SudokuSpice.RuleBased.PossibleValues.Reset*"></a>
   <h4 id="SudokuSpice_RuleBased_PossibleValues_Reset_System_ReadOnlySpan_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan{SudokuSpice.Coordinate})">Reset(ReadOnlySpan&lt;Coordinate&gt;)</h4>
@@ -395,7 +395,7 @@ possible values for this puzzle.</p>
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_PossibleValues.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.PossibleValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/PossibleValues.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
