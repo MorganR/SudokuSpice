@@ -7,7 +7,9 @@ items:
   children:
   - SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   - SudokuSpice.Puzzle.#ctor(System.Int32)
+  - SudokuSpice.Puzzle.#ctor(System.Int32,System.ReadOnlySpan{System.Int32})
   - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
+  - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})
   - SudokuSpice.Puzzle.AllPossibleValuesSpan
   - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
   - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
@@ -35,11 +37,11 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Puzzle
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 14
+    startLine: 10
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nRepresents a puzzle with the following assumptions:\n\n* Puzzles must be square, of shape size-by-size.\n* The possible values for any square in the puzzle are the numbers from 1 to size,\ninclusive.\n"
+  summary: "\nRepresents a square puzzle of shape size-by-size.\n"
   example: []
   syntax:
     content: 'public class Puzzle : IPuzzle<Puzzle>, IReadOnlyPuzzle'
@@ -82,7 +84,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Size
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 21
+    startLine: 17
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -121,7 +123,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumSquares
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 23
+    startLine: 19
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -160,7 +162,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumEmptySquares
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 25
+    startLine: 21
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -199,7 +201,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: NumSetSquares
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 27
+    startLine: 23
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -238,7 +240,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: AllPossibleValuesSpan
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 29
+    startLine: 25
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -277,7 +279,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CountPerUniqueValue
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 31
+    startLine: 27
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -316,7 +318,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 44
+    startLine: 39
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -327,17 +329,63 @@ items:
     parameters:
     - id: size
       type: System.Int32
-      description: "\nThe side-length for this Sudoku puzzle. Must be a square of a whole number in the range\n[1, 25].\n"
+      description: "\nThe side-length for this Sudoku puzzle.\n"
     content.vb: Public Sub New(size As Integer)
   overload: SudokuSpice.Puzzle.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\nThrown if size is not the square of a whole number, or is outside the range [1, 25].\n"
+    description: "\nThrown if size is less than 1.\n"
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
+- uid: SudokuSpice.Puzzle.#ctor(System.Int32,System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Int32,System.ReadOnlySpan{System.Int32})
+  id: '#ctor(System.Int32,System.ReadOnlySpan{System.Int32})'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(Int32, ReadOnlySpan<Int32>)
+  nameWithType: Puzzle.Puzzle(Int32, ReadOnlySpan<Int32>)
+  fullName: SudokuSpice.Puzzle.Puzzle(System.Int32, System.ReadOnlySpan<System.Int32>)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 69
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nConstructs a new puzzle of the given side length and possible values for each region.\n"
+  example: []
+  syntax:
+    content: public Puzzle(int size, ReadOnlySpan<int> allPossibleValues)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: "\nThe side-length for this Sudoku puzzle.\n"
+    - id: allPossibleValues
+      type: System.ReadOnlySpan{System.Int32}
+      description: "\nList the possible values for a given region in the puzzle. A value should be repeated\nas many times as it can be used.\n"
+    content.vb: Public Sub New(size As Integer, allPossibleValues As ReadOnlySpan(Of Integer))
+  overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if size is less than 1.\n"
+  nameWithType.vb: Puzzle.Puzzle(Int32, ReadOnlySpan(Of Int32))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.Puzzle.Puzzle(System.Int32, System.ReadOnlySpan(Of System.Int32))
+  name.vb: Puzzle(Int32, ReadOnlySpan(Of Int32))
 - uid: SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
   commentId: M:SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
   id: '#ctor(System.Nullable{System.Int32}[][])'
@@ -356,7 +404,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 85
+    startLine: 102
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -370,6 +418,10 @@ items:
       description: "\nThe data for this Sudoku puzzle. Preset squares should be set, and unset squares should\nbe null. The puzzle maintains a reference to this array.\n"
     content.vb: Public Sub New(puzzleMatrix As Integer?()())
   overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if the given matrix is not square.\n"
   nameWithType.vb: Puzzle.Puzzle(Nullable(Of Int32)()())
   modifiers.csharp:
   - public
@@ -377,6 +429,52 @@ items:
   - Public
   fullName.vb: SudokuSpice.Puzzle.Puzzle(System.Nullable(Of System.Int32)()())
   name.vb: Puzzle(Nullable(Of Int32)()())
+- uid: SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})
+  id: '#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(Nullable<Int32>[][], ReadOnlySpan<Int32>)
+  nameWithType: Puzzle.Puzzle(Nullable<Int32>[][], ReadOnlySpan<Int32>)
+  fullName: SudokuSpice.Puzzle.Puzzle(System.Nullable<System.Int32>[][], System.ReadOnlySpan<System.Int32>)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 140
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nConstructs a new puzzle backed by the given array.\n\nThe puzzle is backed directly by this array (i.e. modifying the array modifies the\npuzzle, and vice-versa). If this is not what you want, see\n<xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b%5d%5b%5d)\" data-throw-if-not-resolved=\"false\"></xref>. Note that all\nfuture modifications should be done through this puzzle object, else this will be in an\nincorrect state.\n"
+  example: []
+  syntax:
+    content: public Puzzle(int? [][] puzzleMatrix, ReadOnlySpan<int> allPossibleValues)
+    parameters:
+    - id: puzzleMatrix
+      type: System.Nullable{System.Int32}[][]
+      description: "\nThe data for this Sudoku puzzle. Preset squares should be set, and unset squares should\nbe null. The puzzle maintains a reference to this array.\n"
+    - id: allPossibleValues
+      type: System.ReadOnlySpan{System.Int32}
+      description: "\nList the possible values for a given region in the puzzle. A value should be repeated\nas many times as it can be used.\n"
+    content.vb: Public Sub New(puzzleMatrix As Integer?()(), allPossibleValues As ReadOnlySpan(Of Integer))
+  overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if the given matrix is not square.\n"
+  nameWithType.vb: Puzzle.Puzzle(Nullable(Of Int32)()(), ReadOnlySpan(Of Int32))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.Puzzle.Puzzle(System.Nullable(Of System.Int32)()(), System.ReadOnlySpan(Of System.Int32))
+  name.vb: Puzzle(Nullable(Of Int32)()(), ReadOnlySpan(Of Int32))
 - uid: SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   commentId: M:SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
   id: '#ctor(SudokuSpice.Puzzle)'
@@ -395,7 +493,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 120
+    startLine: 212
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -430,7 +528,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyFrom
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 137
+    startLine: 228
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -472,7 +570,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: CopyFrom
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 144
+    startLine: 235
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -514,7 +612,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: DeepCopy
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 150
+    startLine: 241
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -550,7 +648,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 153
+    startLine: 244
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -597,7 +695,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 168
+    startLine: 259
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -644,7 +742,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetUnsetCoords
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 176
+    startLine: 267
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -680,7 +778,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ToString
     path: ../SudokuSpice/Puzzle.cs
-    startLine: 182
+    startLine: 273
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice

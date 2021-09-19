@@ -7,6 +7,7 @@ items:
   children:
   - SudokuSpice.BitVector.#ctor(System.UInt32)
   - SudokuSpice.BitVector.ComputeCount
+  - SudokuSpice.BitVector.ComputeLastSetBit
   - SudokuSpice.BitVector.CreateWithSize(System.Int32)
   - SudokuSpice.BitVector.Data
   - SudokuSpice.BitVector.Equals(SudokuSpice.BitVector)
@@ -526,6 +527,40 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: SudokuSpice.BitVector.ComputeLastSetBit
+  commentId: M:SudokuSpice.BitVector.ComputeLastSetBit
+  id: ComputeLastSetBit
+  parent: SudokuSpice.BitVector
+  langs:
+  - csharp
+  - vb
+  name: ComputeLastSetBit()
+  nameWithType: BitVector.ComputeLastSetBit()
+  fullName: SudokuSpice.BitVector.ComputeLastSetBit()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/BitVector.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ComputeLastSetBit
+    path: ../SudokuSpice/BitVector.cs
+    startLine: 122
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nComputes the last bit that is set, or -1 if none are set.\n"
+  example: []
+  syntax:
+    content: public int ComputeLastSetBit()
+    return:
+      type: System.Int32
+    content.vb: Public Function ComputeLastSetBit As Integer
+  overload: SudokuSpice.BitVector.ComputeLastSetBit*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
   commentId: M:SudokuSpice.BitVector.PopulateSetBits(System.Span{System.Int32})
   id: PopulateSetBits(System.Span{System.Int32})
@@ -544,7 +579,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: PopulateSetBits
     path: ../SudokuSpice/BitVector.cs
-    startLine: 139
+    startLine: 144
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -587,7 +622,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: IsSubsetOf
     path: ../SudokuSpice/BitVector.cs
-    startLine: 166
+    startLine: 171
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -626,7 +661,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 172
+    startLine: 177
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -663,7 +698,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Equals
     path: ../SudokuSpice/BitVector.cs
-    startLine: 174
+    startLine: 179
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -701,7 +736,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: GetHashCode
     path: ../SudokuSpice/BitVector.cs
-    startLine: 183
+    startLine: 188
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -736,7 +771,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ToString
     path: ../SudokuSpice/BitVector.cs
-    startLine: 188
+    startLine: 193
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -773,7 +808,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: op_Equality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 190
+    startLine: 195
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -812,7 +847,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: op_Inequality
     path: ../SudokuSpice/BitVector.cs
-    startLine: 191
+    startLine: 196
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
@@ -1163,6 +1198,11 @@ references:
   name: IsBitSet
   nameWithType: BitVector.IsBitSet
   fullName: SudokuSpice.BitVector.IsBitSet
+- uid: SudokuSpice.BitVector.ComputeLastSetBit*
+  commentId: Overload:SudokuSpice.BitVector.ComputeLastSetBit
+  name: ComputeLastSetBit
+  nameWithType: BitVector.ComputeLastSetBit
+  fullName: SudokuSpice.BitVector.ComputeLastSetBit
 - uid: SudokuSpice.BitVector.PopulateSetBits*
   commentId: Overload:SudokuSpice.BitVector.PopulateSetBits
   name: PopulateSetBits

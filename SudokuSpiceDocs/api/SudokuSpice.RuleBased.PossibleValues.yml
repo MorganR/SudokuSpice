@@ -26,7 +26,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: PossibleValues
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 8
+    startLine: 9
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -69,7 +69,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: AllPossible
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -106,22 +106,22 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nConstructs a <code>PossibleValues</code> object to track possible values for a size-x-size\npuzzle. All coordinates are initialized to <code data-dev-comment-type=\"paramref\" class=\"paramref\">allPossible</code> possible\nvalues.\n"
+  summary: "\nConstructs a <code>PossibleValues</code> object to track possible values for a size-x-size\npuzzle. All coordinates are initialized to <code data-dev-comment-type=\"paramref\" class=\"paramref\">uniquePossibleValues</code>\npossible values.\n"
   example: []
   syntax:
-    content: public PossibleValues(int size, BitVector allPossible)
+    content: public PossibleValues(int size, BitVector uniquePossibleValues)
     parameters:
     - id: size
       type: System.Int32
       description: "\nThe size of the puzzle for which we want to track possible values.\n"
-    - id: allPossible
+    - id: uniquePossibleValues
       type: SudokuSpice.BitVector
       description: "\nThe full set of possible values for any given square in this puzzle.\n"
-    content.vb: Public Sub New(size As Integer, allPossible As BitVector)
+    content.vb: Public Sub New(size As Integer, uniquePossibleValues As BitVector)
   overload: SudokuSpice.RuleBased.PossibleValues.#ctor*
   modifiers.csharp:
   - public
@@ -145,7 +145,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: .ctor
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 49
+    startLine: 47
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -181,7 +181,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: this[]
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 65
+    startLine: 63
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -225,7 +225,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Intersect
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 77
+    startLine: 76
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -267,7 +267,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Reset
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 88
+    startLine: 87
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
@@ -306,7 +306,7 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: Reset
     path: ../SudokuSpice/RuleBased/PossibleValues.cs
-    startLine: 93
+    startLine: 92
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased

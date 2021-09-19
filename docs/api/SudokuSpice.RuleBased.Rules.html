@@ -96,6 +96,22 @@ whole. It <em>does</em>, however, prevent value duplication within each row, col
 diagonal. This can be combined with other rules if you need proper row, column, box, and/or
 diagonal uniqueness.</p>
 </section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html">MaxCountPerBoxRule</a></h4>
+      <section><p>Restricts that each box contains a max count of each value, as specified by the
+<a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue">CountPerUniqueValue</a> dictionary.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountPerColumnRule.html">MaxCountPerColumnRule</a></h4>
+      <section><p>Restricts that each column contains a max count of each value, as specified by the
+<a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue">CountPerUniqueValue</a> dictionary.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountPerRowRule.html">MaxCountPerRowRule</a></h4>
+      <section><p>Restricts that each row contains a max count of each value, as specified by the
+<a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue">CountPerUniqueValue</a> dictionary.</p>
+</section>
+      <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountRule.html">MaxCountRule</a></h4>
+      <section><p>Simplifies the logic needed to implement a &quot;max-count&quot; rule, such as &quot;each row must contain
+n copies of value m.&quot; In this case, the count n can vary for each value m.</p>
+</section>
       <h4><a class="xref" href="SudokuSpice.RuleBased.Rules.RowUniquenessRule.html">RowUniquenessRule</a></h4>
       <section><p>Restricts that each row contains all unique values.</p>
 </section>

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class UniquenessRule
+    <title>Class MaxCountRule
    | SudokuSpice </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class UniquenessRule
+    <meta name="title" content="Class MaxCountRule
    | SudokuSpice ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -68,22 +68,22 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule">
+            <article class="content wrap" id="_content" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule">
   
   
-  <h1 id="SudokuSpice_RuleBased_Rules_UniquenessRule" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule" class="text-break">Class UniquenessRule
+  <h1 id="SudokuSpice_RuleBased_Rules_MaxCountRule" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule" class="text-break">Class MaxCountRule
   </h1>
-  <div class="markdown level0 summary"><p>Simplifies the logic needed to implement a uniqueness rule, such as &quot;all values in a row
-must be unique.&quot;</p>
+  <div class="markdown level0 summary"><p>Simplifies the logic needed to implement a &quot;max-count&quot; rule, such as &quot;each row must contain
+n copies of value m.&quot; In this case, the count n can vary for each value m.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">UniquenessRule</span></div>
-      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.Rules.BoxUniquenessRule.html">BoxUniquenessRule</a></div>
-      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.html">ColumnUniquenessRule</a></div>
-      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.Rules.RowUniquenessRule.html">RowUniquenessRule</a></div>
+    <div class="level1"><span class="xref">MaxCountRule</span></div>
+      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html">MaxCountPerBoxRule</a></div>
+      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountPerColumnRule.html">MaxCountPerColumnRule</a></div>
+      <div class="level2"><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountPerRowRule.html">MaxCountPerRowRule</a></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -115,41 +115,41 @@ must be unique.&quot;</p>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SudokuSpice.RuleBased.Rules.html">SudokuSpice.RuleBased.Rules</a></h6>
   <h6><strong>Assembly</strong>: SudokuSpice.dll</h6>
-  <h5 id="SudokuSpice_RuleBased_Rules_UniquenessRule_syntax">Syntax</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_MaxCountRule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class UniquenessRule : IRule</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class MaxCountRule : IRule</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule__ctor.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule__ctor.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L14">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L17">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule__ctor_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule__ctor" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor">UniquenessRule()</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule__ctor_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule__ctor" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor">MaxCountRule()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected UniquenessRule()</code></pre>
+    <pre><code class="lang-csharp hljs">protected MaxCountRule()</code></pre>
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule__ctor_SudokuSpice_RuleBased_Rules_UniquenessRule_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.%23ctor(SudokuSpice.RuleBased.Rules.UniquenessRule)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule__ctor_SudokuSpice_RuleBased_Rules_MaxCountRule_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.%23ctor(SudokuSpice.RuleBased.Rules.MaxCountRule)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L16">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L19">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule__ctor_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule__ctor_SudokuSpice_RuleBased_Rules_UniquenessRule_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.#ctor(SudokuSpice.RuleBased.Rules.UniquenessRule)">UniquenessRule(UniquenessRule)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule__ctor_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule__ctor_SudokuSpice_RuleBased_Rules_MaxCountRule_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.#ctor(SudokuSpice.RuleBased.Rules.MaxCountRule)">MaxCountRule(MaxCountRule)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected UniquenessRule(UniquenessRule existing)</code></pre>
+    <pre><code class="lang-csharp hljs">protected MaxCountRule(MaxCountRule existing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -162,7 +162,7 @@ must be unique.&quot;</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.RuleBased.Rules.UniquenessRule.html">UniquenessRule</a></td>
+        <td><a class="xref" href="SudokuSpice.RuleBased.Rules.MaxCountRule.html">MaxCountRule</a></td>
         <td><span class="parametername">existing</span></td>
         <td></td>
       </tr>
@@ -172,13 +172,13 @@ must be unique.&quot;</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L22">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L34">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_CopyWithNewReference_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_CopyWithNewReference_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)">CopyWithNewReference(IReadOnlyPuzzle)</h4>
   <div class="markdown level1 summary"><p>Creates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>
 references updated to the given puzzle.</p>
 </div>
@@ -223,13 +223,13 @@ puzzle should contain the same data as the current puzzle referenced by this rul
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_GetDimension_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_GetDimension_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L95">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L120">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetDimension_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetDimension_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetDimension(SudokuSpice.Coordinate@)">GetDimension(Coordinate)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetDimension_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetDimension_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)">GetDimension(Coordinate)</h4>
   <div class="markdown level1 summary"><p>Gets the dimension for a coordinate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -271,13 +271,13 @@ puzzle should contain the same data as the current puzzle referenced by this rul
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L91">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L116">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetNumDimensions_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)">GetNumDimensions(IReadOnlyPuzzle)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetNumDimensions_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)">GetNumDimensions(IReadOnlyPuzzle)</h4>
   <div class="markdown level1 summary"><p>Returns the number of dimensions that will be enforced to contain unique values.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -320,13 +320,13 @@ puzzle should contain the same data as the current puzzle referenced by this rul
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L56">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L81">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(SudokuSpice.Coordinate@)">GetPossibleValues(Coordinate)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_SudokuSpice_Coordinate__" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)">GetPossibleValues(Coordinate)</h4>
   <div class="markdown level1 summary"><p>Gets the possible values for the given coordinate based on this rule.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -367,7 +367,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_SudokuSpice_Coordinate___remarks">Remarks</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_SudokuSpice_Coordinate___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When implementing this method, avoid depending on dynamic information in the current
 puzzle being solved, such as the currently set values. This method must return
 information that reflects the most recent calls to
@@ -377,13 +377,13 @@ be called before or after modifying the underlying puzzle's data.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L104">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L129">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_GetPossibleValues_System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.GetPossibleValues(System.Int32)">GetPossibleValues(Int32)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)">GetPossibleValues(Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -424,13 +424,13 @@ be called before or after modifying the underlying puzzle's data.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L63">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L88">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.Revert*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.Revert*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)">Revert(Coordinate, Int32)</h4>
   <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate.</p>
 <p>
 This performs the same internal updates as
@@ -468,18 +468,18 @@ where the caller already knows all the possible coordinates that could be affect
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before reverting the value on the underlying puzzle.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L70">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L95">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.Revert*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.Revert*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Revert(Coordinate, Int32, CoordinateTracker)</h4>
   <div class="markdown level1 summary"><p>Undoes an update for the given value at the specified coordinate. Tracks affected
 coordinates in the given tracker.</p>
 </div>
@@ -519,18 +519,18 @@ tracker.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Rules_UniquenessRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before reverting the value on the underlying puzzle.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32%2CSudokuSpice.Coordinate%40%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32%2CSudokuSpice.Coordinate%40%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L102">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L127">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_TrackUnsetCoordinatesOnSameDimension_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)">TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_TrackUnsetCoordinatesOnSameDimension_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)">TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)</h4>
   <div class="markdown level1 summary"><p>Adds the coordinates of unset values on the given dimension to the given tracker.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -570,13 +570,13 @@ tracker.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L25">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L37">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_TryInit_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)">TryInit(IReadOnlyPuzzle, BitVector)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)">TryInit(IReadOnlyPuzzle, BitVector)</h4>
   <div class="markdown level1 summary"><p>Tries to initialize this rule to prepare to solve the given puzzle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -624,20 +624,20 @@ tracker.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Rules_UniquenessRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In general, it doesn't make sense to want to maintain the previous state if this method
 fails. Therefore, it is <em>not</em> guaranteed that the rule's state is unchanged on
 failure.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L79">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L104">View Source</a>
   </span>
-  <a id="SudokuSpice_RuleBased_Rules_UniquenessRule_Update_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.Update*"></a>
-  <h4 id="SudokuSpice_RuleBased_Rules_UniquenessRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.UniquenessRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>
+  <a id="SudokuSpice_RuleBased_Rules_MaxCountRule_Update_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.Update*"></a>
+  <h4 id="SudokuSpice_RuleBased_Rules_MaxCountRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_" data-uid="SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)">Update(Coordinate, Int32, CoordinateTracker)</h4>
   <div class="markdown level1 summary"><p>Updates possible values based on setting the given coordinate to the given value.
 Tracks affected coordinates in the given tracker.</p>
 </div>
@@ -677,7 +677,7 @@ tracker.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SudokuSpice_RuleBased_Rules_UniquenessRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
+  <h5 id="SudokuSpice_RuleBased_Rules_MaxCountRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before setting the value on the underlying puzzle.</p>
 </div>
   <h3 id="implements">Implements</h3>
@@ -692,10 +692,10 @@ tracker.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_UniquenessRule.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.UniquenessRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_RuleBased_Rules_MaxCountRule.md&amp;value=---%0Auid%3A%20SudokuSpice.RuleBased.Rules.MaxCountRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/UniquenessRule.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/RuleBased/Rules/MaxCountRule.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
