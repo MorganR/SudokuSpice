@@ -1,22 +1,36 @@
 # Custom Rules
 
-Let's say we want to solve a puzzle that also enforces that the diagonals contain all unique
-values. In this case, we can still use the standard
+A rule's main job is to provide the possible values at any coordinate based on its criteria. It
+does this through the `IRule.GetPossibleValues` method. The rule does not, however, *enforce* its
+criteria. That's a job for the [`IRuleKeeper`](xref:SudokuSpice.RuleBased.IRuleKeeper).
+
+The rule keeper will call `Update` and `Revert` to inform the rule about changes to the puzzle.
+When a value is going to be set, the rule keeper calls `Update` so that the rule can track any
+necessary changes to the possible values across the puzzle according to its own criteria. It also
+identifies any coordinates that have been affected by the change.
+
+The rule keeper then verifies that the puzzle is still solvable after these changes. If the puzzle
+is no longer solvable, or if the rule keeper is undoing a previous move, it will call `Revert`.
+This tells the rule that a coordinate was previously set to a given value, but is now being unset.
+It essentially does the opposite change to `Update`, and optionally identifies affected coordinates.
+
+Let's look at an example. Say we want to solve a puzzle that also enforces that the diagonals
+contain all unique values. In this case, we can still use the standard
 [`PuzzleWithPossibleValues`](xref:SudokuSpice.RuleBased.PuzzleWithPossibleValues) to store the data,
 but we need to add a custom rule. In this example, we'll go through the steps for implementing and
 using the [`DiagonalUniquenessRule`](xref:SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule).
 
 ## Creating a rule
 
-The new rule needs to extend the [`IRule`](xref:SudokuSpice.RuleBased.Rules.IRule), and we'll
-need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the [`BitVector`](xref:SudokuSpice.BitVector) struct, which provides an
-efficient set-like struct using the 32 bits of a `uint`.
+The new rule needs to extend [`IRule`](xref:SudokuSpice.RuleBased.Rules.IRule), and we'll need to
+have some way of tracking the set of values that are available in each diagonal. For this, we'll use
+the [`BitVector`](xref:SudokuSpice.BitVector) struct, which provides an efficient set-like struct
+using the 32 bits of a `uint`.
 
 ### TryInit
 
 When starting to solve a puzzle, the rule keeper will call `IRule.TryInit`. This is where we
-setup our calls and perform initial checks against this rule.
+setup our class and perform initial checks against this rule.
 
 Note: Rules are stateful, so a given rule should never be used to solve multiple puzzles at once,
 or acted on from multiple threads.
@@ -32,10 +46,10 @@ public class DiagonalUniquenessRule : IRule
     private BitVector _unsetBackwardDiag;
     private BitVector _unsetForwardDiag;
 
-    public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+    public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
     {
         _puzzle = puzzle;
-        _unsetBackwardDiag = _unsetForwardDiag = _allPossibleValues = allPossibleValues;
+        _unsetBackwardDiag = _unsetForwardDiag = _allPossibleValues = uniquePossibleValues;
         // Iterate through the backward diagonal (like a backslash '\')
         for (int row = 0, col = 0; row < puzzle.Size; row++, col++)
         {
