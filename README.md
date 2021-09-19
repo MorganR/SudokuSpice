@@ -101,7 +101,13 @@ See [the docs](https://www.sudokuspice.dev) for more information.
 
 ## Releases
 
-### 3.2.0 - 2021-09-19
+### 3.2.X
+
+#### 3.2.1 - 2021-09-19
+
+* Fix bug with Puzzle.NumSquares when constructing puzzle from an array.
+
+#### 3.2.0 - 2021-09-19
 
 * Add rule-based support for multiples of a given value
   * Add CountPerUniqueValue to IReadOnlyPuzzle

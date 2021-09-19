@@ -1,0 +1,549 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.StandardPuzzleGenerator
+  commentId: T:SudokuSpice.RuleBased.StandardPuzzleGenerator
+  id: StandardPuzzleGenerator
+  parent: SudokuSpice.RuleBased
+  children:
+  - SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor
+  - SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)
+  langs:
+  - csharp
+  - vb
+  name: StandardPuzzleGenerator
+  nameWithType: StandardPuzzleGenerator
+  fullName: SudokuSpice.RuleBased.StandardPuzzleGenerator
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/StandardPuzzleGenerator.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: StandardPuzzleGenerator
+    path: ../SudokuSpice/RuleBased/StandardPuzzleGenerator.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nGenerates standard Sudoku puzzles.\n"
+  example: []
+  syntax:
+    content: 'public class StandardPuzzleGenerator : PuzzleGenerator<PuzzleWithPossibleValues>'
+    content.vb: >-
+      Public Class StandardPuzzleGenerator
+          Inherits PuzzleGenerator(Of PuzzleWithPossibleValues)
+  inheritance:
+  - System.Object
+  - SudokuSpice.PuzzleGenerator{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor
+  commentId: M:SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor
+  id: '#ctor'
+  parent: SudokuSpice.RuleBased.StandardPuzzleGenerator
+  langs:
+  - csharp
+  - vb
+  name: StandardPuzzleGenerator()
+  nameWithType: StandardPuzzleGenerator.StandardPuzzleGenerator()
+  fullName: SudokuSpice.RuleBased.StandardPuzzleGenerator.StandardPuzzleGenerator()
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/StandardPuzzleGenerator.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: .ctor
+    path: ../SudokuSpice/RuleBased/StandardPuzzleGenerator.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  example: []
+  syntax:
+    content: public StandardPuzzleGenerator()
+    content.vb: Public Sub New
+  overload: SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)
+  commentId: M:SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate(System.Int32,System.Int32,System.TimeSpan)
+  id: Generate(System.Int32,System.Int32,System.TimeSpan)
+  parent: SudokuSpice.RuleBased.StandardPuzzleGenerator
+  langs:
+  - csharp
+  - vb
+  name: Generate(Int32, Int32, TimeSpan)
+  nameWithType: StandardPuzzleGenerator.Generate(Int32, Int32, TimeSpan)
+  fullName: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate(System.Int32, System.Int32, System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/StandardPuzzleGenerator.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Generate
+    path: ../SudokuSpice/RuleBased/StandardPuzzleGenerator.cs
+    startLine: 51
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: "\nGenerates a puzzle that has a unique solution with the given number of squares set.\n\nBe careful calling this with low values, as it can take a very long time to generate\nunique puzzles as the value of <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> approaches the\nminimum number of clues necessary to provide a unique puzzle of the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzleSize</code>.\n"
+  example: []
+  syntax:
+    content: public PuzzleWithPossibleValues Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
+    parameters:
+    - id: puzzleSize
+      type: System.Int32
+      description: "\nThe size (i.e. side-length) of the puzzle to generate.\n"
+    - id: numSquaresToSet
+      type: System.Int32
+      description: "\nThe number of squares that will be preset in the generated puzzle.\n\nValid ranges are 0-1 for puzzles of size 1, 4-16 for puzzles of size 4, 17-81 for\npuzzles of size 9, 55-256 for puzzles of size 16, and 185 - 625 for puzzles of size 25.\nNote that the lower bounds for puzzles sized 16 or 25 are estimates from\nthis forum: http://forum.enjoysudoku.com/minimum-givens-on-larger-puzzles-t4801.html\n"
+    - id: timeout
+      type: System.TimeSpan
+      description: "\nThe maximum timeout during which this function can search for a unique puzzle.\nEspecially useful when trying to generate puzzles with low\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code>.\n"
+    return:
+      type: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+      description: "\nA standard Sudoku puzzle with a unique solution and <code>numSquaresToSet</code> preset\nsquares.\n"
+    content.vb: Public Function Generate(puzzleSize As Integer, numSquaresToSet As Integer, timeout As TimeSpan) As PuzzleWithPossibleValues
+  overload: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThrown if <code data-dev-comment-type=\"paramref\" class=\"paramref\">numSquaresToSet</code> is impossible for the given puzzle size.\n"
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: "\nThrown if no valid unique puzzle is found within the specified\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">timeout</code>.\n"
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: SudokuSpice.PuzzleGenerator{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  commentId: T:SudokuSpice.PuzzleGenerator{SudokuSpice.RuleBased.PuzzleWithPossibleValues}
+  parent: SudokuSpice
+  definition: SudokuSpice.PuzzleGenerator`1
+  name: PuzzleGenerator<PuzzleWithPossibleValues>
+  nameWithType: PuzzleGenerator<PuzzleWithPossibleValues>
+  fullName: SudokuSpice.PuzzleGenerator<SudokuSpice.RuleBased.PuzzleWithPossibleValues>
+  nameWithType.vb: PuzzleGenerator(Of PuzzleWithPossibleValues)
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of SudokuSpice.RuleBased.PuzzleWithPossibleValues)
+  name.vb: PuzzleGenerator(Of PuzzleWithPossibleValues)
+  spec.csharp:
+  - uid: SudokuSpice.PuzzleGenerator`1
+    name: PuzzleGenerator
+    nameWithType: PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.PuzzleGenerator`1
+    name: PuzzleGenerator
+    nameWithType: PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+    name: PuzzleWithPossibleValues
+    nameWithType: PuzzleWithPossibleValues
+    fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.PuzzleGenerator`1
+  commentId: T:SudokuSpice.PuzzleGenerator`1
+  name: PuzzleGenerator<TPuzzle>
+  nameWithType: PuzzleGenerator<TPuzzle>
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle)
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle)
+  name.vb: PuzzleGenerator(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.PuzzleGenerator`1
+    name: PuzzleGenerator
+    nameWithType: PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: SudokuSpice.PuzzleGenerator`1
+    name: PuzzleGenerator
+    nameWithType: PuzzleGenerator
+    fullName: SudokuSpice.PuzzleGenerator
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TPuzzle
+    nameWithType: TPuzzle
+    fullName: TPuzzle
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.StandardPuzzleGenerator.#ctor
+  name: StandardPuzzleGenerator
+  nameWithType: StandardPuzzleGenerator.StandardPuzzleGenerator
+  fullName: SudokuSpice.RuleBased.StandardPuzzleGenerator.StandardPuzzleGenerator
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: System.TimeoutException
+  commentId: T:System.TimeoutException
+  isExternal: true
+- uid: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate*
+  commentId: Overload:SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate
+  name: Generate
+  nameWithType: StandardPuzzleGenerator.Generate
+  fullName: SudokuSpice.RuleBased.StandardPuzzleGenerator.Generate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  commentId: T:SudokuSpice.RuleBased.PuzzleWithPossibleValues
+  parent: SudokuSpice.RuleBased
+  name: PuzzleWithPossibleValues
+  nameWithType: PuzzleWithPossibleValues
+  fullName: SudokuSpice.RuleBased.PuzzleWithPossibleValues

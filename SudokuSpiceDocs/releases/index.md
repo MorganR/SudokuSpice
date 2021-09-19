@@ -2,6 +2,10 @@
 
 Select a release from below:
 
+## [3.2.1](/releases/v3.2.1/) - 2021-09-19
+
+* Fix bug with Puzzle.NumSquares when constructing puzzle from an array.
+
 ## [3.2.0](/releases/v3.2.0/) - 2021-09-19
 
 * Add rule-based support for multiples of a given value
