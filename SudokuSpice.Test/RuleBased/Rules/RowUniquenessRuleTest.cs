@@ -6,7 +6,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
     public class RowUniquenessRuleTest
     {
         [Fact]
-        public void TryInitFor_FiltersCorrectly()
+        public void TryInit_FiltersCorrectly()
         {
             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] {           1, null /* 4 */, null /* 3 */,            2},
@@ -25,7 +25,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         }
 
         [Fact]
-        public void TryInitFor_WithDuplicateValueInRow_Fails()
+        public void TryInit_WithDuplicateValueInRow_Fails()
         {
             var puzzle = new PuzzleWithPossibleValues(
                     new int?[][] {

@@ -6,7 +6,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
     public class DiagonalUniquenessRuleTest
     {
         [Fact]
-        public void TryInitFor_ValidPuzzle_FiltersCorrectly()
+        public void TryInit_ValidPuzzle_FiltersCorrectly()
         {
             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                 new int?[] {   1, null, null,   4},
@@ -44,7 +44,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
         }
 
         [Fact]
-        public void TryInitFor_WithDuplicateValueInDiagonal_Fails()
+        public void TryInit_WithDuplicateValueInDiagonal_Fails()
         {
             var puzzle = new PuzzleWithPossibleValues(new int?[][] {
                    new int?[] {   1, null, null,   4},
