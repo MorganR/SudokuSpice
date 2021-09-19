@@ -17,7 +17,7 @@ namespace SudokuSpice
         /// <inheritdoc/>
         public int Size { get; }
         /// <inheritdoc/>
-        public int NumSquares { get; }
+        public int NumSquares => Size * Size;
         /// <inheritdoc/>
         public int NumEmptySquares => _unsetCoordsTracker.NumTracked;
         /// <inheritdoc/>
@@ -44,7 +44,6 @@ namespace SudokuSpice
                 throw new ArgumentException($"{nameof(size)} must be >= 1.");
             }
             Size = size;
-            NumSquares = size * size;
             _squares = new int?[size][];
             _unsetCoordsTracker = new CoordinateTracker(size);
             _InitUnsetCoordsTrackerAndSquares(_unsetCoordsTracker, _squares);
@@ -74,7 +73,6 @@ namespace SudokuSpice
                 throw new ArgumentException($"{nameof(size)} must be >= 1.");
             }
             Size = size;
-            NumSquares = size * size;
             _squares = new int?[size][];
             _unsetCoordsTracker = new CoordinateTracker(size);
             _InitUnsetCoordsTrackerAndSquares(_unsetCoordsTracker, _squares);
@@ -102,7 +100,6 @@ namespace SudokuSpice
         /// </exception>
         public Puzzle(int?[][] puzzleMatrix)
         {
-            NumSquares = puzzleMatrix.Length;
             Size = puzzleMatrix.Length;
             if (Size == 0 || Size != puzzleMatrix[0].Length)
             {
@@ -140,7 +137,6 @@ namespace SudokuSpice
         /// </exception>
         public Puzzle(int?[][] puzzleMatrix, ReadOnlySpan<int> allPossibleValues)
         {
-            NumSquares = puzzleMatrix.Length;
             Size = puzzleMatrix.Length;
             if (Size == 0 || Size != puzzleMatrix[0].Length)
             {
@@ -213,7 +209,6 @@ namespace SudokuSpice
         public Puzzle(Puzzle existing)
         {
             Size = existing.Size;
-            NumSquares = existing.NumSquares;
             _squares = new int?[Size][];
             int i = 0;
             foreach (var row in existing._squares)

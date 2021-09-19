@@ -80,6 +80,9 @@ namespace SudokuSpice.Test
                 new int?[] { 0, null,    2, null },
             }, possibleValues);
             Assert.Equal(size, puzzle.Size);
+            Assert.Equal(size * size, puzzle.NumSquares);
+            Assert.Equal(7, puzzle.NumSetSquares);
+            Assert.Equal(9, puzzle.NumEmptySquares);
             Assert.Equal(2, puzzle.CountPerUniqueValue[0]);
             Assert.Equal(1, puzzle.CountPerUniqueValue[1]);
             Assert.Equal(1, puzzle.CountPerUniqueValue[2]);
