@@ -54,7 +54,7 @@ namespace SudokuSpice.RuleBased
             _puzzle = puzzle;
             _boxSize = Boxes.IntSquareRoot(puzzle.Size);
             _unsetRowValues = new BitVector[size];
-            _unsetRowValues.AsSpan().Fill(_puzzle.AllPossibleValues);
+            _unsetRowValues.AsSpan().Fill(_puzzle.UniquePossibleValues);
             Span<BitVector> possibleValues = _unsetRowValues.AsSpan();
             _unsetColumnValues = possibleValues.ToArray();
             _unsetBoxValues = possibleValues.ToArray();

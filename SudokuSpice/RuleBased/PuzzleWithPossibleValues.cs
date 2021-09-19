@@ -19,7 +19,7 @@ namespace SudokuSpice.RuleBased
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
         public int NumSetSquares => _puzzle.NumSetSquares;
         /// <inheritdoc cref="IReadOnlyPuzzle"/>
-        public BitVector AllPossibleValues => _possibleValues.AllPossible;
+        public BitVector UniquePossibleValues => _possibleValues.AllPossible;
         /// <inheritdoc/>
         public ReadOnlySpan<int> AllPossibleValuesSpan => _puzzle.AllPossibleValuesSpan;
         /// <inheritdoc/>

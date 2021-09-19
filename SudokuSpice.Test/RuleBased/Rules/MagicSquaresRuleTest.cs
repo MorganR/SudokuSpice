@@ -25,7 +25,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
 
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             Assert.Equal(new BitVector(0b0000110110), rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b0000110000), rule.GetPossibleValues(new Coordinate(0, 1)));
@@ -55,7 +55,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: true);
 
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             Assert.Equal(new BitVector(0b0000110110), rule.GetPossibleValues(new Coordinate(3, 3)));
             Assert.Equal(new BitVector(0b0110110000), rule.GetPossibleValues(new Coordinate(3, 4)));
@@ -85,7 +85,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
 
-            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.False(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
         }
 
         [Fact]
@@ -106,7 +106,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new Box(new Coordinate(0, 0), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -149,7 +149,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new Box(new Coordinate(0, 0), 3),
             };
             var rule = new MagicSquaresRule(puzzle.Size, magicSquares, includeDiagonals: false);
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             int val = 4;
             var coord = new Coordinate(0, 1);
@@ -172,7 +172,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
             BitVector[] initialPossibleValues = new BitVector[] {
                 rule.GetPossibleValues(new Coordinate(0, 0)),
                 rule.GetPossibleValues(new Coordinate(1, 1)),
@@ -201,7 +201,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] {3, 2, 4, 1}
             });
             var rule = new RowUniquenessRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
             BitVector[] initialPossibleValues = new BitVector[] {
                 rule.GetPossibleValues(new Coordinate(0, 0)),
                 rule.GetPossibleValues(new Coordinate(1, 1)),

@@ -5,8 +5,8 @@
     /// </summary>
     public interface IReadOnlyPossibleValues
     {
-        /// <summary>All the possible values any square can be set to.</summary>
-        BitVector AllPossibleValues { get; }
+        /// <summary>All the unique possible values any square can be set to.</summary>
+        BitVector UniquePossibleValues { get; }
 
         /// <summary>
         /// Gets the current possible values for a given coordinate.

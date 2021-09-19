@@ -44,7 +44,7 @@ namespace SudokuSpice.RuleBased
         {
             foreach (IRule r in _rules)
             {
-                if (!r.TryInit(puzzle, puzzle.AllPossibleValues))
+                if (!r.TryInit(puzzle, puzzle.UniquePossibleValues))
                 {
                     return false;
                 }

@@ -13,7 +13,7 @@ namespace SudokuSpice.RuleBased.Test
             var puzzleWithPossibles = new PuzzleWithPossibleValues(puzzle);
 
             Assert.Equal(allPossibleValues, puzzleWithPossibles.AllPossibleValuesSpan.ToArray());
-            Assert.Equal(new BitVector(0b111), puzzleWithPossibles.AllPossibleValues);
+            Assert.Equal(new BitVector(0b111), puzzleWithPossibles.UniquePossibleValues);
             Assert.Equal(new BitVector(0b111), puzzleWithPossibles.GetPossibleValues(new Coordinate(0, 1)));
             Assert.Equal(
                 new Dictionary<int, int> { {0, 2}, {1, 1}, {2, 1}, },

@@ -17,7 +17,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             var puzzle = new PuzzleWithPossibleValues(p);
             var rule = new MaxCountPerBoxRule();
 
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             Assert.Equal(new BitVector(0b0100), rule.GetPossibleValues(new Coordinate(0, 0)));
             Assert.Equal(new BitVector(0b1110), rule.GetPossibleValues(new Coordinate(0, 2)));
@@ -37,7 +37,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             var puzzle = new PuzzleWithPossibleValues(p);
             var rule = new MaxCountPerBoxRule();
 
-            Assert.False(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.False(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             }, new int[] { 1, 2, 2, 3 });
             var puzzle = new PuzzleWithPossibleValues(p);
             var rule = new MaxCountPerBoxRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             var puzzleCopy = new PuzzleWithPossibleValues(puzzle);
             IRule ruleCopy = rule.CopyWithNewReference(puzzleCopy);
@@ -86,7 +86,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             }, new int[] { 1, 2, 2, 3 });
             var puzzle = new PuzzleWithPossibleValues(p);
             var rule = new MaxCountPerBoxRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
             var coordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 2);
             int val = 1;
@@ -113,7 +113,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             }, new int[] { 1, 2, 2, 3 });
             var puzzle = new PuzzleWithPossibleValues(p);
             var rule = new MaxCountPerBoxRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
             var coordTracker = new CoordinateTracker(puzzle.Size);
 
             rule.Update(new Coordinate(2, 0), 2, coordTracker);
@@ -138,7 +138,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
             }, new int[] { 1, 2, 2, 3 });
             var puzzle = new PuzzleWithPossibleValues(p);
             var rule = new MaxCountPerBoxRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
             IList<BitVector> initialPossibleValuesByBox = _GetPossibleValuesByBox(puzzle.Size, rule);
             var updatedCoordTracker = new CoordinateTracker(puzzle.Size);
             var coord = new Coordinate(1, 2);
@@ -169,7 +169,7 @@ namespace SudokuSpice.RuleBased.Rules.Test
                 new int?[] {           3, null /* 2 */, null /* 4 */, 1}
             });
             var rule = new MaxCountPerBoxRule();
-            Assert.True(rule.TryInit(puzzle, puzzle.AllPossibleValues));
+            Assert.True(rule.TryInit(puzzle, puzzle.UniquePossibleValues));
 
             for (int row = 0; row < puzzle.Size; row++)
             {
