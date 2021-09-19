@@ -6,7 +6,7 @@
 [`ConstraintBased.PuzzleSolver`](xref:SudokuSpice.ConstraintBased.PuzzleSolver`1) or the original
 [`RuleBased.PuzzleSolver`](xref:SudokuSpice.RuleBased.PuzzleSolver`1).
 
-Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
+Generally speaking, the rule-based solver is the fastest of the two when solving standard Sudoku
 puzzles. However, the constraint-based solver can be faster in some cases, especially when
 implementing custom rules or constraints.
 
@@ -74,10 +74,10 @@ SudokuSpice uses four main interfaces:
     [exact-cover matrix](https://en.wikipedia.org/wiki/Exact_cover). The exact-cover matrix combines
     two concepts into a single matrix. Each row represents a possible value for a single square, for
     example "Row: 1, Column: 0, Value: 2". We'll represent this in the short-form notation: `R1C0V2`.
-    Each column represents a single constraint that must be satisfied, for example, "Row 1 contains a
+    Each column represents a single objective that must be satisfied, for example, "Row 1 contains a
     2." We'll represent columns in the short-form notation: "R1V2". These rows and columns can be
     combined into a single matrix containing 1s and 0s, where a 1 is placed in each column (i.e.
-    constraint) that a given row (i.e. possible square value) satisfies. For a standard Sudoku puzzle,
+    objective) that a given row (i.e. possible square value) satisfies. For a standard Sudoku puzzle,
     this looks something like the following:
 
     |        | R0V1 | R0V2 | ... | R1V1 | R1V2 | ... | C0V1 | C0V2 | ... | B0V1 | V0V2 | ... | B8V8 | B8V9 |
@@ -93,8 +93,8 @@ SudokuSpice uses four main interfaces:
     | R8C8V8 | 0    | 0    | ... | 0    | 0    | ... | 0    | 0    | ... | 0    | 0    | ... | 1    | 0    |
     | R8C8V9 | 0    | 0    | ... | 0    | 0    | ... | 0    | 0    | ... | 0    | 0    | ... | 0    | 1    |
 
-    SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
-    the `RxCxVx` cells in the first column) are represented by
+    SudokuSpice's implementation of this matrix can be thought of as a sparse 2D-doubly linked list.
+	Row headers (i.e. the `RxCxVx` cells in the first column) are represented by
     [`Possibility`s](xref:SudokuSpice.ConstraintBased.Possibility). Column headers
     (i.e. the cells in the first row) are represented by
 	[`Objective`s](xref:SudokuSpice.ConstraintBased.Objective). Rows and columns are
@@ -120,6 +120,25 @@ For more information on extending SudokuSpice, see:
 
 *  [Custom rule example](custom-rules.md).
 *  [Custom constraint example](custom-constraints.md).
+
+## Non-unique (i.e. duplicate) values
+
+What if you need to solve puzzles that allow multiple instances of the same value in a given
+region? For example, let's say that your puzzle contains the first 9 digits of Pi in each region:
+
+3.14159265 -> 1, 1, 2, 3, 4, 5, 5, 6, 9
+
+This is currently only supported by the rule-based solver. When constructing a `Puzzle`, you can
+also include the possible values for any given region:
+
+```csharp
+var puzzle = new Puzzle(data, new int[] {1, 1, 2, 3, 4, 5, 5, 6, 9 });
+```
+
+This will be used to calculate the `IPuzzle.CountPerUniqueValue` dictionary, and rules can use that
+to properly enforce the correct number of values. The MaxCountPer* rules are provided for the
+simple case that each box, column, or row needs to contain each value up to the max count as
+specified in the `CountPerUniqueValue` dictionary.
 
 ## Namespaces
 
