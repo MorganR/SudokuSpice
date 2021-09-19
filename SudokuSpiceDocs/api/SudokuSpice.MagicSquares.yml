@@ -22,10 +22,12 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: MagicSquares
     path: ../SudokuSpice/MagicSquares.cs
-    startLine: 7
+    startLine: 15
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nUtility methods for working with\n<a href=\"https://en.wikipedia.org/wiki/Magic_square\">magic squares</a>, i.e. the sums of the\nvalues in each of their rows, columns, and (optionally) their diagonals add up to the same\nvalue.\n\nThese all require the possible values in the magic square to be unique.\n"
+  example: []
   syntax:
     content: public static class MagicSquares
     content.vb: Public Module MagicSquares
@@ -64,19 +66,26 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ComputeSum
     path: ../SudokuSpice/MagicSquares.cs
-    startLine: 9
+    startLine: 26
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nComputes the &quot;sum&quot; that each row/column/diagonal must add up to.\n"
+  example: []
   syntax:
     content: public static int ComputeSum(ReadOnlySpan<int> values)
     parameters:
     - id: values
       type: System.ReadOnlySpan{System.Int32}
+      description: "\nAll the possible values for the magic square. Each value must be unique.\n"
     return:
       type: System.Int32
     content.vb: Public Shared Function ComputeSum(values As ReadOnlySpan(Of Integer)) As Integer
   overload: SudokuSpice.MagicSquares.ComputeSum*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown if no sum is possible.\n"
   nameWithType.vb: MagicSquares.ComputeSum(ReadOnlySpan(Of Int32))
   modifiers.csharp:
   - public
@@ -104,15 +113,18 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ComputeSets
     path: ../SudokuSpice/MagicSquares.cs
-    startLine: 15
+    startLine: 39
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nComputes each unique set of values of length SquareRoot(values.Length) that can be\nformed from the given values.\n"
+  example: []
   syntax:
     content: public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values)
     parameters:
     - id: values
       type: System.ReadOnlySpan{System.Int32}
+      description: "\nAll the possible values for the magic square. Each value must be unique.\n"
     return:
       type: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
     content.vb: Public Shared Function ComputeSets(values As ReadOnlySpan(Of Integer)) As HashSet(Of BitVector)
@@ -144,19 +156,23 @@ items:
       repo: https://github.com/MorganR/SudokuSpice
     id: ComputeSets
     path: ../SudokuSpice/MagicSquares.cs
-    startLine: 30
+    startLine: 65
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
+  summary: "\nComputes each unique set of values of length <code data-dev-comment-type=\"paramref\" class=\"paramref\">boxSize</code> that can be\nformed from the given values.\n"
+  example: []
   syntax:
     content: public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values, int boxSize, BitVector allPossibleValues)
     parameters:
     - id: values
       type: System.ReadOnlySpan{System.Int32}
+      description: "\nAll the possible values for the magic square. Each value must be unique. Values must\nhave length `boxSize*boxSize`.\n"
     - id: boxSize
       type: System.Int32
     - id: allPossibleValues
       type: SudokuSpice.BitVector
+      description: "\nThe \n"
     return:
       type: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
     content.vb: Public Shared Function ComputeSets(values As ReadOnlySpan(Of Integer), boxSize As Integer, allPossibleValues As BitVector) As HashSet(Of BitVector)
@@ -468,6 +484,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: SudokuSpice.MagicSquares.ComputeSum*
   commentId: Overload:SudokuSpice.MagicSquares.ComputeSum
   name: ComputeSum

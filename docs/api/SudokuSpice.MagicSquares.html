@@ -73,7 +73,12 @@
   
   <h1 id="SudokuSpice_MagicSquares" data-uid="SudokuSpice.MagicSquares" class="text-break">Class MagicSquares
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Utility methods for working with
+<a href="https://en.wikipedia.org/wiki/Magic_square">magic squares</a>, i.e. the sums of the
+values in each of their rows, columns, and (optionally) their diagonals add up to the same
+value.</p>
+<p>These all require the possible values in the magic square to be unique.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -117,11 +122,13 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_MagicSquares_ComputeSets_System_ReadOnlySpan_System_Int32__.md&amp;value=---%0Auid%3A%20SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan%7BSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L16">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L40">View Source</a>
   </span>
   <a id="SudokuSpice_MagicSquares_ComputeSets_" data-uid="SudokuSpice.MagicSquares.ComputeSets*"></a>
   <h4 id="SudokuSpice_MagicSquares_ComputeSets_System_ReadOnlySpan_System_Int32__" data-uid="SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})">ComputeSets(ReadOnlySpan&lt;Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Computes each unique set of values of length SquareRoot(values.Length) that can be
+formed from the given values.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -140,7 +147,8 @@
       <tr>
         <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">values</span></td>
-        <td></td>
+        <td><p>All the possible values for the magic square. Each value must be unique.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -164,11 +172,13 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_MagicSquares_ComputeSets_System_ReadOnlySpan_System_Int32__System_Int32_SudokuSpice_BitVector_.md&amp;value=---%0Auid%3A%20SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan%7BSystem.Int32%7D%2CSystem.Int32%2CSudokuSpice.BitVector)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L31">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L66">View Source</a>
   </span>
   <a id="SudokuSpice_MagicSquares_ComputeSets_" data-uid="SudokuSpice.MagicSquares.ComputeSets*"></a>
   <h4 id="SudokuSpice_MagicSquares_ComputeSets_System_ReadOnlySpan_System_Int32__System_Int32_SudokuSpice_BitVector_" data-uid="SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)">ComputeSets(ReadOnlySpan&lt;Int32&gt;, Int32, BitVector)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Computes each unique set of values of length <code data-dev-comment-type="paramref" class="paramref">boxSize</code> that can be
+formed from the given values.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -187,7 +197,9 @@
       <tr>
         <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">values</span></td>
-        <td></td>
+        <td><p>All the possible values for the magic square. Each value must be unique. Values must
+have length <code>boxSize*boxSize</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
@@ -197,7 +209,8 @@
       <tr>
         <td><a class="xref" href="SudokuSpice.BitVector.html">BitVector</a></td>
         <td><span class="parametername">allPossibleValues</span></td>
-        <td></td>
+        <td><p>The</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -221,11 +234,12 @@
     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_MagicSquares_ComputeSum_System_ReadOnlySpan_System_Int32__.md&amp;value=---%0Auid%3A%20SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan%7BSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L10">View Source</a>
+    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L27">View Source</a>
   </span>
   <a id="SudokuSpice_MagicSquares_ComputeSum_" data-uid="SudokuSpice.MagicSquares.ComputeSum*"></a>
   <h4 id="SudokuSpice_MagicSquares_ComputeSum_System_ReadOnlySpan_System_Int32__" data-uid="SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})">ComputeSum(ReadOnlySpan&lt;Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Computes the &quot;sum&quot; that each row/column/diagonal must add up to.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -244,7 +258,8 @@
       <tr>
         <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">values</span></td>
-        <td></td>
+        <td><p>All the possible values for the magic square. Each value must be unique.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -263,6 +278,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if no sum is possible.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -274,7 +305,7 @@
                     <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_MagicSquares.md&amp;value=---%0Auid%3A%20SudokuSpice.MagicSquares%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/MagicSquares.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
