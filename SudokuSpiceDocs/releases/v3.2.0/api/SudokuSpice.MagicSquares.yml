@@ -1,0 +1,663 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.MagicSquares
+  commentId: T:SudokuSpice.MagicSquares
+  id: MagicSquares
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})
+  - SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  - SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})
+  langs:
+  - csharp
+  - vb
+  name: MagicSquares
+  nameWithType: MagicSquares
+  fullName: SudokuSpice.MagicSquares
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/MagicSquares.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: MagicSquares
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static class MagicSquares
+    content.vb: Public Module MagicSquares
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan{System.Int32})
+  id: ComputeSum(System.ReadOnlySpan{System.Int32})
+  parent: SudokuSpice.MagicSquares
+  langs:
+  - csharp
+  - vb
+  name: ComputeSum(ReadOnlySpan<Int32>)
+  nameWithType: MagicSquares.ComputeSum(ReadOnlySpan<Int32>)
+  fullName: SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan<System.Int32>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/MagicSquares.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ComputeSum
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 9
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static int ComputeSum(ReadOnlySpan<int> values)
+    parameters:
+    - id: values
+      type: System.ReadOnlySpan{System.Int32}
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ComputeSum(values As ReadOnlySpan(Of Integer)) As Integer
+  overload: SudokuSpice.MagicSquares.ComputeSum*
+  nameWithType.vb: MagicSquares.ComputeSum(ReadOnlySpan(Of Int32))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.MagicSquares.ComputeSum(System.ReadOnlySpan(Of System.Int32))
+  name.vb: ComputeSum(ReadOnlySpan(Of Int32))
+- uid: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32})
+  id: ComputeSets(System.ReadOnlySpan{System.Int32})
+  parent: SudokuSpice.MagicSquares
+  langs:
+  - csharp
+  - vb
+  name: ComputeSets(ReadOnlySpan<Int32>)
+  nameWithType: MagicSquares.ComputeSets(ReadOnlySpan<Int32>)
+  fullName: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan<System.Int32>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/MagicSquares.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ComputeSets
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 15
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values)
+    parameters:
+    - id: values
+      type: System.ReadOnlySpan{System.Int32}
+    return:
+      type: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+    content.vb: Public Shared Function ComputeSets(values As ReadOnlySpan(Of Integer)) As HashSet(Of BitVector)
+  overload: SudokuSpice.MagicSquares.ComputeSets*
+  nameWithType.vb: MagicSquares.ComputeSets(ReadOnlySpan(Of Int32))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan(Of System.Int32))
+  name.vb: ComputeSets(ReadOnlySpan(Of Int32))
+- uid: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  id: ComputeSets(System.ReadOnlySpan{System.Int32},System.Int32,SudokuSpice.BitVector)
+  parent: SudokuSpice.MagicSquares
+  langs:
+  - csharp
+  - vb
+  name: ComputeSets(ReadOnlySpan<Int32>, Int32, BitVector)
+  nameWithType: MagicSquares.ComputeSets(ReadOnlySpan<Int32>, Int32, BitVector)
+  fullName: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan<System.Int32>, System.Int32, SudokuSpice.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/MagicSquares.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ComputeSets
+    path: ../SudokuSpice/MagicSquares.cs
+    startLine: 30
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static HashSet<BitVector> ComputeSets(ReadOnlySpan<int> values, int boxSize, BitVector allPossibleValues)
+    parameters:
+    - id: values
+      type: System.ReadOnlySpan{System.Int32}
+    - id: boxSize
+      type: System.Int32
+    - id: allPossibleValues
+      type: SudokuSpice.BitVector
+    return:
+      type: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+    content.vb: Public Shared Function ComputeSets(values As ReadOnlySpan(Of Integer), boxSize As Integer, allPossibleValues As BitVector) As HashSet(Of BitVector)
+  overload: SudokuSpice.MagicSquares.ComputeSets*
+  nameWithType.vb: MagicSquares.ComputeSets(ReadOnlySpan(Of Int32), Int32, BitVector)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: SudokuSpice.MagicSquares.ComputeSets(System.ReadOnlySpan(Of System.Int32), System.Int32, SudokuSpice.BitVector)
+  name.vb: ComputeSets(ReadOnlySpan(Of Int32), Int32, BitVector)
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.MagicSquares.ComputeSum*
+  commentId: Overload:SudokuSpice.MagicSquares.ComputeSum
+  name: ComputeSum
+  nameWithType: MagicSquares.ComputeSum
+  fullName: SudokuSpice.MagicSquares.ComputeSum
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Int32>
+  nameWithType: ReadOnlySpan<Int32>
+  fullName: System.ReadOnlySpan<System.Int32>
+  nameWithType.vb: ReadOnlySpan(Of Int32)
+  fullName.vb: System.ReadOnlySpan(Of System.Int32)
+  name.vb: ReadOnlySpan(Of Int32)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.MagicSquares.ComputeSets*
+  commentId: Overload:SudokuSpice.MagicSquares.ComputeSets
+  name: ComputeSets
+  nameWithType: MagicSquares.ComputeSets
+  fullName: SudokuSpice.MagicSquares.ComputeSets
+- uid: System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+  commentId: T:System.Collections.Generic.HashSet{SudokuSpice.BitVector}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  name: HashSet<BitVector>
+  nameWithType: HashSet<BitVector>
+  fullName: System.Collections.Generic.HashSet<SudokuSpice.BitVector>
+  nameWithType.vb: HashSet(Of BitVector)
+  fullName.vb: System.Collections.Generic.HashSet(Of SudokuSpice.BitVector)
+  name.vb: HashSet(Of BitVector)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.BitVector
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.BitVector
+    name: BitVector
+    nameWithType: BitVector
+    fullName: SudokuSpice.BitVector
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    nameWithType: HashSet
+    fullName: System.Collections.Generic.HashSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.BitVector

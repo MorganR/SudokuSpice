@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Quick Start | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Quick Start | SudokuSpice ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v3.2.0">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="quick-start">Quick Start</h1>
+
+<p>For more information, see the <a href="framework.html">Framework Overview</a>.</p>
+<h2 id="solving">Solving</h2>
+<p>If you need to solve a standard Sudoku puzzle, you can simply create a
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleWithPossibleValues.html"><code>PuzzleWithPossibleValues</code></a>, create a
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html"><code>PuzzleSolver</code></a>, and solve it.</p>
+<pre><code class="lang-csharp">var puzzle = new PuzzleWithPossibleValues(new int?[,]
+    {
+        {null,    2, null,    6, null,    8, null, null, null},
+        {   5,    8, null, null, null,    9,    7, null, null},
+        {null, null, null, null,    4, null, null, null, null},
+        {   3,    7, null, null, null, null,    5, null, null},
+        {   6, null, null, null, null, null, null, null,    4},
+        {null, null,    8, null, null, null, null,    1,    3},
+        {null, null, null, null,    2, null, null, null, null},
+        {null, null,    9,    8, null, null, null,    3,    6},
+        {null, null, null,    3, null,    6, null,    9, null},
+    });
+var solver = RuleBased.StandardPuzzles.CreateSolver();
+var solved = solver.Solve(puzzle);
+
+// Values can be accessed individually like this:
+int row = 0;
+int column = 1;
+var value = solved[row, column]; // Returns 2
+
+// With custom rules
+var customSolver = new RuleBased.PuzzleSolver&lt;Puzzle&gt;(
+    new DynamicRuleKeeper(
+        new IRule[] {
+            // Custom rules here
+        }
+    ));
+</code></pre>
+<h2 id="generating">Generating</h2>
+<p>If you need to generate Sudoku puzzles, simply create a
+<a class="xref" href="../api/SudokuSpice.RuleBased.StandardPuzzleGenerator.html"><code>StandardPuzzleGenerator</code></a>
+and call <code>Generate</code> as many times as you like.</p>
+<pre><code class="lang-csharp">// Create a 9x9 puzzle generator.
+var generator = new StandardPuzzleGenerator();
+// Generate a 9x9 puzzle with 30 preset square values.
+var puzzle = generator.Generate(
+    /*puzzleSize=*/9, /*numSetSquares=*/30, /*timeout=*/TimeSpan.FromSeconds(1));
+
+// For custom solvers:
+var customGenerator = new PuzzleGenerator&lt;MyPuzzle&gt;(
+    puzzleSize =&gt; new MyPuzzle(puzzleSize),
+    new MyCustomSolver());
+// Use TimeSpan.Zero to disable the timeout.
+var puzzle = generator.Generate(puzzleSize, numSetSquares, TimeSpan.Zero);
+</code></pre>
+<p><strong>Warning:</strong> Requesting a small number of set squares when calling <code>Generate</code> can take a very long time,
+and may eventually time out. For quickly generating 9x9 puzzles, it's recommended to use a value of
+23 or greater.</p>
+<h2 id="constraint-based">Constraint-based</h2>
+<p><em>SudokuSpice</em> also provides a constraint-based solver that can be better in some scenarios (see
+<a href="performance.html">benchmarks</a>). This can be used similarly: create a
+<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a>, create a
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>ConstraintBased.PuzzleSolver</code></a>, and solve.</p>
+<pre><code class="lang-csharp">var puzzle = new Puzzle(...);
+
+// For standard puzzles:
+var solver = ConstraintBased.StandardPuzzles.CreateSolver();
+var solved = solver.Solve(puzzle);
+
+// With custom constraints
+var customSolver = new ConstraintBased.PuzzleSolver&lt;Puzzle&gt;(
+    new IConstraint[] {
+        // Custom constraints go here
+    });
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v3.2.0/articles/quickstart.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Framework Overview | SudokuSpice </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Framework Overview | SudokuSpice ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../v3.2.0">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="framework-overview">Framework Overview</h1>
+
+<h2 id="solvers">Solvers</h2>
+<p><em>SudokuSpice</em> provides two different solvers: the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.PuzzleSolver-1.html"><code>ConstraintBased.PuzzleSolver</code></a> or the original
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleSolver-1.html"><code>RuleBased.PuzzleSolver</code></a>.</p>
+<p>Generally speaking, the original solver is the fastest of the two when solving standard Sudoku
+puzzles. However, the constraint-based solver can be faster in some cases, especially when
+implementing custom rules or constraints.</p>
+<h2 id="important-concepts">Important concepts</h2>
+<p>SudokuSpice uses four main interfaces:</p>
+<ol>
+<li><p>The <a class="xref" href="../api/SudokuSpice.IPuzzle-1.html"><code>IPuzzle</code></a></p>
+<p>Puzzles store the underlying Sudoku data. You likely only need the standard implementations,
+<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> for constraint-based tools, and
+<a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleWithPossibleValues.html"><code>PuzzleWithPossibleValues</code></a> for rule-based
+tools. However, the interface is provided in case you need to do something a little different,
+like work with a puzzle with jagged regions instead of the normal square box regions.</p>
+</li>
+<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a></p>
+<p>Rules define - you guessed it - the rules for a puzzle. For example, standard Sudokus use the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.RowUniquenessRule.html"><code>RowUniquenessRule</code></a>, the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.ColumnUniquenessRule.html"><code>ColumnUniquenessRule</code></a>, and the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.BoxUniquenessRule.html"><code>BoxUniquenessRule</code></a>. For convenience and
+efficiency, these come prepackaged in the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Rules.StandardRules.html"><code>StandardRules</code></a> class. Rules do not directly modify the
+<a class="xref" href="../api/SudokuSpice.IPuzzle-1.html"><code>IPuzzle</code></a> or its possible values themselves. They should use an
+<a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just enough internal state to
+efficiently provide the possible values of any given square according to <em>only</em> that rule.</p>
+<p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.RuleBased.IRuleKeeper.html"><code>IRuleKeeper</code></a>. The
+<a class="xref" href="../api/SudokuSpice.RuleBased.DynamicRuleKeeper.html"><code>DynamicRuleKeeper</code></a> provides a general implementation
+that works with any number of rules. Custom implementations can provide even more efficiency, but
+are generally messier and more complex than simply creating custom rules.
+<a class="xref" href="../api/SudokuSpice.RuleBased.StandardRuleKeeper.html"><code>StandardRuleKeeper</code></a> is an example of this. Check out
+the <a href="performance.html">benchmarks</a> for performance comparisons. The rule keeper actually
+updates the possible values based on all the rules while ensuring that no rules are broken by
+any given update.</p>
+</li>
+<li><p>The <a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.IHeuristic.html"><code>IHeuristic</code></a></p>
+<p>Heuristics are logical tricks that can be used to reduce the number of possible values for any
+given square. These are only used in solving when the framework would otherwise have to guess
+(i.e. all unset squares have at least two possible values), so they can be relatively expensive
+and still improve solving times.</p>
+<p>Heuristics depend on an
+<a class="xref" href="../api/SudokuSpice.RuleBased.IReadOnlyPuzzleWithMutablePossibleValues.html"><code>IReadOnlyPuzzleWithMutablePossibleValues</code></a>.
+They directly modify the possible values during an update. They can alo optionally depend on one or
+more rules, as is demonstrated by the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.UniqueInRowHeuristic.html"><code>UniqueInRowHeuristic</code></a>. Heuristics
+can either be <em>perfect</em> heuristics, i.e. they reduce squares to only one possible value (like
+the <code>UniqueIn*</code> heuristics), or they can be <em>loose</em> heuristics, i.e. they eliminate possible
+values from squares, but don't necessarily reduce them down to a single possible value.</p>
+<p>Due to heuristics' complexity and flexibility, no generic class is provided to enforce multiple
+heuristics. To enforce multiple heuristics, define a custom heuristic that implements your desired
+heuristics. This pattern is demonstrated by the
+<a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.StandardHeuristic.html"><code>StandardHeuristic</code></a>.</p>
+</li>
+<li><p>The <a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint.html"><code>IConstraint</code></a></p>
+<p>Constraints represent rules that the puzzle needs to satisfy. For example, the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint.html"><code>RowUniquenessConstraint</code></a>
+enforces the constraint that &quot;each row must contain <em>all</em> possible values.&quot;</p>
+<p>Constraints are implemented using a form of an
+<a href="https://en.wikipedia.org/wiki/Exact_cover">exact-cover matrix</a>. The exact-cover matrix combines
+two concepts into a single matrix. Each row represents a possible value for a single square, for
+example &quot;Row: 1, Column: 0, Value: 2&quot;. We'll represent this in the short-form notation: <code>R1C0V2</code>.
+Each column represents a single constraint that must be satisfied, for example, &quot;Row 1 contains a
+2.&quot; We'll represent columns in the short-form notation: &quot;R1V2&quot;. These rows and columns can be
+combined into a single matrix containing 1s and 0s, where a 1 is placed in each column (i.e.
+constraint) that a given row (i.e. possible square value) satisfies. For a standard Sudoku puzzle,
+this looks something like the following:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>R0V1</th>
+<th>R0V2</th>
+<th>...</th>
+<th>R1V1</th>
+<th>R1V2</th>
+<th>...</th>
+<th>C0V1</th>
+<th>C0V2</th>
+<th>...</th>
+<th>B0V1</th>
+<th>V0V2</th>
+<th>...</th>
+<th>B8V8</th>
+<th>B8V9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0C0V1</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>R0C0V2</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>R0C1V1</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>R0C1V2</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>R1C0V1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>R8C8V8</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>R8C8V9</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>SudokuSpice's implementation represents this matrix as a 2D-doubly linked list. Row headers (i.e.
+the <code>RxCxVx</code> cells in the first column) are represented by
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Possibility.html"><code>Possibility</code>s</a>. Column headers
+(i.e. the cells in the first row) are represented by
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Objective.html"><code>Objective</code>s</a>. Rows and columns are
+connected by links, which represent the 1s in the matrix. Each link is connected up and down to
+the other '1s' that satisfy that objective, and connected left and right to the other
+'1s' that are present for that possibility.</p>
+<p>In addition, SudokuSpice's implementation extends the matrix to a larger graph to enable more
+complicated constraints. These use
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.OptionalObjective.html"><code>OptionalObjective</code>s</a> to group
+<code>Possibility</code>s and/or other <code>OptionalObjective</code>s. More details can be found in the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.ExactCoverGraph.html"><code>ExactCoverGraph</code></a> and
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.OptionalObjective.html"><code>OptionalObjective</code></a> docs. The
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint.html"><code>MagicSquaresConstraint</code></a>
+demonstrates how to use these optional objectives to implement a complicated constraint.</p>
+<p>The constraint-based solver uses constraints instead of rules. It does not provide a separate
+heuristics concept because the objectives inherently provide the <code>UniqueIn*</code> heuristics.
+Adding additional layers of heuristics would add complexity with minimal, if any, performance
+improvement.</p>
+</li>
+</ol>
+<p>For more information on extending SudokuSpice, see:</p>
+<ul>
+<li><a href="custom-rules.html">Custom rule example</a>.</li>
+<li><a href="custom-constraints.html">Custom constraint example</a>.</li>
+</ul>
+<h2 id="namespaces">Namespaces</h2>
+<ul>
+<li><strong><a class="xref" href="../api/SudokuSpice.html">SudokuSpice</a>:</strong> Contains base classes for solving and generating puzzles.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.RuleBased.html">SudokuSpice.RuleBased</a>:</strong> Contains classes for rule-based puzzle-solving and
+-generating.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.RuleBased.Heuristics.html">SudokuSpice.RuleBased.Heuristics</a>:</strong> Contains standard heuristics and interfaces for
+creating custom heuristics.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.RuleBased.Rules.html">SudokuSpice.RuleBased.Rules</a>:</strong> Contains rules and interfaces for creating custom
+rules.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.html">SudokuSpice.ConstraintBased</a>:</strong> Contains classes for constraint-based puzzle-solving
+and -generating.</li>
+<li><strong><a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.html">SudokuSpice.ConstraintBased.Constraints</a>:</strong> Contains standard constraints and the
+<a class="xref" href="../api/SudokuSpice.ConstraintBased.Constraints.IConstraint.html"><code>IConstraint</code></a> interface.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v3.2.0/articles/framework.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

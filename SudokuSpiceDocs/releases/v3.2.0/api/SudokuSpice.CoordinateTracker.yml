@@ -1,0 +1,878 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.CoordinateTracker
+  commentId: T:SudokuSpice.CoordinateTracker
+  id: CoordinateTracker
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.CoordinateTracker.#ctor(SudokuSpice.CoordinateTracker)
+  - SudokuSpice.CoordinateTracker.#ctor(System.Int32)
+  - SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate@)
+  - SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  - SudokuSpice.CoordinateTracker.NumTracked
+  - SudokuSpice.CoordinateTracker.Size
+  - SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate@)
+  - SudokuSpice.CoordinateTracker.TrackedCoords
+  - SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate@)
+  - SudokuSpice.CoordinateTracker.UntrackAll
+  langs:
+  - csharp
+  - vb
+  name: CoordinateTracker
+  nameWithType: CoordinateTracker
+  fullName: SudokuSpice.CoordinateTracker
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: CoordinateTracker
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 12
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Efficiently tracks a set of <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref>s.
+  remarks: "\nThis swaps coordinates within an internal array to provide O(1) tracking and untracking\noperations. It also provides immediate, copy-free access to tracked coordinates using a\n<code>ReadOnlySpan</code>.\n"
+  example: []
+  syntax:
+    content: public class CoordinateTracker
+    content.vb: Public Class CoordinateTracker
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SudokuSpice.CoordinateTracker.NumTracked
+  commentId: P:SudokuSpice.CoordinateTracker.NumTracked
+  id: NumTracked
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: NumTracked
+  nameWithType: CoordinateTracker.NumTracked
+  fullName: SudokuSpice.CoordinateTracker.NumTracked
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: NumTracked
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 21
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nThe number of coordinates currently considered to be &apos;tracked&apos;.\n"
+  example: []
+  syntax:
+    content: public int NumTracked { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property NumTracked As Integer
+  overload: SudokuSpice.CoordinateTracker.NumTracked*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.CoordinateTracker.Size
+  commentId: P:SudokuSpice.CoordinateTracker.Size
+  id: Size
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: CoordinateTracker.Size
+  fullName: SudokuSpice.CoordinateTracker.Size
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Size
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 23
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Size As Integer
+  overload: SudokuSpice.CoordinateTracker.Size*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.CoordinateTracker.TrackedCoords
+  commentId: P:SudokuSpice.CoordinateTracker.TrackedCoords
+  id: TrackedCoords
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: TrackedCoords
+  nameWithType: CoordinateTracker.TrackedCoords
+  fullName: SudokuSpice.CoordinateTracker.TrackedCoords
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: TrackedCoords
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 28
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nProvides readonly access to the currently tracked <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  example: []
+  syntax:
+    content: public ReadOnlySpan<Coordinate> TrackedCoords { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
+    content.vb: Public ReadOnly Property TrackedCoords As ReadOnlySpan(Of Coordinate)
+  overload: SudokuSpice.CoordinateTracker.TrackedCoords*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.CoordinateTracker.#ctor(System.Int32)
+  commentId: M:SudokuSpice.CoordinateTracker.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: CoordinateTracker(Int32)
+  nameWithType: CoordinateTracker.CoordinateTracker(Int32)
+  fullName: SudokuSpice.CoordinateTracker.CoordinateTracker(System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: .ctor
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 58
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nConstructs a <code>CoordinateTracker</code> to track coordinates within a\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code>-by-<code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code> square.\n"
+  example: []
+  syntax:
+    content: public CoordinateTracker(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The side length of a square of valid coordinates.
+    content.vb: Public Sub New(size As Integer)
+  overload: SudokuSpice.CoordinateTracker.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.CoordinateTracker.#ctor(SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.CoordinateTracker.#ctor(SudokuSpice.CoordinateTracker)
+  id: '#ctor(SudokuSpice.CoordinateTracker)'
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: CoordinateTracker(CoordinateTracker)
+  nameWithType: CoordinateTracker.CoordinateTracker(CoordinateTracker)
+  fullName: SudokuSpice.CoordinateTracker.CoordinateTracker(SudokuSpice.CoordinateTracker)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: .ctor
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 78
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nCopy-constructor to provide a copy of the given CoordinateTracker.\n"
+  example: []
+  syntax:
+    content: public CoordinateTracker(CoordinateTracker existing)
+    parameters:
+    - id: existing
+      type: SudokuSpice.CoordinateTracker
+      description: ''
+    content.vb: Public Sub New(existing As CoordinateTracker)
+  overload: SudokuSpice.CoordinateTracker.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate@)
+  id: Add(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: Add(Coordinate)
+  nameWithType: CoordinateTracker.Add(Coordinate)
+  fullName: SudokuSpice.CoordinateTracker.Add(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Add
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 95
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nAdds and tracks a previously unknown <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. This must only be called\nonce for any given Coordinate.\n"
+  example: []
+  syntax:
+    content: public void Add(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> to add.
+    content.vb: Public Sub Add(ByRef c As Coordinate)
+  overload: SudokuSpice.CoordinateTracker.Add*
+  nameWithType.vb: CoordinateTracker.Add(ByRef Coordinate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.CoordinateTracker.Add(ByRef SudokuSpice.Coordinate)
+  name.vb: Add(ByRef Coordinate)
+- uid: SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate@)
+  id: Track(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: Track(Coordinate)
+  nameWithType: CoordinateTracker.Track(Coordinate)
+  fullName: SudokuSpice.CoordinateTracker.Track(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Track
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 108
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nTracks a currently untracked <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. The coordinate must not be\ntracked already.\n"
+  example: []
+  syntax:
+    content: public void Track(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> to track.
+    content.vb: Public Sub Track(ByRef c As Coordinate)
+  overload: SudokuSpice.CoordinateTracker.Track*
+  nameWithType.vb: CoordinateTracker.Track(ByRef Coordinate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.CoordinateTracker.Track(ByRef SudokuSpice.Coordinate)
+  name.vb: Track(ByRef Coordinate)
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  id: AddOrTrackIfUntracked(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: AddOrTrackIfUntracked(Coordinate)
+  nameWithType: CoordinateTracker.AddOrTrackIfUntracked(Coordinate)
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: AddOrTrackIfUntracked
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 121
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nEnsures a given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> is both added and tracked. Useful when callers\nare not certain of the status of the given <code>Coordinate</code>.\n"
+  example: []
+  syntax:
+    content: public CoordinateTracker.AddOrTrackResult AddOrTrackIfUntracked(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> to track.
+    return:
+      type: SudokuSpice.CoordinateTracker.AddOrTrackResult
+      description: The action that was taken.
+    content.vb: Public Function AddOrTrackIfUntracked(ByRef c As Coordinate) As CoordinateTracker.AddOrTrackResult
+  overload: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked*
+  nameWithType.vb: CoordinateTracker.AddOrTrackIfUntracked(ByRef Coordinate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked(ByRef SudokuSpice.Coordinate)
+  name.vb: AddOrTrackIfUntracked(ByRef Coordinate)
+- uid: SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate@)
+  id: Untrack(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: Untrack(Coordinate)
+  nameWithType: CoordinateTracker.Untrack(Coordinate)
+  fullName: SudokuSpice.CoordinateTracker.Untrack(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Untrack
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 142
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nUntracks a given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. The <code>Coordinate</code> must be currently\ntracked.\n"
+  example: []
+  syntax:
+    content: public void Untrack(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> to untrack.
+    content.vb: Public Sub Untrack(ByRef c As Coordinate)
+  overload: SudokuSpice.CoordinateTracker.Untrack*
+  nameWithType.vb: CoordinateTracker.Untrack(ByRef Coordinate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.CoordinateTracker.Untrack(ByRef SudokuSpice.Coordinate)
+  name.vb: Untrack(ByRef Coordinate)
+- uid: SudokuSpice.CoordinateTracker.UntrackAll
+  commentId: M:SudokuSpice.CoordinateTracker.UntrackAll
+  id: UntrackAll
+  parent: SudokuSpice.CoordinateTracker
+  langs:
+  - csharp
+  - vb
+  name: UntrackAll()
+  nameWithType: CoordinateTracker.UntrackAll()
+  fullName: SudokuSpice.CoordinateTracker.UntrackAll()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/CoordinateTracker.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: UntrackAll
+    path: ../SudokuSpice/CoordinateTracker.cs
+    startLine: 159
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: "\nUntracks all <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  example: []
+  syntax:
+    content: public void UntrackAll()
+    content.vb: Public Sub UntrackAll
+  overload: SudokuSpice.CoordinateTracker.UntrackAll*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.CoordinateTracker.NumTracked*
+  commentId: Overload:SudokuSpice.CoordinateTracker.NumTracked
+  name: NumTracked
+  nameWithType: CoordinateTracker.NumTracked
+  fullName: SudokuSpice.CoordinateTracker.NumTracked
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SudokuSpice.CoordinateTracker.Size*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Size
+  name: Size
+  nameWithType: CoordinateTracker.Size
+  fullName: SudokuSpice.CoordinateTracker.Size
+- uid: SudokuSpice.CoordinateTracker.TrackedCoords*
+  commentId: Overload:SudokuSpice.CoordinateTracker.TrackedCoords
+  name: TrackedCoords
+  nameWithType: CoordinateTracker.TrackedCoords
+  fullName: SudokuSpice.CoordinateTracker.TrackedCoords
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Coordinate>
+  nameWithType: ReadOnlySpan<Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
+  nameWithType.vb: ReadOnlySpan(Of Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
+  name.vb: ReadOnlySpan(Of Coordinate)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: SudokuSpice.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.CoordinateTracker.#ctor*
+  commentId: Overload:SudokuSpice.CoordinateTracker.#ctor
+  name: CoordinateTracker
+  nameWithType: CoordinateTracker.CoordinateTracker
+  fullName: SudokuSpice.CoordinateTracker.CoordinateTracker
+- uid: SudokuSpice.CoordinateTracker
+  commentId: T:SudokuSpice.CoordinateTracker
+  parent: SudokuSpice
+  name: CoordinateTracker
+  nameWithType: CoordinateTracker
+  fullName: SudokuSpice.CoordinateTracker
+- uid: SudokuSpice.CoordinateTracker.Add*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Add
+  name: Add
+  nameWithType: CoordinateTracker.Add
+  fullName: SudokuSpice.CoordinateTracker.Add
+- uid: SudokuSpice.CoordinateTracker.Track*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Track
+  name: Track
+  nameWithType: CoordinateTracker.Track
+  fullName: SudokuSpice.CoordinateTracker.Track
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked*
+  commentId: Overload:SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked
+  name: AddOrTrackIfUntracked
+  nameWithType: CoordinateTracker.AddOrTrackIfUntracked
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackIfUntracked
+- uid: SudokuSpice.CoordinateTracker.AddOrTrackResult
+  commentId: T:SudokuSpice.CoordinateTracker.AddOrTrackResult
+  parent: SudokuSpice
+  name: CoordinateTracker.AddOrTrackResult
+  nameWithType: CoordinateTracker.AddOrTrackResult
+  fullName: SudokuSpice.CoordinateTracker.AddOrTrackResult
+- uid: SudokuSpice.CoordinateTracker.Untrack*
+  commentId: Overload:SudokuSpice.CoordinateTracker.Untrack
+  name: Untrack
+  nameWithType: CoordinateTracker.Untrack
+  fullName: SudokuSpice.CoordinateTracker.Untrack
+- uid: SudokuSpice.CoordinateTracker.UntrackAll*
+  commentId: Overload:SudokuSpice.CoordinateTracker.UntrackAll
+  name: UntrackAll
+  nameWithType: CoordinateTracker.UntrackAll
+  fullName: SudokuSpice.CoordinateTracker.UntrackAll

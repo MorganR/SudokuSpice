@@ -101,7 +101,14 @@ See [the docs](https://www.sudokuspice.dev) for more information.
 
 ## Releases
 
-## [3.1.0](/releases/v3.1.0/) - 2021-08-23
+### 3.2.0 - 2021-09-19
+
+* Add rule-based support for multiples of a given value
+  * Add CountPerUniqueValue to IReadOnlyPuzzle
+  * Add MaxCountPer* rules 
+  * Rename IReadOnlyPossibleValues.AllPossibleValues to UniquePossibleValues
+
+### 3.1.0 - 2021-08-23
 
 * Made PossibleValues public
 
