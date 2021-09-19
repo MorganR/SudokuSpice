@@ -69,19 +69,30 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="custom-rules">Custom Rules</h1>
 
-<p>Let's say we want to solve a puzzle that also enforces that the diagonals contain all unique
-values. In this case, we can still use the standard
+<p>A rule's main job is to provide the possible values at any coordinate based on its criteria. It
+does this through the <code>IRule.GetPossibleValues</code> method. The rule does not, however, <em>enforce</em> its
+criteria. That's a job for the <a class="xref" href="../api/SudokuSpice.RuleBased.IRuleKeeper.html"><code>IRuleKeeper</code></a>.</p>
+<p>The rule keeper will call <code>Update</code> and <code>Revert</code> to inform the rule about changes to the puzzle.
+When a value is going to be set, the rule keeper calls <code>Update</code> so that the rule can track any
+necessary changes to the possible values across the puzzle according to its own criteria. It also
+identifies any coordinates that have been affected by the change.</p>
+<p>The rule keeper then verifies that the puzzle is still solvable after these changes. If the puzzle
+is no longer solvable, or if the rule keeper is undoing a previous move, it will call <code>Revert</code>.
+This tells the rule that a coordinate was previously set to a given value, but is now being unset.
+It essentially does the opposite change to <code>Update</code>, and optionally identifies affected coordinates.</p>
+<p>Let's look at an example. Say we want to solve a puzzle that also enforces that the diagonals
+contain all unique values. In this case, we can still use the standard
 <a class="xref" href="../api/SudokuSpice.RuleBased.PuzzleWithPossibleValues.html"><code>PuzzleWithPossibleValues</code></a> to store the data,
 but we need to add a custom rule. In this example, we'll go through the steps for implementing and
 using the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
 <h2 id="creating-a-rule">Creating a rule</h2>
-<p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a>, and we'll
-need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the <a class="xref" href="../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an
-efficient set-like struct using the 32 bits of a <code>uint</code>.</p>
+<p>The new rule needs to extend <a class="xref" href="../api/SudokuSpice.RuleBased.Rules.IRule.html"><code>IRule</code></a>, and we'll need to
+have some way of tracking the set of values that are available in each diagonal. For this, we'll use
+the <a class="xref" href="../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient set-like struct
+using the 32 bits of a <code>uint</code>.</p>
 <h3 id="tryinit">TryInit</h3>
 <p>When starting to solve a puzzle, the rule keeper will call <code>IRule.TryInit</code>. This is where we
-setup our calls and perform initial checks against this rule.</p>
+setup our class and perform initial checks against this rule.</p>
 <p>Note: Rules are stateful, so a given rule should never be used to solve multiple puzzles at once,
 or acted on from multiple threads.</p>
 <pre><code class="lang-csharp">public class DiagonalUniquenessRule : IRule
@@ -94,10 +105,10 @@ or acted on from multiple threads.</p>
     private BitVector _unsetBackwardDiag;
     private BitVector _unsetForwardDiag;
 
-    public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues)
+    public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
     {
         _puzzle = puzzle;
-        _unsetBackwardDiag = _unsetForwardDiag = _allPossibleValues = allPossibleValues;
+        _unsetBackwardDiag = _unsetForwardDiag = _allPossibleValues = uniquePossibleValues;
         // Iterate through the backward diagonal (like a backslash '\')
         for (int row = 0, col = 0; row &lt; puzzle.Size; row++, col++)
         {
