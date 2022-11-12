@@ -57,6 +57,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                         continue;
                     }
                     var possibilities = graph.GetAllPossibilitiesAt(in coord);
+                    Assert.NotNull(possibilities);
                     Assert.All(possibilities, p => Assert.Equal(NodeState.UNKNOWN, p!.State));
                 }
             }

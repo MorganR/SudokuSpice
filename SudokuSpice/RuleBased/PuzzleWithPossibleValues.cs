@@ -124,7 +124,12 @@ namespace SudokuSpice.RuleBased
         public int? this[int row, int col]
         {
             get => _puzzle[row, col];
-            set => _puzzle[row, col] = value;
+            set {
+                _puzzle[row, col] = value;
+                if (!value.HasValue) {
+                    _possibleValues.Reset(new Coordinate(row, col));
+                }
+            }
         }
 
         /// <inheritdoc cref="IPuzzle{T}"/>

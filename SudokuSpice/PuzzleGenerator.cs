@@ -131,7 +131,7 @@ namespace SudokuSpice
                 Coordinate randomCoord = _GetRandomTrackedCoordinate(setCoordinatesToTry);
                 int? previousValue = puzzle[randomCoord.Row, randomCoord.Column];
                 setCoordinatesToTry.Untrack(in randomCoord);
-                if (!_TryUnsetSquareAt(randomCoord, puzzle.NumSetSquares, puzzle, cancellationToken))
+                if (!_TryUnsetSquareAt(randomCoord, puzzle, cancellationToken))
                 {
                     continue;
                 }
@@ -153,16 +153,9 @@ namespace SudokuSpice
 
         private bool _TryUnsetSquareAt(
             in Coordinate c,
-            int numEmptySquares,
             TPuzzle puzzle,
             CancellationToken? cancellationToken)
         {
-            // Set without checks when there can't be conflicts.
-            if (numEmptySquares < 3)
-            {
-                puzzle[c.Row, c.Column] = null;
-                return true;
-            }
             int? previousValue = puzzle[c.Row, c.Column];
             puzzle[c.Row, c.Column] = null;
             if (_solver.HasUniqueSolution(puzzle, cancellationToken))

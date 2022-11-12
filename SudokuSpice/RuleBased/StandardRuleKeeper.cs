@@ -292,6 +292,6 @@ namespace SudokuSpice.RuleBased
         /// Not implemented.
         /// </summary>
         /// <exception cref="NotImplementedException">Always</exception>
-        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector allPossibleValues) => throw new NotImplementedException();
+        public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues) => throw new NotImplementedException();
     }
 }

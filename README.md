@@ -103,6 +103,10 @@ See [the docs](https://www.sudokuspice.dev) for more information.
 
 ### 3.2.X
 
+#### 3.2.2 - 2022-11-12
+
+* Fix [issue #1](https://github.com/MorganR/SudokuSpice/issues/1), where the rule-based generator can create non-unique puzzles.
+
 #### 3.2.1 - 2021-09-19
 
 * Fix bug with Puzzle.NumSquares when constructing puzzle from an array.

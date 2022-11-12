@@ -24,7 +24,12 @@ namespace SudokuSpice.RuleBased.Test
             PuzzleWithPossibleValues puzzle = generator.Generate(size, numToSet, TimeSpan.FromSeconds(60));
 
             Assert.Equal(size * size - numToSet, puzzle.NumEmptySquares);
-            var solver = StandardPuzzles.CreateSolver();
+            var solver = new ConstraintBased.PuzzleSolver<PuzzleWithPossibleValues>(
+                new ConstraintBased.Constraints.IConstraint[] {
+                    new ConstraintBased.Constraints.RowUniquenessConstraint(),
+                    new ConstraintBased.Constraints.ColumnUniquenessConstraint(),
+                    new ConstraintBased.Constraints.BoxUniquenessConstraint(),
+                });
             SolveStats stats = solver.ComputeStatsForAllSolutions(puzzle);
             Assert.Equal(1, stats.NumSolutionsFound);
         }
