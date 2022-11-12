@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net5.0</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <Description>An efficient sudoku solving and generating library targeting .NET 5.
+    <Description>An efficient sudoku solving and generating library targeting .NET 5 and above.
 
  This library is designed to work as a framework for solving or generating any Sudoku-style puzzles. For example, you can implement custom rules, or mix-and-match the provided rules, to solve or generate whatever puzzle you need. 
 
@@ -19,9 +19,9 @@ Docs: https://www.sudokuspice.dev/</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <Version>3.2.1</Version>
+    <Version>3.2.2</Version>
     <Copyright>Morgan Roff</Copyright>
-    <PackageReleaseNotes>Fixes a bug with Puzzle.NumSquares when constructed from an array.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixes a bug where the rule-based generator can create non-unique puzzles.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
