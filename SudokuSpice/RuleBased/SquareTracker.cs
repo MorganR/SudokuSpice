@@ -51,7 +51,7 @@ namespace SudokuSpice.RuleBased
         /// </summary>
         /// <param name="puzzle">The puzzle to solve.</param>
         /// <param name="ruleKeeper">The rule-keeper to satisfy.</param>
-        /// <param name="heuristic">An optional heuristic to user.</param>
+        /// <param name="heuristic">An optional heuristic to use.</param>
         /// <param name="tracker">
         /// An <c>out</c> param where the tracker will be created. Set to null if initialization
         /// fails (i.e. this method returns false).
