@@ -1,0 +1,1072 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  id: ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  children:
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  - SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+  langs:
+  - csharp
+  - vb
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ExactCoverGraph
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 33
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nHolds an exact-cover graph for the current puzzle being solved.\n\nThis is an extension of the\n<a href=\"https://en.wikipedia.org/wiki/Exact_cover\">exact-cover matrix</a> concept. Rows of\nthe exact-cover matrix, i.e. a specific location and possible value for that location, are\nrepresented by <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects. These are linked together by\n<xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> objects, which represent the columns of an exact-cover matrix.\n\nFor example, the <xref href=\"SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint\" data-throw-if-not-resolved=\"false\"></xref> uses a required \n<xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> to link all the <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects on a single row\nthat have the same possible value. This way, when one of these possibilities is selected,\nthen the others are all dropped.\n\nTo extend the concept into a larger graph, this also uses <xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref>s\nto create subgroups over <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects and/or other\n<xref href=\"SudokuSpice.ConstraintBased.OptionalObjective\" data-throw-if-not-resolved=\"false\"></xref> objects. This allows for much more complex constraints,\nsuch as the <xref href=\"SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nThe ExactCoverGraph adds <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects for all the unset coordinates\nin a puzzle on creation, as well as <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> objects that group all the\npossible values for each location. These effectively implements the constraint: &quot;Each\ncoordinate in the puzzle must have one and only one value.&quot;\n"
+  example: []
+  syntax:
+    content: public sealed class ExactCoverGraph
+    content.vb: Public NotInheritable Class ExactCoverGraph
+  seealso:
+  - linkType: HRef
+    linkId: https://en.wikipedia.org/wiki/Exact_cover
+    altText: https://en.wikipedia.org/wiki/Exact_cover
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  id: AllPossibleValues
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: AllPossibleValues
+  nameWithType: ExactCoverGraph.AllPossibleValues
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: AllPossibleValues
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 43
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nContains the possible values for the current puzzle.\n"
+  example: []
+  syntax:
+    content: public ReadOnlySpan<int> AllPossibleValues { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{System.Int32}
+    content.vb: Public ReadOnly Property AllPossibleValues As ReadOnlySpan(Of Integer)
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+  id: ValuesToIndices
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: ValuesToIndices
+  nameWithType: ExactCoverGraph.ValuesToIndices
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: ValuesToIndices
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 49
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nMaps possible values for the puzzle to indices in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues\" data-throw-if-not-resolved=\"false\"></xref>\narray.\n"
+  example: []
+  syntax:
+    content: public IReadOnlyDictionary<int, int> ValuesToIndices { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+    content.vb: Public ReadOnly Property ValuesToIndices As IReadOnlyDictionary(Of Integer, Integer)
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
+  id: Create(SudokuSpice.IReadOnlyPuzzle)
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: Create(IReadOnlyPuzzle)
+  nameWithType: ExactCoverGraph.Create(IReadOnlyPuzzle)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.Create(SudokuSpice.IReadOnlyPuzzle)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: Create
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 89
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nCreates an exact-cover graph for solving the given puzzle.\n\nThis adds <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> objects for all the unset coordinates in a puzzle on\ncreation, as well as <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref> objects that group all the possible values\nfor each location. These effectively implements the constraint: &quot;Each square in the\npuzzle must have one and only one value.&quot;\n"
+  example: []
+  syntax:
+    content: public static ExactCoverGraph Create(IReadOnlyPuzzle puzzle)
+    parameters:
+    - id: puzzle
+      type: SudokuSpice.IReadOnlyPuzzle
+      description: The puzzle to solve.
+    return:
+      type: SudokuSpice.ConstraintBased.ExactCoverGraph
+    content.vb: Public Shared Function Create(puzzle As IReadOnlyPuzzle) As ExactCoverGraph
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.Create*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+  id: GetAllPossibilitiesAt(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: GetAllPossibilitiesAt(Coordinate)
+  nameWithType: ExactCoverGraph.GetAllPossibilitiesAt(Coordinate)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetAllPossibilitiesAt
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 139
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets the possibilities at the given <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref>. This returns null if\nthe square&apos;s value was preset in the current puzzle being solved.\n"
+  example: []
+  syntax:
+    content: public Possibility[] GetAllPossibilitiesAt(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+    return:
+      type: SudokuSpice.ConstraintBased.Possibility[]
+    content.vb: Public Function GetAllPossibilitiesAt(ByRef c As Coordinate) As Possibility()
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt*
+  nameWithType.vb: ExactCoverGraph.GetAllPossibilitiesAt(ByRef Coordinate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt(ByRef SudokuSpice.Coordinate)
+  name.vb: GetAllPossibilitiesAt(ByRef Coordinate)
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  id: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 145
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>s that have at least one\nconcrete <xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref> as a direct possibility.\n"
+  example: []
+  syntax:
+    content: public IEnumerable<Objective> GetUnsatisfiedRequiredObjectivesWithConcretePossibilities()
+    return:
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
+    content.vb: Public Function GetUnsatisfiedRequiredObjectivesWithConcretePossibilities As IEnumerable(Of Objective)
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  id: GetUnsatisfiedRequiredObjectives
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: GetUnsatisfiedRequiredObjectives()
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectives()
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetUnsatisfiedRequiredObjectives
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 153
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets all the currently unsatisfied <xref href=\"SudokuSpice.ConstraintBased.Objective\" data-throw-if-not-resolved=\"false\"></xref>s.\n"
+  example: []
+  syntax:
+    content: public IEnumerable<Objective> GetUnsatisfiedRequiredObjectives()
+    return:
+      type: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
+    content.vb: Public Function GetUnsatisfiedRequiredObjectives As IEnumerable(Of Objective)
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  commentId: M:SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  id: GetPossibilitiesOnRow(System.Int32)
+  parent: SudokuSpice.ConstraintBased.ExactCoverGraph
+  langs:
+  - csharp
+  - vb
+  name: GetPossibilitiesOnRow(Int32)
+  nameWithType: ExactCoverGraph.GetPossibilitiesOnRow(Int32)
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+      branch: master
+      repo: https://github.com/MorganR/SudokuSpice
+    id: GetPossibilitiesOnRow
+    path: ../SudokuSpice/ConstraintBased/ExactCoverGraph.cs
+    startLine: 175
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.ConstraintBased
+  summary: "\nGets all the possiblities, grouped by column, on the requested row.\n\nIndexing the result looks like:\n\n<code>var row = graph.GetSquaresOnRow(rowIndex);\nvar possibility = row[columnIndex][valueIndex];</code>\n"
+  example: []
+  syntax:
+    content: public ReadOnlySpan<Possibility[]> GetPossibilitiesOnRow(int row)
+    parameters:
+    - id: row
+      type: System.Int32
+      description: A zero-based row index.
+    return:
+      type: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+    content.vb: Public Function GetPossibilitiesOnRow(row As Integer) As ReadOnlySpan(Of Possibility())
+  overload: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SudokuSpice.ConstraintBased.Possibility
+  commentId: T:SudokuSpice.ConstraintBased.Possibility
+  name: Possibility
+  nameWithType: Possibility
+  fullName: SudokuSpice.ConstraintBased.Possibility
+- uid: SudokuSpice.ConstraintBased.IObjective
+  commentId: T:SudokuSpice.ConstraintBased.IObjective
+  parent: SudokuSpice.ConstraintBased
+  name: IObjective
+  nameWithType: IObjective
+  fullName: SudokuSpice.ConstraintBased.IObjective
+- uid: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+  name: RowUniquenessConstraint
+  nameWithType: RowUniquenessConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
+- uid: SudokuSpice.ConstraintBased.Objective
+  commentId: T:SudokuSpice.ConstraintBased.Objective
+  parent: SudokuSpice.ConstraintBased
+  name: Objective
+  nameWithType: Objective
+  fullName: SudokuSpice.ConstraintBased.Objective
+- uid: SudokuSpice.ConstraintBased.OptionalObjective
+  commentId: T:SudokuSpice.ConstraintBased.OptionalObjective
+  parent: SudokuSpice.ConstraintBased
+  name: OptionalObjective
+  nameWithType: OptionalObjective
+  fullName: SudokuSpice.ConstraintBased.OptionalObjective
+- uid: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+  commentId: T:SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+  name: MagicSquaresConstraint
+  nameWithType: MagicSquaresConstraint
+  fullName: SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+- uid: SudokuSpice.ConstraintBased
+  commentId: N:SudokuSpice.ConstraintBased
+  name: SudokuSpice.ConstraintBased
+  nameWithType: SudokuSpice.ConstraintBased
+  fullName: SudokuSpice.ConstraintBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  name: AllPossibleValues
+  nameWithType: ExactCoverGraph.AllPossibleValues
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Int32>
+  nameWithType: ReadOnlySpan<Int32>
+  fullName: System.ReadOnlySpan<System.Int32>
+  nameWithType.vb: ReadOnlySpan(Of Int32)
+  fullName.vb: System.ReadOnlySpan(Of System.Int32)
+  name.vb: ReadOnlySpan(Of Int32)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  commentId: P:SudokuSpice.ConstraintBased.ExactCoverGraph.AllPossibleValues
+  isExternal: true
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+  name: ValuesToIndices
+  nameWithType: ExactCoverGraph.ValuesToIndices
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.ValuesToIndices
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  name: IReadOnlyDictionary<Int32, Int32>
+  nameWithType: IReadOnlyDictionary<Int32, Int32>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<System.Int32, System.Int32>
+  nameWithType.vb: IReadOnlyDictionary(Of Int32, Int32)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.Int32, System.Int32)
+  name.vb: IReadOnlyDictionary(Of Int32, Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    nameWithType: IReadOnlyDictionary
+    fullName: System.Collections.Generic.IReadOnlyDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.Create*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.Create
+  name: Create
+  nameWithType: ExactCoverGraph.Create
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.Create
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph
+  commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
+  parent: SudokuSpice.ConstraintBased
+  name: ExactCoverGraph
+  nameWithType: ExactCoverGraph
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt
+  name: GetAllPossibilitiesAt
+  nameWithType: ExactCoverGraph.GetAllPossibilitiesAt
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetAllPossibilitiesAt
+- uid: SudokuSpice.ConstraintBased.Possibility[]
+  isExternal: true
+  name: Possibility[]
+  nameWithType: Possibility[]
+  fullName: SudokuSpice.ConstraintBased.Possibility[]
+  nameWithType.vb: Possibility()
+  fullName.vb: SudokuSpice.ConstraintBased.Possibility()
+  name.vb: Possibility()
+  spec.csharp:
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  name: GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectivesWithConcretePossibilities
+- uid: System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
+  commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.ConstraintBased.Objective}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Objective>
+  nameWithType: IEnumerable<Objective>
+  fullName: System.Collections.Generic.IEnumerable<SudokuSpice.ConstraintBased.Objective>
+  nameWithType.vb: IEnumerable(Of Objective)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SudokuSpice.ConstraintBased.Objective)
+  name.vb: IEnumerable(Of Objective)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.Objective
+    name: Objective
+    nameWithType: Objective
+    fullName: SudokuSpice.ConstraintBased.Objective
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.Objective
+    name: Objective
+    nameWithType: Objective
+    fullName: SudokuSpice.ConstraintBased.Objective
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  name: GetUnsatisfiedRequiredObjectives
+  nameWithType: ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetUnsatisfiedRequiredObjectives
+- uid: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow*
+  commentId: Overload:SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow
+  name: GetPossibilitiesOnRow
+  nameWithType: ExactCoverGraph.GetPossibilitiesOnRow
+  fullName: SudokuSpice.ConstraintBased.ExactCoverGraph.GetPossibilitiesOnRow
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.ConstraintBased.Possibility[]}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  name: ReadOnlySpan<Possibility[]>
+  nameWithType: ReadOnlySpan<Possibility[]>
+  fullName: System.ReadOnlySpan<SudokuSpice.ConstraintBased.Possibility[]>
+  nameWithType.vb: ReadOnlySpan(Of Possibility())
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.ConstraintBased.Possibility())
+  name.vb: ReadOnlySpan(Of Possibility())
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    nameWithType: ReadOnlySpan
+    fullName: System.ReadOnlySpan
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SudokuSpice.ConstraintBased.Possibility
+    name: Possibility
+    nameWithType: Possibility
+    fullName: SudokuSpice.ConstraintBased.Possibility
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
