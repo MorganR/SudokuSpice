@@ -1,21 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Custom Rules | SudokuSpice </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Custom Rules | SudokuSpice ">
-    <meta name="generator" content="docfx 2.56.7.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Custom Rules | SudokuSpice </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Custom Rules | SudokuSpice ">
     
-    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
-    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../../styles/docfx.css">
-    <link rel="stylesheet" href="../../../styles/main.css">
-    <meta property="docfx:navrel" content="../../v2.0.0">
-    <meta property="docfx:tocrel" content="toc.html">
+    
+      <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../v3.2.2">
+      <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -23,7 +23,7 @@
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../../index.html">
                 <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
               </a>
@@ -47,7 +47,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -57,7 +57,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -70,7 +70,7 @@
 <h1 id="custom-rules">Custom Rules</h1>
 
 <p>Let's say we want to solve a puzzle that also enforces that the diagonals contain all unique
-values. In this case, we can use the standard <a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> to store the
+values. In this case, we can use the standard <a class="xref" href="../../../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> to store the
 data, but we need to add a custom rule. In this example, we'll go through the steps for
 implementing and using the
 <a class="xref" href="../api/SudokuSpice.Rules.DiagonalUniquenessRule.html"><code>DiagonalUniquenessRule</code></a>.</p>
@@ -78,7 +78,7 @@ implementing and using the
 <h3 id="constructor">Constructor</h3>
 <p>The new rule needs to extend the <a class="xref" href="../api/SudokuSpice.Rules.ISudokuRule.html"><code>ISudokuRule</code></a>, and we'll
 need to have some way of tracking the set of values that are available in each diagonal. For this
-we'll use the <a class="xref" href="../api/SudokuSpice.Data.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
+we'll use the <a class="xref" href="../../../api/SudokuSpice.BitVector.html"><code>BitVector</code></a> struct, which provides an efficient
 set-like struct using the bits of a <code>uint</code>.</p>
 <pre><code class="lang-csharp">public class DiagonalUniquenessRule : ISudokuRule
 {
@@ -146,7 +146,7 @@ private bool _IsOnForwardDiag(in Coordinate c)
 <h3 id="update">Update</h3>
 <p>Great, now we need to provide a way for the rule keeper to update this rule. When the rule keeper
 wants to set a square's value, it will call <code>ISudokuRule.Update</code> with the location and new value.
-It will also include a <a class="xref" href="../api/SudokuSpice.Data.CoordinateTracker.html"><code>CoordinateTracker</code></a>, with which
+It will also include a <a class="xref" href="../../../api/SudokuSpice.CoordinateTracker.html"><code>CoordinateTracker</code></a>, with which
 this rule needs to track any coordinates whose possible values have changed.</p>
 <pre><code class="lang-csharp">public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
 {
@@ -201,7 +201,7 @@ public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
 <p>Lastly, we must implement the <code>ISudokuRule.CopyWithNewReference</code> method to provide a deep copy for
 the
 <a class="xref" href="../api/SudokuSpice.Solver.html#SudokuSpice_Solver_GetStatsForAllSolutions"><code>Solver.GetStatsForAllSolutions</code></a>
-method and for the <a class="xref" href="../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
+method and for the <a class="xref" href="../../../api/SudokuSpice.PuzzleGenerator-1.html"><code>PuzzleGenerator</code></a>.</p>
 <pre><code class="lang-csharp">public ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
 {
     return new DiagonalUniquenessRule(this, puzzle);
@@ -252,27 +252,28 @@ solver.Solve();
     });
 </code></pre>
 <p>Remember to include heuristics for the fastest performance!</p>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v2.0.0/articles/custom-rules.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v2.0.0/articles/custom-rules.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
+                <h5>In this article</h5>
                 <div></div>
               </nav>
             </div>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -280,14 +281,14 @@ solver.Solve();
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            
-            <span>Generated by <strong>DocFX</strong></span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
     </div>
-    
-    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../../styles/main.js"></script>
   </body>

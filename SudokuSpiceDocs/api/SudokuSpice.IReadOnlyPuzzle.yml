@@ -32,17 +32,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read-only access to a puzzle&apos;s data.\n"
+  summary: Provides read-only access to a puzzle's data.
   example: []
   syntax:
     content: public interface IReadOnlyPuzzle
     content.vb: Public Interface IReadOnlyPuzzle
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
+  derivedClasses:
+  - SudokuSpice.Puzzle
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues
 - uid: SudokuSpice.IReadOnlyPuzzle.Size
   commentId: P:SudokuSpice.IReadOnlyPuzzle.Size
   id: Size
@@ -74,10 +71,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property Size As Integer
   overload: SudokuSpice.IReadOnlyPuzzle.Size*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSquares
   commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSquares
   id: NumSquares
@@ -109,10 +102,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property NumSquares As Integer
   overload: SudokuSpice.IReadOnlyPuzzle.NumSquares*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
   commentId: P:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
   id: NumEmptySquares
@@ -144,10 +133,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property NumEmptySquares As Integer
   overload: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
   commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
   id: NumSetSquares
@@ -179,10 +164,6 @@ items:
       type: System.Int32
     content.vb: ReadOnly Property NumSetSquares As Integer
   overload: SudokuSpice.IReadOnlyPuzzle.NumSetSquares*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   id: AllPossibleValuesSpan
@@ -205,7 +186,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets all the possible values for this puzzle.\n\nIf a value can be repeated n times in a region, then there should be n instances of it\nin the span.\n"
+  summary: >-
+    Gets all the possible values for this puzzle.
+
+
+    If a value can be repeated n times in a region, then there should be n instances of it
+
+    in the span.
   example: []
   syntax:
     content: ReadOnlySpan<int> AllPossibleValuesSpan { get; }
@@ -214,10 +201,6 @@ items:
       type: System.ReadOnlySpan{System.Int32}
     content.vb: ReadOnly Property AllPossibleValuesSpan As ReadOnlySpan(Of Integer)
   overload: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   commentId: P:SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   id: CountPerUniqueValue
@@ -240,7 +223,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nThe count of times each unique value is expected to be included in a region.\n"
+  summary: The count of times each unique value is expected to be included in a region.
   example: []
   syntax:
     content: IReadOnlyDictionary<int, int> CountPerUniqueValue { get; }
@@ -249,10 +232,6 @@ items:
       type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
     content.vb: ReadOnly Property CountPerUniqueValue As IReadOnlyDictionary(Of Integer, Integer)
   overload: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
   commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
   id: Item(System.Int32,System.Int32)
@@ -260,9 +239,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Item[Int32, Int32]
-  nameWithType: IReadOnlyPuzzle.Item[Int32, Int32]
-  fullName: SudokuSpice.IReadOnlyPuzzle.Item[System.Int32, System.Int32]
+  name: this[int, int]
+  nameWithType: IReadOnlyPuzzle.this[int, int]
+  fullName: SudokuSpice.IReadOnlyPuzzle.this[int, int]
   type: Property
   source:
     remote:
@@ -275,7 +254,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets the current value of a given square.\n"
+  summary: Gets the current value of a given square.
   example: []
   syntax:
     content: int? this[int row, int col] { get; }
@@ -286,15 +265,11 @@ items:
       type: System.Int32
     return:
       type: System.Nullable{System.Int32}
-    content.vb: ReadOnly Property Item(row As Integer, col As Integer) As Integer?
+    content.vb: ReadOnly Default Property this[](row As Integer, col As Integer) As Integer?
   overload: SudokuSpice.IReadOnlyPuzzle.Item*
-  nameWithType.vb: IReadOnlyPuzzle.Item(Int32, Int32)
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: SudokuSpice.IReadOnlyPuzzle.Item(System.Int32, System.Int32)
-  name.vb: Item(Int32, Int32)
+  nameWithType.vb: IReadOnlyPuzzle.this[](Integer, Integer)
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
 - uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
   commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
   id: Item(SudokuSpice.Coordinate@)
@@ -302,9 +277,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Item[Coordinate]
-  nameWithType: IReadOnlyPuzzle.Item[Coordinate]
-  fullName: SudokuSpice.IReadOnlyPuzzle.Item[SudokuSpice.Coordinate]
+  name: this[Coordinate]
+  nameWithType: IReadOnlyPuzzle.this[Coordinate]
+  fullName: SudokuSpice.IReadOnlyPuzzle.this[SudokuSpice.Coordinate]
   type: Property
   source:
     remote:
@@ -318,21 +293,35 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   syntax:
-    content: int? this[in Coordinate c] { get; }
+    content: >-
+      [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
+
+      int? this[in Coordinate c] { get; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
     return:
       type: System.Nullable{System.Int32}
-    content.vb: ReadOnly Property Item(ByRef c As Coordinate) As Integer?
+    content.vb: >-
+      <SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification:="This makes sense with Coordinate, which removes any ambiguity between first and second arguments")>
+
+      ReadOnly Default Property this[](c As Coordinate) As Integer?
   overload: SudokuSpice.IReadOnlyPuzzle.Item*
-  nameWithType.vb: IReadOnlyPuzzle.Item(ByRef Coordinate)
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: SudokuSpice.IReadOnlyPuzzle.Item(ByRef SudokuSpice.Coordinate)
-  name.vb: Item(ByRef Coordinate)
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: CA1043:Use Integral Or String Argument For Indexers
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This makes sense with Coordinate, which removes any ambiguity between first and second arguments
+  nameWithType.vb: IReadOnlyPuzzle.this[](Coordinate)
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
 - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   commentId: M:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   id: GetUnsetCoords
@@ -361,7 +350,7 @@ items:
     content: ReadOnlySpan<Coordinate> GetUnsetCoords()
     return:
       type: System.ReadOnlySpan{SudokuSpice.Coordinate}
-    content.vb: Function GetUnsetCoords As ReadOnlySpan(Of Coordinate)
+    content.vb: Function GetUnsetCoords() As ReadOnlySpan(Of Coordinate)
   overload: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords*
 references:
 - uid: SudokuSpice
@@ -371,6 +360,7 @@ references:
   fullName: SudokuSpice
 - uid: SudokuSpice.IReadOnlyPuzzle.Size*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.Size
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Size
   name: Size
   nameWithType: IReadOnlyPuzzle.Size
   fullName: SudokuSpice.IReadOnlyPuzzle.Size
@@ -378,32 +368,41 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSquares*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumSquares
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSquares
   name: NumSquares
   nameWithType: IReadOnlyPuzzle.NumSquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumSquares
 - uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumEmptySquares
   name: NumEmptySquares
   nameWithType: IReadOnlyPuzzle.NumEmptySquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSetSquares
   name: NumSetSquares
   nameWithType: IReadOnlyPuzzle.NumSetSquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
 - uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_AllPossibleValuesSpan
   name: AllPossibleValuesSpan
   nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
   fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
@@ -411,49 +410,41 @@ references:
   commentId: T:System.ReadOnlySpan{System.Int32}
   parent: System
   definition: System.ReadOnlySpan`1
-  name: ReadOnlySpan<Int32>
-  nameWithType: ReadOnlySpan<Int32>
-  fullName: System.ReadOnlySpan<System.Int32>
-  nameWithType.vb: ReadOnlySpan(Of Int32)
-  fullName.vb: System.ReadOnlySpan(Of System.Int32)
-  name.vb: ReadOnlySpan(Of Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<int>
+  nameWithType: ReadOnlySpan<int>
+  fullName: System.ReadOnlySpan<int>
+  nameWithType.vb: ReadOnlySpan(Of Integer)
+  fullName.vb: System.ReadOnlySpan(Of Integer)
+  name.vb: ReadOnlySpan(Of Integer)
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.ReadOnlySpan`1
   commentId: T:System.ReadOnlySpan`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   name: ReadOnlySpan<T>
   nameWithType: ReadOnlySpan<T>
   fullName: System.ReadOnlySpan<T>
@@ -463,35 +454,24 @@ references:
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue
   name: CountPerUniqueValue
   nameWithType: IReadOnlyPuzzle.CountPerUniqueValue
   fullName: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
@@ -499,65 +479,53 @@ references:
   commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IReadOnlyDictionary`2
-  name: IReadOnlyDictionary<Int32, Int32>
-  nameWithType: IReadOnlyDictionary<Int32, Int32>
-  fullName: System.Collections.Generic.IReadOnlyDictionary<System.Int32, System.Int32>
-  nameWithType.vb: IReadOnlyDictionary(Of Int32, Int32)
-  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.Int32, System.Int32)
-  name.vb: IReadOnlyDictionary(Of Int32, Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<int, int>
+  nameWithType: IReadOnlyDictionary<int, int>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<int, int>
+  nameWithType.vb: IReadOnlyDictionary(Of Integer, Integer)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of Integer, Integer)
+  name.vb: IReadOnlyDictionary(Of Integer, Integer)
   spec.csharp:
   - uid: System.Collections.Generic.IReadOnlyDictionary`2
     name: IReadOnlyDictionary
-    nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IReadOnlyDictionary`2
     name: IReadOnlyDictionary
-    nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IReadOnlyDictionary`2
   commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
   name: IReadOnlyDictionary<TKey, TValue>
   nameWithType: IReadOnlyDictionary<TKey, TValue>
   fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
@@ -567,103 +535,100 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IReadOnlyDictionary`2
     name: IReadOnlyDictionary
-    nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TValue
-    nameWithType: TValue
-    fullName: TValue
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IReadOnlyDictionary`2
     name: IReadOnlyDictionary
-    nameWithType: IReadOnlyDictionary
-    fullName: System.Collections.Generic.IReadOnlyDictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TValue
-    nameWithType: TValue
-    fullName: TValue
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: SudokuSpice.IReadOnlyPuzzle.Item*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.Item
-  name: Item
-  nameWithType: IReadOnlyPuzzle.Item
-  fullName: SudokuSpice.IReadOnlyPuzzle.Item
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_System_Int32_System_Int32_
+  name: this
+  nameWithType: IReadOnlyPuzzle.this
+  fullName: SudokuSpice.IReadOnlyPuzzle.this
+  nameWithType.vb: IReadOnlyPuzzle.this[]
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.this[]
+  name.vb: this[]
 - uid: System.Nullable{System.Int32}
   commentId: T:System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
-  fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
-  fullName.vb: System.Nullable(Of System.Int32)
-  name.vb: Nullable(Of Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   name: Nullable<T>
   nameWithType: Nullable<T>
   fullName: System.Nullable<T>
@@ -673,41 +638,31 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords*
   commentId: Overload:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
   name: GetUnsetCoords
   nameWithType: IReadOnlyPuzzle.GetUnsetCoords
   fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
@@ -715,6 +670,7 @@ references:
   commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
   parent: System
   definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   name: ReadOnlySpan<Coordinate>
   nameWithType: ReadOnlySpan<Coordinate>
   fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
@@ -724,32 +680,22 @@ references:
   spec.csharp:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.ReadOnlySpan`1
     name: ReadOnlySpan
-    nameWithType: ReadOnlySpan
-    fullName: System.ReadOnlySpan
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )

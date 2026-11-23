@@ -25,17 +25,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nProvides read-only access to possible value data for a puzzle.\n"
+  summary: Provides read-only access to possible value data for a puzzle.
   example: []
   syntax:
     content: public interface IReadOnlyPossibleValues
     content.vb: Public Interface IReadOnlyPossibleValues
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
+  derivedClasses:
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues
 - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.UniquePossibleValues
   commentId: P:SudokuSpice.RuleBased.IReadOnlyPossibleValues.UniquePossibleValues
   id: UniquePossibleValues
@@ -67,10 +63,6 @@ items:
       type: SudokuSpice.BitVector
     content.vb: ReadOnly Property UniquePossibleValues As BitVector
   overload: SudokuSpice.RuleBased.IReadOnlyPossibleValues.UniquePossibleValues*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate@)
   id: GetPossibleValues(SudokuSpice.Coordinate@)
@@ -78,9 +70,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetPossibleValues(Coordinate)
-  nameWithType: IReadOnlyPossibleValues.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate)
+  name: GetPossibleValues(in Coordinate)
+  nameWithType: IReadOnlyPossibleValues.GetPossibleValues(in Coordinate)
+  fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(in SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -93,7 +85,11 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nGets the current possible values for a given coordinate.\n\nIf the value is already set for the given coordinate, the result is undefined.\n"
+  summary: >-
+    Gets the current possible values for a given coordinate.
+
+
+    If the value is already set for the given coordinate, the result is undefined.
   example: []
   syntax:
     content: BitVector GetPossibleValues(in Coordinate c)
@@ -102,25 +98,39 @@ items:
       type: SudokuSpice.Coordinate
     return:
       type: SudokuSpice.BitVector
-    content.vb: Function GetPossibleValues(ByRef c As Coordinate) As BitVector
+    content.vb: Function GetPossibleValues(c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues*
-  nameWithType.vb: IReadOnlyPossibleValues.GetPossibleValues(ByRef Coordinate)
-  fullName.vb: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(ByRef SudokuSpice.Coordinate)
-  name.vb: GetPossibleValues(ByRef Coordinate)
+  nameWithType.vb: IReadOnlyPossibleValues.GetPossibleValues(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues(SudokuSpice.Coordinate)
+  name.vb: GetPossibleValues(Coordinate)
 references:
 - uid: SudokuSpice.RuleBased
   commentId: N:SudokuSpice.RuleBased
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
 - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.UniquePossibleValues*
   commentId: Overload:SudokuSpice.RuleBased.IReadOnlyPossibleValues.UniquePossibleValues
+  href: SudokuSpice.RuleBased.IReadOnlyPossibleValues.html#SudokuSpice_RuleBased_IReadOnlyPossibleValues_UniquePossibleValues
   name: UniquePossibleValues
   nameWithType: IReadOnlyPossibleValues.UniquePossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.UniquePossibleValues
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
+  href: SudokuSpice.BitVector.html
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.BitVector
@@ -131,12 +141,14 @@ references:
   fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues*
   commentId: Overload:SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues
+  href: SudokuSpice.RuleBased.IReadOnlyPossibleValues.html#SudokuSpice_RuleBased_IReadOnlyPossibleValues_GetPossibleValues_SudokuSpice_Coordinate__
   name: GetPossibleValues
   nameWithType: IReadOnlyPossibleValues.GetPossibleValues
   fullName: SudokuSpice.RuleBased.IReadOnlyPossibleValues.GetPossibleValues
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate

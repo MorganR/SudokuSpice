@@ -30,13 +30,27 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nEnforces a rule that certain regions in a puzzle must be\n<a href=\"https://en.wikipedia.org/wiki/Magic_square\">magic squares</a>, i.e. the sums of the\nvalues in each of their rows, columns, and (optionally) their diagonals add up to the same\nvalue.\n\nNote that this does <em>not</em> enforce uniqueness of values within the magic square as a\nwhole. It <em>does</em>, however, prevent value duplication within each row, column, and/or\ndiagonal. This can be combined with other rules if you need proper row, column, box, and/or\ndiagonal uniqueness.\n"
+  summary: >-
+    Enforces a rule that certain regions in a puzzle must be
+
+    <a href="https://en.wikipedia.org/wiki/Magic_square">magic squares</a>, i.e. the sums of the
+
+    values in each of their rows, columns, and (optionally) their diagonals add up to the same
+
+    value.
+
+
+    Note that this does <em>not</em> enforce uniqueness of values within the magic square as a
+
+    whole. It <em>does</em>, however, prevent value duplication within each row, column, and/or
+
+    diagonal. This can be combined with other rules if you need proper row, column, box, and/or
+
+    diagonal uniqueness.
   example: []
   syntax:
     content: 'public class MagicSquaresRule : IRule'
-    content.vb: >-
-      Public Class MagicSquaresRule
-          Implements IRule
+    content.vb: Public Class MagicSquaresRule Implements IRule
   inheritance:
   - System.Object
   implements:
@@ -49,12 +63,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)
   id: '#ctor(System.Int32,System.Collections.Generic.IEnumerable{SudokuSpice.Box},System.Boolean)'
@@ -62,9 +70,9 @@ items:
   langs:
   - csharp
   - vb
-  name: MagicSquaresRule(Int32, IEnumerable<Box>, Boolean)
-  nameWithType: MagicSquaresRule.MagicSquaresRule(Int32, IEnumerable<Box>, Boolean)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(System.Int32, System.Collections.Generic.IEnumerable<SudokuSpice.Box>, System.Boolean)
+  name: MagicSquaresRule(int, IEnumerable<Box>, bool)
+  nameWithType: MagicSquaresRule.MagicSquaresRule(int, IEnumerable<Box>, bool)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(int, System.Collections.Generic.IEnumerable<SudokuSpice.Box>, bool)
   type: Constructor
   source:
     remote:
@@ -77,33 +85,43 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nConstructs a rule that will enforce that the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code> are\nmagic squares based on the rows, columns, and, optionally, the diagonals.\n\nUnlike other rules, this rule can only be constructed for a specific puzzle size.\nAttempting to initialize this rule with an incompatible puzzle will fail.\n"
+  summary: >-
+    Constructs a rule that will enforce that the given <code class="paramref">squares</code> are
+
+    magic squares based on the rows, columns, and, optionally, the diagonals.
+
+
+    Unlike other rules, this rule can only be constructed for a specific puzzle size.
+
+    Attempting to initialize this rule with an incompatible puzzle will fail.
   example: []
   syntax:
     content: public MagicSquaresRule(int size, IEnumerable<Box> squares, bool includeDiagonals)
     parameters:
     - id: size
       type: System.Int32
-      description: "\nThe size of the puzzle this rule applies to.\n"
+      description: The size of the puzzle this rule applies to.
     - id: squares
       type: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
-      description: "\nThe locations of the magic squares. The squares&apos; size must be the square root of the\npuzzle <code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code>.\n"
+      description: >-
+        The locations of the magic squares. The squares' size must be the square root of the
+
+        puzzle <code class="paramref">size</code>.
     - id: includeDiagonals
       type: System.Boolean
-      description: "\nIf true, values along the diagonals of the square must also sum to the magic number.\n"
+      description: If true, values along the diagonals of the square must also sum to the magic number.
     content.vb: Public Sub New(size As Integer, squares As IEnumerable(Of Box), includeDiagonals As Boolean)
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\nIf the any of the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">squares</code>&apos; sizes are not compatible with the\ngiven puzzle&apos;s <code data-dev-comment-type=\"paramref\" class=\"paramref\">size</code>.\n"
-  nameWithType.vb: MagicSquaresRule.MagicSquaresRule(Int32, IEnumerable(Of Box), Boolean)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule(System.Int32, System.Collections.Generic.IEnumerable(Of SudokuSpice.Box), System.Boolean)
-  name.vb: MagicSquaresRule(Int32, IEnumerable(Of Box), Boolean)
+    description: >-
+      If the any of the given <code class="paramref">squares</code>' sizes are not compatible with the
+
+      given puzzle's <code class="paramref">size</code>.
+  nameWithType.vb: MagicSquaresRule.New(Integer, IEnumerable(Of Box), Boolean)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.New(Integer, System.Collections.Generic.IEnumerable(Of SudokuSpice.Box), Boolean)
+  name.vb: New(Integer, IEnumerable(Of Box), Boolean)
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
@@ -111,9 +129,9 @@ items:
   langs:
   - csharp
   - vb
-  name: CopyWithNewReference(IReadOnlyPuzzle)
-  nameWithType: MagicSquaresRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  name: CopyWithNewReference(IReadOnlyPuzzle?)
+  nameWithType: MagicSquaresRule.CopyWithNewReference(IReadOnlyPuzzle?)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle?)
   type: Method
   source:
     remote:
@@ -126,24 +144,29 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nCreates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>\nreferences updated to the given puzzle.\n"
+  summary: >-
+    Creates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>
+
+    references updated to the given puzzle.
   example: []
   syntax:
-    content: public IRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
+    content: public IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
+      description: >-
+        The new puzzle reference to use. To ensure this rule's internal state is correct, this
+
+        puzzle should contain the same data as the current puzzle referenced by this rule.
     return:
       type: SudokuSpice.RuleBased.Rules.IRule
     content.vb: Public Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As IRule
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: MagicSquaresRule.CopyWithNewReference(IReadOnlyPuzzle)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  name.vb: CopyWithNewReference(IReadOnlyPuzzle)
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
@@ -166,8 +189,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nTries to initialize this rule to prepare to solve the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
+  summary: Tries to initialize this rule to prepare to solve the given puzzle.
+  remarks: >-
+    In general, it doesn't make sense to want to maintain the previous state if this method
+
+    fails. Therefore, it is <em>not</em> guaranteed that the rule's state is unchanged on 
+
+    failure.
   example: []
   syntax:
     content: public bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
@@ -180,15 +208,11 @@ items:
       description: All the unique possible values for this puzzle.
     return:
       type: System.Boolean
-      description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
+      description: False if the puzzle violates this rule and initialization fails, else true.
     content.vb: Public Function TryInit(puzzle As IReadOnlyPuzzle, uniquePossibleValues As BitVector) As Boolean
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate@)
   id: GetPossibleValues(SudokuSpice.Coordinate@)
@@ -196,9 +220,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetPossibleValues(Coordinate)
-  nameWithType: MagicSquaresRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate)
+  name: GetPossibleValues(in Coordinate)
+  nameWithType: MagicSquaresRule.GetPossibleValues(in Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(in SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -211,8 +235,19 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nGets the possible values for the given coordinate based on this rule.\n"
-  remarks: "\nWhen implementing this method, avoid depending on dynamic information in the current\npuzzle being solved, such as the currently set values. This method must return\ninformation that reflects the most recent calls to\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>\nor <xref href=\"SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>, as it can\nbe called before or after modifying the underlying puzzle&apos;s data.\n"
+  summary: Gets the possible values for the given coordinate based on this rule.
+  remarks: >-
+    When implementing this method, avoid depending on dynamic information in the current
+
+    puzzle being solved, such as the currently set values. This method must return
+
+    information that reflects the most recent calls to
+
+    <xref href="SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)?text=Update" data-throw-if-not-resolved="false"></xref>
+
+    or <xref href="SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)?text=Revert" data-throw-if-not-resolved="false"></xref>, as it can
+
+    be called before or after modifying the underlying puzzle's data.
   example: []
   syntax:
     content: public BitVector GetPossibleValues(in Coordinate c)
@@ -222,17 +257,13 @@ items:
     return:
       type: SudokuSpice.BitVector
       description: The possible values represented as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Public Function GetPossibleValues(ByRef c As Coordinate) As BitVector
+    content.vb: Public Function GetPossibleValues(c As Coordinate) As BitVector
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
-  nameWithType.vb: MagicSquaresRule.GetPossibleValues(ByRef Coordinate)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(ByRef SudokuSpice.Coordinate)
-  name.vb: GetPossibleValues(ByRef Coordinate)
+  nameWithType.vb: MagicSquaresRule.GetPossibleValues(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues(SudokuSpice.Coordinate)
+  name.vb: GetPossibleValues(Coordinate)
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   id: Revert(SudokuSpice.Coordinate@,System.Int32)
@@ -240,9 +271,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Revert(Coordinate, Int32)
-  nameWithType: MagicSquaresRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  name: Revert(in Coordinate, int)
+  nameWithType: MagicSquaresRule.Revert(in Coordinate, int)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(in SudokuSpice.Coordinate, int)
   type: Method
   source:
     remote:
@@ -255,8 +286,22 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUndoes an update for the given value at the specified coordinate.\n<p>\nThis performs the same internal updates as\n<xref href=\"SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)\" data-throw-if-not-resolved=\"false\"></xref>, but without passing\naffected coordinates back to the caller. Therefore this is more efficient in cases\nwhere the caller already knows all the possible coordinates that could be affected.\n</p>\n"
-  remarks: "\nThis method will always be called before reverting the value on the underlying puzzle.\n"
+  summary: >-
+    Undoes an update for the given value at the specified coordinate.
+
+
+    <p>
+
+    This performs the same internal updates as
+
+    <xref href="SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate%40%2cSystem.Int32%2cSudokuSpice.CoordinateTracker)" data-throw-if-not-resolved="false"></xref>, but without passing
+
+    affected coordinates back to the caller. Therefore this is more efficient in cases
+
+    where the caller already knows all the possible coordinates that could be affected.
+
+    </p>
+  remarks: This method will always be called before reverting the value on the underlying puzzle.
   example: []
   syntax:
     content: public void Revert(in Coordinate c, int val)
@@ -267,17 +312,13 @@ items:
     - id: val
       type: System.Int32
       description: The value being unset.
-    content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer)
+    content.vb: Public Sub Revert(c As Coordinate, val As Integer)
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
-  nameWithType.vb: MagicSquaresRule.Revert(ByRef Coordinate, Int32)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32)
-  name.vb: Revert(ByRef Coordinate, Int32)
+  nameWithType.vb: MagicSquaresRule.Revert(Coordinate, Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate, Integer)
+  name.vb: Revert(Coordinate, Integer)
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   id: Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
@@ -285,9 +326,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: MagicSquaresRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  name: Revert(in Coordinate, int, CoordinateTracker)
+  nameWithType: MagicSquaresRule.Revert(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
   type: Method
   source:
     remote:
@@ -300,8 +341,11 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUndoes an update for the given value at the specified coordinate. Tracks affected\ncoordinates in the given tracker.\n"
-  remarks: "\nThis method will always be called before reverting the value on the underlying puzzle.\n"
+  summary: >-
+    Undoes an update for the given value at the specified coordinate. Tracks affected
+
+    coordinates in the given tracker.
+  remarks: This method will always be called before reverting the value on the underlying puzzle.
   example: []
   syntax:
     content: public void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)
@@ -314,18 +358,17 @@ items:
       description: The value being unset.
     - id: coordTracker
       type: SudokuSpice.CoordinateTracker
-      description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
-    content.vb: Public Sub Revert(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
+      description: >-
+        The coordinates of unset squares impacted by this change will be tracked in this
+
+        tracker.
+    content.vb: Public Sub Revert(c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  nameWithType.vb: MagicSquaresRule.Revert(ByRef Coordinate, Int32, CoordinateTracker)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  name.vb: Revert(ByRef Coordinate, Int32, CoordinateTracker)
+  nameWithType.vb: MagicSquaresRule.Revert(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Revert(Coordinate, Integer, CoordinateTracker)
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   id: Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
@@ -333,9 +376,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: MagicSquaresRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  name: Update(in Coordinate, int, CoordinateTracker)
+  nameWithType: MagicSquaresRule.Update(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
   type: Method
   source:
     remote:
@@ -348,8 +391,11 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nUpdates possible values based on setting the given coordinate to the given value.\nTracks affected coordinates in the given tracker.\n"
-  remarks: "\nThis method will always be called before setting the value on the underlying puzzle.\n"
+  summary: >-
+    Updates possible values based on setting the given coordinate to the given value.
+
+    Tracks affected coordinates in the given tracker.
+  remarks: This method will always be called before setting the value on the underlying puzzle.
   example: []
   syntax:
     content: public void Update(in Coordinate c, int val, CoordinateTracker coordTracker)
@@ -362,34 +408,56 @@ items:
       description: The value to set <code>c</code> to.
     - id: coordTracker
       type: SudokuSpice.CoordinateTracker
-      description: "\nThe coordinates of unset squares impacted by this change will be tracked in this\ntracker.\n"
-    content.vb: Public Sub Update(ByRef c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
+      description: >-
+        The coordinates of unset squares impacted by this change will be tracked in this
+
+        tracker.
+    content.vb: Public Sub Update(c As Coordinate, val As Integer, coordTracker As CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  nameWithType.vb: MagicSquaresRule.Update(ByRef Coordinate, Int32, CoordinateTracker)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(ByRef SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  name.vb: Update(ByRef Coordinate, Int32, CoordinateTracker)
+  nameWithType.vb: MagicSquaresRule.Update(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Update(Coordinate, Integer, CoordinateTracker)
 references:
 - uid: SudokuSpice.RuleBased.Rules
   commentId: N:SudokuSpice.RuleBased.Rules
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: SudokuSpice.RuleBased.Rules.IRule
   commentId: T:SudokuSpice.RuleBased.Rules.IRule
   parent: SudokuSpice.RuleBased.Rules
+  href: SudokuSpice.RuleBased.Rules.IRule.html
   name: IRule
   nameWithType: IRule
   fullName: SudokuSpice.RuleBased.Rules.IRule
@@ -397,306 +465,260 @@ references:
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MagicSquaresRule.#ctor
+  href: SudokuSpice.RuleBased.Rules.MagicSquaresRule.html#SudokuSpice_RuleBased_Rules_MagicSquaresRule__ctor_System_Int32_System_Collections_Generic_IEnumerable_SudokuSpice_Box__System_Boolean_
   name: MagicSquaresRule
   nameWithType: MagicSquaresRule.MagicSquaresRule
   fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.MagicSquaresRule
+  nameWithType.vb: MagicSquaresRule.New
+  fullName.vb: SudokuSpice.RuleBased.Rules.MagicSquaresRule.New
+  name.vb: New
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: System.Collections.Generic.IEnumerable{SudokuSpice.Box}
   commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Box}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<Box>
   nameWithType: IEnumerable<Box>
   fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Box>
@@ -706,45 +728,40 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: SudokuSpice.Box
     name: Box
-    nameWithType: Box
-    fullName: SudokuSpice.Box
+    href: SudokuSpice.Box.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: SudokuSpice.Box
     name: Box
-    nameWithType: Box
-    fullName: SudokuSpice.Box
+    href: SudokuSpice.Box.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<T>
   nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
@@ -754,83 +771,93 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference
+  href: SudokuSpice.RuleBased.Rules.MagicSquaresRule.html#SudokuSpice_RuleBased_Rules_MagicSquaresRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   name: CopyWithNewReference
   nameWithType: MagicSquaresRule.CopyWithNewReference
   fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.CopyWithNewReference
 - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.IRule
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: IRule.CopyWithNewReference(IReadOnlyPuzzle)
   fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: IRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: IRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
+  href: SudokuSpice.IReadOnlyPuzzle.html
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
@@ -841,114 +868,204 @@ references:
   fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit
+  href: SudokuSpice.RuleBased.Rules.MagicSquaresRule.html#SudokuSpice_RuleBased_Rules_MagicSquaresRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   name: TryInit
   nameWithType: MagicSquaresRule.TryInit
   fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.TryInit
 - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: IRule.TryInit(IReadOnlyPuzzle, BitVector)
   fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: IRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: IRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
+  href: SudokuSpice.BitVector.html
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.IRule
+  isExternal: true
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  name: Update(in Coordinate, int, CoordinateTracker)
+  nameWithType: IRule.Update(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Update(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: IRule.Update(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Update(Coordinate, Integer, CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Update
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  - name: (
+  - name: in
+  - name: " "
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Update
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
+  - name: )
+- uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+  parent: SudokuSpice.RuleBased.Rules.IRule
+  isExternal: true
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  name: Revert(in Coordinate, int, CoordinateTracker)
+  nameWithType: IRule.Revert(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: IRule.Revert(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Revert(Coordinate, Integer, CoordinateTracker)
+  spec.csharp:
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  - name: (
+  - name: in
+  - name: " "
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
+    name: Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: SudokuSpice.CoordinateTracker
+    name: CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
+  - name: )
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues
+  href: SudokuSpice.RuleBased.Rules.MagicSquaresRule.html#SudokuSpice_RuleBased_Rules_MagicSquaresRule_GetPossibleValues_SudokuSpice_Coordinate__
   name: GetPossibleValues
   nameWithType: MagicSquaresRule.GetPossibleValues
   fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.GetPossibleValues
 - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   parent: SudokuSpice.RuleBased.Rules.IRule
-  name: GetPossibleValues(Coordinate)
-  nameWithType: IRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate)
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_GetPossibleValues_SudokuSpice_Coordinate__
+  name: GetPossibleValues(in Coordinate)
+  nameWithType: IRule.GetPossibleValues(in Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(in SudokuSpice.Coordinate)
+  nameWithType.vb: IRule.GetPossibleValues(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate)
+  name.vb: GetPossibleValues(Coordinate)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: IRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_GetPossibleValues_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: IRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_GetPossibleValues_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert
+  href: SudokuSpice.RuleBased.Rules.MagicSquaresRule.html#SudokuSpice_RuleBased_Rules_MagicSquaresRule_Revert_SudokuSpice_Coordinate__System_Int32_
   name: Revert
   nameWithType: MagicSquaresRule.Revert
   fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Revert
@@ -956,197 +1073,55 @@ references:
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
-  name: Revert(Coordinate, Int32)
-  nameWithType: IRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_
+  name: Revert(in Coordinate, int)
+  nameWithType: IRule.Revert(in Coordinate, int)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(in SudokuSpice.Coordinate, int)
+  nameWithType.vb: IRule.Revert(Coordinate, Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, Integer)
+  name.vb: Revert(Coordinate, Integer)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.IRule
-  isExternal: true
-  name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: IRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.CoordinateTracker
-    name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.CoordinateTracker
-    name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.CoordinateTracker
   commentId: T:SudokuSpice.CoordinateTracker
   parent: SudokuSpice
+  href: SudokuSpice.CoordinateTracker.html
   name: CoordinateTracker
   nameWithType: CoordinateTracker
   fullName: SudokuSpice.CoordinateTracker
 - uid: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update
+  href: SudokuSpice.RuleBased.Rules.MagicSquaresRule.html#SudokuSpice_RuleBased_Rules_MagicSquaresRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   name: Update
   nameWithType: MagicSquaresRule.Update
   fullName: SudokuSpice.RuleBased.Rules.MagicSquaresRule.Update
-- uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  commentId: M:SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  parent: SudokuSpice.RuleBased.Rules.IRule
-  isExternal: true
-  name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: IRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
-  spec.csharp:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Update
-    nameWithType: IRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Update
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.CoordinateTracker
-    name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-    name: Update
-    nameWithType: IRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Update
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: SudokuSpice.Coordinate
-    name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: SudokuSpice.CoordinateTracker
-    name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
-  - name: )
-    nameWithType: )
-    fullName: )

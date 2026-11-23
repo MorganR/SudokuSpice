@@ -28,7 +28,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSolves puzzles of the given type.\n\nThis solver uses a rule-based approach based on the <xref href=\"SudokuSpice.RuleBased.Rules.IRule\" data-throw-if-not-resolved=\"false\"></xref>s provided in\nthe constructor. An optional heuristic can also be provided.\n"
+  summary: >-
+    Solves puzzles of the given type.
+
+
+    This solver uses a rule-based approach based on the <xref href="SudokuSpice.RuleBased.Rules.IRule" data-throw-if-not-resolved="false"></xref>s provided in
+
+    the constructor. An optional heuristic can also be provided.
   remarks: This solver is not thread-safe.
   example: []
   syntax:
@@ -36,9 +42,7 @@ items:
     typeParameters:
     - id: TPuzzle
       description: The type of puzzle to solve.
-    content.vb: >-
-      Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzleWithPossibleValues(Of TPuzzle)})
-          Implements IPuzzleSolver(Of TPuzzle)
+    content.vb: Public Class PuzzleSolver(Of TPuzzle As {Class, IPuzzleWithPossibleValues(Of TPuzzle)}) Implements IPuzzleSolver(Of TPuzzle)
   inheritance:
   - System.Object
   implements:
@@ -52,12 +56,6 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   nameWithType.vb: PuzzleSolver(Of TPuzzle)
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
   fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle)
   name.vb: PuzzleSolver(Of TPuzzle)
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor(SudokuSpice.RuleBased.IRuleKeeper,SudokuSpice.RuleBased.Heuristics.IHeuristic)
@@ -67,9 +65,9 @@ items:
   langs:
   - csharp
   - vb
-  name: PuzzleSolver(IRuleKeeper, IHeuristic)
-  nameWithType: PuzzleSolver<TPuzzle>.PuzzleSolver(IRuleKeeper, IHeuristic)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.PuzzleSolver(SudokuSpice.RuleBased.IRuleKeeper, SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  name: PuzzleSolver(IRuleKeeper, IHeuristic?)
+  nameWithType: PuzzleSolver<TPuzzle>.PuzzleSolver(IRuleKeeper, IHeuristic?)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.PuzzleSolver(SudokuSpice.RuleBased.IRuleKeeper, SudokuSpice.RuleBased.Heuristics.IHeuristic?)
   type: Constructor
   source:
     remote:
@@ -82,25 +80,33 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nConstructs a solver with the given rules and optional heuristic.\n\nThis solver can be used to solve multiple puzzles.\n"
+  summary: >-
+    Constructs a solver with the given rules and optional heuristic.
+
+
+    This solver can be used to solve multiple puzzles.
   example: []
   syntax:
-    content: public PuzzleSolver(IRuleKeeper ruleKeeper, IHeuristic heuristic = null)
+    content: public PuzzleSolver(IRuleKeeper ruleKeeper, IHeuristic? heuristic = null)
     parameters:
     - id: ruleKeeper
       type: SudokuSpice.RuleBased.IRuleKeeper
       description: The rule keeper to satisfy when solving puzzles.
     - id: heuristic
       type: SudokuSpice.RuleBased.Heuristics.IHeuristic
-      description: "\nA heuristic to use to solve this puzzle efficiently. Can be set to null to skip using\nheuristics.\nNote that only one heuristic can be provided. To use multiple heuristics, create a\nwrapper heuristic like <xref href=\"SudokuSpice.RuleBased.Heuristics.StandardHeuristic\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+      description: >-
+        A heuristic to use to solve this puzzle efficiently. Can be set to null to skip using
+
+        heuristics.
+
+        Note that only one heuristic can be provided. To use multiple heuristics, create a
+
+        wrapper heuristic like <xref href="SudokuSpice.RuleBased.Heuristics.StandardHeuristic" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Sub New(ruleKeeper As IRuleKeeper, heuristic As IHeuristic = Nothing)
   overload: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor*
-  nameWithType.vb: PuzzleSolver(Of TPuzzle).PuzzleSolver(IRuleKeeper, IHeuristic)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).PuzzleSolver(SudokuSpice.RuleBased.IRuleKeeper, SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).New(IRuleKeeper, IHeuristic)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).New(SudokuSpice.RuleBased.IRuleKeeper, SudokuSpice.RuleBased.Heuristics.IHeuristic)
+  name.vb: New(IRuleKeeper, IHeuristic)
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)
   commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve(`0,System.Boolean)
   id: TrySolve(`0,System.Boolean)
@@ -108,9 +114,9 @@ items:
   langs:
   - csharp
   - vb
-  name: TrySolve(TPuzzle, Boolean)
-  nameWithType: PuzzleSolver<TPuzzle>.TrySolve(TPuzzle, Boolean)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.TrySolve(TPuzzle, System.Boolean)
+  name: TrySolve(TPuzzle, bool)
+  nameWithType: PuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
   type: Method
   source:
     remote:
@@ -123,7 +129,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nAttempts to solve the given puzzle.\n"
+  summary: Attempts to solve the given puzzle.
   example: []
   syntax:
     content: public bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
@@ -133,7 +139,10 @@ items:
       description: The puzzle to solve. This will be solved in place.
     - id: randomizeGuesses
       type: System.Boolean
-      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
+      description: >-
+        If true, this will guess in a random order when forced to guess. Else, the guessing
+
+        order is up to the implementation, but it should be stable.
     return:
       type: System.Boolean
     content.vb: Public Function TrySolve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As Boolean
@@ -141,11 +150,8 @@ items:
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.TrySolve({TPuzzle},System.Boolean)
   nameWithType.vb: PuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, System.Boolean)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  name.vb: TrySolve(TPuzzle, Boolean)
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.Solve(`0,System.Boolean)
   commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.Solve(`0,System.Boolean)
   id: Solve(`0,System.Boolean)
@@ -153,9 +159,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Solve(TPuzzle, Boolean)
-  nameWithType: PuzzleSolver<TPuzzle>.Solve(TPuzzle, Boolean)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.Solve(TPuzzle, System.Boolean)
+  name: Solve(TPuzzle, bool)
+  nameWithType: PuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
   type: Method
   source:
     remote:
@@ -168,17 +174,20 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nSolves the given puzzle in place.\n"
+  summary: Solves the given puzzle in place.
   example: []
   syntax:
     content: public TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
-      description: "\nThe puzzle to solve. This will be copied instead of solved in-place.\n"
+      description: The puzzle to solve. This will be copied instead of solved in-place.
     - id: randomizeGuesses
       type: System.Boolean
-      description: "\nIf true, this will guess in a random order when forced to guess. Else, the guessing\norder is up to the implementation, but it should be stable.\n"
+      description: >-
+        If true, this will guess in a random order when forced to guess. Else, the guessing
+
+        order is up to the implementation, but it should be stable.
     return:
       type: '{TPuzzle}'
       description: A solved copy of the given puzzle.
@@ -187,15 +196,12 @@ items:
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\nThrown if this puzzle can&apos;t be solved by this solver.\n"
+    description: Thrown if this puzzle can't be solved by this solver.
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.Solve({TPuzzle},System.Boolean)
   nameWithType.vb: PuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).Solve(TPuzzle, System.Boolean)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  name.vb: Solve(TPuzzle, Boolean)
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
   commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
   id: ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
@@ -203,9 +209,9 @@ items:
   langs:
   - csharp
   - vb
-  name: ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
-  nameWithType: PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
+  name: ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  nameWithType: PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
   type: Method
   source:
     remote:
@@ -218,10 +224,10 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nFinds stats for all the solutions to the given puzzle. The puzzle is left unchanged.\n"
+  summary: Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
   example: []
   syntax:
-    content: public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
+    content: public SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
@@ -234,16 +240,11 @@ items:
   exceptions:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
-    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
+    description: May be thrown if the given cancellation token is canceled during the operation.
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.ComputeStatsForAllSolutions({TPuzzle},System.Nullable{System.Threading.CancellationToken})
-  nameWithType.vb: PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
-  name.vb: ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
   commentId: M:SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
   id: HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
@@ -251,9 +252,9 @@ items:
   langs:
   - csharp
   - vb
-  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
-  nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
-  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
+  name: HasUniqueSolution(TPuzzle, CancellationToken?)
+  nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
   type: Method
   source:
     remote:
@@ -266,10 +267,10 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased
-  summary: "\nDetermines if the given puzzle has a unique solution. The puzzle is left unchanged.\n"
+  summary: Determines if the given puzzle has a unique solution. The puzzle is left unchanged.
   example: []
   syntax:
-    content: public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = default(CancellationToken? ))
+    content: public bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)
     parameters:
     - id: puzzle
       type: '{TPuzzle}'
@@ -282,20 +283,16 @@ items:
   exceptions:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
-    description: "\nMay be thrown if the given cancellation token is canceled during the operation.\n"
+    description: May be thrown if the given cancellation token is canceled during the operation.
   implements:
   - SudokuSpice.IPuzzleSolver{{TPuzzle}}.HasUniqueSolution({TPuzzle},System.Nullable{System.Threading.CancellationToken})
-  nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
-  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
 references:
 - uid: SudokuSpice.RuleBased.Rules.IRule
   commentId: T:SudokuSpice.RuleBased.Rules.IRule
   parent: SudokuSpice.RuleBased.Rules
+  href: SudokuSpice.RuleBased.Rules.IRule.html
   name: IRule
   nameWithType: IRule
   fullName: SudokuSpice.RuleBased.Rules.IRule
@@ -304,17 +301,34 @@ references:
   name: SudokuSpice.RuleBased
   nameWithType: SudokuSpice.RuleBased
   fullName: SudokuSpice.RuleBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}
   commentId: T:SudokuSpice.IPuzzleSolver{`0}
   parent: SudokuSpice
   definition: SudokuSpice.IPuzzleSolver`1
+  href: SudokuSpice.IPuzzleSolver-1.html
   name: IPuzzleSolver<TPuzzle>
   nameWithType: IPuzzleSolver<TPuzzle>
   fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
@@ -324,323 +338,271 @@ references:
   spec.csharp:
   - uid: SudokuSpice.IPuzzleSolver`1
     name: IPuzzleSolver
-    nameWithType: IPuzzleSolver
-    fullName: SudokuSpice.IPuzzleSolver
+    href: SudokuSpice.IPuzzleSolver-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: SudokuSpice.IPuzzleSolver`1
     name: IPuzzleSolver
-    nameWithType: IPuzzleSolver
-    fullName: SudokuSpice.IPuzzleSolver
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: SudokuSpice.IPuzzleSolver-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules
   commentId: N:SudokuSpice.RuleBased.Rules
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: SudokuSpice.IPuzzleSolver`1
   commentId: T:SudokuSpice.IPuzzleSolver`1
+  href: SudokuSpice.IPuzzleSolver-1.html
   name: IPuzzleSolver<TPuzzle>
   nameWithType: IPuzzleSolver<TPuzzle>
   fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
@@ -650,31 +612,19 @@ references:
   spec.csharp:
   - uid: SudokuSpice.IPuzzleSolver`1
     name: IPuzzleSolver
-    nameWithType: IPuzzleSolver
-    fullName: SudokuSpice.IPuzzleSolver
+    href: SudokuSpice.IPuzzleSolver-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: SudokuSpice.IPuzzleSolver`1
     name: IPuzzleSolver
-    nameWithType: IPuzzleSolver
-    fullName: SudokuSpice.IPuzzleSolver
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: SudokuSpice.IPuzzleSolver-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
@@ -682,25 +632,30 @@ references:
   fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
   commentId: T:SudokuSpice.RuleBased.Heuristics.StandardHeuristic
+  href: SudokuSpice.RuleBased.Heuristics.StandardHeuristic.html
   name: StandardHeuristic
   nameWithType: StandardHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.StandardHeuristic
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.#ctor
+  href: SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1__ctor_SudokuSpice_RuleBased_IRuleKeeper_SudokuSpice_RuleBased_Heuristics_IHeuristic_
   name: PuzzleSolver
   nameWithType: PuzzleSolver<TPuzzle>.PuzzleSolver
   fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.PuzzleSolver
-  nameWithType.vb: PuzzleSolver(Of TPuzzle).PuzzleSolver
-  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).PuzzleSolver
+  nameWithType.vb: PuzzleSolver(Of TPuzzle).New
+  fullName.vb: SudokuSpice.RuleBased.PuzzleSolver(Of TPuzzle).New
+  name.vb: New
 - uid: SudokuSpice.RuleBased.IRuleKeeper
   commentId: T:SudokuSpice.RuleBased.IRuleKeeper
   parent: SudokuSpice.RuleBased
+  href: SudokuSpice.RuleBased.IRuleKeeper.html
   name: IRuleKeeper
   nameWithType: IRuleKeeper
   fullName: SudokuSpice.RuleBased.IRuleKeeper
 - uid: SudokuSpice.RuleBased.Heuristics.IHeuristic
   commentId: T:SudokuSpice.RuleBased.Heuristics.IHeuristic
   parent: SudokuSpice.RuleBased.Heuristics
+  href: SudokuSpice.RuleBased.Heuristics.IHeuristic.html
   name: IHeuristic
   nameWithType: IHeuristic
   fullName: SudokuSpice.RuleBased.Heuristics.IHeuristic
@@ -709,8 +664,27 @@ references:
   name: SudokuSpice.RuleBased.Heuristics
   nameWithType: SudokuSpice.RuleBased.Heuristics
   fullName: SudokuSpice.RuleBased.Heuristics
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Heuristics
+    name: Heuristics
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Heuristics
+    name: Heuristics
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.TrySolve
+  href: SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1_TrySolve__0_System_Boolean_
   name: TrySolve
   nameWithType: PuzzleSolver<TPuzzle>.TrySolve
   fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.TrySolve
@@ -720,55 +694,39 @@ references:
   commentId: M:SudokuSpice.IPuzzleSolver{`0}.TrySolve(`0,System.Boolean)
   parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
   definition: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
-  name: TrySolve(TPuzzle, Boolean)
-  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, Boolean)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, System.Boolean)
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
+  name: TrySolve(TPuzzle, bool)
+  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
   nameWithType.vb: IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, System.Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  name.vb: TrySolve(TPuzzle, Boolean)
   spec.csharp:
-  - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  - uid: SudokuSpice.IPuzzleSolver{`0}.TrySolve(`0,System.Boolean)
     name: TrySolve
-    nameWithType: IPuzzleSolver<TPuzzle>.TrySolve
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  - uid: SudokuSpice.IPuzzleSolver{`0}.TrySolve(`0,System.Boolean)
     name: TrySolve
-    nameWithType: IPuzzleSolver(Of TPuzzle).TrySolve
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: '{TPuzzle}'
   commentId: '!:TPuzzle'
   definition: TPuzzle
@@ -779,67 +737,63 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
   commentId: M:SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
   isExternal: true
-  name: TrySolve(TPuzzle, Boolean)
-  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, Boolean)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, System.Boolean)
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
+  name: TrySolve(TPuzzle, bool)
+  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
   nameWithType.vb: IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, System.Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  name.vb: TrySolve(TPuzzle, Boolean)
   spec.csharp:
   - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
     name: TrySolve
-    nameWithType: IPuzzleSolver<TPuzzle>.TrySolve
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
     name: TrySolve
-    nameWithType: IPuzzleSolver(Of TPuzzle).TrySolve
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: TPuzzle
   name: TPuzzle
   nameWithType: TPuzzle
   fullName: TPuzzle
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.Solve*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.Solve
+  href: SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1_Solve__0_System_Boolean_
   name: Solve
   nameWithType: PuzzleSolver<TPuzzle>.Solve
   fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.Solve
@@ -849,112 +803,85 @@ references:
   commentId: M:SudokuSpice.IPuzzleSolver{`0}.Solve(`0,System.Boolean)
   parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
   definition: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
-  name: Solve(TPuzzle, Boolean)
-  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, Boolean)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, System.Boolean)
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
+  name: Solve(TPuzzle, bool)
+  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
   nameWithType.vb: IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, System.Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  name.vb: Solve(TPuzzle, Boolean)
   spec.csharp:
-  - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  - uid: SudokuSpice.IPuzzleSolver{`0}.Solve(`0,System.Boolean)
     name: Solve
-    nameWithType: IPuzzleSolver<TPuzzle>.Solve
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  - uid: SudokuSpice.IPuzzleSolver{`0}.Solve(`0,System.Boolean)
     name: Solve
-    nameWithType: IPuzzleSolver(Of TPuzzle).Solve
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
 - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
   commentId: M:SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
   isExternal: true
-  name: Solve(TPuzzle, Boolean)
-  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, Boolean)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, System.Boolean)
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
+  name: Solve(TPuzzle, bool)
+  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
   nameWithType.vb: IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, System.Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  name.vb: Solve(TPuzzle, Boolean)
   spec.csharp:
   - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
     name: Solve
-    nameWithType: IPuzzleSolver<TPuzzle>.Solve
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
     name: Solve
-    nameWithType: IPuzzleSolver(Of TPuzzle).Solve
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.operationcanceledexception
+  name: OperationCanceledException
+  nameWithType: OperationCanceledException
+  fullName: System.OperationCanceledException
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.ComputeStatsForAllSolutions
+  href: SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
   name: ComputeStatsForAllSolutions
   nameWithType: PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
   fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
@@ -964,209 +891,108 @@ references:
   commentId: M:SudokuSpice.IPuzzleSolver{`0}.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
   parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
   definition: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
-  name: ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
-  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
-  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
-  name.vb: ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
+  name: ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
   spec.csharp:
-  - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  - uid: SudokuSpice.IPuzzleSolver{`0}.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
     name: ComputeStatsForAllSolutions
-    nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  - uid: SudokuSpice.IPuzzleSolver{`0}.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
     name: ComputeStatsForAllSolutions
-    nameWithType: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.OperationCanceledException
-  commentId: T:System.OperationCanceledException
-  isExternal: true
 - uid: System.Nullable{System.Threading.CancellationToken}
   commentId: T:System.Nullable{System.Threading.CancellationToken}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<CancellationToken>
-  nameWithType: Nullable<CancellationToken>
-  fullName: System.Nullable<System.Threading.CancellationToken>
-  nameWithType.vb: Nullable(Of CancellationToken)
-  fullName.vb: System.Nullable(Of System.Threading.CancellationToken)
-  name.vb: Nullable(Of CancellationToken)
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken?
+  nameWithType: CancellationToken?
+  fullName: System.Threading.CancellationToken?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
 - uid: SudokuSpice.SolveStats
   commentId: T:SudokuSpice.SolveStats
   parent: SudokuSpice
+  href: SudokuSpice.SolveStats.html
   name: SolveStats
   nameWithType: SolveStats
   fullName: SudokuSpice.SolveStats
 - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
   commentId: M:SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
   isExternal: true
-  name: ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
-  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, Nullable<CancellationToken>)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
-  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
-  name.vb: ComputeStatsForAllSolutions(TPuzzle, Nullable(Of CancellationToken))
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
+  name: ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
   spec.csharp:
   - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
     name: ComputeStatsForAllSolutions
-    nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
     name: ComputeStatsForAllSolutions
-    nameWithType: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   name: Nullable<T>
   nameWithType: Nullable<T>
   fullName: System.Nullable<T>
@@ -1176,35 +1002,24 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution*
   commentId: Overload:SudokuSpice.RuleBased.PuzzleSolver`1.HasUniqueSolution
+  href: SudokuSpice.RuleBased.PuzzleSolver-1.html#SudokuSpice_RuleBased_PuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
   name: HasUniqueSolution
   nameWithType: PuzzleSolver<TPuzzle>.HasUniqueSolution
   fullName: SudokuSpice.RuleBased.PuzzleSolver<TPuzzle>.HasUniqueSolution
@@ -1214,150 +1029,74 @@ references:
   commentId: M:SudokuSpice.IPuzzleSolver{`0}.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
   parent: SudokuSpice.IPuzzleSolver{{TPuzzle}}
   definition: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
-  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
-  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
-  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
-  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
+  name: HasUniqueSolution(TPuzzle, CancellationToken?)
+  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
   spec.csharp:
-  - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  - uid: SudokuSpice.IPuzzleSolver{`0}.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
     name: HasUniqueSolution
-    nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  - uid: SudokuSpice.IPuzzleSolver{`0}.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
     name: HasUniqueSolution
-    nameWithType: IPuzzleSolver(Of TPuzzle).HasUniqueSolution
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
   commentId: M:SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
   isExternal: true
-  name: HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
-  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, Nullable<CancellationToken>)
-  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Nullable<System.Threading.CancellationToken>)
-  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
-  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Nullable(Of System.Threading.CancellationToken))
-  name.vb: HasUniqueSolution(TPuzzle, Nullable(Of CancellationToken))
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
+  name: HasUniqueSolution(TPuzzle, CancellationToken?)
+  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
   spec.csharp:
   - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
     name: HasUniqueSolution
-    nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution
-    fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
     name: HasUniqueSolution
-    nameWithType: IPuzzleSolver(Of TPuzzle).HasUniqueSolution
-    fullName: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+    href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TPuzzle
-    nameWithType: TPuzzle
-    fullName: TPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )

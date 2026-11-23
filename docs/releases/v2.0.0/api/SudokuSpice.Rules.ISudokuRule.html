@@ -1,23 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface ISudokuRule
-   | SudokuSpice </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface ISudokuRule
-   | SudokuSpice ">
-    <meta name="generator" content="docfx 2.56.7.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface ISudokuRule | SudokuSpice </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface ISudokuRule | SudokuSpice ">
     
-    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
-    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../../styles/docfx.css">
-    <link rel="stylesheet" href="../../../styles/main.css">
-    <meta property="docfx:navrel" content="../../v2.0.0">
-    <meta property="docfx:tocrel" content="toc.html">
+    <meta name="description" content="Enforces a rule for a puzzle, such as &amp;quot;all values must be unique within a row.&amp;quot; This is done by tracking possible values for each square specifically as determined by this rule. These possible values are then enforced along with any other rules by an .">
+      <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../v3.2.2">
+      <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -25,7 +23,7 @@
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -35,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../../index.html">
                 <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
               </a>
@@ -49,7 +47,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -59,7 +57,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -69,10 +67,10 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="SudokuSpice.Rules.ISudokuRule">
-  
-  
-  <h1 id="SudokuSpice_Rules_ISudokuRule" data-uid="SudokuSpice.Rules.ISudokuRule" class="text-break">Interface ISudokuRule
-  </h1>
+
+
+
+  <h1 id="SudokuSpice_Rules_ISudokuRule" data-uid="SudokuSpice.Rules.ISudokuRule" class="text-break">Interface ISudokuRule</h1>
   <div class="markdown level0 summary"><p>Enforces a rule for a puzzle, such as &quot;all values must be unique within a row.&quot; This is
 done by tracking possible values for each square specifically as determined by this rule.
 These possible values are then enforced along with any other rules by an
@@ -86,10 +84,10 @@ These possible values are then enforced along with any other rules by an
     <pre><code class="lang-csharp hljs">public interface ISudokuRule</code></pre>
   </div>
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L77">View Source</a>
@@ -100,12 +98,12 @@ These possible values are then enforced along with any other rules by an
 references updated to the given puzzle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">ISudokuRule CopyWithNewReference(IReadOnlyPuzzle puzzle)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -115,7 +113,7 @@ references updated to the given puzzle.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.IReadOnlyPuzzle.html">IReadOnlyPuzzle</a></td>
         <td><span class="parametername">puzzle</span></td>
         <td><p>The new puzzle reference to use. To ensure this rule's internal state is correct, this
 puzzle should contain the same data as the current puzzle referenced by this rule.</p>
@@ -124,7 +122,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -140,7 +138,7 @@ puzzle should contain the same data as the current puzzle referenced by this rul
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_GetPossibleValues_SudokuSpice_Coordinate__.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.GetPossibleValues(SudokuSpice.Coordinate%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L25">View Source</a>
@@ -150,12 +148,12 @@ puzzle should contain the same data as the current puzzle referenced by this rul
   <div class="markdown level1 summary"><p>Gets the possible values for the given coordinate based on this rule.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">BitVector GetPossibleValues(in Coordinate c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -165,14 +163,14 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -181,8 +179,8 @@ puzzle should contain the same data as the current puzzle referenced by this rul
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.BitVector.html">BitVector</a></td>
-        <td><p>The possible values represented as a <a class="xref" href="SudokuSpice.Data.BitVector.html">BitVector</a>.</p>
+        <td><a class="xref" href="../../../api/SudokuSpice.BitVector.html">BitVector</a></td>
+        <td><p>The possible values represented as a <a class="xref" href="../../../api/SudokuSpice.BitVector.html">BitVector</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -197,7 +195,7 @@ be called before or after modifying the underlying puzzle's data.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Coordinate__System_Int32_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L40">View Source</a>
@@ -213,12 +211,12 @@ where the caller already knows all the possible coordinates that could be affect
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void Revert(in Coordinate c, int val)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -228,13 +226,13 @@ where the caller already knows all the possible coordinates that could be affect
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
         <td><p>The coordinate where a value is being unset.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">Int32</span></td>
         <td><span class="parametername">val</span></td>
         <td><p>The value being unset.</p>
 </td>
@@ -246,7 +244,7 @@ where the caller already knows all the possible coordinates that could be affect
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Revert(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L54">View Source</a>
@@ -257,12 +255,12 @@ where the caller already knows all the possible coordinates that could be affect
 coordinates in the given tracker.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void Revert(in Coordinate c, int val, CoordinateTracker coordTracker)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -272,19 +270,19 @@ coordinates in the given tracker.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
         <td><p>The coordinate where a value is being unset.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">Int32</span></td>
         <td><span class="parametername">val</span></td>
         <td><p>The value being unset.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.CoordinateTracker.html">CoordinateTracker</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></td>
         <td><span class="parametername">coordTracker</span></td>
         <td><p>The coordinates of unset squares impacted by this change will be tracked in this
 tracker.</p>
@@ -297,7 +295,7 @@ tracker.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule.Update(SudokuSpice.Coordinate%40%2CSystem.Int32%2CSudokuSpice.CoordinateTracker)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L68">View Source</a>
@@ -308,12 +306,12 @@ tracker.</p>
 Tracks affected coordinates in the given tracker.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">void Update(in Coordinate c, int val, CoordinateTracker coordTracker)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -323,19 +321,19 @@ Tracks affected coordinates in the given tracker.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.Coordinate.html">Coordinate</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.Coordinate.html">Coordinate</a></td>
         <td><span class="parametername">c</span></td>
         <td><p>The coordinate to update.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">Int32</span></td>
         <td><span class="parametername">val</span></td>
         <td><p>The value to set <code>c</code> to.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="SudokuSpice.Data.CoordinateTracker.html">CoordinateTracker</a></td>
+        <td><a class="xref" href="../../../api/SudokuSpice.CoordinateTracker.html">CoordinateTracker</a></td>
         <td><span class="parametername">coordTracker</span></td>
         <td><p>The coordinates of unset squares impacted by this change will be tracked in this
 tracker.</p>
@@ -346,15 +344,16 @@ tracker.</p>
   <h5 id="SudokuSpice_Rules_ISudokuRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method will always be called before setting the value on the underlying puzzle.</p>
 </div>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/new/master/apiSpec/new?filename=SudokuSpice_Rules_ISudokuRule.md&amp;value=---%0Auid%3A%20SudokuSpice.Rules.ISudokuRule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
                     <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpice/Rules/ISudokuRule.cs/#L11" class="contribution-link">View Source</a>
@@ -362,14 +361,14 @@ tracker.</p>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
+                <h5>In this article</h5>
                 <div></div>
               </nav>
             </div>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -377,14 +376,14 @@ tracker.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            
-            <span>Generated by <strong>DocFX</strong></span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
     </div>
-    
-    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../../styles/main.js"></script>
   </body>

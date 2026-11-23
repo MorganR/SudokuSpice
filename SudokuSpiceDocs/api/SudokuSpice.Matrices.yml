@@ -38,13 +38,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
 - uid: SudokuSpice.Matrices.CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
   commentId: M:SudokuSpice.Matrices.CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
   id: CopyToJagged2D(System.Nullable{System.Int32}[0:,0:])
@@ -53,9 +46,9 @@ items:
   langs:
   - csharp
   - vb
-  name: CopyToJagged2D(Nullable<Int32>[,])
-  nameWithType: Matrices.CopyToJagged2D(Nullable<Int32>[,])
-  fullName: SudokuSpice.Matrices.CopyToJagged2D(System.Nullable<System.Int32>[,])
+  name: CopyToJagged2D(int?[,])
+  nameWithType: Matrices.CopyToJagged2D(int?[,])
+  fullName: SudokuSpice.Matrices.CopyToJagged2D(int?[,])
   type: Method
   source:
     remote:
@@ -69,26 +62,35 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   syntax:
-    content: public static int? [][] CopyToJagged2D(this int? [, ] matrix)
+    content: >-
+      [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Provided to ease migration.")]
+
+      public static int?[][] CopyToJagged2D(this int?[,] matrix)
     parameters:
     - id: matrix
       type: System.Nullable{System.Int32}[,]
     return:
       type: System.Nullable{System.Int32}[][]
     content.vb: >-
-      <ExtensionAttribute>
+      <SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification:="Provided to ease migration.")>
 
       Public Shared Function CopyToJagged2D(matrix As Integer?(,)) As Integer?()()
   overload: SudokuSpice.Matrices.CopyToJagged2D*
-  nameWithType.vb: Matrices.CopyToJagged2D(Nullable(Of Int32)(,))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: SudokuSpice.Matrices.CopyToJagged2D(System.Nullable(Of System.Int32)(,))
-  name.vb: CopyToJagged2D(Nullable(Of Int32)(,))
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Performance
+    - type: System.String
+      value: CA1814:Prefer jagged arrays over multidimensional
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: Provided to ease migration.
+  nameWithType.vb: Matrices.CopyToJagged2D(Integer?(,))
+  fullName.vb: SudokuSpice.Matrices.CopyToJagged2D(Integer?(,))
+  name.vb: CopyToJagged2D(Integer?(,))
 - uid: SudokuSpice.Matrices.Copy2D(System.Nullable{System.Int32}[][])
   commentId: M:SudokuSpice.Matrices.Copy2D(System.Nullable{System.Int32}[][])
   id: Copy2D(System.Nullable{System.Int32}[][])
@@ -97,9 +99,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Copy2D(Nullable<Int32>[][])
-  nameWithType: Matrices.Copy2D(Nullable<Int32>[][])
-  fullName: SudokuSpice.Matrices.Copy2D(System.Nullable<System.Int32>[][])
+  name: Copy2D(int?[][])
+  nameWithType: Matrices.Copy2D(int?[][])
+  fullName: SudokuSpice.Matrices.Copy2D(int?[][])
   type: Method
   source:
     remote:
@@ -113,26 +115,17 @@ items:
   - SudokuSpice
   namespace: SudokuSpice
   syntax:
-    content: public static int? [][] Copy2D(this int? [][] matrix)
+    content: public static int?[][] Copy2D(this int?[][] matrix)
     parameters:
     - id: matrix
       type: System.Nullable{System.Int32}[][]
     return:
       type: System.Nullable{System.Int32}[][]
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function Copy2D(matrix As Integer?()()) As Integer?()()
+    content.vb: Public Shared Function Copy2D(matrix As Integer?()()) As Integer?()()
   overload: SudokuSpice.Matrices.Copy2D*
-  nameWithType.vb: Matrices.Copy2D(Nullable(Of Int32)()())
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: SudokuSpice.Matrices.Copy2D(System.Nullable(Of System.Int32)()())
-  name.vb: Copy2D(Nullable(Of Int32)()())
+  nameWithType.vb: Matrices.Copy2D(Integer?()())
+  fullName.vb: SudokuSpice.Matrices.Copy2D(Integer?()())
+  name.vb: Copy2D(Integer?()())
 references:
 - uid: SudokuSpice
   commentId: N:SudokuSpice
@@ -143,403 +136,304 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: SudokuSpice.Matrices.CopyToJagged2D*
   commentId: Overload:SudokuSpice.Matrices.CopyToJagged2D
+  href: SudokuSpice.Matrices.html#SudokuSpice_Matrices_CopyToJagged2D_System_Nullable_System_Int32__0
   name: CopyToJagged2D
   nameWithType: Matrices.CopyToJagged2D
   fullName: SudokuSpice.Matrices.CopyToJagged2D
 - uid: System.Nullable{System.Int32}[,]
   isExternal: true
-  name: Nullable<Int32>[,]
-  nameWithType: Nullable<Int32>[,]
-  fullName: System.Nullable<System.Int32>[,]
-  nameWithType.vb: Nullable(Of Int32)(,)
-  fullName.vb: System.Nullable(Of System.Int32)(,)
-  name.vb: Nullable(Of Int32)(,)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?[,]
+  nameWithType: int?[,]
+  fullName: int?[,]
+  nameWithType.vb: Integer?(,)
+  fullName.vb: Integer?(,)
+  name.vb: Integer?(,)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: '[,]'
-    nameWithType: '[,]'
-    fullName: '[,]'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: '['
+  - name: ','
+  - name: ']'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: (
+  - name: ','
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: (,)
-    nameWithType: (,)
-    fullName: (,)
 - uid: System.Nullable{System.Int32}[][]
   isExternal: true
-  name: Nullable<Int32>[][]
-  nameWithType: Nullable<Int32>[][]
-  fullName: System.Nullable<System.Int32>[][]
-  nameWithType.vb: Nullable(Of Int32)()()
-  fullName.vb: System.Nullable(Of System.Int32)()()
-  name.vb: Nullable(Of Int32)()()
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?[][]
+  nameWithType: int?[][]
+  fullName: int?[][]
+  nameWithType.vb: Integer?()()
+  fullName.vb: Integer?()()
+  name.vb: Integer?()()
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: '['
+  - name: ']'
+  - name: '['
+  - name: ']'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: (
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )
 - uid: SudokuSpice.Matrices.Copy2D*
   commentId: Overload:SudokuSpice.Matrices.Copy2D
+  href: SudokuSpice.Matrices.html#SudokuSpice_Matrices_Copy2D_System_Nullable_System_Int32______
   name: Copy2D
   nameWithType: Matrices.Copy2D
   fullName: SudokuSpice.Matrices.Copy2D

@@ -1,21 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Framework Overview | SudokuSpice </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Framework Overview | SudokuSpice ">
-    <meta name="generator" content="docfx 2.56.7.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Framework Overview | SudokuSpice </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Framework Overview | SudokuSpice ">
     
-    <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
-    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../../styles/docfx.css">
-    <link rel="stylesheet" href="../../../styles/main.css">
-    <meta property="docfx:navrel" content="../../v2.0.0">
-    <meta property="docfx:tocrel" content="toc.html">
+    
+      <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../v3.2.2">
+      <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -23,7 +23,7 @@
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../../index.html">
                 <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
               </a>
@@ -47,7 +47,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -57,7 +57,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -81,7 +81,7 @@ implementing custom rules or constraints.</p>
 <ol>
 <li><p>The <a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a></p>
 <p>Puzzles store the underlying Sudoku data. You likely only need the standard
-<a class="xref" href="../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> implementation, but the interface is provided in case
+<a class="xref" href="../../../api/SudokuSpice.Puzzle.html"><code>Puzzle</code></a> implementation, but the interface is provided in case
 you need to do something a little different, like work with a puzzle with jagged regions
 instead of the normal square box regions.</p>
 </li>
@@ -93,7 +93,7 @@ instead of the normal square box regions.</p>
 efficiency, these come prepackaged in the
 <a class="xref" href="../api/SudokuSpice.Rules.StandardRules.html"><code>StandardRules</code></a> class. Rules do not directly modify the
 <a class="xref" href="../api/SudokuSpice.IPuzzle.html"><code>IPuzzle</code></a> or <a class="xref" href="../api/SudokuSpice.Data.PossibleValues.html"><code>PossibleValues</code></a>
-themselves. They should use an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
+themselves. They should use an <a class="xref" href="../../../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and just
 enough internal state to efficiently provide the possible values of any given square according to
 <em>only</em> that rule.</p>
 <p>Rules are enforced by an <a class="xref" href="../api/SudokuSpice.Rules.ISudokuRuleKeeper.html"><code>ISudokuRuleKeeper</code></a>. The
@@ -110,7 +110,7 @@ ensuring that no rules are broken by a given update.</p>
 given square. These are only used in solving when the framework would otherwise have to guess
 (i.e. all unset squares have at least two possible values), so they can be relatively expensive
 and still improve solving times.</p>
-<p>Heuristics depend on an <a class="xref" href="../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and directly modify
+<p>Heuristics depend on an <a class="xref" href="../../../api/SudokuSpice.IReadOnlyPuzzle.html"><code>IReadOnlyPuzzle</code></a> and directly modify
 the <a class="xref" href="../api/SudokuSpice.Data.PossibleValues.html"><code>PossibleValues</code></a>. They can alo optionally depend on one or
 more rules, as is demonstrated by the
 <a class="xref" href="../api/SudokuSpice.Heuristics.UniqueInRowHeuristic.html"><code>UniqueInRowHeuristic</code></a>. Heuristics can either
@@ -349,8 +349,8 @@ improvement.</p>
 </ul>
 <h2 id="namespaces">Namespaces</h2>
 <ul>
-<li><strong><a class="xref" href="../api/SudokuSpice.Data.html">SudokuSpice</a>:</strong> Contains the main public classes for solving and generating puzzles.</li>
-<li><strong><a class="xref" href="../api/SudokuSpice.Data.html">SudokuSpice</a>:</strong> Contains data classes used internally, with some made public for
+<li><strong><a class="xref" href="../../../api/SudokuSpice.html">SudokuSpice</a>:</strong> Contains the main public classes for solving and generating puzzles.</li>
+<li><strong><a class="xref" href="../../../api/SudokuSpice.html">SudokuSpice</a>:</strong> Contains data classes used internally, with some made public for
 users who wish to extend the framework.</li>
 <li><strong><a class="xref" href="../api/SudokuSpice.Heuristics.html">SudokuSpice.Heuristics</a>:</strong> Contains standard heuristics and interfaces for creating
 custom heuristics.</li>
@@ -360,27 +360,28 @@ rules.</li>
 <a class="xref" href="../api/SudokuSpice.Constraints.IConstraint.html"><code>IConstraint</code></a> interface.
 rules.</li>
 </ul>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v2.0.0/articles/framework.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v2.0.0/articles/framework.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
+                <h5>In this article</h5>
                 <div></div>
               </nav>
             </div>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -388,14 +389,14 @@ rules.</li>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            
-            <span>Generated by <strong>DocFX</strong></span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
     </div>
-    
-    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../../styles/main.js"></script>
   </body>

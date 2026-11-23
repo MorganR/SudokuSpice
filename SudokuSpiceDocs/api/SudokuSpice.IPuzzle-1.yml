@@ -26,16 +26,17 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides read and write access to a Sudoku puzzle.\n"
+  summary: Provides read and write access to a Sudoku puzzle.
   example: []
   syntax:
     content: 'public interface IPuzzle<T> : IReadOnlyPuzzle where T : class, IPuzzle<T>'
     typeParameters:
     - id: T
       description: Should be the concrete type implementing this interface.
-    content.vb: >-
-      Public Interface IPuzzle(Of T As {Class, IPuzzle(Of T)})
-          Inherits IReadOnlyPuzzle
+    content.vb: Public Interface IPuzzle(Of T As {Class, IPuzzle(Of T)}) Inherits IReadOnlyPuzzle
+  derivedClasses:
+  - SudokuSpice.Puzzle
+  - SudokuSpice.RuleBased.PuzzleWithPossibleValues
   inheritedMembers:
   - SudokuSpice.IReadOnlyPuzzle.Size
   - SudokuSpice.IReadOnlyPuzzle.NumSquares
@@ -45,12 +46,6 @@ items:
   - SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   nameWithType.vb: IPuzzle(Of T)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
   fullName.vb: SudokuSpice.IPuzzle(Of T)
   name.vb: IPuzzle(Of T)
 - uid: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
@@ -60,9 +55,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Item[Int32, Int32]
-  nameWithType: IPuzzle<T>.Item[Int32, Int32]
-  fullName: SudokuSpice.IPuzzle<T>.Item[System.Int32, System.Int32]
+  name: this[int, int]
+  nameWithType: IPuzzle<T>.this[int, int]
+  fullName: SudokuSpice.IPuzzle<T>.this[int, int]
   type: Property
   source:
     remote:
@@ -75,7 +70,10 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets or sets the current value of a given square. A square can be &apos;unset&apos; by setting\nits value to <code>null</code>.\n"
+  summary: >-
+    Gets or sets the current value of a given square. A square can be 'unset' by setting
+
+    its value to <code>null</code>.
   example: []
   syntax:
     content: int? this[int row, int col] { get; set; }
@@ -86,14 +84,11 @@ items:
       type: System.Int32
     return:
       type: System.Nullable{System.Int32}
-    content.vb: Property Item(row As Integer, col As Integer) As Integer?
+    content.vb: Default Property this[](row As Integer, col As Integer) As Integer?
   overload: SudokuSpice.IPuzzle`1.Item*
-  nameWithType.vb: IPuzzle(Of T).Item(Int32, Int32)
-  modifiers.csharp:
-  - get
-  - set
-  fullName.vb: SudokuSpice.IPuzzle(Of T).Item(System.Int32, System.Int32)
-  name.vb: Item(Int32, Int32)
+  nameWithType.vb: IPuzzle(Of T).this[](Integer, Integer)
+  fullName.vb: SudokuSpice.IPuzzle(Of T).this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
 - uid: SudokuSpice.IPuzzle`1.Item(SudokuSpice.Coordinate@)
   commentId: P:SudokuSpice.IPuzzle`1.Item(SudokuSpice.Coordinate@)
   id: Item(SudokuSpice.Coordinate@)
@@ -101,9 +96,9 @@ items:
   langs:
   - csharp
   - vb
-  name: Item[Coordinate]
-  nameWithType: IPuzzle<T>.Item[Coordinate]
-  fullName: SudokuSpice.IPuzzle<T>.Item[SudokuSpice.Coordinate]
+  name: this[Coordinate]
+  nameWithType: IPuzzle<T>.this[Coordinate]
+  fullName: SudokuSpice.IPuzzle<T>.this[SudokuSpice.Coordinate]
   type: Property
   source:
     remote:
@@ -116,25 +111,43 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nGets or sets the value of the given square, like <xref href=\"SudokuSpice.IPuzzle%601.Item(System.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, but\nusing a <xref href=\"SudokuSpice.Coordinate\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref uid=\"langword_csharp_int\" name=\"int\" href=\"\"></xref> accessors.\n"
+  summary: >-
+    Gets or sets the value of the given square, like <xref href="SudokuSpice.IPuzzle%601.Item(System.Int32%2cSystem.Int32)" data-throw-if-not-resolved="false"></xref>, but
+
+    using a <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> instead of <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/integral-numeric-types">int</a> accessors.
   example: []
   syntax:
-    content: int? this[in Coordinate c] { get; set; }
+    content: >-
+      [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
+
+      int? this[in Coordinate c] { get; set; }
     parameters:
     - id: c
       type: SudokuSpice.Coordinate
       description: The location of the square to get/set the value of.
     return:
       type: System.Nullable{System.Int32}
-      description: The value of the square at <code data-dev-comment-type="paramref" class="paramref">c</code>
-    content.vb: Property Item(ByRef c As Coordinate) As Integer?
+      description: The value of the square at <code class="paramref">c</code>
+    content.vb: >-
+      <SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification:="This makes sense with Coordinate, which removes any ambiguity between first and second arguments")>
+
+      Default Property this[](c As Coordinate) As Integer?
   overload: SudokuSpice.IPuzzle`1.Item*
-  nameWithType.vb: IPuzzle(Of T).Item(ByRef Coordinate)
-  modifiers.csharp:
-  - get
-  - set
-  fullName.vb: SudokuSpice.IPuzzle(Of T).Item(ByRef SudokuSpice.Coordinate)
-  name.vb: Item(ByRef Coordinate)
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: CA1043:Use Integral Or String Argument For Indexers
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This makes sense with Coordinate, which removes any ambiguity between first and second arguments
+  nameWithType.vb: IPuzzle(Of T).this[](Coordinate)
+  fullName.vb: SudokuSpice.IPuzzle(Of T).this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
 - uid: SudokuSpice.IPuzzle`1.DeepCopy
   commentId: M:SudokuSpice.IPuzzle`1.DeepCopy
   id: DeepCopy
@@ -157,13 +170,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nCreates a deep-copy of this puzzle.\n"
+  summary: Creates a deep-copy of this puzzle.
   example: []
   syntax:
     content: T DeepCopy()
     return:
       type: '{T}'
-    content.vb: Function DeepCopy As T
+    content.vb: Function DeepCopy() As T
   overload: SudokuSpice.IPuzzle`1.DeepCopy*
   nameWithType.vb: IPuzzle(Of T).DeepCopy()
   fullName.vb: SudokuSpice.IPuzzle(Of T).DeepCopy()
@@ -176,140 +189,125 @@ references:
 - uid: SudokuSpice.IReadOnlyPuzzle.Size
   commentId: P:SudokuSpice.IReadOnlyPuzzle.Size
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Size
   name: Size
   nameWithType: IReadOnlyPuzzle.Size
   fullName: SudokuSpice.IReadOnlyPuzzle.Size
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSquares
   commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSquares
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSquares
   name: NumSquares
   nameWithType: IReadOnlyPuzzle.NumSquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumSquares
 - uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
   commentId: P:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumEmptySquares
   name: NumEmptySquares
   nameWithType: IReadOnlyPuzzle.NumEmptySquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
 - uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
   commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSetSquares
   name: NumSetSquares
   nameWithType: IReadOnlyPuzzle.NumSetSquares
   fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
 - uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_AllPossibleValuesSpan
   name: AllPossibleValuesSpan
   nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
   fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
 - uid: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   commentId: P:SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue
   name: CountPerUniqueValue
   nameWithType: IReadOnlyPuzzle.CountPerUniqueValue
   fullName: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
 - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   commentId: M:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
   name: GetUnsetCoords()
   nameWithType: IReadOnlyPuzzle.GetUnsetCoords()
   fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords()
   spec.csharp:
   - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
     name: GetUnsetCoords
-    nameWithType: IReadOnlyPuzzle.GetUnsetCoords
-    fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+    href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
     name: GetUnsetCoords
-    nameWithType: IReadOnlyPuzzle.GetUnsetCoords
-    fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+    href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
+  href: SudokuSpice.IReadOnlyPuzzle.html
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: SudokuSpice.IPuzzle`1.Item*
   commentId: Overload:SudokuSpice.IPuzzle`1.Item
-  name: Item
-  nameWithType: IPuzzle<T>.Item
-  fullName: SudokuSpice.IPuzzle<T>.Item
-  nameWithType.vb: IPuzzle(Of T).Item
-  fullName.vb: SudokuSpice.IPuzzle(Of T).Item
+  href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_System_Int32_System_Int32_
+  name: this
+  nameWithType: IPuzzle<T>.this
+  fullName: SudokuSpice.IPuzzle<T>.this
+  nameWithType.vb: IPuzzle(Of T).this[]
+  fullName.vb: SudokuSpice.IPuzzle(Of T).this[]
+  name.vb: this[]
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: System.Nullable{System.Int32}
   commentId: T:System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
-  fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
-  fullName.vb: System.Nullable(Of System.Int32)
-  name.vb: Nullable(Of Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   name: Nullable<T>
   nameWithType: Nullable<T>
   fullName: System.Nullable<T>
@@ -319,98 +317,71 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
   commentId: P:SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
   isExternal: true
-  name: Item[Int32, Int32]
-  nameWithType: IPuzzle<T>.Item[Int32, Int32]
-  fullName: SudokuSpice.IPuzzle<T>.Item[System.Int32, System.Int32]
-  nameWithType.vb: IPuzzle(Of T).Item(Int32, Int32)
-  fullName.vb: SudokuSpice.IPuzzle(Of T).Item(System.Int32, System.Int32)
-  name.vb: Item(Int32, Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int, int]
+  nameWithType: IPuzzle<T>.this[int, int]
+  fullName: SudokuSpice.IPuzzle<T>.this[int, int]
+  nameWithType.vb: IPuzzle(Of T).this[](Integer, Integer)
+  fullName.vb: SudokuSpice.IPuzzle(Of T).this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
   spec.csharp:
-  - uid: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
-    name: Item
-    nameWithType: IPuzzle<T>.Item
-    fullName: SudokuSpice.IPuzzle<T>.Item
+  - name: this
   - name: '['
-    nameWithType: '['
-    fullName: '['
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: ']'
-    nameWithType: ']'
-    fullName: ']'
   spec.vb:
   - uid: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
-    name: Item
-    nameWithType: IPuzzle(Of T).Item
-    fullName: SudokuSpice.IPuzzle(Of T).Item
+    name: this[]
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_System_Int32_System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.IPuzzle`1.DeepCopy*
   commentId: Overload:SudokuSpice.IPuzzle`1.DeepCopy
+  href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
   name: DeepCopy
   nameWithType: IPuzzle<T>.DeepCopy
   fullName: SudokuSpice.IPuzzle<T>.DeepCopy

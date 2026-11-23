@@ -27,12 +27,12 @@ items:
   syntax:
     content: public interface IConstraint
     content.vb: Public Interface IConstraint
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
+  derivedClasses:
+  - SudokuSpice.ConstraintBased.Constraints.BoxUniquenessConstraint
+  - SudokuSpice.ConstraintBased.Constraints.ColumnUniquenessConstraint
+  - SudokuSpice.ConstraintBased.Constraints.DiagonalUniquenessConstraint
+  - SudokuSpice.ConstraintBased.Constraints.MagicSquaresConstraint
+  - SudokuSpice.ConstraintBased.Constraints.RowUniquenessConstraint
 - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   commentId: M:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
   id: TryConstrain(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.ConstraintBased.ExactCoverGraph)
@@ -55,8 +55,21 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased.Constraints
-  summary: "\nAdds necessary <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref>s and links to the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">graph</code> in order to solve the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>\naccording to this constraint. The details here are implementation-specific.\n"
-  remarks: "\nThis should skip adding objectives that are already satisfied by the given\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">puzzle</code>. Instead, it should drop the relevant\n<xref href=\"SudokuSpice.ConstraintBased.Possibility\" data-throw-if-not-resolved=\"false\"></xref>s that are no longer possible.\n\nNote: See <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref> to understand how the graph works.\n"
+  summary: >-
+    Adds necessary <xref href="SudokuSpice.ConstraintBased.IObjective" data-throw-if-not-resolved="false"></xref>s and links to the given
+
+    <code class="paramref">graph</code> in order to solve the given <code class="paramref">puzzle</code>
+
+    according to this constraint. The details here are implementation-specific.
+  remarks: >-
+    This should skip adding objectives that are already satisfied by the given
+
+    <code class="paramref">puzzle</code>. Instead, it should drop the relevant
+
+    <xref href="SudokuSpice.ConstraintBased.Possibility" data-throw-if-not-resolved="false"></xref>s that are no longer possible.
+
+
+    Note: See <xref href="SudokuSpice.ConstraintBased.ExactCoverGraph" data-throw-if-not-resolved="false"></xref> to understand how the graph works.
   example: []
   syntax:
     content: bool TryConstrain(IReadOnlyPuzzle puzzle, ExactCoverGraph graph)
@@ -69,7 +82,7 @@ items:
       description: The exact-cover graph to constrain.
     return:
       type: System.Boolean
-      description: "\nFalse if the constraint could not be satisfied by the given puzzle, else true.\n"
+      description: False if the constraint could not be satisfied by the given puzzle, else true.
     content.vb: Function TryConstrain(puzzle As IReadOnlyPuzzle, graph As ExactCoverGraph) As Boolean
   overload: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain*
 references:
@@ -78,31 +91,54 @@ references:
   name: SudokuSpice.ConstraintBased.Constraints
   nameWithType: SudokuSpice.ConstraintBased.Constraints
   fullName: SudokuSpice.ConstraintBased.Constraints
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
+  - name: .
+  - uid: SudokuSpice.ConstraintBased.Constraints
+    name: Constraints
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
+  - name: .
+  - uid: SudokuSpice.ConstraintBased.Constraints
+    name: Constraints
 - uid: SudokuSpice.ConstraintBased.IObjective
   commentId: T:SudokuSpice.ConstraintBased.IObjective
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.IObjective.html
   name: IObjective
   nameWithType: IObjective
   fullName: SudokuSpice.ConstraintBased.IObjective
 - uid: SudokuSpice.ConstraintBased.Possibility
   commentId: T:SudokuSpice.ConstraintBased.Possibility
+  href: SudokuSpice.ConstraintBased.Possibility.html
   name: Possibility
   nameWithType: Possibility
   fullName: SudokuSpice.ConstraintBased.Possibility
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.ExactCoverGraph.html
   name: ExactCoverGraph
   nameWithType: ExactCoverGraph
   fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
 - uid: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain*
   commentId: Overload:SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
+  href: SudokuSpice.ConstraintBased.Constraints.IConstraint.html#SudokuSpice_ConstraintBased_Constraints_IConstraint_TryConstrain_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_ConstraintBased_ExactCoverGraph_
   name: TryConstrain
   nameWithType: IConstraint.TryConstrain
   fullName: SudokuSpice.ConstraintBased.Constraints.IConstraint.TryConstrain
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
+  href: SudokuSpice.IReadOnlyPuzzle.html
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
@@ -110,14 +146,30 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
 - uid: SudokuSpice
   commentId: N:SudokuSpice
   name: SudokuSpice
@@ -126,6 +178,7 @@ references:
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System

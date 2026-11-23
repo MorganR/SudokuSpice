@@ -30,14 +30,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nRestricts that each box contains a max count of each value, as specified by the\n<xref href=\"SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue\" data-throw-if-not-resolved=\"false\"></xref> dictionary.\n"
+  summary: >-
+    Restricts that each box contains a max count of each value, as specified by the
+
+    <xref href="SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue" data-throw-if-not-resolved="false"></xref> dictionary.
   example: []
   syntax:
     content: 'public class MaxCountPerBoxRule : MaxCountRule, IMissingBoxValuesTracker, IRule'
-    content.vb: >-
-      Public Class MaxCountPerBoxRule
-          Inherits MaxCountRule
-          Implements IMissingBoxValuesTracker, IRule
+    content.vb: Public Class MaxCountPerBoxRule Inherits MaxCountRule Implements IMissingBoxValuesTracker, IRule
   inheritance:
   - System.Object
   - SudokuSpice.RuleBased.Rules.MaxCountRule
@@ -57,12 +57,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.#ctor
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.#ctor
   id: '#ctor'
@@ -87,12 +81,11 @@ items:
   namespace: SudokuSpice.RuleBased.Rules
   syntax:
     content: public MaxCountPerBoxRule()
-    content.vb: Public Sub New
+    content.vb: Public Sub New()
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: MaxCountPerBoxRule.New()
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.New()
+  name.vb: New()
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   id: CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
@@ -100,9 +93,9 @@ items:
   langs:
   - csharp
   - vb
-  name: CopyWithNewReference(IReadOnlyPuzzle)
-  nameWithType: MaxCountPerBoxRule.CopyWithNewReference(IReadOnlyPuzzle)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  name: CopyWithNewReference(IReadOnlyPuzzle?)
+  nameWithType: MaxCountPerBoxRule.CopyWithNewReference(IReadOnlyPuzzle?)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle?)
   type: Method
   source:
     remote:
@@ -115,14 +108,20 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nCreates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>\nreferences updated to the given puzzle.\n"
+  summary: >-
+    Creates a deep copy of this IRule, with any internal <code>IReadOnlyPuzzle</code>
+
+    references updated to the given puzzle.
   example: []
   syntax:
-    content: public override IRule CopyWithNewReference(IReadOnlyPuzzle puzzle)
+    content: public override IRule CopyWithNewReference(IReadOnlyPuzzle? puzzle)
     parameters:
     - id: puzzle
       type: SudokuSpice.IReadOnlyPuzzle
-      description: "\nThe new puzzle reference to use. To ensure this rule&apos;s internal state is correct, this\npuzzle should contain the same data as the current puzzle referenced by this rule.\n"
+      description: >-
+        The new puzzle reference to use. To ensure this rule's internal state is correct, this
+
+        puzzle should contain the same data as the current puzzle referenced by this rule.
     return:
       type: SudokuSpice.RuleBased.Rules.IRule
     content.vb: Public Overrides Function CopyWithNewReference(puzzle As IReadOnlyPuzzle) As IRule
@@ -130,12 +129,9 @@ items:
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
+  nameWithType.vb: MaxCountPerBoxRule.CopyWithNewReference(IReadOnlyPuzzle)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
+  name.vb: CopyWithNewReference(IReadOnlyPuzzle)
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   id: TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
@@ -158,8 +154,13 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nTries to initialize this rule to prepare to solve the given puzzle.\n"
-  remarks: "\nIn general, it doesn&apos;t make sense to want to maintain the previous state if this method\nfails. Therefore, it is <em>not</em> guaranteed that the rule&apos;s state is unchanged on \nfailure.\n"
+  summary: Tries to initialize this rule to prepare to solve the given puzzle.
+  remarks: >-
+    In general, it doesn't make sense to want to maintain the previous state if this method
+
+    fails. Therefore, it is <em>not</em> guaranteed that the rule's state is unchanged on 
+
+    failure.
   example: []
   syntax:
     content: public override bool TryInit(IReadOnlyPuzzle puzzle, BitVector uniquePossibleValues)
@@ -172,18 +173,12 @@ items:
       description: All the unique possible values for this puzzle.
     return:
       type: System.Boolean
-      description: "\nFalse if the puzzle violates this rule and initialization fails, else true.\n"
+      description: False if the puzzle violates this rule and initialization fails, else true.
     content.vb: Public Overrides Function TryInit(puzzle As IReadOnlyPuzzle, uniquePossibleValues As BitVector) As Boolean
   overridden: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TryInit*
   implements:
   - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox(System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox(System.Int32)
   id: GetMissingValuesForBox(System.Int32)
@@ -191,9 +186,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetMissingValuesForBox(Int32)
-  nameWithType: MaxCountPerBoxRule.GetMissingValuesForBox(Int32)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox(System.Int32)
+  name: GetMissingValuesForBox(int)
+  nameWithType: MaxCountPerBoxRule.GetMissingValuesForBox(int)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox(int)
   type: Method
   source:
     remote:
@@ -219,10 +214,9 @@ items:
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox*
   implements:
   - SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(System.Int32)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: MaxCountPerBoxRule.GetMissingValuesForBox(Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox(Integer)
+  name.vb: GetMissingValuesForBox(Integer)
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   id: GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
@@ -245,7 +239,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nReturns the number of dimensions that will be enforced to contain unique values.\n"
+  summary: Returns the number of dimensions that will be enforced to contain unique values.
   example: []
   syntax:
     content: protected override int GetNumDimensions(IReadOnlyPuzzle puzzle)
@@ -258,12 +252,6 @@ items:
     content.vb: Protected Overrides Function GetNumDimensions(puzzle As IReadOnlyPuzzle) As Integer
   overridden: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetNumDimensions*
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension(SudokuSpice.Coordinate@)
   id: GetDimension(SudokuSpice.Coordinate@)
@@ -271,9 +259,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetDimension(Coordinate)
-  nameWithType: MaxCountPerBoxRule.GetDimension(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension(SudokuSpice.Coordinate)
+  name: GetDimension(in Coordinate)
+  nameWithType: MaxCountPerBoxRule.GetDimension(in Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension(in SudokuSpice.Coordinate)
   type: Method
   source:
     remote:
@@ -286,7 +274,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nGets the dimension for a coordinate.\n"
+  summary: Gets the dimension for a coordinate.
   example: []
   syntax:
     content: protected override int GetDimension(in Coordinate c)
@@ -295,18 +283,12 @@ items:
       type: SudokuSpice.Coordinate
     return:
       type: System.Int32
-    content.vb: Protected Overrides Function GetDimension(ByRef c As Coordinate) As Integer
+    content.vb: Protected Overrides Function GetDimension(c As Coordinate) As Integer
   overridden: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension*
-  nameWithType.vb: MaxCountPerBoxRule.GetDimension(ByRef Coordinate)
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
-  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension(ByRef SudokuSpice.Coordinate)
-  name.vb: GetDimension(ByRef Coordinate)
+  nameWithType.vb: MaxCountPerBoxRule.GetDimension(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension(SudokuSpice.Coordinate)
+  name.vb: GetDimension(Coordinate)
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   id: TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
@@ -314,9 +296,9 @@ items:
   langs:
   - csharp
   - vb
-  name: TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
-  nameWithType: MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  name: TrackUnsetCoordinatesOnSameDimension(int, in Coordinate, CoordinateTracker)
+  nameWithType: MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(int, in Coordinate, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(int, in SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
   type: Method
   source:
     remote:
@@ -329,7 +311,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nAdds the coordinates of unset values on the given dimension to the given tracker.\n"
+  summary: Adds the coordinates of unset values on the given dimension to the given tracker.
   example: []
   syntax:
     content: protected override void TrackUnsetCoordinatesOnSameDimension(int dimension, in Coordinate source, CoordinateTracker tracker)
@@ -343,22 +325,17 @@ items:
     - id: tracker
       type: SudokuSpice.CoordinateTracker
       description: The tracker to add coordiantes to.
-    content.vb: Protected Overrides Sub TrackUnsetCoordinatesOnSameDimension(dimension As Integer, ByRef source As Coordinate, tracker As CoordinateTracker)
+    content.vb: Protected Overrides Sub TrackUnsetCoordinatesOnSameDimension(dimension As Integer, source As Coordinate, tracker As CoordinateTracker)
   overridden: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   overload: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension*
-  nameWithType.vb: MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
-  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, ByRef SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
-  name.vb: TrackUnsetCoordinatesOnSameDimension(Int32, ByRef Coordinate, CoordinateTracker)
+  nameWithType.vb: MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(Integer, Coordinate, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension(Integer, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  name.vb: TrackUnsetCoordinatesOnSameDimension(Integer, Coordinate, CoordinateTracker)
 references:
 - uid: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   commentId: P:SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
   parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue
   name: CountPerUniqueValue
   nameWithType: IReadOnlyPuzzle.CountPerUniqueValue
   fullName: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
@@ -367,581 +344,496 @@ references:
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule
   commentId: T:SudokuSpice.RuleBased.Rules.MaxCountRule
   parent: SudokuSpice.RuleBased.Rules
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html
   name: MaxCountRule
   nameWithType: MaxCountRule
   fullName: SudokuSpice.RuleBased.Rules.MaxCountRule
 - uid: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
   commentId: T:SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
   parent: SudokuSpice.RuleBased.Rules
+  href: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html
   name: IMissingBoxValuesTracker
   nameWithType: IMissingBoxValuesTracker
   fullName: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
 - uid: SudokuSpice.RuleBased.Rules.IRule
   commentId: T:SudokuSpice.RuleBased.Rules.IRule
   parent: SudokuSpice.RuleBased.Rules
+  href: SudokuSpice.RuleBased.Rules.IRule.html
   name: IRule
   nameWithType: IRule
   fullName: SudokuSpice.RuleBased.Rules.IRule
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
-  name: GetPossibleValues(Coordinate)
-  nameWithType: MaxCountRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_SudokuSpice_Coordinate__
+  name: GetPossibleValues(in Coordinate)
+  nameWithType: MaxCountRule.GetPossibleValues(in Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(in SudokuSpice.Coordinate)
+  nameWithType.vb: MaxCountRule.GetPossibleValues(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate)
+  name.vb: GetPossibleValues(Coordinate)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: MaxCountRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: MaxCountRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   isExternal: true
-  name: Revert(Coordinate, Int32)
-  nameWithType: MaxCountRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_
+  name: Revert(in Coordinate, int)
+  nameWithType: MaxCountRule.Revert(in Coordinate, int)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(in SudokuSpice.Coordinate, int)
+  nameWithType.vb: MaxCountRule.Revert(Coordinate, Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate, Integer)
+  name.vb: Revert(Coordinate, Integer)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: MaxCountRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: MaxCountRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   isExternal: true
-  name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: MaxCountRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  name: Revert(in Coordinate, int, CoordinateTracker)
+  nameWithType: MaxCountRule.Revert(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: MaxCountRule.Revert(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Revert(Coordinate, Integer, CoordinateTracker)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Revert
-    nameWithType: MaxCountRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Revert
-    nameWithType: MaxCountRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Revert
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   isExternal: true
-  name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: MaxCountRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  name: Update(in Coordinate, int, CoordinateTracker)
+  nameWithType: MaxCountRule.Update(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: MaxCountRule.Update(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Update(Coordinate, Integer, CoordinateTracker)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Update
-    nameWithType: MaxCountRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Update
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Update
-    nameWithType: MaxCountRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.Update
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   isExternal: true
-  name: GetPossibleValues(Int32)
-  nameWithType: MaxCountRule.GetPossibleValues(Int32)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_System_Int32_
+  name: GetPossibleValues(int)
+  nameWithType: MaxCountRule.GetPossibleValues(int)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(int)
+  nameWithType.vb: MaxCountRule.GetPossibleValues(Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(Integer)
+  name.vb: GetPossibleValues(Integer)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
     name: GetPossibleValues
-    nameWithType: MaxCountRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues(System.Int32)
     name: GetPossibleValues
-    nameWithType: MaxCountRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetPossibleValues_System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
+  href: SudokuSpice.IReadOnlyPuzzle.html
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
@@ -952,194 +844,149 @@ references:
   fullName: SudokuSpice
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.#ctor*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.#ctor
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule__ctor
   name: MaxCountPerBoxRule
   nameWithType: MaxCountPerBoxRule.MaxCountPerBoxRule
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.MaxCountPerBoxRule
+  nameWithType.vb: MaxCountPerBoxRule.New
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.New
+  name.vb: New
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: MaxCountRule.CopyWithNewReference(IReadOnlyPuzzle)
   fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: MaxCountRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: MaxCountRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   name: CopyWithNewReference
   nameWithType: MaxCountPerBoxRule.CopyWithNewReference
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.CopyWithNewReference
 - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.IRule
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: IRule.CopyWithNewReference(IReadOnlyPuzzle)
   fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: IRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: IRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: MaxCountRule.TryInit(IReadOnlyPuzzle, BitVector)
   fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: MaxCountRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: MaxCountRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TryInit*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TryInit
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   name: TryInit
   nameWithType: MaxCountPerBoxRule.TryInit
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TryInit
 - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: IRule.TryInit(IReadOnlyPuzzle, BitVector)
   fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: IRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: IRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
+  href: SudokuSpice.BitVector.html
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.BitVector
@@ -1147,11 +994,16 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule_GetMissingValuesForBox_System_Int32_
   name: GetMissingValuesForBox
   nameWithType: MaxCountPerBoxRule.GetMissingValuesForBox
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetMissingValuesForBox
@@ -1159,133 +1011,115 @@ references:
   commentId: M:SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(System.Int32)
   parent: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker
   isExternal: true
-  name: GetMissingValuesForBox(Int32)
-  nameWithType: IMissingBoxValuesTracker.GetMissingValuesForBox(Int32)
-  fullName: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(System.Int32)
+  href: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html#SudokuSpice_RuleBased_Rules_IMissingBoxValuesTracker_GetMissingValuesForBox_System_Int32_
+  name: GetMissingValuesForBox(int)
+  nameWithType: IMissingBoxValuesTracker.GetMissingValuesForBox(int)
+  fullName: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(int)
+  nameWithType.vb: IMissingBoxValuesTracker.GetMissingValuesForBox(Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(Integer)
+  name.vb: GetMissingValuesForBox(Integer)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(System.Int32)
     name: GetMissingValuesForBox
-    nameWithType: IMissingBoxValuesTracker.GetMissingValuesForBox
-    fullName: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox
+    href: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html#SudokuSpice_RuleBased_Rules_IMissingBoxValuesTracker_GetMissingValuesForBox_System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox(System.Int32)
     name: GetMissingValuesForBox
-    nameWithType: IMissingBoxValuesTracker.GetMissingValuesForBox
-    fullName: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.GetMissingValuesForBox
+    href: SudokuSpice.RuleBased.Rules.IMissingBoxValuesTracker.html#SudokuSpice_RuleBased_Rules_IMissingBoxValuesTracker_GetMissingValuesForBox_System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_
   name: GetNumDimensions(IReadOnlyPuzzle)
   nameWithType: MaxCountRule.GetNumDimensions(IReadOnlyPuzzle)
   fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
     name: GetNumDimensions
-    nameWithType: MaxCountRule.GetNumDimensions
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions(SudokuSpice.IReadOnlyPuzzle)
     name: GetNumDimensions
-    nameWithType: MaxCountRule.GetNumDimensions
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetNumDimensions
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetNumDimensions*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetNumDimensions
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule_GetNumDimensions_SudokuSpice_IReadOnlyPuzzle_
   name: GetNumDimensions
   nameWithType: MaxCountPerBoxRule.GetNumDimensions
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetNumDimensions
 - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
-  name: GetDimension(Coordinate)
-  nameWithType: MaxCountRule.GetDimension(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetDimension_SudokuSpice_Coordinate__
+  name: GetDimension(in Coordinate)
+  nameWithType: MaxCountRule.GetDimension(in Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(in SudokuSpice.Coordinate)
+  nameWithType.vb: MaxCountRule.GetDimension(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate)
+  name.vb: GetDimension(Coordinate)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
     name: GetDimension
-    nameWithType: MaxCountRule.GetDimension
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetDimension_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension(SudokuSpice.Coordinate@)
     name: GetDimension
-    nameWithType: MaxCountRule.GetDimension
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.GetDimension
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_GetDimension_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule_GetDimension_SudokuSpice_Coordinate__
   name: GetDimension
   nameWithType: MaxCountPerBoxRule.GetDimension
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.GetDimension
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
@@ -1293,77 +1127,65 @@ references:
   commentId: M:SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.MaxCountRule
   isExternal: true
-  name: TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
-  nameWithType: MaxCountRule.TrackUnsetCoordinatesOnSameDimension(Int32, Coordinate, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_
+  name: TrackUnsetCoordinatesOnSameDimension(int, in Coordinate, CoordinateTracker)
+  nameWithType: MaxCountRule.TrackUnsetCoordinatesOnSameDimension(int, in Coordinate, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(int, in SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: MaxCountRule.TrackUnsetCoordinatesOnSameDimension(Integer, Coordinate, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(Integer, SudokuSpice.Coordinate, SudokuSpice.CoordinateTracker)
+  name.vb: TrackUnsetCoordinatesOnSameDimension(Integer, Coordinate, CoordinateTracker)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
     name: TrackUnsetCoordinatesOnSameDimension
-    nameWithType: MaxCountRule.TrackUnsetCoordinatesOnSameDimension
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension(System.Int32,SudokuSpice.Coordinate@,SudokuSpice.CoordinateTracker)
     name: TrackUnsetCoordinatesOnSameDimension
-    nameWithType: MaxCountRule.TrackUnsetCoordinatesOnSameDimension
-    fullName: SudokuSpice.RuleBased.Rules.MaxCountRule.TrackUnsetCoordinatesOnSameDimension
+    href: SudokuSpice.RuleBased.Rules.MaxCountRule.html#SudokuSpice_RuleBased_Rules_MaxCountRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension*
   commentId: Overload:SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension
+  href: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.html#SudokuSpice_RuleBased_Rules_MaxCountPerBoxRule_TrackUnsetCoordinatesOnSameDimension_System_Int32_SudokuSpice_Coordinate__SudokuSpice_CoordinateTracker_
   name: TrackUnsetCoordinatesOnSameDimension
   nameWithType: MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension
   fullName: SudokuSpice.RuleBased.Rules.MaxCountPerBoxRule.TrackUnsetCoordinatesOnSameDimension
 - uid: SudokuSpice.CoordinateTracker
   commentId: T:SudokuSpice.CoordinateTracker
   parent: SudokuSpice
+  href: SudokuSpice.CoordinateTracker.html
   name: CoordinateTracker
   nameWithType: CoordinateTracker
   fullName: SudokuSpice.CoordinateTracker

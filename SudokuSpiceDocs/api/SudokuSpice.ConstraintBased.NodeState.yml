@@ -26,17 +26,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nIndicates if an <xref href=\"SudokuSpice.ConstraintBased.IPossibility\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"SudokuSpice.ConstraintBased.IObjective\" data-throw-if-not-resolved=\"false\"></xref> is still possible,\nselected, or dropped.\n"
+  summary: >-
+    Indicates if an <xref href="SudokuSpice.ConstraintBased.IPossibility" data-throw-if-not-resolved="false"></xref> or <xref href="SudokuSpice.ConstraintBased.IObjective" data-throw-if-not-resolved="false"></xref> is still possible,
+
+    selected, or dropped.
   example: []
   syntax:
     content: public enum NodeState
     content.vb: Public Enum NodeState
-  modifiers.csharp:
-  - public
-  - enum
-  modifiers.vb:
-  - Public
-  - Enum
 - uid: SudokuSpice.ConstraintBased.NodeState.UNKNOWN
   commentId: F:SudokuSpice.ConstraintBased.NodeState.UNKNOWN
   id: UNKNOWN
@@ -59,18 +56,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis node is still possible.\n"
+  summary: This node is still possible.
   example: []
   syntax:
     content: UNKNOWN = 0
     return:
       type: SudokuSpice.ConstraintBased.NodeState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: SudokuSpice.ConstraintBased.NodeState.SELECTED
   commentId: F:SudokuSpice.ConstraintBased.NodeState.SELECTED
   id: SELECTED
@@ -93,18 +84,12 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis node has been selected/satisfied.\n"
+  summary: This node has been selected/satisfied.
   example: []
   syntax:
     content: SELECTED = 1
     return:
       type: SudokuSpice.ConstraintBased.NodeState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: SudokuSpice.ConstraintBased.NodeState.DROPPED
   commentId: F:SudokuSpice.ConstraintBased.NodeState.DROPPED
   id: DROPPED
@@ -127,28 +112,27 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThis node has been dropped, i.e. it is no longer possible with the currently selected\nvalues.\n"
+  summary: >-
+    This node has been dropped, i.e. it is no longer possible with the currently selected
+
+    values.
   example: []
   syntax:
     content: DROPPED = 2
     return:
       type: SudokuSpice.ConstraintBased.NodeState
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 references:
 - uid: SudokuSpice.ConstraintBased.IPossibility
   commentId: T:SudokuSpice.ConstraintBased.IPossibility
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.IPossibility.html
   name: IPossibility
   nameWithType: IPossibility
   fullName: SudokuSpice.ConstraintBased.IPossibility
 - uid: SudokuSpice.ConstraintBased.IObjective
   commentId: T:SudokuSpice.ConstraintBased.IObjective
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.IObjective.html
   name: IObjective
   nameWithType: IObjective
   fullName: SudokuSpice.ConstraintBased.IObjective
@@ -157,9 +141,22 @@ references:
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
 - uid: SudokuSpice.ConstraintBased.NodeState
   commentId: T:SudokuSpice.ConstraintBased.NodeState
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.NodeState.html
   name: NodeState
   nameWithType: NodeState
   fullName: SudokuSpice.ConstraintBased.NodeState

@@ -25,74 +25,75 @@ items:
   namespace: SudokuSpice.ConstraintBased
   syntax:
     content: 'public interface IOptionalObjective : IObjective, IPossibility'
-    content.vb: >-
-      Public Interface IOptionalObjective
-          Inherits IObjective, IPossibility
+    content.vb: Public Interface IOptionalObjective Inherits IObjective, IPossibility
+  derivedClasses:
+  - SudokuSpice.ConstraintBased.OptionalObjective
   inheritedMembers:
   - SudokuSpice.ConstraintBased.IObjective.State
   - SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
   - SudokuSpice.ConstraintBased.IPossibility.IsConcrete
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 references:
 - uid: SudokuSpice.ConstraintBased
   commentId: N:SudokuSpice.ConstraintBased
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
 - uid: SudokuSpice.ConstraintBased.IObjective.State
   commentId: P:SudokuSpice.ConstraintBased.IObjective.State
   parent: SudokuSpice.ConstraintBased.IObjective
+  href: SudokuSpice.ConstraintBased.IObjective.html#SudokuSpice_ConstraintBased_IObjective_State
   name: State
   nameWithType: IObjective.State
   fullName: SudokuSpice.ConstraintBased.IObjective.State
 - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
   commentId: M:SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
   parent: SudokuSpice.ConstraintBased.IObjective
+  href: SudokuSpice.ConstraintBased.IObjective.html#SudokuSpice_ConstraintBased_IObjective_GetUnknownDirectPossibilities
   name: GetUnknownDirectPossibilities()
   nameWithType: IObjective.GetUnknownDirectPossibilities()
   fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities()
   spec.csharp:
   - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
     name: GetUnknownDirectPossibilities
-    nameWithType: IObjective.GetUnknownDirectPossibilities
-    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    href: SudokuSpice.ConstraintBased.IObjective.html#SudokuSpice_ConstraintBased_IObjective_GetUnknownDirectPossibilities
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
     name: GetUnknownDirectPossibilities
-    nameWithType: IObjective.GetUnknownDirectPossibilities
-    fullName: SudokuSpice.ConstraintBased.IObjective.GetUnknownDirectPossibilities
+    href: SudokuSpice.ConstraintBased.IObjective.html#SudokuSpice_ConstraintBased_IObjective_GetUnknownDirectPossibilities
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   parent: SudokuSpice.ConstraintBased.IPossibility
+  href: SudokuSpice.ConstraintBased.IPossibility.html#SudokuSpice_ConstraintBased_IPossibility_IsConcrete
   name: IsConcrete
   nameWithType: IPossibility.IsConcrete
   fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
 - uid: SudokuSpice.ConstraintBased.IObjective
   commentId: T:SudokuSpice.ConstraintBased.IObjective
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.IObjective.html
   name: IObjective
   nameWithType: IObjective
   fullName: SudokuSpice.ConstraintBased.IObjective
 - uid: SudokuSpice.ConstraintBased.IPossibility
   commentId: T:SudokuSpice.ConstraintBased.IPossibility
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.IPossibility.html
   name: IPossibility
   nameWithType: IPossibility
   fullName: SudokuSpice.ConstraintBased.IPossibility

@@ -25,17 +25,14 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nDefines a possibility in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: Defines a possibility in the <xref href="SudokuSpice.ConstraintBased.ExactCoverGraph" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public interface IPossibility
     content.vb: Public Interface IPossibility
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
+  derivedClasses:
+  - SudokuSpice.ConstraintBased.OptionalObjective
+  - SudokuSpice.ConstraintBased.Possibility
 - uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   commentId: P:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
   id: IsConcrete
@@ -58,7 +55,10 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nTrue if this possibility is a concrete possibility, i.e. a leaf node in the graph, as\nopposed to a group of other possibilities.\n"
+  summary: >-
+    True if this possibility is a concrete possibility, i.e. a leaf node in the graph, as
+
+    opposed to a group of other possibilities.
   example: []
   syntax:
     content: bool IsConcrete { get; }
@@ -67,10 +67,6 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property IsConcrete As Boolean
   overload: SudokuSpice.ConstraintBased.IPossibility.IsConcrete*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 - uid: SudokuSpice.ConstraintBased.IPossibility.State
   commentId: P:SudokuSpice.ConstraintBased.IPossibility.State
   id: State
@@ -93,7 +89,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.ConstraintBased
-  summary: "\nThe current state of this node in the <xref href=\"SudokuSpice.ConstraintBased.ExactCoverGraph\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: The current state of this node in the <xref href="SudokuSpice.ConstraintBased.ExactCoverGraph" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: NodeState State { get; }
@@ -102,14 +98,11 @@ items:
       type: SudokuSpice.ConstraintBased.NodeState
     content.vb: ReadOnly Property State As NodeState
   overload: SudokuSpice.ConstraintBased.IPossibility.State*
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
 references:
 - uid: SudokuSpice.ConstraintBased.ExactCoverGraph
   commentId: T:SudokuSpice.ConstraintBased.ExactCoverGraph
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.ExactCoverGraph.html
   name: ExactCoverGraph
   nameWithType: ExactCoverGraph
   fullName: SudokuSpice.ConstraintBased.ExactCoverGraph
@@ -118,8 +111,21 @@ references:
   name: SudokuSpice.ConstraintBased
   nameWithType: SudokuSpice.ConstraintBased
   fullName: SudokuSpice.ConstraintBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.ConstraintBased
+    name: ConstraintBased
 - uid: SudokuSpice.ConstraintBased.IPossibility.IsConcrete*
   commentId: Overload:SudokuSpice.ConstraintBased.IPossibility.IsConcrete
+  href: SudokuSpice.ConstraintBased.IPossibility.html#SudokuSpice_ConstraintBased_IPossibility_IsConcrete
   name: IsConcrete
   nameWithType: IPossibility.IsConcrete
   fullName: SudokuSpice.ConstraintBased.IPossibility.IsConcrete
@@ -127,23 +133,30 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: SudokuSpice.ConstraintBased.IPossibility.State*
   commentId: Overload:SudokuSpice.ConstraintBased.IPossibility.State
+  href: SudokuSpice.ConstraintBased.IPossibility.html#SudokuSpice_ConstraintBased_IPossibility_State
   name: State
   nameWithType: IPossibility.State
   fullName: SudokuSpice.ConstraintBased.IPossibility.State
 - uid: SudokuSpice.ConstraintBased.NodeState
   commentId: T:SudokuSpice.ConstraintBased.NodeState
   parent: SudokuSpice.ConstraintBased
+  href: SudokuSpice.ConstraintBased.NodeState.html
   name: NodeState
   nameWithType: NodeState
   fullName: SudokuSpice.ConstraintBased.NodeState

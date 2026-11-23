@@ -24,13 +24,16 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice.RuleBased.Rules
-  summary: "\nTracks all the required unset values for a given row in the Puzzle.\n"
+  summary: Tracks all the required unset values for a given row in the Puzzle.
   example: []
   syntax:
     content: 'public interface IMissingRowValuesTracker : IRule'
-    content.vb: >-
-      Public Interface IMissingRowValuesTracker
-          Inherits IRule
+    content.vb: Public Interface IMissingRowValuesTracker Inherits IRule
+  derivedClasses:
+  - SudokuSpice.RuleBased.Rules.MaxCountPerRowRule
+  - SudokuSpice.RuleBased.Rules.RowUniquenessRule
+  - SudokuSpice.RuleBased.Rules.StandardRules
+  - SudokuSpice.RuleBased.StandardRuleKeeper
   inheritedMembers:
   - SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   - SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
@@ -38,12 +41,6 @@ items:
   - SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   - SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   - SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow(System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow(System.Int32)
   id: GetMissingValuesForRow(System.Int32)
@@ -51,9 +48,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetMissingValuesForRow(Int32)
-  nameWithType: IMissingRowValuesTracker.GetMissingValuesForRow(Int32)
-  fullName: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow(System.Int32)
+  name: GetMissingValuesForRow(int)
+  nameWithType: IMissingRowValuesTracker.GetMissingValuesForRow(int)
+  fullName: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow(int)
   type: Method
   source:
     remote:
@@ -77,329 +74,282 @@ items:
       type: SudokuSpice.BitVector
     content.vb: Function GetMissingValuesForRow(row As Integer) As BitVector
   overload: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow*
+  nameWithType.vb: IMissingRowValuesTracker.GetMissingValuesForRow(Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow(Integer)
+  name.vb: GetMissingValuesForRow(Integer)
 references:
 - uid: SudokuSpice.RuleBased.Rules
   commentId: N:SudokuSpice.RuleBased.Rules
   name: SudokuSpice.RuleBased.Rules
   nameWithType: SudokuSpice.RuleBased.Rules
   fullName: SudokuSpice.RuleBased.Rules
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  - name: .
+  - uid: SudokuSpice.RuleBased.Rules
+    name: Rules
 - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   parent: SudokuSpice.RuleBased.Rules.IRule
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   name: CopyWithNewReference(IReadOnlyPuzzle)
   nameWithType: IRule.CopyWithNewReference(IReadOnlyPuzzle)
   fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: IRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference(SudokuSpice.IReadOnlyPuzzle)
     name: CopyWithNewReference
-    nameWithType: IRule.CopyWithNewReference
-    fullName: SudokuSpice.RuleBased.Rules.IRule.CopyWithNewReference
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_CopyWithNewReference_SudokuSpice_IReadOnlyPuzzle_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
+    href: SudokuSpice.IReadOnlyPuzzle.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
   parent: SudokuSpice.RuleBased.Rules.IRule
-  name: GetPossibleValues(Coordinate)
-  nameWithType: IRule.GetPossibleValues(Coordinate)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate)
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_GetPossibleValues_SudokuSpice_Coordinate__
+  name: GetPossibleValues(in Coordinate)
+  nameWithType: IRule.GetPossibleValues(in Coordinate)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(in SudokuSpice.Coordinate)
+  nameWithType.vb: IRule.GetPossibleValues(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate)
+  name.vb: GetPossibleValues(Coordinate)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: IRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_GetPossibleValues_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues(SudokuSpice.Coordinate@)
     name: GetPossibleValues
-    nameWithType: IRule.GetPossibleValues
-    fullName: SudokuSpice.RuleBased.Rules.IRule.GetPossibleValues
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_GetPossibleValues_SudokuSpice_Coordinate__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
   parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
-  name: Revert(Coordinate, Int32)
-  nameWithType: IRule.Revert(Coordinate, Int32)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, System.Int32)
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_
+  name: Revert(in Coordinate, int)
+  nameWithType: IRule.Revert(in Coordinate, int)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(in SudokuSpice.Coordinate, int)
+  nameWithType.vb: IRule.Revert(Coordinate, Integer)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, Integer)
+  name.vb: Revert(Coordinate, Integer)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32)
     name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
-  name: Revert(Coordinate, Int32, CoordinateTracker)
-  nameWithType: IRule.Revert(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  name: Revert(in Coordinate, int, CoordinateTracker)
+  nameWithType: IRule.Revert(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Revert(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: IRule.Revert(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Revert(Coordinate, Integer, CoordinateTracker)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Revert(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Revert
-    nameWithType: IRule.Revert
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Revert
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Revert_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
   parent: SudokuSpice.RuleBased.Rules.IRule
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   name: TryInit(IReadOnlyPuzzle, BitVector)
   nameWithType: IRule.TryInit(IReadOnlyPuzzle, BitVector)
   fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle, SudokuSpice.BitVector)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: IRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.TryInit(SudokuSpice.IReadOnlyPuzzle,SudokuSpice.BitVector)
     name: TryInit
-    nameWithType: IRule.TryInit
-    fullName: SudokuSpice.RuleBased.Rules.IRule.TryInit
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_TryInit_SudokuSpice_IReadOnlyPuzzle_SudokuSpice_BitVector_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.IReadOnlyPuzzle
     name: IReadOnlyPuzzle
-    nameWithType: IReadOnlyPuzzle
-    fullName: SudokuSpice.IReadOnlyPuzzle
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.IReadOnlyPuzzle.html
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.BitVector
     name: BitVector
-    nameWithType: BitVector
-    fullName: SudokuSpice.BitVector
+    href: SudokuSpice.BitVector.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   commentId: M:SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
   parent: SudokuSpice.RuleBased.Rules.IRule
   isExternal: true
-  name: Update(Coordinate, Int32, CoordinateTracker)
-  nameWithType: IRule.Update(Coordinate, Int32, CoordinateTracker)
-  fullName: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate, System.Int32, SudokuSpice.CoordinateTracker)
+  href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
+  name: Update(in Coordinate, int, CoordinateTracker)
+  nameWithType: IRule.Update(in Coordinate, int, CoordinateTracker)
+  fullName: SudokuSpice.RuleBased.Rules.IRule.Update(in SudokuSpice.Coordinate, int, SudokuSpice.CoordinateTracker)
+  nameWithType.vb: IRule.Update(Coordinate, Integer, CoordinateTracker)
+  fullName.vb: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate, Integer, SudokuSpice.CoordinateTracker)
+  name.vb: Update(Coordinate, Integer, CoordinateTracker)
   spec.csharp:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Update
-    nameWithType: IRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Update
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: in
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: SudokuSpice.RuleBased.Rules.IRule.Update(SudokuSpice.Coordinate@,System.Int32,SudokuSpice.CoordinateTracker)
     name: Update
-    nameWithType: IRule.Update
-    fullName: SudokuSpice.RuleBased.Rules.IRule.Update
+    href: SudokuSpice.RuleBased.Rules.IRule.html#SudokuSpice_RuleBased_Rules_IRule_Update_SudokuSpice_Coordinate__System_Int32_SudokuSpice_CoordinateTracker_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: SudokuSpice.Coordinate.html
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: SudokuSpice.CoordinateTracker
     name: CoordinateTracker
-    nameWithType: CoordinateTracker
-    fullName: SudokuSpice.CoordinateTracker
+    href: SudokuSpice.CoordinateTracker.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: SudokuSpice.RuleBased.Rules.IRule
   commentId: T:SudokuSpice.RuleBased.Rules.IRule
   parent: SudokuSpice.RuleBased.Rules
+  href: SudokuSpice.RuleBased.Rules.IRule.html
   name: IRule
   nameWithType: IRule
   fullName: SudokuSpice.RuleBased.Rules.IRule
 - uid: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow*
   commentId: Overload:SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow
+  href: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.html#SudokuSpice_RuleBased_Rules_IMissingRowValuesTracker_GetMissingValuesForRow_System_Int32_
   name: GetMissingValuesForRow
   nameWithType: IMissingRowValuesTracker.GetMissingValuesForRow
   fullName: SudokuSpice.RuleBased.Rules.IMissingRowValuesTracker.GetMissingValuesForRow
@@ -407,18 +357,24 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: SudokuSpice.BitVector
   commentId: T:SudokuSpice.BitVector
   parent: SudokuSpice
+  href: SudokuSpice.BitVector.html
   name: BitVector
   nameWithType: BitVector
   fullName: SudokuSpice.BitVector
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System

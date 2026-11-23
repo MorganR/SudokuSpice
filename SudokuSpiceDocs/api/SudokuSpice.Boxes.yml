@@ -28,7 +28,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nProvides utilities for working with &quot;boxes&quot;, i.e. square regions within standard Sudokus.\n"
+  summary: Provides utilities for working with "boxes", i.e. square regions within standard Sudokus.
   example: []
   syntax:
     content: public static class Boxes
@@ -43,13 +43,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
 - uid: SudokuSpice.Boxes.IntSquareRoot(System.Int32)
   commentId: M:SudokuSpice.Boxes.IntSquareRoot(System.Int32)
   id: IntSquareRoot(System.Int32)
@@ -57,9 +50,9 @@ items:
   langs:
   - csharp
   - vb
-  name: IntSquareRoot(Int32)
-  nameWithType: Boxes.IntSquareRoot(Int32)
-  fullName: SudokuSpice.Boxes.IntSquareRoot(System.Int32)
+  name: IntSquareRoot(int)
+  nameWithType: Boxes.IntSquareRoot(int)
+  fullName: SudokuSpice.Boxes.IntSquareRoot(int)
   type: Method
   source:
     remote:
@@ -72,7 +65,17 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nCalculates the square root of a number. Only works for integers that have integer\nsquare roots.\n\nThis is useful for determining the standard box-size for a puzzle (i.e.\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> would be the size of the puzzle, and the result would be the\nsize of each box.\n"
+  summary: >-
+    Calculates the square root of a number. Only works for integers that have integer
+
+    square roots.
+
+
+    This is useful for determining the standard box-size for a puzzle (i.e.
+
+    <code class="paramref">toRoot</code> would be the size of the puzzle, and the result would be the
+
+    size of each box.
   example: []
   syntax:
     content: public static int IntSquareRoot(int toRoot)
@@ -86,13 +89,10 @@ items:
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\nThrown if <code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> is not the square of a whole number.\n"
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+    description: Thrown if <code class="paramref">toRoot</code> is not the square of a whole number.
+  nameWithType.vb: Boxes.IntSquareRoot(Integer)
+  fullName.vb: SudokuSpice.Boxes.IntSquareRoot(Integer)
+  name.vb: IntSquareRoot(Integer)
 - uid: SudokuSpice.Boxes.TryIntSquareRoot(System.Int32,System.Int32@)
   commentId: M:SudokuSpice.Boxes.TryIntSquareRoot(System.Int32,System.Int32@)
   id: TryIntSquareRoot(System.Int32,System.Int32@)
@@ -100,9 +100,9 @@ items:
   langs:
   - csharp
   - vb
-  name: TryIntSquareRoot(Int32, out Int32)
-  nameWithType: Boxes.TryIntSquareRoot(Int32, out Int32)
-  fullName: SudokuSpice.Boxes.TryIntSquareRoot(System.Int32, out System.Int32)
+  name: TryIntSquareRoot(int, out int)
+  nameWithType: Boxes.TryIntSquareRoot(int, out int)
+  fullName: SudokuSpice.Boxes.TryIntSquareRoot(int, out int)
   type: Method
   source:
     remote:
@@ -115,31 +115,35 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nCalculates the square root of a number. Only works for integers that have integer\nsquare roots.\n\nThis is useful for determining the standard box-size for a puzzle (i.e.\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> would be the size of the puzzle, and\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">root</code> would be the size of each box).\n"
+  summary: >-
+    Calculates the square root of a number. Only works for integers that have integer
+
+    square roots.
+
+
+    This is useful for determining the standard box-size for a puzzle (i.e.
+
+    <code class="paramref">toRoot</code> would be the size of the puzzle, and
+
+    <code class="paramref">root</code> would be the size of each box).
   example: []
   syntax:
     content: public static bool TryIntSquareRoot(int toRoot, out int root)
     parameters:
     - id: toRoot
       type: System.Int32
-      description: "\nThe number to root. Should be the square of another integer.\n"
+      description: The number to root. Should be the square of another integer.
     - id: root
       type: System.Int32
-      description: 'Out parameter: the square root of <code data-dev-comment-type="paramref" class="paramref">toRoot</code>.'
+      description: 'Out parameter: the square root of <code class="paramref">toRoot</code>.'
     return:
       type: System.Boolean
-      description: "\nFalse if <code data-dev-comment-type=\"paramref\" class=\"paramref\">toRoot</code> is not the square of a whole number.\n"
-    content.vb: Public Shared Function TryIntSquareRoot(toRoot As Integer, ByRef root As Integer) As Boolean
+      description: False if <code class="paramref">toRoot</code> is not the square of a whole number.
+    content.vb: Public Shared Function TryIntSquareRoot(toRoot As Integer, root As Integer) As Boolean
   overload: SudokuSpice.Boxes.TryIntSquareRoot*
-  nameWithType.vb: Boxes.TryIntSquareRoot(Int32, ByRef Int32)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: SudokuSpice.Boxes.TryIntSquareRoot(System.Int32, ByRef System.Int32)
-  name.vb: TryIntSquareRoot(Int32, ByRef Int32)
+  nameWithType.vb: Boxes.TryIntSquareRoot(Integer, Integer)
+  fullName.vb: SudokuSpice.Boxes.TryIntSquareRoot(Integer, Integer)
+  name.vb: TryIntSquareRoot(Integer, Integer)
 - uid: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
   commentId: M:SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
   id: CalculateBoxIndex(SudokuSpice.Coordinate@,System.Int32)
@@ -147,9 +151,9 @@ items:
   langs:
   - csharp
   - vb
-  name: CalculateBoxIndex(Coordinate, Int32)
-  nameWithType: Boxes.CalculateBoxIndex(Coordinate, Int32)
-  fullName: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate, System.Int32)
+  name: CalculateBoxIndex(in Coordinate, int)
+  nameWithType: Boxes.CalculateBoxIndex(in Coordinate, int)
+  fullName: SudokuSpice.Boxes.CalculateBoxIndex(in SudokuSpice.Coordinate, int)
   type: Method
   source:
     remote:
@@ -162,7 +166,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nCalculate the zero-based box-index of the given coordinate, starting at the top-left.\n"
+  summary: Calculate the zero-based box-index of the given coordinate, starting at the top-left.
   example: []
   syntax:
     content: public static int CalculateBoxIndex(in Coordinate c, int boxSize)
@@ -173,17 +177,11 @@ items:
       type: System.Int32
     return:
       type: System.Int32
-    content.vb: Public Shared Function CalculateBoxIndex(ByRef c As Coordinate, boxSize As Integer) As Integer
+    content.vb: Public Shared Function CalculateBoxIndex(c As Coordinate, boxSize As Integer) As Integer
   overload: SudokuSpice.Boxes.CalculateBoxIndex*
-  nameWithType.vb: Boxes.CalculateBoxIndex(ByRef Coordinate, Int32)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: SudokuSpice.Boxes.CalculateBoxIndex(ByRef SudokuSpice.Coordinate, System.Int32)
-  name.vb: CalculateBoxIndex(ByRef Coordinate, Int32)
+  nameWithType.vb: Boxes.CalculateBoxIndex(Coordinate, Integer)
+  fullName.vb: SudokuSpice.Boxes.CalculateBoxIndex(SudokuSpice.Coordinate, Integer)
+  name.vb: CalculateBoxIndex(Coordinate, Integer)
 - uid: SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
   commentId: M:SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32,System.Int32)
   id: GetStartingBoxCoordinate(System.Int32,System.Int32)
@@ -191,9 +189,9 @@ items:
   langs:
   - csharp
   - vb
-  name: GetStartingBoxCoordinate(Int32, Int32)
-  nameWithType: Boxes.GetStartingBoxCoordinate(Int32, Int32)
-  fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate(System.Int32, System.Int32)
+  name: GetStartingBoxCoordinate(int, int)
+  nameWithType: Boxes.GetStartingBoxCoordinate(int, int)
+  fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate(int, int)
   type: Method
   source:
     remote:
@@ -219,12 +217,9 @@ items:
       type: SudokuSpice.Coordinate
     content.vb: Public Shared Function GetStartingBoxCoordinate(box As Integer, boxSize As Integer) As Coordinate
   overload: SudokuSpice.Boxes.GetStartingBoxCoordinate*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+  nameWithType.vb: Boxes.GetStartingBoxCoordinate(Integer, Integer)
+  fullName.vb: SudokuSpice.Boxes.GetStartingBoxCoordinate(Integer, Integer)
+  name.vb: GetStartingBoxCoordinate(Integer, Integer)
 - uid: SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
   commentId: M:SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
   id: YieldUnsetCoordsForBox(System.Int32,System.Int32,SudokuSpice.IReadOnlyPuzzle)
@@ -232,9 +227,9 @@ items:
   langs:
   - csharp
   - vb
-  name: YieldUnsetCoordsForBox(Int32, Int32, IReadOnlyPuzzle)
-  nameWithType: Boxes.YieldUnsetCoordsForBox(Int32, Int32, IReadOnlyPuzzle)
-  fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox(System.Int32, System.Int32, SudokuSpice.IReadOnlyPuzzle)
+  name: YieldUnsetCoordsForBox(int, int, IReadOnlyPuzzle)
+  nameWithType: Boxes.YieldUnsetCoordsForBox(int, int, IReadOnlyPuzzle)
+  fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox(int, int, SudokuSpice.IReadOnlyPuzzle)
   type: Method
   source:
     remote:
@@ -247,7 +242,7 @@ items:
   assemblies:
   - SudokuSpice
   namespace: SudokuSpice
-  summary: "\nYields an enumerable of coordinates for all the unset squares in the given box.\n"
+  summary: Yields an enumerable of coordinates for all the unset squares in the given box.
   example: []
   syntax:
     content: public static IEnumerable<Coordinate> YieldUnsetCoordsForBox(int box, int boxSize, IReadOnlyPuzzle puzzle)
@@ -262,12 +257,9 @@ items:
       type: System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
     content.vb: Public Shared Function YieldUnsetCoordsForBox(box As Integer, boxSize As Integer, puzzle As IReadOnlyPuzzle) As IEnumerable(Of Coordinate)
   overload: SudokuSpice.Boxes.YieldUnsetCoordsForBox*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+  nameWithType.vb: Boxes.YieldUnsetCoordsForBox(Integer, Integer, IReadOnlyPuzzle)
+  fullName.vb: SudokuSpice.Boxes.YieldUnsetCoordsForBox(Integer, Integer, SudokuSpice.IReadOnlyPuzzle)
+  name.vb: YieldUnsetCoordsForBox(Integer, Integer, IReadOnlyPuzzle)
 references:
 - uid: SudokuSpice
   commentId: N:SudokuSpice
@@ -278,299 +270,249 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: SudokuSpice.Boxes.IntSquareRoot*
   commentId: Overload:SudokuSpice.Boxes.IntSquareRoot
+  href: SudokuSpice.Boxes.html#SudokuSpice_Boxes_IntSquareRoot_System_Int32_
   name: IntSquareRoot
   nameWithType: Boxes.IntSquareRoot
   fullName: SudokuSpice.Boxes.IntSquareRoot
@@ -578,11 +520,16 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: SudokuSpice.Boxes.TryIntSquareRoot*
   commentId: Overload:SudokuSpice.Boxes.TryIntSquareRoot
+  href: SudokuSpice.Boxes.html#SudokuSpice_Boxes_TryIntSquareRoot_System_Int32_System_Int32__
   name: TryIntSquareRoot
   nameWithType: Boxes.TryIntSquareRoot
   fullName: SudokuSpice.Boxes.TryIntSquareRoot
@@ -590,33 +537,42 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: SudokuSpice.Boxes.CalculateBoxIndex*
   commentId: Overload:SudokuSpice.Boxes.CalculateBoxIndex
+  href: SudokuSpice.Boxes.html#SudokuSpice_Boxes_CalculateBoxIndex_SudokuSpice_Coordinate__System_Int32_
   name: CalculateBoxIndex
   nameWithType: Boxes.CalculateBoxIndex
   fullName: SudokuSpice.Boxes.CalculateBoxIndex
 - uid: SudokuSpice.Coordinate
   commentId: T:SudokuSpice.Coordinate
   parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
   name: Coordinate
   nameWithType: Coordinate
   fullName: SudokuSpice.Coordinate
 - uid: SudokuSpice.Boxes.GetStartingBoxCoordinate*
   commentId: Overload:SudokuSpice.Boxes.GetStartingBoxCoordinate
+  href: SudokuSpice.Boxes.html#SudokuSpice_Boxes_GetStartingBoxCoordinate_System_Int32_System_Int32_
   name: GetStartingBoxCoordinate
   nameWithType: Boxes.GetStartingBoxCoordinate
   fullName: SudokuSpice.Boxes.GetStartingBoxCoordinate
 - uid: SudokuSpice.Boxes.YieldUnsetCoordsForBox*
   commentId: Overload:SudokuSpice.Boxes.YieldUnsetCoordsForBox
+  href: SudokuSpice.Boxes.html#SudokuSpice_Boxes_YieldUnsetCoordsForBox_System_Int32_System_Int32_SudokuSpice_IReadOnlyPuzzle_
   name: YieldUnsetCoordsForBox
   nameWithType: Boxes.YieldUnsetCoordsForBox
   fullName: SudokuSpice.Boxes.YieldUnsetCoordsForBox
 - uid: SudokuSpice.IReadOnlyPuzzle
   commentId: T:SudokuSpice.IReadOnlyPuzzle
   parent: SudokuSpice
+  href: SudokuSpice.IReadOnlyPuzzle.html
   name: IReadOnlyPuzzle
   nameWithType: IReadOnlyPuzzle
   fullName: SudokuSpice.IReadOnlyPuzzle
@@ -624,6 +580,7 @@ references:
   commentId: T:System.Collections.Generic.IEnumerable{SudokuSpice.Coordinate}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<Coordinate>
   nameWithType: IEnumerable<Coordinate>
   fullName: System.Collections.Generic.IEnumerable<SudokuSpice.Coordinate>
@@ -633,38 +590,29 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: SudokuSpice.Coordinate
     name: Coordinate
-    nameWithType: Coordinate
-    fullName: SudokuSpice.Coordinate
+    href: SudokuSpice.Coordinate.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<T>
   nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
@@ -674,36 +622,55 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
