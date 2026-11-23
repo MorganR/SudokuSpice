@@ -82,7 +82,7 @@ namespace SudokuSpice
         public int SquareWidth { get; init; }
     }
 
-    private record BoxPuzzleShape : PuzzleShape
+    private sealed record BoxPuzzleShape : PuzzleShape
         {
             public int BoxSize { get; init; }
 }
@@ -95,7 +95,7 @@ public char BetweenColumns { get; init; }
 public char BetweenRows { get; init; }
         }
 
-        private record BoxPuzzleChars : PuzzleChars
+        private sealed record BoxPuzzleChars : PuzzleChars
 {
             public char BetweenBoxes { get; init; }
         }

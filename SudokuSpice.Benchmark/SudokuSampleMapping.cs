@@ -1,4 +1,4 @@
-using TinyCsvParser.Mapping;
+using TinyCsvParser;
 
 namespace SudokuSpice.Benchmark
 {

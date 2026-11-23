@@ -229,7 +229,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             MethodImplOptions.AggressiveOptimization)]
         private static int _RetrieveUnknownPossibilities(
             ReadOnlySpan<Possibility?[]?> squares, int possibilityIndex,
-            Span<Possibility?> unknownPossibilities)
+            Span<Possibility> unknownPossibilities)
         {
             Debug.Assert(unknownPossibilities.Length == squares.Length);
             int numPossibilities = 0;
