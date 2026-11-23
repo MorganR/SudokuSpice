@@ -54,7 +54,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
         private readonly bool _includeDiagonals;
         private readonly Box[] _magicSquares;
         private readonly BitVector _allPossibleValues;
-        private readonly IReadOnlySet<BitVector> _possibleSets;
+        private readonly HashSet<BitVector> _possibleSets;
 
         /// <summary>
         /// Constructs a constraint that will enforce that the given <paramref name="squares"/> are
@@ -275,7 +275,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
                 }
                 // If we have some requirements, group them in an optional "AND" grouping.
                 Debug.Assert(countToConnect > 0);
-                var setObjective = OptionalObjective.CreateWithPossibilities(valuesToConnect[0..countToConnect], countToSatisfy: countToConnect);
+                var setObjective = OptionalObjective.CreateWithPossibilities(valuesToConnect.AsSpan(0, countToConnect), countToSatisfy: countToConnect);
                 setsToOr.Add(setObjective);
             }
             // usedValues are a subset of relevantValues.

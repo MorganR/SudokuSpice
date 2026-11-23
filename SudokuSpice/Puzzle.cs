@@ -193,13 +193,9 @@ namespace SudokuSpice
             for (int i = 0; i < allPossibleValues.Length; ++i)
             {
                 int value = allPossibleValues[i];
-                if (countPerUniqueValue.ContainsKey(value))
-                {
-                    ++countPerUniqueValue[value];
-                } else
-                {
-                    countPerUniqueValue[value] = 1;
-                }
+                countPerUniqueValue[value] = countPerUniqueValue.TryGetValue(value, out int count)
+                    ? count + 1
+                    : 1;
             }
         }
 

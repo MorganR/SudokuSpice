@@ -17,7 +17,7 @@ namespace SudokuSpice.RuleBased.Rules
     /// </summary>
     public class MagicSquaresRule : IRule
     {
-        private class BoxPossibleValues
+        private sealed class BoxPossibleValues
         {
             private readonly BitVector _allPossibleValues;
             private readonly Box _box;

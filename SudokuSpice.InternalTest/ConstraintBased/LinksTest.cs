@@ -23,7 +23,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                         indicesSeen[counter++] = links.IndexOf(link);
                         return true;
                     },
-                    _ => Assert.False(true, "Should not try to undo.")));
+                    _ => Assert.Fail("Should not try to undo.")));
             Assert.Equal(new int[] { 0, 1, 2 }, indicesSeen);
         }
 
@@ -90,7 +90,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                         indicesSeen[counter++] = links.IndexOf(link);
                         return true;
                     },
-                    _ => Assert.False(true, "Should not try to undo.")));
+                    _ => Assert.Fail("Should not try to undo.")));
             Assert.Equal(new int[] { 1, 2 }, indicesSeen);
         }
 
@@ -104,25 +104,25 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                     link,
                     _ =>
                     {
-                        Assert.False(true, "Should not perform any operations");
+                        Assert.Fail("Should not perform any operations");
                         return true;
                     },
-                    _ => Assert.False(true, "Should not try to undo.")));
+                    _ => Assert.Fail("Should not try to undo.")));
             Assert.True(
                 Links.TryUpdateOthersOnObjective(
                     link,
                     _ =>
                     {
-                        Assert.False(true, "Should not perform any operations");
+                        Assert.Fail("Should not perform any operations");
                         return true;
                     },
-                    _ => Assert.False(true, "Should not try to undo.")));
+                    _ => Assert.Fail("Should not try to undo.")));
             Links.RevertOthersOnPossibility(
                 link,
-                _ => Assert.False(true, "Should not perform any operations."));
+                _ => Assert.Fail("Should not perform any operations."));
             Links.RevertOthersOnObjective(
                 link,
-                _ => Assert.False(true, "Should not perform any operations."));
+                _ => Assert.Fail("Should not perform any operations."));
         }
 
         [Fact]
@@ -188,7 +188,7 @@ namespace SudokuSpice.ConstraintBased.InternalTest
                         indicesSeen[counter++] = links.IndexOf(link);
                         return true;
                     },
-                    _ => Assert.False(true, "Should not try to undo.")));
+                    _ => Assert.Fail("Should not try to undo.")));
             Assert.Equal(new int[] { 1, 2 }, indicesSeen);
         }
 

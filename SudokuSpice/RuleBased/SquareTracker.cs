@@ -8,7 +8,7 @@ namespace SudokuSpice.RuleBased
     /// <summary>
     /// Tracks and sets Sudoku squares and their possible values.
     /// </summary>
-    internal class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
+    internal sealed class SquareTracker<TPuzzle> where TPuzzle : class, IPuzzleWithPossibleValues<TPuzzle>
     {
         private readonly TPuzzle _puzzle;
         private readonly IRuleKeeper _ruleKeeper;
