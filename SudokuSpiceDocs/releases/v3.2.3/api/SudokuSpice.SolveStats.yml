@@ -1,0 +1,825 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  id: SolveStats
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.Equals(System.Object)
+  - SudokuSpice.SolveStats.GetHashCode
+  - SudokuSpice.SolveStats.NumSolutionsFound
+  - SudokuSpice.SolveStats.NumSquaresGuessed
+  - SudokuSpice.SolveStats.NumTotalGuesses
+  - SudokuSpice.SolveStats.ToString
+  - SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  - SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  langs:
+  - csharp
+  - vb
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
+  type: Struct
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: SolveStats
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 7
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Contains statistics about an attempt to solve a puzzle.
+  example: []
+  syntax:
+    content: 'public struct SolveStats : IEquatable<SolveStats>'
+    content.vb: Public Structure SolveStats Implements IEquatable(Of SolveStats)
+  implements:
+  - System.IEquatable{SudokuSpice.SolveStats}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SudokuSpice.SolveStats.NumSolutionsFound
+  commentId: P:SudokuSpice.SolveStats.NumSolutionsFound
+  id: NumSolutionsFound
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: NumSolutionsFound
+  nameWithType: SolveStats.NumSolutionsFound
+  fullName: SudokuSpice.SolveStats.NumSolutionsFound
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: NumSolutionsFound
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 13
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    The number of solutions found for this puzzle. For any real Sudoku puzzle, this should
+
+    be 1.
+  example: []
+  syntax:
+    content: public int NumSolutionsFound { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NumSolutionsFound As Integer
+  overload: SudokuSpice.SolveStats.NumSolutionsFound*
+- uid: SudokuSpice.SolveStats.NumSquaresGuessed
+  commentId: P:SudokuSpice.SolveStats.NumSquaresGuessed
+  id: NumSquaresGuessed
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: NumSquaresGuessed
+  nameWithType: SolveStats.NumSquaresGuessed
+  fullName: SudokuSpice.SolveStats.NumSquaresGuessed
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: NumSquaresGuessed
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 23
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The number of squares for which the solver had to guess while finding a solution.
+  remarks: >-
+    Unlike <xref href="SudokuSpice.SolveStats.NumTotalGuesses?text=NumTotalGuesses" data-throw-if-not-resolved="false"></xref>, if the solver was
+
+    setting a square that had three possible values, this would only add 1 to
+
+    <code>NumSquaresGuessed</code>. If NumSolutionsFound is greater than 1, then the precise
+
+    meaning of this value is undefined.
+  example: []
+  syntax:
+    content: public int NumSquaresGuessed { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NumSquaresGuessed As Integer
+  overload: SudokuSpice.SolveStats.NumSquaresGuessed*
+- uid: SudokuSpice.SolveStats.NumTotalGuesses
+  commentId: P:SudokuSpice.SolveStats.NumTotalGuesses
+  id: NumTotalGuesses
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: NumTotalGuesses
+  nameWithType: SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: NumTotalGuesses
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 35
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    The total number of guesses used to solve the puzzle. A 'guess' is any time the
+
+    solver tries setting a square to one value when there are multiple possible values
+
+    for that square.
+  remarks: >-
+    Example Guesses: if the solver tried to set square (0,1) with possible values [2, 3, 5]
+
+    then this would add three total guesses since there were three possible values for this
+
+    coordinate. This would be true even if only one of the values actually led to a
+
+    solution.
+  example: []
+  syntax:
+    content: public int NumTotalGuesses { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NumTotalGuesses As Integer
+  overload: SudokuSpice.SolveStats.NumTotalGuesses*
+- uid: SudokuSpice.SolveStats.Equals(System.Object)
+  commentId: M:SudokuSpice.SolveStats.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: SolveStats.Equals(object?)
+  fullName: SudokuSpice.SolveStats.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 37
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: SudokuSpice.SolveStats.Equals*
+  nameWithType.vb: SolveStats.Equals(Object)
+  fullName.vb: SudokuSpice.SolveStats.Equals(Object)
+  name.vb: Equals(Object)
+- uid: SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  id: Equals(SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: Equals(SolveStats)
+  nameWithType: SolveStats.Equals(SolveStats)
+  fullName: SudokuSpice.SolveStats.Equals(SudokuSpice.SolveStats)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(SolveStats other)
+    parameters:
+    - id: other
+      type: SudokuSpice.SolveStats
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As SolveStats) As Boolean
+  overload: SudokuSpice.SolveStats.Equals*
+  implements:
+  - System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+- uid: SudokuSpice.SolveStats.GetHashCode
+  commentId: M:SudokuSpice.SolveStats.GetHashCode
+  id: GetHashCode
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: SolveStats.GetHashCode()
+  fullName: SudokuSpice.SolveStats.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: GetHashCode
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 53
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: SudokuSpice.SolveStats.GetHashCode*
+- uid: SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  id: op_Equality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: operator ==(SolveStats, SolveStats)
+  nameWithType: SolveStats.operator ==(SolveStats, SolveStats)
+  fullName: SudokuSpice.SolveStats.operator ==(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: op_Equality
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 55
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator ==(SolveStats left, SolveStats right)
+    parameters:
+    - id: left
+      type: SudokuSpice.SolveStats
+    - id: right
+      type: SudokuSpice.SolveStats
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As SolveStats, right As SolveStats) As Boolean
+  overload: SudokuSpice.SolveStats.op_Equality*
+  nameWithType.vb: SolveStats.=(SolveStats, SolveStats)
+  fullName.vb: SudokuSpice.SolveStats.=(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
+  name.vb: =(SolveStats, SolveStats)
+- uid: SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  commentId: M:SudokuSpice.SolveStats.op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  id: op_Inequality(SudokuSpice.SolveStats,SudokuSpice.SolveStats)
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: operator !=(SolveStats, SolveStats)
+  nameWithType: SolveStats.operator !=(SolveStats, SolveStats)
+  fullName: SudokuSpice.SolveStats.operator !=(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: op_Inequality
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 57
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator !=(SolveStats left, SolveStats right)
+    parameters:
+    - id: left
+      type: SudokuSpice.SolveStats
+    - id: right
+      type: SudokuSpice.SolveStats
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As SolveStats, right As SolveStats) As Boolean
+  overload: SudokuSpice.SolveStats.op_Inequality*
+  nameWithType.vb: SolveStats.<>(SolveStats, SolveStats)
+  fullName.vb: SudokuSpice.SolveStats.<>(SudokuSpice.SolveStats, SudokuSpice.SolveStats)
+  name.vb: <>(SolveStats, SolveStats)
+- uid: SudokuSpice.SolveStats.ToString
+  commentId: M:SudokuSpice.SolveStats.ToString
+  id: ToString
+  parent: SudokuSpice.SolveStats
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: SolveStats.ToString()
+  fullName: SudokuSpice.SolveStats.ToString()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/SolveStats.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: ToString
+    path: ../SudokuSpice/SolveStats.cs
+    startLine: 59
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Returns the fully qualified type name of this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The fully qualified type name.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: SudokuSpice.SolveStats.ToString*
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.IEquatable{SudokuSpice.SolveStats}
+  commentId: T:System.IEquatable{SudokuSpice.SolveStats}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<SolveStats>
+  nameWithType: IEquatable<SolveStats>
+  fullName: System.IEquatable<SudokuSpice.SolveStats>
+  nameWithType.vb: IEquatable(Of SolveStats)
+  fullName.vb: System.IEquatable(Of SudokuSpice.SolveStats)
+  name.vb: IEquatable(Of SolveStats)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+    href: SudokuSpice.SolveStats.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+    href: SudokuSpice.SolveStats.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SudokuSpice.SolveStats.NumSolutionsFound*
+  commentId: Overload:SudokuSpice.SolveStats.NumSolutionsFound
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_NumSolutionsFound
+  name: NumSolutionsFound
+  nameWithType: SolveStats.NumSolutionsFound
+  fullName: SudokuSpice.SolveStats.NumSolutionsFound
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SudokuSpice.SolveStats.NumTotalGuesses
+  commentId: P:SudokuSpice.SolveStats.NumTotalGuesses
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_NumTotalGuesses
+  name: NumTotalGuesses
+  nameWithType: SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
+- uid: SudokuSpice.SolveStats.NumSquaresGuessed*
+  commentId: Overload:SudokuSpice.SolveStats.NumSquaresGuessed
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_NumSquaresGuessed
+  name: NumSquaresGuessed
+  nameWithType: SolveStats.NumSquaresGuessed
+  fullName: SudokuSpice.SolveStats.NumSquaresGuessed
+- uid: SudokuSpice.SolveStats.NumTotalGuesses*
+  commentId: Overload:SudokuSpice.SolveStats.NumTotalGuesses
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_NumTotalGuesses
+  name: NumTotalGuesses
+  nameWithType: SolveStats.NumTotalGuesses
+  fullName: SudokuSpice.SolveStats.NumTotalGuesses
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: SudokuSpice.SolveStats.Equals*
+  commentId: Overload:SudokuSpice.SolveStats.Equals
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_Equals_System_Object_
+  name: Equals
+  nameWithType: SolveStats.Equals
+  fullName: SudokuSpice.SolveStats.Equals
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+  commentId: M:System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+  parent: System.IEquatable{SudokuSpice.SolveStats}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(SolveStats)
+  nameWithType: IEquatable<SolveStats>.Equals(SolveStats)
+  fullName: System.IEquatable<SudokuSpice.SolveStats>.Equals(SudokuSpice.SolveStats)
+  nameWithType.vb: IEquatable(Of SolveStats).Equals(SolveStats)
+  fullName.vb: System.IEquatable(Of SudokuSpice.SolveStats).Equals(SudokuSpice.SolveStats)
+  spec.csharp:
+  - uid: System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+    href: SudokuSpice.SolveStats.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{SudokuSpice.SolveStats}.Equals(SudokuSpice.SolveStats)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: SudokuSpice.SolveStats
+    name: SolveStats
+    href: SudokuSpice.SolveStats.html
+  - name: )
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
+  href: SudokuSpice.SolveStats.html
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: SudokuSpice.SolveStats.GetHashCode*
+  commentId: Overload:SudokuSpice.SolveStats.GetHashCode
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_GetHashCode
+  name: GetHashCode
+  nameWithType: SolveStats.GetHashCode
+  fullName: SudokuSpice.SolveStats.GetHashCode
+- uid: SudokuSpice.SolveStats.op_Equality*
+  commentId: Overload:SudokuSpice.SolveStats.op_Equality
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_op_Equality_SudokuSpice_SolveStats_SudokuSpice_SolveStats_
+  name: operator ==
+  nameWithType: SolveStats.operator ==
+  fullName: SudokuSpice.SolveStats.operator ==
+  nameWithType.vb: SolveStats.=
+  fullName.vb: SudokuSpice.SolveStats.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: SudokuSpice.SolveStats.op_Equality*
+    name: ==
+    href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_op_Equality_SudokuSpice_SolveStats_SudokuSpice_SolveStats_
+- uid: SudokuSpice.SolveStats.op_Inequality*
+  commentId: Overload:SudokuSpice.SolveStats.op_Inequality
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_op_Inequality_SudokuSpice_SolveStats_SudokuSpice_SolveStats_
+  name: operator !=
+  nameWithType: SolveStats.operator !=
+  fullName: SudokuSpice.SolveStats.operator !=
+  nameWithType.vb: SolveStats.<>
+  fullName.vb: SudokuSpice.SolveStats.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: SudokuSpice.SolveStats.op_Inequality*
+    name: '!='
+    href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_op_Inequality_SudokuSpice_SolveStats_SudokuSpice_SolveStats_
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: SudokuSpice.SolveStats.ToString*
+  commentId: Overload:SudokuSpice.SolveStats.ToString
+  href: SudokuSpice.SolveStats.html#SudokuSpice_SolveStats_ToString
+  name: ToString
+  nameWithType: SolveStats.ToString
+  fullName: SudokuSpice.SolveStats.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

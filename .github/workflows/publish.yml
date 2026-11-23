@@ -2,7 +2,7 @@ name: Publish to NuGet
 
 on:
   release:
-    types: [ created ]
+    types: [ published ]
   workflow_dispatch:
     inputs:
       tag:
@@ -13,6 +13,9 @@ jobs:
   package:
 
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     env:
       DOTNET_NOLOGO: true
@@ -46,9 +49,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      id-token: write
+
     env:
       DOTNET_NOLOGO: true
-      NUGET_KEY: ${{secrets.NUGET_KEY}}
 
     steps:
     - name: Download package
@@ -59,8 +65,15 @@ jobs:
       uses: actions/setup-dotnet@v6
       with:
         dotnet-version: '10.0.x'
+    - name: NuGet login (OIDC)
+      id: login
+      uses: NuGet/login@v1
+      with:
+        user: MorganRoff
     - name: Push package to NuGet
+      env:
+        NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
       run: |
         pkg_path=$(ls SudokuSpice*.nupkg)
         echo "Found package path: ${pkg_path}"
-        dotnet nuget push "${pkg_path}" --api-key "$NUGET_KEY" --source https://api.nuget.org/v3/index.json
+        dotnet nuget push "${pkg_path}" --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate

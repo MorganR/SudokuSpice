@@ -5,7 +5,7 @@
 **Docs:** https://www.sudokuspice.dev
 
 SudokuSpice is a [highly efficient](https://www.sudokuspice.dev/articles/performance.html) sudoku
-solving and generating library for .NET.
+solving and generating library for .NET 5+ (with Native AOT compatibility on .NET 8+).
 
 In addition to working with standard Sudoku puzzles, *SudokuSpice* focuses on ease-of-use and
 customizability. Want to solve or generate a Sudoku puzzle that also enforces unique values on
@@ -102,6 +102,12 @@ See [the docs](https://www.sudokuspice.dev) for more information.
 ## Releases
 
 ### 3.2.X
+
+#### 3.2.3 - 2026-11-23
+
+* Added a `.NET 8` target with Native AOT compatibility (`IsAotCompatible`), while retaining `.NET 5+` compatibility.
+* Minor performance and code-analysis improvements.
+* Updated test, benchmark, and documentation tooling to `.NET 10`.
 
 #### 3.2.2 - 2022-11-12
 

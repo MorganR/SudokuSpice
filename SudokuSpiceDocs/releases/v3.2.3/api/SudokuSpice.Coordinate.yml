@@ -1,0 +1,881 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  id: Coordinate
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.Coordinate.#ctor(System.Int32,System.Int32)
+  - SudokuSpice.Coordinate.Column
+  - SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
+  - SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  - SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
+  - SudokuSpice.Coordinate.Equals(System.Object)
+  - SudokuSpice.Coordinate.GetHashCode
+  - SudokuSpice.Coordinate.Row
+  - SudokuSpice.Coordinate.ToString
+  - SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  - SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  langs:
+  - csharp
+  - vb
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+  type: Struct
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Coordinate
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 11
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Uniquely identifies the location of a square in a Sudoku puzzle.
+  remarks: >-
+    Note that this struct is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/readonly">readonly</a>, so can be efficiently referenced using
+
+    <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/in">in</a>. This may provide minor performance enhancement on some architectures.
+  example: []
+  syntax:
+    content: 'public readonly struct Coordinate : IEquatable<Coordinate>'
+    content.vb: Public Structure Coordinate Implements IEquatable(Of Coordinate)
+  implements:
+  - System.IEquatable{SudokuSpice.Coordinate}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SudokuSpice.Coordinate.Row
+  commentId: P:SudokuSpice.Coordinate.Row
+  id: Row
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Row
+  nameWithType: Coordinate.Row
+  fullName: SudokuSpice.Coordinate.Row
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Row
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 16
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The zero-based row in the puzzle, starting at the top.
+  example: []
+  syntax:
+    content: public int Row { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Row As Integer
+  overload: SudokuSpice.Coordinate.Row*
+- uid: SudokuSpice.Coordinate.Column
+  commentId: P:SudokuSpice.Coordinate.Column
+  id: Column
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Column
+  nameWithType: Coordinate.Column
+  fullName: SudokuSpice.Coordinate.Column
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Column
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 20
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The zero-based column in the puzzle, starting on the left.
+  example: []
+  syntax:
+    content: public int Column { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Column As Integer
+  overload: SudokuSpice.Coordinate.Column*
+- uid: SudokuSpice.Coordinate.#ctor(System.Int32,System.Int32)
+  commentId: M:SudokuSpice.Coordinate.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Coordinate(int, int)
+  nameWithType: Coordinate.Coordinate(int, int)
+  fullName: SudokuSpice.Coordinate.Coordinate(int, int)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 22
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public Coordinate(int row, int col)
+    parameters:
+    - id: row
+      type: System.Int32
+    - id: col
+      type: System.Int32
+    content.vb: Public Sub New(row As Integer, col As Integer)
+  overload: SudokuSpice.Coordinate.#ctor*
+  nameWithType.vb: Coordinate.New(Integer, Integer)
+  fullName.vb: SudokuSpice.Coordinate.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
+  commentId: M:SudokuSpice.Coordinate.Deconstruct(System.Int32@,System.Int32@)
+  id: Deconstruct(System.Int32@,System.Int32@)
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Deconstruct(out int, out int)
+  nameWithType: Coordinate.Deconstruct(out int, out int)
+  fullName: SudokuSpice.Coordinate.Deconstruct(out int, out int)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Deconstruct
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 28
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public void Deconstruct(out int row, out int col)
+    parameters:
+    - id: row
+      type: System.Int32
+    - id: col
+      type: System.Int32
+    content.vb: Public Sub Deconstruct(row As Integer, col As Integer)
+  overload: SudokuSpice.Coordinate.Deconstruct*
+  nameWithType.vb: Coordinate.Deconstruct(Integer, Integer)
+  fullName.vb: SudokuSpice.Coordinate.Deconstruct(Integer, Integer)
+  name.vb: Deconstruct(Integer, Integer)
+- uid: SudokuSpice.Coordinate.ToString
+  commentId: M:SudokuSpice.Coordinate.ToString
+  id: ToString
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Coordinate.ToString()
+  fullName: SudokuSpice.Coordinate.ToString()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: ToString
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 30
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Returns the fully qualified type name of this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The fully qualified type name.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: SudokuSpice.Coordinate.ToString*
+- uid: SudokuSpice.Coordinate.Equals(System.Object)
+  commentId: M:SudokuSpice.Coordinate.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Coordinate.Equals(object?)
+  fullName: SudokuSpice.Coordinate.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 32
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: SudokuSpice.Coordinate.Equals*
+  nameWithType.vb: Coordinate.Equals(Object)
+  fullName.vb: SudokuSpice.Coordinate.Equals(Object)
+  name.vb: Equals(Object)
+- uid: SudokuSpice.Coordinate.GetHashCode
+  commentId: M:SudokuSpice.Coordinate.GetHashCode
+  id: GetHashCode
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Coordinate.GetHashCode()
+  fullName: SudokuSpice.Coordinate.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: GetHashCode
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 41
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: SudokuSpice.Coordinate.GetHashCode*
+- uid: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  commentId: M:SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  id: Equals(SudokuSpice.Coordinate)
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Equals(Coordinate)
+  nameWithType: Coordinate.Equals(Coordinate)
+  fullName: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 43
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(Coordinate other)
+    parameters:
+    - id: other
+      type: SudokuSpice.Coordinate
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As Coordinate) As Boolean
+  overload: SudokuSpice.Coordinate.Equals*
+  implements:
+  - System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+- uid: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate@)
+  id: Equals(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: Equals(in Coordinate)
+  nameWithType: Coordinate.Equals(in Coordinate)
+  fullName: SudokuSpice.Coordinate.Equals(in SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Equals
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 45
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public bool Equals(in Coordinate other)
+    parameters:
+    - id: other
+      type: SudokuSpice.Coordinate
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As Coordinate) As Boolean
+  overload: SudokuSpice.Coordinate.Equals*
+  nameWithType.vb: Coordinate.Equals(Coordinate)
+  fullName.vb: SudokuSpice.Coordinate.Equals(SudokuSpice.Coordinate)
+  name.vb: Equals(Coordinate)
+- uid: SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Coordinate.op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  id: op_Equality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: operator ==(in Coordinate, in Coordinate)
+  nameWithType: Coordinate.operator ==(in Coordinate, in Coordinate)
+  fullName: SudokuSpice.Coordinate.operator ==(in SudokuSpice.Coordinate, in SudokuSpice.Coordinate)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: op_Equality
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 47
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator ==(in Coordinate left, in Coordinate right)
+    parameters:
+    - id: left
+      type: SudokuSpice.Coordinate
+    - id: right
+      type: SudokuSpice.Coordinate
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As Coordinate, right As Coordinate) As Boolean
+  overload: SudokuSpice.Coordinate.op_Equality*
+  nameWithType.vb: Coordinate.=(Coordinate, Coordinate)
+  fullName.vb: SudokuSpice.Coordinate.=(SudokuSpice.Coordinate, SudokuSpice.Coordinate)
+  name.vb: =(Coordinate, Coordinate)
+- uid: SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.Coordinate.op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  id: op_Inequality(SudokuSpice.Coordinate@,SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Coordinate
+  langs:
+  - csharp
+  - vb
+  name: operator !=(in Coordinate, in Coordinate)
+  nameWithType: Coordinate.operator !=(in Coordinate, in Coordinate)
+  fullName: SudokuSpice.Coordinate.operator !=(in SudokuSpice.Coordinate, in SudokuSpice.Coordinate)
+  type: Operator
+  source:
+    remote:
+      path: SudokuSpice/Coordinate.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: op_Inequality
+    path: ../SudokuSpice/Coordinate.cs
+    startLine: 49
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  syntax:
+    content: public static bool operator !=(in Coordinate left, in Coordinate right)
+    parameters:
+    - id: left
+      type: SudokuSpice.Coordinate
+    - id: right
+      type: SudokuSpice.Coordinate
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As Coordinate, right As Coordinate) As Boolean
+  overload: SudokuSpice.Coordinate.op_Inequality*
+  nameWithType.vb: Coordinate.<>(Coordinate, Coordinate)
+  fullName.vb: SudokuSpice.Coordinate.<>(SudokuSpice.Coordinate, SudokuSpice.Coordinate)
+  name.vb: <>(Coordinate, Coordinate)
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.IEquatable{SudokuSpice.Coordinate}
+  commentId: T:System.IEquatable{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Coordinate>
+  nameWithType: IEquatable<Coordinate>
+  fullName: System.IEquatable<SudokuSpice.Coordinate>
+  nameWithType.vb: IEquatable(Of Coordinate)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Coordinate)
+  name.vb: IEquatable(Of Coordinate)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SudokuSpice.Coordinate.Row*
+  commentId: Overload:SudokuSpice.Coordinate.Row
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_Row
+  name: Row
+  nameWithType: Coordinate.Row
+  fullName: SudokuSpice.Coordinate.Row
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SudokuSpice.Coordinate.Column*
+  commentId: Overload:SudokuSpice.Coordinate.Column
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_Column
+  name: Column
+  nameWithType: Coordinate.Column
+  fullName: SudokuSpice.Coordinate.Column
+- uid: SudokuSpice.Coordinate.#ctor*
+  commentId: Overload:SudokuSpice.Coordinate.#ctor
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate__ctor_System_Int32_System_Int32_
+  name: Coordinate
+  nameWithType: Coordinate.Coordinate
+  fullName: SudokuSpice.Coordinate.Coordinate
+  nameWithType.vb: Coordinate.New
+  fullName.vb: SudokuSpice.Coordinate.New
+  name.vb: New
+- uid: SudokuSpice.Coordinate.Deconstruct*
+  commentId: Overload:SudokuSpice.Coordinate.Deconstruct
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_Deconstruct_System_Int32__System_Int32__
+  name: Deconstruct
+  nameWithType: Coordinate.Deconstruct
+  fullName: SudokuSpice.Coordinate.Deconstruct
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: SudokuSpice.Coordinate.ToString*
+  commentId: Overload:SudokuSpice.Coordinate.ToString
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_ToString
+  name: ToString
+  nameWithType: Coordinate.ToString
+  fullName: SudokuSpice.Coordinate.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: SudokuSpice.Coordinate.Equals*
+  commentId: Overload:SudokuSpice.Coordinate.Equals
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_Equals_System_Object_
+  name: Equals
+  nameWithType: Coordinate.Equals
+  fullName: SudokuSpice.Coordinate.Equals
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: SudokuSpice.Coordinate.GetHashCode*
+  commentId: Overload:SudokuSpice.Coordinate.GetHashCode
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_GetHashCode
+  name: GetHashCode
+  nameWithType: Coordinate.GetHashCode
+  fullName: SudokuSpice.Coordinate.GetHashCode
+- uid: System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+  commentId: M:System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+  parent: System.IEquatable{SudokuSpice.Coordinate}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Coordinate)
+  nameWithType: IEquatable<Coordinate>.Equals(Coordinate)
+  fullName: System.IEquatable<SudokuSpice.Coordinate>.Equals(SudokuSpice.Coordinate)
+  nameWithType.vb: IEquatable(Of Coordinate).Equals(Coordinate)
+  fullName.vb: System.IEquatable(Of SudokuSpice.Coordinate).Equals(SudokuSpice.Coordinate)
+  spec.csharp:
+  - uid: System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{SudokuSpice.Coordinate}.Equals(SudokuSpice.Coordinate)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: SudokuSpice.Coordinate.op_Equality*
+  commentId: Overload:SudokuSpice.Coordinate.op_Equality
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_op_Equality_SudokuSpice_Coordinate__SudokuSpice_Coordinate__
+  name: operator ==
+  nameWithType: Coordinate.operator ==
+  fullName: SudokuSpice.Coordinate.operator ==
+  nameWithType.vb: Coordinate.=
+  fullName.vb: SudokuSpice.Coordinate.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: SudokuSpice.Coordinate.op_Equality*
+    name: ==
+    href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_op_Equality_SudokuSpice_Coordinate__SudokuSpice_Coordinate__
+- uid: SudokuSpice.Coordinate.op_Inequality*
+  commentId: Overload:SudokuSpice.Coordinate.op_Inequality
+  href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_op_Inequality_SudokuSpice_Coordinate__SudokuSpice_Coordinate__
+  name: operator !=
+  nameWithType: Coordinate.operator !=
+  fullName: SudokuSpice.Coordinate.operator !=
+  nameWithType.vb: Coordinate.<>
+  fullName.vb: SudokuSpice.Coordinate.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: SudokuSpice.Coordinate.op_Inequality*
+    name: '!='
+    href: SudokuSpice.Coordinate.html#SudokuSpice_Coordinate_op_Inequality_SudokuSpice_Coordinate__SudokuSpice_Coordinate__

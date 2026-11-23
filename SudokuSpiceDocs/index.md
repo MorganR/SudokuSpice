@@ -1,7 +1,7 @@
 # SudokuSpice
 
 SudokuSpice is a [highly efficient](articles/performance.md) sudoku solving and generating library
-for .NET.
+for .NET 5+ (with Native AOT compatibility on .NET 8+).
 
 In addition to working with standard Sudoku puzzles, *SudokuSpice* focuses on ease-of-use and
 customizability. Want to solve or generate a Sudoku puzzle that also enforces unique values on

@@ -2,6 +2,12 @@
 
 Select a release from below:
 
+## [3.2.3](/releases/v3.2.3/) - 2026-11-23
+
+* Added a `.NET 8` target with Native AOT compatibility (`IsAotCompatible`), while retaining `.NET 5+` compatibility.
+* Minor performance and code-analysis improvements.
+* Updated test, benchmark, and documentation tooling to `.NET 10`.
+
 ## [3.2.2](/releases/v3.2.2/) - 2022-11-12
 
 * Fix [issue #1](https://github.com/MorganR/SudokuSpice/issues/1), where the rule-based generator can create non-unique puzzles.

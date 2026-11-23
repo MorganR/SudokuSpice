@@ -1,0 +1,1922 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.Puzzle
+  commentId: T:SudokuSpice.Puzzle
+  id: Puzzle
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
+  - SudokuSpice.Puzzle.#ctor(System.Int32)
+  - SudokuSpice.Puzzle.#ctor(System.Int32,System.ReadOnlySpan{System.Int32})
+  - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
+  - SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})
+  - SudokuSpice.Puzzle.AllPossibleValuesSpan
+  - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  - SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  - SudokuSpice.Puzzle.CountPerUniqueValue
+  - SudokuSpice.Puzzle.DeepCopy
+  - SudokuSpice.Puzzle.GetUnsetCoords
+  - SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)
+  - SudokuSpice.Puzzle.Item(System.Int32,System.Int32)
+  - SudokuSpice.Puzzle.NumEmptySquares
+  - SudokuSpice.Puzzle.NumSetSquares
+  - SudokuSpice.Puzzle.NumSquares
+  - SudokuSpice.Puzzle.Size
+  - SudokuSpice.Puzzle.ToString
+  langs:
+  - csharp
+  - vb
+  name: Puzzle
+  nameWithType: Puzzle
+  fullName: SudokuSpice.Puzzle
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Puzzle
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Represents a square puzzle of shape size-by-size.
+  example: []
+  syntax:
+    content: 'public class Puzzle : IPuzzle<Puzzle>, IReadOnlyPuzzle'
+    content.vb: Public Class Puzzle Implements IPuzzle(Of Puzzle), IReadOnlyPuzzle
+  inheritance:
+  - System.Object
+  implements:
+  - SudokuSpice.IPuzzle{SudokuSpice.Puzzle}
+  - SudokuSpice.IReadOnlyPuzzle
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SudokuSpice.Puzzle.Size
+  commentId: P:SudokuSpice.Puzzle.Size
+  id: Size
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: Puzzle.Size
+  fullName: SudokuSpice.Puzzle.Size
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Size
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 17
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The side-length of the puzzle (puzzles must be square).
+  example: []
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Size As Integer
+  overload: SudokuSpice.Puzzle.Size*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.Size
+- uid: SudokuSpice.Puzzle.NumSquares
+  commentId: P:SudokuSpice.Puzzle.NumSquares
+  id: NumSquares
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: NumSquares
+  nameWithType: Puzzle.NumSquares
+  fullName: SudokuSpice.Puzzle.NumSquares
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: NumSquares
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 19
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The total number of squares in the puzzle.
+  example: []
+  syntax:
+    content: public int NumSquares { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property NumSquares As Integer
+  overload: SudokuSpice.Puzzle.NumSquares*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.NumSquares
+- uid: SudokuSpice.Puzzle.NumEmptySquares
+  commentId: P:SudokuSpice.Puzzle.NumEmptySquares
+  id: NumEmptySquares
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: NumEmptySquares
+  nameWithType: Puzzle.NumEmptySquares
+  fullName: SudokuSpice.Puzzle.NumEmptySquares
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: NumEmptySquares
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 21
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The current number of empty/unknown squares in the puzzle.
+  example: []
+  syntax:
+    content: public int NumEmptySquares { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property NumEmptySquares As Integer
+  overload: SudokuSpice.Puzzle.NumEmptySquares*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+- uid: SudokuSpice.Puzzle.NumSetSquares
+  commentId: P:SudokuSpice.Puzzle.NumSetSquares
+  id: NumSetSquares
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: NumSetSquares
+  nameWithType: Puzzle.NumSetSquares
+  fullName: SudokuSpice.Puzzle.NumSetSquares
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: NumSetSquares
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 23
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The number of set/known squares in the puzzle.
+  example: []
+  syntax:
+    content: public int NumSetSquares { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property NumSetSquares As Integer
+  overload: SudokuSpice.Puzzle.NumSetSquares*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+- uid: SudokuSpice.Puzzle.AllPossibleValuesSpan
+  commentId: P:SudokuSpice.Puzzle.AllPossibleValuesSpan
+  id: AllPossibleValuesSpan
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: AllPossibleValuesSpan
+  nameWithType: Puzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.Puzzle.AllPossibleValuesSpan
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: AllPossibleValuesSpan
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 25
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Gets all the possible values for this puzzle.
+
+
+    If a value can be repeated n times in a region, then there should be n instances of it
+
+    in the span.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<int> AllPossibleValuesSpan { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{System.Int32}
+    content.vb: Public ReadOnly Property AllPossibleValuesSpan As ReadOnlySpan(Of Integer)
+  overload: SudokuSpice.Puzzle.AllPossibleValuesSpan*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+- uid: SudokuSpice.Puzzle.CountPerUniqueValue
+  commentId: P:SudokuSpice.Puzzle.CountPerUniqueValue
+  id: CountPerUniqueValue
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: CountPerUniqueValue
+  nameWithType: Puzzle.CountPerUniqueValue
+  fullName: SudokuSpice.Puzzle.CountPerUniqueValue
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: CountPerUniqueValue
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 27
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: The count of times each unique value is expected to be included in a region.
+  example: []
+  syntax:
+    content: public IReadOnlyDictionary<int, int> CountPerUniqueValue { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+    content.vb: Public ReadOnly Property CountPerUniqueValue As IReadOnlyDictionary(Of Integer, Integer)
+  overload: SudokuSpice.Puzzle.CountPerUniqueValue*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+- uid: SudokuSpice.Puzzle.#ctor(System.Int32)
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(int)
+  nameWithType: Puzzle.Puzzle(int)
+  fullName: SudokuSpice.Puzzle.Puzzle(int)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 39
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Constructs a new puzzle of the given side length. Assumes the standard possible values
+
+    for each region (i.e. the numbers from [1, size]).
+  example: []
+  syntax:
+    content: public Puzzle(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The side-length for this Sudoku puzzle.
+    content.vb: Public Sub New(size As Integer)
+  overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if size is less than 1.
+  nameWithType.vb: Puzzle.New(Integer)
+  fullName.vb: SudokuSpice.Puzzle.New(Integer)
+  name.vb: New(Integer)
+- uid: SudokuSpice.Puzzle.#ctor(System.Int32,System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Int32,System.ReadOnlySpan{System.Int32})
+  id: '#ctor(System.Int32,System.ReadOnlySpan{System.Int32})'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(int, ReadOnlySpan<int>)
+  nameWithType: Puzzle.Puzzle(int, ReadOnlySpan<int>)
+  fullName: SudokuSpice.Puzzle.Puzzle(int, System.ReadOnlySpan<int>)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 68
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Constructs a new puzzle of the given side length and possible values for each region.
+  example: []
+  syntax:
+    content: public Puzzle(int size, ReadOnlySpan<int> allPossibleValues)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The side-length for this Sudoku puzzle.
+    - id: allPossibleValues
+      type: System.ReadOnlySpan{System.Int32}
+      description: >-
+        List the possible values for a given region in the puzzle. A value should be repeated
+
+        as many times as it can be used.
+    content.vb: Public Sub New(size As Integer, allPossibleValues As ReadOnlySpan(Of Integer))
+  overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if size is less than 1.
+  nameWithType.vb: Puzzle.New(Integer, ReadOnlySpan(Of Integer))
+  fullName.vb: SudokuSpice.Puzzle.New(Integer, System.ReadOnlySpan(Of Integer))
+  name.vb: New(Integer, ReadOnlySpan(Of Integer))
+- uid: SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][])
+  id: '#ctor(System.Nullable{System.Int32}[][])'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(int?[][])
+  nameWithType: Puzzle.Puzzle(int?[][])
+  fullName: SudokuSpice.Puzzle.Puzzle(int?[][])
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 100
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Constructs a new puzzle backed by the given array.
+
+
+    The puzzle is backed directly by this array (i.e. modifying the array modifies the
+
+    puzzle, and vice-versa). If this is not what you want, see
+
+    <xref href="SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)" data-throw-if-not-resolved="false"></xref> and <xref href="SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b%5d%5b%5d)" data-throw-if-not-resolved="false"></xref>. Note that all
+
+    future modifications should be done through this puzzle object, else this will be in an
+
+    incorrect state.
+  example: []
+  syntax:
+    content: public Puzzle(int?[][] puzzleMatrix)
+    parameters:
+    - id: puzzleMatrix
+      type: System.Nullable{System.Int32}[][]
+      description: >-
+        The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
+
+        be null. The puzzle maintains a reference to this array.
+    content.vb: Public Sub New(puzzleMatrix As Integer?()())
+  overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the given matrix is not square.
+  nameWithType.vb: Puzzle.New(Integer?()())
+  fullName.vb: SudokuSpice.Puzzle.New(Integer?()())
+  name.vb: New(Integer?()())
+- uid: SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})
+  commentId: M:SudokuSpice.Puzzle.#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})
+  id: '#ctor(System.Nullable{System.Int32}[][],System.ReadOnlySpan{System.Int32})'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(int?[][], ReadOnlySpan<int>)
+  nameWithType: Puzzle.Puzzle(int?[][], ReadOnlySpan<int>)
+  fullName: SudokuSpice.Puzzle.Puzzle(int?[][], System.ReadOnlySpan<int>)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 137
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Constructs a new puzzle backed by the given array.
+
+
+    The puzzle is backed directly by this array (i.e. modifying the array modifies the
+
+    puzzle, and vice-versa). If this is not what you want, see
+
+    <xref href="SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b0%3a%2c0%3a%5d)" data-throw-if-not-resolved="false"></xref> and <xref href="SudokuSpice.Puzzle.CopyFrom(System.Nullable%7bSystem.Int32%7d%5b%5d%5b%5d)" data-throw-if-not-resolved="false"></xref>. Note that all
+
+    future modifications should be done through this puzzle object, else this will be in an
+
+    incorrect state.
+  example: []
+  syntax:
+    content: public Puzzle(int?[][] puzzleMatrix, ReadOnlySpan<int> allPossibleValues)
+    parameters:
+    - id: puzzleMatrix
+      type: System.Nullable{System.Int32}[][]
+      description: >-
+        The data for this Sudoku puzzle. Preset squares should be set, and unset squares should
+
+        be null. The puzzle maintains a reference to this array.
+    - id: allPossibleValues
+      type: System.ReadOnlySpan{System.Int32}
+      description: >-
+        List the possible values for a given region in the puzzle. A value should be repeated
+
+        as many times as it can be used.
+    content.vb: Public Sub New(puzzleMatrix As Integer?()(), allPossibleValues As ReadOnlySpan(Of Integer))
+  overload: SudokuSpice.Puzzle.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the given matrix is not square.
+  nameWithType.vb: Puzzle.New(Integer?()(), ReadOnlySpan(Of Integer))
+  fullName.vb: SudokuSpice.Puzzle.New(Integer?()(), System.ReadOnlySpan(Of Integer))
+  name.vb: New(Integer?()(), ReadOnlySpan(Of Integer))
+- uid: SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
+  commentId: M:SudokuSpice.Puzzle.#ctor(SudokuSpice.Puzzle)
+  id: '#ctor(SudokuSpice.Puzzle)'
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: Puzzle(Puzzle)
+  nameWithType: Puzzle.Puzzle(Puzzle)
+  fullName: SudokuSpice.Puzzle.Puzzle(SudokuSpice.Puzzle)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 204
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: A copy constructor for an existing <code>Puzzle</code>.
+  example: []
+  syntax:
+    content: public Puzzle(Puzzle existing)
+    parameters:
+    - id: existing
+      type: SudokuSpice.Puzzle
+    content.vb: Public Sub New(existing As Puzzle)
+  overload: SudokuSpice.Puzzle.#ctor*
+  nameWithType.vb: Puzzle.New(Puzzle)
+  fullName.vb: SudokuSpice.Puzzle.New(SudokuSpice.Puzzle)
+  name.vb: New(Puzzle)
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  id: CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(int?[,])
+  nameWithType: Puzzle.CopyFrom(int?[,])
+  fullName: SudokuSpice.Puzzle.CopyFrom(int?[,])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: CopyFrom
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 219
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Creates a new puzzle with a copy of the given matrix.
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Provided to ease migration.")]
+
+      public static Puzzle CopyFrom(int?[,] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[,]
+    return:
+      type: SudokuSpice.Puzzle
+    content.vb: >-
+      <SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification:="Provided to ease migration.")>
+
+      Public Shared Function CopyFrom(matrix As Integer?(,)) As Puzzle
+  overload: SudokuSpice.Puzzle.CopyFrom*
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Performance
+    - type: System.String
+      value: CA1814:Prefer jagged arrays over multidimensional
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: Provided to ease migration.
+  nameWithType.vb: Puzzle.CopyFrom(Integer?(,))
+  fullName.vb: SudokuSpice.Puzzle.CopyFrom(Integer?(,))
+  name.vb: CopyFrom(Integer?(,))
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  id: CopyFrom(System.Nullable{System.Int32}[][])
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(int?[][])
+  nameWithType: Puzzle.CopyFrom(int?[][])
+  fullName: SudokuSpice.Puzzle.CopyFrom(int?[][])
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: CopyFrom
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 226
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Creates a new puzzle with a copy of the given matrix.
+  example: []
+  syntax:
+    content: public static Puzzle CopyFrom(int?[][] matrix)
+    parameters:
+    - id: matrix
+      type: System.Nullable{System.Int32}[][]
+    return:
+      type: SudokuSpice.Puzzle
+    content.vb: Public Shared Function CopyFrom(matrix As Integer?()()) As Puzzle
+  overload: SudokuSpice.Puzzle.CopyFrom*
+  nameWithType.vb: Puzzle.CopyFrom(Integer?()())
+  fullName.vb: SudokuSpice.Puzzle.CopyFrom(Integer?()())
+  name.vb: CopyFrom(Integer?()())
+- uid: SudokuSpice.Puzzle.DeepCopy
+  commentId: M:SudokuSpice.Puzzle.DeepCopy
+  id: DeepCopy
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: DeepCopy()
+  nameWithType: Puzzle.DeepCopy()
+  fullName: SudokuSpice.Puzzle.DeepCopy()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: DeepCopy
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 232
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Creates a deep-copy of this puzzle.
+  example: []
+  syntax:
+    content: public Puzzle DeepCopy()
+    return:
+      type: SudokuSpice.Puzzle
+    content.vb: Public Function DeepCopy() As Puzzle
+  overload: SudokuSpice.Puzzle.DeepCopy*
+  implements:
+  - SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.DeepCopy
+- uid: SudokuSpice.Puzzle.Item(System.Int32,System.Int32)
+  commentId: P:SudokuSpice.Puzzle.Item(System.Int32,System.Int32)
+  id: Item(System.Int32,System.Int32)
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: this[int, int]
+  nameWithType: Puzzle.this[int, int]
+  fullName: SudokuSpice.Puzzle.this[int, int]
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: this[]
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 235
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Gets or sets the current value of a given square. A square can be 'unset' by setting
+
+    its value to <code>null</code>.
+  example: []
+  syntax:
+    content: public int? this[int row, int col] { get; set; }
+    parameters:
+    - id: row
+      type: System.Int32
+    - id: col
+      type: System.Int32
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Default Property this[](row As Integer, col As Integer) As Integer?
+  overload: SudokuSpice.Puzzle.Item*
+  implements:
+  - SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(System.Int32,System.Int32)
+  - SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+  nameWithType.vb: Puzzle.this[](Integer, Integer)
+  fullName.vb: SudokuSpice.Puzzle.this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+- uid: SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.Puzzle.Item(SudokuSpice.Coordinate@)
+  id: Item(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: this[Coordinate]
+  nameWithType: Puzzle.this[Coordinate]
+  fullName: SudokuSpice.Puzzle.this[SudokuSpice.Coordinate]
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: this[]
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 250
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Gets or sets the value of the given square, like <xref href="SudokuSpice.IPuzzle%601.Item(System.Int32%2cSystem.Int32)" data-throw-if-not-resolved="false"></xref>, but
+
+    using a <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> instead of <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/integral-numeric-types">int</a> accessors.
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
+
+      public int? this[in Coordinate c] { get; set; }
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The location of the square to get/set the value of.
+    return:
+      type: System.Nullable{System.Int32}
+      description: The value of the square at <code class="paramref">c</code>
+    content.vb: >-
+      <SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification:="This makes sense with Coordinate, which removes any ambiguity between first and second arguments")>
+
+      Public Default Property this[](c As Coordinate) As Integer?
+  overload: SudokuSpice.Puzzle.Item*
+  implements:
+  - SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(SudokuSpice.Coordinate@)
+  - SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: CA1043:Use Integral Or String Argument For Indexers
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This makes sense with Coordinate, which removes any ambiguity between first and second arguments
+  nameWithType.vb: Puzzle.this[](Coordinate)
+  fullName.vb: SudokuSpice.Puzzle.this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
+- uid: SudokuSpice.Puzzle.GetUnsetCoords
+  commentId: M:SudokuSpice.Puzzle.GetUnsetCoords
+  id: GetUnsetCoords
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: GetUnsetCoords()
+  nameWithType: Puzzle.GetUnsetCoords()
+  fullName: SudokuSpice.Puzzle.GetUnsetCoords()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: GetUnsetCoords
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 258
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Gets a span of coordinates for all the unset squares.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<Coordinate> GetUnsetCoords()
+    return:
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
+    content.vb: Public Function GetUnsetCoords() As ReadOnlySpan(Of Coordinate)
+  overload: SudokuSpice.Puzzle.GetUnsetCoords*
+  implements:
+  - SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+- uid: SudokuSpice.Puzzle.ToString
+  commentId: M:SudokuSpice.Puzzle.ToString
+  id: ToString
+  parent: SudokuSpice.Puzzle
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Puzzle.ToString()
+  fullName: SudokuSpice.Puzzle.ToString()
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/Puzzle.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: ToString
+    path: ../SudokuSpice/Puzzle.cs
+    startLine: 264
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: >-
+    Returns the puzzle in a pretty string format, with boxes and rows separated by pipes
+
+    and dashes.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: SudokuSpice.Puzzle.ToString*
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}
+  commentId: T:SudokuSpice.IPuzzle{SudokuSpice.Puzzle}
+  parent: SudokuSpice
+  definition: SudokuSpice.IPuzzle`1
+  href: SudokuSpice.IPuzzle-1.html
+  name: IPuzzle<Puzzle>
+  nameWithType: IPuzzle<Puzzle>
+  fullName: SudokuSpice.IPuzzle<SudokuSpice.Puzzle>
+  nameWithType.vb: IPuzzle(Of Puzzle)
+  fullName.vb: SudokuSpice.IPuzzle(Of SudokuSpice.Puzzle)
+  name.vb: IPuzzle(Of Puzzle)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle`1
+    name: IPuzzle
+    href: SudokuSpice.IPuzzle-1.html
+  - name: <
+  - uid: SudokuSpice.Puzzle
+    name: Puzzle
+    href: SudokuSpice.Puzzle.html
+  - name: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle`1
+    name: IPuzzle
+    href: SudokuSpice.IPuzzle-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SudokuSpice.Puzzle
+    name: Puzzle
+    href: SudokuSpice.Puzzle.html
+  - name: )
+- uid: SudokuSpice.IReadOnlyPuzzle
+  commentId: T:SudokuSpice.IReadOnlyPuzzle
+  parent: SudokuSpice
+  href: SudokuSpice.IReadOnlyPuzzle.html
+  name: IReadOnlyPuzzle
+  nameWithType: IReadOnlyPuzzle
+  fullName: SudokuSpice.IReadOnlyPuzzle
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.IPuzzle`1
+  commentId: T:SudokuSpice.IPuzzle`1
+  href: SudokuSpice.IPuzzle-1.html
+  name: IPuzzle<T>
+  nameWithType: IPuzzle<T>
+  fullName: SudokuSpice.IPuzzle<T>
+  nameWithType.vb: IPuzzle(Of T)
+  fullName.vb: SudokuSpice.IPuzzle(Of T)
+  name.vb: IPuzzle(Of T)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle`1
+    name: IPuzzle
+    href: SudokuSpice.IPuzzle-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle`1
+    name: IPuzzle
+    href: SudokuSpice.IPuzzle-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SudokuSpice.Puzzle.Size*
+  commentId: Overload:SudokuSpice.Puzzle.Size
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_Size
+  name: Size
+  nameWithType: Puzzle.Size
+  fullName: SudokuSpice.Puzzle.Size
+- uid: SudokuSpice.IReadOnlyPuzzle.Size
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Size
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Size
+  name: Size
+  nameWithType: IReadOnlyPuzzle.Size
+  fullName: SudokuSpice.IReadOnlyPuzzle.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SudokuSpice.Puzzle.NumSquares*
+  commentId: Overload:SudokuSpice.Puzzle.NumSquares
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_NumSquares
+  name: NumSquares
+  nameWithType: Puzzle.NumSquares
+  fullName: SudokuSpice.Puzzle.NumSquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSquares
+  name: NumSquares
+  nameWithType: IReadOnlyPuzzle.NumSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSquares
+- uid: SudokuSpice.Puzzle.NumEmptySquares*
+  commentId: Overload:SudokuSpice.Puzzle.NumEmptySquares
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_NumEmptySquares
+  name: NumEmptySquares
+  nameWithType: Puzzle.NumEmptySquares
+  fullName: SudokuSpice.Puzzle.NumEmptySquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumEmptySquares
+  name: NumEmptySquares
+  nameWithType: IReadOnlyPuzzle.NumEmptySquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumEmptySquares
+- uid: SudokuSpice.Puzzle.NumSetSquares*
+  commentId: Overload:SudokuSpice.Puzzle.NumSetSquares
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_NumSetSquares
+  name: NumSetSquares
+  nameWithType: Puzzle.NumSetSquares
+  fullName: SudokuSpice.Puzzle.NumSetSquares
+- uid: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_NumSetSquares
+  name: NumSetSquares
+  nameWithType: IReadOnlyPuzzle.NumSetSquares
+  fullName: SudokuSpice.IReadOnlyPuzzle.NumSetSquares
+- uid: SudokuSpice.Puzzle.AllPossibleValuesSpan*
+  commentId: Overload:SudokuSpice.Puzzle.AllPossibleValuesSpan
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_AllPossibleValuesSpan
+  name: AllPossibleValuesSpan
+  nameWithType: Puzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.Puzzle.AllPossibleValuesSpan
+- uid: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_AllPossibleValuesSpan
+  name: AllPossibleValuesSpan
+  nameWithType: IReadOnlyPuzzle.AllPossibleValuesSpan
+  fullName: SudokuSpice.IReadOnlyPuzzle.AllPossibleValuesSpan
+- uid: System.ReadOnlySpan{System.Int32}
+  commentId: T:System.ReadOnlySpan{System.Int32}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<int>
+  nameWithType: ReadOnlySpan<int>
+  fullName: System.ReadOnlySpan<int>
+  nameWithType.vb: ReadOnlySpan(Of Integer)
+  fullName.vb: System.ReadOnlySpan(Of Integer)
+  name.vb: ReadOnlySpan(Of Integer)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SudokuSpice.Puzzle.CountPerUniqueValue*
+  commentId: Overload:SudokuSpice.Puzzle.CountPerUniqueValue
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CountPerUniqueValue
+  name: CountPerUniqueValue
+  nameWithType: Puzzle.CountPerUniqueValue
+  fullName: SudokuSpice.Puzzle.CountPerUniqueValue
+- uid: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_CountPerUniqueValue
+  name: CountPerUniqueValue
+  nameWithType: IReadOnlyPuzzle.CountPerUniqueValue
+  fullName: SudokuSpice.IReadOnlyPuzzle.CountPerUniqueValue
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<int, int>
+  nameWithType: IReadOnlyDictionary<int, int>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<int, int>
+  nameWithType.vb: IReadOnlyDictionary(Of Integer, Integer)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of Integer, Integer)
+  name.vb: IReadOnlyDictionary(Of Integer, Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: SudokuSpice.Puzzle.#ctor*
+  commentId: Overload:SudokuSpice.Puzzle.#ctor
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle__ctor_System_Int32_
+  name: Puzzle
+  nameWithType: Puzzle.Puzzle
+  fullName: SudokuSpice.Puzzle.Puzzle
+  nameWithType.vb: Puzzle.New
+  fullName.vb: SudokuSpice.Puzzle.New
+  name.vb: New
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+  isExternal: true
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0
+  name: CopyFrom(int?[,])
+  nameWithType: Puzzle.CopyFrom(int?[,])
+  fullName: SudokuSpice.Puzzle.CopyFrom(int?[,])
+  nameWithType.vb: Puzzle.CopyFrom(Integer?(,))
+  fullName.vb: SudokuSpice.Puzzle.CopyFrom(Integer?(,))
+  name.vb: CopyFrom(Integer?(,))
+  spec.csharp:
+  - uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+    name: CopyFrom
+    href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: '['
+  - name: ','
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[0:,0:])
+    name: CopyFrom
+    href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: (
+  - name: ','
+  - name: )
+  - name: )
+- uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  commentId: M:SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+  isExternal: true
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______
+  name: CopyFrom(int?[][])
+  nameWithType: Puzzle.CopyFrom(int?[][])
+  fullName: SudokuSpice.Puzzle.CopyFrom(int?[][])
+  nameWithType.vb: Puzzle.CopyFrom(Integer?()())
+  fullName.vb: SudokuSpice.Puzzle.CopyFrom(Integer?()())
+  name.vb: CopyFrom(Integer?()())
+  spec.csharp:
+  - uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+    name: CopyFrom
+    href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: '['
+  - name: ']'
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.Puzzle.CopyFrom(System.Nullable{System.Int32}[][])
+    name: CopyFrom
+    href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32______
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: (
+  - name: )
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Nullable{System.Int32}[][]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?[][]
+  nameWithType: int?[][]
+  fullName: int?[][]
+  nameWithType.vb: Integer?()()
+  fullName.vb: Integer?()()
+  name.vb: Integer?()()
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: '['
+  - name: ']'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: (
+  - name: )
+  - name: (
+  - name: )
+- uid: SudokuSpice.Puzzle
+  commentId: T:SudokuSpice.Puzzle
+  parent: SudokuSpice
+  href: SudokuSpice.Puzzle.html
+  name: Puzzle
+  nameWithType: Puzzle
+  fullName: SudokuSpice.Puzzle
+- uid: SudokuSpice.Puzzle.CopyFrom*
+  commentId: Overload:SudokuSpice.Puzzle.CopyFrom
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_CopyFrom_System_Nullable_System_Int32__0
+  name: CopyFrom
+  nameWithType: Puzzle.CopyFrom
+  fullName: SudokuSpice.Puzzle.CopyFrom
+- uid: System.Nullable{System.Int32}[,]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?[,]
+  nameWithType: int?[,]
+  fullName: int?[,]
+  nameWithType.vb: Integer?(,)
+  fullName.vb: Integer?(,)
+  name.vb: Integer?(,)
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: '['
+  - name: ','
+  - name: ']'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: (
+  - name: ','
+  - name: )
+- uid: SudokuSpice.Puzzle.DeepCopy*
+  commentId: Overload:SudokuSpice.Puzzle.DeepCopy
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_DeepCopy
+  name: DeepCopy
+  nameWithType: Puzzle.DeepCopy
+  fullName: SudokuSpice.Puzzle.DeepCopy
+- uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.DeepCopy
+  commentId: M:SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.DeepCopy
+  parent: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}
+  definition: SudokuSpice.IPuzzle`1.DeepCopy
+  href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
+  name: DeepCopy()
+  nameWithType: IPuzzle<Puzzle>.DeepCopy()
+  fullName: SudokuSpice.IPuzzle<SudokuSpice.Puzzle>.DeepCopy()
+  nameWithType.vb: IPuzzle(Of Puzzle).DeepCopy()
+  fullName.vb: SudokuSpice.IPuzzle(Of SudokuSpice.Puzzle).DeepCopy()
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.DeepCopy
+    name: DeepCopy
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.DeepCopy
+    name: DeepCopy
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
+  - name: (
+  - name: )
+- uid: SudokuSpice.IPuzzle`1.DeepCopy
+  commentId: M:SudokuSpice.IPuzzle`1.DeepCopy
+  href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
+  name: DeepCopy()
+  nameWithType: IPuzzle<T>.DeepCopy()
+  fullName: SudokuSpice.IPuzzle<T>.DeepCopy()
+  nameWithType.vb: IPuzzle(Of T).DeepCopy()
+  fullName.vb: SudokuSpice.IPuzzle(Of T).DeepCopy()
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle`1.DeepCopy
+    name: DeepCopy
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle`1.DeepCopy
+    name: DeepCopy
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_DeepCopy
+  - name: (
+  - name: )
+- uid: SudokuSpice.Puzzle.Item*
+  commentId: Overload:SudokuSpice.Puzzle.Item
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_Item_System_Int32_System_Int32_
+  name: this
+  nameWithType: Puzzle.this
+  fullName: SudokuSpice.Puzzle.this
+  nameWithType.vb: Puzzle.this[]
+  fullName.vb: SudokuSpice.Puzzle.this[]
+  name.vb: this[]
+- uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(System.Int32,System.Int32)
+  commentId: P:SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(System.Int32,System.Int32)
+  parent: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}
+  definition: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int, int]
+  nameWithType: IPuzzle<Puzzle>.this[int, int]
+  fullName: SudokuSpice.IPuzzle<SudokuSpice.Puzzle>.this[int, int]
+  nameWithType.vb: IPuzzle(Of Puzzle).this[](Integer, Integer)
+  fullName.vb: SudokuSpice.IPuzzle(Of SudokuSpice.Puzzle).this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(System.Int32,System.Int32)
+    name: this[]
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+  parent: SudokuSpice.IReadOnlyPuzzle
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int, int]
+  nameWithType: IReadOnlyPuzzle.this[int, int]
+  fullName: SudokuSpice.IReadOnlyPuzzle.this[int, int]
+  nameWithType.vb: IReadOnlyPuzzle.this[](Integer, Integer)
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: SudokuSpice.IReadOnlyPuzzle.Item(System.Int32,System.Int32)
+    name: this[]
+    href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
+  commentId: P:SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int, int]
+  nameWithType: IPuzzle<T>.this[int, int]
+  fullName: SudokuSpice.IPuzzle<T>.this[int, int]
+  nameWithType.vb: IPuzzle(Of T).this[](Integer, Integer)
+  fullName.vb: SudokuSpice.IPuzzle(Of T).this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle`1.Item(System.Int32,System.Int32)
+    name: this[]
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}
+  definition: SudokuSpice.IPuzzle`1.Item(SudokuSpice.Coordinate@)
+  href: SudokuSpice.Coordinate.html
+  name: this[Coordinate]
+  nameWithType: IPuzzle<Puzzle>.this[Coordinate]
+  fullName: SudokuSpice.IPuzzle<SudokuSpice.Puzzle>.this[SudokuSpice.Coordinate]
+  nameWithType.vb: IPuzzle(Of Puzzle).this[](Coordinate)
+  fullName.vb: SudokuSpice.IPuzzle(Of SudokuSpice.Puzzle).this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ']'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle{SudokuSpice.Puzzle}.Item(SudokuSpice.Coordinate@)
+    name: this[]
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_SudokuSpice_Coordinate__
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.Coordinate.html
+  name: this[Coordinate]
+  nameWithType: IReadOnlyPuzzle.this[Coordinate]
+  fullName: SudokuSpice.IReadOnlyPuzzle.this[SudokuSpice.Coordinate]
+  nameWithType.vb: IReadOnlyPuzzle.this[](Coordinate)
+  fullName.vb: SudokuSpice.IReadOnlyPuzzle.this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ']'
+  spec.vb:
+  - uid: SudokuSpice.IReadOnlyPuzzle.Item(SudokuSpice.Coordinate@)
+    name: this[]
+    href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_Item_SudokuSpice_Coordinate__
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: SudokuSpice.IPuzzle`1.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.IPuzzle`1.Item(SudokuSpice.Coordinate@)
+  href: SudokuSpice.Coordinate.html
+  name: this[Coordinate]
+  nameWithType: IPuzzle<T>.this[Coordinate]
+  fullName: SudokuSpice.IPuzzle<T>.this[SudokuSpice.Coordinate]
+  nameWithType.vb: IPuzzle(Of T).this[](Coordinate)
+  fullName.vb: SudokuSpice.IPuzzle(Of T).this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: ']'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle`1.Item(SudokuSpice.Coordinate@)
+    name: this[]
+    href: SudokuSpice.IPuzzle-1.html#SudokuSpice_IPuzzle_1_Item_SudokuSpice_Coordinate__
+  - name: (
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: SudokuSpice.Puzzle.GetUnsetCoords*
+  commentId: Overload:SudokuSpice.Puzzle.GetUnsetCoords
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_GetUnsetCoords
+  name: GetUnsetCoords
+  nameWithType: Puzzle.GetUnsetCoords
+  fullName: SudokuSpice.Puzzle.GetUnsetCoords
+- uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  commentId: M:SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+  parent: SudokuSpice.IReadOnlyPuzzle
+  href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
+  name: GetUnsetCoords()
+  nameWithType: IReadOnlyPuzzle.GetUnsetCoords()
+  fullName: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords()
+  spec.csharp:
+  - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+    name: GetUnsetCoords
+    href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SudokuSpice.IReadOnlyPuzzle.GetUnsetCoords
+    name: GetUnsetCoords
+    href: SudokuSpice.IReadOnlyPuzzle.html#SudokuSpice_IReadOnlyPuzzle_GetUnsetCoords
+  - name: (
+  - name: )
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<Coordinate>
+  nameWithType: ReadOnlySpan<Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
+  nameWithType.vb: ReadOnlySpan(Of Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
+  name.vb: ReadOnlySpan(Of Coordinate)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: SudokuSpice.Puzzle.ToString*
+  commentId: Overload:SudokuSpice.Puzzle.ToString
+  href: SudokuSpice.Puzzle.html#SudokuSpice_Puzzle_ToString
+  name: ToString
+  nameWithType: Puzzle.ToString
+  fullName: SudokuSpice.Puzzle.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

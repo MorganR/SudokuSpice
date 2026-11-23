@@ -1,0 +1,723 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.RuleBased.PossibleValues
+  commentId: T:SudokuSpice.RuleBased.PossibleValues
+  id: PossibleValues
+  parent: SudokuSpice.RuleBased
+  children:
+  - SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.RuleBased.PossibleValues)
+  - SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.PossibleValues.AllPossible
+  - SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  - SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
+  - SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  langs:
+  - csharp
+  - vb
+  name: PossibleValues
+  nameWithType: PossibleValues
+  fullName: SudokuSpice.RuleBased.PossibleValues
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: PossibleValues
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 8
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Tracks per-square possible values for a puzzle.
+  example: []
+  syntax:
+    content: public class PossibleValues
+    content.vb: Public Class PossibleValues
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SudokuSpice.RuleBased.PossibleValues.AllPossible
+  commentId: P:SudokuSpice.RuleBased.PossibleValues.AllPossible
+  id: AllPossible
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: AllPossible
+  nameWithType: PossibleValues.AllPossible
+  fullName: SudokuSpice.RuleBased.PossibleValues.AllPossible
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: AllPossible
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 16
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: >-
+    Returns a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref> for the complete set of possible values for any given
+
+    square in the puzzle represented by this <code>PossibleValues</code> object.
+  example: []
+  syntax:
+    content: public BitVector AllPossible { get; }
+    parameters: []
+    return:
+      type: SudokuSpice.BitVector
+    content.vb: Public ReadOnly Property AllPossible As BitVector
+  overload: SudokuSpice.RuleBased.PossibleValues.AllPossible*
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(System.Int32,SudokuSpice.BitVector)
+  id: '#ctor(System.Int32,SudokuSpice.BitVector)'
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: PossibleValues(int, BitVector)
+  nameWithType: PossibleValues.PossibleValues(int, BitVector)
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(int, SudokuSpice.BitVector)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 29
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: >-
+    Constructs a <code>PossibleValues</code> object to track possible values for a size-x-size
+
+    puzzle. All coordinates are initialized to <code class="paramref">uniquePossibleValues</code>
+
+    possible values.
+  example: []
+  syntax:
+    content: public PossibleValues(int size, BitVector uniquePossibleValues)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The size of the puzzle for which we want to track possible values.
+    - id: uniquePossibleValues
+      type: SudokuSpice.BitVector
+      description: The full set of possible values for any given square in this puzzle.
+    content.vb: Public Sub New(size As Integer, uniquePossibleValues As BitVector)
+  overload: SudokuSpice.RuleBased.PossibleValues.#ctor*
+  nameWithType.vb: PossibleValues.New(Integer, BitVector)
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.New(Integer, SudokuSpice.BitVector)
+  name.vb: New(Integer, BitVector)
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.RuleBased.PossibleValues)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.#ctor(SudokuSpice.RuleBased.PossibleValues)
+  id: '#ctor(SudokuSpice.RuleBased.PossibleValues)'
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: PossibleValues(PossibleValues)
+  nameWithType: PossibleValues.PossibleValues(PossibleValues)
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues(SudokuSpice.RuleBased.PossibleValues)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Copy-constructor to provide a deep copy.
+  example: []
+  syntax:
+    content: public PossibleValues(PossibleValues existing)
+    parameters:
+    - id: existing
+      type: SudokuSpice.RuleBased.PossibleValues
+      description: The existing <code>PossibleValues</code> object that you want to copy.
+    content.vb: Public Sub New(existing As PossibleValues)
+  overload: SudokuSpice.RuleBased.PossibleValues.#ctor*
+  nameWithType.vb: PossibleValues.New(PossibleValues)
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.New(SudokuSpice.RuleBased.PossibleValues)
+  name.vb: New(PossibleValues)
+- uid: SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
+  commentId: P:SudokuSpice.RuleBased.PossibleValues.Item(SudokuSpice.Coordinate@)
+  id: Item(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: this[Coordinate]
+  nameWithType: PossibleValues.this[Coordinate]
+  fullName: SudokuSpice.RuleBased.PossibleValues.this[SudokuSpice.Coordinate]
+  type: Property
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: this[]
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 62
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Provides read and write access to the possible values for the given square.
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification = "This makes sense with Coordinate, which removes any ambiguity between first and second arguments")]
+
+      public BitVector this[in Coordinate c] { get; set; }
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> of the square.
+    return:
+      type: SudokuSpice.BitVector
+      description: The possible values for that square as a <xref href="SudokuSpice.BitVector" data-throw-if-not-resolved="false"></xref>.
+    content.vb: >-
+      <SuppressMessage("Design", "CA1043:Use Integral Or String Argument For Indexers", Justification:="This makes sense with Coordinate, which removes any ambiguity between first and second arguments")>
+
+      Public Default Property this[](c As Coordinate) As BitVector
+  overload: SudokuSpice.RuleBased.PossibleValues.Item*
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: CA1043:Use Integral Or String Argument For Indexers
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This makes sense with Coordinate, which removes any ambiguity between first and second arguments
+  nameWithType.vb: PossibleValues.this[](Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.this[](SudokuSpice.Coordinate)
+  name.vb: this[](Coordinate)
+- uid: SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  id: Intersect(SudokuSpice.Coordinate@,SudokuSpice.BitVector)
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: Intersect(in Coordinate, BitVector)
+  nameWithType: PossibleValues.Intersect(in Coordinate, BitVector)
+  fullName: SudokuSpice.RuleBased.PossibleValues.Intersect(in SudokuSpice.Coordinate, SudokuSpice.BitVector)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Intersect
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 75
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: >-
+    Updates the possible values for the square at the given <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> to be
+
+    the intersect of their current value and the given <code>possibleValues</code>.
+  example: []
+  syntax:
+    content: public void Intersect(in Coordinate c, BitVector possibleValues)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> of the square to update.
+    - id: possibleValues
+      type: SudokuSpice.BitVector
+      description: The possible values to intersect with.
+    content.vb: Public Sub Intersect(c As Coordinate, possibleValues As BitVector)
+  overload: SudokuSpice.RuleBased.PossibleValues.Intersect*
+  nameWithType.vb: PossibleValues.Intersect(Coordinate, BitVector)
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.Intersect(SudokuSpice.Coordinate, SudokuSpice.BitVector)
+  name.vb: Intersect(Coordinate, BitVector)
+- uid: SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate@)
+  id: Reset(SudokuSpice.Coordinate@)
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: Reset(in Coordinate)
+  nameWithType: PossibleValues.Reset(in Coordinate)
+  fullName: SudokuSpice.RuleBased.PossibleValues.Reset(in SudokuSpice.Coordinate)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Reset
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 86
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: >-
+    Resets the possible values for the given <xref href="SudokuSpice.Coordinate" data-throw-if-not-resolved="false"></xref> to the full set of
+
+    possible values for this puzzle.
+  example: []
+  syntax:
+    content: public void Reset(in Coordinate c)
+    parameters:
+    - id: c
+      type: SudokuSpice.Coordinate
+      description: The <code>Coordinate</code> of the square to reset.
+    content.vb: Public Sub Reset(c As Coordinate)
+  overload: SudokuSpice.RuleBased.PossibleValues.Reset*
+  nameWithType.vb: PossibleValues.Reset(Coordinate)
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.Reset(SudokuSpice.Coordinate)
+  name.vb: Reset(Coordinate)
+- uid: SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  commentId: M:SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  id: Reset(System.ReadOnlySpan{SudokuSpice.Coordinate})
+  parent: SudokuSpice.RuleBased.PossibleValues
+  langs:
+  - csharp
+  - vb
+  name: Reset(ReadOnlySpan<Coordinate>)
+  nameWithType: PossibleValues.Reset(ReadOnlySpan<Coordinate>)
+  fullName: SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan<SudokuSpice.Coordinate>)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/RuleBased/PossibleValues.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Reset
+    path: ../SudokuSpice/RuleBased/PossibleValues.cs
+    startLine: 91
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice.RuleBased
+  summary: Resets the possible values to <xref href="SudokuSpice.RuleBased.PossibleValues.AllPossible" data-throw-if-not-resolved="false"></xref> at the given coordinates.
+  example: []
+  syntax:
+    content: public void Reset(ReadOnlySpan<Coordinate> coordinates)
+    parameters:
+    - id: coordinates
+      type: System.ReadOnlySpan{SudokuSpice.Coordinate}
+    content.vb: Public Sub Reset(coordinates As ReadOnlySpan(Of Coordinate))
+  overload: SudokuSpice.RuleBased.PossibleValues.Reset*
+  nameWithType.vb: PossibleValues.Reset(ReadOnlySpan(Of Coordinate))
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.Reset(System.ReadOnlySpan(Of SudokuSpice.Coordinate))
+  name.vb: Reset(ReadOnlySpan(Of Coordinate))
+references:
+- uid: SudokuSpice.RuleBased
+  commentId: N:SudokuSpice.RuleBased
+  name: SudokuSpice.RuleBased
+  nameWithType: SudokuSpice.RuleBased
+  fullName: SudokuSpice.RuleBased
+  spec.csharp:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+  spec.vb:
+  - uid: SudokuSpice
+    name: SudokuSpice
+  - name: .
+  - uid: SudokuSpice.RuleBased
+    name: RuleBased
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.BitVector
+  commentId: T:SudokuSpice.BitVector
+  parent: SudokuSpice
+  href: SudokuSpice.BitVector.html
+  name: BitVector
+  nameWithType: BitVector
+  fullName: SudokuSpice.BitVector
+- uid: SudokuSpice.RuleBased.PossibleValues.AllPossible*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.AllPossible
+  href: SudokuSpice.RuleBased.PossibleValues.html#SudokuSpice_RuleBased_PossibleValues_AllPossible
+  name: AllPossible
+  nameWithType: PossibleValues.AllPossible
+  fullName: SudokuSpice.RuleBased.PossibleValues.AllPossible
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.RuleBased.PossibleValues.#ctor*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.#ctor
+  href: SudokuSpice.RuleBased.PossibleValues.html#SudokuSpice_RuleBased_PossibleValues__ctor_System_Int32_SudokuSpice_BitVector_
+  name: PossibleValues
+  nameWithType: PossibleValues.PossibleValues
+  fullName: SudokuSpice.RuleBased.PossibleValues.PossibleValues
+  nameWithType.vb: PossibleValues.New
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SudokuSpice.RuleBased.PossibleValues
+  commentId: T:SudokuSpice.RuleBased.PossibleValues
+  parent: SudokuSpice.RuleBased
+  href: SudokuSpice.RuleBased.PossibleValues.html
+  name: PossibleValues
+  nameWithType: PossibleValues
+  fullName: SudokuSpice.RuleBased.PossibleValues
+- uid: SudokuSpice.Coordinate
+  commentId: T:SudokuSpice.Coordinate
+  parent: SudokuSpice
+  href: SudokuSpice.Coordinate.html
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: SudokuSpice.Coordinate
+- uid: SudokuSpice.RuleBased.PossibleValues.Item*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.Item
+  href: SudokuSpice.RuleBased.PossibleValues.html#SudokuSpice_RuleBased_PossibleValues_Item_SudokuSpice_Coordinate__
+  name: this
+  nameWithType: PossibleValues.this
+  fullName: SudokuSpice.RuleBased.PossibleValues.this
+  nameWithType.vb: PossibleValues.this[]
+  fullName.vb: SudokuSpice.RuleBased.PossibleValues.this[]
+  name.vb: this[]
+- uid: SudokuSpice.RuleBased.PossibleValues.Intersect*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.Intersect
+  href: SudokuSpice.RuleBased.PossibleValues.html#SudokuSpice_RuleBased_PossibleValues_Intersect_SudokuSpice_Coordinate__SudokuSpice_BitVector_
+  name: Intersect
+  nameWithType: PossibleValues.Intersect
+  fullName: SudokuSpice.RuleBased.PossibleValues.Intersect
+- uid: SudokuSpice.RuleBased.PossibleValues.Reset*
+  commentId: Overload:SudokuSpice.RuleBased.PossibleValues.Reset
+  href: SudokuSpice.RuleBased.PossibleValues.html#SudokuSpice_RuleBased_PossibleValues_Reset_SudokuSpice_Coordinate__
+  name: Reset
+  nameWithType: PossibleValues.Reset
+  fullName: SudokuSpice.RuleBased.PossibleValues.Reset
+- uid: SudokuSpice.RuleBased.PossibleValues.AllPossible
+  commentId: P:SudokuSpice.RuleBased.PossibleValues.AllPossible
+  href: SudokuSpice.RuleBased.PossibleValues.html#SudokuSpice_RuleBased_PossibleValues_AllPossible
+  name: AllPossible
+  nameWithType: PossibleValues.AllPossible
+  fullName: SudokuSpice.RuleBased.PossibleValues.AllPossible
+- uid: System.ReadOnlySpan{SudokuSpice.Coordinate}
+  commentId: T:System.ReadOnlySpan{SudokuSpice.Coordinate}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<Coordinate>
+  nameWithType: ReadOnlySpan<Coordinate>
+  fullName: System.ReadOnlySpan<SudokuSpice.Coordinate>
+  nameWithType.vb: ReadOnlySpan(Of Coordinate)
+  fullName.vb: System.ReadOnlySpan(Of SudokuSpice.Coordinate)
+  name.vb: ReadOnlySpan(Of Coordinate)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SudokuSpice.Coordinate
+    name: Coordinate
+    href: SudokuSpice.Coordinate.html
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

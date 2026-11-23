@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Performance | SudokuSpice </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Performance | SudokuSpice ">
+    
+    
+      <link rel="shortcut icon" href="../../../images/sudokuspice-black.png">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../v3.2.3">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/sudokuspice.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="performance">Performance</h1>
+
+<p>All benchmarks were run using <a href="https://benchmarkdotnet.org/articles/overview.html">BenchmarkDotNet</a>.</p>
+<p>The performance of this library has been compared to other .NET sudoku libraries.</p>
+<p><strong>Compared libraries:</strong></p>
+<ul>
+<li><a href="https://github.com/BenjaminChambers/SudokuSharp">SudokuSharp</a></li>
+<li><a href="https://github.com/zhiliangxu/SudokuSolver">SudokuSolverLite</a></li>
+</ul>
+<p><strong>Benchmark environment:</strong></p>
+<ul>
+<li><strong>OS:</strong> Linux Ubuntu 26.04.1 LTS (x64)</li>
+<li><strong>CPU:</strong> AMD Ryzen AI 9 HX 370 w/ Radeon 890M (12 physical cores / 24 logical cores)</li>
+<li><strong>Memory:</strong> 22 GiB RAM</li>
+<li><strong>Runtime:</strong> .NET 10.0.15 (SDK 10.0.404, X64 RyuJIT x86-64-v4)</li>
+<li><strong>Tool:</strong> BenchmarkDotNet v0.15.8</li>
+</ul>
+<h2 id="puzzle-solving-performance">Puzzle solving performance</h2>
+<p>These were compared using a set of 1750 generated puzzles, with 24 - 30 preset squares, grouped
+by the number of squares that needed to be guessed to solve the puzzle if using just the basic
+Sudoku rules and no heuristics. <em>SudokuSpice</em> demonstrates considerably more speed and
+stability regardless of the number of guesses.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>sampleCollection</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen0</th>
+<th style="text-align: right;">Gen1</th>
+<th style="text-align: right;">Allocated</th>
+<th style="text-align: right;">Alloc Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">13.28 μs</td>
+<td style="text-align: right;">0.091 μs</td>
+<td style="text-align: right;">0.085 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">1.1749</td>
+<td style="text-align: right;">0.0153</td>
+<td style="text-align: right;">9.68 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">61.00 μs</td>
+<td style="text-align: right;">1.171 μs</td>
+<td style="text-align: right;">1.481 μs</td>
+<td style="text-align: right;">4.59</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">17.7002</td>
+<td style="text-align: right;">3.9063</td>
+<td style="text-align: right;">145.44 KB</td>
+<td style="text-align: right;">15.02</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">254.27 μs</td>
+<td style="text-align: right;">5.705 μs</td>
+<td style="text-align: right;">16.820 μs</td>
+<td style="text-align: right;">19.15</td>
+<td style="text-align: right;">1.27</td>
+<td style="text-align: right;">41.0156</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">337.83 KB</td>
+<td style="text-align: right;">34.89</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 0</td>
+<td style="text-align: right;">519.67 μs</td>
+<td style="text-align: right;">10.382 μs</td>
+<td style="text-align: right;">26.426 μs</td>
+<td style="text-align: right;">39.14</td>
+<td style="text-align: right;">1.99</td>
+<td style="text-align: right;">243.1641</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1987.98 KB</td>
+<td style="text-align: right;">205.29</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">22.36 μs</td>
+<td style="text-align: right;">0.356 μs</td>
+<td style="text-align: right;">0.333 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">1.9226</td>
+<td style="text-align: right;">0.0305</td>
+<td style="text-align: right;">15.87 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">63.96 μs</td>
+<td style="text-align: right;">1.241 μs</td>
+<td style="text-align: right;">1.274 μs</td>
+<td style="text-align: right;">2.86</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">18.0664</td>
+<td style="text-align: right;">5.1270</td>
+<td style="text-align: right;">148.5 KB</td>
+<td style="text-align: right;">9.36</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">524.25 μs</td>
+<td style="text-align: right;">13.445 μs</td>
+<td style="text-align: right;">39.005 μs</td>
+<td style="text-align: right;">23.45</td>
+<td style="text-align: right;">1.77</td>
+<td style="text-align: right;">89.8438</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">737.01 KB</td>
+<td style="text-align: right;">46.45</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 1</td>
+<td style="text-align: right;">1,567.02 μs</td>
+<td style="text-align: right;">74.550 μs</td>
+<td style="text-align: right;">215.094 μs</td>
+<td style="text-align: right;">70.10</td>
+<td style="text-align: right;">9.63</td>
+<td style="text-align: right;">835.9375</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">6838.58 KB</td>
+<td style="text-align: right;">431.02</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">29.50 μs</td>
+<td style="text-align: right;">0.270 μs</td>
+<td style="text-align: right;">0.225 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2.5635</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">21.18 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">66.40 μs</td>
+<td style="text-align: right;">0.670 μs</td>
+<td style="text-align: right;">0.627 μs</td>
+<td style="text-align: right;">2.25</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">18.4326</td>
+<td style="text-align: right;">4.1504</td>
+<td style="text-align: right;">150.68 KB</td>
+<td style="text-align: right;">7.12</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">832.81 μs</td>
+<td style="text-align: right;">36.202 μs</td>
+<td style="text-align: right;">106.743 μs</td>
+<td style="text-align: right;">28.23</td>
+<td style="text-align: right;">3.61</td>
+<td style="text-align: right;">137.6953</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1130.16 KB</td>
+<td style="text-align: right;">53.37</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 2-3</td>
+<td style="text-align: right;">1,622.11 μs</td>
+<td style="text-align: right;">70.585 μs</td>
+<td style="text-align: right;">207.014 μs</td>
+<td style="text-align: right;">54.99</td>
+<td style="text-align: right;">7.00</td>
+<td style="text-align: right;">722.6563</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">5916.95 KB</td>
+<td style="text-align: right;">279.40</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">41.24 μs</td>
+<td style="text-align: right;">0.478 μs</td>
+<td style="text-align: right;">0.424 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">3.6011</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">29.86 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">69.85 μs</td>
+<td style="text-align: right;">0.925 μs</td>
+<td style="text-align: right;">0.865 μs</td>
+<td style="text-align: right;">1.69</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">18.9209</td>
+<td style="text-align: right;">4.2725</td>
+<td style="text-align: right;">154.88 KB</td>
+<td style="text-align: right;">5.19</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">1,087.61 μs</td>
+<td style="text-align: right;">50.190 μs</td>
+<td style="text-align: right;">144.808 μs</td>
+<td style="text-align: right;">26.37</td>
+<td style="text-align: right;">3.50</td>
+<td style="text-align: right;">191.4063</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1573.38 KB</td>
+<td style="text-align: right;">52.70</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 4-7</td>
+<td style="text-align: right;">3,984.54 μs</td>
+<td style="text-align: right;">377.460 μs</td>
+<td style="text-align: right;">1,089.060 μs</td>
+<td style="text-align: right;">96.62</td>
+<td style="text-align: right;">26.30</td>
+<td style="text-align: right;">2078.1250</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">16993.03 KB</td>
+<td style="text-align: right;">569.16</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">52.51 μs</td>
+<td style="text-align: right;">0.263 μs</td>
+<td style="text-align: right;">0.246 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">4.6997</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">38.88 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">73.50 μs</td>
+<td style="text-align: right;">0.692 μs</td>
+<td style="text-align: right;">0.578 μs</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">19.4092</td>
+<td style="text-align: right;">4.3945</td>
+<td style="text-align: right;">158.94 KB</td>
+<td style="text-align: right;">4.09</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">1,770.15 μs</td>
+<td style="text-align: right;">63.272 μs</td>
+<td style="text-align: right;">186.560 μs</td>
+<td style="text-align: right;">33.71</td>
+<td style="text-align: right;">3.54</td>
+<td style="text-align: right;">353.5156</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">2888.68 KB</td>
+<td style="text-align: right;">74.29</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Guesses: 8+</td>
+<td style="text-align: right;">8,570.01 μs</td>
+<td style="text-align: right;">719.413 μs</td>
+<td style="text-align: right;">2,121.205 μs</td>
+<td style="text-align: right;">163.22</td>
+<td style="text-align: right;">40.22</td>
+<td style="text-align: right;">4742.1875</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">38762.88 KB</td>
+<td style="text-align: right;">996.94</td>
+</tr>
+</tbody>
+</table>
+<p>Each library was also compared with a select set of examples, most of which require more advanced
+techniques. These demonstrate that <em>SudokuSharp</em> can take the lead in some very simple cases, when
+the slight overhead needed by <em>SudokuSpice</em> dominates, but that this overhead leads to
+effective performance enhancements for more complicated examples.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>puzzle</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen0</th>
+<th style="text-align: right;">Gen1</th>
+<th style="text-align: right;">Allocated</th>
+<th style="text-align: right;">Alloc Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td>Easy</td>
+<td style="text-align: right;">3.510 μs</td>
+<td style="text-align: right;">0.0610 μs</td>
+<td style="text-align: right;">0.0541 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">1.1368</td>
+<td style="text-align: right;">0.0191</td>
+<td style="text-align: right;">9.31 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Easy</td>
+<td style="text-align: right;">4.212 μs</td>
+<td style="text-align: right;">0.0368 μs</td>
+<td style="text-align: right;">0.0344 μs</td>
+<td style="text-align: right;">1.20</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">1.3046</td>
+<td style="text-align: right;">0.0229</td>
+<td style="text-align: right;">10.67 KB</td>
+<td style="text-align: right;">1.15</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>Easy</td>
+<td style="text-align: right;">6.080 μs</td>
+<td style="text-align: right;">0.0487 μs</td>
+<td style="text-align: right;">0.0432 μs</td>
+<td style="text-align: right;">1.73</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">1.3123</td>
+<td style="text-align: right;">0.0229</td>
+<td style="text-align: right;">10.73 KB</td>
+<td style="text-align: right;">1.15</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Easy</td>
+<td style="text-align: right;">19.981 μs</td>
+<td style="text-align: right;">0.3128 μs</td>
+<td style="text-align: right;">0.2773 μs</td>
+<td style="text-align: right;">5.69</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">8.4229</td>
+<td style="text-align: right;">1.0376</td>
+<td style="text-align: right;">68.92 KB</td>
+<td style="text-align: right;">7.40</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Easy</td>
+<td style="text-align: right;">2.397 μs</td>
+<td style="text-align: right;">0.0325 μs</td>
+<td style="text-align: right;">0.0304 μs</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.8049</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6.58 KB</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Easy</td>
+<td style="text-align: right;">52.751 μs</td>
+<td style="text-align: right;">0.8950 μs</td>
+<td style="text-align: right;">0.8372 μs</td>
+<td style="text-align: right;">15.03</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">27.2217</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">222.66 KB</td>
+<td style="text-align: right;">23.91</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Medium</td>
+<td style="text-align: right;">27.838 μs</td>
+<td style="text-align: right;">0.4734 μs</td>
+<td style="text-align: right;">0.4196 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">4.6082</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">37.73 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Medium</td>
+<td style="text-align: right;">31.176 μs</td>
+<td style="text-align: right;">0.4021 μs</td>
+<td style="text-align: right;">0.3761 μs</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">4.7607</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">39.14 KB</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>Medium</td>
+<td style="text-align: right;">41.469 μs</td>
+<td style="text-align: right;">0.3112 μs</td>
+<td style="text-align: right;">0.2599 μs</td>
+<td style="text-align: right;">1.49</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">4.7607</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">39.21 KB</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Medium</td>
+<td style="text-align: right;">57.302 μs</td>
+<td style="text-align: right;">0.8464 μs</td>
+<td style="text-align: right;">0.7917 μs</td>
+<td style="text-align: right;">2.06</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">20.0195</td>
+<td style="text-align: right;">6.2866</td>
+<td style="text-align: right;">163.54 KB</td>
+<td style="text-align: right;">4.33</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Medium</td>
+<td style="text-align: right;">1,113.887 μs</td>
+<td style="text-align: right;">10.5652 μs</td>
+<td style="text-align: right;">8.8224 μs</td>
+<td style="text-align: right;">40.02</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">121.0938</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1000.54 KB</td>
+<td style="text-align: right;">26.52</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Medium</td>
+<td style="text-align: right;">917.295 μs</td>
+<td style="text-align: right;">10.5568 μs</td>
+<td style="text-align: right;">9.8749 μs</td>
+<td style="text-align: right;">32.96</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">458.9844</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">3754.1 KB</td>
+<td style="text-align: right;">99.51</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardA</td>
+<td style="text-align: right;">23.076 μs</td>
+<td style="text-align: right;">0.4247 μs</td>
+<td style="text-align: right;">0.3765 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">4.2114</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">34.56 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardA</td>
+<td style="text-align: right;">26.219 μs</td>
+<td style="text-align: right;">0.4682 μs</td>
+<td style="text-align: right;">0.4379 μs</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">4.3945</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">35.97 KB</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardA</td>
+<td style="text-align: right;">33.906 μs</td>
+<td style="text-align: right;">0.6627 μs</td>
+<td style="text-align: right;">0.6508 μs</td>
+<td style="text-align: right;">1.47</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">4.3945</td>
+<td style="text-align: right;">0.1221</td>
+<td style="text-align: right;">36.03 KB</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardA</td>
+<td style="text-align: right;">60.794 μs</td>
+<td style="text-align: right;">0.7218 μs</td>
+<td style="text-align: right;">0.6027 μs</td>
+<td style="text-align: right;">2.64</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">19.2871</td>
+<td style="text-align: right;">5.8594</td>
+<td style="text-align: right;">157.78 KB</td>
+<td style="text-align: right;">4.57</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardA</td>
+<td style="text-align: right;">1,219.420 μs</td>
+<td style="text-align: right;">23.5288 μs</td>
+<td style="text-align: right;">28.8955 μs</td>
+<td style="text-align: right;">52.86</td>
+<td style="text-align: right;">1.48</td>
+<td style="text-align: right;">140.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1159.43 KB</td>
+<td style="text-align: right;">33.55</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardA</td>
+<td style="text-align: right;">9,706.850 μs</td>
+<td style="text-align: right;">126.6694 μs</td>
+<td style="text-align: right;">112.2892 μs</td>
+<td style="text-align: right;">420.76</td>
+<td style="text-align: right;">8.09</td>
+<td style="text-align: right;">4546.8750</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">37238.48 KB</td>
+<td style="text-align: right;">1,077.49</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardB</td>
+<td style="text-align: right;">69.301 μs</td>
+<td style="text-align: right;">0.5934 μs</td>
+<td style="text-align: right;">0.5260 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">10.7422</td>
+<td style="text-align: right;">0.3662</td>
+<td style="text-align: right;">87.83 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardB</td>
+<td style="text-align: right;">75.382 μs</td>
+<td style="text-align: right;">0.6169 μs</td>
+<td style="text-align: right;">0.5771 μs</td>
+<td style="text-align: right;">1.09</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">10.8643</td>
+<td style="text-align: right;">0.3662</td>
+<td style="text-align: right;">89.57 KB</td>
+<td style="text-align: right;">1.02</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardB</td>
+<td style="text-align: right;">97.240 μs</td>
+<td style="text-align: right;">1.6522 μs</td>
+<td style="text-align: right;">1.5455 μs</td>
+<td style="text-align: right;">1.40</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">10.9863</td>
+<td style="text-align: right;">0.4883</td>
+<td style="text-align: right;">89.8 KB</td>
+<td style="text-align: right;">1.02</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardB</td>
+<td style="text-align: right;">62.712 μs</td>
+<td style="text-align: right;">0.9002 μs</td>
+<td style="text-align: right;">0.7980 μs</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">19.4092</td>
+<td style="text-align: right;">5.6152</td>
+<td style="text-align: right;">158.88 KB</td>
+<td style="text-align: right;">1.81</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardB</td>
+<td style="text-align: right;">8,265.677 μs</td>
+<td style="text-align: right;">203.0798 μs</td>
+<td style="text-align: right;">595.5981 μs</td>
+<td style="text-align: right;">119.28</td>
+<td style="text-align: right;">8.60</td>
+<td style="text-align: right;">968.7500</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">8034.01 KB</td>
+<td style="text-align: right;">91.47</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardB</td>
+<td style="text-align: right;">1,812.050 μs</td>
+<td style="text-align: right;">28.0145 μs</td>
+<td style="text-align: right;">24.8341 μs</td>
+<td style="text-align: right;">26.15</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">914.0625</td>
+<td style="text-align: right;">3.9063</td>
+<td style="text-align: right;">7469.9 KB</td>
+<td style="text-align: right;">85.05</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilA</td>
+<td style="text-align: right;">41.478 μs</td>
+<td style="text-align: right;">0.4384 μs</td>
+<td style="text-align: right;">0.3886 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">7.2021</td>
+<td style="text-align: right;">0.2441</td>
+<td style="text-align: right;">59.1 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilA</td>
+<td style="text-align: right;">46.881 μs</td>
+<td style="text-align: right;">0.2537 μs</td>
+<td style="text-align: right;">0.2118 μs</td>
+<td style="text-align: right;">1.13</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">7.3853</td>
+<td style="text-align: right;">0.3052</td>
+<td style="text-align: right;">60.56 KB</td>
+<td style="text-align: right;">1.02</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilA</td>
+<td style="text-align: right;">54.544 μs</td>
+<td style="text-align: right;">0.5988 μs</td>
+<td style="text-align: right;">0.5308 μs</td>
+<td style="text-align: right;">1.32</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">7.3853</td>
+<td style="text-align: right;">0.3052</td>
+<td style="text-align: right;">60.67 KB</td>
+<td style="text-align: right;">1.03</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilA</td>
+<td style="text-align: right;">69.618 μs</td>
+<td style="text-align: right;">1.3266 μs</td>
+<td style="text-align: right;">1.1077 μs</td>
+<td style="text-align: right;">1.68</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">20.8740</td>
+<td style="text-align: right;">6.7139</td>
+<td style="text-align: right;">170.76 KB</td>
+<td style="text-align: right;">2.89</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilA</td>
+<td style="text-align: right;">15,490.435 μs</td>
+<td style="text-align: right;">411.0537 μs</td>
+<td style="text-align: right;">1,212.0011 μs</td>
+<td style="text-align: right;">373.50</td>
+<td style="text-align: right;">29.28</td>
+<td style="text-align: right;">2000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">16445.28 KB</td>
+<td style="text-align: right;">278.27</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilA</td>
+<td style="text-align: right;">148,243.149 μs</td>
+<td style="text-align: right;">2,829.5864 μs</td>
+<td style="text-align: right;">2,646.7969 μs</td>
+<td style="text-align: right;">3,574.35</td>
+<td style="text-align: right;">69.75</td>
+<td style="text-align: right;">73000.0000</td>
+<td style="text-align: right;">250.0000</td>
+<td style="text-align: right;">596506.66 KB</td>
+<td style="text-align: right;">10,093.58</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilB</td>
+<td style="text-align: right;">578.335 μs</td>
+<td style="text-align: right;">11.5044 μs</td>
+<td style="text-align: right;">13.2485 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">50.7813</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">420.78 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilB</td>
+<td style="text-align: right;">648.091 μs</td>
+<td style="text-align: right;">12.7711 μs</td>
+<td style="text-align: right;">19.5028 μs</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">52.7344</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">434.83 KB</td>
+<td style="text-align: right;">1.03</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilB</td>
+<td style="text-align: right;">788.875 μs</td>
+<td style="text-align: right;">10.8656 μs</td>
+<td style="text-align: right;">9.6321 μs</td>
+<td style="text-align: right;">1.36</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">50.7813</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">420.88 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilB</td>
+<td style="text-align: right;">117.932 μs</td>
+<td style="text-align: right;">1.9578 μs</td>
+<td style="text-align: right;">1.8313 μs</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">23.9258</td>
+<td style="text-align: right;">7.6904</td>
+<td style="text-align: right;">195.65 KB</td>
+<td style="text-align: right;">0.46</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilB</td>
+<td style="text-align: right;">16,752.195 μs</td>
+<td style="text-align: right;">278.0091 μs</td>
+<td style="text-align: right;">246.4479 μs</td>
+<td style="text-align: right;">28.98</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">2437.5000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">19978.07 KB</td>
+<td style="text-align: right;">47.48</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilB</td>
+<td style="text-align: right;">21,106.410 μs</td>
+<td style="text-align: right;">348.0715 μs</td>
+<td style="text-align: right;">325.5863 μs</td>
+<td style="text-align: right;">36.51</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">9468.7500</td>
+<td style="text-align: right;">31.2500</td>
+<td style="text-align: right;">77514.53 KB</td>
+<td style="text-align: right;">184.22</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wasm">WASM</h3>
+<p>Note: Last updated for release 3.2.1</p>
+<p>Performance is considerably different in a Mono WASM environment. The CSV benchmarks are not
+currently supported in this environment. Once again, <code>SudokuSharp</code> performs better on very simple
+puzzles, but <code>SudokuSpice</code> is still considerably faster in more complicated scenarios. In WASM, the
+constraint-based solver is <em>much</em> faster than the rule-based solver.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>puzzle</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td>Easy</td>
+<td style="text-align: right;">362.6 us</td>
+<td style="text-align: right;">0.61 us</td>
+<td style="text-align: right;">0.57 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">8 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Easy</td>
+<td style="text-align: right;">448.1 us</td>
+<td style="text-align: right;">0.65 us</td>
+<td style="text-align: right;">0.60 us</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">9 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>Easy</td>
+<td style="text-align: right;">549.2 us</td>
+<td style="text-align: right;">0.99 us</td>
+<td style="text-align: right;">0.93 us</td>
+<td style="text-align: right;">1.51</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.9531</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">9 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Easy</td>
+<td style="text-align: right;">681.8 us</td>
+<td style="text-align: right;">0.54 us</td>
+<td style="text-align: right;">0.48 us</td>
+<td style="text-align: right;">1.88</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">11.7188</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">49 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Easy</td>
+<td style="text-align: right;">104.7 us</td>
+<td style="text-align: right;">0.27 us</td>
+<td style="text-align: right;">0.25 us</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.2207</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">5 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Easy</td>
+<td style="text-align: right;">3,576.2 us</td>
+<td style="text-align: right;">4.46 us</td>
+<td style="text-align: right;">3.95 us</td>
+<td style="text-align: right;">9.86</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">62.5000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">261 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>Medium</td>
+<td style="text-align: right;">2,879.7 us</td>
+<td style="text-align: right;">52.87 us</td>
+<td style="text-align: right;">49.45 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">11.7188</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">48 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>Medium</td>
+<td style="text-align: right;">3,374.7 us</td>
+<td style="text-align: right;">64.18 us</td>
+<td style="text-align: right;">60.04 us</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">11.7188</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">48 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>Medium</td>
+<td style="text-align: right;">3,712.9 us</td>
+<td style="text-align: right;">60.01 us</td>
+<td style="text-align: right;">56.14 us</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">11.7188</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">48 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>Medium</td>
+<td style="text-align: right;">1,548.0 us</td>
+<td style="text-align: right;">1.07 us</td>
+<td style="text-align: right;">0.95 us</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">99 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>Medium</td>
+<td style="text-align: right;">50,507.4 us</td>
+<td style="text-align: right;">1,355.42 us</td>
+<td style="text-align: right;">1,201.55 us</td>
+<td style="text-align: right;">17.51</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">90.9091</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">652 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>Medium</td>
+<td style="text-align: right;">54,663.3 us</td>
+<td style="text-align: right;">61.86 us</td>
+<td style="text-align: right;">57.87 us</td>
+<td style="text-align: right;">18.99</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">900.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">3,769 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardA</td>
+<td style="text-align: right;">2,462.7 us</td>
+<td style="text-align: right;">21.92 us</td>
+<td style="text-align: right;">20.51 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">41 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardA</td>
+<td style="text-align: right;">2,790.8 us</td>
+<td style="text-align: right;">25.45 us</td>
+<td style="text-align: right;">23.80 us</td>
+<td style="text-align: right;">1.13</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">42 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardA</td>
+<td style="text-align: right;">3,136.6 us</td>
+<td style="text-align: right;">31.71 us</td>
+<td style="text-align: right;">29.66 us</td>
+<td style="text-align: right;">1.27</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">42 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardA</td>
+<td style="text-align: right;">1,736.0 us</td>
+<td style="text-align: right;">1.12 us</td>
+<td style="text-align: right;">0.99 us</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">96 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardA</td>
+<td style="text-align: right;">56,533.7 us</td>
+<td style="text-align: right;">15,755.97 us</td>
+<td style="text-align: right;">14,738.15 us</td>
+<td style="text-align: right;">22.95</td>
+<td style="text-align: right;">5.95</td>
+<td style="text-align: right;">222.2222</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">973 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardA</td>
+<td style="text-align: right;">577,065.8 us</td>
+<td style="text-align: right;">644.41 us</td>
+<td style="text-align: right;">571.25 us</td>
+<td style="text-align: right;">234.17</td>
+<td style="text-align: right;">1.90</td>
+<td style="text-align: right;">10000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">41,347 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>HardB</td>
+<td style="text-align: right;">6,179.0 us</td>
+<td style="text-align: right;">87.85 us</td>
+<td style="text-align: right;">82.18 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">105 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>HardB</td>
+<td style="text-align: right;">6,836.2 us</td>
+<td style="text-align: right;">90.61 us</td>
+<td style="text-align: right;">84.75 us</td>
+<td style="text-align: right;">1.11</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">107 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>HardB</td>
+<td style="text-align: right;">7,452.3 us</td>
+<td style="text-align: right;">153.21 us</td>
+<td style="text-align: right;">143.31 us</td>
+<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">106 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>HardB</td>
+<td style="text-align: right;">1,833.9 us</td>
+<td style="text-align: right;">0.70 us</td>
+<td style="text-align: right;">0.55 us</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">97 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>HardB</td>
+<td style="text-align: right;">430,153.6 us</td>
+<td style="text-align: right;">267,940.63 us</td>
+<td style="text-align: right;">250,631.83 us</td>
+<td style="text-align: right;">69.81</td>
+<td style="text-align: right;">40.84</td>
+<td style="text-align: right;">2000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">9,835 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>HardB</td>
+<td style="text-align: right;">109,950.1 us</td>
+<td style="text-align: right;">154.42 us</td>
+<td style="text-align: right;">144.45 us</td>
+<td style="text-align: right;">17.80</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">1800.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">7,757 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilA</td>
+<td style="text-align: right;">4,154.6 us</td>
+<td style="text-align: right;">44.42 us</td>
+<td style="text-align: right;">41.55 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">77 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilA</td>
+<td style="text-align: right;">4,557.1 us</td>
+<td style="text-align: right;">34.92 us</td>
+<td style="text-align: right;">32.66 us</td>
+<td style="text-align: right;">1.10</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">77 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilA</td>
+<td style="text-align: right;">4,829.1 us</td>
+<td style="text-align: right;">53.15 us</td>
+<td style="text-align: right;">49.71 us</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">15.6250</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">78 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilA</td>
+<td style="text-align: right;">1,972.9 us</td>
+<td style="text-align: right;">3.82 us</td>
+<td style="text-align: right;">3.57 us</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">103 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilA</td>
+<td style="text-align: right;">787,805.3 us</td>
+<td style="text-align: right;">515,952.38 us</td>
+<td style="text-align: right;">482,622.18 us</td>
+<td style="text-align: right;">189.98</td>
+<td style="text-align: right;">116.88</td>
+<td style="text-align: right;">1000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">5,917 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilA</td>
+<td style="text-align: right;">9,442,748.9 us</td>
+<td style="text-align: right;">5,964.73 us</td>
+<td style="text-align: right;">4,980.82 us</td>
+<td style="text-align: right;">2,275.29</td>
+<td style="text-align: right;">23.93</td>
+<td style="text-align: right;">166000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">674,507 KB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>SudokuSpice</td>
+<td>EvilB</td>
+<td style="text-align: right;">35,869.1 us</td>
+<td style="text-align: right;">7,415.57 us</td>
+<td style="text-align: right;">6,936.53 us</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">90.9091</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">552 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicSingle</td>
+<td>EvilB</td>
+<td style="text-align: right;">39,927.1 us</td>
+<td style="text-align: right;">4,713.56 us</td>
+<td style="text-align: right;">4,409.06 us</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">83.3333</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">639 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceDynamicMultiple</td>
+<td>EvilB</td>
+<td style="text-align: right;">48,724.4 us</td>
+<td style="text-align: right;">6,149.82 us</td>
+<td style="text-align: right;">5,752.55 us</td>
+<td style="text-align: right;">1.39</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">83.3333</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">610 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td>EvilB</td>
+<td style="text-align: right;">4,012.9 us</td>
+<td style="text-align: right;">4.44 us</td>
+<td style="text-align: right;">4.15 us</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">23.4375</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">117 KB</td>
+</tr>
+<tr>
+<td>SudokuSharp</td>
+<td>EvilB</td>
+<td style="text-align: right;">888,724.4 us</td>
+<td style="text-align: right;">70,195.43 us</td>
+<td style="text-align: right;">65,660.85 us</td>
+<td style="text-align: right;">25.75</td>
+<td style="text-align: right;">5.72</td>
+<td style="text-align: right;">2000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">12,198 KB</td>
+</tr>
+<tr>
+<td>SudokuSolverLite</td>
+<td>EvilB</td>
+<td style="text-align: right;">1,152,642.1 us</td>
+<td style="text-align: right;">945.58 us</td>
+<td style="text-align: right;">884.50 us</td>
+<td style="text-align: right;">33.45</td>
+<td style="text-align: right;">7.51</td>
+<td style="text-align: right;">20000.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">83,411 KB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="puzzle-generating-performance">Puzzle generating performance</h2>
+<p>To compare puzzle generation, <em>SudokuSpice</em> and <em>SudokuSharp</em> were used to generate puzzles with 30
+preset squares. <em>SudokuSharp</em> shows two different numbers since it uses a different interface for
+puzzle generation. The <em>SudokuSharpSingle</em> method is more similar to the <em>SudokuSpice</em> method,
+where squares are cleared completely at random, whereas the <em>SudokuSharpMixed</em> method uses a mix of
+single, double, and quadruple square clearings.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen0</th>
+<th style="text-align: right;">Gen1</th>
+<th style="text-align: right;">Allocated</th>
+<th style="text-align: right;">Alloc Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td style="text-align: right;">583.3 μs</td>
+<td style="text-align: right;">8.23 μs</td>
+<td style="text-align: right;">7.29 μs</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">97.6563</td>
+<td style="text-align: right;">14.6484</td>
+<td style="text-align: right;">800.26 KB</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td style="text-align: right;">1,755.8 μs</td>
+<td style="text-align: right;">28.55 μs</td>
+<td style="text-align: right;">26.70 μs</td>
+<td style="text-align: right;">3.01</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">591.7969</td>
+<td style="text-align: right;">197.2656</td>
+<td style="text-align: right;">4846.54 KB</td>
+<td style="text-align: right;">6.06</td>
+</tr>
+<tr>
+<td>SudokuSharpSingles</td>
+<td style="text-align: right;">4,739.7 μs</td>
+<td style="text-align: right;">129.76 μs</td>
+<td style="text-align: right;">378.52 μs</td>
+<td style="text-align: right;">8.13</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">1078.1250</td>
+<td style="text-align: right;">7.8125</td>
+<td style="text-align: right;">8825.9 KB</td>
+<td style="text-align: right;">11.03</td>
+</tr>
+<tr>
+<td>SudokuSharpMixed</td>
+<td style="text-align: right;">2,442.7 μs</td>
+<td style="text-align: right;">56.60 μs</td>
+<td style="text-align: right;">166.90 μs</td>
+<td style="text-align: right;">4.19</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">656.2500</td>
+<td style="text-align: right;">3.9063</td>
+<td style="text-align: right;">5380.3 KB</td>
+<td style="text-align: right;">6.72</td>
+</tr>
+</tbody>
+</table>
+<h3 id="wasm-1">WASM</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">RatioSD</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Gen 1</th>
+<th style="text-align: right;">Gen 2</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SudokuSpice</td>
+<td style="text-align: right;">38.25 ms</td>
+<td style="text-align: right;">1.647 ms</td>
+<td style="text-align: right;">1.460 ms</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">153.8462</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">837 KB</td>
+</tr>
+<tr>
+<td>SudokuSpiceConstraints</td>
+<td style="text-align: right;">50.06 ms</td>
+<td style="text-align: right;">2.581 ms</td>
+<td style="text-align: right;">2.415 ms</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">800.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">3,498 KB</td>
+</tr>
+<tr>
+<td>SudokuSharpSingles</td>
+<td style="text-align: right;">217.88 ms</td>
+<td style="text-align: right;">87.680 ms</td>
+<td style="text-align: right;">73.217 ms</td>
+<td style="text-align: right;">5.73</td>
+<td style="text-align: right;">1.97</td>
+<td style="text-align: right;">2500.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">10,695 KB</td>
+</tr>
+<tr>
+<td>SudokuSharpMixed</td>
+<td style="text-align: right;">137.09 ms</td>
+<td style="text-align: right;">48.759 ms</td>
+<td style="text-align: right;">45.609 ms</td>
+<td style="text-align: right;">3.72</td>
+<td style="text-align: right;">1.23</td>
+<td style="text-align: right;">1600.0000</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6,868 KB</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MorganR/SudokuSpice/blob/master/SudokuSpiceDocs/releases/v3.2.3/articles/performance.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

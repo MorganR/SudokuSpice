@@ -1,0 +1,351 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.IPuzzleSolver`1
+  commentId: T:SudokuSpice.IPuzzleSolver`1
+  id: IPuzzleSolver`1
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  - SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  - SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  - SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: IPuzzleSolver<TPuzzle>
+  nameWithType: IPuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
+  type: Interface
+  source:
+    remote:
+      path: SudokuSpice/IPuzzleSolver.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: IPuzzleSolver
+    path: ../SudokuSpice/IPuzzleSolver.cs
+    startLine: 9
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Solves puzzles of the given type.
+  example: []
+  syntax:
+    content: 'public interface IPuzzleSolver<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>'
+    typeParameters:
+    - id: TPuzzle
+      description: The type of puzzle to solve.
+    content.vb: Public Interface IPuzzleSolver(Of TPuzzle As {Class, IPuzzle(Of TPuzzle)})
+  derivedClasses:
+  - SudokuSpice.ConstraintBased.PuzzleSolver`1
+  - SudokuSpice.RuleBased.PuzzleSolver`1
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle)
+  name.vb: IPuzzleSolver(Of TPuzzle)
+- uid: SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  commentId: M:SudokuSpice.IPuzzleSolver`1.TrySolve(`0,System.Boolean)
+  id: TrySolve(`0,System.Boolean)
+  parent: SudokuSpice.IPuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: TrySolve(TPuzzle, bool)
+  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve(TPuzzle, bool)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/IPuzzleSolver.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: TrySolve
+    path: ../SudokuSpice/IPuzzleSolver.cs
+    startLine: 22
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Attempts to solve the given puzzle.
+  example: []
+  syntax:
+    content: bool TrySolve(TPuzzle puzzle, bool randomizeGuesses = false)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+      description: The puzzle to solve. This will be solved in place.
+    - id: randomizeGuesses
+      type: System.Boolean
+      description: >-
+        If true, this will guess in a random order when forced to guess. Else, the guessing
+
+        order is up to the implementation, but it should be stable.
+    return:
+      type: System.Boolean
+    content.vb: Function TrySolve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As Boolean
+  overload: SudokuSpice.IPuzzleSolver`1.TrySolve*
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve(TPuzzle, Boolean)
+  name.vb: TrySolve(TPuzzle, Boolean)
+- uid: SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  commentId: M:SudokuSpice.IPuzzleSolver`1.Solve(`0,System.Boolean)
+  id: Solve(`0,System.Boolean)
+  parent: SudokuSpice.IPuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: Solve(TPuzzle, bool)
+  nameWithType: IPuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve(TPuzzle, bool)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/IPuzzleSolver.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Solve
+    path: ../SudokuSpice/IPuzzleSolver.cs
+    startLine: 38
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Solves the given puzzle in place.
+  example: []
+  syntax:
+    content: TPuzzle Solve(TPuzzle puzzle, bool randomizeGuesses = false)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+      description: The puzzle to solve. This will be copied instead of solved in-place.
+    - id: randomizeGuesses
+      type: System.Boolean
+      description: >-
+        If true, this will guess in a random order when forced to guess. Else, the guessing
+
+        order is up to the implementation, but it should be stable.
+    return:
+      type: '{TPuzzle}'
+      description: A solved copy of the given puzzle.
+    content.vb: Function Solve(puzzle As TPuzzle, randomizeGuesses As Boolean = False) As TPuzzle
+  overload: SudokuSpice.IPuzzleSolver`1.Solve*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if this puzzle can't be solved by this solver.
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve(TPuzzle, Boolean)
+  name.vb: Solve(TPuzzle, Boolean)
+- uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  commentId: M:SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  id: ComputeStatsForAllSolutions(`0,System.Nullable{System.Threading.CancellationToken})
+  parent: SudokuSpice.IPuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/IPuzzleSolver.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: ComputeStatsForAllSolutions
+    path: ../SudokuSpice/IPuzzleSolver.cs
+    startLine: 46
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Finds stats for all the solutions to the given puzzle. The puzzle is left unchanged.
+  example: []
+  syntax:
+    content: SolveStats ComputeStatsForAllSolutions(TPuzzle puzzle, CancellationToken? token = null)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    - id: token
+      type: System.Nullable{System.Threading.CancellationToken}
+    return:
+      type: SudokuSpice.SolveStats
+    content.vb: Function ComputeStatsForAllSolutions(puzzle As TPuzzle, token As CancellationToken? = Nothing) As SolveStats
+  overload: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: May be thrown if the given cancellation token is canceled during the operation.
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions(TPuzzle, System.Threading.CancellationToken?)
+- uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  commentId: M:SudokuSpice.IPuzzleSolver`1.HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  id: HasUniqueSolution(`0,System.Nullable{System.Threading.CancellationToken})
+  parent: SudokuSpice.IPuzzleSolver`1
+  langs:
+  - csharp
+  - vb
+  name: HasUniqueSolution(TPuzzle, CancellationToken?)
+  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/IPuzzleSolver.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: HasUniqueSolution
+    path: ../SudokuSpice/IPuzzleSolver.cs
+    startLine: 54
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Determines if the given puzzle has a unique solution. The puzzle is left unchanged.
+  example: []
+  syntax:
+    content: bool HasUniqueSolution(TPuzzle puzzle, CancellationToken? token = null)
+    parameters:
+    - id: puzzle
+      type: '{TPuzzle}'
+    - id: token
+      type: System.Nullable{System.Threading.CancellationToken}
+    return:
+      type: System.Boolean
+    content.vb: Function HasUniqueSolution(puzzle As TPuzzle, token As CancellationToken? = Nothing) As Boolean
+  overload: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution*
+  exceptions:
+  - type: System.OperationCanceledException
+    commentId: T:System.OperationCanceledException
+    description: May be thrown if the given cancellation token is canceled during the operation.
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, CancellationToken?)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution(TPuzzle, System.Threading.CancellationToken?)
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: SudokuSpice.IPuzzleSolver`1.TrySolve*
+  commentId: Overload:SudokuSpice.IPuzzleSolver`1.TrySolve
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_TrySolve__0_System_Boolean_
+  name: TrySolve
+  nameWithType: IPuzzleSolver<TPuzzle>.TrySolve
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.TrySolve
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).TrySolve
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).TrySolve
+- uid: '{TPuzzle}'
+  commentId: '!:TPuzzle'
+  definition: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: SudokuSpice.IPuzzleSolver`1.Solve*
+  commentId: Overload:SudokuSpice.IPuzzleSolver`1.Solve
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_Solve__0_System_Boolean_
+  name: Solve
+  nameWithType: IPuzzleSolver<TPuzzle>.Solve
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.Solve
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).Solve
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).Solve
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.operationcanceledexception
+  name: OperationCanceledException
+  nameWithType: OperationCanceledException
+  fullName: System.OperationCanceledException
+- uid: SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions*
+  commentId: Overload:SudokuSpice.IPuzzleSolver`1.ComputeStatsForAllSolutions
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_ComputeStatsForAllSolutions__0_System_Nullable_System_Threading_CancellationToken__
+  name: ComputeStatsForAllSolutions
+  nameWithType: IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.ComputeStatsForAllSolutions
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).ComputeStatsForAllSolutions
+- uid: System.Nullable{System.Threading.CancellationToken}
+  commentId: T:System.Nullable{System.Threading.CancellationToken}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken?
+  nameWithType: CancellationToken?
+  fullName: System.Threading.CancellationToken?
+  spec.csharp:
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
+  spec.vb:
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: '?'
+- uid: SudokuSpice.SolveStats
+  commentId: T:SudokuSpice.SolveStats
+  parent: SudokuSpice
+  href: SudokuSpice.SolveStats.html
+  name: SolveStats
+  nameWithType: SolveStats
+  fullName: SudokuSpice.SolveStats
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SudokuSpice.IPuzzleSolver`1.HasUniqueSolution*
+  commentId: Overload:SudokuSpice.IPuzzleSolver`1.HasUniqueSolution
+  href: SudokuSpice.IPuzzleSolver-1.html#SudokuSpice_IPuzzleSolver_1_HasUniqueSolution__0_System_Nullable_System_Threading_CancellationToken__
+  name: HasUniqueSolution
+  nameWithType: IPuzzleSolver<TPuzzle>.HasUniqueSolution
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>.HasUniqueSolution
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle).HasUniqueSolution
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle).HasUniqueSolution

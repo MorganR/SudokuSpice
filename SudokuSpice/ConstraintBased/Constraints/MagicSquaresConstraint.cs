@@ -254,7 +254,7 @@ namespace SudokuSpice.ConstraintBased.Constraints
             }
 
             // Set requirements on the relevant values.
-            OptionalObjective[] valuesToConnect = new OptionalObjective[numUnset];
+            IPossibility[] valuesToConnect = new IPossibility[numUnset];
             BitVector usedValues = new();
             foreach (BitVector set in relevantSets)
             {

@@ -1,0 +1,609 @@
+### YamlMime:ManagedReference
+items:
+- uid: SudokuSpice.PuzzleGenerator`1
+  commentId: T:SudokuSpice.PuzzleGenerator`1
+  id: PuzzleGenerator`1
+  parent: SudokuSpice
+  children:
+  - SudokuSpice.PuzzleGenerator`1.#ctor(System.Func{System.Int32,`0},SudokuSpice.IPuzzleSolver{`0})
+  - SudokuSpice.PuzzleGenerator`1.Generate(System.Int32,System.Int32,System.TimeSpan)
+  langs:
+  - csharp
+  - vb
+  name: PuzzleGenerator<TPuzzle>
+  nameWithType: PuzzleGenerator<TPuzzle>
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>
+  type: Class
+  source:
+    remote:
+      path: SudokuSpice/PuzzleGenerator.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: PuzzleGenerator
+    path: ../SudokuSpice/PuzzleGenerator.cs
+    startLine: 10
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Generates puzzles of the given type based on the provided solver.
+  example: []
+  syntax:
+    content: 'public class PuzzleGenerator<TPuzzle> where TPuzzle : class, IPuzzle<TPuzzle>'
+    typeParameters:
+    - id: TPuzzle
+      description: The type of puzzle to generate.
+    content.vb: Public Class PuzzleGenerator(Of TPuzzle As {Class, IPuzzle(Of TPuzzle)})
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - SudokuSpice.RuleBased.StandardPuzzleGenerator
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle)
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle)
+  name.vb: PuzzleGenerator(Of TPuzzle)
+- uid: SudokuSpice.PuzzleGenerator`1.#ctor(System.Func{System.Int32,`0},SudokuSpice.IPuzzleSolver{`0})
+  commentId: M:SudokuSpice.PuzzleGenerator`1.#ctor(System.Func{System.Int32,`0},SudokuSpice.IPuzzleSolver{`0})
+  id: '#ctor(System.Func{System.Int32,`0},SudokuSpice.IPuzzleSolver{`0})'
+  parent: SudokuSpice.PuzzleGenerator`1
+  langs:
+  - csharp
+  - vb
+  name: PuzzleGenerator(Func<int, TPuzzle>, IPuzzleSolver<TPuzzle>)
+  nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator(Func<int, TPuzzle>, IPuzzleSolver<TPuzzle>)
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>.PuzzleGenerator(System.Func<int, TPuzzle>, SudokuSpice.IPuzzleSolver<TPuzzle>)
+  type: Constructor
+  source:
+    remote:
+      path: SudokuSpice/PuzzleGenerator.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: .ctor
+    path: ../SudokuSpice/PuzzleGenerator.cs
+    startLine: 27
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Creates a puzzle generator for generating puzzles.
+  example: []
+  syntax:
+    content: public PuzzleGenerator(Func<int, TPuzzle> puzzleFromSize, IPuzzleSolver<TPuzzle> solver)
+    parameters:
+    - id: puzzleFromSize
+      type: System.Func{System.Int32,{TPuzzle}}
+      description: >-
+        A function that constructs an empty <xref href="SudokuSpice.IPuzzle%601" data-throw-if-not-resolved="false"></xref> of the desired type and shape.
+
+        The requested puzzle size (i.e. side-length) is provided as an argument.
+    - id: solver
+      type: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+      description: >-
+        A solver to be used to generate puzzles. The solver determines the rules or constraints
+
+        a puzzle must satisfy.
+    content.vb: Public Sub New(puzzleFromSize As Func(Of Integer, TPuzzle), solver As IPuzzleSolver(Of TPuzzle))
+  overload: SudokuSpice.PuzzleGenerator`1.#ctor*
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).New(Func(Of Integer, TPuzzle), IPuzzleSolver(Of TPuzzle))
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle).New(System.Func(Of Integer, TPuzzle), SudokuSpice.IPuzzleSolver(Of TPuzzle))
+  name.vb: New(Func(Of Integer, TPuzzle), IPuzzleSolver(Of TPuzzle))
+- uid: SudokuSpice.PuzzleGenerator`1.Generate(System.Int32,System.Int32,System.TimeSpan)
+  commentId: M:SudokuSpice.PuzzleGenerator`1.Generate(System.Int32,System.Int32,System.TimeSpan)
+  id: Generate(System.Int32,System.Int32,System.TimeSpan)
+  parent: SudokuSpice.PuzzleGenerator`1
+  langs:
+  - csharp
+  - vb
+  name: Generate(int, int, TimeSpan)
+  nameWithType: PuzzleGenerator<TPuzzle>.Generate(int, int, TimeSpan)
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>.Generate(int, int, System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: SudokuSpice/PuzzleGenerator.cs
+      branch: master
+      repo: git@github.com:MorganR/SudokuSpice.git
+    id: Generate
+    path: ../SudokuSpice/PuzzleGenerator.cs
+    startLine: 61
+  assemblies:
+  - SudokuSpice
+  namespace: SudokuSpice
+  summary: Generates a puzzle that has a unique solution with the given number of squares set.
+  remarks: >-
+    Be careful calling this with low values, as it can take a very long time to generate
+
+    unique puzzles as the value of <code class="paramref">numSquaresToSet</code> approaches the
+
+    minimum number of clues necessary to provide a unique puzzle of the given
+
+    <code class="paramref">puzzleSize</code>.
+  example: []
+  syntax:
+    content: public TPuzzle Generate(int puzzleSize, int numSquaresToSet, TimeSpan timeout)
+    parameters:
+    - id: puzzleSize
+      type: System.Int32
+      description: The size (i.e. side-length) of the puzzle to generate.
+    - id: numSquaresToSet
+      type: System.Int32
+      description: The number of squares that will be preset in the generated puzzle.
+    - id: timeout
+      type: System.TimeSpan
+      description: >-
+        The maximum timeout during which this function can search for a unique puzzle.
+
+        Especially useful when trying to generate puzzles with low
+
+        <code class="paramref">numSquaresToSet</code>. Use <code>TimeSpan.Zero</code> to disable the timeout.
+    return:
+      type: '{TPuzzle}'
+      description: >-
+        A puzzle of type <code>TPuzzle</code> with a unique solution and
+
+        <code class="paramref">numSquaresToSet</code> preset squares.
+    content.vb: Public Function Generate(puzzleSize As Integer, numSquaresToSet As Integer, timeout As TimeSpan) As TPuzzle
+  overload: SudokuSpice.PuzzleGenerator`1.Generate*
+  exceptions:
+  - type: System.TimeoutException
+    commentId: T:System.TimeoutException
+    description: >-
+      Thrown if no valid unique puzzle is found within the specified
+
+      <code class="paramref">timeout</code>.
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).Generate(Integer, Integer, TimeSpan)
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle).Generate(Integer, Integer, System.TimeSpan)
+  name.vb: Generate(Integer, Integer, TimeSpan)
+references:
+- uid: SudokuSpice
+  commentId: N:SudokuSpice
+  name: SudokuSpice
+  nameWithType: SudokuSpice
+  fullName: SudokuSpice
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SudokuSpice.IPuzzle`1
+  commentId: T:SudokuSpice.IPuzzle`1
+  href: SudokuSpice.IPuzzle-1.html
+  name: IPuzzle<T>
+  nameWithType: IPuzzle<T>
+  fullName: SudokuSpice.IPuzzle<T>
+  nameWithType.vb: IPuzzle(Of T)
+  fullName.vb: SudokuSpice.IPuzzle(Of T)
+  name.vb: IPuzzle(Of T)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzle`1
+    name: IPuzzle
+    href: SudokuSpice.IPuzzle-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzle`1
+    name: IPuzzle
+    href: SudokuSpice.IPuzzle-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SudokuSpice.PuzzleGenerator`1.#ctor*
+  commentId: Overload:SudokuSpice.PuzzleGenerator`1.#ctor
+  href: SudokuSpice.PuzzleGenerator-1.html#SudokuSpice_PuzzleGenerator_1__ctor_System_Func_System_Int32__0__SudokuSpice_IPuzzleSolver__0__
+  name: PuzzleGenerator
+  nameWithType: PuzzleGenerator<TPuzzle>.PuzzleGenerator
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>.PuzzleGenerator
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).New
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle).New
+  name.vb: New
+- uid: System.Func{System.Int32,{TPuzzle}}
+  commentId: T:System.Func{System.Int32,`0}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<int, TPuzzle>
+  nameWithType: Func<int, TPuzzle>
+  fullName: System.Func<int, TPuzzle>
+  nameWithType.vb: Func(Of Integer, TPuzzle)
+  fullName.vb: System.Func(Of Integer, TPuzzle)
+  name.vb: Func(Of Integer, TPuzzle)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: TPuzzle
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: TPuzzle
+  - name: )
+- uid: SudokuSpice.IPuzzleSolver{{TPuzzle}}
+  commentId: T:SudokuSpice.IPuzzleSolver{`0}
+  parent: SudokuSpice
+  definition: SudokuSpice.IPuzzleSolver`1
+  href: SudokuSpice.IPuzzleSolver-1.html
+  name: IPuzzleSolver<TPuzzle>
+  nameWithType: IPuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle)
+  name.vb: IPuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    href: SudokuSpice.IPuzzleSolver-1.html
+  - name: <
+  - name: TPuzzle
+  - name: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    href: SudokuSpice.IPuzzleSolver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TPuzzle
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: SudokuSpice.IPuzzleSolver`1
+  commentId: T:SudokuSpice.IPuzzleSolver`1
+  href: SudokuSpice.IPuzzleSolver-1.html
+  name: IPuzzleSolver<TPuzzle>
+  nameWithType: IPuzzleSolver<TPuzzle>
+  fullName: SudokuSpice.IPuzzleSolver<TPuzzle>
+  nameWithType.vb: IPuzzleSolver(Of TPuzzle)
+  fullName.vb: SudokuSpice.IPuzzleSolver(Of TPuzzle)
+  name.vb: IPuzzleSolver(Of TPuzzle)
+  spec.csharp:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    href: SudokuSpice.IPuzzleSolver-1.html
+  - name: <
+  - name: TPuzzle
+  - name: '>'
+  spec.vb:
+  - uid: SudokuSpice.IPuzzleSolver`1
+    name: IPuzzleSolver
+    href: SudokuSpice.IPuzzleSolver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TPuzzle
+  - name: )
+- uid: System.TimeoutException
+  commentId: T:System.TimeoutException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timeoutexception
+  name: TimeoutException
+  nameWithType: TimeoutException
+  fullName: System.TimeoutException
+- uid: SudokuSpice.PuzzleGenerator`1.Generate*
+  commentId: Overload:SudokuSpice.PuzzleGenerator`1.Generate
+  href: SudokuSpice.PuzzleGenerator-1.html#SudokuSpice_PuzzleGenerator_1_Generate_System_Int32_System_Int32_System_TimeSpan_
+  name: Generate
+  nameWithType: PuzzleGenerator<TPuzzle>.Generate
+  fullName: SudokuSpice.PuzzleGenerator<TPuzzle>.Generate
+  nameWithType.vb: PuzzleGenerator(Of TPuzzle).Generate
+  fullName.vb: SudokuSpice.PuzzleGenerator(Of TPuzzle).Generate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: '{TPuzzle}'
+  commentId: '!:TPuzzle'
+  definition: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
+- uid: TPuzzle
+  name: TPuzzle
+  nameWithType: TPuzzle
+  fullName: TPuzzle
